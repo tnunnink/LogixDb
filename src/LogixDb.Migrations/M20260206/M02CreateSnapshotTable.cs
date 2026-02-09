@@ -1,0 +1,39 @@
+﻿using System.Data;
+using FluentMigrator;
+using JetBrains.Annotations;
+
+namespace LogixDb.Migrations.M20260206;
+
+[UsedImplicitly]
+[Migration(202602061020, "Create snapshot table and associated indexes for target type/name and import date")]
+public class M02CreateSnapshotTable : AutoReversingMigration
+{
+    public override void Up()
+    {
+        Create.Table("snapshot")
+            .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
+            .WithColumn("target_id").AsInt32().NotNullable().ForeignKey("target", "target_id").OnDelete(Rule.Cascade)
+            .WithColumn("target_type").AsString(256).NotNullable()
+            .WithColumn("target_name").AsString(256).NotNullable()
+            .WithColumn("is_partial").AsBoolean().NotNullable()
+            .WithColumn("schema_revision").AsString(16).Nullable()
+            .WithColumn("software_revision").AsString(16).Nullable()
+            .WithColumn("export_date").AsDateTime().Nullable()
+            .WithColumn("export_options").AsString(2048).Nullable()
+            .WithColumn("import_date").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
+            .WithColumn("import_user").AsString(128).NotNullable().WithDefaultValue(Environment.UserDomainName)
+            .WithColumn("import_machine").AsString(128).NotNullable().WithDefaultValue(Environment.MachineName)
+            .WithColumn("source_hash").AsString(64).NotNullable()
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
+
+        Create.Index()
+            .OnTable("snapshot")
+            .OnColumn("target_type").Ascending()
+            .OnColumn("target_name").Ascending();
+
+        Create.Index()
+            .OnTable("snapshot")
+            .OnColumn("target_id").Ascending()
+            .OnColumn("import_date").Descending();
+    }
+}

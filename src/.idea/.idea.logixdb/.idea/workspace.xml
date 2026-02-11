@@ -9,44 +9,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Abstractions/ILogixDatabase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Abstractions/ILogixDatabaseProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Abstractions/LogixDb.Abstractions.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/App.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/ExitCodes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/FileType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/Format.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Extensions/GeneralExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Extensions/ServiceExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Extensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Core/LogixDb.Core.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Snapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Core/SqlProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/LogixDb.Migrations.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M01CreateTargetTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M02CreateSnapshotTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M01CreateTagTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/MigrationTableMetaData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixSqlServerDatabase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixImporter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixSqliteDatabase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logixdb.sln.DotSettings" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteMigrationTestBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDatabase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDatabaseFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/ILogixDatabaseImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Abstractions/TableMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Common/ColumnMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Common/ColumnType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Core/Maps/TagMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/MigrationsAssemblyMarker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteTagImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteAssemblyMarker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/LogixDb.Core.Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Abstractions/ILogixDatabase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Abstractions/ILogixDatabaseProvider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Abstractions/LogixDb.Abstractions.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/FileType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Extensions/GeneralExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Extensions/GeneralExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/Snapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/SqlAuthentication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SqlAuthentication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/SqlConnectionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SqlConnectionInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Core/SqlProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/SqlProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/LogixDb.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/LogixDb.Migrations.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M01CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M01CreateTagTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/LogixDb.SqlServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixDb.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixImporter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/LogixSqliteDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/LogixSqliteDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.sln" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logixdb.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/logixdb.sln.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/LogixDb.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/LogixDb.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteMigrationTestBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteMigrationTestBase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="10" />
+    <option name="cachedIndexableFilesCount" value="9" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -58,48 +73,64 @@
     &quot;assignee&quot;: &quot;tnunnink&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tnunnink/logixdb.git&quot;,
-    &quot;accountId&quot;: &quot;d2f60ef5-5ad0-40c1-a277-9835f109efbf&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:/tnunnink/logixdb.git",
+    "accountId": "44eadc35-9d54-442c-b32c-a90545d57e74"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/LogixDb.Core/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Core/Common/ColumnType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/MigrationsAssemblyMarker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteAssemblyMarker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="39QmQ4pxCnGxbRJjHGuw7Ue0Xwv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.012066999" />
@@ -160,15 +191,28 @@
       <updated>1770636650976</updated>
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
+      <workItem from="1770648816599" duration="48627000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
+      <option name="closed" value="true" />
+      <created>1770671360234</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1770671360234</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -185,6 +229,32 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs</url>
+          <line>40</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Core.Tests\SnapshotTests.cs" containingFunctionPresentation="Method 'Snapshot_CreateFromFakeSource_ShouldHaveExpectedFields'">
+            <startOffsets>
+              <option value="1176" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1206" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/Migrations/M20260207Tests.cs</url>
+          <line>10</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\Migrations\M20260207Tests.cs" containingFunctionPresentation="Method 'MigrateUp_ToM01_CreatesTagTableWithExpectedColumns'">
+            <startOffsets>
+              <option value="253" />
+            </startOffsets>
+            <endOffsets>
+              <option value="293" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

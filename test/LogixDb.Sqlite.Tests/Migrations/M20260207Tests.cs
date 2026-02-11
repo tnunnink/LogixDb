@@ -1,7 +1,7 @@
 ﻿namespace LogixDb.Sqlite.Tests.Migrations;
 
 [TestFixture]
-public class M20260207Tests() : SqliteMigrationTestBase(typeof(LogixSqliteDatabase).Assembly)
+public class M20260207Tests : SqliteMigrationTestBase
 {
     [Test]
     public void MigrateUp_ToM01_CreatesTagTableWithExpectedColumns()
@@ -14,25 +14,26 @@ public class M20260207Tests() : SqliteMigrationTestBase(typeof(LogixSqliteDataba
         {
             AssertTableExists(connection, "tag");
 
-            AssertColumn(connection, "tag", "tag_id", "integer");
-            AssertColumn(connection, "tag", "snapshot_id", "integer");
-            AssertColumn(connection, "tag", "reference", "text");
-            AssertColumn(connection, "tag", "base_name", "text");
-            AssertColumn(connection, "tag", "tag_name", "text");
-            AssertColumn(connection, "tag", "depth", "integer");
-            AssertColumn(connection, "tag", "scope", "text");
-            AssertColumn(connection, "tag", "usage", "text");
-            AssertColumn(connection, "tag", "data_type", "text");
-            AssertColumn(connection, "tag", "value", "text");
-            AssertColumn(connection, "tag", "description", "text");
-            AssertColumn(connection, "tag", "dimensions", "text");
-            AssertColumn(connection, "tag", "radix", "text");
-            AssertColumn(connection, "tag", "external_access", "text");
-            AssertColumn(connection, "tag", "opcua_access", "text");
-            AssertColumn(connection, "tag", "constant", "integer");
-            AssertColumn(connection, "tag", "tag_type", "text");
-            AssertColumn(connection, "tag", "alias_for", "text");
-            AssertColumn(connection, "tag", "component_class", "text");
+            AssertColumnDefinition(connection, "tag", "tag_id", "integer");
+            AssertColumnDefinition(connection, "tag", "snapshot_id", "integer");
+            AssertColumnDefinition(connection, "tag", "reference", "text");
+            AssertColumnDefinition(connection, "tag", "base_name", "text");
+            AssertColumnDefinition(connection, "tag", "tag_name", "text");
+            AssertColumnDefinition(connection, "tag", "scope_level", "text");
+            AssertColumnDefinition(connection, "tag", "scope_name", "text");
+            AssertColumnDefinition(connection, "tag", "tag_depth", "integer");
+            AssertColumnDefinition(connection, "tag", "tag_usage", "text");
+            AssertColumnDefinition(connection, "tag", "data_type", "text");
+            AssertColumnDefinition(connection, "tag", "value", "text");
+            AssertColumnDefinition(connection, "tag", "description", "text");
+            AssertColumnDefinition(connection, "tag", "dimensions", "text");
+            AssertColumnDefinition(connection, "tag", "radix", "text");
+            AssertColumnDefinition(connection, "tag", "external_access", "text");
+            AssertColumnDefinition(connection, "tag", "opcua_access", "text");
+            AssertColumnDefinition(connection, "tag", "constant", "integer");
+            AssertColumnDefinition(connection, "tag", "tag_type", "text");
+            AssertColumnDefinition(connection, "tag", "alias_for", "text");
+            AssertColumnDefinition(connection, "tag", "component_class", "text");
 
             AssertPrimaryKey(connection, "tag", "tag_id");
             AssertForeignKey(connection, "tag", "snapshot_id", "snapshot", "snapshot_id");

@@ -1,4 +1,4 @@
-﻿namespace LogixDb.Core;
+﻿namespace LogixDb.Core.Common;
 
 /// <summary>
 /// Represents the supported SQL database provider types for Logix database operations.

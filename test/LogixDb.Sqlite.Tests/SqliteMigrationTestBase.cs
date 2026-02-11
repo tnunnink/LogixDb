@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Reflection;
 using FluentMigrator.Runner;
 using LogixDb.Migrations;
 using Microsoft.Data.Sqlite;
@@ -9,13 +8,11 @@ namespace LogixDb.Sqlite.Tests;
 
 public abstract class SqliteMigrationTestBase
 {
-    private readonly Assembly _migrationAssembly;
     private readonly string _dbPath;
     private readonly string _connectionString;
 
-    protected SqliteMigrationTestBase(Assembly migrationAssembly)
+    protected SqliteMigrationTestBase()
     {
-        _migrationAssembly = migrationAssembly;
         _dbPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         _connectionString = $"Data Source={_dbPath};";
     }
@@ -42,7 +39,10 @@ public abstract class SqliteMigrationTestBase
                 .AddSQLite()
                 .WithGlobalConnectionString(_connectionString)
                 .WithVersionTable(new MigrationTableMetaData())
-                .ScanIn(_migrationAssembly).For.Migrations())
+                .ScanIn(
+                    typeof(MigrationsAssemblyMarker).Assembly,
+                    typeof(SqliteAssemblyMarker).Assembly
+                ).For.Migrations())
             .BuildServiceProvider(validateScopes: false);
 
         using var scope = services.CreateScope();
@@ -99,7 +99,7 @@ public abstract class SqliteMigrationTestBase
     /// <exception cref="AssertionException">
     /// Thrown if the column does not exist in the specified table or if the column's data type does not match the expected type.
     /// </exception>
-    protected static void AssertColumn(IDbConnection connection, string tableName, string columnName, string columnType)
+    protected static void AssertColumnDefinition(IDbConnection connection, string tableName, string columnName, string columnType)
     {
         using var command = connection.CreateCommand();
         command.CommandText = $"PRAGMA table_info('{tableName}');";

@@ -2,7 +2,7 @@ using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace LogixDb.Core;
+namespace LogixDb.Core.Common;
 
 /// <summary>
 /// Provides extension methods for string and byte array manipulation, including compression,

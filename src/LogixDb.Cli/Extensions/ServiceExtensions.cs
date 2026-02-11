@@ -16,6 +16,7 @@ public static class ServiceExtensions
         {
             var services = new ServiceCollection();
 
+            //todo register the database services.
             
             return services.BuildServiceProvider(new ServiceProviderOptions
             {

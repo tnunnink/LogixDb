@@ -1,4 +1,4 @@
-namespace LogixDb.Core;
+namespace LogixDb.Core.Common;
 
 /// <summary>
 /// Represents the connection information required to connect to a SQL database.

@@ -1,6 +1,6 @@
 ﻿using L5Sharp.Core;
 
-namespace LogixDb.Core;
+namespace LogixDb.Core.Common;
 
 /// <summary>
 /// Represents a snapshot of an L5X file containing Logix controller data.
@@ -10,6 +10,13 @@ namespace LogixDb.Core;
 /// </summary>
 public sealed class Snapshot
 {
+    /// <summary>
+    /// A private field representing the parsed L5X data associated with the snapshot.
+    /// This field is lazily initialized when the source data is decompressed and parsed,
+    /// and it serves as the in-memory representation of the XML data from the L5X file.
+    /// </summary>
+    private L5X? _l5X;
+
     public int SnapshotId { get; init; }
     public string TargetType { get; init; } = string.Empty;
     public string TargetName { get; init; } = string.Empty;
@@ -65,11 +72,12 @@ public sealed class Snapshot
     public string GetDefaultKey() => $"{TargetType.ToLower()}://{TargetName}";
 
     /// <summary>
-    /// Retrieves the decompressed XML source data for the snapshot.
-    /// The data is uncompressed from the stored binary format and returned as a string.
+    /// Retrieves the parsed L5X source data associated with the snapshot.
+    /// If the parsed data has not yet been initialized, it is created by decompressing and parsing
+    /// the stored source data.
     /// </summary>
-    /// <returns>The decompressed XML source data as a string.</returns>
-    public string GetSource() => SourceData.Decompress();
+    /// <returns>The parsed L5X instance representing the source data of the snapshot.</returns>
+    public L5X GetSource() => _l5X ??= L5X.Parse(SourceData.Decompress());
 
     /// <summary>
     /// Returns a string representation of the snapshot instance.

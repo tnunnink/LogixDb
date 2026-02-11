@@ -1,7 +1,7 @@
 ﻿namespace LogixDb.Sqlite.Tests.Migrations;
 
 [TestFixture]
-public class M20260206Tests() : SqliteMigrationTestBase(typeof(LogixSqliteDatabase).Assembly)
+public class M20260206Tests : SqliteMigrationTestBase
 {
     [Test]
     public void MigrateUp_ToM01_CreatesTargetTableWithExpectedColumns()
@@ -14,12 +14,9 @@ public class M20260206Tests() : SqliteMigrationTestBase(typeof(LogixSqliteDataba
         {
             AssertTableExists(connection, "target");
 
-            AssertColumn(connection, "target", "target_id", "integer");
-            AssertColumn(connection, "target", "target_key", "text");
-            AssertColumn(connection, "target", "target_type", "text");
-            AssertColumn(connection, "target", "target_name", "text");
-            AssertColumn(connection, "target", "is_partial", "integer");
-            AssertColumn(connection, "target", "created_on", "datetime");
+            AssertColumnDefinition(connection, "target", "target_id", "integer");
+            AssertColumnDefinition(connection, "target", "target_key", "text");
+            AssertColumnDefinition(connection, "target", "created_on", "datetime");
 
             AssertPrimaryKey(connection, "target", "target_id");
             AssertUniqueIndex(connection, "target", "target_key");
@@ -37,17 +34,23 @@ public class M20260206Tests() : SqliteMigrationTestBase(typeof(LogixSqliteDataba
         {
             AssertTableExists(connection, "snapshot");
 
-            AssertColumn(connection, "snapshot", "snapshot_id", "integer");
-            AssertColumn(connection, "snapshot", "target_id", "integer");
-            AssertColumn(connection, "snapshot", "source_revision", "text");
-            AssertColumn(connection, "snapshot", "source_hash", "text");
-            AssertColumn(connection, "snapshot", "exported_on", "datetime");
-            AssertColumn(connection, "snapshot", "imported_on", "datetime");
-            AssertColumn(connection, "snapshot", "imported_by", "text");
-            AssertColumn(connection, "snapshot", "imported_from", "text");
-            AssertColumn(connection, "snapshot", "options", "text");
+            AssertColumnDefinition(connection, "snapshot", "snapshot_id", "integer");
+            AssertColumnDefinition(connection, "snapshot", "target_id", "integer");
+            AssertColumnDefinition(connection, "snapshot", "target_type", "text");
+            AssertColumnDefinition(connection, "snapshot", "target_name", "text");
+            AssertColumnDefinition(connection, "snapshot", "is_partial", "integer");
+            AssertColumnDefinition(connection, "snapshot", "schema_revision", "text");
+            AssertColumnDefinition(connection, "snapshot", "software_revision", "text");
+            AssertColumnDefinition(connection, "snapshot", "export_date", "datetime");
+            AssertColumnDefinition(connection, "snapshot", "export_options", "text");
+            AssertColumnDefinition(connection, "snapshot", "import_date", "datetime");
+            AssertColumnDefinition(connection, "snapshot", "import_user", "text");
+            AssertColumnDefinition(connection, "snapshot", "import_machine", "text");
+            AssertColumnDefinition(connection, "snapshot", "source_hash", "text");
+            AssertColumnDefinition(connection, "snapshot", "source_data", "blob");
 
             AssertPrimaryKey(connection, "snapshot", "snapshot_id");
+            AssertForeignKey(connection, "snapshot", "target_id", "target", "target_id");
         }
     }
 }

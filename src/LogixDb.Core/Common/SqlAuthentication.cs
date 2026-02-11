@@ -1,4 +1,4 @@
-namespace LogixDb.Core;
+namespace LogixDb.Core.Common;
 
 /// <summary>
 /// Represents the authentication method to use when connecting to a SQL Server database.

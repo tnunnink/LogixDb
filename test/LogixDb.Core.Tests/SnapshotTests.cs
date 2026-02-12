@@ -1,5 +1,4 @@
 using FluentAssertions;
-using L5Sharp.Core;
 using LogixDb.Core.Common;
 using LogixDb.Testing;
 
@@ -35,7 +34,7 @@ public class SnapshotTests
     [Test]
     public void Snapshot_CreateFromFakeSource_ShouldHaveExpectedFields()
     {
-        var source = TestSource.Load(@"C:\Users\tnunn\Documents\L5X\Test.L5X");
+        var source = TestSource.LocalTest();
 
         var snapshot = Snapshot.Create(source);
 

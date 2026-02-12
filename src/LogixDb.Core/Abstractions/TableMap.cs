@@ -1,4 +1,3 @@
-using L5Sharp.Core;
 using LogixDb.Core.Common;
 
 namespace LogixDb.Core.Abstractions;
@@ -8,8 +7,8 @@ namespace LogixDb.Core.Abstractions;
 /// Provides the schema definition for how a specific type of Logix element should be stored in the database,
 /// including the table name and column mappings.
 /// </summary>
-/// <typeparam name="TElement">The type of Logix element this table map represents must implement ILogixElement.</typeparam>
-public abstract class TableMap<TElement> where TElement : ILogixElement
+/// <typeparam name="T">The type of Logix element this table map represents must implement ILogixElement.</typeparam>
+public abstract class TableMap<T> where T : class
 {
     /// <summary>
     /// Gets the name of the database table that will store the mapped Logix elements.
@@ -20,7 +19,7 @@ public abstract class TableMap<TElement> where TElement : ILogixElement
     /// Gets the collection of column mappings that define how properties of the Logix element
     /// are mapped to columns in the database table.
     /// </summary>
-    public abstract IReadOnlyList<ColumnMap<TElement>> Columns { get; }
+    public abstract IReadOnlyList<ColumnMap<T>> Columns { get; }
 
     /// <summary>
     /// Constructs an SQL INSERT statement for a table defined by the implementing TableMap.

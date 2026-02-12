@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using L5Sharp.Core;
 
 namespace LogixDb.Core.Common;
@@ -30,52 +29,87 @@ public sealed record ColumnMap<TElement> where TElement : ILogixElement
     public required Func<TElement, object?> Getter { get; init; }
 
     /// <summary>
-    /// Creates a new <see cref="ColumnMap{TElement}"/> instance for the specified property or field of a
-    /// Logix element and assigns it a database column name.
+    /// Creates a new column map for a string-based property of a Logix element with a specified database column name.
     /// </summary>
-    /// <param name="getter">An expression that identifies the property or field of the <typeparamref name="TElement"/>
-    /// to be mapped to the database column. This expression must specify how to retrieve the property's value.</param>
-    /// <param name="name">The name of the database column that the specified property or field is mapped to.</param>
-    /// <returns>A configured <see cref="ColumnMap{TElement}"/> instance representing the mapping of the specified
-    /// property or field to the database column.</returns>
-    public static ColumnMap<TElement> For(Expression<Func<TElement, object>> getter, string name)
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the string value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the string property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, string?> getter, string name)
     {
-        var returnType = getter.Body.Type;
-
-        if (getter.Body.Type == typeof(object) && getter.Body is UnaryExpression unary)
-        {
-            returnType = unary.Operand.Type;
-        }
-
-        var dbType = GetDbType(returnType);
-
         return new ColumnMap<TElement>
         {
             Name = name,
-            Type = dbType,
-            Getter = getter.Compile()
+            Type = ColumnType.Text,
+            Getter = getter
         };
     }
 
     /// <summary>
-    /// Determines the appropriate database column type corresponding to the specified .NET type.
+    /// Creates a new column map for a Logix element property with a 16-bit integer (short) data type mapped to the specified database column name.
     /// </summary>
-    /// <param name="type">The .NET type for which the corresponding database column type is required.</param>
-    /// <returns>A <see cref="ColumnType"/> value that represents the database mapping for the specified .NET type.</returns>
-    private static ColumnType GetDbType(Type type)
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the 16-bit integer value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the 16-bit integer property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, short> getter, string name)
     {
-        var underlyingType = Nullable.GetUnderlyingType(type) ?? type;
-
-        return underlyingType switch
+        return new ColumnMap<TElement>
         {
-            _ when underlyingType == typeof(bool) => ColumnType.Boolean,
-            _ when underlyingType == typeof(short) => ColumnType.Int16,
-            _ when underlyingType == typeof(int) => ColumnType.Int32,
-            _ when underlyingType == typeof(string) => ColumnType.Text,
-            _ when underlyingType == typeof(DateTime) => ColumnType.DateTime,
-            _ when underlyingType == typeof(byte[]) => ColumnType.Blob,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type,
-                $"Unsupported type '{type.FullName}' for database column mapping.")
+            Name = name,
+            Type = ColumnType.Int16,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for an integer-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the integer value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the integer property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, int> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Int32,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for a boolean-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the boolean property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, bool> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Boolean,
+            Getter = e => getter(e)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for a nullable boolean-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="TElement">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the nullable boolean value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the nullable boolean property and column name.</returns>
+    public static ColumnMap<TElement> For(Func<TElement, bool?> getter, string name)
+    {
+        return new ColumnMap<TElement>
+        {
+            Name = name,
+            Type = ColumnType.Boolean,
+            Getter = e => getter(e)
         };
     }
 }

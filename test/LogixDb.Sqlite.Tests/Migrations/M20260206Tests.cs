@@ -4,7 +4,7 @@
 public class M20260206Tests : SqliteMigrationTestBase
 {
     [Test]
-    public void MigrateUp_ToM01_CreatesTargetTableWithExpectedColumns()
+    public void MigrateUp_ToM001_CreatesTargetTableWithExpectedColumns()
     {
         MigrateUp(toVersion: 202602061010);
 
@@ -24,7 +24,7 @@ public class M20260206Tests : SqliteMigrationTestBase
     }
 
     [Test]
-    public void MigrateUp_ToM02_CreatesTargetTableWithExpectedColumns()
+    public void MigrateUp_ToM002_CreatesTargetTableWithExpectedColumns()
     {
         MigrateUp(toVersion: 202602061020);
 

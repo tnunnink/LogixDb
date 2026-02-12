@@ -6,20 +6,20 @@ namespace LogixDb.Migrations.M20260206;
 
 [UsedImplicitly]
 [Migration(202602061020, "Create snapshot table and associated indexes for target type/name and import date")]
-public class M02CreateSnapshotTable : AutoReversingMigration
+public class M002CreateSnapshotTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("snapshot")
-            .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
-            .WithColumn("target_id").AsInt32().NotNullable().ForeignKey("target", "target_id").OnDelete(Rule.Cascade)
-            .WithColumn("target_type").AsString(256).NotNullable()
-            .WithColumn("target_name").AsString(256).NotNullable()
+            .WithPrimaryId("snapshot_id")
+            .WithCascadeForeignKey("target_id", "target")
+            .WithColumn("target_type").AsString(128).NotNullable()
+            .WithColumn("target_name").AsString(128).NotNullable()
             .WithColumn("is_partial").AsBoolean().NotNullable()
             .WithColumn("schema_revision").AsString(16).Nullable()
             .WithColumn("software_revision").AsString(16).Nullable()
             .WithColumn("export_date").AsDateTime().Nullable()
-            .WithColumn("export_options").AsString(2048).Nullable()
+            .WithColumn("export_options").AsString(256).Nullable()
             .WithColumn("import_date").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
             .WithColumn("import_user").AsString(128).NotNullable().WithDefaultValue(Environment.UserDomainName)
             .WithColumn("import_machine").AsString(128).NotNullable().WithDefaultValue(Environment.MachineName)

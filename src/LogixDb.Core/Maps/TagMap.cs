@@ -17,11 +17,24 @@ public class TagMap : TableMap<Tag>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Tag>> Columns =>
     [
-        ColumnMap<Tag>.For(t => t.Reference, "reference"),
-        ColumnMap<Tag>.For(t => t.Base.TagName, "base_name"),
-        ColumnMap<Tag>.For(t => t.TagName, "tag_name"),
-        ColumnMap<Tag>.For(t => t.Scope.Level, "scope_level"),
+        ColumnMap<Tag>.For(t => t.Reference.Path, "reference"),
+        ColumnMap<Tag>.For(t => t.Base.TagName.LocalPath, "base_name"),
+        ColumnMap<Tag>.For(t => t.TagName.LocalPath, "tag_name"),
+        ColumnMap<Tag>.For(t => t.Scope.Level.Name, "scope_level"),
         ColumnMap<Tag>.For(t => t.Scope.Container, "scope_name"),
-        ColumnMap<Tag>.For(t => t.DataType, "data_type")
+        ColumnMap<Tag>.For(t => t.TagName.Depth, "tag_depth"),
+        ColumnMap<Tag>.For(t => t.Usage?.Name, "tag_usage"),
+        ColumnMap<Tag>.For(t => t.DataType, "data_type"),
+        ColumnMap<Tag>.For(t => t.Value.ToString(), "value"),
+        ColumnMap<Tag>.For(t => t.Description, "description"),
+        ColumnMap<Tag>.For(t => t.Dimensions.ToIndex(), "dimensions"),
+        ColumnMap<Tag>.For(t => t.Radix.Name, "radix"),
+        ColumnMap<Tag>.For(t => t.ExternalAccess?.Name, "external_access"),
+        ColumnMap<Tag>.For(t => t.OpcUAAccess?.Name, "opcua_access"),
+        ColumnMap<Tag>.For(t => t.Constant, "constant"),
+        ColumnMap<Tag>.For(t => t.TagType?.Name, "tag_type"),
+        ColumnMap<Tag>.For(t => t.AliasFor?.LocalPath, "alias_for"),
+        ColumnMap<Tag>.For(t => t.Class?.Name, "component_class"),
+        ColumnMap<Tag>.For(t => t.TagName.Depth == 0 ? t.Serialize().ToString().Hash() : null, "hash"),
     ];
 }

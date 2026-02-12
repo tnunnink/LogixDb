@@ -10,9 +10,12 @@ namespace LogixDb.Core.Abstractions;
 public interface ILogixDatabaseFactory
 {
     /// <summary>
-    /// Creates and establishes a connection to a LogixDB database using the specified SQL connection information.
+    /// Creates an instance of <see cref="ILogixDatabase"/> based on the provided SQL connection information.
+    /// This method is responsible for initializing and configuring a database connection
+    /// using the given connection parameters.
     /// </summary>
-    /// <param name="info">The SQL connection information containing provider, server, database, and authentication details.</param>
-    /// <returns>An instance of <see cref="ILogixDatabase"/> representing the connected database.</returns>
-    ILogixDatabase Connect(SqlConnectionInfo info);
+    /// <param name="connection">The SQL connection information containing details about the provider,
+    /// data source, catalog, authentication, port, encryption, and trust settings.</param>
+    /// <returns>An instance of <see cref="ILogixDatabase"/> representing the connected and initialized database.</returns>
+    ILogixDatabase Create(SqlConnectionInfo connection);
 }

@@ -4,7 +4,7 @@
 public class M20260207Tests : SqliteMigrationTestBase
 {
     [Test]
-    public void MigrateUp_ToM01_CreatesTagTableWithExpectedColumns()
+    public void MigrateUp_ToM003_CreatesTagTableWithExpectedColumns()
     {
         MigrateUp(toVersion: 202602070830);
 
@@ -16,7 +16,6 @@ public class M20260207Tests : SqliteMigrationTestBase
 
             AssertColumnDefinition(connection, "tag", "tag_id", "integer");
             AssertColumnDefinition(connection, "tag", "snapshot_id", "integer");
-            AssertColumnDefinition(connection, "tag", "reference", "text");
             AssertColumnDefinition(connection, "tag", "base_name", "text");
             AssertColumnDefinition(connection, "tag", "tag_name", "text");
             AssertColumnDefinition(connection, "tag", "scope_level", "text");
@@ -34,10 +33,11 @@ public class M20260207Tests : SqliteMigrationTestBase
             AssertColumnDefinition(connection, "tag", "tag_type", "text");
             AssertColumnDefinition(connection, "tag", "alias_for", "text");
             AssertColumnDefinition(connection, "tag", "component_class", "text");
+            AssertColumnDefinition(connection, "tag", "hash", "text");
 
             AssertPrimaryKey(connection, "tag", "tag_id");
             AssertForeignKey(connection, "tag", "snapshot_id", "snapshot", "snapshot_id");
-            AssertUniqueIndex(connection, "tag", "snapshot_id", "reference");
+            AssertUniqueIndex(connection, "tag", "snapshot_id", "scope_name", "tag_name");
         }
     }
 }

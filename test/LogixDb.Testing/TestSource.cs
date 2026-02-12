@@ -52,6 +52,26 @@ public static class TestSource
     }
 
     /// <summary>
+    /// Loads a predefined L5X instance from a specified local file path.
+    /// This method is intended for creating a test L5X instance sourced from a consistent local file.
+    /// </summary>
+    /// <returns>An L5X instance loaded from the predefined local file path.</returns>
+    public static L5X LocalTest()
+    {
+        return L5X.Load(@"C:\Users\tnunn\Documents\L5X\Test.L5X");
+    }
+
+    /// <summary>
+    /// Loads an L5X instance from a predefined example file path.
+    /// Reads and parses the L5X XML content from the example file into a usable instance.
+    /// </summary>
+    /// <returns>An L5X instance loaded with content from the predefined example file.</returns>
+    public static L5X LocalExample()
+    {
+        return L5X.Load(@"C:\Users\tnunn\Documents\L5X\Example.L5X");
+    }
+
+    /// <summary>
     /// Generates a collection of fake DataType instances using the Bogus library.
     /// Each data type is populated with random names, families, classes, and descriptions.
     /// </summary>

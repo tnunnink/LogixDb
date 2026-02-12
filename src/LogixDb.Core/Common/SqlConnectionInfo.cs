@@ -7,9 +7,9 @@ namespace LogixDb.Core.Common;
 public sealed record SqlConnectionInfo(
     SqlProvider Provider,
     string DataSource,
-    string Catalog,
-    string Authentication,
-    int Port,
-    bool Encrypt,
-    bool Trust
+    string Catalog = "logix",
+    string Authentication = "integrated",
+    int Port = 1433,
+    bool Encrypt = false,
+    bool Trust = false
 );

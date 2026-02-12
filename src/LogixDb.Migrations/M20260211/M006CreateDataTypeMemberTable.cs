@@ -1,0 +1,29 @@
+using FluentMigrator;
+using JetBrains.Annotations;
+
+namespace LogixDb.Migrations.M20260211;
+
+[UsedImplicitly]
+[Migration(202602111530, "")]
+public class M006CreateDataTypeMemberTable : AutoReversingMigration
+{
+    public override void Up()
+    {
+        Create.Table("data_type_member")
+            .WithPrimaryId("member_id")
+            .WithCascadeForeignKey("type_id", "data_type")
+            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("data_type").AsString(128).Nullable()
+            .WithColumn("dimension").AsInt16().Nullable()
+            .WithColumn("radix").AsString(32).Nullable()
+            .WithColumn("external_access").AsString(32).Nullable()
+            .WithColumn("description").AsString(256).Nullable()
+            .WithColumn("hash").AsString(32).NotNullable();
+
+        Create.Index()
+            .OnTable("data_type_member")
+            .OnColumn("type_id").Ascending()
+            .OnColumn("name").Ascending()
+            .WithOptions().Unique();
+    }
+}

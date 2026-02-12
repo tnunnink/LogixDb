@@ -11,9 +11,9 @@ public abstract class SqliteMigrationTestBase
     private readonly string _dbPath;
     private readonly string _connectionString;
 
-    protected SqliteMigrationTestBase()
+    protected SqliteMigrationTestBase(string? customPath = null)
     {
-        _dbPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
+        _dbPath = customPath ?? Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         _connectionString = $"Data Source={_dbPath};";
     }
 
@@ -40,8 +40,8 @@ public abstract class SqliteMigrationTestBase
                 .WithGlobalConnectionString(_connectionString)
                 .WithVersionTable(new MigrationTableMetaData())
                 .ScanIn(
-                    typeof(MigrationsAssemblyMarker).Assembly,
-                    typeof(SqliteAssemblyMarker).Assembly
+                    typeof(MigrationTableMetaData).Assembly,
+                    typeof(SqliteDatabaseFactory).Assembly
                 ).For.Migrations())
             .BuildServiceProvider(validateScopes: false);
 
@@ -99,7 +99,8 @@ public abstract class SqliteMigrationTestBase
     /// <exception cref="AssertionException">
     /// Thrown if the column does not exist in the specified table or if the column's data type does not match the expected type.
     /// </exception>
-    protected static void AssertColumnDefinition(IDbConnection connection, string tableName, string columnName, string columnType)
+    protected static void AssertColumnDefinition(IDbConnection connection, string tableName, string columnName,
+        string columnType)
     {
         using var command = connection.CreateCommand();
         command.CommandText = $"PRAGMA table_info('{tableName}');";

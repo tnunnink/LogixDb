@@ -10,6 +10,13 @@ namespace LogixDb.Core.Abstractions;
 public interface ILogixDatabase
 {
     /// <summary>
+    /// Ensures that the database is created if it does not already exist.
+    /// This method can be used to initialize the database structure for applications
+    /// that do not require or use migrations.
+    /// </summary>
+    ILogixDatabase Build();
+
+    /// <summary>
     /// Executes database schema migrations to ensure the database structure is up to date.
     /// This method should be called during application startup or deployment to apply any pending migrations.
     /// </summary>

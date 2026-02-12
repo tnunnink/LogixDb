@@ -6,7 +6,7 @@ namespace LogixDb.Sqlite;
 /// <summary>
 /// Provides extension methods for working with SQLite database types in the LogixDb context.
 /// </summary>
-public static class SqliteExtensions
+internal static class SqliteExtensions
 {
     /// <summary>
     /// Converts a <see cref="ColumnType"/> to its equivalent <see cref="SqliteType"/>.

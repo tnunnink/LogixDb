@@ -17,7 +17,8 @@ public sealed class Snapshot
     /// </summary>
     private L5X? _l5X;
 
-    public int SnapshotId { get; init; }
+    public int SnapshotId { get; set; }
+    public string TargetKey { get; init; } = string.Empty;
     public string TargetType { get; init; } = string.Empty;
     public string TargetName { get; init; } = string.Empty;
     public bool IsPartial { get; init; }
@@ -36,11 +37,13 @@ public sealed class Snapshot
     /// Extracts metadata from the L5X content and generates a hash of the serialized source data.
     /// </summary>
     /// <param name="source">The L5X source file containing Logix controller data to snapshot.</param>
+    /// <param name="targetKey">An optional custom target key. If not provided, a default key is generated from the
+    /// target type and name in the format "targettype://targetname".</param>
     /// <returns>A new Snapshot instance populated with metadata and source data from the L5X file.</returns>
     /// <exception cref="InvalidOperationException">
     /// Thrown when the L5X content does not contain a valid TargetType or TargetName.
     /// </exception>
-    public static Snapshot Create(L5X source)
+    public static Snapshot Create(L5X source, string? targetKey = null)
     {
         if (source.Content.TargetType is null)
             throw new InvalidOperationException(
@@ -52,6 +55,7 @@ public sealed class Snapshot
 
         return new Snapshot
         {
+            TargetKey = targetKey ?? $"{source.Content.TargetType.ToLower()}://{source.Content.TargetName}",
             TargetType = source.Content.TargetType,
             TargetName = source.Content.TargetName,
             IsPartial = source.Content.ContainsContext,
@@ -60,16 +64,10 @@ public sealed class Snapshot
             ExportDate = source.Content.ExportDate,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
             SourceHash = source.Content.Serialize().ToString().Hash(),
-            SourceData = source.Content.Serialize().ToString().Compress()
+            SourceData = source.Content.Serialize().ToString().Compress(),
+            _l5X = source
         };
     }
-
-    /// <summary>
-    /// Generates the default key for this snapshot in the format "targettype://targetname".
-    /// This key is used to uniquely identify the target in the database and for lookup operations.
-    /// </summary>
-    /// <returns>A string key in the format "targettype://targetname" with the target type in lowercase.</returns>
-    public string GetDefaultKey() => $"{TargetType.ToLower()}://{TargetName}";
 
     /// <summary>
     /// Retrieves the parsed L5X source data associated with the snapshot.
@@ -84,5 +82,5 @@ public sealed class Snapshot
     /// The representation includes the target type and target name in a standardized format.
     /// </summary>
     /// <returns>A string in the format "targettype://targetname".</returns>
-    public override string ToString() => $"{TargetType.ToLower()}://{TargetName}";
+    public override string ToString() => TargetKey;
 }

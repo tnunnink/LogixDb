@@ -9,25 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteAoiImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteAoiParameterImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteControllerImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteModuleImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteProgramImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteRoutineImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteRungImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteTaskImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/Test.L5X" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteAoiDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteAoiParameterDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteControllerDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteModuleDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteProgramDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteRoutineDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteRungDataImport.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteTaskDataImport.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDatabaseTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDatabaseTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +171,7 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="77495000" />
+      <workItem from="1770806804536" duration="78789000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -235,7 +221,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770932458093</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging.">
+      <option name="closed" value="true" />
+      <created>1770934707070</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770934707070</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps">
+      <option name="closed" value="true" />
+      <created>1770934726811</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770934726811</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +253,9 @@
     <MESSAGE value="Refactor database layer: remove unused migrations, standardize column definitions, add detailed entity mappings (e.g., `ProgramMap`, `TaskMap`, `RoutineMap`), and adjust `description` column size in `data_type`." />
     <MESSAGE value="Refactor data import and mapping layers: streamline generics for `ColumnMap` and `TableMap`, introduce detailed import classes (e.g., `SqliteTaskImport`, `SqliteProgramImport`), and add `CrossReferenceMap`." />
     <MESSAGE value="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity." />
+    <MESSAGE value="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging." />
+    <MESSAGE value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -269,17 +273,17 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteDatabaseTests.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\SqliteDatabaseTests.cs" containingFunctionPresentation="Method 'Import_LocalExampleSource_ShouldReturnValidId'">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs</url>
+          <line>26</line>
+          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\SqliteTestFixture.cs" containingFunctionPresentation="Method 'BuildDatabase'">
             <startOffsets>
-              <option value="1120" />
+              <option value="819" />
             </startOffsets>
             <endOffsets>
-              <option value="1169" />
+              <option value="898" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

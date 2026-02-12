@@ -9,29 +9,34 @@ namespace LogixDb.Sqlite.Tests;
 public class SqliteDatabaseTests() : SqliteTestFixture("logix_test.db")
 {
     [Test]
-    public void EnsureThatWeCanBuildTheTestDatabaseUsingBaseClassServiceProviderAndFactory()
+    public void CreateOrConnect_WhenCalledOnValidDatabase_FileShouldExist()
     {
-        var database = BuildDatabase();
-        Assert.That(database, Is.Not.Null);
+        var database = ResolveDatabase();
+
+        database.ConnectOrCreate();
+
         FileAssert.Exists(DataSource);
     }
 
     [Test]
     public async Task Import_LocalTestSource_ShouldReturnValidId()
     {
-        var database = BuildDatabase();
         var snapshot = Snapshot.Create(TestSource.LocalTest());
+        var database = ResolveDatabase();
+        database.ConnectOrCreate();
 
         var result = await database.Import(snapshot);
-        
+
         Assert.That(result.SnapshotId, Is.GreaterThan(0));
     }
-    
+
     [Test]
+    [Explicit("Requires local Example.L5X file - run manually only")]
     public async Task Import_LocalExampleSource_ShouldReturnValidId()
     {
-        var database = BuildDatabase();
         var snapshot = Snapshot.Create(TestSource.LocalExample());
+        var database = ResolveDatabase();
+        database.ConnectOrCreate();
 
         var stopwatch = Stopwatch.StartNew();
         var result = await database.Import(snapshot);

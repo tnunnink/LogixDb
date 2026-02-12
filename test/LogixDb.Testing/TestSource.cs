@@ -1,4 +1,5 @@
-﻿using Bogus;
+﻿using System.Reflection;
+using Bogus;
 using L5Sharp.Core;
 
 namespace LogixDb.Testing;
@@ -58,7 +59,17 @@ public static class TestSource
     /// <returns>An L5X instance loaded from the predefined local file path.</returns>
     public static L5X LocalTest()
     {
-        return L5X.Load(@"C:\Users\tnunn\Documents\L5X\Test.L5X");
+        const string resourceName = "LogixDb.Testing.Test.L5X";
+        var assembly = Assembly.GetExecutingAssembly();
+
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+
+        if (stream is null)
+            throw new FileNotFoundException($"Embedded resource '{resourceName}' not found.");
+
+        using var reader = new StreamReader(stream);
+        var xml = reader.ReadToEnd();
+        return L5X.Parse(xml);
     }
 
     /// <summary>
@@ -77,7 +88,7 @@ public static class TestSource
     /// </summary>
     /// <param name="count">The number of fake DataType instances to generate.</param>
     /// <returns>An enumerable collection of fake DataType instances.</returns>
-    private static IEnumerable<DataType> CreateFakeDataTypes(int count)
+    private static List<DataType> CreateFakeDataTypes(int count)
     {
         var faker = new Faker<DataType>()
             .CustomInstantiator(f => new DataType

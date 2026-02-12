@@ -22,7 +22,7 @@ public abstract class SqliteTestFixture(string dataSource)
     /// <returns>
     /// An initialized <c>ILogixDatabase</c> instance configured for the SQLite provider.
     /// </returns>
-    protected ILogixDatabase BuildDatabase()
+    protected ILogixDatabase ResolveDatabase()
     {
         var provider = new ServiceCollection().AddLogixSqlite().BuildServiceProvider();
         var factory = provider.GetRequiredService<SqliteDatabaseFactory>();

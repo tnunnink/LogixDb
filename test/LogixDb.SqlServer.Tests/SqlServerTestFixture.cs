@@ -91,7 +91,6 @@ public abstract class SqlServerTestFixture
     [OneTimeTearDown]
     protected async Task OneTimeTearDown()
     {
-        await Database.DisposeAsync();
         await _container.StopAsync();
         await _container.DisposeAsync();
     }
@@ -121,7 +120,7 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
-    /// Verifies the existence and data type of specified column in a given table within the database.
+    /// Verifies the existence and data type for the specified column in a given table within the database.
     /// Throws an assertion exception if the column does not exist or its data type does not match the expected type.
     /// </summary>
     /// <param name="tableName">The name of the table in which the column is located.</param>

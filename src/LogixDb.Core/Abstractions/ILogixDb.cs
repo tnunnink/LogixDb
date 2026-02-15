@@ -7,7 +7,7 @@ namespace LogixDb.Core.Abstractions;
 /// Represents the main interface for interacting with a LogixDb database instance.
 /// Provides methods for database lifecycle management, migrations, and snapshot operations.
 /// </summary>
-public interface ILogixDb : IDisposable, IAsyncDisposable
+public interface ILogixDb
 {
     /// <summary>
     /// Applies pending database migrations to update the schema to the latest version.

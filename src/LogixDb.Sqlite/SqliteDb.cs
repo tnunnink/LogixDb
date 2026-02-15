@@ -16,7 +16,7 @@ namespace LogixDb.Sqlite;
 /// This class provides methods to manage database migrations, snapshots, and data import/export processes
 /// within an SQLite database.
 /// </summary>
-public sealed class SqliteDb : ILogixDb
+public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Represents the connection information required for interacting with an SQLite database.
@@ -24,14 +24,7 @@ public sealed class SqliteDb : ILogixDb
     /// configuration parameters encapsulated in a <see cref="SqlConnectionInfo"/> instance.
     /// It serves as the primary connection descriptor for database operations.
     /// </summary>
-    private readonly SqlConnectionInfo _connection;
-
-    /// <summary>
-    /// Represents a service provider for managing database migrations in the SQLite implementation.
-    /// This provider enables the execution of migration tasks such as applying or rolling back schema updates
-    /// to ensure that the database schema is current and consistent.
-    /// </summary>
-    private readonly ServiceProvider _migrationProvider;
+    private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <summary>
     /// Represents the collection of imports used in the Sqlite database implementation.
@@ -54,32 +47,21 @@ public sealed class SqliteDb : ILogixDb
         new SqliteTagImport(),
     ];
 
-    /// <summary>
-    /// Represents an SQLite-backed implementation of the <see cref="ILogixDb"/> interface.
-    /// This class provides methods to manage database migrations, snapshots, and data import/export processes
-    /// within an SQLite database.
-    /// </summary>
-    public SqliteDb(SqlConnectionInfo connection)
-    {
-        _connection = connection ?? throw new ArgumentNullException(nameof(connection));
-        _migrationProvider = BuildMigrationProvider(_connection.ToConnectionString());
-    }
-
     /// <inheritdoc />
     public async Task Migrate(CancellationToken token = default)
     {
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
         await Task.Run(() => runner.MigrateUp(), token);
-        // After migration of the database enable performance enhancing PRAGMA settings.
         await ConfigurePersistentPerformancePragmas(token);
     }
 
     /// <inheritdoc />
     public async Task Migrate(long version, CancellationToken token = default)
     {
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
         await Task.Run(() => runner.MigrateUp(version), token);
-        // After migration of the database enable performance enhancing PRAGMA settings.
         await ConfigurePersistentPerformancePragmas(token);
     }
 
@@ -95,7 +77,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
@@ -120,7 +102,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QueryAsync<Snapshot>(SqliteQuery.ListSnapshots, key);
@@ -129,7 +111,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         await using var session = await SqliteDbSession.StartAsync(this, token);
 
         try
@@ -154,7 +136,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
         return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetSnapshotById, key);
@@ -163,7 +145,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshots(string targetKey, CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         const string sql = """
                            DELETE FROM snapshot 
                            WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
@@ -186,7 +168,7 @@ public sealed class SqliteDb : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        EnsureMigrated();
+        await EnsureMigrated();
         const string sql = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
@@ -222,9 +204,10 @@ public sealed class SqliteDb : ILogixDb
     /// Thrown when there are unapplied migrations that need to be applied to bring
     /// the database to the required state.
     /// </exception>
-    private void EnsureMigrated()
+    private async Task EnsureMigrated()
     {
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
 
         if (runner.HasMigrationsToApplyUp())
         {
@@ -270,7 +253,7 @@ public sealed class SqliteDb : ILogixDb
     /// </remarks>
     private async Task ConfigurePersistentPerformancePragmas(CancellationToken token)
     {
-        var connection = await OpenConnectionAsync(token);
+        await using var connection = await OpenConnectionAsync(token);
 
         await connection.ExecuteAsync(
             """
@@ -281,17 +264,5 @@ public sealed class SqliteDb : ILogixDb
             PRAGMA page_size = 16384;
             """
         );
-    }
-
-    /// <inheritdoc />
-    public void Dispose()
-    {
-        _migrationProvider.Dispose();
-    }
-
-    /// <inheritdoc />
-    public async ValueTask DisposeAsync()
-    {
-        await _migrationProvider.DisposeAsync();
     }
 }

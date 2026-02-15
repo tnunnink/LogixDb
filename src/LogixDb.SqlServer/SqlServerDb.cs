@@ -16,22 +16,14 @@ namespace LogixDb.SqlServer;
 /// Provides functionality for database creation, migration, snapshot management,
 /// importing, exporting, and purging operations.
 /// </summary>
-public sealed class SqlServerDb : ILogixDb
+public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Encapsulates connection-specific information for interacting with a SQL Server database.
     /// This includes details such as data source, catalog, authentication credentials, and other
     /// configuration settings necessary for establishing and managing the database connection.
     /// </summary>
-    private readonly SqlConnectionInfo _connection;
-
-    /// <summary>
-    /// Provides access to services required for handling database migrations.
-    /// This includes the setup and management of migration-related operations,
-    /// leveraging dependency injection to resolve instances such as migration runners
-    /// responsible for applying schema changes to the SQL Server database.
-    /// </summary>
-    private readonly ServiceProvider _migrationProvider;
+    private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <summary>
     /// Represents the collection of imports used in the Sqlite database implementation.
@@ -54,22 +46,12 @@ public sealed class SqlServerDb : ILogixDb
         new SqlServerTagImport(),
     ];
 
-    /// <summary>
-    /// Represents a SQL Server database implementation of the ILogixDatabase interface.
-    /// Provides functionality for database creation, migration, snapshot management,
-    /// importing, exporting, and purging operations.
-    /// </summary>
-    public SqlServerDb(SqlConnectionInfo connection)
-    {
-        _connection = connection ?? throw new ArgumentNullException(nameof(connection));
-        _migrationProvider = BuildMigrationProvider(connection.ToConnectionString());
-    }
-
     /// <inheritdoc />
     public async Task Migrate(CancellationToken token = default)
     {
         await EnsureCreated(token);
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
         await Task.Run(() => runner.MigrateUp(), token);
     }
 
@@ -77,7 +59,8 @@ public sealed class SqlServerDb : ILogixDb
     public async Task Migrate(long version, CancellationToken token = default)
     {
         await EnsureCreated(token);
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
         await Task.Run(() => runner.MigrateUp(version), token);
     }
 
@@ -309,7 +292,8 @@ public sealed class SqlServerDb : ILogixDb
     /// </exception>
     private void EnsureMigrated()
     {
-        var runner = _migrationProvider.GetRequiredService<IMigrationRunner>();
+        var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
 
         if (runner.HasMigrationsToApplyUp())
         {
@@ -340,15 +324,5 @@ public sealed class SqlServerDb : ILogixDb
             );
 
         return services.BuildServiceProvider();
-    }
-
-    public void Dispose()
-    {
-        _migrationProvider.Dispose();
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        await _migrationProvider.DisposeAsync();
     }
 }

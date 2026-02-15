@@ -55,18 +55,6 @@ public abstract class SqliteTestFixture
     }
 
     /// <summary>
-    /// Executes cleanup operations after all tests in a test fixture have run. This method disposes
-    /// of the database instance and deletes the temporary SQLite database file if auto-deletion
-    /// is enabled. It ensures proper resource management and attempts best-effort cleanup in case
-    /// of exceptions during the process.
-    /// </summary>
-    [OneTimeTearDown]
-    protected void OneTimeTearDown()
-    {
-        Database.Dispose();
-    }
-
-    /// <summary>
     /// Verifies that a specified table exists in the database by checking the SQLite system catalog.
     /// Throws an <c>AssertionException</c> if the table is not found.
     /// </summary>

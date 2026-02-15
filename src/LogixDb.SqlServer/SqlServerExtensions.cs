@@ -29,7 +29,8 @@ public static class SqlServerExtensions
             DataSource = $"{info.DataSource},{info.Port}",
             InitialCatalog = database ?? info.Catalog,
             Encrypt = info.Encrypt,
-            TrustServerCertificate = info.Trust
+            TrustServerCertificate = info.Trust,
+            Pooling = false
         };
 
         if (info.User is not null)

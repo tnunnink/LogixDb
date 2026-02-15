@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     
@@ -34,10 +34,11 @@ jobs:
       
     - name: Extract version from tag
       id: get_version
-      shell: pwsh
+      shell: bash
       run: |
-        $version = "${{ github.ref_name }}" -replace '^v', ''
-        echo "version=$version" >> $env:GITHUB_OUTPUT
+        version="${{ github.ref_name }}"
+        version="${version#v}"
+        echo "version=$version" >> $GITHUB_OUTPUT
         
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1

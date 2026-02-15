@@ -12,7 +12,7 @@ public class M011CreateAoiTable : AutoReversingMigration
         Create.Table("aoi")
             .WithPrimaryId("aoi_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("aoi_name").AsString(128).NotNullable()
             .WithColumn("revision").AsString(16).Nullable()
             .WithColumn("revision_extension").AsString(64).Nullable()
             .WithColumn("revision_note").AsString(512).Nullable()
@@ -36,7 +36,7 @@ public class M011CreateAoiTable : AutoReversingMigration
         Create.Index()
             .OnTable("aoi")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("aoi_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index()

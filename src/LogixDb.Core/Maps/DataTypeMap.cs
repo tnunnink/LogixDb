@@ -17,9 +17,9 @@ public class DataTypeMap : TableMap<DataType>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<DataType>> Columns =>
     [
-        ColumnMap<DataType>.For(t => t.Name, "name"),
-        ColumnMap<DataType>.For(t => t.Class?.Name, "type_class"),
-        ColumnMap<DataType>.For(t => t.Family?.Name, "type_family"),
+        ColumnMap<DataType>.For(t => t.Name, "type_name"),
+        ColumnMap<DataType>.For(t => t.Class.Name, "type_class"),
+        ColumnMap<DataType>.For(t => t.Family.Name, "type_family"),
         ColumnMap<DataType>.For(t => t.Description, "description")
     ];
 }

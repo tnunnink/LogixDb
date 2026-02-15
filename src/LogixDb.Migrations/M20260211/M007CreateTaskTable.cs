@@ -12,7 +12,7 @@ public class M007CreateTaskTable : AutoReversingMigration
         Create.Table("task")
             .WithPrimaryId("task_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("task_name").AsString(128).NotNullable()
             .WithColumn("task_type").AsString(32).Nullable()
             .WithColumn("description").AsString(512).Nullable()
             .WithColumn("priority").AsByte().Nullable()
@@ -28,7 +28,7 @@ public class M007CreateTaskTable : AutoReversingMigration
         Create.Index()
             .OnTable("task")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("task_name").Ascending()
             .WithOptions().Unique();
         
         Create.Index()

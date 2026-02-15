@@ -17,7 +17,7 @@ public class ProgramMap : TableMap<Program>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Program>> Columns =>
     [
-        ColumnMap<Program>.For(p => p.Name, "name"),
+        ColumnMap<Program>.For(p => p.Name, "program_name"),
         ColumnMap<Program>.For(p => p.Type.Name, "program_type"),
         ColumnMap<Program>.For(p => p.Description, "description"),
         ColumnMap<Program>.For(p => p.MainRoutineName, "main_routine"),

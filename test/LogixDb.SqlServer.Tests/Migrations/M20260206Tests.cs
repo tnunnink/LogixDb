@@ -17,7 +17,7 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertColumnDefinition("target", "created_on", "datetime");
 
             await AssertPrimaryKey("target", "target_id");
-            //AssertUniqueIndex("target", "target_key");
+            await AssertUniqueIndex("target", "target_key");
         }
     }
 

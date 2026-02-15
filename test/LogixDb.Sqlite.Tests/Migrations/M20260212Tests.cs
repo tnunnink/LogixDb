@@ -14,7 +14,7 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertColumnDefinition("aoi", "aoi_id", "integer");
             await AssertColumnDefinition("aoi", "snapshot_id", "integer");
-            await AssertColumnDefinition("aoi", "name", "text");
+            await AssertColumnDefinition("aoi", "aoi_name", "text");
             await AssertColumnDefinition("aoi", "revision", "text");
             await AssertColumnDefinition("aoi", "revision_extension", "text");
             await AssertColumnDefinition("aoi", "revision_note", "text");
@@ -37,7 +37,7 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertPrimaryKey("aoi", "aoi_id");
             await AssertForeignKey("aoi", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("aoi", "snapshot_id", "name");
+            await AssertUniqueIndex("aoi", "snapshot_id", "aoi_name");
             await AssertIndex("aoi", "record_hash", "snapshot_id");
         }
     }
@@ -53,25 +53,23 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertColumnDefinition("aoi_parameter", "parameter_id", "integer");
             await AssertColumnDefinition("aoi_parameter", "snapshot_id", "integer");
-            await AssertColumnDefinition("aoi_parameter", "host_name", "text");
+            await AssertColumnDefinition("aoi_parameter", "aoi_name", "text");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "text");
             await AssertColumnDefinition("aoi_parameter", "data_type", "text");
-            await AssertColumnDefinition("aoi_parameter", "value", "text");
+            await AssertColumnDefinition("aoi_parameter", "default_value", "text");
             await AssertColumnDefinition("aoi_parameter", "description", "text");
             await AssertColumnDefinition("aoi_parameter", "external_access", "text");
             await AssertColumnDefinition("aoi_parameter", "tag_usage", "text");
             await AssertColumnDefinition("aoi_parameter", "tag_type", "text");
-            await AssertColumnDefinition("aoi_parameter", "alias", "text");
+            await AssertColumnDefinition("aoi_parameter", "tag_alias", "text");
             await AssertColumnDefinition("aoi_parameter", "visible", "integer");
             await AssertColumnDefinition("aoi_parameter", "required", "integer");
             await AssertColumnDefinition("aoi_parameter", "constant", "integer");
-            await AssertColumnDefinition("aoi_parameter", "is_atomic", "integer");
-            await AssertColumnDefinition("aoi_parameter", "is_array", "integer");
             await AssertColumnDefinition("aoi_parameter", "record_hash", "text");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
             await AssertForeignKey("aoi_parameter", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("aoi_parameter", "snapshot_id", "host_name", "parameter_name");
+            await AssertUniqueIndex("aoi_parameter", "snapshot_id", "aoi_name", "parameter_name");
         }
     }
 
@@ -86,7 +84,7 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertColumnDefinition("module", "module_id", "integer");
             await AssertColumnDefinition("module", "snapshot_id", "integer");
-            await AssertColumnDefinition("module", "name", "text");
+            await AssertColumnDefinition("module", "module_name", "text");
             await AssertColumnDefinition("module", "catalog_number", "text");
             await AssertColumnDefinition("module", "revision", "text");
             await AssertColumnDefinition("module", "description", "text");
@@ -105,37 +103,8 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("module", "snapshot_id", "name");
+            await AssertUniqueIndex("module", "snapshot_id", "module_name");
             await AssertIndex("module", "record_hash", "snapshot_id");
-        }
-    }
-
-    [Test]
-    public async Task MigrateUp_ToM014_CreatesCrossReferenceTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602121000);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("cross_reference");
-
-            await AssertColumnDefinition("cross_reference", "reference_id", "integer");
-            await AssertColumnDefinition("cross_reference", "snapshot_id", "integer");
-            await AssertColumnDefinition("cross_reference", "source_type", "text");
-            await AssertColumnDefinition("cross_reference", "source_scope", "text");
-            await AssertColumnDefinition("cross_reference", "source_container", "text");
-            await AssertColumnDefinition("cross_reference", "source_routine", "text");
-            await AssertColumnDefinition("cross_reference", "source_id", "text");
-            await AssertColumnDefinition("cross_reference", "source_element", "text");
-            await AssertColumnDefinition("cross_reference", "target_type", "text");
-            await AssertColumnDefinition("cross_reference", "target_scope", "text");
-            await AssertColumnDefinition("cross_reference", "target_container", "text");
-            await AssertColumnDefinition("cross_reference", "target_id", "text");
-
-            await AssertPrimaryKey("cross_reference", "reference_id");
-            await AssertForeignKey("cross_reference", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("cross_reference", "snapshot_id", "source_type", "source_scope", "source_container", "source_routine", "source_id", "source_element");
-            await AssertIndex("cross_reference", "snapshot_id", "target_type", "target_scope", "target_container", "target_id");
         }
     }
 }

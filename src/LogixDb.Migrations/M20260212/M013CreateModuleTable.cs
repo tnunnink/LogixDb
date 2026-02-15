@@ -12,7 +12,7 @@ public class M013CreateModuleTable : AutoReversingMigration
         Create.Table("module")
             .WithPrimaryId("module_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("module_name").AsString(128).NotNullable()
             .WithColumn("catalog_number").AsString(64).Nullable()
             .WithColumn("revision").AsString(16).Nullable()
             .WithColumn("description").AsString(512).Nullable()
@@ -32,7 +32,7 @@ public class M013CreateModuleTable : AutoReversingMigration
         Create.Index()
             .OnTable("module")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("module_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index()

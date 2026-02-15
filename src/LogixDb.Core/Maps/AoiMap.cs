@@ -17,7 +17,7 @@ public class AoiMap : TableMap<AddOnInstruction>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AddOnInstruction>> Columns =>
     [
-        ColumnMap<AddOnInstruction>.For(a => a.Name, "name"),
+        ColumnMap<AddOnInstruction>.For(a => a.Name, "aoi_name"),
         ColumnMap<AddOnInstruction>.For(a => a.Revision?.ToString(), "revision"),
         ColumnMap<AddOnInstruction>.For(a => a.RevisionExtension, "revision_extension"),
         ColumnMap<AddOnInstruction>.For(a => a.RevisionNote, "revision_note"),

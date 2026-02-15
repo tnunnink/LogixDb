@@ -17,7 +17,7 @@ public class ModuleMap : TableMap<Module>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Module>> Columns =>
     [
-        ColumnMap<Module>.For(m => m.Name, "name"),
+        ColumnMap<Module>.For(m => m.Name, "module_name"),
         ColumnMap<Module>.For(m => m.CatalogNumber, "catalog_number"),
         ColumnMap<Module>.For(m => m.Revision?.ToString(), "revision"),
         ColumnMap<Module>.For(m => m.Description, "description"),

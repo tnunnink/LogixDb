@@ -12,7 +12,7 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
         Create.Table("data_type_member")
             .WithPrimaryId("member_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("host_name").AsString(128).NotNullable()
+            .WithColumn("type_name").AsString(128).NotNullable()
             .WithColumn("member_name").AsString(128).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("dimension").AsInt16().Nullable()
@@ -27,7 +27,7 @@ public class M006CreateDataTypeMemberTable : AutoReversingMigration
         Create.Index()
             .OnTable("data_type_member")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("host_name").Ascending()
+            .OnColumn("type_name").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
     }

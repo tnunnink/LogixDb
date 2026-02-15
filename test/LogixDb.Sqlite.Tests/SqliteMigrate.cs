@@ -4,7 +4,7 @@ using NUnit.Framework.Legacy;
 namespace LogixDb.Sqlite.Tests;
 
 [TestFixture]
-public class SqliteDbLocalTests
+public class SqliteMigrate
 {
     /// <summary>
     /// This test is mostly just to refresh a local db instance to inspect and write queries against.

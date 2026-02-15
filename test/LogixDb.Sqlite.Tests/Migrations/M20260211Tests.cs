@@ -14,7 +14,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("controller", "controller_id", "integer");
             await AssertColumnDefinition("controller", "snapshot_id", "integer");
-            await AssertColumnDefinition("controller", "name", "text");
+            await AssertColumnDefinition("controller", "controller_name", "text");
             await AssertColumnDefinition("controller", "processor", "text");
             await AssertColumnDefinition("controller", "revision", "text");
             await AssertColumnDefinition("controller", "description", "text");
@@ -36,7 +36,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("controller", "controller_id");
             await AssertForeignKey("controller", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("controller", "name", "snapshot_id");
+            await AssertUniqueIndex("controller", "controller_name", "snapshot_id");
         }
     }
 
@@ -51,7 +51,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("data_type", "type_id", "integer");
             await AssertColumnDefinition("data_type", "snapshot_id", "integer");
-            await AssertColumnDefinition("data_type", "name", "text");
+            await AssertColumnDefinition("data_type", "type_name", "text");
             await AssertColumnDefinition("data_type", "type_class", "text");
             await AssertColumnDefinition("data_type", "type_family", "text");
             await AssertColumnDefinition("data_type", "description", "text");
@@ -59,7 +59,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("data_type", "type_id");
             await AssertForeignKey("data_type", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("data_type", "snapshot_id", "name");
+            await AssertUniqueIndex("data_type", "snapshot_id", "type_name");
             await AssertIndex("data_type", "record_hash", "snapshot_id");
         }
     }
@@ -75,7 +75,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("data_type_member", "member_id", "integer");
             await AssertColumnDefinition("data_type_member", "snapshot_id", "integer");
-            await AssertColumnDefinition("data_type_member", "host_name", "text");
+            await AssertColumnDefinition("data_type_member", "type_name", "text");
             await AssertColumnDefinition("data_type_member", "member_name", "text");
             await AssertColumnDefinition("data_type_member", "data_type", "text");
             await AssertColumnDefinition("data_type_member", "dimension", "integer");
@@ -89,7 +89,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("data_type_member", "member_id");
             await AssertForeignKey("data_type_member", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("data_type_member", "snapshot_id", "host_name", "member_name");
+            await AssertUniqueIndex("data_type_member", "snapshot_id", "type_name", "member_name");
         }
     }
 
@@ -104,7 +104,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("task", "task_id", "integer");
             await AssertColumnDefinition("task", "snapshot_id", "integer");
-            await AssertColumnDefinition("task", "name", "text");
+            await AssertColumnDefinition("task", "task_name", "text");
             await AssertColumnDefinition("task", "task_type", "text");
             await AssertColumnDefinition("task", "description", "text");
             await AssertColumnDefinition("task", "priority", "integer");
@@ -119,7 +119,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("task", "task_id");
             await AssertForeignKey("task", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("task", "snapshot_id", "name");
+            await AssertUniqueIndex("task", "snapshot_id", "task_name");
             await AssertIndex("task", "record_hash", "snapshot_id");
         }
     }
@@ -135,7 +135,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("program", "program_id", "integer");
             await AssertColumnDefinition("program", "snapshot_id", "integer");
-            await AssertColumnDefinition("program", "name", "text");
+            await AssertColumnDefinition("program", "program_name", "text");
             await AssertColumnDefinition("program", "program_type", "text");
             await AssertColumnDefinition("program", "description", "text");
             await AssertColumnDefinition("program", "main_routine", "text");
@@ -149,7 +149,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("program", "program_id");
             await AssertForeignKey("program", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("program", "snapshot_id", "name");
+            await AssertUniqueIndex("program", "snapshot_id", "program_name");
             await AssertIndex("program", "record_hash", "snapshot_id");
         }
     }
@@ -165,16 +165,16 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("routine", "routine_id", "integer");
             await AssertColumnDefinition("routine", "snapshot_id", "integer");
-            await AssertColumnDefinition("routine", "name", "text");
             await AssertColumnDefinition("routine", "scope_type", "text");
             await AssertColumnDefinition("routine", "container_name", "text");
+            await AssertColumnDefinition("routine", "routine_name", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
             await AssertColumnDefinition("routine", "description", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("routine", "snapshot_id", "container_name", "name", "scope_type");
+            await AssertUniqueIndex("routine", "snapshot_id", "container_name", "routine_name", "scope_type");
             await AssertIndex("routine", "record_hash", "snapshot_id");
         }
     }
@@ -190,10 +190,8 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertColumnDefinition("rung", "rung_id", "integer");
             await AssertColumnDefinition("rung", "snapshot_id", "integer");
-            await AssertColumnDefinition("rung", "rung_number", "integer");
-            await AssertColumnDefinition("rung", "scope_type", "text");
-            await AssertColumnDefinition("rung", "container_name", "text");
             await AssertColumnDefinition("rung", "routine_name", "text");
+            await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "code", "text");
             await AssertColumnDefinition("rung", "comment", "text");
             await AssertColumnDefinition("rung", "code_hash", "text");
@@ -201,7 +199,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertForeignKey("rung", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("rung", "snapshot_id", "container_name", "routine_name", "rung_number");
+            await AssertIndex("rung", "snapshot_id", "routine_name", "rung_number");
             await AssertIndex("rung", "record_hash", "snapshot_id");
             await AssertIndex("rung", "code_hash", "snapshot_id");
         }

@@ -2,16 +2,28 @@ using System.Diagnostics;
 using LogixDb.Core.Common;
 using LogixDb.Testing;
 
-namespace LogixDb.Sqlite.Tests;
+namespace LogixDb.Sqlite.Tests.Snapshots;
 
 [TestFixture]
-public class SqliteDbTests : SqliteTestFixture
+public class SqliteDbAddSnapshotTests : SqliteTestFixture
 {
     [SetUp]
     protected void Setup()
     {
         Database.Migrate();
     }
+
+    //todo L5Sharp should allow new L5X without module catalog
+    /*[Test]
+    public async Task AddSnapshot_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
+    {
+        var snapshot = Snapshot.Create(TestSource.Fake());
+
+        await Database.AddSnapshot(snapshot);
+
+        //need sql table record count assertions
+        //maybe als need table contains record with name assertion
+    }*/
 
     [Test]
     public async Task AddSnapshot_LocalTestSource_ShouldReturnValidId()

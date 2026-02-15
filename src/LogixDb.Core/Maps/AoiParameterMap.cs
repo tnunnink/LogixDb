@@ -17,19 +17,17 @@ public class AoiParameterMap : TableMap<Parameter>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Parameter>> Columns =>
     [
-        ColumnMap<Parameter>.For(p => p.Instruction?.Name, "host_name"),
+        ColumnMap<Parameter>.For(p => p.Instruction?.Name, "aoi_name"),
         ColumnMap<Parameter>.For(p => p.Name, "parameter_name"),
         ColumnMap<Parameter>.For(p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType, "data_type"),
-        ColumnMap<Parameter>.For(p => p.Default?.IsAtomic() is true ? p.Default?.ToString() : null, "value"),
+        ColumnMap<Parameter>.For(p => p.Default?.IsAtomic() is true ? p.Default?.ToString() : null, "default_value"),
         ColumnMap<Parameter>.For(p => p.Description, "description"),
         ColumnMap<Parameter>.For(p => p.ExternalAccess?.Name, "external_access"),
         ColumnMap<Parameter>.For(p => p.Usage.Name, "tag_usage"),
         ColumnMap<Parameter>.For(p => p.TagType?.Name, "tag_type"),
-        ColumnMap<Parameter>.For(p => p.AliasFor?.LocalPath, "alias"),
+        ColumnMap<Parameter>.For(p => p.AliasFor?.LocalPath, "tag_alias"),
         ColumnMap<Parameter>.For(p => p.Visible, "visible"),
         ColumnMap<Parameter>.For(p => p.Required, "required"),
         ColumnMap<Parameter>.For(p => p.Constant, "constant"),
-        ColumnMap<Parameter>.For(p => LogixType.IsAtomic(p.DataType), "is_atomic"),
-        ColumnMap<Parameter>.For(p => p.Dimension.Length > 0, "is_array")
     ];
 }

@@ -12,7 +12,7 @@ public class M008CreateProgramTable : AutoReversingMigration
         Create.Table("program")
             .WithPrimaryId("program_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("program_type").AsString(32).Nullable()
             .WithColumn("description").AsString(512).Nullable()
             .WithColumn("main_routine").AsString(64).Nullable()
@@ -27,7 +27,7 @@ public class M008CreateProgramTable : AutoReversingMigration
         Create.Index()
             .OnTable("program")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("program_name").Ascending()
             .WithOptions().Unique();
         
         Create.Index()

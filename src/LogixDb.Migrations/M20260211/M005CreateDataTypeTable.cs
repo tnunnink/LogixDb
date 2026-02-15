@@ -12,7 +12,7 @@ public class M005CreateDataTypeTable : AutoReversingMigration
         Create.Table("data_type")
             .WithPrimaryId("type_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("type_name").AsString(128).NotNullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
             .WithColumn("description").AsString(512).Nullable()
@@ -21,7 +21,7 @@ public class M005CreateDataTypeTable : AutoReversingMigration
         Create.Index()
             .OnTable("data_type")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("name").Ascending()
+            .OnColumn("type_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index()

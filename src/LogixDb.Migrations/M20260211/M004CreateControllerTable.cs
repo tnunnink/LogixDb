@@ -12,7 +12,7 @@ public class M004CreateControllerTable : AutoReversingMigration
         Create.Table("controller")
             .WithPrimaryId("controller_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("name").AsString(128).NotNullable()
+            .WithColumn("controller_name").AsString(128).NotNullable()
             .WithColumn("processor").AsString(128).Nullable()
             .WithColumn("revision").AsString(32).Nullable()
             .WithColumn("description").AsString(512).Nullable()
@@ -34,7 +34,7 @@ public class M004CreateControllerTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("controller")
-            .OnColumn("name").Ascending()
+            .OnColumn("controller_name").Ascending()
             .OnColumn("snapshot_id").Ascending()
             .WithOptions().Unique();
     }

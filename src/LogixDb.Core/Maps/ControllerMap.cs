@@ -17,7 +17,7 @@ public class ControllerMap : TableMap<Controller>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Controller>> Columns =>
     [
-        ColumnMap<Controller>.For(t => t.Name, "name"),
+        ColumnMap<Controller>.For(t => t.Name, "controller_name"),
         ColumnMap<Controller>.For(t => t.ProcessorType, "processor"),
         ColumnMap<Controller>.For(t => t.Revision?.ToString(), "revision"),
         ColumnMap<Controller>.For(t => t.Description, "description"),

@@ -17,7 +17,7 @@ public class TaskMap : TableMap<Task>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Task>> Columns =>
     [
-        ColumnMap<Task>.For(t => t.Name, "name"),
+        ColumnMap<Task>.For(t => t.Name, "task_name"),
         ColumnMap<Task>.For(t => t.Type.Name, "task_type"),
         ColumnMap<Task>.For(t => t.Description, "description"),
         ColumnMap<Task>.For(t => t.Priority, "priority"),

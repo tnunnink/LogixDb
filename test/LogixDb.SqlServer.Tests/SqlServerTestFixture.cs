@@ -1,3 +1,4 @@
+using System.Data;
 using Dapper;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
@@ -212,5 +213,115 @@ public abstract class SqlServerTestFixture
         if (result < 1)
             throw new AssertionException(
                 $"Expected FK {fromTable}({fromColumn}) -> {toTable}({toColumn}), but none was found.");
+    }
+
+    /// <summary>
+    /// Asserts that an index exists on the specified table with the given columns.
+    /// Throws an <c>AssertionException</c> if no matching index is found.
+    /// </summary>
+    /// <param name="tableName">The name of the table on which to check for the existence of the index.</param>
+    /// <param name="columns">A collection of column names that should define the index.</param>
+    /// <returns>A task that represents the completion of the assertion operation.</returns>
+    /// <exception cref="AssertionException">Thrown if no index matches the specified columns on the table.</exception>
+    protected async Task AssertIndex(string tableName, params string[] columns)
+    {
+        using var connection = await Database.Connect();
+
+        var indexes = (await connection.QueryAsync<string>(
+            """
+            SELECT i.name
+            FROM sys.indexes i
+            INNER JOIN sys.tables t ON i.object_id = t.object_id
+            WHERE t.name = @tableName
+              AND i.is_primary_key = 0
+              AND i.type > 0
+            """,
+            new { tableName }
+        )).ToArray();
+
+        var hasMatch = await HasMatchingIndex(connection, tableName, columns, indexes);
+
+        if (!hasMatch)
+            throw new AssertionException(
+                $"""
+                 Expected index on '{tableName}' for ({string.Join(", ", columns)}),
+                 but none was found. Found indexes: {string.Join(", ", indexes)}
+                 """
+            );
+    }
+
+    /// <summary>
+    /// Asserts that a UNIQUE index exists on the specified table with the given columns.
+    /// Throws an <c>AssertionException</c> if no matching UNIQUE index is found.
+    /// </summary>
+    /// <param name="tableName">The name of the table on which to check for the existence of the UNIQUE index.</param>
+    /// <param name="columns">A collection of column names that should define the UNIQUE index.</param>
+    /// <returns>A task that represents the completion of the assertion operation.</returns>
+    /// <exception cref="AssertionException">Thrown if no UNIQUE index matches the specified columns on the table.</exception>
+    protected async Task AssertUniqueIndex(string tableName, params string[] columns)
+    {
+        using var connection = await Database.Connect();
+
+        var indexes = (await connection.QueryAsync<string>(
+            """
+            SELECT i.name
+            FROM sys.indexes i
+            INNER JOIN sys.tables t ON i.object_id = t.object_id
+            WHERE t.name = @tableName
+              AND i.is_unique = 1
+              AND i.is_primary_key = 0
+              AND i.type > 0
+            """,
+            new { tableName }
+        )).ToArray();
+
+        var hasMatch = await HasMatchingIndex(connection, tableName, columns, indexes);
+
+        if (!hasMatch)
+            throw new AssertionException(
+                $"""
+                 Expected UNIQUE index on '{tableName}' for ({string.Join(", ", columns)}),
+                 but none was found. Found unique indexes: {string.Join(", ", indexes)}
+                 """
+            );
+    }
+
+    /// <summary>
+    /// Checks if there is an existing index in the database that matches the specified column order.
+    /// </summary>
+    /// <param name="connection">The database connection used to query index information.</param>
+    /// <param name="tableName">The name of the table containing the indexes.</param>
+    /// <param name="columns">The array of column names that defines the desired order and structure of the index.</param>
+    /// <param name="indexes">The array of existing index names associated with the table.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation. The task result is <c>true</c>
+    /// if an index matching the specified column order is found; otherwise, <c>false</c>.
+    /// </returns>
+    private static async Task<bool> HasMatchingIndex(IDbConnection connection,
+        string tableName,
+        string[] columns,
+        string[] indexes
+    )
+    {
+        foreach (var indexName in indexes)
+        {
+            var columnNames = await connection.QueryAsync<string>(
+                """
+                SELECT c.name
+                FROM sys.index_columns ic
+                INNER JOIN sys.columns c ON ic.object_id = c.object_id AND ic.column_id = c.column_id
+                INNER JOIN sys.indexes i ON ic.object_id = i.object_id AND ic.index_id = i.index_id
+                INNER JOIN sys.tables t ON i.object_id = t.object_id
+                WHERE t.name = @tableName
+                  AND i.name = @indexName
+                ORDER BY ic.key_ordinal
+                """,
+                new { tableName, indexName }
+            );
+
+            if (columns.SequenceEqual(columnNames)) return true;
+        }
+
+        return false;
     }
 }

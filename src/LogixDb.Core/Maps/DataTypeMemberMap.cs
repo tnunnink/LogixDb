@@ -17,7 +17,7 @@ public class DataTypeMemberMap : TableMap<DataTypeMember>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<DataTypeMember>> Columns =>
     [
-        ColumnMap<DataTypeMember>.For(m => m.Parent?.Name, "host_name"),
+        ColumnMap<DataTypeMember>.For(m => m.Parent?.Name, "type_name"),
         ColumnMap<DataTypeMember>.For(m => m.Name, "member_name"),
         ColumnMap<DataTypeMember>.For(m => m.DataType, "data_type"),
         ColumnMap<DataTypeMember>.For(m => m.Dimension, "dimension"),

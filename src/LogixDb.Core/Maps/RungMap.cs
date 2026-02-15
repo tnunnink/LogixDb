@@ -17,12 +17,10 @@ public class RungMap : TableMap<Rung>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
-        ColumnMap<Rung>.For(r => r.Number, "rung_number"),
-        ColumnMap<Rung>.For(r => r.Scope.Level.Name, "scope_type"),
-        ColumnMap<Rung>.For(r => r.Scope.Container, "container_name"),
         ColumnMap<Rung>.For(r => r.Routine?.Name, "routine_name"),
-        ColumnMap<Rung>.For(r => r.Text, "code"),
+        ColumnMap<Rung>.For(r => r.Number, "rung_number"),
         ColumnMap<Rung>.For(r => r.Comment, "comment"),
+        ColumnMap<Rung>.For(r => r.Text, "code"),
         ColumnMap<Rung>.For(r => r.Text.Hash(), "code_hash")
     ];
 }

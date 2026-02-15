@@ -65,7 +65,7 @@ public abstract class SqlServerTestFixture
     [OneTimeSetUp]
     protected async Task OneTimeSetup()
     {
-        _container = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
+        _container = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
             .WithPassword("LogixDb!Test123")
             .Build();
 

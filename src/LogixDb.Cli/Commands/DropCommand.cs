@@ -24,21 +24,19 @@ public class DropCommand : DbCommand
         "Are you sure you want to drop the entire database? This action cannot be undone.";
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        if (!await console.Ansi().ConfirmAsync(Confirm))
+        if (!await console.Ansi().ConfirmAsync(Confirm, false, token))
         {
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;
         }
-        
-        var cancellation = console.RegisterCancellationHandler();
 
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Dropping database...", _ => database.Drop(cancellation));
+                .StartAsync("Dropping database...", _ => database.Drop(token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
         }

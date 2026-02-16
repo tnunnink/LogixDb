@@ -30,15 +30,13 @@ public class ListCommand : DbCommand
     public string? TargetKey { get; init; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        var cancellation = console.RegisterCancellationHandler();
-
         try
         {
             var snapshots = await console.Ansi()
                 .Status()
-                .StartAsync("Retrieving snapshots...", _ => database.ListSnapshots(TargetKey, cancellation));
+                .StartAsync("Retrieving snapshots...", _ => database.ListSnapshots(TargetKey, token));
 
             OutputSnapshots(console, snapshots.ToList());
         }

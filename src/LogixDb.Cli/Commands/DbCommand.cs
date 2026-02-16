@@ -25,7 +25,7 @@ public abstract class DbCommand : ICommand
 
     protected const string DefaultSchemaName = "lgx";
 
-    [CommandOption("connection", 'c',
+    [CommandOption("connection", 'c', IsRequired = true,
         Description =
             "The database connection string or file path. For SQLite, specify a file path. For SQL Server, use format 'server/database'.")]
     public string? Connection { get; init; }
@@ -70,7 +70,8 @@ public abstract class DbCommand : ICommand
         var catalog = ParseCatalog(Connection, provider) ?? DefaultDatabaseName;
         var connection = new SqlConnectionInfo(provider, datasource, catalog, User, Password, Port, Encrypt, Trust);
         var database = DbProvider.GetDatabase(connection);
-        return ExecuteAsync(console, database);
+        var cancellation = console.RegisterCancellationHandler();
+        return ExecuteAsync(console, database, cancellation);
     }
 
     /// <summary>
@@ -79,8 +80,9 @@ public abstract class DbCommand : ICommand
     /// </summary>
     /// <param name="console">The console interface for interacting with the user and displaying output.</param>
     /// <param name="database">The connected Logix database instance to operate on.</param>
+    /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
     /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
-    protected abstract ValueTask ExecuteAsync(IConsole console, ILogixDb database);
+    protected abstract ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token);
 
     /// <summary>
     /// Infers the SQL provider type from the database path.

@@ -40,13 +40,12 @@ public class PruneCommand : DbCommand
     public string? Before { get; init; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
         ValidateOptions();
-        var cancellation = console.RegisterCancellationHandler();
-        if (SnapshotId > 0) await DeleteById(console, database, cancellation);
-        if (Latest) await DeleteByLatest(console, database, cancellation);
-        if (!string.IsNullOrWhiteSpace(Before)) await DeleteByDate(console, database, cancellation);
+        if (SnapshotId > 0) await DeleteById(console, database, token);
+        if (Latest) await DeleteByLatest(console, database, token);
+        if (!string.IsNullOrWhiteSpace(Before)) await DeleteByDate(console, database, token);
     }
 
     /// <summary>

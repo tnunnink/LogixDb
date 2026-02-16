@@ -1,6 +1,6 @@
 using LogixDb.Cli.Commands;
 
-namespace LogixDb.Cli.Tests.Commands.Database;
+namespace LogixDb.Cli.Tests.Sqlite;
 
 [TestFixture]
 public class MigrateCommandTests

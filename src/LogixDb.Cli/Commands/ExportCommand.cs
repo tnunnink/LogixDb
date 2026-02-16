@@ -36,17 +36,15 @@ public class ExportCommand : DbCommand
     public int SnapshotId { get; init; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
         ValidateOptions();
-
-        var cancellation = console.RegisterCancellationHandler();
 
         try
         {
             var snapshot = !string.IsNullOrWhiteSpace(TargetKey)
-                ? await database.GetSnapshotLatest(TargetKey, cancellation)
-                : await database.GetSnapshotById(SnapshotId, cancellation);
+                ? await database.GetSnapshotLatest(TargetKey, token)
+                : await database.GetSnapshotById(SnapshotId, token);
 
             var savePath = OutputPath ?? $"{snapshot.TargetKey}.L5X";
             var source = snapshot.GetSource();

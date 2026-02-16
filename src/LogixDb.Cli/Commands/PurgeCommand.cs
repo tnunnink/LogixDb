@@ -20,21 +20,19 @@ public class PurgeCommand : DbCommand
         "Are you sure you want to purge all data from the database? This action cannot be undone.";
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        if (!await console.Ansi().ConfirmAsync(Confirm))
+        if (!await console.Ansi().ConfirmAsync(Confirm, false, token))
         {
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;
         }
 
-        var cancellation = console.RegisterCancellationHandler();
-
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Purging database...", _ => database.Purge(cancellation));
+                .StartAsync("Purging database...", _ => database.Purge(token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database purged successfully");
         }

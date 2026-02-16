@@ -1,3 +1,4 @@
+using System.Xml;
 using CliFx.Attributes;
 using CliFx.Exceptions;
 using CliFx.Infrastructure;
@@ -18,7 +19,7 @@ namespace LogixDb.Cli.Commands;
 [Command("import", Description = "Imports an L5X file as a new snapshot into the database")]
 public class ImportCommand : DbCommand
 {
-    [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
+    [CommandOption("source", 's', IsRequired = true, Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; init; }
 
     [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
@@ -28,7 +29,7 @@ public class ImportCommand : DbCommand
     public SnapshotAction Action { get; init; } = SnapshotAction.Append;
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
         if (string.IsNullOrWhiteSpace(SourcePath))
             throw new CommandException("File path is required.", ErrorCodes.UsageError);
@@ -36,8 +37,6 @@ public class ImportCommand : DbCommand
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
 
-        var cancellation = console.RegisterCancellationHandler();
-        
         try
         {
             var result = await console.Ansi()
@@ -45,14 +44,22 @@ public class ImportCommand : DbCommand
                 .StartAsync("Importing source...", async ctx =>
                 {
                     ctx.Status("Loading L5X file...");
-                    var content = await L5X.LoadAsync(SourcePath, cancellation);
+                    var content = await L5X.LoadAsync(SourcePath, token);
                     var snapshot = Snapshot.Create(content, TargetKey);
                     ctx.Status("Importing source to database...");
-                    await database.AddSnapshot(snapshot, Action, cancellation);
+                    await database.AddSnapshot(snapshot, Action, token);
                     return snapshot;
                 });
 
             OutputResult(console, result);
+        }
+        catch (XmlException e)
+        {
+            throw new CommandException(
+                $"Failed to parse L5X file with error: {e.Message}",
+                ErrorCodes.FormatError,
+                false, e
+            );
         }
         catch (Exception e)
         {

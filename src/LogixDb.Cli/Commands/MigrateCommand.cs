@@ -26,15 +26,13 @@ namespace LogixDb.Cli.Commands;
 public class MigrateCommand : DbCommand
 {
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
+    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        var cancellation = console.RegisterCancellationHandler();
-        
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Migrating database...", _ => database.Migrate(cancellation));
+                .StartAsync("Migrating database...", _ => database.Migrate(token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
         }

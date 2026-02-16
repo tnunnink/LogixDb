@@ -5,14 +5,14 @@ using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Commands.Snapshots;
+namespace LogixDb.Cli.Commands;
 
 /// <summary>
 /// Represents a command to list all snapshots in the database, optionally filtered by target key.
 /// </summary>
 [PublicAPI]
-[Command("snapshot list", Description = "Lists all snapshots, optionally filtered by target key")]
-public class SnapshotListCommand : DbCommand
+[Command("list", Description = "Lists all snapshots, optionally filtered by target key")]
+public class ListCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
     public string? TargetKey { get; init; }
@@ -22,11 +22,9 @@ public class SnapshotListCommand : DbCommand
     {
         var snapshots = await console.Ansi()
             .Status()
-            .StartAsync("Retrieving snapshots...", async _ => await database.ListSnapshots(TargetKey));
+            .StartAsync("Retrieving snapshots...", async _ => (await database.ListSnapshots(TargetKey)).ToList());
 
-        var snapshotList = snapshots.ToList();
-
-        if (snapshotList.Count == 0)
+        if (snapshots.Count == 0)
         {
             console.Ansi().MarkupLine("[yellow]No snapshots found[/]");
             return;
@@ -34,14 +32,17 @@ public class SnapshotListCommand : DbCommand
 
         var table = new Table()
             .Border(TableBorder.Rounded)
-            .AddColumn("ID")
+            .AddColumn("Id")
             .AddColumn("Target Key")
             .AddColumn("Target Type")
             .AddColumn("Target Name")
-            .AddColumn("Import Date")
-            .AddColumn("Software Rev");
+            .AddColumn("Imported")
+            .AddColumn("Exported")
+            .AddColumn("Revision")
+            .AddColumn("User")
+            .AddColumn("Machine");
 
-        foreach (var snapshot in snapshotList.OrderByDescending(s => s.ImportDate))
+        foreach (var snapshot in snapshots.OrderByDescending(s => s.ImportDate))
         {
             table.AddRow(
                 snapshot.SnapshotId.ToString(),
@@ -49,11 +50,14 @@ public class SnapshotListCommand : DbCommand
                 snapshot.TargetType,
                 snapshot.TargetName,
                 snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                snapshot.SoftwareRevision ?? "N/A"
+                snapshot.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                snapshot.SoftwareRevision ?? "N/A",
+                snapshot.ImportUser,
+                snapshot.ImportMachine
             );
         }
 
         console.Ansi().Write(table);
-        console.Ansi().MarkupLine($"\n[green]Total:[/] {snapshotList.Count} snapshot(s)");
+        console.Ansi().MarkupLine($"\n[green]Total:[/] {snapshots.Count} snapshot(s)");
     }
 }

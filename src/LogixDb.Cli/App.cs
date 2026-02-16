@@ -14,7 +14,6 @@ public static class App
             .SetExecutableName("logixdb")
             .UseConsole(new SystemConsole())
             .AddCommandsFromThisAssembly()
-            //.AddLogixDb()
             .Build()
             .RunAsync();
     }

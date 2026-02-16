@@ -1,5 +1,4 @@
-using LogixDb.Cli.Commands.Database;
-
+using LogixDb.Cli.Commands;
 
 namespace LogixDb.Cli.Tests.Commands.Database;
 

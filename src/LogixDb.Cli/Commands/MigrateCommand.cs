@@ -5,7 +5,7 @@ using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using Spectre.Console;
 
-namespace LogixDb.Cli.Commands.Database;
+namespace LogixDb.Cli.Commands;
 
 /// <summary>
 /// Represents a command to perform database migration operations using the LogixDB system.

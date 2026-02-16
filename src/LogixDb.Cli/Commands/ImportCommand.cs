@@ -5,23 +5,29 @@ using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
+using LogixDb.Core.Common;
 using Spectre.Console;
 using Snapshot = LogixDb.Core.Common.Snapshot;
 
-namespace LogixDb.Cli.Commands.Snapshots;
+namespace LogixDb.Cli.Commands;
 
 /// <summary>
 /// Represents a command to import an L5X file as a new snapshot into the database.
 /// </summary>
 [PublicAPI]
-[Command("snapshot add", Description = "Imports an L5X file as a new snapshot into the database")]
-public class SnapshotAddCommand : DbCommand
+[Command("import", Description = "Imports an L5X file as a new snapshot into the database")]
+public class ImportCommand : DbCommand
 {
     [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; init; }
 
     [CommandOption("key", 'k', Description = "Optional target key override (format: targettype://targetname)")]
     public string? TargetKey { get; init; }
+
+    [CommandOption("action", 'a',
+        Description =
+            "Snapshot action: Append (add new), ReplaceLatest (replace most recent), or ReplaceAll (replace all snapshots)")]
+    public SnapshotAction Action { get; init; } = SnapshotAction.Append;
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
@@ -40,7 +46,7 @@ public class SnapshotAddCommand : DbCommand
                 var content = await L5X.LoadAsync(SourcePath);
                 var snapshot = Snapshot.Create(content, TargetKey);
                 ctx.Status("Importing source to database...");
-                await database.AddSnapshot(snapshot);
+                await database.AddSnapshot(snapshot, Action);
                 return snapshot;
             });
 

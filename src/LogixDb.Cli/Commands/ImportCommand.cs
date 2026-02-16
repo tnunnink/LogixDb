@@ -21,12 +21,10 @@ public class ImportCommand : DbCommand
     [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; init; }
 
-    [CommandOption("key", 'k', Description = "Optional target key override (format: targettype://targetname)")]
+    [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
     public string? TargetKey { get; init; }
 
-    [CommandOption("action", 'a',
-        Description =
-            "Snapshot action: Append (add new), ReplaceLatest (replace most recent), or ReplaceAll (replace all snapshots)")]
+    [CommandOption("action", 'a', Description = "Snapshot action: Append, ReplaceLatest, or ReplaceAll")]
     public SnapshotAction Action { get; init; } = SnapshotAction.Append;
 
     /// <inheritdoc />
@@ -38,24 +36,49 @@ public class ImportCommand : DbCommand
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
 
-        var result = await console.Ansi()
-            .Status()
-            .StartAsync("Importing source...", async ctx =>
-            {
-                ctx.Status("Loading L5X file...");
-                var content = await L5X.LoadAsync(SourcePath);
-                var snapshot = Snapshot.Create(content, TargetKey);
-                ctx.Status("Importing source to database...");
-                await database.AddSnapshot(snapshot, Action);
-                return snapshot;
-            });
+        try
+        {
+            var result = await console.Ansi()
+                .Status()
+                .StartAsync("Importing source...", async ctx =>
+                {
+                    ctx.Status("Loading L5X file...");
+                    var content = await L5X.LoadAsync(SourcePath);
+                    var snapshot = Snapshot.Create(content, TargetKey);
+                    ctx.Status("Importing source to database...");
+                    await database.AddSnapshot(snapshot, Action);
+                    return snapshot;
+                });
 
+            OutputResult(console, result);
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Database import failed due to error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
+    }
+
+    /// <summary>
+    /// Outputs the details of a snapshot result to the console in a tabular format.
+    /// </summary>
+    /// <param name="console">The console instance used to write the output.</param>
+    /// <param name="result">The snapshot result containing the details to display.</param>
+    private static void OutputResult(IConsole console, Snapshot result)
+    {
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
-        table.AddRow("Snapshot ID", result.SnapshotId.ToString());
-        table.AddRow("Target Key", result.TargetKey);
-        table.AddRow("Target Type", result.TargetType);
-        table.AddRow("Target Name", result.TargetName);
-        table.AddRow("Import Date", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("ID", result.SnapshotId.ToString());
+        table.AddRow("Key", result.TargetKey);
+        table.AddRow("Type", result.TargetType);
+        table.AddRow("Name", result.TargetName);
+        table.AddRow("Imported", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("Exported", result.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("Revision", result.SoftwareRevision ?? "?");
+        table.AddRow("User", result.ImportUser);
+        table.AddRow("Machine", result.ImportMachine);
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
         console.Ansi().Write(table);

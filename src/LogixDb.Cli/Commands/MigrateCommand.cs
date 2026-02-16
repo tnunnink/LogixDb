@@ -1,4 +1,5 @@
 using CliFx.Attributes;
+using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -8,10 +9,18 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command to perform database migration operations using the LogixDB system.
-/// This command facilitates the migration of database schemas or data structures
-/// to ensure compatibility with updated application requirements.
+/// Represents a CLI command to execute database migrations. This command ensures that the database schema
+/// is up to date with the latest version, creating the schema if it does not already exist.
 /// </summary>
+/// <remarks>
+/// This command is implemented as part of CLI tools for managing and maintaining a database.
+/// It handles exceptions during migration and provides relevant feedback to the console regarding
+/// the status of the migration process.
+/// </remarks>
+/// <example>
+/// The command can be executed with specific database options such as connection string, provider type,
+/// authentication credentials, and other optional parameters inherited from the <c>DbCommand</c> class.
+/// </example>
 [PublicAPI]
 [Command("migrate", Description = "Executes database migrations to ensure the latest schema (creates if non-existent.")]
 public class MigrateCommand : DbCommand
@@ -19,7 +28,21 @@ public class MigrateCommand : DbCommand
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
-        await console.Ansi().Status().StartAsync("Migrating database...", _ => database.Migrate());
-        console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
+        try
+        {
+            await console.Ansi()
+                .Status()
+                .StartAsync("Migrating database...", _ => database.Migrate());
+
+            console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Database migration failed due to error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
     }
 }

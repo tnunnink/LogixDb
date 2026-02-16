@@ -8,8 +8,18 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command to list all snapshots in the database, optionally filtered by target key.
+/// Represents a command for listing all snapshots in the database, optionally filtered by a target key.
 /// </summary>
+/// <remarks>
+/// This command retrieves and displays snapshots from the database. The results can be filtered
+/// by specifying a target key, which is expected in the format "targettype://targetname".
+/// The output includes a table of snapshot details such as ID, target key, target type,
+/// target name, revision, user, machine, and import/export dates.
+/// </remarks>
+/// <example>
+/// Use this command to query and review snapshots stored in the database.
+/// The filtering by target key can help narrow results for specific targets.
+/// </example>
 [PublicAPI]
 [Command("list", Description = "Lists all snapshots, optionally filtered by target key")]
 public class ListCommand : DbCommand
@@ -30,8 +40,7 @@ public class ListCommand : DbCommand
             return;
         }
 
-        var table = new Table()
-            .Border(TableBorder.Rounded)
+        var table = new Table().Border(TableBorder.Rounded)
             .AddColumn("Id")
             .AddColumn("Target Key")
             .AddColumn("Target Type")

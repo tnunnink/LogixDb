@@ -1,4 +1,5 @@
 using CliFx.Attributes;
+using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -31,10 +32,21 @@ public class DropCommand : DbCommand
             return;
         }
 
-        await console.Ansi()
-            .Status()
-            .StartAsync("Dropping database...", _ => database.Drop());
+        try
+        {
+            await console.Ansi()
+                .Status()
+                .StartAsync("Dropping database...", _ => database.Drop());
 
-        console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
+            console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Database drop failed with error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
     }
 }

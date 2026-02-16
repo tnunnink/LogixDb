@@ -1,4 +1,5 @@
 using CliFx.Attributes;
+using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -26,11 +27,24 @@ public class PurgeCommand : DbCommand
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;
         }
+        
+        try
+        {
+            await console.Ansi()
+                .Status()
+                .StartAsync("Purging database...", _ => database.Purge());
 
-        await console.Ansi()
-            .Status()
-            .StartAsync("Purging database...", _ => database.Purge());
+            console.Ansi().MarkupLine("[green]✓[/] Database purged successfully");
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Database purge failed with error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
 
-        console.Ansi().MarkupLine("[green]✓[/] Database purged successfully");
+        
     }
 }

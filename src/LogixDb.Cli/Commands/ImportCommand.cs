@@ -55,7 +55,7 @@ public class ImportCommand : DbCommand
         catch (Exception e)
         {
             throw new CommandException(
-                $"Database import failed due to error: {e.Message}",
+                $"Database import failed with error: {e.Message}",
                 ErrorCodes.InternalError,
                 false, e
             );
@@ -70,6 +70,7 @@ public class ImportCommand : DbCommand
     private static void OutputResult(IConsole console, Snapshot result)
     {
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
+
         table.AddRow("ID", result.SnapshotId.ToString());
         table.AddRow("Key", result.TargetKey);
         table.AddRow("Type", result.TargetType);
@@ -79,6 +80,7 @@ public class ImportCommand : DbCommand
         table.AddRow("Revision", result.SoftwareRevision ?? "?");
         table.AddRow("User", result.ImportUser);
         table.AddRow("Machine", result.ImportMachine);
+        table.AddRow("Hash", result.SourceHash);
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
         console.Ansi().Write(table);

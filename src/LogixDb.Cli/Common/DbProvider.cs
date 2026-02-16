@@ -3,7 +3,7 @@ using LogixDb.Core.Common;
 using LogixDb.Sqlite;
 using LogixDb.SqlServer;
 
-namespace LogixDb.Cli.Services;
+namespace LogixDb.Cli.Common;
 
 /// <summary>
 /// Provides static methods to create and manage database connections using different SQL providers.

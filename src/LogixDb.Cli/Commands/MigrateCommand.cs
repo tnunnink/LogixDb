@@ -39,7 +39,7 @@ public class MigrateCommand : DbCommand
         catch (Exception e)
         {
             throw new CommandException(
-                $"Database migration failed due to error: {e.Message}",
+                $"Database migration failed with error: {e.Message}",
                 ErrorCodes.InternalError,
                 false, e
             );

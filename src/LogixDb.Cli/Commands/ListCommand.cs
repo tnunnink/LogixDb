@@ -1,8 +1,10 @@
 using CliFx.Attributes;
+using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
+using LogixDb.Core.Common;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
@@ -30,10 +32,31 @@ public class ListCommand : DbCommand
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database)
     {
-        var snapshots = await console.Ansi()
-            .Status()
-            .StartAsync("Retrieving snapshots...", async _ => (await database.ListSnapshots(TargetKey)).ToList());
+        try
+        {
+            var snapshots = await console.Ansi()
+                .Status()
+                .StartAsync("Retrieving snapshots...", _ => database.ListSnapshots(TargetKey));
 
+            OutputSnapshots(console, snapshots.ToList());
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"List snapshots failed with error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
+    }
+
+    /// <summary>
+    /// Displays a formatted table of snapshots to the console.
+    /// </summary>
+    /// <param name="console">The console instance used for rendering output.</param>
+    /// <param name="snapshots">The list of snapshots to display.</param>
+    private static void OutputSnapshots(IConsole console, List<Snapshot> snapshots)
+    {
         if (snapshots.Count == 0)
         {
             console.Ansi().MarkupLine("[yellow]No snapshots found[/]");
@@ -49,7 +72,8 @@ public class ListCommand : DbCommand
             .AddColumn("Exported")
             .AddColumn("Revision")
             .AddColumn("User")
-            .AddColumn("Machine");
+            .AddColumn("Machine")
+            .AddColumn("Hash");
 
         foreach (var snapshot in snapshots.OrderByDescending(s => s.ImportDate))
         {
@@ -62,7 +86,8 @@ public class ListCommand : DbCommand
                 snapshot.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.SoftwareRevision ?? "N/A",
                 snapshot.ImportUser,
-                snapshot.ImportMachine
+                snapshot.ImportMachine,
+                snapshot.SourceHash
             );
         }
 

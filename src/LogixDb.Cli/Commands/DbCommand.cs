@@ -4,7 +4,6 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Cli.Services;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
 

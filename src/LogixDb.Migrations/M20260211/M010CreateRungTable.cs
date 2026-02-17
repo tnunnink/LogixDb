@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602111945)]
+[Migration(202602111945, "Creates rung table with corresponding indexes and keys")]
 public class M010CreateRungTable : AutoReversingMigration
 {
     public override void Up()
@@ -14,7 +14,7 @@ public class M010CreateRungTable : AutoReversingMigration
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
-            .WithColumn("comment").AsString(512).Nullable()
+            .WithColumn("comment").AsString(int.MaxValue).Nullable()
             .WithColumn("code").AsString(int.MaxValue).Nullable()
             .WithColumn("code_hash").AsString(32).NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();

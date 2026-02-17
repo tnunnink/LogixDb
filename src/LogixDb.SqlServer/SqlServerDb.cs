@@ -34,7 +34,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     private readonly List<ILogixDbImport> _imports =
     [
         new SqlServerSnapshotImport(),
-        /*new SqlServerControllerImport(),
+        new SqlServerControllerImport(),
         new SqlServerDataTypeImport(),
         new SqlServerDataTypeMemberImport(),
         new SqlServerAoiImport(),
@@ -43,7 +43,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         new SqlServerTaskImport(),
         new SqlServerProgramImport(),
         new SqlServerRoutineImport(),
-        new SqlServerRungImport(),*/
+        new SqlServerRungImport(),
         new SqlServerTagImport(),
     ];
 
@@ -269,7 +269,8 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <returns>Returns a <see cref="SqlConnection"/> object representing the opened connection to the master database.</returns>
     private async Task<SqlConnection> OpenMasterConnectionAsync(CancellationToken token)
     {
-        var connection = new SqlConnection(_connection.ToConnectionString("master"));
+        var connectionString = _connection.ToConnectionString("master");
+        var connection = new SqlConnection(connectionString);
         await connection.OpenAsync(token);
         return connection;
     }

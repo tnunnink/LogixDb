@@ -84,7 +84,7 @@ public abstract class TableMap<T> where T : class
         {
             hashBuilder.Clear();
 
-            // Start a new row and set the snapshot is which by default is expected to the first column.
+            // Start a new row and set the snapshot which by default is expected to the first column.
             var row = table.NewRow();
             row[0] = snapshotId;
 
@@ -92,13 +92,16 @@ public abstract class TableMap<T> where T : class
             // and compute the hash for the record. Doing this all in one pass makes this as fast as possible.
             foreach (var (name, getter) in orderedColumns)
             {
-                var value = getter(record);
+                var value = getter(record) ?? DBNull.Value;
                 row[name] = value;
                 hashBuilder.Append(SerializeField(name, value));
             }
 
             // record_hash is the last column of the table.
-            row[table.Columns.Count - 1] = hashBuilder.ToString();
+            row[table.Columns.Count - 1] = hashBuilder.ToString().Hash();
+
+            // Add the row to the table
+            table.Rows.Add(row);
         }
 
         return table;

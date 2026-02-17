@@ -24,7 +24,6 @@ public class M20260207Tests : SqliteTestFixture
             await AssertColumnDefinition("tag", "description", "text");
             await AssertColumnDefinition("tag", "external_access", "text");
             await AssertColumnDefinition("tag", "constant", "integer");
-            await AssertColumnDefinition("tag", "value_hash", "text");
             await AssertColumnDefinition("tag", "record_hash", "text");
 
             await AssertPrimaryKey("tag", "tag_id");

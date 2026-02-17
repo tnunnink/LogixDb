@@ -7,9 +7,9 @@ namespace LogixDb.Sqlite.Tests;
 public class SqliteDbListSnapshotTests : SqliteTestFixture
 {
     [SetUp]
-    protected void Setup()
+    protected async Task Setup()
     {
-        Database.Migrate();
+        await Database.Migrate();
     }
     
     [Test]

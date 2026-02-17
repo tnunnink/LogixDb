@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
@@ -30,10 +31,18 @@ internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map)
         var connection = session.GetConnection<SqlConnection>();
         var transaction = session.GetTransaction<SqlTransaction>();
 
+        // Set up a bulk copy instance to insert records for max performance.
         using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction);
         bulkCopy.DestinationTableName = $"dbo.{map.TableName}";
+
+        // Build the DataTable from the source records using the provided TableMap instance.
         var records = GetRecords(snapshot.GetSource());
         var table = map.GenerateTable(records, snapshot.SnapshotId);
+
+        // We need to explicitly map the column names since the table maps don't include the PK id column.
+        table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));
+
+        // Write the table to the database. 
         await bulkCopy.WriteToServerAsync(table, token);
     }
 

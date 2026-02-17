@@ -24,7 +24,6 @@ public class M20260207Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "description", "nvarchar");
             await AssertColumnDefinition("tag", "external_access", "nvarchar");
             await AssertColumnDefinition("tag", "constant", "bit");
-            await AssertColumnDefinition("tag", "value_hash", "nvarchar");
             await AssertColumnDefinition("tag", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag", "tag_id");

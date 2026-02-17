@@ -27,6 +27,5 @@ public class TagMap : TableMap<Tag>
         ColumnMap<Tag>.For(t => t.Description, "description"),
         ColumnMap<Tag>.For(t => t.ExternalAccess?.Name, "external_access"),
         ColumnMap<Tag>.For(t => t.Constant, "constant"),
-        ColumnMap<Tag>.For(t => t.Value.Serialize().ToString().Hash(), "value_hash")
     ];
 }

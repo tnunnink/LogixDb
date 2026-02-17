@@ -34,8 +34,9 @@ public class AoiMap : TableMap<AddOnInstruction>
         //ColumnMap<AddOnInstruction>.For(a => a.SoftwareRevision?.ToString(), "software_revision"),
         ColumnMap<AddOnInstruction>.For(a => a.AdditionalHelpText, "help_text"),
         ColumnMap<AddOnInstruction>.For(a => a.IsEncrypted, "is_encrypted"),
-        ColumnMap<AddOnInstruction>.For(a => a.SignatureID, "signature_id"),
-        ColumnMap<AddOnInstruction>.For(a => a.SignatureTimestamp, "signature_timestamp"),
+        //todo SQL Server can't import the default date 1/1/0001. It has a minimum range. Need to find a general solution for dates.
+        /*ColumnMap<AddOnInstruction>.For(a => a.SignatureID, "signature_id"),
+        ColumnMap<AddOnInstruction>.For(a => a.SignatureTimestamp, "signature_timestamp"),*/
         ColumnMap<AddOnInstruction>.For(a => a.Class?.Name, "component_class")
     ];
 }

@@ -22,7 +22,6 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("description").AsString(512).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("constant").AsBoolean().Nullable()
-            .WithColumn("value_hash").AsString(32).NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()

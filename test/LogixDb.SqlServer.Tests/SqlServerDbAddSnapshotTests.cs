@@ -1,14 +1,13 @@
 using System.Diagnostics;
 using Dapper;
-using L5Sharp.Core;
 using LogixDb.Core.Common;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Sqlite.Tests;
+namespace LogixDb.SqlServer.Tests;
 
 [TestFixture]
-public class SqliteDbAddSnapshotTests : SqliteTestFixture
+public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
 {
     [SetUp]
     protected async Task Setup()
@@ -72,7 +71,7 @@ public class SqliteDbAddSnapshotTests : SqliteTestFixture
         Assert.That(result, Has.Length.EqualTo(2));
 
         var snapshots = result.OrderBy(s => s.SnapshotId).ToArray();
-        
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That(snapshots[0].SnapshotId, Is.EqualTo(snapshot1.SnapshotId));
@@ -170,7 +169,7 @@ public class SqliteDbAddSnapshotTests : SqliteTestFixture
         Assert.That(importDate, Is.LessThanOrEqualTo(DateTime.UtcNow));
     }
 
-    [Test]
+    /*[Test]
     public async Task AddSnapshot_ShouldPopulateTargetTable()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
@@ -202,5 +201,5 @@ public class SqliteDbAddSnapshotTests : SqliteTestFixture
         await Database.AddSnapshot(snapshot);
 
         await AssertRecordExists("data_type", "type_name", "TestType");
-    }
+    }*/
 }

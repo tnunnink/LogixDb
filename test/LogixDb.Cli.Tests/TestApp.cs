@@ -1,5 +1,6 @@
 ﻿using CliFx;
 using CliFx.Infrastructure;
+using LogixDb.Cli.Commands;
 
 namespace LogixDb.Cli.Tests;
 
@@ -9,21 +10,19 @@ namespace LogixDb.Cli.Tests;
 public static class TestApp
 {
     /// <summary>
-    /// Creates a CLI application configured for testing with the specified command.
+    /// Creates and configures an instance of a CLI application for testing purposes.
     /// </summary>
-    /// <param name="console">The fake console instance used to capture output during testing.</param>
-    /// <typeparam name="TCommand">The command type to register with the CLI application.</typeparam>
-    /// <returns>A configured CLI application instance ready for testing.</returns>
-    public static CliApplication Create<TCommand>(out FakeInMemoryConsole console) where TCommand : ICommand
+    /// <param name="console">An optional custom console implementation. If not provided, a default in-memory console is used.</param>
+    /// <returns>A configured instance of <see cref="CliApplication"/>.</returns>
+    public static CliApplication Create<TCommand>(IConsole console) where TCommand : class, ICommand
     {
-        console = new FakeInMemoryConsole();
-
         return new CliApplicationBuilder()
             .SetTitle("Logix.Cli")
             .SetDescription("Console application providing CLI for Logix projects.")
             .SetExecutableName("logix")
             .UseConsole(console)
             .AddCommand<TCommand>()
+            //.AddCommandsFrom(typeof(DbCommand).Assembly)
             .Build();
     }
 }

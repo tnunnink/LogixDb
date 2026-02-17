@@ -21,17 +21,19 @@ public sealed class SqlServerDbSession : ILogixDbSession
     }
 
     /// <summary>
-    /// 
+    /// Asynchronously starts a new SQL Server database session by establishing a connection
+    /// and beginning a database transaction for the specified database.
     /// </summary>
-    /// <param name="open"></param>
-    /// <param name="token"></param>
-    /// <returns></returns>
-    public static async Task<SqlServerDbSession> StartAsync(Task<SqlConnection> open, CancellationToken token)
+    /// <param name="database">The database instance implementing <see cref="ILogixDb"/> to establish the connection with.</param>
+    /// <param name="token">The <see cref="CancellationToken"/> for the asynchronous operation.</param>
+    /// <returns>A task representing the asynchronous operation. The task result contains the initialized <see cref="SqlServerDbSession"/>.</returns>
+    public static async Task<SqlServerDbSession> StartAsync(ILogixDb database, CancellationToken token)
     {
-        var connection = await open;
-        var transaction = await connection.BeginTransactionAsync(token);
-        return new SqlServerDbSession(connection, (SqlTransaction)transaction);
+        var connection = (SqlConnection)await database.Connect(token);
+        var transaction = (SqlTransaction)await connection.BeginTransactionAsync(token);
+        return new SqlServerDbSession(connection, transaction);
     }
+
 
     /// <inheritdoc />
     public TConnection GetConnection<TConnection>() where TConnection : IDbConnection

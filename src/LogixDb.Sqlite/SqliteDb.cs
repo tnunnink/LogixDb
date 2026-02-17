@@ -78,8 +78,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     public async Task Purge(CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        const string sql = "DELETE FROM target WHERE target_id > 0";
-        await ExecuteSqlAsync(sql, null, token);
+        await ExecuteSqlAsync(SqlStatement.DeleteAllTargets, token: token);
     }
 
     /// <inheritdoc />
@@ -94,7 +93,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
-        return await connection.QueryAsync<Snapshot>(SqliteQuery.ListSnapshots, key);
+        return await connection.QueryAsync<Snapshot>(SqlStatement.ListSnapshots, key);
     }
 
     /// <inheritdoc />
@@ -103,7 +102,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
-        return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetLatestSnapshot, key);
+        return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetLatestSnapshot, key);
     }
 
     /// <inheritdoc />
@@ -112,7 +111,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
-        return await connection.QuerySingleAsync<Snapshot>(SqliteQuery.GetSnapshotById, key);
+        return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetSnapshotById, key);
     }
 
     /// <inheritdoc />
@@ -141,9 +140,8 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        const string sql = "DELETE FROM target where target_key = @target_key ";
         var param = new { target_key = targetKey };
-        await ExecuteSqlAsync(sql, param, token);
+        await ExecuteSqlAsync(SqlStatement.DeleteTargetById, param, token);
     }
 
     /// <inheritdoc />
@@ -151,42 +149,24 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        const string sql =
-            """
-            DELETE FROM snapshot 
-                   WHERE (@target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key))
-                   AND import_date < @import_date
-            """;
         var param = new { target_key = targetKey, import_date = importDate };
-        await ExecuteSqlAsync(sql, param, token);
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotsBefore, param, token);
     }
 
     /// <inheritdoc />
     public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        const string sql =
-            """
-            DELETE FROM snapshot 
-            WHERE snapshot_id = (
-                SELECT snapshot_id 
-                FROM snapshot 
-                WHERE (@target_key IS NULL OR target_id = (SELECT target_id FROM target WHERE target_key = @target_key))
-                ORDER BY import_date DESC 
-                LIMIT 1
-            )
-            """;
         var param = new { target_key = targetKey };
-        await ExecuteSqlAsync(sql, param, token);
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, param, token);
     }
 
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        const string sql = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
         var param = new { snapshot_id = snapshotId };
-        await ExecuteSqlAsync(sql, param, token);
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
     }
 
     /// <summary>
@@ -201,10 +181,10 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         switch (action)
         {
             case SnapshotAction.ReplaceLatest:
-                await DeleteSnapshotLatest(targetKey, token);
+                await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey }, token);
                 break;
             case SnapshotAction.ReplaceAll:
-                await DeleteSnapshotsFor(targetKey, token);
+                await ExecuteSqlAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey }, token);
                 break;
             case SnapshotAction.Append:
                 break;
@@ -220,7 +200,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <param name="param">The parameters to bind to the SQL query.</param>
     /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    private async Task ExecuteSqlAsync(string sql, object? param, CancellationToken token)
+    private async Task ExecuteSqlAsync(string sql, object? param = null, CancellationToken token = default)
     {
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);

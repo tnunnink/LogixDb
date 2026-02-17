@@ -9,18 +9,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Sqlite/ListCommandTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlStatement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ListCommandTests.List_EmptyDatabase_ShouldReturnZeroExitCode.verified.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ListCommandTests.List_WithTargetFilter_ShouldReturnZeroExitCode.verified.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/ListCommandTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/MigrateCommandTests.Migrate_ValidSqliteConnectionPath_ShouldCreateDatabaseFile.verified.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/MigrateCommandTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/Database/MigrateCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Sqlite/MigrateCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDbSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDbSession.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerQuery.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Sqlite/SqliteQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Sqlite/SqlStatement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Sqlite/ListCommandTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Sqlite/MigrateCommandTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestApp.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +95,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/Imports/SqliteSnapshotImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteQuery.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Sqlite/ListCommandTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Core.Tests/SnapshotTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/Migrations/M20260206Tests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.SqlServer.Tests/SqlServerTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
@@ -202,7 +206,7 @@
       <workItem from="1770636653430" duration="1418000" />
       <workItem from="1770638186305" duration="3881000" />
       <workItem from="1770648816599" duration="48627000" />
-      <workItem from="1770806804536" duration="166615000" />
+      <workItem from="1770806804536" duration="172145000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -420,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771254530645</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality.">
+      <option name="closed" value="true" />
+      <created>1771279045099</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1771279045099</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +442,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor migrations and database layer: standardize column lengths, replace `hash` with `record_hash`, add new attributes to tables, and improve SQLite session handling." />
     <MESSAGE value="Refactor database layer: remove unused migrations, standardize column definitions, add detailed entity mappings (e.g., `ProgramMap`, `TaskMap`, `RoutineMap`), and adjust `description` column size in `data_type`." />
     <MESSAGE value="Refactor data import and mapping layers: streamline generics for `ColumnMap` and `TableMap`, introduce detailed import classes (e.g., `SqliteTaskImport`, `SqliteProgramImport`), and add `CrossReferenceMap`." />
     <MESSAGE value="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity." />
@@ -455,7 +466,8 @@
     <MESSAGE value="Enhance CLI commands: improve comments, add examples, better exception handling, and parameter updates for `list`, `migrate`, `delete` (renamed to `prune`), and `import`. Introduce `export` command." />
     <MESSAGE value="Improve CLI commands with enhanced exception handling, updated output formatting (added `hash` to tables), and refactored methods for `list`, `prune`, `purge`, `import`, and `drop`. Ensure consistent namespace use." />
     <MESSAGE value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling." />
+    <MESSAGE value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -472,58 +484,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
-          <line>59</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'Migrate'">
-            <startOffsets>
-              <option value="2326" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2327" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Sqlite.Tests/SqliteTestFixture.cs</url>
-          <line>47</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\test\LogixDb.Sqlite.Tests\SqliteTestFixture.cs" containingFunctionPresentation="Method 'TearDown'">
-            <startOffsets>
-              <option value="1881" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1905" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs</url>
-          <line>166</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.Sqlite\SqliteDb.cs" containingFunctionPresentation="Method 'DeleteSnapshotLatest'">
-            <startOffsets>
-              <option value="6335" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6368" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Sqlite/SqliteDb.cs</url>
-          <line>159</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.Sqlite\SqliteDb.cs" containingFunctionPresentation="Method 'DeleteSnapshotsBefore'">
-            <startOffsets>
-              <option value="6075" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6144" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

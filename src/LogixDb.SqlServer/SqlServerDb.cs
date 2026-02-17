@@ -1,4 +1,5 @@
 using System.Data;
+using System.Data.Common;
 using Dapper;
 using FluentMigrator.Runner;
 using LogixDb.Core.Abstractions;
@@ -50,7 +51,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     public async Task Migrate(CancellationToken token = default)
     {
         await EnsureCreated(token);
-        var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
     }
@@ -59,7 +60,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     public async Task Migrate(long version, CancellationToken token = default)
     {
         await EnsureCreated(token);
-        var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
     }
@@ -67,27 +68,25 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task Drop(CancellationToken token = default)
     {
-        await DropDatabase(token);
+        await using var connection = await OpenMasterConnectionAsync(token);
+
+        await connection.ExecuteAsync(
+            $"""
+             IF EXISTS (SELECT * FROM sys.databases WHERE name = @DatabaseName)
+             BEGIN
+               ALTER DATABASE [{_connection.Catalog}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+               DROP DATABASE [{_connection.Catalog}]
+             END
+             """,
+            new { DatabaseName = _connection.Catalog }
+        );
     }
 
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        EnsureMigrated();
-        const string sql = "DELETE FROM target WHERE target_id > 0";
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
-
-        try
-        {
-            await connection.ExecuteAsync(sql, transaction);
-            await transaction.CommitAsync(token);
-        }
-        catch (Exception)
-        {
-            await transaction.RollbackAsync(token);
-            throw;
-        }
+        await EnsureCreatedAndMigrated();
+        await ExecuteSqlAsync(SqlStatement.DeleteAllTargets, token: token);
     }
 
     /// <inheritdoc />
@@ -99,144 +98,147 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        EnsureMigrated();
-        const string sql = """
-                           SELECT snapshot_id [SnapshotId],
-                                 target_id [TargetId],
-                                 target_type [TargetType],
-                                 target_name [TargetName],
-                                 is_partial [IsPartial],
-                                 schema_revision [SchemaRevision],
-                                 software_revision [SoftwareRevision],
-                                 export_date [ExportDate],
-                                 export_options [ExportOptions],
-                                 import_date [ImportDate],
-                                 import_user [ImportUser],
-                                 import_machine [ImportMachine],
-                                 source_hash [ImportHash] 
-                           FROM snapshot
-                           WHERE @target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key)
-                           """;
+        await EnsureCreatedAndMigrated();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
-        return await connection.QueryAsync<Snapshot>(sql, key);
+        return await connection.QueryAsync<Snapshot>(SqlStatement.ListSnapshots, key);
     }
 
     /// <inheritdoc />
-    public Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
+    public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await EnsureCreatedAndMigrated();
+        await using var connection = await OpenConnectionAsync(token);
+        var key = new { target_key = targetKey };
+        return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetLatestSnapshot, key);
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
+    public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        EnsureMigrated();
-        await using var session = await SqlServerDbSession.StartAsync(OpenConnectionAsync(token), token);
+        await EnsureCreatedAndMigrated();
+        await using var connection = await OpenConnectionAsync(token);
+        var key = new { snapshot_id = snapshotId };
+        return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetSnapshotById, key);
+    }
+
+    public async Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
+        CancellationToken token = default)
+    {
+        await EnsureCreatedAndMigrated();
+        await HandleSnapshotAction(snapshot.TargetKey, action, token);
+        await using var session = await SqlServerDbSession.StartAsync(this, token);
 
         try
         {
             foreach (var import in _imports)
                 await import.Process(snapshot, session, token);
 
-            await session.GetTransaction<SqlTransaction>().CommitAsync(token);
+            await session.GetTransaction<DbTransaction>().CommitAsync(token);
         }
         catch (Exception)
         {
-            await session.GetTransaction<SqlTransaction>().RollbackAsync(token);
+            await session.GetTransaction<DbTransaction>().RollbackAsync(token);
             throw;
         }
-    }
-
-    public Task UpsertSnapshot(Snapshot snapshot, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <inheritdoc />
-    public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
-    {
-        EnsureMigrated();
-        const string sql = """
-                           SELECT TOP 1 snapshot_id [SnapshotId],
-                                 target_id [TargetId],
-                                 target_type [TargetType],
-                                 target_name [TargetName],
-                                 is_partial [IsPartial],
-                                 schema_revision [SchemaRevision],
-                                 software_revision [SoftwareRevision],
-                                 export_date [ExportDate],
-                                 export_options [ExportOptions],
-                                 import_date [ImportDate],
-                                 import_user [ImportUser],
-                                 import_machine [ImportMachine],
-                                 source_hash [SourceHash], 
-                                 source_data [SourceData] 
-                           FROM snapshot
-                           WHERE target_id = (SELECT target_id FROM target where target_key = @target_key)
-                           ORDER BY import_date DESC
-                           """;
-        await using var connection = await OpenConnectionAsync(token);
-        var key = new { target_key = snapshotId };
-        return await connection.QuerySingleAsync<Snapshot>(sql, key);
-    }
-
-    public Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
-        CancellationToken token = default)
-    {
-        throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        EnsureMigrated();
-        const string sql = """
-                           DELETE FROM snapshot 
-                           WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key);
-                           """;
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
-
-        try
-        {
-            await connection.ExecuteAsync(sql, new { target_key = targetKey }, transaction);
-            await transaction.CommitAsync(token);
-        }
-        catch (Exception)
-        {
-            await transaction.RollbackAsync(token);
-            throw;
-        }
+        await EnsureCreatedAndMigrated();
+        var param = new { target_key = targetKey };
+        await ExecuteSqlAsync(SqlStatement.DeleteTargetById, param, token);
     }
 
-    public Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null, CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
+        CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await EnsureCreatedAndMigrated();
+        var param = new { target_key = targetKey, import_date = importDate };
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotsBefore, param, token);
     }
 
-    public Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
+    /// <inheritdoc />
+    public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await EnsureCreatedAndMigrated();
+        var param = new { target_key = targetKey };
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, param, token);
     }
 
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        EnsureMigrated();
-        const string sql = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
+        await EnsureCreatedAndMigrated();
+        var param = new { snapshot_id = snapshotId };
+        await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
+    }
+
+    /// <summary>
+    /// Handles snapshot actions based on the specified action type for a given target key.
+    /// </summary>
+    /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
+    /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
+    /// <param name="token">A cancellation token that can be used to signal the operation should be canceled.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
+    private async Task HandleSnapshotAction(string targetKey, SnapshotAction action, CancellationToken token)
+    {
+        switch (action)
+        {
+            case SnapshotAction.ReplaceLatest:
+                await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey }, token);
+                break;
+            case SnapshotAction.ReplaceAll:
+                await ExecuteSqlAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey }, token);
+                break;
+            case SnapshotAction.Append:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(action), action, null);
+        }
+    }
+
+    /// <summary>
+    /// Executes an SQL statement asynchronously within a transactional context.
+    /// </summary>
+    /// <param name="sql">The SQL query to execute.</param>
+    /// <param name="param">The parameters to bind to the SQL query.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private async Task ExecuteSqlAsync(string sql, object? param = null, CancellationToken token = default)
+    {
         await using var connection = await OpenConnectionAsync(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {
-            await connection.ExecuteAsync(sql, new { snapshot_id = snapshotId }, transaction);
+            await connection.ExecuteAsync(sql, param, transaction);
             await transaction.CommitAsync(token);
         }
         catch (Exception)
         {
             await transaction.RollbackAsync(token);
             throw;
+        }
+    }
+
+    /// <summary>
+    /// Ensures that all pending migrations have been applied to the database.
+    /// </summary>
+    /// <exception cref="MigrationRequiredException">
+    /// Thrown when there are unapplied migrations that need to be applied to bring
+    /// the database to the required state.
+    /// </exception>
+    private async Task EnsureCreatedAndMigrated()
+    {
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        var runner = provider.GetRequiredService<IMigrationRunner>();
+
+        if (runner.HasMigrationsToApplyUp())
+        {
+            throw new MigrationRequiredException(_connection.DataSource);
         }
     }
 
@@ -254,27 +256,6 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = @DatabaseName)
              BEGIN
                  CREATE DATABASE [{_connection.Catalog}]
-             END
-             """,
-            new { DatabaseName = _connection.Catalog }
-        );
-    }
-
-    /// <summary>
-    /// Drops the database specified in the connection information.
-    /// Ensures the database is set to single-user mode and removes it from the SQL Server instance.
-    /// </summary>
-    /// <param name="token">A cancellation token that can be used to observe cancellation requests.</param>
-    private async Task DropDatabase(CancellationToken token)
-    {
-        await using var connection = await OpenMasterConnectionAsync(token);
-
-        await connection.ExecuteAsync(
-            $"""
-             IF EXISTS (SELECT * FROM sys.databases WHERE name = @DatabaseName)
-             BEGIN
-               ALTER DATABASE [{_connection.Catalog}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-               DROP DATABASE [{_connection.Catalog}]
              END
              """,
             new { DatabaseName = _connection.Catalog }
@@ -303,24 +284,6 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         var connection = new SqlConnection(_connection.ToConnectionString());
         await connection.OpenAsync(token);
         return connection;
-    }
-
-    /// <summary>
-    /// Ensures that all pending migrations have been applied to the database.
-    /// </summary>
-    /// <exception cref="MigrationRequiredException">
-    /// Thrown when there are unapplied migrations that need to be applied to bring
-    /// the database to the required state.
-    /// </exception>
-    private void EnsureMigrated()
-    {
-        var provider = BuildMigrationProvider(_connection.ToConnectionString());
-        var runner = provider.GetRequiredService<IMigrationRunner>();
-
-        if (runner.HasMigrationsToApplyUp())
-        {
-            throw new MigrationRequiredException(_connection.DataSource);
-        }
     }
 
     /// <summary>

@@ -61,7 +61,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         name: Release ${{ steps.get_version.outputs.version }}
-        files: ./artifacts/*.nupkg
+        files: | 
+          ./artifacts/*.nupkg
+          ./artifacts/logixdb-win-x64.zip
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

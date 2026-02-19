@@ -180,4 +180,21 @@ public sealed record ColumnMap<T> where T : class
             Getter = e => getter(e)
         };
     }
+
+    /// <summary>
+    /// Creates a new column map for a binary data property of a Logix element with the specified database column name.
+    /// </summary>
+    /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the binary data (as a byte array) from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{T}"/> configured for the binary data property and column name.</returns>
+    public static ColumnMap<T> For(Func<T, byte[]> getter, string name)
+    {
+        return new ColumnMap<T>
+        {
+            Name = name,
+            Type = ColumnType.Blob,
+            Getter = getter
+        };
+    }
 }

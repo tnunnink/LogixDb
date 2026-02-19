@@ -16,8 +16,8 @@ namespace LogixDb.Cli.Commands;
 /// Represents a command to import an L5X file as a new snapshot into the database.
 /// </summary>
 [PublicAPI]
-[Command("upload", Description = "Uploads an L5X file as a new snapshot into the database")]
-public class UploadCommand : DbCommand
+[Command("import", Description = "Imports an L5X file as a new snapshot into the database")]
+public class ImportCommand : DbCommand
 {
     [CommandOption("source", 's', IsRequired = true, Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; init; }
@@ -89,7 +89,7 @@ public class UploadCommand : DbCommand
         table.AddRow("Revision", result.SoftwareRevision ?? "?");
         table.AddRow("User", result.ImportUser);
         table.AddRow("Machine", result.ImportMachine);
-        table.AddRow("Hash", result.SourceHash);
+        table.AddRow("Hash", result.SourceHash.ToHexString());
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
         console.Ansi().Write(table);

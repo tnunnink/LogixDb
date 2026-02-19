@@ -94,7 +94,8 @@ public abstract class TableMap<T> where T : class
             {
                 var value = getter(record) ?? DBNull.Value;
                 row[name] = value;
-                hashBuilder.Append(SerializeField(name, value));
+                var field = new KeyValuePair<string, object?>(name, value);
+                hashBuilder.Append(field.SerializeField());
             }
 
             // record_hash is the last column of the table.
@@ -105,21 +106,5 @@ public abstract class TableMap<T> where T : class
         }
 
         return table;
-
-        static string SerializeField(string column, object? value)
-        {
-            return '\u001E' + column + '\u001F' + FormatValue(value) + '\u001E';
-
-            static string FormatValue(object? value)
-            {
-                return value switch
-                {
-                    null => "\u2400",
-                    string s => s.Replace("\r\n", "\n"),
-                    IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
-                    _ => value.ToString() ?? string.Empty
-                };
-            }
-        }
     }
 }

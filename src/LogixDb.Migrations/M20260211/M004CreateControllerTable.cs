@@ -30,7 +30,7 @@ public class M004CreateControllerTable : AutoReversingMigration
             .WithColumn("download_documentation").AsBoolean().Nullable()
             .WithColumn("download_properties").AsBoolean().Nullable()
             .WithColumn("ethernet_ip_mode").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("controller")

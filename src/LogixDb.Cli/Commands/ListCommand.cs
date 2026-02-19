@@ -87,7 +87,7 @@ public class ListCommand : DbCommand
                 snapshot.SoftwareRevision ?? "N/A",
                 snapshot.ImportUser,
                 snapshot.ImportMachine,
-                snapshot.SourceHash
+                snapshot.SourceHash.ToHexString()
             );
         }
 

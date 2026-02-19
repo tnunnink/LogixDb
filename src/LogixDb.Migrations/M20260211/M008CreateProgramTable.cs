@@ -22,7 +22,7 @@ public class M008CreateProgramTable : AutoReversingMigration
             .WithColumn("has_test_edits").AsBoolean().Nullable()
             .WithColumn("parent_name").AsString(128).Nullable()
             .WithColumn("task_name").AsString(128).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("program")

@@ -33,7 +33,7 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi", "signature_id", "text");
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "text");
-            await AssertColumnDefinition("aoi", "record_hash", "text");
+            await AssertColumnDefinition("aoi", "record_hash", "blob");
 
             await AssertPrimaryKey("aoi", "aoi_id");
             await AssertForeignKey("aoi", "snapshot_id", "snapshot", "snapshot_id");
@@ -65,7 +65,7 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi_parameter", "visible", "integer");
             await AssertColumnDefinition("aoi_parameter", "required", "integer");
             await AssertColumnDefinition("aoi_parameter", "constant", "integer");
-            await AssertColumnDefinition("aoi_parameter", "record_hash", "text");
+            await AssertColumnDefinition("aoi_parameter", "record_hash", "blob");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
             await AssertForeignKey("aoi_parameter", "snapshot_id", "snapshot", "snapshot_id");
@@ -99,7 +99,7 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("module", "safety_enabled", "integer");
             await AssertColumnDefinition("module", "ip_address", "text");
             await AssertColumnDefinition("module", "slot_number", "integer");
-            await AssertColumnDefinition("module", "record_hash", "text");
+            await AssertColumnDefinition("module", "record_hash", "blob");
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");

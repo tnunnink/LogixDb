@@ -70,7 +70,8 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
             foreach (var binder in binders)
             {
                 binder.Param.Value = binder.Getter(record) ?? DBNull.Value;
-                hashBuilder.Append(SerializeParameter(binder.Param));
+                var field = new KeyValuePair<string, object?>(binder.Param.ParameterName, binder.Param.Value);
+                hashBuilder.Append(field.SerializeField());
             }
 
             // Update the record hash using the updated parameter bindings.
@@ -87,26 +88,4 @@ public abstract class SqliteElementImport<TElement>(TableMap<TElement> map) : IL
     /// <param name="content">The source content from which records are retrieved.</param>
     /// <returns>A collection of records of type <typeparamref name="TElement"/>.</returns>
     protected abstract IEnumerable<TElement> GetRecords(L5X content);
-
-    /// <summary>
-    /// Serializes an SQLite parameter into a string representation, combining its name
-    /// and formatted value for use in hash generation or logging.
-    /// </summary>
-    /// <param name="parameter">The SQLite parameter to be serialized.</param>
-    /// <returns>A string representation of the parameter, including its name and formatted value.</returns>
-    private static string SerializeParameter(SqliteParameter parameter)
-    {
-        return '\u001E' + parameter.ParameterName + '\u001F' + FormatValue(parameter.Value);
-
-        static string FormatValue(object? value)
-        {
-            return value switch
-            {
-                null => "\u2400",
-                string s => s.Replace("\r\n", "\n"),
-                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
-                _ => value.ToString() ?? string.Empty
-            };
-        }
-    }
 }

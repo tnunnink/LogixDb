@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
@@ -48,14 +49,45 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Generates an MD5 hash of the input string and returns it as a lowercase hexadecimal string.
-    /// The input text is encoded using UTF-8 before hashing.
+    /// Computes the MD5 hash of the input text.
+    /// The input string is encoded using UTF-8 before generating the hash.
     /// </summary>
-    /// <param name="text">The text string to hash.</param>
-    /// <returns>A lowercase hexadecimal string representation of the MD5 hash.</returns>
-    public static string Hash(this string text)
+    /// <param name="text">The input string to hash.</param>
+    /// <returns>A byte array representing the computed MD5 hash of the input text.</returns>
+    public static byte[] Hash(this string text)
     {
-        var hash = MD5.HashData(Encoding.UTF8.GetBytes(text));
-        return Convert.ToHexStringLower(hash);
+        return MD5.HashData(Encoding.UTF8.GetBytes(text));
+    }
+
+    /// <summary>
+    /// Converts a byte array to its lowercase hexadecimal string representation.
+    /// </summary>
+    /// <param name="binary">The byte array to be converted.</param>
+    /// <returns>A string containing the lowercase hexadecimal representation of the input byte array.</returns>
+    public static string ToHexString(this byte[] binary)
+    {
+        return Convert.ToHexStringLower(binary);
+    }
+
+    /// <summary>
+    /// Serializes a key-value pair into a string by concatenating the key and the formatted value
+    /// with specific control characters for delimitation.
+    /// </summary>
+    /// <param name="field">The key-value pair to serialize, where the key is a string and the value can be any object.</param>
+    /// <returns>A serialized string representation of the key-value pair, including control characters as delimiters.</returns>
+    public static string SerializeField(this KeyValuePair<string, object?> field)
+    {
+        return '\u001E' + field.Key + '\u001F' + FormatValue(field.Value);
+
+        static string FormatValue(object? value)
+        {
+            return value switch
+            {
+                null => "\u2400",
+                string s => s.Replace("\r\n", "\n"),
+                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
+                _ => value.ToString() ?? string.Empty
+            };
+        }
     }
 }

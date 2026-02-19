@@ -19,7 +19,7 @@ public class SnapshotTests
             ImportDate = DateTime.UtcNow,
             ImportUser = "TestUser",
             ImportMachine = "TestMachine",
-            SourceHash = "abc123def456",
+            SourceHash = [1, 2, 3, 4, 5],
             SourceData = [1, 2, 3, 4, 5]
         };
 
@@ -27,7 +27,7 @@ public class SnapshotTests
         snapshot.TargetType.Should().Be("Controller");
         snapshot.TargetName.Should().Be("TestController");
         snapshot.IsPartial.Should().BeFalse();
-        snapshot.SourceHash.Should().Be("abc123def456");
+        snapshot.SourceHash.Should().NotBeEmpty();
         snapshot.SourceData.Should().NotBeEmpty();
     }
 

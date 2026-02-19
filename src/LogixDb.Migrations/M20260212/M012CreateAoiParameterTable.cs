@@ -24,7 +24,7 @@ public class M012CreateAoiParameterTable : AutoReversingMigration
             .WithColumn("visible").AsBoolean().Nullable()
             .WithColumn("required").AsBoolean().Nullable()
             .WithColumn("constant").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("aoi_parameter")

@@ -13,16 +13,16 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithPrimaryId("tag_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("container_name").AsString(128).NotNullable()
+            .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("base_name").AsString(128).NotNullable()
-            .WithColumn("parent_name").AsString(128).Nullable()
-            .WithColumn("tag_name").AsString(128).NotNullable()
-            .WithColumn("tag_depth").AsByte().Nullable()
+            .WithColumn("parent_name").AsString(256).Nullable()
+            .WithColumn("member_name").AsString(128).NotNullable()
             .WithColumn("tag_value").AsString(256).Nullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("description").AsString(512).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("constant").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("tag")
@@ -34,6 +34,11 @@ public class M003CreateTagTable : AutoReversingMigration
         Create.Index()
             .OnTable("tag")
             .OnColumn("tag_name").Ascending()
+            .OnColumn("snapshot_id").Ascending();
+        
+        Create.Index()
+            .OnTable("tag")
+            .OnColumn("member_name").Ascending()
             .OnColumn("snapshot_id").Ascending();
 
         Create.Index()

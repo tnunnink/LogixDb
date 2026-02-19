@@ -29,7 +29,7 @@ public sealed class Snapshot
     public DateTime ImportDate { get; init; } = DateTime.UtcNow;
     public string ImportUser { get; init; } = Environment.UserDomainName;
     public string ImportMachine { get; init; } = Environment.MachineName;
-    public string SourceHash { get; init; } = string.Empty;
+    public byte[] SourceHash { get; init; } = [];
     public byte[] SourceData { get; init; } = [];
 
     /// <summary>

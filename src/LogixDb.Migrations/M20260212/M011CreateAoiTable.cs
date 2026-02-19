@@ -31,7 +31,7 @@ public class M011CreateAoiTable : AutoReversingMigration
             .WithColumn("signature_id").AsString(32).Nullable()
             .WithColumn("signature_timestamp").AsDateTime().Nullable()
             .WithColumn("component_class").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("aoi")

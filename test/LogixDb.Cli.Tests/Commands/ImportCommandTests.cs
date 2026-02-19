@@ -9,7 +9,7 @@ using Task = System.Threading.Tasks.Task;
 namespace LogixDb.Cli.Tests.Commands;
 
 [TestFixture]
-public class UploadCommandTests : TestDbFixture
+public class ImportCommandTests : TestDbFixture
 {
     [SetUp]
     public async Task Setup()
@@ -21,7 +21,7 @@ public class UploadCommandTests : TestDbFixture
     public async Task Upload_FileNotFound_ShouldReturnExpectedErrorCode()
     {
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<UploadCommand>(console);
+        var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
             "upload", "-c", DbConnection,
@@ -40,7 +40,7 @@ public class UploadCommandTests : TestDbFixture
         source.Save(testFile);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<UploadCommand>(console);
+        var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
             "upload", "-c", DbConnection,
@@ -60,7 +60,7 @@ public class UploadCommandTests : TestDbFixture
         source.Save(testFile);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<UploadCommand>(console);
+        var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
             "upload", "-c", DbConnection,
@@ -87,7 +87,7 @@ public class UploadCommandTests : TestDbFixture
         await Database.AddSnapshot(snapshot1);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<UploadCommand>(console);
+        var app = TestApp.Create<ImportCommand>(console);
 
         var exitCode = await app.RunAsync([
             "upload", "-c", DbConnection,

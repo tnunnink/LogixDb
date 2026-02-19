@@ -18,13 +18,14 @@ public class M20260207Tests : SqliteTestFixture
             await AssertColumnDefinition("tag", "base_name", "text");
             await AssertColumnDefinition("tag", "parent_name", "text");
             await AssertColumnDefinition("tag", "tag_name", "text");
+            await AssertColumnDefinition("tag", "member_name", "text");
             await AssertColumnDefinition("tag", "tag_depth", "integer");
             await AssertColumnDefinition("tag", "tag_value", "text");
             await AssertColumnDefinition("tag", "data_type", "text");
             await AssertColumnDefinition("tag", "description", "text");
             await AssertColumnDefinition("tag", "external_access", "text");
             await AssertColumnDefinition("tag", "constant", "integer");
-            await AssertColumnDefinition("tag", "record_hash", "text");
+            await AssertColumnDefinition("tag", "record_hash", "blob");
 
             await AssertPrimaryKey("tag", "tag_id");
             await AssertForeignKey("tag", "snapshot_id", "snapshot", "snapshot_id");

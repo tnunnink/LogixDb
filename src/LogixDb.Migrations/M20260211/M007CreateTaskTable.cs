@@ -23,7 +23,7 @@ public class M007CreateTaskTable : AutoReversingMigration
             .WithColumn("event_trigger").AsString(32).Nullable()
             .WithColumn("event_tag").AsString(128).Nullable()
             .WithColumn("enable_timeout").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("task")

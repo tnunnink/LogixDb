@@ -25,7 +25,7 @@ public class ImportCommand : DbCommand
     [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
     public string? TargetKey { get; init; }
 
-    [CommandOption("action", 'a', Description = "Snapshot action: Append, ReplaceLatest, or ReplaceAll")]
+    [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
     public SnapshotAction Action { get; init; } = SnapshotAction.Append;
 
     /// <inheritdoc />
@@ -84,9 +84,9 @@ public class ImportCommand : DbCommand
         table.AddRow("Key", result.TargetKey);
         table.AddRow("Type", result.TargetType);
         table.AddRow("Name", result.TargetName);
-        table.AddRow("Imported", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
-        table.AddRow("Exported", result.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("Revision", result.SoftwareRevision ?? "?");
+        table.AddRow("Exported", result.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("Imported", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("User", result.ImportUser);
         table.AddRow("Machine", result.ImportMachine);
         table.AddRow("Hash", result.SourceHash.ToHexString());

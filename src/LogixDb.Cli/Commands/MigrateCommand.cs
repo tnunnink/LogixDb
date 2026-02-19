@@ -22,7 +22,7 @@ namespace LogixDb.Cli.Commands;
 /// authentication credentials, and other optional parameters inherited from the <c>DbCommand</c> class.
 /// </example>
 [PublicAPI]
-[Command("migrate", Description = "Executes database migrations to ensure the latest schema (creates if non-existent.")]
+[Command("migrate", Description = "Runs migrations to create and/or ensure the latest database schema")]
 public class MigrateCommand : DbCommand
 {
     /// <inheritdoc />

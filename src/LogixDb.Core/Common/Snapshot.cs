@@ -27,7 +27,7 @@ public sealed class Snapshot
     public DateTime ExportDate { get; init; } = DateTime.MinValue;
     public string? ExportOptions { get; init; }
     public DateTime ImportDate { get; init; } = DateTime.UtcNow;
-    public string ImportUser { get; init; } = Environment.UserDomainName;
+    public string ImportUser { get; init; } = Environment.UserName;
     public string ImportMachine { get; init; } = Environment.MachineName;
     public byte[] SourceHash { get; init; } = [];
     public byte[] SourceData { get; init; } = [];

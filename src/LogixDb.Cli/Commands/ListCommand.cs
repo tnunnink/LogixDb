@@ -68,9 +68,9 @@ public class ListCommand : DbCommand
             .AddColumn("Target Key")
             .AddColumn("Target Type")
             .AddColumn("Target Name")
-            .AddColumn("Imported")
-            .AddColumn("Exported")
             .AddColumn("Revision")
+            .AddColumn("Exported")
+            .AddColumn("Imported")
             .AddColumn("User")
             .AddColumn("Machine")
             .AddColumn("Hash");
@@ -82,9 +82,9 @@ public class ListCommand : DbCommand
                 snapshot.TargetKey,
                 snapshot.TargetType,
                 snapshot.TargetName,
-                snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                snapshot.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.SoftwareRevision ?? "N/A",
+                snapshot.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.ImportUser,
                 snapshot.ImportMachine,
                 snapshot.SourceHash.ToHexString()

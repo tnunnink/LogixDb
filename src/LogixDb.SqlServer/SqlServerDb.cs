@@ -44,7 +44,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         new SqlServerProgramImport(),
         new SqlServerRoutineImport(),
         new SqlServerRungImport(),
-        new SqlServerTagImport(),
+        new SqlServerTagImport()
     ];
 
     /// <inheritdoc />
@@ -85,7 +85,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         await ExecuteSqlAsync(SqlStatement.DeleteAllTargets, token: token);
     }
 
@@ -98,7 +98,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QueryAsync<Snapshot>(SqlStatement.ListSnapshots, key);
@@ -107,7 +107,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetLatestSnapshot, key);
@@ -116,7 +116,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetSnapshotById, key);
@@ -125,7 +125,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     public async Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
         CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         await HandleSnapshotAction(snapshot.TargetKey, action, token);
         await using var session = await SqlServerDbSession.StartAsync(this, token);
 
@@ -146,7 +146,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteTargetById, param, token);
     }
@@ -155,7 +155,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
         CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         var param = new { target_key = targetKey, import_date = importDate };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotsBefore, param, token);
     }
@@ -163,7 +163,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, param, token);
     }
@@ -171,7 +171,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await ValidateMigration(token);
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
     }
@@ -225,14 +225,21 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
-    /// Ensures that all pending migrations have been applied to the database.
+    /// Validates connection to the database and then ensures that all pending migrations
+    /// have been applied to the database.
     /// </summary>
-    /// <exception cref="MigrationRequiredException">
-    /// Thrown when there are unapplied migrations that need to be applied to bring
-    /// the database to the required state.
-    /// </exception>
-    private async Task EnsureCreatedAndMigrated()
+    private async Task ValidateMigration(CancellationToken token = default)
     {
+        try
+        {
+            await OpenConnectionAsync(token);
+        }
+        catch (SqlException e)
+        {
+            throw new InvalidOperationException(
+                $"Failed to connect to database with error {e.Message}. Ensure migration by running the 'migrate' command.");
+        }
+
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
         var runner = provider.GetRequiredService<IMigrationRunner>();
 

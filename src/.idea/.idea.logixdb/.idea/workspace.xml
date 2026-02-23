@@ -12,9 +12,8 @@
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Core/Common/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Core/Common/Snapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +199,8 @@
       <workItem from="1770648816599" duration="48627000" />
       <workItem from="1770806804536" duration="189173000" />
       <workItem from="1771415351700" duration="807000" />
-      <workItem from="1771416228683" duration="26471000" />
+      <workItem from="1771416228683" duration="35778000" />
+      <workItem from="1771814694581" duration="1734000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor `Snapshot` implementation, add `SqlConnectionInfo` and `SqlAuthentication`, update extensions, and target .NET 10.">
       <option name="closed" value="true" />
@@ -562,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771503038844</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation.">
+      <option name="closed" value="true" />
+      <created>1771538161300</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1771538161300</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +591,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Extract SQL Server container lifecycle management to `SqlServerTestContainer` class and refactor `SqlServerTestFixture` for static test utilities." />
     <MESSAGE value="Implement snapshot and import refactoring:  &#10;- **Snapshots**: Introduced `SnapshotAction` for managing snapshot behaviors (`Append`, `ReplaceLatest`, `ReplaceAll`) and updated snapshot handling in SQLite and SQL Server databases.  &#10;- **Imports**: Added modular SQL Server import classes (`SqlServerAoiImport`, `SqlServerControllerImport`, `SqlServerDataTypeImport`, etc.) for element processing.  &#10;- **Refactoring**: Consolidated and simplified SQL operations, improved exception handling, and extended snapshot-related methods across database layers.  &#10;- **Testing**: Added tests for snapshot delete scenarios, including `DeleteSnapshotsFor`, `DeleteSnapshotLatest`, and `DeleteSnapshotsBefore`.  &#10;- **General**: Updated XML configuration, enhanced comments, and removed redundant database-layer code." />
     <MESSAGE value="Add comprehensive tests for SQLite snapshot operations and enhance query logic&#10;&#10;- Added new test cases for list, delete, drop, get, and purge snapshot scenarios in SQLite.&#10;- Updated `SqliteQuery` to include `target_key` in snapshot-related SQL queries.&#10;- Improved exception handling for database migrations by enhancing `MigrationRequiredException` messages.&#10;- Ensured migration needs are checked correctly during snapshot operations.&#10;- Refactored `SqliteDb` methods to use `EnsureCreatedAndMigrated` for improved consistency." />
     <MESSAGE value="Refactor CLI commands: consolidate and rename commands (`snapshot` to generalized names like `import`, `list`, `delete`), remove `SnapshotReplaceCommand`, and standardize namespaces for consistency. Optimize Snapshot model and related test adjustments." />
@@ -608,7 +615,8 @@
     <MESSAGE value="Refactor mappings and migrations: adjust column definitions, update indexes, and replace string-based `record_hash` with binary type for consistency." />
     <MESSAGE value="Update `ImportCommandTests` to replace &quot;upload&quot; with &quot;import&quot; for consistency with renamed `ImportCommand`." />
     <MESSAGE value="Bump CLI version to 0.3.0 in project file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI version to 0.3.0 in project file." />
+    <MESSAGE value="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -625,19 +633,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.SqlServer/SqlServerDb.cs</url>
-          <line>70</line>
-          <properties documentPath="C:\Users\tnunn\Projects\logixdb\src\LogixDb.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'Drop'">
-            <startOffsets>
-              <option value="2695" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2763" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

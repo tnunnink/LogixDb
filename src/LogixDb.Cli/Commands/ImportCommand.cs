@@ -4,6 +4,7 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using L5Sharp.Core;
+using LogixConverter.LogixSdk;
 using LogixDb.Cli.Common;
 using LogixDb.Core.Abstractions;
 using LogixDb.Core.Common;
@@ -31,25 +32,45 @@ public class ImportCommand : DbCommand
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        if (string.IsNullOrWhiteSpace(SourcePath))
-            throw new CommandException("File path is required.", ErrorCodes.UsageError);
-
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
 
+        if (StringComparer.OrdinalIgnoreCase.Equals(Path.GetExtension(SourcePath), ".acd"))
+        {
+            var tempSource = await ConvertFileAsync(console, Path.GetFullPath(SourcePath), token);
+            await ImportFileAsync(console, database, tempSource, token);
+            File.Delete(tempSource);
+            return;
+        }
+
+        await ImportFileAsync(console, database, Path.GetFullPath(SourcePath), token);
+    }
+
+    /// <summary>
+    /// Imports a specified L5X file into the database as a new snapshot.
+    /// </summary>
+    /// <param name="console">The console interface used to display output to the user.</param>
+    /// <param name="database">The database instance where the file will be imported.</param>
+    /// <param name="importTarget">The fully qualified path to the target L5X file to import.</param>
+    /// <param name="token">A cancellation token to observe while waiting for the task to complete.</param>
+    /// <returns>A task representing the asynchronous import operation.</returns>
+    /// <exception cref="CommandException">
+    /// Thrown when the L5X file fails to parse, or the import operation encounters an error.
+    /// </exception>
+    private async ValueTask ImportFileAsync(IConsole console, ILogixDb database, string importTarget,
+        CancellationToken token)
+    {
         try
         {
-            var result = await console.Ansi()
-                .Status()
-                .StartAsync("Importing source...", async ctx =>
-                {
-                    ctx.Status("Loading L5X file...");
-                    var content = await L5X.LoadAsync(SourcePath, token);
-                    var snapshot = Snapshot.Create(content, TargetKey);
-                    ctx.Status("Importing source to database...");
-                    await database.AddSnapshot(snapshot, Action, token);
-                    return snapshot;
-                });
+            var result = await console.Ansi().Status().StartAsync("Importing source...", async ctx =>
+            {
+                ctx.Status("Loading L5X file...");
+                var content = await L5X.LoadAsync(importTarget, token);
+                var snapshot = Snapshot.Create(content, TargetKey);
+                ctx.Status("Importing source to database...");
+                await database.AddSnapshot(snapshot, Action, token);
+                return snapshot;
+            });
 
             OutputResult(console, result);
         }
@@ -65,6 +86,54 @@ public class ImportCommand : DbCommand
         {
             throw new CommandException(
                 $"Database import failed with error: {e.Message}",
+                ErrorCodes.InternalError,
+                false, e
+            );
+        }
+    }
+
+    /// <summary>
+    /// Converts an ACD file to a specified format and returns the path of the converted file.
+    /// </summary>
+    /// <param name="console">The console interface used for displaying progress and messages.</param>
+    /// <param name="sourcePath">The path to the source ACD file to be converted.</param>
+    /// <param name="token">A token for observing cancellation requests.</param>
+    /// <returns>The path to the converted file.</returns>
+    private static async ValueTask<string> ConvertFileAsync(IConsole console, string sourcePath,
+        CancellationToken token)
+    {
+        //todo ideally would like to inject but allow app to specify implementation
+        var converter = new LogixSdkConverter();
+
+        var destination = Path.Combine(
+            Path.GetTempPath(),
+            $"{Guid.NewGuid():N}{Path.GetFileNameWithoutExtension(sourcePath)}.L5X"
+        );
+
+        try
+        {
+            var result = await console.Ansi().Status().StartAsync("Converting ACD file...",
+                _ => converter.ConvertAsync(sourcePath, destination, token: token)
+            );
+
+            if (!result.Success)
+            {
+                throw new CommandException(
+                    $"Project conversion failed with error: {result.Error}",
+                    ErrorCodes.SystemError
+                );
+            }
+
+            return destination;
+        }
+        catch (CommandException)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Project conversion failed with error: {e.Message}",
                 ErrorCodes.InternalError,
                 false, e
             );

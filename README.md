@@ -13,21 +13,22 @@ LogixDb imports Rockwell L5X files into a structured SQL database, enabling:
 - **Change Management**: Maintain a history of program modifications to projects or assets
 - **Tool Development**: Build any tools on top of the database to supplement automation development workflows.
 
+Currently, supports SQLite and SQL Server.
+
 ## Installation
 
-### Standalone Executable (Recommended)
+### Standalone Executable
 
 Pre-built executables are available on the [Releases](https://github.com/yourusername/logixdb/releases) page for use
 without a .NET installation.
 
-1. Download the appropriate executable for your platform (e.g., `logixdb-win-x64.zip` for Windows).
-2. Extract the contents to a folder of your choice (e.g., `C:\Tools\LogixDb`).
-3. (Optional) Add the folder to your system's PATH environment variable to run `logixdb` from any command prompt. On
-   Windows, search for "Environment Variables" in the Start menu, edit the PATH variable, and add the folder path.
+1. Download the appropriate executable (`logixdb-win-x64.zip`).
+2. Extract the contents to a folder of your choice (e.g., `C:\Program Files\LogixDb`).
+3. (Optional) Add the folder to your system's PATH environment variable to run `logixdb` from any command prompt.
 
 ### .NET Tool
 
-LogixDb is also available as a .NET global tool via NuGet:
+LogixDb is also available as a .NET global tool via NuGet package:
 
 1. Download the NuGet package (e.g., `logixdb.1.0.0.nupkg`) from
    the [Releases](https://github.com/yourusername/logixdb/releases) page.
@@ -66,11 +67,11 @@ logixdb import -c ./mydb.db -s ./MyController.L5X --action ReplaceLatest
 logixdb import -c ./mydb.db -s ./MyController.L5X --target "controller://PlantA"
 ```
 
-| Option     | Short | Description                                             |
-|------------|-------|---------------------------------------------------------|
-| `--source` | `-s`  | Path to the L5X file *(required)*                       |
-| `--target` | `-t`  | Target key override (format: `targettype://targetname`) |
-| `--action` | `-a`  | `Append` *(default)*, `ReplaceLatest`, or `ReplaceAll`  |
+| Option     | Short | Description                                            |
+|------------|-------|--------------------------------------------------------|
+| `--source` | `-s`  | Path to the L5X file *(required)*                      |
+| `--target` | `-t`  | Target key override (if default key is not desired)    |
+| `--action` | `-a`  | `Append` *(default)*, `ReplaceLatest`, or `ReplaceAll` |
 
 ### `list`
 
@@ -221,7 +222,10 @@ I/O module configuration from the controller's I/O tree.
 
 ## Feedback
 
-We welcome feedback, bug reports, and feature requests! Please visit our [GitHub Issues](https://github.com/yourusername/logixdb/issues) page to share your thoughts or report problems. For questions or discussions, feel free to start a discussion in the [GitHub Discussions](https://github.com/yourusername/logixdb/discussions) section.
+We welcome feedback, bug reports, and feature requests! Please visit
+our [GitHub Issues](https://github.com/yourusername/logixdb/issues) page to share your thoughts or report problems. For
+questions or discussions, feel free to start a discussion in
+the [GitHub Discussions](https://github.com/yourusername/logixdb/discussions) section.
 
 ## License
 

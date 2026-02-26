@@ -2,7 +2,7 @@ using CliFx.Infrastructure;
 using L5Sharp.Core;
 using LogixDb.Cli.Commands;
 using LogixDb.Cli.Common;
-using LogixDb.Core.Common;
+using LogixDb.Data;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 

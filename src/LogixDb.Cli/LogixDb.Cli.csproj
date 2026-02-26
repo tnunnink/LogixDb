@@ -35,8 +35,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LogixDb.Sqlite\LogixDb.Sqlite.csproj" />
-      <ProjectReference Include="..\LogixDb.SqlServer\LogixDb.SqlServer.csproj" />
+      <ProjectReference Include="..\LogixDb.Data.Sqlite\LogixDb.Data.Sqlite.csproj" />
+      <ProjectReference Include="..\LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

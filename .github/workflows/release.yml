@@ -59,7 +59,7 @@ jobs:
     - name: Zip EXE
       shell: pwsh
       run: |
-        Compress-Archive -Path artifacts/cli/win-x64/* -DestinationPath artifacts/logixdb-win-x64.zip
+        Compress-Archive -Path artifacts/cli/win-x64/* -DestinationPath artifacts/logixdb-cli-win-x64.zip
         Compress-Archive -Path artifacts/service/win-x64/* -DestinationPath artifacts/logixdb-service-win-x64.zip
       
     - name: Extract version from tag
@@ -76,7 +76,7 @@ jobs:
         name: Release ${{ steps.get_version.outputs.version }}
         files: | 
           ./artifacts/*.nupkg
-          ./artifacts/logixdb-win-x64.zip
+          ./artifacts/logixdb-cli-win-x64.zip
           ./artifacts/logixdb-service-win-x64.zip
         generate_release_notes: true
       env:

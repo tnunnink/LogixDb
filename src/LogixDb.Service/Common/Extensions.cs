@@ -2,7 +2,6 @@ using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Sqlite;
 using LogixDb.Data.SqlServer;
-using LogixDb.Service.Configuration;
 
 namespace LogixDb.Service.Common;
 
@@ -26,8 +25,7 @@ public static class Extensions
         if (config is null)
             throw new ArgumentNullException(nameof(config));
 
-        var connectionString = config.IngestionService.DbConnection;
-        var connection = SqlConnectionInfo.Parse(connectionString);
+        var connection = SqlConnectionInfo.Parse(config.DbConnection);
 
         switch (connection.Provider)
         {

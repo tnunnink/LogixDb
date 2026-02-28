@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Channels;
 using LogixConverter.Abstractions;
 using LogixConverter.LogixSdk;
-using LogixDb.Service.Configuration;
 using LogixDb.Service.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +15,8 @@ builder.Services.AddSingleton<SourceUploadService>();
 builder.Services.AddHostedService<SourceIngestionService>();
 builder.Services.AddLogixDb(builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>());
 
-// Add the FtacMonitor service if enabled in configuration. By default, it is disabled. Users need to opt in.
-if (builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>()?.FtacService.Enabled is true)
+// Add the FTAC services if enabled in configuration. By default, it is disabled. Users need to opt in.
+if (builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>()?.FtacMonitor is true)
 {
     builder.Services.AddHostedService<FtacMonitorService>();
     builder.Services.AddHostedService<FtacDownloadService>();

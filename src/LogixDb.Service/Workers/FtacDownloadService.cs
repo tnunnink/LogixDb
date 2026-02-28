@@ -1,7 +1,6 @@
 using System.Data;
 using System.Threading.Channels;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
@@ -26,26 +25,9 @@ public class FtacDownloadService(
     /// in a single iteration during asset download or other chunked operations.
     /// </summary>
     /// <remarks>
-    /// 1MB is a good chunk size as it speeds up the download significatly.
+    /// 1MB seems to be a good chunk size as it speeds up the download significantly.
     /// </remarks>
     private const int ChunkSize = 1048576;
-
-    /// <summary>
-    /// Represents the connection string used to establish a connection to the SQL Server database.
-    /// The connection string is built using parameters such as server name, database name,
-    /// and connection settings provided by the application configuration.
-    /// </summary>
-    /// <remarks>
-    /// This field uses integrated security and trusts the server certificate by default.
-    /// It is dynamically constructed based on the configuration settings from <see cref="LogixConfig"/>.
-    /// </remarks>
-    private readonly string _connectionString = new SqlConnectionStringBuilder
-    {
-        DataSource = options.Value.FtacService.Server,
-        InitialCatalog = options.Value.FtacService.Database,
-        IntegratedSecurity = true,
-        TrustServerCertificate = true
-    }.ConnectionString;
 
     /// <summary>
     /// Executes the background task to process assets asynchronously. It reads assets from
@@ -62,7 +44,8 @@ public class FtacDownloadService(
                 if (logger.IsEnabled(LogLevel.Information))
                     logger.LogInformation("Downloading asset {FileName}...", asset.AssetName);
 
-                await using var connection = new SqlConnection(_connectionString);
+                var connectionString = options.Value.GetFtacConnectionString();
+                await using var connection = new SqlConnection(connectionString);
                 await connection.OpenAsync(token);
 
                 var size = await ReadAssetSize(connection, asset, token);
@@ -144,11 +127,8 @@ public class FtacDownloadService(
         long length,
         CancellationToken token)
     {
-        // Ensure the drop path exists in case no uploads have ever run.
-        var dropPath = options.Value.IngestionService.DropPath;
-        Directory.CreateDirectory(dropPath);
-
-        var source = SourceInfo.Create(asset.AssetName, dropPath);
+        Directory.CreateDirectory(options.Value.DropPath);
+        var source = SourceInfo.Create(asset.AssetName, options.Value.DropPath);
 
         await using var stream = new FileStream(source.FilePath, FileMode.Create, FileAccess.Write, FileShare.None);
 

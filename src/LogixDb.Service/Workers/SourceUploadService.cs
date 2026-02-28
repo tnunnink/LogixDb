@@ -1,6 +1,5 @@
 using System.Threading.Channels;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace LogixDb.Service.Workers;
@@ -43,11 +42,10 @@ public class SourceUploadService(
                 file.FileName, file.Length);
 
         // Ensure the drop path is always available
-        var dropPath = options.Value.IngestionService.DropPath;
-        Directory.CreateDirectory(dropPath);
+        Directory.CreateDirectory(options.Value.DropPath);
 
         // Create the source record from the provided args
-        var source = SourceInfo.Create(file.FileName, dropPath, metadata);
+        var source = SourceInfo.Create(file.FileName, options.Value.DropPath, metadata);
 
         // Upload the file to the local server drop path
         await using (var stream = new FileStream(source.FilePath, FileMode.Create))

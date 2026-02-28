@@ -1,6 +1,5 @@
 using System.Threading.Channels;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using LogixDb.Service.Workers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -25,7 +24,7 @@ public class SourceUploadServiceTests
         _optionsMock = new Mock<IOptions<LogixConfig>>();
         _optionsMock.Setup(o => o.Value).Returns(new LogixConfig
         {
-            IngestionService = new IngestionConfig { DropPath = _testDropPath }
+            DropPath = _testDropPath
         });
 
         _loggerMock = new Mock<ILogger<SourceUploadService>>();

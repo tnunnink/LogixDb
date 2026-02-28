@@ -32,7 +32,7 @@ jobs:
     - name: Pack
       run: dotnet pack src/LogixDb.Cli/LogixDb.Cli.csproj --configuration Release --no-build --output ./artifacts
 
-    - name: Publish EXE
+    - name: Publish CLI
       run: >
         dotnet publish src/LogixDb.Cli/LogixDb.Cli.csproj
         -c Release
@@ -56,11 +56,30 @@ jobs:
         /p:DebugSymbols=false
         -o artifacts/service/win-x64
 
-    - name: Zip EXE
+    - name: Prepare Combined Release
       shell: pwsh
       run: |
-        Compress-Archive -Path artifacts/cli/win-x64/* -DestinationPath artifacts/logixdb-cli-win-x64.zip
-        Compress-Archive -Path artifacts/service/win-x64/* -DestinationPath artifacts/logixdb-service-win-x64.zip
+        # Create a staging directory for the combined release
+        New-Item -Path artifacts/combined -ItemType Directory
+        
+        # Copy CLI binaries
+        Copy-Item -Path artifacts/cli/win-x64/* -Destination artifacts/combined -Recurse
+        
+        # Copy Service binaries (merging into the same folder)
+        # Note: Common DLLs will be overwritten, ensuring consistency
+        Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse
+        
+        # Copy the Setup script from the scripts folder
+        Copy-Item -Path scripts/Setup-LogixDb.ps1 -Destination artifacts/combined
+        
+        # Copy appsettings.json as a sample/template
+        Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.sample.json
+
+    - name: Zip Combined Release
+      shell: pwsh
+      run: |
+        # Package everything into a single ZIP for the user
+        Compress-Archive -Path artifacts/combined/* -DestinationPath artifacts/logixdb-win-x64.zip
       
     - name: Extract version from tag
       id: get_version
@@ -76,8 +95,7 @@ jobs:
         name: Release ${{ steps.get_version.outputs.version }}
         files: | 
           ./artifacts/*.nupkg
-          ./artifacts/logixdb-cli-win-x64.zip
-          ./artifacts/logixdb-service-win-x64.zip
+          ./artifacts/logixdb-win-x64.zip
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

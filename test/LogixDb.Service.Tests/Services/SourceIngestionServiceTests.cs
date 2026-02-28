@@ -4,7 +4,6 @@ using LogixConverter.Abstractions;
 using LogixDb.Data;
 using LogixDb.Data.Sqlite;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using LogixDb.Service.Workers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -43,12 +42,9 @@ public class SourceIngestionServiceTests
         _optionsMock = new Mock<IOptions<LogixConfig>>();
         _optionsMock.Setup(o => o.Value).Returns(new LogixConfig
         {
-            IngestionService = new IngestionConfig
-            {
-                DbConnection = _testDbPath,
-                DropPath = _testDropPath,
-                OnImport = SnapshotAction.Append
-            }
+            DbConnection = _testDbPath,
+            DropPath = _testDropPath,
+            OnConflict = SnapshotAction.Append
         });
 
         _channel = Channel.CreateUnbounded<SourceInfo>();

@@ -10,16 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/FtacConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/IngestionConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/LogixConfig.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Services/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" afterDir="false" />
     </list>
@@ -204,23 +205,7 @@
       <workItem from="1771950210397" duration="14990000" />
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
-      <workItem from="1772205427962" duration="20332000" />
-    </task>
-    <task id="LOCAL-00006" summary="Remove unused mappings (`CrossReferenceMap`), commands (`MigrateCommand`), and extensions (`ServiceExtensions`); refactor setup for CLI services and database imports for improved clarity.">
-      <option name="closed" value="true" />
-      <created>1770932458093</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1770932458093</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Remove outdated SQLite import classes, update README with detailed documentation, and refine .csproj for NuGet packaging.">
-      <option name="closed" value="true" />
-      <created>1770934707070</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1770934707070</updated>
+      <workItem from="1772205427962" duration="26401000" />
     </task>
     <task id="LOCAL-00008" summary="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps">
       <option name="closed" value="true" />
@@ -598,7 +583,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772213267654</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Refactor workers and services structure, implement FTAC asset ingestion and download functionality, and update related tests and configuration.">
+      <option name="closed" value="true" />
+      <created>1772247028201</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1772247028201</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Bump version to 0.4.5 in project files.">
+      <option name="closed" value="true" />
+      <created>1772247065703</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1772247065703</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,8 +620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`)." />
-    <MESSAGE value="Add `UploadCommandTests` with comprehensive test cases for L5X file imports. Rename CLI `ImportCommand` to `UploadCommand` and update references accordingly. Upgrade test packages and adjust namespaces for consistency." />
     <MESSAGE value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
     <MESSAGE value="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;" />
     <MESSAGE value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
@@ -644,7 +643,9 @@
     <MESSAGE value="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting." />
     <MESSAGE value="Bump version to 0.4.3 in project files." />
     <MESSAGE value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
+    <MESSAGE value="Refactor workers and services structure, implement FTAC asset ingestion and download functionality, and update related tests and configuration." />
+    <MESSAGE value="Bump version to 0.4.5 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.5 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

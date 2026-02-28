@@ -5,7 +5,6 @@ using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Exceptions;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using Microsoft.Extensions.Options;
 using Task = System.Threading.Tasks.Task;
 
@@ -77,7 +76,7 @@ public class SourceIngestionService(
                 // Load the L5X file, create a snapshot and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
                 var snapshot = Snapshot.Create(content);
-                var action = options.Value.IngestionService.OnImport;
+                var action = options.Value.OnConflict;
                 await logixDb.AddSnapshot(snapshot, action, stoppingToken);
 
                 // Clean up temp and upload files after processing completes.

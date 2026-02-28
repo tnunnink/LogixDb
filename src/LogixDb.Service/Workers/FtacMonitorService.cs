@@ -1,6 +1,5 @@
 using System.Threading.Channels;
 using LogixDb.Service.Common;
-using LogixDb.Service.Configuration;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
@@ -16,19 +15,6 @@ public class FtacMonitorService(
 ) : BackgroundService
 {
     /// <summary>
-    /// Represents the connection string used to connect to the FactoryTalk AssetCentre database.
-    /// This connection string is dynamically constructed based on the configuration provided
-    /// through the application's options.
-    /// </summary>
-    private readonly string _connectionString = new SqlConnectionStringBuilder
-    {
-        DataSource = options.Value.FtacService.Server,
-        InitialCatalog = options.Value.FtacService.Database,
-        IntegratedSecurity = true,
-        TrustServerCertificate = true
-    }.ConnectionString;
-
-    /// <summary>
     /// Tracks the timestamp of the most recent check for new asset versions in the
     /// FactoryTalk AssetCentre database. This value is initialized to the current UTC time
     /// and is updated with each successful polling operation to ensure no updates are missed.
@@ -43,7 +29,8 @@ public class FtacMonitorService(
     /// <returns>A task that represents the background execution operation.</returns>
     protected override async Task ExecuteAsync(CancellationToken token)
     {
-        logger.LogInformation("FTAC Monitor Service starting...");
+        if (logger.IsEnabled(LogLevel.Information))
+            logger.LogInformation("FTAC Monitor Service starting as user: {User}", Environment.UserName);
 
         while (!token.IsCancellationRequested)
         {
@@ -51,12 +38,20 @@ public class FtacMonitorService(
             {
                 await PollForNewAssets(token);
             }
+            catch (SqlException ex) when (ex.Number == 18456)
+            {
+                if (logger.IsEnabled(LogLevel.Critical))
+                    logger.LogCritical(
+                        "Access Denied to FTAC Database. Please ensure user '{User}' has SELECT and EXECUTE permissions for the configured database.",
+                        Environment.UserName);
+                break; //stop trying until reset.
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Failed to query FTAC database for changes.");
             }
 
-            // Wait 10 seconds before polling again. Maybe service is being restarted...
+            // Wait 10 seconds before polling again.
             await Task.Delay(TimeSpan.FromSeconds(10), token);
         }
     }
@@ -77,7 +72,8 @@ public class FtacMonitorService(
             ORDER BY [AddEditDate] ASC
             """;
 
-        await using var connection = new SqlConnection(_connectionString);
+        var connectionString = options.Value.GetFtacConnectionString();
+        await using var connection = new SqlConnection(connectionString);
         await using var command = new SqlCommand(query, connection);
         command.Parameters.AddWithValue("@LastDate", _lastCheckTime);
 

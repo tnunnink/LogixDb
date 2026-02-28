@@ -22,7 +22,8 @@ Write-Step "Deploying files to $InstallDir..."
 if (-not (Test-Path $InstallDir)) { New-Item -Path $InstallDir -ItemType Directory -Force }
 
 # Copy all files from current directory to InstallDir (excluding the script itself)
-Get-ChildItem -Exclude "Setup-LogixDb.ps1" | Copy-Item -Destination $InstallDir -Recurse -Force
+$ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
+Get-ChildItem -Path $ScriptPath -Exclude "Setup-LogixDb.ps1" | Copy-Item -Destination $InstallDir -Recurse -Force
 
 # 4. Seed FTAC Permissions
 $sqlScript = @"

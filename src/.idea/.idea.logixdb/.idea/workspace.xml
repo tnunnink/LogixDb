@@ -10,19 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/FtacConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/IngestionConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Configuration/LogixConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,39 +196,7 @@
       <workItem from="1771950210397" duration="14990000" />
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
-      <workItem from="1772205427962" duration="26401000" />
-    </task>
-    <task id="LOCAL-00008" summary="Add GitHub Actions for CI and release workflows with .NET build, test, and package steps">
-      <option name="closed" value="true" />
-      <created>1770934726811</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1770934726811</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add sample L5X XML file for testing Logix project imports. Updated TestSource.cs to point to embedded resource. Made local example explicit for now.">
-      <option name="closed" value="true" />
-      <created>1770936036586</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1770936036586</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Update SnapshotTests to use LocalTest source instead of hardcoded file path.">
-      <option name="closed" value="true" />
-      <created>1770936266340</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1770936266340</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Remove outdated installation instructions from README.">
-      <option name="closed" value="true" />
-      <created>1770936696195</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1770936696195</updated>
+      <workItem from="1772205427962" duration="27893000" />
     </task>
     <task id="LOCAL-00012" summary="Refactor database layer: introduce SqlServer support, enhance migration handling, standardize connection workflows, and update SQLite database operations for improved consistency and async support.">
       <option name="closed" value="true" />
@@ -599,7 +558,39 @@
       <option name="project" value="LOCAL" />
       <updated>1772247065703</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Refactor configuration models: consolidate `FtacConfig`, `IngestionConfig`, and `LogixConfig` into a unified structure; update related service implementations, tests, and project files. Created new PS setup script and updated release.yml to package service and CLI and setup script into single artifact for deployment and setup.">
+      <option name="closed" value="true" />
+      <created>1772298020712</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1772298020712</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Bump version to 0.4.6 in project files.">
+      <option name="closed" value="true" />
+      <created>1772298049341</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1772298049341</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Add `Setup-LogixDb.ps1` script for LogixDb service setup and deployment.">
+      <option name="closed" value="true" />
+      <created>1772298368755</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1772298368755</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration.">
+      <option name="closed" value="true" />
+      <created>1772298380981</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1772298380981</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,10 +611,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename `ImportCommand` to `UploadCommand` and `ExportCommand` to `DownloadCommand` in test cases and methods. Add L5X file generation to tests for enhanced coverage. Update namespaces, test resources, and verification files for consistency." />
-    <MESSAGE value="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;" />
-    <MESSAGE value="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter." />
-    <MESSAGE value="Remove verification file references and related assertions from CLI tests." />
     <MESSAGE value="Remove `Verify.NUnit` package reference from CLI test project." />
     <MESSAGE value="Add publish and packaging steps for Windows EXE in release workflow." />
     <MESSAGE value="Bump CLI version to 0.2.1 and update release workflow to include Windows EXE artifact." />
@@ -645,7 +632,11 @@
     <MESSAGE value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
     <MESSAGE value="Refactor workers and services structure, implement FTAC asset ingestion and download functionality, and update related tests and configuration." />
     <MESSAGE value="Bump version to 0.4.5 in project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.5 in project files." />
+    <MESSAGE value="Refactor configuration models: consolidate `FtacConfig`, `IngestionConfig`, and `LogixConfig` into a unified structure; update related service implementations, tests, and project files. Created new PS setup script and updated release.yml to package service and CLI and setup script into single artifact for deployment and setup." />
+    <MESSAGE value="Bump version to 0.4.6 in project files." />
+    <MESSAGE value="Add `Setup-LogixDb.ps1` script for LogixDb service setup and deployment." />
+    <MESSAGE value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

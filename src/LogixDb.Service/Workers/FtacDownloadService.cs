@@ -137,14 +137,14 @@ public class FtacDownloadService(
         command.Parameters.Add("@AssetId", SqlDbType.UniqueIdentifier).Value = asset.AssetId;
         command.Parameters.Add("@VersionId", SqlDbType.UniqueIdentifier).Value = asset.VersionId;
         var offsetParameter = command.Parameters.Add("@Offset", SqlDbType.Int);
-        var offsetSize = command.Parameters.Add("@Size", SqlDbType.Int);
+        var sizeParameter = command.Parameters.Add("@Size", SqlDbType.Int);
 
         long offset = 0;
         while (offset < length)
         {
             var size = (int)Math.Min(ChunkSize, length - offset);
             offsetParameter.Value = (int)offset;
-            offsetSize.Value = size;
+            sizeParameter.Value = size;
 
             await using var reader = await command.ExecuteReaderAsync(token);
 

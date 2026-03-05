@@ -2,9 +2,9 @@ using System.Xml;
 using CliFx.Attributes;
 using CliFx.Exceptions;
 using CliFx.Infrastructure;
+using CliWrap;
 using JetBrains.Annotations;
 using L5Sharp.Core;
-using LogixConverter.LogixSdk;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
@@ -28,6 +28,9 @@ public class ImportCommand : DbCommand
 
     [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
     public SnapshotAction Action { get; init; } = SnapshotAction.Append;
+
+    [CommandOption("converter", 'c', Description = "Optional path to a custom ACD to L5X converter executable")]
+    public string? Converter { get; init; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
@@ -99,11 +102,14 @@ public class ImportCommand : DbCommand
     /// <param name="sourcePath">The path to the source ACD file to be converted.</param>
     /// <param name="token">A token for observing cancellation requests.</param>
     /// <returns>The path to the converted file.</returns>
-    private static async ValueTask<string> ConvertFileAsync(IConsole console, string sourcePath,
+    private async ValueTask<string> ConvertFileAsync(IConsole console, string sourcePath,
         CancellationToken token)
     {
-        //todo ideally would like to inject but allow app to specify implementation
-        var converter = new LogixSdkConverter();
+        if (string.IsNullOrWhiteSpace(Converter))
+            throw new CommandException(
+                "A converter path must be specified to convert ACD files. Use the --converter option to specify the path to the ACD to L5X converter executable.",
+                ErrorCodes.UsageError
+            );
 
         var destination = Path.Combine(
             Path.GetTempPath(),
@@ -112,17 +118,16 @@ public class ImportCommand : DbCommand
 
         try
         {
-            var result = await console.Ansi().Status().StartAsync("Converting ACD file...",
-                _ => converter.ConvertAsync(sourcePath, destination, token: token)
+            await console.Ansi().Status().StartAsync("Converting ACD file...", _ =>
+                CliWrap.Cli.Wrap(Converter)
+                    .WithArguments(args => args
+                        .Add("convert")
+                        .Add("-i").Add(sourcePath)
+                        .Add("-o").Add(destination)
+                        .Add("--force"))
+                    .WithValidation(CommandResultValidation.ZeroExitCode)
+                    .ExecuteAsync(token)
             );
-
-            if (!result.Success)
-            {
-                throw new CommandException(
-                    $"Project conversion failed with error: {result.Error}",
-                    ErrorCodes.SystemError
-                );
-            }
 
             return destination;
         }

@@ -10,10 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,15 +201,10 @@
       <workItem from="1772050677920" duration="32888000" />
       <workItem from="1772138916904" duration="5187000" />
       <workItem from="1772205427962" duration="32436000" />
-      <workItem from="1772365912128" duration="6783000" />
-    </task>
-    <task id="LOCAL-00016" summary="Update `MsSqlBuilder` image to use `mssql:2022-latest` in SQL Server test fixture.">
-      <option name="closed" value="true" />
-      <created>1771129011883</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1771129011883</updated>
+      <workItem from="1772365912128" duration="9470000" />
+      <workItem from="1772560514150" duration="6515000" />
+      <workItem from="1772719400982" duration="3000" />
+      <workItem from="1772723896741" duration="1028000" />
     </task>
     <task id="LOCAL-00017" summary="Update GitHub Actions to use `ubuntu-latest` runners and switch from PowerShell to Bash for version extraction.">
       <option name="closed" value="true" />
@@ -591,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772310644754</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Update README.md with extended documentation and bump version to 0.4.10 in project files.">
+      <option name="closed" value="true" />
+      <created>1772398357820</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1772398357821</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +619,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump CLI version to 0.2.2, update `.idea` workspace configuration, and set assembly name in project file." />
     <MESSAGE value="Bump CLI version to 0.2.3 in project file." />
     <MESSAGE value="Rename `UploadCommand` to `ImportCommand` and `DownloadCommand` to `ExportCommand`. Update associated tests, namespaces, column mappings, and migration files for consistency. Replace string-based `record_hash` fields with binary type. Enhance serialization logic and add new helper methods." />
     <MESSAGE value="Refactor mappings and migrations: adjust column definitions, update indexes, and replace string-based `record_hash` with binary type for consistency." />
@@ -637,7 +643,8 @@
     <MESSAGE value="Update configuration and release workflow: simplify `LogixConfig`, adjust appsettings handling, and exclude development-specific settings from release artifacts." />
     <MESSAGE value="Bump version to 0.4.8 in project files." />
     <MESSAGE value="Bump version to 0.4.9 in project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.9 in project files." />
+    <MESSAGE value="Update README.md with extended documentation and bump version to 0.4.10 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md with extended documentation and bump version to 0.4.10 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

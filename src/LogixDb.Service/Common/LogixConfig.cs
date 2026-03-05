@@ -44,6 +44,17 @@ public class LogixConfig
     public SnapshotAction OnConflict { get; init; } = SnapshotAction.ReplaceLatest;
 
     /// <summary>
+    /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.
+    /// </summary>
+    /// <remarks>
+    /// This property specifies the location of the converter tool used to process ACD files.
+    /// When set, the system will use this converter to transform ACD files into a format compatible
+    /// with the LogixDb service. If not specified (null), the system may use a default converter
+    /// or skip ACD conversion functionality.
+    /// </remarks>
+    public string? AcdConverter { get; init; }
+
+    /// <summary>
     /// Indicates whether FTAC (Factory Talk Asset Centre) monitoring service is enabled.
     /// By default, this is disabled. Users will need to opt into this feature.
     /// </summary>

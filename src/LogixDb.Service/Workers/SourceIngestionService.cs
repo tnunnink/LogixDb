@@ -1,4 +1,5 @@
 using System.Threading.Channels;
+using CliWrap;
 using L5Sharp.Core;
 using LogixConverter.Abstractions;
 using LogixDb.Data;
@@ -165,12 +166,21 @@ public class SourceIngestionService(
         if (logger.IsEnabled(LogLevel.Information))
             logger.LogInformation("Converting {FileName} to temp L5X for processing", source.FileName);
 
-        var result = await fileConverter.ConvertAsync(source.FilePath, tempFile, token: token);
-
-        if (!result.Success)
+        // Use the configured ACD converter on the local machine instead of the default file converter.
+        if (options.Value.AcdConverter is not null)
         {
-            throw new InvalidOperationException($"ACD conversion failed with error: '{result.Error}'");
+            await Cli.Wrap(options.Value.AcdConverter)
+                .WithArguments(args => args
+                    .Add("convert")
+                    .Add("-i").Add(source.FilePath)
+                    .Add("-o").Add(tempFile)
+                    .Add("--force"))
+                .WithValidation(CommandResultValidation.ZeroExitCode)
+                .ExecuteAsync(token);
         }
+
+        // Fall back the default file converter
+        await fileConverter.ConvertAsync(source.FilePath, tempFile, token: token);
     }
 
     /// <summary>

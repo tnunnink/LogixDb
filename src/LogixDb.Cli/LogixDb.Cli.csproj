@@ -11,7 +11,7 @@
         <ToolCommandName>logixdb</ToolCommandName>
         <AssemblyName>logixdb</AssemblyName>
         <PackageId>LogixDb</PackageId>
-        <Version>0.4.13</Version>
+        <Version>0.4.14</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>A CLI tool for transforming Rockwell Automation L5X content into a SQL database for analysis and versioning</Description>
         <PackageProjectUrl>https://github.com/yourusername/logixdb</PackageProjectUrl>
@@ -24,7 +24,7 @@
 
     <ItemGroup>
         <PackageReference Include="CliWrap" Version="3.10.0" />
-        <PackageReference Include="L5Sharp" Version="6.0.0-beta.10" />
+        <PackageReference Include="L5Sharp" Version="6.0.0-beta.11" />
         <PackageReference Include="L5Sharp.Gateway" Version="1.0.1-beta.1" />
         <PackageReference Include="CliFx" Version="2.3.6"/>
         <PackageReference Include="LogixConverter.Abstractions" Version="0.2.0" />

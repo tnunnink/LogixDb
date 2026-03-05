@@ -29,7 +29,7 @@ public class ImportCommand : DbCommand
     [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
     public SnapshotAction Action { get; init; } = SnapshotAction.Append;
 
-    [CommandOption("converter", 'c', Description = "Optional path to a custom ACD to L5X converter executable")]
+    [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
     public string? Converter { get; init; }
 
     /// <inheritdoc />

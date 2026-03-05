@@ -15,4 +15,10 @@
         <EmbeddedResource Include="Test.L5X" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Test.ACD">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

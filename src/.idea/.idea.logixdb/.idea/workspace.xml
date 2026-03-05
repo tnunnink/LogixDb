@@ -10,7 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/Test.ACD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,15 +203,7 @@
       <workItem from="1772365912128" duration="9470000" />
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
-      <workItem from="1772723896741" duration="2776000" />
-    </task>
-    <task id="LOCAL-00018" summary="Refactor: Standardize column mappings and table schemas, remove deprecated fields, and update references for consistency across migrations and mapping files. Updated and fixed tests">
-      <option name="closed" value="true" />
-      <created>1771175504514</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1771175504514</updated>
+      <workItem from="1772723896741" duration="3923000" />
     </task>
     <task id="LOCAL-00019" summary="Remove redundant `dimensions` column assertion from `M20260207Tests`.">
       <option name="closed" value="true" />
@@ -591,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772724935632</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Bump version to 0.4.12 in project files and add early return in `SourceIngestionService`.">
+      <option name="closed" value="true" />
+      <created>1772732092579</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1772732092579</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +618,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename `UploadCommand` to `ImportCommand` and `DownloadCommand` to `ExportCommand`. Update associated tests, namespaces, column mappings, and migration files for consistency. Replace string-based `record_hash` fields with binary type. Enhance serialization logic and add new helper methods." />
     <MESSAGE value="Refactor mappings and migrations: adjust column definitions, update indexes, and replace string-based `record_hash` with binary type for consistency." />
     <MESSAGE value="Update `ImportCommandTests` to replace &quot;upload&quot; with &quot;import&quot; for consistency with renamed `ImportCommand`." />
     <MESSAGE value="Bump CLI version to 0.3.0 in project file." />
@@ -637,7 +642,8 @@
     <MESSAGE value="Bump version to 0.4.9 in project files." />
     <MESSAGE value="Update README.md with extended documentation and bump version to 0.4.10 in project files." />
     <MESSAGE value="Add custom ACD converter support, refactor file conversion logic, and bump version to 0.4.11." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add custom ACD converter support, refactor file conversion logic, and bump version to 0.4.11." />
+    <MESSAGE value="Bump version to 0.4.12 in project files and add early return in `SourceIngestionService`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.4.12 in project files and add early return in `SourceIngestionService`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

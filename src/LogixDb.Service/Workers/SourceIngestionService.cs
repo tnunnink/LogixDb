@@ -177,6 +177,8 @@ public class SourceIngestionService(
                     .Add("--force"))
                 .WithValidation(CommandResultValidation.ZeroExitCode)
                 .ExecuteAsync(token);
+            
+            return;
         }
 
         // Fall back the default file converter

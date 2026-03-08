@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,15 +210,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="41240000" />
-    </task>
-    <task id="LOCAL-00033" summary="Update `UploadCommand` description for improved clarity: &quot;Imports&quot; → &quot;Uploads&quot;">
-      <option name="closed" value="true" />
-      <created>1771440285607</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1771440285607</updated>
+      <workItem from="1772813330639" duration="41903000" />
     </task>
     <task id="LOCAL-00034" summary="Update `.idea` workspace configuration: adjust paths, rename commands, and increment task counter.">
       <option name="closed" value="true" />
@@ -603,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772968717452</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Increase `argument_text`, `argument_tags`, and `argument_values` column size to `int.MaxValue` in `M015CreateArgumentTable`.">
+      <option name="closed" value="true" />
+      <created>1772970197301</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1772970197301</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -624,7 +625,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.4.6 in project files." />
     <MESSAGE value="Add `Setup-LogixDb.ps1` script for LogixDb service setup and deployment." />
     <MESSAGE value="Add Setup-LogixDb.ps1 script for LogixDb deployment and service configuration." />
     <MESSAGE value="Bump version to 0.4.7 in project files." />
@@ -649,7 +649,8 @@
     <MESSAGE value="Tag migrations as required and bump version to 0.5.2." />
     <MESSAGE value="Mark migrations `M001CreateTargetTable` and `M002CreateSnapshotTable` as optional by commenting out `[Tags(MigrationTag.Required)]`." />
     <MESSAGE value="Bump version to 0.5.3 in project files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.5.3 in project files." />
+    <MESSAGE value="Increase `argument_text`, `argument_tags`, and `argument_values` column size to `int.MaxValue` in `M015CreateArgumentTable`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Increase `argument_text`, `argument_tags`, and `argument_values` column size to `int.MaxValue` in `M015CreateArgumentTable`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

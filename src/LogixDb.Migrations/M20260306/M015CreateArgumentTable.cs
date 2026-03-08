@@ -12,13 +12,13 @@ public class M015CreateArgumentTable : AutoReversingMigration
         Create.Table("argument")
             .WithPrimaryId("argument_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("instruction_hash").AsString(16).NotNullable()
+            .WithColumn("instruction_hash").AsBinary(16).NotNullable()
             .WithColumn("argument_ordinal").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(255).NotNullable()
             .WithColumn("argument_tags").AsString(2048).Nullable()
             .WithColumn("argument_values").AsString(2048).Nullable()
-            .WithColumn("record_hash").AsString(16).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("argument")

@@ -36,7 +36,7 @@ public abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbImp
         var connection = session.GetConnection<SqliteConnection>();
         var transaction = session.GetTransaction<SqliteTransaction>();
 
-        await using var command = new SqliteCommand(SqliteImport<TRecord>.BuildInsertStatement(Map), connection, transaction);
+        await using var command = new SqliteCommand(BuildInsertStatement(Map), connection, transaction);
         var columns = Map.Columns.ToList();
         columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
         command.Prepare();

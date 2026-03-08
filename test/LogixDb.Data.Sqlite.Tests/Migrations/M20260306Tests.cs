@@ -14,12 +14,12 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertColumnDefinition("instruction", "instruction_id", "integer");
             await AssertColumnDefinition("instruction", "snapshot_id", "integer");
-            await AssertColumnDefinition("instruction", "rung_hash", "text");
+            await AssertColumnDefinition("instruction", "rung_hash", "blob");
             await AssertColumnDefinition("instruction", "instruction_key", "text");
             await AssertColumnDefinition("instruction", "instruction_text", "text");
             await AssertColumnDefinition("instruction", "is_destructive", "integer");
             await AssertColumnDefinition("instruction", "is_native", "integer");
-            await AssertColumnDefinition("instruction", "record_hash", "text");
+            await AssertColumnDefinition("instruction", "record_hash", "blob");
 
             await AssertPrimaryKey("instruction", "instruction_id");
             await AssertForeignKey("instruction", "snapshot_id", "snapshot", "snapshot_id");
@@ -39,13 +39,13 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertColumnDefinition("argument", "argument_id", "integer");
             await AssertColumnDefinition("argument", "snapshot_id", "integer");
-            await AssertColumnDefinition("argument", "instruction_hash", "text");
+            await AssertColumnDefinition("argument", "instruction_hash", "blob");
             await AssertColumnDefinition("argument", "argument_ordinal", "integer");
             await AssertColumnDefinition("argument", "argument_type", "text");
             await AssertColumnDefinition("argument", "argument_text", "text");
             await AssertColumnDefinition("argument", "argument_tags", "text");
             await AssertColumnDefinition("argument", "argument_values", "text");
-            await AssertColumnDefinition("argument", "record_hash", "text");
+            await AssertColumnDefinition("argument", "record_hash", "blob");
 
             await AssertPrimaryKey("argument", "argument_id");
             await AssertForeignKey("argument", "snapshot_id", "snapshot", "snapshot_id");

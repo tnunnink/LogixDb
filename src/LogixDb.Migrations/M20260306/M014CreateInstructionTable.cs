@@ -21,12 +21,12 @@ public class M014CreateInstructionTable : AutoReversingMigration
         Create.Table("instruction")
             .WithPrimaryId("instruction_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("rung_hash").AsString(16).NotNullable()
+            .WithColumn("rung_hash").AsBinary(16).NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("is_destructive").AsBoolean().NotNullable()
             .WithColumn("is_native").AsBoolean().NotNullable()
-            .WithColumn("record_hash").AsString(16).NotNullable();
+            .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
             .OnTable("instruction")

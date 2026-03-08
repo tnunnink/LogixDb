@@ -221,11 +221,11 @@ Windows service. No .NET runtime installation is required.
 4. Navigate to the extracted directory
 5. Unblock the PowerShell script:
    ```powershell
-   Unblock-File -Path .\Setup-LogixDb.ps1
+   Unblock-File -Path .\Setup.ps1
    ```
 6. Run the installation script:
    ```powershell
-   .\Setup-LogixDb.ps1
+   .\Setup.ps1
    ```
 
 The setup script automates the following steps:

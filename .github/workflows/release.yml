@@ -70,7 +70,7 @@ jobs:
         Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Exclude "appsettings.Development.json"
         
         # Copy the Setup script from the scripts folder
-        Copy-Item -Path scripts/Setup-LogixDb.ps1 -Destination artifacts/combined
+        Copy-Item -Path scripts/Setup.ps1 -Destination artifacts/combined
         
         # Copy appsettings.json
         Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json

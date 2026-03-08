@@ -10,39 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerArgumentImport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerInstructionImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiParameterImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiParameterImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerControllerImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerControllerImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeMemberImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeMemberImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerModuleImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerModuleImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerProgramImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerProgramImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRoutineImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRoutineImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRungImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRungImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTagImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTagImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTaskImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTaskImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteArgumentImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteArgumentImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteInstructionImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteInstructionImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMemberMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,15 +208,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="37229000" />
-    </task>
-    <task id="LOCAL-00026" summary="Improve CLI commands with enhanced exception handling, updated output formatting (added `hash` to tables), and refactored methods for `list`, `prune`, `purge`, `import`, and `drop`. Ensure consistent namespace use.">
-      <option name="closed" value="true" />
-      <created>1771251912506</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1771251912506</updated>
+      <workItem from="1772813330639" duration="37600000" />
     </task>
     <task id="LOCAL-00027" summary="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling.">
       <option name="closed" value="true" />
@@ -634,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772941532340</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1.">
+      <option name="closed" value="true" />
+      <created>1772966183572</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1772966183572</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +623,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files." />
     <MESSAGE value="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting." />
     <MESSAGE value="Bump version to 0.4.3 in project files." />
     <MESSAGE value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
@@ -680,7 +647,8 @@
     <MESSAGE value="Update README with detailed documentation on CLI commands, ingestion API, FTAC monitoring, database schema, and custom ACD converter configuration. Adjust migrations to replace string hashes with binary hashes for `instruction` and `argument` tables, refine `SqliteImport` implementation, and revise related tests." />
     <MESSAGE value="Change all binary `record_hash` and related columns to string format across migrations, models, and tests to standardize hash representation." />
     <MESSAGE value="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling." />
+    <MESSAGE value="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

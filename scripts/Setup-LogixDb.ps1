@@ -3,27 +3,51 @@ $InstallDir = "C:\Program Files\LogixDb"
 $ServiceName = "LogixDb"
 $ServiceAccount = "NT SERVICE\LogixDb"
 
-function Write-Step($msg) { Write-Host "[SETUP] $msg" -ForegroundColor Cyan }
+function Write-Step($msg)
+{
+    Write-Host "[SETUP] $msg" -ForegroundColor Cyan
+}
 
 # 1. Elevate and Prepare
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
+{
     Write-Error "Please run this script as Administrator."
     exit
 }
 
 # 2. Stop Service
-if (Get-Service $ServiceName -ErrorAction SilentlyContinue) {
+if (Get-Service $ServiceName -ErrorAction SilentlyContinue)
+{
     Write-Step "Stopping existing service..."
     Stop-Service $ServiceName -Force -ErrorAction SilentlyContinue
 }
 
 # 3. Deploy Files
 Write-Step "Deploying files to $InstallDir..."
-if (-not (Test-Path $InstallDir)) { New-Item -Path $InstallDir -ItemType Directory -Force }
+if (-not (Test-Path $InstallDir))
+{
+    New-Item -Path $InstallDir -ItemType Directory -Force
+}
 
-# Copy all files from current directory to InstallDir (excluding the script itself)
+# Copy all files from current directory to InstallDir (excluding the script itself and appsettings.json)
 $ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
-Get-ChildItem -Path $ScriptPath -Exclude "Setup-LogixDb.ps1" | Copy-Item -Destination $InstallDir -Recurse -Force
+Get-ChildItem -Path $ScriptPath -Exclude "Setup-LogixDb.ps1", "appsettings.json" | Copy-Item -Destination $InstallDir -Recurse -Force
+
+# Copy appsettings.json only if it does not already exist
+$AppSettingsDest = Join-Path $InstallDir "appsettings.json"
+$AppSettingsSrc = Join-Path $ScriptPath "appsettings.json"
+if (Test-Path $AppSettingsSrc)
+{
+    if (-not (Test-Path $AppSettingsDest))
+    {
+        Write-Step "Copying new appsettings.json..."
+        Copy-Item -Path $AppSettingsSrc -Destination $AppSettingsDest -Force
+    }
+    else
+    {
+        Write-Step "Existing appsettings.json found, skipping overwrite."
+    }
+}
 
 # 4. Seed FTAC Permissions
 $sqlScript = @"
@@ -43,26 +67,36 @@ END
 "@
 
 Write-Step "Checking for FTAC database and seeding permissions..."
-try {
-    # Attempt to run SQL if SqlServer module is available, otherwise log the requirement
-    if (Get-Module -ListAvailable SqlServer) {
-        Invoke-Sqlcmd -Query $sqlScript -ErrorAction SilentlyContinue
-    } else {
-        Write-Host "SqlServer module not found. Skipping automatic SQL seeding." -ForegroundColor Yellow
+try
+{
+    # Check for SqlServer module, attempt to install if missing
+    if (-not (Get-Module -ListAvailable SqlServer))
+    {
+        Write-Step "SqlServer module not found. Attempting to install..."
+        Install-Module -Name SqlServer -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop
     }
-} catch {
+
+    # Run SQL seeding script
+    Invoke-Sqlcmd -Query $sqlScript -ErrorAction SilentlyContinue
+}
+catch
+{
     Write-Host "Could not automatically seed SQL permissions. Manual setup may be required." -ForegroundColor Yellow
+    Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Gray
 }
 
 # 5. Register Service and Path
 Write-Step "Configuring Windows Service..."
 $exePath = Join-Path $InstallDir "LogixDb.Service.exe"
 
-if (Get-Service $ServiceName -ErrorAction SilentlyContinue) {
+if (Get-Service $ServiceName -ErrorAction SilentlyContinue)
+{
     Write-Step "Updating existing service..."
     # Update binary path, account, and start type
     sc.exe config $ServiceName binPath= "`"$exePath`"" obj= "$ServiceAccount" start= auto
-} else {
+}
+else
+{
     Write-Step "Creating new service..."
     # Create the service with all properties in one go
     # Note: Spaces after '=' are MANDATORY for sc.exe commands
@@ -72,7 +106,8 @@ if (Get-Service $ServiceName -ErrorAction SilentlyContinue) {
 
 # Add to PATH
 $currentPath = [Environment]::GetEnvironmentVariable("Path", "Machine")
-if ($currentPath -notlike "*$InstallDir*") {
+if ($currentPath -notlike "*$InstallDir*")
+{
     [Environment]::SetEnvironmentVariable("Path", $currentPath.TrimEnd(';') + ";$InstallDir", "Machine")
 }
 

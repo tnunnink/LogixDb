@@ -14,15 +14,17 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("instruction", "instruction_id", "int");
             await AssertColumnDefinition("instruction", "snapshot_id", "int");
-            await AssertColumnDefinition("instruction", "parent_hash", "nvarchar");
+            await AssertColumnDefinition("instruction", "rung_hash", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_text", "nvarchar");
             await AssertColumnDefinition("instruction", "is_destructive", "bit");
             await AssertColumnDefinition("instruction", "is_native", "bit");
+            await AssertColumnDefinition("instruction", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("instruction", "instruction_id");
             await AssertForeignKey("instruction", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("instruction", "snapshot_id", "parent_hash");
+            await AssertIndex("instruction", "snapshot_id", "rung_hash");
+            await AssertIndex("instruction", "record_hash", "snapshot_id");
         }
     }
 
@@ -37,15 +39,18 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("argument", "argument_id", "int");
             await AssertColumnDefinition("argument", "snapshot_id", "int");
-            await AssertColumnDefinition("argument", "parent_hash", "nvarchar");
+            await AssertColumnDefinition("argument", "instruction_hash", "nvarchar");
+            await AssertColumnDefinition("argument", "argument_ordinal", "tinyint");
             await AssertColumnDefinition("argument", "argument_type", "nvarchar");
             await AssertColumnDefinition("argument", "argument_text", "nvarchar");
             await AssertColumnDefinition("argument", "argument_tags", "nvarchar");
             await AssertColumnDefinition("argument", "argument_values", "nvarchar");
+            await AssertColumnDefinition("argument", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("argument", "argument_id");
             await AssertForeignKey("argument", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("argument", "snapshot_id", "parent_hash");
+            await AssertIndex("argument", "snapshot_id", "instruction_hash");
+            await AssertIndex("argument", "record_hash", "snapshot_id");
         }
     }
 }

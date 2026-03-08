@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -8,11 +9,13 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// Implements element import for <see cref="Controller"/> objects by extracting the single
 /// controller instance from the L5X content and mapping it to the database using <see cref="ControllerMap"/>.
 /// </summary>
-internal class SqliteControllerImport() : SqliteElementImport<Controller>(new ControllerMap())
+internal class SqliteControllerImport() : SqliteImport<ControllerRecord>(new ControllerMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Controller> GetRecords(L5X content)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return [content.Controller];
+        var source = snapshot.GetSource();
+        List<ControllerRecord> records = [new(snapshot.SnapshotId, source.Controller)];
+        return Map.GenerateTable(records);
     }
 }

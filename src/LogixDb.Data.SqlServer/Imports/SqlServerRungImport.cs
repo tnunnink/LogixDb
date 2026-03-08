@@ -11,11 +11,13 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqlServerRungImport() : SqlServerElementImport<Rung>(new RungMap())
+internal class SqlServerRungImport() : SqlServerImport<RungRecord>(new RungMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Rung> GetRecords(L5X content)
+    protected override IEnumerable<RungRecord> GetRecords(Snapshot snapshot)
     {
-        return content.Query<Rung>().ToList();
+        return snapshot.GetSource().Query<Rung>()
+            .Select(x => new RungRecord(snapshot.SnapshotId, x))
+            .ToList();
     }
 }

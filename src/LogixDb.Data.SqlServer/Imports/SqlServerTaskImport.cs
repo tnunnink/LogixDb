@@ -12,11 +12,13 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqlServerTaskImport() : SqlServerElementImport<Task>(new TaskMap())
+internal class SqlServerTaskImport() : SqlServerImport<TaskRecord>(new TaskMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Task> GetRecords(L5X content)
+    protected override IEnumerable<TaskRecord> GetRecords(Snapshot snapshot)
     {
-        return content.Query<Task>().ToList();
+        return snapshot.GetSource().Query<Task>()
+            .Select(x => new TaskRecord(snapshot.SnapshotId, x))
+            .ToList();
     }
 }

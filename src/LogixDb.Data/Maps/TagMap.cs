@@ -8,23 +8,34 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Tag"/> class.
 /// </summary>
-public class TagMap : TableMap<Tag>
+public class TagMap : TableMap<TagRecord>
 {
     /// <inheritdoc />
     public override string TableName => "tag";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<Tag>> Columns =>
+    public override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
     [
-        ColumnMap<Tag>.For(t => t.Scope.Container, "container_name"),
-        ColumnMap<Tag>.For(t => t.TagName.LocalPath, "tag_name"),
-        ColumnMap<Tag>.For(t => t.TagName.Base, "base_name"),
-        ColumnMap<Tag>.For(t => t.Parent?.TagName.LocalPath, "parent_name"),
-        ColumnMap<Tag>.For(t => t.TagName.Element, "member_name"),
-        ColumnMap<Tag>.For(t => t.Value.IsAtomic() ? t.Value.ToString() : null, "tag_value"),
-        ColumnMap<Tag>.For(t => t.Dimensions.IsEmpty ? t.DataType : $"{t.DataType}{t.Dimensions.ToIndex()}", "data_type"),
-        ColumnMap<Tag>.For(t => t.Description, "description"),
-        ColumnMap<Tag>.For(t => t.ExternalAccess?.Name, "external_access"),
-        ColumnMap<Tag>.For(t => t.Constant, "constant")
+        ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "container_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.TagName.Base, "base_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Dimensions.IsEmpty ? r.Tag.DataType : $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}", "data_type"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Description, "description"),
+        ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Constant, "constant"),
+        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for a tag entity.
+/// This record contains the metadata and configuration for a specific Logix tag,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this tag record belongs.</param>
+/// <param name="Tag">The Logix tag entity containing its configuration and value.</param>
+public record TagRecord(int SnapshotId, Tag Tag);

@@ -1,4 +1,4 @@
-using L5Sharp.Core;
+using System.Data;
 using LogixDb.Data.Maps;
 using Task = L5Sharp.Core.Task;
 
@@ -12,11 +12,17 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteTaskImport() : SqliteElementImport<Task>(new TaskMap())
+internal class SqliteTaskImport() : SqliteImport<TaskRecord>(new TaskMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Task> GetRecords(L5X content)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return content.Query<Task>().ToList();
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Task>()
+            .Select(t => new TaskRecord(snapshot.SnapshotId, t))
+            .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

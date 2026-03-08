@@ -1,4 +1,5 @@
 using System.Data;
+using System.Globalization;
 using System.Text;
 
 namespace LogixDb.Data;
@@ -12,6 +13,14 @@ namespace LogixDb.Data;
 public abstract class TableMap<T> where T : class
 {
     /// <summary>
+    /// Stores a collection of column mappings that are involved in calculating the hash of a record.
+    /// Each column in this list typically has the `IsHashable` property set to true and is used as part of
+    /// the hashing process to uniquely identify or validate the integrity of a record.
+    /// Initialized lazily and populated when the `ComputeHash` method is invoked.
+    /// </summary>
+    private List<ColumnMap<T>>? _hashColumns;
+
+    /// <summary>
     /// Gets the name of the database table that will store the mapped Logix elements.
     /// </summary>
     public abstract string TableName { get; }
@@ -23,86 +32,107 @@ public abstract class TableMap<T> where T : class
     public abstract IReadOnlyList<ColumnMap<T>> Columns { get; }
 
     /// <summary>
-    /// Constructs an SQL INSERT statement for a table defined by the implementing TableMap.
-    /// The statement includes named parameters corresponding to the table's columns and
-    /// additional fields such as a snapshot ID and record hash.
+    /// Generates a DataTable representation of the provided records.
+    /// The DataTable will have columns corresponding to the table's defined columns
+    /// and rows populated with data from the provided records.
     /// </summary>
+    /// <param name="records">
+    /// A collection of records of type T to populate the DataTable. Each record's
+    /// properties are mapped to columns in the DataTable based on the table's column definitions.
+    /// </param>
     /// <returns>
-    /// A string representing the SQL INSERT statement including column names and parameters.
-    /// The resulting statement follows the format:
-    /// "INSERT INTO {TableName} (snapshot_id, {column names}, record_hash)
-    /// VALUES (@snapshot_id, {parameters}, @record_hash);"
+    /// A DataTable containing the column structure defined by the table's column definitions
+    /// and rows populated with data from the provided records. If the collection is empty,
+    /// the DataTable will contain no rows.
     /// </returns>
-    public string BuildInsertStatement()
-    {
-        var columns = string.Join(", ", Columns.Select(c => c.Name));
-        var parameters = string.Join(", ", Columns.Select(c => $"@{c.Name}"));
-
-        return $"""
-                INSERT INTO {TableName} (snapshot_id, {columns}, record_hash)
-                VALUES (@snapshot_id, {parameters}, @record_hash);
-                """;
-    }
-
-    /// <summary>
-    /// Converts a collection of objects of type T into a DataTable using the column mappings
-    /// defined in the implementing TableMap. The resulting DataTable includes a snapshot identifier,
-    /// columns mapped from the object properties, and a computed record hash for each row.
-    /// </summary>
-    /// <param name="records">The collection of objects of type T to be converted into a DataTable.</param>
-    /// <param name="snapshotId">An optional snapshot identifier to be added to each row. Defaults to 0 if not specified.</param>
-    /// <returns>
-    /// A DataTable object with the column structure defined by the TableMap, populated with data
-    /// from the input records, along with a "snapshot_id" column and a computed "record_hash" column.
-    /// </returns>
-    /// <exception cref="ArgumentNullException">
-    /// Thrown when the <paramref name="records"/> parameter is null.
-    /// </exception>
-    /// <exception cref="Exception">
-    /// May be thrown during the data processing or column mapping if unexpected errors occur.
-    /// </exception>
-    public DataTable GenerateTable(IEnumerable<T> records, int snapshotId = 0)
+    public DataTable GenerateTable(IEnumerable<T> records)
     {
         var table = new DataTable(TableName);
-
-        table.Columns.Add(new DataColumn("snapshot_id", typeof(int)));
         table.Columns.AddRange(Columns.Select(c => new DataColumn(c.Name, c.Type.ToType())).ToArray());
-        table.Columns.Add(new DataColumn("record_hash", typeof(byte[])));
 
-        // Precompile an ordered array of column name and getter pairs for iteration. We need to iterate in deterministic
-        // order to preserve the integrity of the computed hash. 
-        var orderedColumns = Columns
-            .OrderBy(c => c.Name, StringComparer.Ordinal)
-            .ToDictionary(c => c.Name, c => c.Getter);
-
-        var hashBuilder = new StringBuilder();
         table.BeginLoadData();
 
         foreach (var record in records)
         {
-            hashBuilder.Clear();
-
-            // Start a new row and set the snapshot which by default is expected to the first column.
             var row = table.NewRow();
-            row[0] = snapshotId;
 
-            // Iterate the ordered columns, get the corresponding index, set the row field to the value of the getter,
-            // and compute the hash for the record. Doing this all in one pass makes this as fast as possible.
-            foreach (var (name, getter) in orderedColumns)
+            foreach (var column in Columns)
             {
-                var value = getter(record) ?? DBNull.Value;
-                row[name] = value;
-                var field = new KeyValuePair<string, object?>(name, value);
-                hashBuilder.Append(field.SerializeField());
+                var value = column.Getter(record) ?? DBNull.Value;
+                row[column.Name] = value;
             }
 
-            // record_hash is the last column of the table.
-            row[table.Columns.Count - 1] = hashBuilder.ToString().Hash();
-
-            // Add the row to the table
             table.Rows.Add(row);
         }
 
+        table.EndLoadData();
         return table;
+    }
+
+    /// <summary>
+    /// Computes a hash for the given record by iterating over the record's hashable columns
+    /// in a deterministic order. The computed hash is used to ensure data integrity and
+    /// verify the consistency of the record.
+    /// </summary>
+    /// <param name="record">
+    /// The instance of the record for which the hash will be computed.
+    /// The record is expected to match the structure defined by the table's columns.
+    /// </param>
+    /// <returns>
+    /// A byte array representing the cryptographic hash of the record's hashable fields.
+    /// The hash is computed based on the serialized values of the hashable columns.
+    /// </returns>
+    public byte[] ComputeHash(T record)
+    {
+        var columns = _hashColumns ??= GetHashableColumns();
+        var hashBuilder = new StringBuilder();
+
+        foreach (var column in columns)
+        {
+            var value = column.Getter(record) ?? DBNull.Value;
+            hashBuilder.Append(SerializeField(column.Name, value));
+        }
+
+        return hashBuilder.ToString().Hash();
+    }
+
+    /// <summary>
+    /// Retrieves a list of columns that are marked as hashable within the current table mapping.
+    /// The returned list is sorted by the column names in ordinal order.
+    /// </summary>
+    /// <returns>
+    /// A list of hashable columns defined by the table mapping.
+    /// Each column in the list is an instance of <see cref="ColumnMap{T}"/> and has its IsHashable property set to true.
+    /// </returns>
+    private List<ColumnMap<T>> GetHashableColumns()
+    {
+        return Columns.Where(c => c.IsHashable).OrderBy(c => c.Name, StringComparer.Ordinal).ToList();
+    }
+
+    /// <summary>
+    /// Serializes a column name and its corresponding value into a formatted string representation.
+    /// The resulting string includes specific delimiters to separate the name and value for
+    /// consistent serialization of database records.
+    /// </summary>
+    /// <param name="name">The name of the column being serialized.</param>
+    /// <param name="value">The value of the column, which can be null or any object type.</param>
+    /// <returns>
+    /// A string representing the serialized column name and value, formatted with delimiters.
+    /// Null values are replaced by a specific placeholder during serialization.
+    /// </returns>
+    private static string SerializeField(string name, object? value)
+    {
+        return '\u001E' + name + '\u001F' + FormatValue(value);
+
+        static string FormatValue(object? value)
+        {
+            return value switch
+            {
+                null => "\u2400",
+                string s => s.Replace("\r\n", "\n"),
+                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
+                _ => value.ToString() ?? string.Empty
+            };
+        }
     }
 }

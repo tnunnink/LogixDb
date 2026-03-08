@@ -8,25 +8,36 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Parameter"/> class.
 /// </summary>
-public class AoiParameterMap : TableMap<Parameter>
+public class AoiParameterMap : TableMap<AoiParameterRecord>
 {
     /// <inheritdoc />
     public override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<Parameter>> Columns =>
+    public override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
-        ColumnMap<Parameter>.For(p => p.Parent?.Name, "aoi_name"),
-        ColumnMap<Parameter>.For(p => p.Name, "parameter_name"),
-        ColumnMap<Parameter>.For(p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType, "data_type"),
-        ColumnMap<Parameter>.For(p => p.Default?.IsAtomic() is true ? p.Default?.ToString() : null, "default_value"),
-        ColumnMap<Parameter>.For(p => p.Description, "description"),
-        ColumnMap<Parameter>.For(p => p.ExternalAccess?.Name, "external_access"),
-        ColumnMap<Parameter>.For(p => p.Usage.Name, "tag_usage"),
-        ColumnMap<Parameter>.For(p => p.TagType?.Name, "tag_type"),
-        ColumnMap<Parameter>.For(p => p.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<Parameter>.For(p => p.Visible, "visible"),
-        ColumnMap<Parameter>.For(p => p.Required, "required"),
-        ColumnMap<Parameter>.For(p => p.Constant, "constant"),
+        ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Parent?.Name, "aoi_name"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Dimension > 0 ? $"{r.Parameter.DataType}{r.Parameter.Dimension.ToIndex()}" : r.Parameter.DataType, "data_type"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "description"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.TagType?.Name, "tag_type"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.AliasFor?.LocalPath, "tag_alias"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Visible, "visible"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Required, "required"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "constant"),
+        ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for an AOI parameter entity.
+/// This record contains the metadata and configuration for a specific AOI parameter,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this parameter record belongs.</param>
+/// <param name="Parameter">The Logix AOI parameter entity.</param>
+public record AoiParameterRecord(int SnapshotId, Parameter Parameter);

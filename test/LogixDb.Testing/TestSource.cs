@@ -10,7 +10,7 @@ namespace LogixDb.Testing;
 /// </summary>
 public static class TestSource
 {
-    private const string LocalExampleFile = @"C:\Users\tnunn\Documents\L5X\Example.L5X";
+    private const string LocalExampleFile = @"C:\Users\tnunnink\Documents\Rockwell\Example.L5X";
 
     /// <summary>
     /// Creates a new L5X instance with custom configuration applied.

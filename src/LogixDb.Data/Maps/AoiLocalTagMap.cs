@@ -12,23 +12,34 @@ namespace LogixDb.Data.Maps;
 /// They are essentially all the same columns, except that the local tag doesn't have required and visible properties.
 /// I'd prefer not to make separate tables and not to tread these as "tag" instances but as member definitions.
 /// </remarks>
-public class AoiLocalTagMap : TableMap<LocalTag>
+public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 {
     /// <inheritdoc />
     public override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<LocalTag>> Columns =>
+    public override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
-        ColumnMap<LocalTag>.For(p => p.Instruction?.Name, "aoi_name"),
-        ColumnMap<LocalTag>.For(p => p.Name, "parameter_name"),
-        ColumnMap<LocalTag>.For(p => p.Dimensions > 0 ? $"{p.DataType}{p.Dimensions.ToIndex()}" : p.DataType, "data_type"),
-        ColumnMap<LocalTag>.For(p => p.Value.IsAtomic()? p.Value.ToString() : null, "default_value"),
-        ColumnMap<LocalTag>.For(p => p.Description, "description"),
-        ColumnMap<LocalTag>.For(p => p.ExternalAccess?.Name, "external_access"),
-        ColumnMap<LocalTag>.For(p => p.Usage?.Name, "tag_usage"),
-        ColumnMap<LocalTag>.For(p => p.TagType?.Name, "tag_type"),
-        ColumnMap<LocalTag>.For(p => p.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<LocalTag>.For(p => p.Constant, "constant"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Instruction?.Name, "aoi_name"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Dimensions > 0 ? $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}" : r.Tag.DataType, "data_type"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.IsAtomic()? r.Tag.Value.ToString() : null, "default_value"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "description"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.TagType?.Name, "tag_type"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.AliasFor?.LocalPath, "tag_alias"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "constant"),
+        ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash", false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for an AOI local tag entity.
+/// This record contains the metadata for a specific local tag within an AOI,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this local tag record belongs.</param>
+/// <param name="Tag">The Logix local tag entity.</param>
+public record AoiLocalTagRecord(int SnapshotId, LocalTag Tag);

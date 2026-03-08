@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -11,11 +12,17 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteRungImport() : SqliteElementImport<Rung>(new RungMap())
+internal class SqliteRungImport() : SqliteImport<RungRecord>(new RungMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Rung> GetRecords(L5X content)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return content.Query<Rung>().ToList();
+        var source = snapshot.GetSource();
+        
+        var records = source.Query<Rung>()
+            .Select(r => new RungRecord(snapshot.SnapshotId, r))
+            .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

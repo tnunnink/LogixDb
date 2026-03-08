@@ -8,11 +8,11 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// Implements element import for <see cref="Controller"/> objects by extracting the single
 /// controller instance from the L5X content and mapping it to the database using <see cref="ControllerMap"/>.
 /// </summary>
-internal class SqlServerControllerImport() : SqlServerElementImport<Controller>(new ControllerMap())
+internal class SqlServerControllerImport() : SqlServerImport<ControllerRecord>(new ControllerMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<Controller> GetRecords(L5X content)
+    protected override IEnumerable<ControllerRecord> GetRecords(Snapshot snapshot)
     {
-        return [content.Controller];
+        return [new ControllerRecord(snapshot.SnapshotId, snapshot.GetSource().Controller)];
     }
 }

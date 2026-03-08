@@ -1,4 +1,3 @@
-using LogixDb.Data.Abstractions;
 using Task = L5Sharp.Core.Task;
 
 namespace LogixDb.Data.Maps;
@@ -8,24 +7,35 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Task"/> class.
 /// </summary>
-public class TaskMap : TableMap<Task>
+public class TaskMap : TableMap<TaskRecord>
 {
     /// <inheritdoc />
     public override string TableName => "task";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<Task>> Columns =>
+    public override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
     [
-        ColumnMap<Task>.For(t => t.Name, "task_name"),
-        ColumnMap<Task>.For(t => t.Type.Name, "task_type"),
-        ColumnMap<Task>.For(t => t.Description, "description"),
-        ColumnMap<Task>.For(t => t.Priority, "priority"),
-        ColumnMap<Task>.For(t => t.Rate, "rate"),
-        ColumnMap<Task>.For(t => t.Watchdog, "watchdog"),
-        ColumnMap<Task>.For(t => t.InhibitTask, "inhibited"),
-        ColumnMap<Task>.For(t => t.DisableUpdateOutputs, "disable_outputs"),
-        ColumnMap<Task>.For(t => t.EventInfo?.EventTrigger?.Name, "event_trigger"),
-        ColumnMap<Task>.For(t => t.EventInfo?.EventTag?.LocalPath, "event_tag"),
-        ColumnMap<Task>.For(t => t.EventInfo?.EnableTimeout, "enable_timeout")
+        ColumnMap<TaskRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Description, "description"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Priority, "priority"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Rate, "rate"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Watchdog, "watchdog"),
+        ColumnMap<TaskRecord>.For(r => r.Task.InhibitTask, "inhibited"),
+        ColumnMap<TaskRecord>.For(r => r.Task.DisableUpdateOutputs, "disable_outputs"),
+        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTrigger?.Name, "event_trigger"),
+        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTag?.LocalPath, "event_tag"),
+        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EnableTimeout, "enable_timeout"),
+        ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for a task entity.
+/// This record contains properties for the task's associated metadata and configuration settings
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this task record belongs.</param>
+/// <param name="Task">The task entity containing metadata, configuration, and execution details.</param>
+public record TaskRecord(int SnapshotId, Task Task);

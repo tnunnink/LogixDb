@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -11,11 +12,17 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteAoiImport() : SqliteElementImport<AddOnInstruction>(new AoiMap())
+internal class SqliteAoiImport() : SqliteImport<AoiRecord>(new AoiMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<AddOnInstruction> GetRecords(L5X content)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return content.Query<AddOnInstruction>().ToList();
+        var source = snapshot.GetSource();
+        
+        var records = source.Query<AddOnInstruction>()
+            .Select(a => new AoiRecord(snapshot.SnapshotId, a))
+            .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

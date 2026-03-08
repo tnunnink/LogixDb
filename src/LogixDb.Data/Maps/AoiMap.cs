@@ -8,33 +8,44 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="AddOnInstruction"/> class.
 /// </summary>
-public class AoiMap : TableMap<AddOnInstruction>
+public class AoiMap : TableMap<AoiRecord>
 {
     /// <inheritdoc />
     public override string TableName => "aoi";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<AddOnInstruction>> Columns =>
+    public override IReadOnlyList<ColumnMap<AoiRecord>> Columns =>
     [
-        ColumnMap<AddOnInstruction>.For(a => a.Name, "aoi_name"),
-        ColumnMap<AddOnInstruction>.For(a => a.Revision?.ToString(), "revision"),
-        ColumnMap<AddOnInstruction>.For(a => a.RevisionExtension, "revision_extension"),
-        ColumnMap<AddOnInstruction>.For(a => a.RevisionNote, "revision_note"),
-        ColumnMap<AddOnInstruction>.For(a => a.Vendor, "vendor"),
-        ColumnMap<AddOnInstruction>.For(a => a.Description, "description"),
-        ColumnMap<AddOnInstruction>.For(a => a.ExecutePreScan, "execute_pre_scan"),
-        ColumnMap<AddOnInstruction>.For(a => a.ExecutePostScan, "execute_post_scan"),
-        ColumnMap<AddOnInstruction>.For(a => a.ExecuteEnableInFalse, "execute_enable_in_false"),
-        ColumnMap<AddOnInstruction>.For(a => a.CreatedDate, "created_date"),
-        ColumnMap<AddOnInstruction>.For(a => a.CreatedBy, "created_by"),
-        ColumnMap<AddOnInstruction>.For(a => a.EditedDate, "edited_date"),
-        ColumnMap<AddOnInstruction>.For(a => a.EditedBy, "edited_by"),
-        ColumnMap<AddOnInstruction>.For(a => a.SoftwareRevision?.ToString(), "software_revision"),
-        ColumnMap<AddOnInstruction>.For(a => a.AdditionalHelpText, "help_text"),
-        ColumnMap<AddOnInstruction>.For(a => a.IsEncrypted, "is_encrypted"),
+        ColumnMap<AoiRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Name, "aoi_name"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Revision?.ToString(), "revision"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.RevisionExtension, "revision_extension"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.RevisionNote, "revision_note"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Vendor, "vendor"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Description, "description"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePreScan, "execute_pre_scan"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePostScan, "execute_post_scan"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecuteEnableInFalse, "execute_enable_in_false"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedDate, "created_date"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedBy, "created_by"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedDate, "edited_date"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedBy, "edited_by"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.SoftwareRevision?.ToString(), "software_revision"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.AdditionalHelpText, "help_text"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.IsEncrypted, "is_encrypted"),
         //todo SQL Server can't import the default date 1/1/0001. It has a minimum range. Need to find a general solution for dates.
-        /*ColumnMap<AddOnInstruction>.For(a => a.SignatureID, "signature_id"),
-        ColumnMap<AddOnInstruction>.For(a => a.SignatureTimestamp, "signature_timestamp"),*/
-        ColumnMap<AddOnInstruction>.For(a => a.Class?.Name, "component_class")
+        /*ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureID, "signature_id"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureTimestamp, "signature_timestamp"),*/
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Class?.Name, "component_class"),
+        ColumnMap<AoiRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for an AOI entity.
+/// This record contains metadata and configuration for a specific Logix AOI,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this AOI record belongs.</param>
+/// <param name="Aoi">The Logix AOI entity containing its configuration.</param>
+public record AoiRecord(int SnapshotId, AddOnInstruction Aoi);

@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -8,19 +7,29 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Rung"/> class.
 /// </summary>
-public class RungMap : TableMap<Rung>
+public class RungMap : TableMap<RungRecord>
 {
     /// <inheritdoc />
     public override string TableName => "rung";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<Rung>> Columns =>
+    public override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
     [
-        ColumnMap<Rung>.For(r => r.Scope.Container, "container_name"),
-        ColumnMap<Rung>.For(r => r.Routine?.Name, "routine_name"),
-        ColumnMap<Rung>.For(r => r.Number, "rung_number"),
-        ColumnMap<Rung>.For(r => r.Comment, "comment"),
-        ColumnMap<Rung>.For(r => r.Text, "code"),
-        ColumnMap<Rung>.For(r => r.Text.Hash(), "code_hash")
+        ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "container_name"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Comment, "comment"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Text, "code"),
+        ColumnMap<RungRecord>.For(ComputeHash, "record_hash", false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for a rung entity.
+/// This record contains the metadata and code for a specific Logix rung,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this rung record belongs.</param>
+/// <param name="Rung">The Logix rung entity containing its code and metadata.</param>
+public record RungRecord(int SnapshotId, Rung Rung);

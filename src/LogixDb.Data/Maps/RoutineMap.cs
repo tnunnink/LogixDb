@@ -8,17 +8,28 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Routine"/> class.
 /// </summary>
-public class RoutineMap : TableMap<Routine>
+public class RoutineMap : TableMap<RoutineRecord>
 {
     /// <inheritdoc />
     public override string TableName => "routine";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<Routine>> Columns =>
+    public override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
     [
-        ColumnMap<Routine>.For(r => r.Scope.Container, "container_name"),
-        ColumnMap<Routine>.For(r => r.Name, "routine_name"),
-        ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
-        ColumnMap<Routine>.For(r => r.Description, "description")
+        ColumnMap<RoutineRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Scope.Container, "container_name"),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name"),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Type.Name, "routine_type"),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "description"),
+        ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", false)
     ];
 }
+
+/// <summary>
+/// Represents a database record for a routine entity.
+/// This record contains the metadata for a specific Logix routine,
+/// as well as the unique identifier linking it to a specific database snapshot.
+/// </summary>
+/// <param name="SnapshotId">The unique identifier of the snapshot to which this routine record belongs.</param>
+/// <param name="Routine">The Logix routine entity.</param>
+public record RoutineRecord(int SnapshotId, Routine Routine);

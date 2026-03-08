@@ -4,7 +4,7 @@ using LogixDb.Data.Abstractions;
 using Microsoft.Data.SqlClient;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Data.SqlServer.Imports;
+namespace LogixDb.Data.SqlServer;
 
 /// <summary>
 /// Represents an abstract base class to handle the import of <typeparamref name="TElement"/> elements into a SQL Server database.
@@ -13,8 +13,7 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// <typeparam name="TElement">
 /// The type of element to be imported, which must implement the <see cref="ILogixElement"/> interface.
 /// </typeparam>
-internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map) : ILogixDbImport
-    where TElement : class, ILogixElement
+internal abstract class SqlServerImport<TElement>(TableMap<TElement> map) : ILogixDbImport where TElement : class
 {
     /// <summary>
     /// Executes the import process, transferring records from the provided snapshot to the SQL Server database using bulk copy.
@@ -35,8 +34,8 @@ internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map)
         bulkCopy.DestinationTableName = $"dbo.{map.TableName}";
 
         // Build the DataTable from the source records using the provided TableMap instance.
-        var records = GetRecords(snapshot.GetSource());
-        var table = map.GenerateTable(records, snapshot.SnapshotId);
+        var records = GetRecords(snapshot);
+        var table = map.GenerateTable(records);
 
         // We need to explicitly map the column names since the table maps don't include the PK id column.
         table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));
@@ -46,9 +45,9 @@ internal abstract class SqlServerElementImport<TElement>(TableMap<TElement> map)
     }
 
     /// <summary>
-    /// Retrieves a collection of records of type <typeparamref name="TElement"/> from the specified content.
+    /// Retrieves a collection of records of type <typeparamref name="TElement"/> from the specified snapshot.
     /// </summary>
-    /// <param name="content">The source content from which records are retrieved.</param>
+    /// <param name="snapshot">The snapshot from which records are retrieved.</param>
     /// <returns>A collection of records of type <typeparamref name="TElement"/>.</returns>
-    protected abstract IEnumerable<TElement> GetRecords(L5X content);
+    protected abstract IEnumerable<TElement> GetRecords(Snapshot snapshot);
 }

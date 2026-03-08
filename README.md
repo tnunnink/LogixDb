@@ -253,7 +253,7 @@ The schema is organized around three primary levels:
    specific `snapshot_id`.
 
 ```mermaid
-
+erDiagram
     TARGET ||--o{ SNAPSHOT : contains
     SNAPSHOT ||--o{ CONTROLLER : "1:1"
     SNAPSHOT ||--o{ TAG : contains

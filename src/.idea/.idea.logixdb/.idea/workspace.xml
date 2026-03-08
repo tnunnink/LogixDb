@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../scripts/Setup-LogixDb.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/MigrationTag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M001CreateTargetTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M001CreateTargetTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +57,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteInstructionImport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/MigrationTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -208,31 +212,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="37600000" />
-    </task>
-    <task id="LOCAL-00027" summary="Add cancellation token support to CLI commands for enhanced async operation handling. Update `export` command with improved validation, descriptions, and exception handling.">
-      <option name="closed" value="true" />
-      <created>1771254530645</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1771254530645</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Add cancellation token support across CLI commands for improved async handling. Update `list`, `migrate`, `prune`, `purge`, `import`, `export`, and `drop` commands for consistency and enhanced validation. Add new tests for `ListCommand` functionality.">
-      <option name="closed" value="true" />
-      <created>1771279045099</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1771279045099</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Refactor database layer and CLI tests:  &#10;- Replace `SqliteQuery` with `SqlStatement` and update method references for consistency.  &#10;- Add new SQL commands for snapshot and target deletion.  &#10;- Introduce `TestDbFixture` for shared test database setup and teardown logic.  &#10;- Add and update tests for `ListCommand` and `MigrateCommand`.  &#10;- Remove unused classes and reorganize test files for clarity.">
-      <option name="closed" value="true" />
-      <created>1771298102491</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1771298102491</updated>
+      <workItem from="1772813330639" duration="38951000" />
     </task>
     <task id="LOCAL-00030" summary="Refactor tests and database layer:&#10;- Update test setup methods to async across SQLite and SQL Server tests.&#10;- Add comprehensive tests for `SqlServerDbAddSnapshot`.&#10;- Rename and reorganize test files for consistency.&#10;- Remove `value_hash` column from `TagMap` and related components.&#10;- Improve `TableMap` to handle null values and ensure efficient row addition.&#10;- Refactor `SqlServerElementImport` to enhance bulk copy logic and column mapping.&#10;- Update migration files for `RungTable` and remove unnecessary columns (`value_hash`).">
       <option name="closed" value="true" />
@@ -602,7 +582,31 @@
       <option name="project" value="LOCAL" />
       <updated>1772966183572</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Update PowerShell setup script: improve formatting, add validation for `appsettings.json`, ensure robust SQL Server module handling, and enhance service configuration logic.">
+      <option name="closed" value="true" />
+      <created>1772966552202</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1772966552202</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Remove `Setup-LogixDb.ps1` and replace it with `Setup.ps1` for setup script consistency across codebase and documentation. Update README, release workflow, and related references accordingly.">
+      <option name="closed" value="true" />
+      <created>1772966635379</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1772966635379</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Add `Setup.ps1`: new installation script with service management, database seeding, and environment setup.">
+      <option name="closed" value="true" />
+      <created>1772967647985</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1772967647985</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,9 +627,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting." />
-    <MESSAGE value="Bump version to 0.4.3 in project files." />
-    <MESSAGE value="Update temporary file path in `SourceIngestionService` and bump version to 0.4.4." />
     <MESSAGE value="Refactor workers and services structure, implement FTAC asset ingestion and download functionality, and update related tests and configuration." />
     <MESSAGE value="Bump version to 0.4.5 in project files." />
     <MESSAGE value="Refactor configuration models: consolidate `FtacConfig`, `IngestionConfig`, and `LogixConfig` into a unified structure; update related service implementations, tests, and project files. Created new PS setup script and updated release.yml to package service and CLI and setup script into single artifact for deployment and setup." />
@@ -648,7 +649,10 @@
     <MESSAGE value="Change all binary `record_hash` and related columns to string format across migrations, models, and tests to standardize hash representation." />
     <MESSAGE value="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling." />
     <MESSAGE value="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1." />
+    <MESSAGE value="Update PowerShell setup script: improve formatting, add validation for `appsettings.json`, ensure robust SQL Server module handling, and enhance service configuration logic." />
+    <MESSAGE value="Remove `Setup-LogixDb.ps1` and replace it with `Setup.ps1` for setup script consistency across codebase and documentation. Update README, release workflow, and related references accordingly." />
+    <MESSAGE value="Add `Setup.ps1`: new installation script with service management, database seeding, and environment setup." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `Setup.ps1`: new installation script with service management, database seeding, and environment setup." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

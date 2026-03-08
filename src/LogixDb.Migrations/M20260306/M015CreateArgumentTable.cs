@@ -15,9 +15,9 @@ public class M015CreateArgumentTable : AutoReversingMigration
             .WithColumn("instruction_hash").AsString(32).NotNullable()
             .WithColumn("argument_ordinal").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
-            .WithColumn("argument_text").AsString(255).NotNullable()
-            .WithColumn("argument_tags").AsString(2048).Nullable()
-            .WithColumn("argument_values").AsString(2048).Nullable()
+            .WithColumn("argument_text").AsString(int.MaxValue).NotNullable()
+            .WithColumn("argument_tags").AsString(int.MaxValue).Nullable()
+            .WithColumn("argument_values").AsString(int.MaxValue).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()

@@ -194,14 +194,12 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "code", "text");
             await AssertColumnDefinition("rung", "comment", "text");
-            await AssertColumnDefinition("rung", "code_hash", "blob");
             await AssertColumnDefinition("rung", "record_hash", "blob");
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertForeignKey("rung", "snapshot_id", "snapshot", "snapshot_id");
             await AssertUniqueIndex("rung", "snapshot_id", "container_name", "routine_name", "rung_number");
             await AssertIndex("rung", "record_hash", "snapshot_id");
-            await AssertIndex("rung", "code_hash", "snapshot_id");
         }
     }
 }

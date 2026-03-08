@@ -17,7 +17,6 @@ public class M010CreateRungTable : AutoReversingMigration
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("comment").AsString(int.MaxValue).Nullable()
             .WithColumn("code").AsString(int.MaxValue).Nullable()
-            .WithColumn("code_hash").AsBinary(16).NotNullable()
             .WithColumn("record_hash").AsBinary(16).NotNullable();
 
         Create.Index()
@@ -31,11 +30,6 @@ public class M010CreateRungTable : AutoReversingMigration
         Create.Index()
             .OnTable("rung")
             .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
-        
-        Create.Index()
-            .OnTable("rung")
-            .OnColumn("code_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

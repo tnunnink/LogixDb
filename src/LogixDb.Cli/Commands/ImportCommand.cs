@@ -163,7 +163,7 @@ public class ImportCommand : DbCommand
         table.AddRow("Imported", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("User", result.ImportUser);
         table.AddRow("Machine", result.ImportMachine);
-        table.AddRow("Hash", result.SourceHash.ToHexString());
+        table.AddRow("Hash", result.SourceHash);
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
         console.Ansi().Write(table);

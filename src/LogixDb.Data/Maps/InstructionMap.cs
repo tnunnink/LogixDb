@@ -40,4 +40,4 @@ public class InstructionMap : TableMap<InstructionRecord>
 /// of an instruction entity. It facilitates the persistence and retrieval of instruction-related data,
 /// including the snapshot identifier, the rung hash, and the associated instruction details.
 /// </remarks>
-public record InstructionRecord(int SnapshotId, byte[] RungHash, Instruction Instruction);
+public record InstructionRecord(int SnapshotId, string RungHash, Instruction Instruction);

@@ -9,6 +9,7 @@ public class SnapshotTests
     [Test]
     public void Snapshot_CanBeCreated_WithRequiredFields()
     {
+        var sourceData = new byte[] { 1, 2, 3, 4, 5 };
         var snapshot = new Snapshot
         {
             SnapshotId = 1,
@@ -18,8 +19,8 @@ public class SnapshotTests
             ImportDate = DateTime.UtcNow,
             ImportUser = "TestUser",
             ImportMachine = "TestMachine",
-            SourceHash = [1, 2, 3, 4, 5],
-            SourceData = [1, 2, 3, 4, 5]
+            SourceHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(sourceData)),
+            SourceData = sourceData
         };
 
         snapshot.SnapshotId.Should().Be(1);

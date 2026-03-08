@@ -29,7 +29,7 @@ public sealed class Snapshot
     public DateTime ImportDate { get; init; } = DateTime.UtcNow;
     public string ImportUser { get; init; } = Environment.UserName;
     public string ImportMachine { get; init; } = Environment.MachineName;
-    public byte[] SourceHash { get; init; } = [];
+    public string SourceHash { get; init; } = string.Empty;
     public byte[] SourceData { get; init; } = [];
 
     /// <summary>
@@ -63,7 +63,7 @@ public sealed class Snapshot
             SoftwareRevision = source.Content.SoftwareRevision,
             ExportDate = source.Content.ExportDate,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
-            SourceHash = source.Content.Serialize().ToString().Hash(),
+            SourceHash = source.Content.Serialize().ToString().Hash().ToHexString(),
             SourceData = source.Content.Serialize().ToString().Compress(),
             _l5X = source
         };

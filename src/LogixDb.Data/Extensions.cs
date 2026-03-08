@@ -68,26 +68,4 @@ public static class Extensions
     {
         return Convert.ToHexStringLower(binary);
     }
-
-    /// <summary>
-    /// Serializes a key-value pair into a string by concatenating the key and the formatted value
-    /// with specific control characters for delimitation.
-    /// </summary>
-    /// <param name="field">The key-value pair to serialize, where the key is a string and the value can be any object.</param>
-    /// <returns>A serialized string representation of the key-value pair, including control characters as delimiters.</returns>
-    public static string SerializeField(this KeyValuePair<string, object?> field)
-    {
-        return '\u001E' + field.Key + '\u001F' + FormatValue(field.Value);
-
-        static string FormatValue(object? value)
-        {
-            return value switch
-            {
-                null => "\u2400",
-                string s => s.Replace("\r\n", "\n"),
-                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
-                _ => value.ToString() ?? string.Empty
-            };
-        }
-    }
 }

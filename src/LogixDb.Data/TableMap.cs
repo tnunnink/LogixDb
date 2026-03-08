@@ -79,10 +79,10 @@ public abstract class TableMap<T> where T : class
     /// The record is expected to match the structure defined by the table's columns.
     /// </param>
     /// <returns>
-    /// A byte array representing the cryptographic hash of the record's hashable fields.
+    /// A string representing the cryptographic hash of the record's hashable fields.
     /// The hash is computed based on the serialized values of the hashable columns.
     /// </returns>
-    public byte[] ComputeHash(T record)
+    public string ComputeHash(T record)
     {
         var columns = _hashColumns ??= GetHashableColumns();
         var hashBuilder = new StringBuilder();
@@ -93,7 +93,7 @@ public abstract class TableMap<T> where T : class
             hashBuilder.Append(SerializeField(column.Name, value));
         }
 
-        return hashBuilder.ToString().Hash();
+        return hashBuilder.ToString().Hash().ToHexString();
     }
 
     /// <summary>
@@ -129,6 +129,7 @@ public abstract class TableMap<T> where T : class
             return value switch
             {
                 null => "\u2400",
+                byte[] b => b.ToHexString(),
                 string s => s.Replace("\r\n", "\n"),
                 IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
                 _ => value.ToString() ?? string.Empty

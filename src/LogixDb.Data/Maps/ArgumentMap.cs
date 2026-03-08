@@ -44,4 +44,4 @@ public class ArgumentMap : TableMap<ArgumentRecord>
 /// <param name="InstructionHash">The hash of the parent instruction that contains this argument.</param>
 /// <param name="Ordinal">The zero-based position of this argument within the instruction's argument list.</param>
 /// <param name="Argument">The L5Sharp Argument object containing the argument's type, value, and metadata.</param>
-public record ArgumentRecord(int SnapshotId, byte[] InstructionHash, byte Ordinal, Argument Argument);
+public record ArgumentRecord(int SnapshotId, string InstructionHash, byte Ordinal, Argument Argument);

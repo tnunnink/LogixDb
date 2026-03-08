@@ -87,7 +87,7 @@ public class ListCommand : DbCommand
                 snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.ImportUser,
                 snapshot.ImportMachine,
-                snapshot.SourceHash.ToHexString()
+                snapshot.SourceHash
             );
         }
 

@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,11 +15,15 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
-        ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Parent?.Name, "aoi_name"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Dimension > 0 ? $"{r.Parameter.DataType}{r.Parameter.Dimension.ToIndex()}" : r.Parameter.DataType, "data_type"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
+        ColumnMap<AoiParameterRecord>.For(
+            r => r.Parameter.Dimension > 0
+                ? $"{r.Parameter.DataType}{r.Parameter.Dimension.ToIndex()}"
+                : r.Parameter.DataType, "data_type"),
+        ColumnMap<AoiParameterRecord>.For(
+            r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "description"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
@@ -29,7 +32,7 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Visible, "visible"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Required, "required"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "constant"),
-        ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 

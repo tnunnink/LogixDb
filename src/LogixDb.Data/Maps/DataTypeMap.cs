@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,12 +15,12 @@ public class DataTypeMap : TableMap<DataTypeRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
     [
-        ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Family.Name, "type_family"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "description"),
-        ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 

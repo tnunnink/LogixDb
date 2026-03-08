@@ -14,7 +14,7 @@ namespace LogixDb.Data.Sqlite;
 /// <typeparam name="TRecord">
 /// The type of element being imported. This type must implement the <see cref="ILogixElement"/> interface.
 /// </typeparam>
-public abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbImport where TRecord : class
+internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbImport where TRecord : class
 {
     /// <summary>
     /// Represents the mapping configuration between a data model and a database table.

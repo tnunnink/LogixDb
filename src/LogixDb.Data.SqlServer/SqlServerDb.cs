@@ -43,6 +43,8 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         new SqlServerProgramImport(),
         new SqlServerRoutineImport(),
         new SqlServerRungImport(),
+        new SqlServerInstructionImport(),
+        new SqlServerArgumentImport(),
         new SqlServerTagImport()
     ];
 

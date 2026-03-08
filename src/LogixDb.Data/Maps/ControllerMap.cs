@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,7 +15,7 @@ public class ControllerMap : TableMap<ControllerRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<ControllerRecord>> Columns =>
     [
-        ColumnMap<ControllerRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<ControllerRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Name, "controller_name"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.ProcessorType, "processor"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Revision?.ToString(), "revision"),
@@ -32,11 +31,12 @@ public class ControllerMap : TableMap<ControllerRecord>
         ColumnMap<ControllerRecord>.For(r => r.Controller.InhibitAutomaticFirmwareUpdate, "inhibit_firmware_updates"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.CanUseRPIFromProducer, "allow_rfi_from_producer"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.PassThroughConfiguration?.Name, "pass_through"),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties, "download_documentation"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties,
+            "download_documentation"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectCustomProperties, "download_properties"),
         //todo once this is added to L5Sharp
         //ColumnMap<ControllerRecord>.For(r => r.Controller.EthernetIPMode?.Name, "ethernet_ip_mode")
-        ColumnMap<ControllerRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<ControllerRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 

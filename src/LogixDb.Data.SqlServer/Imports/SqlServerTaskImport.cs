@@ -1,4 +1,4 @@
-using L5Sharp.Core;
+using System.Data;
 using LogixDb.Data.Maps;
 using Task = L5Sharp.Core.Task;
 
@@ -15,10 +15,10 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerTaskImport() : SqlServerImport<TaskRecord>(new TaskMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<TaskRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Task>()
-            .Select(x => new TaskRecord(snapshot.SnapshotId, x))
-            .ToList();
+        var source = snapshot.GetSource();
+        var records = source.Query<Task>().Select(x => new TaskRecord(snapshot.SnapshotId, x)).ToList();
+        return Map.GenerateTable(records);
     }
 }

@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -14,10 +15,14 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerRungImport() : SqlServerImport<RungRecord>(new RungMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<RungRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Rung>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Rung>()
             .Select(x => new RungRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

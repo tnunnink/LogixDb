@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -14,10 +15,14 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerRoutineImport() : SqlServerImport<RoutineRecord>(new RoutineMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<RoutineRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Routine>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Routine>()
             .Select(x => new RoutineRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

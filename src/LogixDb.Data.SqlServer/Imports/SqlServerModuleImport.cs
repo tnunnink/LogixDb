@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -14,11 +15,15 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerModuleImport() : SqlServerImport<ModuleRecord>(new ModuleMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<ModuleRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Module>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Module>()
             .Where(m => !string.IsNullOrEmpty(m.Name))
             .Select(x => new ModuleRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

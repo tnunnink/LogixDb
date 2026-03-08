@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -14,10 +15,14 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerProgramImport() : SqlServerImport<ProgramRecord>(new ProgramMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<ProgramRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Program>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Program>()
             .Select(x => new ProgramRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

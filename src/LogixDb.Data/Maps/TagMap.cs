@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,18 +15,20 @@ public class TagMap : TableMap<TagRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
     [
-        ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "container_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Base, "base_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Dimensions.IsEmpty ? r.Tag.DataType : $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}", "data_type"),
+        ColumnMap<TagRecord>.For(
+            r => r.Tag.Dimensions.IsEmpty ? r.Tag.DataType : $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}",
+            "data_type"),
         ColumnMap<TagRecord>.For(r => r.Tag.Description, "description"),
         ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<TagRecord>.For(r => r.Tag.Constant, "constant"),
-        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 

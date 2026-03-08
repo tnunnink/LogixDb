@@ -23,8 +23,8 @@ public class InstructionMap : TableMap<InstructionRecord>
     [
         ColumnMap<InstructionRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<InstructionRecord>.For(r => r.RungHash, "rung_hash"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
+        ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.IsDesctructive, "is_destructive", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.IsNative, "is_native", hashable: false),
         ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash", hashable: false)

@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -17,11 +18,15 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerAoiParameterImport() : SqlServerImport<AoiParameterRecord>(new AoiParameterMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<AoiParameterRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<AddOnInstruction>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<AddOnInstruction>()
             .SelectMany(aoi => aoi.Parameters)
             .Select(x => new AoiParameterRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -15,11 +16,15 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerTagImport() : SqlServerImport<TagRecord>(new TagMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<TagRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<Tag>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<Tag>()
             .SelectMany(t => t.Members())
             .Select(t => new TagRecord(snapshot.SnapshotId, t))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

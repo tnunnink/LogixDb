@@ -16,6 +16,13 @@ namespace LogixDb.Data.SqlServer;
 internal abstract class SqlServerImport<TElement>(TableMap<TElement> map) : ILogixDbImport where TElement : class
 {
     /// <summary>
+    /// Represents the mapping configuration between a given data entity type and a SQL Server table.
+    /// Provides the structural definition and functionality needed for bulk import operations,
+    /// including the table name, column mappings, and helper methods for generating database-compatible data.
+    /// </summary>
+    protected readonly TableMap<TElement> Map = map;
+
+    /// <summary>
     /// Executes the import process, transferring records from the provided snapshot to the SQL Server database using bulk copy.
     /// </summary>
     /// <param name="snapshot">The snapshot containing the source data to be imported.</param>
@@ -31,23 +38,19 @@ internal abstract class SqlServerImport<TElement>(TableMap<TElement> map) : ILog
 
         // Set up a bulk copy instance to insert records for max performance.
         using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction);
-        bulkCopy.DestinationTableName = $"dbo.{map.TableName}";
+        bulkCopy.DestinationTableName = $"dbo.{Map.TableName}";
 
-        // Build the DataTable from the source records using the provided TableMap instance.
-        var records = GetRecords(snapshot);
-        var table = map.GenerateTable(records);
-
+        var table = GetData(snapshot);
         // We need to explicitly map the column names since the table maps don't include the PK id column.
         table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));
 
-        // Write the table to the database. 
         await bulkCopy.WriteToServerAsync(table, token);
     }
 
     /// <summary>
-    /// Retrieves a collection of records of type <typeparamref name="TElement"/> from the specified snapshot.
+    /// Retrieves data from the provided snapshot and returns it as a DataTable.
     /// </summary>
-    /// <param name="snapshot">The snapshot from which records are retrieved.</param>
-    /// <returns>A collection of records of type <typeparamref name="TElement"/>.</returns>
-    protected abstract IEnumerable<TElement> GetRecords(Snapshot snapshot);
+    /// <param name="snapshot">The snapshot containing the source data to be processed.</param>
+    /// <returns>A DataTable populated with the data extracted from the snapshot.</returns>
+    protected abstract DataTable GetData(Snapshot snapshot);
 }

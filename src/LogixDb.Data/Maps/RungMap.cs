@@ -15,13 +15,13 @@ public class RungMap : TableMap<RungRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
     [
-        ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", false),
+        ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "container_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
         ColumnMap<RungRecord>.For(r => r.Rung.Comment, "comment"),
         ColumnMap<RungRecord>.For(r => r.Rung.Text, "code"),
-        ColumnMap<RungRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 

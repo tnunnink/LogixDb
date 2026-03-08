@@ -2,13 +2,18 @@ using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
-namespace LogixDb.Data.Sqlite.Imports;
+namespace LogixDb.Data.SqlServer.Imports;
 
 /// <summary>
-/// Represents an implementation of the <see cref="SqliteImport{TRecord}"/> class specialized for importing
-/// argument data into a SQLite database.
+/// Imports instruction argument data from L5X snapshots into SQL Server database.
 /// </summary>
-internal class SqliteArgumentImport() : SqliteImport<ArgumentRecord>(new ArgumentMap())
+/// <remarks>
+/// This importer extracts all instruction arguments from rungs within a snapshot,
+/// flattens the hierarchical structure (Rung -> Instruction -> Argument), and
+/// generates a data table for bulk import. Each argument is linked to its parent
+/// instruction via computed hash values and includes its position index.
+/// </remarks>
+internal class SqlServerArgumentImport() : SqlServerImport<ArgumentRecord>(new ArgumentMap())
 {
     private static readonly RungMap RungMap = new();
     private static readonly InstructionMap InstructionMap = new();

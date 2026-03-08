@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -14,10 +15,14 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerDataTypeImport() : SqlServerImport<DataTypeRecord>(new DataTypeMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<DataTypeRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return snapshot.GetSource().Query<DataType>()
+        var source = snapshot.GetSource();
+
+        var records = source.Query<DataType>()
             .Select(x => new DataTypeRecord(snapshot.SnapshotId, x))
             .ToList();
+
+        return Map.GenerateTable(records);
     }
 }

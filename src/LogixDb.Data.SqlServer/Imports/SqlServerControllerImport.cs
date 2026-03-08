@@ -1,3 +1,4 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Maps;
 
@@ -11,8 +12,10 @@ namespace LogixDb.Data.SqlServer.Imports;
 internal class SqlServerControllerImport() : SqlServerImport<ControllerRecord>(new ControllerMap())
 {
     /// <inheritdoc />
-    protected override IEnumerable<ControllerRecord> GetRecords(Snapshot snapshot)
+    protected override DataTable GetData(Snapshot snapshot)
     {
-        return [new ControllerRecord(snapshot.SnapshotId, snapshot.GetSource().Controller)];
+        var source = snapshot.GetSource();
+        List<ControllerRecord> records = [new(snapshot.SnapshotId, source.Controller)];
+        return Map.GenerateTable(records);
     }
 }

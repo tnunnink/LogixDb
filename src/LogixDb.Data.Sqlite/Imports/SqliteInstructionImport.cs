@@ -21,7 +21,7 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// This class is not designed for direct instantiation by consumers. Instead, it is used
 /// as part of the broader import processing pipeline invoked within a LogixDb session.
 /// </example>
-public class SqliteInstructionImport() : SqliteImport<InstructionRecord>(new InstructionMap())
+internal class SqliteInstructionImport() : SqliteImport<InstructionRecord>(new InstructionMap())
 {
     private static readonly RungMap RungMap = new();
 

@@ -5,7 +5,7 @@ namespace LogixDb.Migrations.M20260206;
 
 [UsedImplicitly]
 [Migration(202602061010, "Creates target table with unique target key index")]
-[Tags(MigrationTag.Required)]
+//[Tags(MigrationTag.Required)]
 public class M001CreateTargetTable : AutoReversingMigration
 {
     public override void Up()

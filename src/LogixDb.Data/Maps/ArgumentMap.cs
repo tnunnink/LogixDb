@@ -25,7 +25,7 @@ public class ArgumentMap : TableMap<ArgumentRecord>
     [
         ColumnMap<ArgumentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionHash, "instruction_hash"),
-        ColumnMap<ArgumentRecord>.For(r => r.Ordinal, "argument_ordinal"),
+        ColumnMap<ArgumentRecord>.For(r => r.Ordinal, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text"),
         ColumnMap<ArgumentRecord>.For(r => string.Join('|', r.Argument.Tags), "argument_tags", hashable: false),

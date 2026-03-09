@@ -17,7 +17,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("instruction", "rung_hash", "text");
             await AssertColumnDefinition("instruction", "instruction_key", "text");
             await AssertColumnDefinition("instruction", "instruction_text", "text");
-            await AssertColumnDefinition("instruction", "is_destructive", "integer");
+            await AssertColumnDefinition("instruction", "is_conditional", "integer");
             await AssertColumnDefinition("instruction", "is_native", "integer");
             await AssertColumnDefinition("instruction", "record_hash", "text");
 
@@ -40,7 +40,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("argument", "argument_id", "integer");
             await AssertColumnDefinition("argument", "snapshot_id", "integer");
             await AssertColumnDefinition("argument", "instruction_hash", "text");
-            await AssertColumnDefinition("argument", "argument_ordinal", "integer");
+            await AssertColumnDefinition("argument", "argument_index", "integer");
             await AssertColumnDefinition("argument", "argument_type", "text");
             await AssertColumnDefinition("argument", "argument_text", "text");
             await AssertColumnDefinition("argument", "argument_tags", "text");

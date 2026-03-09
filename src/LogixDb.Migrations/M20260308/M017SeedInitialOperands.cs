@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+// ReSharper disable StringLiteralTypo
 
 namespace LogixDb.Migrations.M20260308;
 

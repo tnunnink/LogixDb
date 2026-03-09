@@ -24,7 +24,7 @@ public class M014CreateInstructionTable : AutoReversingMigration
             .WithColumn("rung_hash").AsString(32).NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
-            .WithColumn("is_destructive").AsBoolean().NotNullable()
+            .WithColumn("is_conditional").AsBoolean().NotNullable()
             .WithColumn("is_native").AsBoolean().NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 

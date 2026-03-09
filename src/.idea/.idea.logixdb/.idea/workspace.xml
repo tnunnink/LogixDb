@@ -10,9 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M017SeedInitialOperands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M017SeedInitialOperands.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +219,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="53290000" />
-    </task>
-    <task id="LOCAL-00039" summary="Bump CLI version to 0.2.2 and update `.idea` workspace configuration.">
-      <option name="closed" value="true" />
-      <created>1771444110256</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1771444110256</updated>
+      <workItem from="1772813330639" duration="54290000" />
     </task>
     <task id="LOCAL-00040" summary="Bump CLI version to 0.2.2, update `.idea` workspace configuration, and set assembly name in project file.">
       <option name="closed" value="true" />
@@ -607,7 +605,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773050845741</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Bump version to 0.5.5 in project files.">
+      <option name="closed" value="true" />
+      <created>1773051292519</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1773051292519</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +634,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.4.9 in project files." />
     <MESSAGE value="Update README.md with extended documentation and bump version to 0.4.10 in project files." />
     <MESSAGE value="Add custom ACD converter support, refactor file conversion logic, and bump version to 0.4.11." />
     <MESSAGE value="Bump version to 0.4.12 in project files and add early return in `SourceIngestionService`." />
@@ -653,7 +658,8 @@
     <MESSAGE value="Fix README: correct mermaid diagram formatting by adding `erDiagram`." />
     <MESSAGE value="Add migrations and tests for `operand` table creation and seeding.&#10;&#10;- Create `M016CreateOperandTable` migration and define schema changes.&#10;- Add `M017SeedInitialOperands` for operand metadata seeding.&#10;- Implement unit tests for migration verification and data seeding." />
     <MESSAGE value="Refactor import logic to use `GetRecords` in maps, removing redundant `GetData` abstraction." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Bump version to 0.5.5 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.5.5 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

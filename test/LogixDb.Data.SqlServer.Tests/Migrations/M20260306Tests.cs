@@ -17,7 +17,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("instruction", "rung_hash", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_text", "nvarchar");
-            await AssertColumnDefinition("instruction", "is_destructive", "bit");
+            await AssertColumnDefinition("instruction", "is_conditional", "bit");
             await AssertColumnDefinition("instruction", "is_native", "bit");
             await AssertColumnDefinition("instruction", "record_hash", "nvarchar");
 
@@ -40,7 +40,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("argument", "argument_id", "int");
             await AssertColumnDefinition("argument", "snapshot_id", "int");
             await AssertColumnDefinition("argument", "instruction_hash", "nvarchar");
-            await AssertColumnDefinition("argument", "argument_ordinal", "tinyint");
+            await AssertColumnDefinition("argument", "argument_index", "tinyint");
             await AssertColumnDefinition("argument", "argument_type", "nvarchar");
             await AssertColumnDefinition("argument", "argument_text", "nvarchar");
             await AssertColumnDefinition("argument", "argument_tags", "nvarchar");

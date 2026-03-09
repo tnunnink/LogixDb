@@ -24,7 +24,7 @@ public class M015CreateArgumentTable : AutoReversingMigration
             .WithPrimaryId("argument_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("instruction_hash").AsString(32).NotNullable()
-            .WithColumn("argument_ordinal").AsByte().NotNullable()
+            .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("argument_tags").AsString(int.MaxValue).Nullable()

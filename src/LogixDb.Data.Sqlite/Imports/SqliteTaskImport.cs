@@ -12,17 +12,4 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteTaskImport() : SqliteImport<TaskRecord>(new TaskMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        var records = source.Query<Task>()
-            .Select(t => new TaskRecord(snapshot.SnapshotId, t))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqliteTaskImport() : SqliteImport<TaskRecord>(new TaskMap());

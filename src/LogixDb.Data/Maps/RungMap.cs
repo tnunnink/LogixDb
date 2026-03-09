@@ -23,6 +23,15 @@ public class RungMap : TableMap<RungRecord>
         ColumnMap<RungRecord>.For(r => r.Rung.Text, "code"),
         ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<RungRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<Rung>()
+            .Select(r => new RungRecord(snapshot.SnapshotId, r));
+    }
 }
 
 /// <summary>

@@ -29,6 +29,13 @@ public class TaskMap : TableMap<TaskRecord>
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EnableTimeout, "enable_timeout"),
         ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<TaskRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+        return source.Query<Task>().Select(t => new TaskRecord(snapshot.SnapshotId, t));
+    }
 }
 
 /// <summary>

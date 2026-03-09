@@ -25,9 +25,20 @@ public class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Description, "description"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Hidden, "hidden"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Target, "target"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.BitNumber is not null ? (byte)r.Member.BitNumber : null, "bit_number"),
+        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.BitNumber is not null ? (byte)r.Member.BitNumber : null,
+            "bit_number"),
         ColumnMap<DataTypeMemberRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<DataTypeMemberRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<DataType>()
+            .SelectMany(d => d.Members)
+            .Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m));
+    }
 }
 
 /// <summary>

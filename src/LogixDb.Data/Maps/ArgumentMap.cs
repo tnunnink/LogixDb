@@ -14,6 +14,9 @@ namespace LogixDb.Data.Maps;
 /// </remarks>
 public class ArgumentMap : TableMap<ArgumentRecord>
 {
+    private static readonly RungMap RungMap = new();
+    private static readonly InstructionMap InstructionMap = new();
+
     /// <inheritdoc />
     public override string TableName => "argument";
 
@@ -30,6 +33,25 @@ public class ArgumentMap : TableMap<ArgumentRecord>
         /*ColumnMap<ArgumentRecord>.For(r => string.Join('|', r.Argument.Values), "argument_values", hashable: false),*/
         ColumnMap<ArgumentRecord>.For(ComputeHash, "record_hash", false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<ArgumentRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+        var id = snapshot.SnapshotId;
+
+        var rungs = source.Query<Rung>().Select(r => new RungRecord(id, r));
+
+        return rungs.SelectMany(rung =>
+        {
+            var rh = RungMap.ComputeHash(rung);
+            return rung.Rung.Instructions().SelectMany(x =>
+            {
+                var ih = InstructionMap.ComputeHash(new InstructionRecord(snapshot.SnapshotId, rh, x));
+                return x.Arguments.Select((a, i) => new ArgumentRecord(snapshot.SnapshotId, ih, (byte)i, a));
+            });
+        });
+    }
 }
 
 /// <summary>

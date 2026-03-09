@@ -9,18 +9,4 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// Implements element import for <see cref="Parameter"/> objects by extracting all parameters from all
 /// Add-On Instructions in the L5X content and mapping them to the database using <see cref="AoiParameterMap"/>.
 /// </summary>
-internal class SqliteAoiParameterImport() : SqliteImport<AoiParameterRecord>(new AoiParameterMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        
-        var records = source.Query<AddOnInstruction>()
-            .SelectMany(aoi => aoi.Parameters)
-            .Select(p => new AoiParameterRecord(snapshot.SnapshotId, p))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqliteAoiParameterImport() : SqliteImport<AoiParameterRecord>(new AoiParameterMap());

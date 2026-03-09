@@ -66,11 +66,13 @@ public abstract class SqliteTestFixture
         using var connection = await Database.Connect();
 
         var result = await connection.QuerySingleAsync<int>(
-            $"SELECT 1 FROM {tableName} WHERE {columnName} = @expected",
+            $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
             new { expected }
         );
 
-        Assert.That(result, Is.EqualTo(1), $"No record with '{columnName}={expected}' exists in table '{tableName}'");
+        Assert.That(result, Is.GreaterThanOrEqualTo(1),
+            $"No record with '{columnName}={expected}' exists in table '{tableName}'"
+        );
     }
 
     /// <summary>

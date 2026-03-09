@@ -21,7 +21,7 @@ internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbI
     /// The variable is used to define and manage the mapping of columns, parameters, and
     /// other related operations necessary for database interactions.
     /// </summary>
-    protected readonly TableMap<TRecord> Map = map;
+    private readonly TableMap<TRecord> _map = map;
 
     /// <summary>
     /// Processes a snapshot and inserts data into the associated SQLite database session.
@@ -36,12 +36,13 @@ internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbI
         var connection = session.GetConnection<SqliteConnection>();
         var transaction = session.GetTransaction<SqliteTransaction>();
 
-        await using var command = new SqliteCommand(BuildInsertStatement(Map), connection, transaction);
-        var columns = Map.Columns.ToList();
+        await using var command = new SqliteCommand(BuildInsertStatement(_map), connection, transaction);
+        var columns = _map.Columns.ToList();
         columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
         command.Prepare();
 
-        var dataTable = GetData(snapshot);
+        var records = _map.GetRecords(snapshot);
+        var dataTable = _map.GenerateTable(records);
 
         foreach (DataRow row in dataTable.Rows)
         {
@@ -54,13 +55,6 @@ internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbI
             await command.ExecuteNonQueryAsync(token);
         }
     }
-
-    /// <summary>
-    /// Retrieves data from the provided snapshot and returns it as a DataTable.
-    /// </summary>
-    /// <param name="snapshot">The snapshot containing the source data to be processed.</param>
-    /// <returns>A DataTable populated with the data extracted from the snapshot.</returns>
-    protected abstract DataTable GetData(Snapshot snapshot);
 
     /// <summary>
     /// Constructs an SQL INSERT statement for a table defined by the implementing TableMap.

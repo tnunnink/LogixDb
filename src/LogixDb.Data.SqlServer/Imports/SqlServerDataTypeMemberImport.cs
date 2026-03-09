@@ -12,18 +12,4 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqlServerDataTypeMemberImport() : SqlServerImport<DataTypeMemberRecord>(new DataTypeMemberMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        var records = source.Query<DataType>()
-            .SelectMany(dt => dt.Members)
-            .Select(x => new DataTypeMemberRecord(snapshot.SnapshotId, x))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqlServerDataTypeMemberImport() : SqlServerImport<DataTypeMemberRecord>(new DataTypeMemberMap());

@@ -13,18 +13,4 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// and processes the import by extracting tag data and its associated members from the L5X content.
 /// </remarks>
 /// <seealso cref="SqlServerImport{TElement}"/>
-internal class SqlServerTagImport() : SqlServerImport<TagRecord>(new TagMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        var records = source.Query<Tag>()
-            .SelectMany(t => t.Members())
-            .Select(t => new TagRecord(snapshot.SnapshotId, t))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqlServerTagImport() : SqlServerImport<TagRecord>(new TagMap());

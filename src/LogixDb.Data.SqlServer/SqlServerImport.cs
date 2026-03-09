@@ -40,17 +40,11 @@ internal abstract class SqlServerImport<TElement>(TableMap<TElement> map) : ILog
         using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction);
         bulkCopy.DestinationTableName = $"dbo.{Map.TableName}";
 
-        var table = GetData(snapshot);
+        var records = Map.GetRecords(snapshot);
+        var table = Map.GenerateTable(records);
         // We need to explicitly map the column names since the table maps don't include the PK id column.
         table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));
 
         await bulkCopy.WriteToServerAsync(table, token);
     }
-
-    /// <summary>
-    /// Retrieves data from the provided snapshot and returns it as a DataTable.
-    /// </summary>
-    /// <param name="snapshot">The snapshot containing the source data to be processed.</param>
-    /// <returns>A DataTable populated with the data extracted from the snapshot.</returns>
-    protected abstract DataTable GetData(Snapshot snapshot);
 }

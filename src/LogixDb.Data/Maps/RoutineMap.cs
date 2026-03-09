@@ -23,6 +23,15 @@ public class RoutineMap : TableMap<RoutineRecord>
         ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "description"),
         ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<RoutineRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<Routine>()
+            .Select(r => new RoutineRecord(snapshot.SnapshotId, r));
+    }
 }
 
 /// <summary>

@@ -30,6 +30,16 @@ public class TagMap : TableMap<TagRecord>
         ColumnMap<TagRecord>.For(r => r.Tag.Constant, "constant"),
         ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<TagRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<Tag>()
+            .SelectMany(t => t.Members())
+            .Select(t => new TagRecord(snapshot.SnapshotId, t));
+    }
 }
 
 /// <summary>

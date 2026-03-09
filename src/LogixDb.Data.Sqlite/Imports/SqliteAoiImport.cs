@@ -12,17 +12,4 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqliteAoiImport() : SqliteImport<AoiRecord>(new AoiMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        
-        var records = source.Query<AddOnInstruction>()
-            .Select(a => new AoiRecord(snapshot.SnapshotId, a))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqliteAoiImport() : SqliteImport<AoiRecord>(new AoiMap());

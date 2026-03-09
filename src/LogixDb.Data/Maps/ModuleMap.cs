@@ -33,6 +33,16 @@ public class ModuleMap : TableMap<ModuleRecord>
         ColumnMap<ModuleRecord>.For(r => r.Module.Slot, "slot_number"),
         ColumnMap<ModuleRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<ModuleRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<Module>()
+            .Where(m => !string.IsNullOrEmpty(m.Name))
+            .Select(m => new ModuleRecord(snapshot.SnapshotId, m));
+    }
 }
 
 /// <summary>

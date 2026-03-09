@@ -32,6 +32,20 @@ public abstract class TableMap<T> where T : class
     public abstract IReadOnlyList<ColumnMap<T>> Columns { get; }
 
     /// <summary>
+    /// Extracts and transforms Logix elements from the provided snapshot into a collection
+    /// of typed records suitable for database storage. This method defines how to query
+    /// and convert the snapshot's source data into the specific record type.
+    /// </summary>
+    /// <param name="snapshot">
+    /// The snapshot containing the Logix source data from which records will be extracted.
+    /// </param>
+    /// <returns>
+    /// A collection of typed records of type T extracted from the snapshot. Each record
+    /// represents a Logix element converted into the format defined by the table mapping.
+    /// </returns>
+    public abstract IEnumerable<T> GetRecords(Snapshot snapshot);
+
+    /// <summary>
     /// Generates a DataTable representation of the provided records.
     /// The DataTable will have columns corresponding to the table's defined columns
     /// and rows populated with data from the provided records.

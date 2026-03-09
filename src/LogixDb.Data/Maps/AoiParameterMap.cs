@@ -34,6 +34,16 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "constant"),
         ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
+
+    /// <inheritdoc />
+    public override IEnumerable<AoiParameterRecord> GetRecords(Snapshot snapshot)
+    {
+        var source = snapshot.GetSource();
+
+        return source.Query<AddOnInstruction>()
+            .SelectMany(aoi => aoi.Parameters)
+            .Select(p => new AoiParameterRecord(snapshot.SnapshotId, p));
+    }
 }
 
 /// <summary>

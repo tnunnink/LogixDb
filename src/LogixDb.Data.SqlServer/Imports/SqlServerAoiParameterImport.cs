@@ -15,18 +15,4 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// and maps them to the corresponding database table using the <see cref="AoiParameterMap"/>.
 /// </remarks>
 /// <seealso cref="SqlServerImport{TElement}"/>
-internal class SqlServerAoiParameterImport() : SqlServerImport<AoiParameterRecord>(new AoiParameterMap())
-{
-    /// <inheritdoc />
-    protected override DataTable GetData(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        var records = source.Query<AddOnInstruction>()
-            .SelectMany(aoi => aoi.Parameters)
-            .Select(x => new AoiParameterRecord(snapshot.SnapshotId, x))
-            .ToList();
-
-        return Map.GenerateTable(records);
-    }
-}
+internal class SqlServerAoiParameterImport() : SqlServerImport<AoiParameterRecord>(new AoiParameterMap());

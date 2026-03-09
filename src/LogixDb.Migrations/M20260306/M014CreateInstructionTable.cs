@@ -12,7 +12,7 @@ namespace LogixDb.Migrations.M20260306;
 /// text representation, and metadata about the instruction's characteristics (destructive and native flags).
 /// The table includes a primary key and a foreign key relationship to the snapshot table.
 /// </remarks>
-[PublicAPI]
+[UsedImplicitly]
 [Migration(202603061200, "Creates instruction table with corresponding indexes and keys")]
 public class M014CreateInstructionTable : AutoReversingMigration
 {

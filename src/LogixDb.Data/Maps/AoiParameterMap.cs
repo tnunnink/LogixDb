@@ -40,7 +40,7 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     {
         var source = snapshot.GetSource();
 
-        return source.Query<AddOnInstruction>()
+        return source.AddOnInstructions
             .SelectMany(aoi => aoi.Parameters)
             .Select(p => new AoiParameterRecord(snapshot.SnapshotId, p));
     }

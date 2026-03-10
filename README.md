@@ -1,6 +1,6 @@
 # LogixDb
 
-A tool for managing and automating ingestion of Rockwell Automation Logix Designer ACD/L5X project files
+An ETL tool for managing and automating ingestion of Rockwell Automation Logix Designer ACD/L5X project files
 into a structured and transparent SQL database schema, enabling workflows such as project analysis, validation,
 documentation, change tracking, and versioning.
 

@@ -29,7 +29,7 @@ public class AoiOperandMap : TableMap<AoiOperandRecord>
         var source = snapshot.GetSource();
         var records = new List<AoiOperandRecord>();
 
-        var instructions = source.Query<AddOnInstruction>().ToList();
+        var instructions = source.AddOnInstructions.ToList();
 
         foreach (var instruction in instructions)
         {

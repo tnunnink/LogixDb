@@ -39,7 +39,7 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
     {
         var source = snapshot.GetSource();
 
-        return source.Query<AddOnInstruction>()
+        return source.AddOnInstructions
             .SelectMany(aoi => aoi.LocalTags)
             .Select(t => new AoiLocalTagRecord(snapshot.SnapshotId, t));
     }

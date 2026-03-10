@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260309/M018CreateSnapshotMetadataTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,15 +215,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="71217000" />
-    </task>
-    <task id="LOCAL-00044" summary="Update `ImportCommandTests` to replace &quot;upload&quot; with &quot;import&quot; for consistency with renamed `ImportCommand`.">
-      <option name="closed" value="true" />
-      <created>1771502989857</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1771502989857</updated>
+      <workItem from="1772813330639" duration="72736000" />
     </task>
     <task id="LOCAL-00045" summary="Bump CLI version to 0.3.0 in project file.">
       <option name="closed" value="true" />
@@ -614,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773106682014</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Create `snapshot_info` table for metadata storage; update data access logic for `AddOnInstruction` and bump version to 0.6.1.">
+      <option name="closed" value="true" />
+      <created>1773108684565</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1773108684566</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +630,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.4.14 and update `L5Sharp` package to 6.0.0-beta.11 across projects." />
     <MESSAGE value="Added" />
     <MESSAGE value="Add M014 and M015 migrations to create `instruction` and `argument` tables with corresponding tests, and remove unused `code_hash` column and index from `rung` table." />
     <MESSAGE value="Refactor import logic for better abstraction in both SQL Server and SQLite implementations. Replace `GetRecords` with `GetData` to return `DataTable`, enhance `SqliteImport` base class, and update mapping logic across import classes. Remove unused SqliteElementImport class." />
@@ -660,7 +654,8 @@
     <MESSAGE value="Rename database column mappings and fields for consistency; add cascade foreign key methods; added AoiOperandMap.cs and corresponding imports to bring aoi operand data into database. bump version to 0.6.0." />
     <MESSAGE value="Rename database column mappings for test assertions to ensure consistency with updated schema; update workspace configuration." />
     <MESSAGE value="Remove redundant test assertion for `operand` table record existence." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove redundant test assertion for `operand` table record existence." />
+    <MESSAGE value="Create `snapshot_info` table for metadata storage; update data access logic for `AddOnInstruction` and bump version to 0.6.1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Create `snapshot_info` table for metadata storage; update data access logic for `AddOnInstruction` and bump version to 0.6.1." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

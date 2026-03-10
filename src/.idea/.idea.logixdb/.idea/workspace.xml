@@ -10,14 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/AoiParameterMapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/AoiParameterMapTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +122,7 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
     "node.js.detected.package.eslint": "true",
@@ -220,23 +214,7 @@
       <workItem from="1772560514150" duration="6515000" />
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
-      <workItem from="1772813330639" duration="74499000" />
-    </task>
-    <task id="LOCAL-00046" summary="Update CLI to version 0.3.1 and improve command descriptions, snapshot table imports/exports, and README documentation.">
-      <option name="closed" value="true" />
-      <created>1771538161300</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1771538161300</updated>
-    </task>
-    <task id="LOCAL-00047" summary="New Service feature addition:">
-      <option name="closed" value="true" />
-      <created>1772121687775</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1772121687775</updated>
+      <workItem from="1772813330639" duration="74911000" />
     </task>
     <task id="LOCAL-00048" summary="Bump version to 0.4.0 in project file.">
       <option name="closed" value="true" />
@@ -614,7 +592,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773137269672</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Refactor column mappings and update methods for data types in maps; add `GetDataTypeName` extension for dimensional information handling.">
+      <option name="closed" value="true" />
+      <created>1773139072988</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139072988</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Bump version to 0.6.3 in project files.">
+      <option name="closed" value="true" />
+      <created>1773139123262</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139123262</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,6 +616,10 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.Identity.Client" />
+    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.ApplicationInsights" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -635,8 +633,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add M014 and M015 migrations to create `instruction` and `argument` tables with corresponding tests, and remove unused `code_hash` column and index from `rung` table." />
-    <MESSAGE value="Refactor import logic for better abstraction in both SQL Server and SQLite implementations. Replace `GetRecords` with `GetData` to return `DataTable`, enhance `SqliteImport` base class, and update mapping logic across import classes. Remove unused SqliteElementImport class." />
     <MESSAGE value="Update README with detailed documentation on CLI commands, ingestion API, FTAC monitoring, database schema, and custom ACD converter configuration. Adjust migrations to replace string hashes with binary hashes for `instruction` and `argument` tables, refine `SqliteImport` implementation, and revise related tests." />
     <MESSAGE value="Change all binary `record_hash` and related columns to string format across migrations, models, and tests to standardize hash representation." />
     <MESSAGE value="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling." />
@@ -660,7 +656,9 @@
     <MESSAGE value="Remove redundant test assertion for `operand` table record existence." />
     <MESSAGE value="Create `snapshot_info` table for metadata storage; update data access logic for `AddOnInstruction` and bump version to 0.6.1." />
     <MESSAGE value="Bump version to 0.6.2 in project files; comment out incompatible SQL Server date mappings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.6.2 in project files; comment out incompatible SQL Server date mappings." />
+    <MESSAGE value="Refactor column mappings and update methods for data types in maps; add `GetDataTypeName` extension for dimensional information handling." />
+    <MESSAGE value="Bump version to 0.6.3 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.6.3 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -679,13 +677,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs</url>
-          <line>14</line>
+          <line>15</line>
           <properties documentPath="C:\Users\tnunnink\Documents\Projects\LogixDb\test\LogixDb.Data.Tests\Test.cs" containingFunctionPresentation="Method 'Testing'">
             <startOffsets>
-              <option value="287" />
+              <option value="323" />
             </startOffsets>
             <endOffsets>
-              <option value="327" />
+              <option value="363" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />

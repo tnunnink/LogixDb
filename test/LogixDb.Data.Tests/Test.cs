@@ -6,9 +6,10 @@ namespace LogixDb.Data.Tests;
 public class Test
 {
     [Test]
+    [Explicit("This is just for testing")]
     public void Testing()
     {
-        var source = L5X.Load(@"c:\users\tnunnink\desktop\MPC_SPE_Skid.L5X");
+        var source = L5X.Load(@"c:\users\tnunnink\desktop\encrypted.L5X");
 
         var instructions = source.AddOnInstructions.ToList();
         

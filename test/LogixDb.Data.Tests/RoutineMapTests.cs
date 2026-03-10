@@ -33,7 +33,7 @@ public class RoutineMapTests
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["routine_name"].Should().Be("TestRoutine");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["routine_description"].Should().Be("Test Description");
     }
 
     [Test]

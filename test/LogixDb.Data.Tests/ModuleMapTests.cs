@@ -34,7 +34,7 @@ public class ModuleMapTests
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["module_name"].Should().Be("TestMod");
         table.Rows[0]["catalog_number"].Should().Be("1756-L81E");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["module_description"].Should().Be("Test Description");
     }
 
     [Test]

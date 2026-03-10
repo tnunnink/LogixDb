@@ -32,8 +32,8 @@ public class RungMapTests
         var table = map.GenerateTable([record]);
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
-        table.Rows[0]["comment"].Should().Be("Test Comment");
-        table.Rows[0]["code"].Should().Be("XIC(Tag1)OTE(Tag2);");
+        table.Rows[0]["rung_comment"].Should().Be("Test Comment");
+        table.Rows[0]["rung_text"].Should().Be("XIC(Tag1)OTE(Tag2);");
     }
 
     [Test]

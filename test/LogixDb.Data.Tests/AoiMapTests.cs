@@ -39,9 +39,9 @@ public class AoiMapTests
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["aoi_name"].Should().Be("TestAOI");
-        table.Rows[0]["revision"].Should().Be("1.2");
-        table.Rows[0]["description"].Should().Be("Test Description");
-        table.Rows[0]["vendor"].Should().Be("Test Vendor");
+        table.Rows[0]["aoi_revision"].Should().Be("1.2");
+        table.Rows[0]["aoi_description"].Should().Be("Test Description");
+        table.Rows[0]["aoi_vendor"].Should().Be("Test Vendor");
     }
 
     [Test]

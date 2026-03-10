@@ -34,7 +34,7 @@ public class AoiParameterMapTests
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["parameter_name"].Should().Be("TestParam");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["parameter_description"].Should().Be("Test Description");
     }
 
     [Test]

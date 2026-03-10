@@ -32,7 +32,7 @@ public class TagMapTests
         table.Rows[0]["tag_name"].Should().Be("TestTag");
         table.Rows[0]["tag_value"].Should().Be("100");
         table.Rows[0]["data_type"].Should().Be("DINT");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["tag_description"].Should().Be("Test Description");
     }
 
     [Test]

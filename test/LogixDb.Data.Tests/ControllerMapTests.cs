@@ -35,8 +35,8 @@ public class ControllerMapTests
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["controller_name"].Should().Be("TestCtrl");
-        table.Rows[0]["processor"].Should().Be("Type1");
-        table.Rows[0]["revision"].Should().Be("1.1");
+        table.Rows[0]["catalog_number"].Should().Be("Type1");
+        table.Rows[0]["controller_revision"].Should().Be("1.1");
     }
 
     [Test]

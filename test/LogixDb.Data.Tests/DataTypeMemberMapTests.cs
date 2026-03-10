@@ -37,7 +37,7 @@ public class DataTypeMemberMapTests
         table.Rows[0]["type_name"].Should().Be("TestType");
         table.Rows[0]["member_name"].Should().Be("TestMember");
         table.Rows[0]["data_type"].Should().Be("INT");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["member_description"].Should().Be("Test Description");
     }
 
     [Test]

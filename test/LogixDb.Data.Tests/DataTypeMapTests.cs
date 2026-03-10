@@ -33,7 +33,7 @@ public class DataTypeMapTests
 
         table.Rows[0]["snapshot_id"].Should().Be(1);
         table.Rows[0]["type_name"].Should().Be("TestType");
-        table.Rows[0]["description"].Should().Be("Test Description");
+        table.Rows[0]["type_description"].Should().Be("Test Description");
     }
 
     [Test]

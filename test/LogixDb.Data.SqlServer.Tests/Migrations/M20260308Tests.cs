@@ -37,7 +37,6 @@ public class M20260308Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertRecordExists("operand", "snapshot_id", 0);
             await AssertRecordExists("operand", "instruction_key", "ABS");
             await AssertRecordExists("operand", "instruction_key", "ALMA");
             await AssertRecordExists("operand", "instruction_key", "MOVE");

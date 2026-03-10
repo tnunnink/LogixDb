@@ -13,8 +13,8 @@ public class AoiParameterMapTests
         var map = new AoiParameterMap();
         var records = new List<AoiParameterRecord>
         {
-            new(1, new Parameter { Name = "Param1" }),
-            new(1, new Parameter { Name = "Param2" })
+            new(1, "ParentAoi", new Parameter { Name = "Param1" }),
+            new(1, "ParentAoi", new Parameter { Name = "Param2" })
         };
 
         var table = map.GenerateTable(records);
@@ -26,9 +26,12 @@ public class AoiParameterMapTests
     public void GenerateTable_WithValidRecords_ShouldHaveExpectedValues()
     {
         var map = new AoiParameterMap();
-        var parameter = new Parameter { Name = "TestParam" };
-        parameter.Description = "Test Description";
-        var record = new AoiParameterRecord(1, parameter);
+        var parameter = new Parameter
+        {
+            Name = "TestParam",
+            Description = "Test Description"
+        };
+        var record = new AoiParameterRecord(1, "ParentAoi", parameter);
 
         var table = map.GenerateTable([record]);
 
@@ -42,7 +45,7 @@ public class AoiParameterMapTests
     {
         var map = new AoiParameterMap();
         var parameter = new Parameter { Name = "TestParam" };
-        var record = new AoiParameterRecord(1, parameter);
+        var record = new AoiParameterRecord(1, "ParentAoi", parameter);
 
         var hash1 = map.ComputeHash(record);
         var hash2 = map.ComputeHash(record);

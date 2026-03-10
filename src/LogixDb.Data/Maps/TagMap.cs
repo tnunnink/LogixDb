@@ -22,9 +22,7 @@ public class TagMap : TableMap<TagRecord>
         ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
-        ColumnMap<TagRecord>.For(
-            r => r.Tag.Dimensions.IsEmpty ? r.Tag.DataType : $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}",
-            "data_type"),
+        ColumnMap<TagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
         ColumnMap<TagRecord>.For(r => r.Tag.Description, "tag_description"),
         ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<TagRecord>.For(r => r.Tag.Constant, "is_constant"),

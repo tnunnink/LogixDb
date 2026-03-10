@@ -22,8 +22,7 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Instruction?.Name, "aoi_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
-        ColumnMap<AoiLocalTagRecord>.For(
-            r => r.Tag.Dimensions > 0 ? $"{r.Tag.DataType}{r.Tag.Dimensions.ToIndex()}" : r.Tag.DataType, "data_type"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "default_value"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "description"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),

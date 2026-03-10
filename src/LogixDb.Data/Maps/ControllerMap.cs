@@ -31,8 +31,7 @@ public class ControllerMap : TableMap<ControllerRecord>
         ColumnMap<ControllerRecord>.For(r => r.Controller.InhibitAutomaticFirmwareUpdate, "inhibit_firmware_updates"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.CanUseRPIFromProducer, "allow_rfi_from_producer"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.PassThroughConfiguration?.Name, "pass_through_option"),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties,
-            "download_documentation"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties, "download_documentation"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectCustomProperties, "download_properties"),
         //todo once this is added to L5Sharp
         //ColumnMap<ControllerRecord>.For(r => r.Controller.EthernetIPMode?.Name, "ethernet_ip_mode")

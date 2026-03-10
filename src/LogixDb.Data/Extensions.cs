@@ -1,7 +1,7 @@
-using System.Globalization;
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
+using L5Sharp.Core;
 
 namespace LogixDb.Data;
 
@@ -67,5 +67,25 @@ public static class Extensions
     public static string ToHexString(this byte[] binary)
     {
         return Convert.ToHexStringLower(binary);
+    }
+
+    /// <summary>
+    /// Retrieves the data type name of the provided Logix element.
+    /// For tags and parameters with dimensions, the dimensional index is appended to the data type name.
+    /// </summary>
+    /// <param name="element">The Logix element from which to extract the data type name.</param>
+    /// <returns>A string representing the data type name, including dimensional information if applicable.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown when the element type is unsupported for data type name extraction.
+    /// </exception>
+    public static string GetDataTypeName(this ILogixElement element)
+    {
+        return element switch
+        {
+            Tag t => t.Dimensions > 0 ? $"{t.DataType}{t.Dimensions.ToIndex()}" : t.DataType,
+            Parameter p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType,
+            _ => throw new InvalidOperationException(
+                $"Element type '{element.GetType().Name}' is not supported for data type name extraction.")
+        };
     }
 }

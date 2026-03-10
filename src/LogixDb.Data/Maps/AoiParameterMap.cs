@@ -16,12 +16,9 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     public override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
         ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Parent?.Name, "aoi_name"),
+        ColumnMap<AoiParameterRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name"),
-        ColumnMap<AoiParameterRecord>.For(
-            r => r.Parameter.Dimension > 0
-                ? $"{r.Parameter.DataType}{r.Parameter.Dimension.ToIndex()}"
-                : r.Parameter.DataType, "data_type"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.GetDataTypeName(), "data_type"),
         ColumnMap<AoiParameterRecord>.For(
             r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
@@ -40,9 +37,9 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     {
         var source = snapshot.GetSource();
 
-        return source.AddOnInstructions
-            .SelectMany(aoi => aoi.Parameters)
-            .Select(p => new AoiParameterRecord(snapshot.SnapshotId, p));
+        foreach (var instruction in source.AddOnInstructions)
+        foreach (var parameter in instruction.Parameters)
+            yield return new AoiParameterRecord(snapshot.SnapshotId, instruction.Name, parameter);
     }
 }
 
@@ -53,4 +50,4 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this parameter record belongs.</param>
 /// <param name="Parameter">The Logix AOI parameter entity.</param>
-public record AoiParameterRecord(int SnapshotId, Parameter Parameter);
+public record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter);

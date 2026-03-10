@@ -21,9 +21,9 @@ public class M20260207Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "member_name", "nvarchar");
             await AssertColumnDefinition("tag", "tag_value", "nvarchar");
             await AssertColumnDefinition("tag", "data_type", "nvarchar");
-            await AssertColumnDefinition("tag", "description", "nvarchar");
+            await AssertColumnDefinition("tag", "tag_description", "nvarchar");
             await AssertColumnDefinition("tag", "external_access", "nvarchar");
-            await AssertColumnDefinition("tag", "constant", "bit");
+            await AssertColumnDefinition("tag", "is_constant", "bit");
             await AssertColumnDefinition("tag", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag", "tag_id");

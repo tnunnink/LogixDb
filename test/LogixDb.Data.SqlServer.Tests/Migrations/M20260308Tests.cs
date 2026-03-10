@@ -13,18 +13,20 @@ public class M20260308Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("operand");
-
+            
             await AssertColumnDefinition("operand", "operand_id", "int");
+            await AssertColumnDefinition("operand", "snapshot_id", "int");
             await AssertColumnDefinition("operand", "instruction_key", "nvarchar");
             await AssertColumnDefinition("operand", "operand_index", "tinyint");
             await AssertColumnDefinition("operand", "operand_name", "nvarchar");
-            await AssertColumnDefinition("operand", "operand_types", "nvarchar");
+            await AssertColumnDefinition("operand", "operand_type", "nvarchar");
             await AssertColumnDefinition("operand", "operand_format", "nvarchar");
             await AssertColumnDefinition("operand", "operand_description", "nvarchar");
             await AssertColumnDefinition("operand", "is_destructive", "bit");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertUniqueIndex("operand", "instruction_key", "operand_index");
+            await AssertForeignKey("operand", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("operand", "snapshot_id", "instruction_key", "operand_index");
         }
     }
 
@@ -35,6 +37,7 @@ public class M20260308Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
+            await AssertRecordExists("operand", "snapshot_id", 0);
             await AssertRecordExists("operand", "instruction_key", "ABS");
             await AssertRecordExists("operand", "instruction_key", "ALMA");
             await AssertRecordExists("operand", "instruction_key", "MOVE");
@@ -42,6 +45,8 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertRecordExists("operand", "instruction_key", "OTE");
             await AssertRecordExists("operand", "instruction_key", "XIC");
             await AssertRecordExists("operand", "instruction_key", "TON");
+            await AssertRecordExists("operand", "operand_name", "source");
+            await AssertRecordExists("operand", "operand_name", "destination");
         }
     }
 }

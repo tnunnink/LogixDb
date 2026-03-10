@@ -8,8 +8,8 @@ namespace LogixDb.Migrations.M20260308;
 /// Represents a FluentMigrator migration that seeds the initial set of operands into the database.
 /// </summary>
 [UsedImplicitly]
-[Migration(202603082130, "Seeds initial operand metadata for all supported Logix instructions")]
-public class M017SeedInitialOperands : AutoReversingMigration
+[Migration(202603082130, "Seeds native operand metadata for all supported Logix instructions")]
+public class M017SeedNativeOperands : AutoReversingMigration
 {
     public override void Up()
     {

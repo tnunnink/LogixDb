@@ -19,8 +19,8 @@ public class RungMap : TableMap<RungRecord>
         ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "container_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
-        ColumnMap<RungRecord>.For(r => r.Rung.Comment, "comment"),
-        ColumnMap<RungRecord>.For(r => r.Rung.Text, "code"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Comment, "rung_comment"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Text, "rung_text"),
         ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 

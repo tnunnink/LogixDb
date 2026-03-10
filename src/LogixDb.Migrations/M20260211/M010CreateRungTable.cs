@@ -15,8 +15,8 @@ public class M010CreateRungTable : AutoReversingMigration
             .WithColumn("container_name").AsString(128).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
-            .WithColumn("comment").AsString(int.MaxValue).Nullable()
-            .WithColumn("code").AsString(int.MaxValue).Nullable()
+            .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
+            .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()

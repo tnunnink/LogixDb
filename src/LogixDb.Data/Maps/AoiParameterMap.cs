@@ -24,14 +24,14 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
                 : r.Parameter.DataType, "data_type"),
         ColumnMap<AoiParameterRecord>.For(
             r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "description"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.TagType?.Name, "tag_type"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Visible, "visible"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Required, "required"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "constant"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Visible, "is_visible"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Required, "is_required"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "is_constant"),
         ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 

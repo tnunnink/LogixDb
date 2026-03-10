@@ -14,7 +14,7 @@ public class M008CreateProgramTable : AutoReversingMigration
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("program_type").AsString(32).Nullable()
-            .WithColumn("description").AsString(512).Nullable()
+            .WithColumn("program_description").AsString(512).Nullable()
             .WithColumn("main_routine").AsString(64).Nullable()
             .WithColumn("fault_routine").AsString(64).Nullable()
             .WithColumn("is_disabled").AsBoolean().Nullable()

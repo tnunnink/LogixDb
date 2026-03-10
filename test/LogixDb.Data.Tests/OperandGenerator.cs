@@ -5,7 +5,7 @@ using L5Sharp.Core;
 namespace LogixDb.Data.Tests;
 
 [TestFixture]
-public class GetInstructionSignatures
+public class OperandGenerator
 {
     [Test]
     public void GetInstructionArgumentsTableDataForSeeding()
@@ -31,6 +31,7 @@ public class GetInstructionSignatures
                     $$"""
                       insert.Row(new
                       {
+                          snapshot_id = 0,
                           instruction_key = "{{factory.Name}}",
                           operand_index = {{a.Index}}, 
                           operand_name = "{{a.Name}}", 

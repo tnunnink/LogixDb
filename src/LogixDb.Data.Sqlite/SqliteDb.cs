@@ -38,6 +38,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         new SqliteDataTypeMemberImport(),
         new SqliteAoiImport(),
         new SqliteAoiParameterImport(),
+        new SqliteAoiOperandImport(),
         new SqliteModuleImport(),
         new SqliteTaskImport(),
         new SqliteProgramImport(),

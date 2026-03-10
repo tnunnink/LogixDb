@@ -20,7 +20,7 @@ public class RoutineMap : TableMap<RoutineRecord>
         ColumnMap<RoutineRecord>.For(r => r.Routine.Scope.Container, "container_name"),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name"),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Type.Name, "routine_type"),
-        ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "description"),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "routine_description"),
         ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 

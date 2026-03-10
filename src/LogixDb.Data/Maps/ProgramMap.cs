@@ -18,7 +18,7 @@ public class ProgramMap : TableMap<ProgramRecord>
         ColumnMap<ProgramRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name"),
         ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Description, "description"),
+        ColumnMap<ProgramRecord>.For(r => r.Program.Description, "program_description"),
         ColumnMap<ProgramRecord>.For(r => r.Program.MainRoutineName, "main_routine"),
         ColumnMap<ProgramRecord>.For(r => r.Program.FaultRoutineName, "fault_routine"),
         ColumnMap<ProgramRecord>.For(r => r.Program.Disabled, "is_disabled"),

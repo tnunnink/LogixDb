@@ -15,7 +15,7 @@ public class M009CreateRoutineTable : AutoReversingMigration
             .WithColumn("container_name").AsString(128).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("routine_type").AsString(32).Nullable()
-            .WithColumn("description").AsString(512).Nullable()
+            .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index()

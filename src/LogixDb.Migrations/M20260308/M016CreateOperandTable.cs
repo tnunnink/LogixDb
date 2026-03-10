@@ -22,16 +22,18 @@ public class M016CreateOperandTable : AutoReversingMigration
     {
         Create.Table("operand")
             .WithPrimaryId("operand_id")
+            .WithOptionalCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()
-            .WithColumn("operand_types").AsString(128).Nullable()
+            .WithColumn("operand_type").AsString(128).Nullable()
             .WithColumn("operand_format").AsString(32).Nullable()
             .WithColumn("operand_description").AsString(2000).Nullable()
             .WithColumn("is_destructive").AsBoolean().NotNullable();
 
         Create.Index()
             .OnTable("operand")
+            .OnColumn("snapshot_id").Ascending()
             .OnColumn("instruction_key").Ascending()
             .OnColumn("operand_index").Ascending()
             .WithOptions().Unique();

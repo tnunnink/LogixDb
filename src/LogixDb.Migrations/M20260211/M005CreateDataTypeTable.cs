@@ -15,7 +15,7 @@ public class M005CreateDataTypeTable : AutoReversingMigration
             .WithColumn("type_name").AsString(128).NotNullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
-            .WithColumn("description").AsString(512).Nullable()
+            .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
         
         Create.Index()

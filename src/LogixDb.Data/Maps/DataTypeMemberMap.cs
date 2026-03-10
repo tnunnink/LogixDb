@@ -22,9 +22,9 @@ public class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Dimension, "dimension"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Radix?.Name, "radix"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.ExternalAccess?.Name, "external_access"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Description, "description"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Hidden, "hidden"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Target, "target"),
+        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Description, "member_description"),
+        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Hidden, "is_hidden"),
+        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Target, "target_name"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.BitNumber is not null ? (byte)r.Member.BitNumber : null,
             "bit_number"),
         ColumnMap<DataTypeMemberRecord>.For(ComputeHash, "record_hash", hashable: false)

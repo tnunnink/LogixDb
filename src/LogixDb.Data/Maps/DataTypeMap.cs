@@ -19,7 +19,7 @@ public class DataTypeMap : TableMap<DataTypeRecord>
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Family.Name, "type_family"),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "description"),
+        ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
         ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 

@@ -15,20 +15,20 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("controller", "controller_id", "integer");
             await AssertColumnDefinition("controller", "snapshot_id", "integer");
             await AssertColumnDefinition("controller", "controller_name", "text");
-            await AssertColumnDefinition("controller", "processor", "text");
-            await AssertColumnDefinition("controller", "revision", "text");
-            await AssertColumnDefinition("controller", "description", "text");
+            await AssertColumnDefinition("controller", "catalog_number", "text");
+            await AssertColumnDefinition("controller", "controller_revision", "text");
+            await AssertColumnDefinition("controller", "controller_description", "text");
             await AssertColumnDefinition("controller", "project_creation_date", "datetime");
             await AssertColumnDefinition("controller", "last_modified_date", "datetime");
-            await AssertColumnDefinition("controller", "comm_path", "text");
+            await AssertColumnDefinition("controller", "communication_path", "text");
             await AssertColumnDefinition("controller", "sfc_execution_control", "text");
             await AssertColumnDefinition("controller", "sfc_restart_position", "text");
             await AssertColumnDefinition("controller", "sfc_last_scan", "text");
-            await AssertColumnDefinition("controller", "project_sn", "text");
+            await AssertColumnDefinition("controller", "project_serial_number", "text");
             await AssertColumnDefinition("controller", "match_project_to_controller", "integer");
             await AssertColumnDefinition("controller", "inhibit_firmware_updates", "integer");
             await AssertColumnDefinition("controller", "allow_rfi_from_producer", "integer");
-            await AssertColumnDefinition("controller", "pass_through", "text");
+            await AssertColumnDefinition("controller", "pass_through_option", "text");
             await AssertColumnDefinition("controller", "download_documentation", "integer");
             await AssertColumnDefinition("controller", "download_properties", "integer");
             await AssertColumnDefinition("controller", "ethernet_ip_mode", "text");
@@ -54,7 +54,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("data_type", "type_name", "text");
             await AssertColumnDefinition("data_type", "type_class", "text");
             await AssertColumnDefinition("data_type", "type_family", "text");
-            await AssertColumnDefinition("data_type", "description", "text");
+            await AssertColumnDefinition("data_type", "type_description", "text");
             await AssertColumnDefinition("data_type", "record_hash", "text");
 
             await AssertPrimaryKey("data_type", "type_id");
@@ -81,9 +81,9 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("data_type_member", "dimension", "integer");
             await AssertColumnDefinition("data_type_member", "radix", "text");
             await AssertColumnDefinition("data_type_member", "external_access", "text");
-            await AssertColumnDefinition("data_type_member", "description", "text");
-            await AssertColumnDefinition("data_type_member", "hidden", "integer");
-            await AssertColumnDefinition("data_type_member", "target", "text");
+            await AssertColumnDefinition("data_type_member", "member_description", "text");
+            await AssertColumnDefinition("data_type_member", "is_hidden", "integer");
+            await AssertColumnDefinition("data_type_member", "target_name", "text");
             await AssertColumnDefinition("data_type_member", "bit_number", "integer");
             await AssertColumnDefinition("data_type_member", "record_hash", "text");
 
@@ -106,11 +106,11 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("task", "snapshot_id", "integer");
             await AssertColumnDefinition("task", "task_name", "text");
             await AssertColumnDefinition("task", "task_type", "text");
-            await AssertColumnDefinition("task", "description", "text");
-            await AssertColumnDefinition("task", "priority", "integer");
-            await AssertColumnDefinition("task", "rate", "numeric");
-            await AssertColumnDefinition("task", "watchdog", "numeric");
-            await AssertColumnDefinition("task", "inhibited", "integer");
+            await AssertColumnDefinition("task", "task_description", "text");
+            await AssertColumnDefinition("task", "task_priority", "integer");
+            await AssertColumnDefinition("task", "task_rate", "numeric");
+            await AssertColumnDefinition("task", "task_watchdog", "numeric");
+            await AssertColumnDefinition("task", "is_inhibited", "integer");
             await AssertColumnDefinition("task", "disable_outputs", "integer");
             await AssertColumnDefinition("task", "event_trigger", "text");
             await AssertColumnDefinition("task", "event_tag", "text");
@@ -137,7 +137,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("program", "snapshot_id", "integer");
             await AssertColumnDefinition("program", "program_name", "text");
             await AssertColumnDefinition("program", "program_type", "text");
-            await AssertColumnDefinition("program", "description", "text");
+            await AssertColumnDefinition("program", "program_description", "text");
             await AssertColumnDefinition("program", "main_routine", "text");
             await AssertColumnDefinition("program", "fault_routine", "text");
             await AssertColumnDefinition("program", "is_disabled", "integer");
@@ -168,7 +168,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("routine", "container_name", "text");
             await AssertColumnDefinition("routine", "routine_name", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
-            await AssertColumnDefinition("routine", "description", "text");
+            await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");
@@ -192,8 +192,8 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("rung", "container_name", "text");
             await AssertColumnDefinition("rung", "routine_name", "text");
             await AssertColumnDefinition("rung", "rung_number", "integer");
-            await AssertColumnDefinition("rung", "code", "text");
-            await AssertColumnDefinition("rung", "comment", "text");
+            await AssertColumnDefinition("rung", "rung_text", "text");
+            await AssertColumnDefinition("rung", "rung_comment", "text");
             await AssertColumnDefinition("rung", "record_hash", "text");
 
             await AssertPrimaryKey("rung", "rung_id");

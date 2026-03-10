@@ -38,6 +38,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         new SqlServerDataTypeMemberImport(),
         new SqlServerAoiImport(),
         new SqlServerAoiParameterImport(),
+        new SqlServerAoiOperandImport(),
         new SqlServerModuleImport(),
         new SqlServerTaskImport(),
         new SqlServerProgramImport(),

@@ -44,11 +44,17 @@ public class ArgumentMap : TableMap<ArgumentRecord>
 
         return rungs.SelectMany(rung =>
         {
-            var rh = RungMap.ComputeHash(rung);
-            return rung.Rung.Instructions().SelectMany(x =>
+            var rungHash = RungMap.ComputeHash(rung);
+            
+            return rung.Rung.Instructions().SelectMany((instruction, index) =>
             {
-                var ih = InstructionMap.ComputeHash(new InstructionRecord(snapshot.SnapshotId, rh, x));
-                return x.Arguments.Select((a, i) => new ArgumentRecord(snapshot.SnapshotId, ih, (byte)i, a));
+                var instructionHash = InstructionMap.ComputeHash(
+                    new InstructionRecord(snapshot.SnapshotId, rungHash, (short)index, instruction)
+                );
+
+                return instruction.Arguments.Select((a, i) =>
+                    new ArgumentRecord(snapshot.SnapshotId, instructionHash, (byte)i, a)
+                );
             });
         });
     }

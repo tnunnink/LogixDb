@@ -22,6 +22,7 @@ public class M014CreateInstructionTable : AutoReversingMigration
             .WithPrimaryId("instruction_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("rung_hash").AsString(32).NotNullable()
+            .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("is_conditional").AsBoolean().NotNullable()
@@ -31,7 +32,9 @@ public class M014CreateInstructionTable : AutoReversingMigration
         Create.Index()
             .OnTable("instruction")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("rung_hash").Ascending();
+            .OnColumn("rung_hash").Ascending()
+            .OnColumn("instruction_index").Ascending()
+            .WithOptions().Unique();
 
         Create.Index()
             .OnTable("instruction")

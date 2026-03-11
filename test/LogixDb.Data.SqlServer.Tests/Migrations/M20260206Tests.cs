@@ -38,6 +38,7 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertColumnDefinition("snapshot", "schema_revision", "nvarchar");
             await AssertColumnDefinition("snapshot", "software_revision", "nvarchar");
             await AssertColumnDefinition("snapshot", "export_date", "datetime");
+            await AssertColumnDefinition("snapshot", "export_user", "nvarchar");
             await AssertColumnDefinition("snapshot", "export_options", "nvarchar");
             await AssertColumnDefinition("snapshot", "import_date", "datetime");
             await AssertColumnDefinition("snapshot", "import_user", "nvarchar");

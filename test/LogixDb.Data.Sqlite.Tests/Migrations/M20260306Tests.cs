@@ -15,6 +15,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("instruction", "instruction_id", "integer");
             await AssertColumnDefinition("instruction", "snapshot_id", "integer");
             await AssertColumnDefinition("instruction", "rung_hash", "text");
+            await AssertColumnDefinition("instruction", "instruction_index", "integer");
             await AssertColumnDefinition("instruction", "instruction_key", "text");
             await AssertColumnDefinition("instruction", "instruction_text", "text");
             await AssertColumnDefinition("instruction", "is_conditional", "integer");
@@ -23,7 +24,7 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertPrimaryKey("instruction", "instruction_id");
             await AssertForeignKey("instruction", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("instruction", "snapshot_id", "rung_hash");
+            await AssertUniqueIndex("instruction", "snapshot_id", "rung_hash", "instruction_index");
             await AssertIndex("instruction", "record_hash", "snapshot_id");
         }
     }

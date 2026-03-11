@@ -16,7 +16,9 @@ namespace LogixDb.Data.Maps;
 public class InstructionMap : TableMap<InstructionRecord>
 {
     /// <summary>
-    /// 
+    /// Represents the database table mapping for the <see cref="RungRecord"/> type in the Logix system.
+    /// Defines the table structure, including the table name and column mappings, used for persisting
+    /// and retrieving rung-related data to and from the database.
     /// </summary>
     private static readonly RungMap RungMap = new();
 
@@ -28,6 +30,7 @@ public class InstructionMap : TableMap<InstructionRecord>
     [
         ColumnMap<InstructionRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<InstructionRecord>.For(r => r.RungHash, "rung_hash"),
+        ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.IsConditional, "is_conditional", hashable: false),
@@ -44,7 +47,10 @@ public class InstructionMap : TableMap<InstructionRecord>
         return rungs.SelectMany(rung =>
         {
             var rungHash = RungMap.ComputeHash(rung);
-            return rung.Rung.Instructions().Select(i => new InstructionRecord(snapshot.SnapshotId, rungHash, i));
+
+            return rung.Rung.Instructions().Select((i, x) =>
+                new InstructionRecord(snapshot.SnapshotId, rungHash, (short)x, i)
+            );
         });
     }
 }
@@ -53,9 +59,4 @@ public class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-/// <remarks>
-/// This record is used within the database mapping layer to provide a strongly-typed representation
-/// of an instruction entity. It facilitates the persistence and retrieval of instruction-related data,
-/// including the snapshot identifier, the rung hash, and the associated instruction details.
-/// </remarks>
-public record InstructionRecord(int SnapshotId, string RungHash, Instruction Instruction);
+public record InstructionRecord(int SnapshotId, string RungHash, short Index, Instruction Instruction);

@@ -58,11 +58,8 @@ public class SourceIngestionService(
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         // Startup Validation (Pre-flight check): If the database is not created or migrated, shutdown the app.
-        if (await IsInvalidConnection(stoppingToken))
-        {
-            lifetime.StopApplication();
-            return;
-        }
+        // Try to wait for a good connection to the database to avoid server reboot and service restart issues.
+        await ValidateDatabase(stoppingToken);
 
         await foreach (var source in channel.Reader.ReadAllAsync(stoppingToken))
         {
@@ -77,6 +74,13 @@ public class SourceIngestionService(
                 // Load the L5X file, create a snapshot and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
                 var snapshot = Snapshot.Create(content);
+
+                // Load the metadata configured for the source instance.
+                snapshot.Metadata.Add(nameof(source.SourceId), source.SourceId.ToString());
+                foreach (var item in source.Metadata)
+                    snapshot.Metadata.Add(item.Key, item.Value);
+
+                // Upload the snapshot to the configured database.
                 var action = options.Value.OnConflict;
                 await logixDb.AddSnapshot(snapshot, action, stoppingToken);
 
@@ -99,27 +103,40 @@ public class SourceIngestionService(
     /// </summary>
     /// <param name="stoppingToken">The cancellation token to observe while performing the operation.</param>
     /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating whether the connection is invalid.</returns>
-    private async Task<bool> IsInvalidConnection(CancellationToken stoppingToken)
+    private async Task ValidateDatabase(CancellationToken stoppingToken)
     {
-        try
+        while (!stoppingToken.IsCancellationRequested)
         {
-            await logixDb.ListSnapshots(token: stoppingToken);
-            logger.LogInformation("Database connection verified. Ingestion service started and waiting uploads...");
-        }
-        catch (MigrationRequiredException ex)
-        {
-            logger.LogCritical(ex,
-                "Database migration is required. Manual migration must be performed before the service can start.");
-            return true;
-        }
-        catch (Exception ex)
-        {
-            logger.LogCritical(ex,
-                "Failed to connect to the LogixDb target. Ensure the connection string is correct and the database is reachable.");
-            return true;
-        }
+            try
+            {
+                await logixDb.ListSnapshots(token: stoppingToken);
+                logger.LogInformation("Database connection verified. Ingestion service started and waiting uploads...");
+                break;
+            }
+            catch (MigrationRequiredException ex)
+            {
+                logger.LogCritical(ex,
+                    "Database migration is required. Manual migration must be performed before the service can start.");
+                lifetime.StopApplication();
+                break;
+            }
+            catch (Exception)
+            {
+                logger.LogWarning(
+                    "Failed to connect to the LogixDb target. " +
+                    "Ensure the connection string is correct and the database is reachable. " +
+                    "Retrying in 60 seconds..."
+                );
 
-        return false;
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+                }
+                catch (OperationCanceledException)
+                {
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -177,7 +194,7 @@ public class SourceIngestionService(
                     .Add("--force"))
                 .WithValidation(CommandResultValidation.ZeroExitCode)
                 .ExecuteAsync(token);
-            
+
             return;
         }
 

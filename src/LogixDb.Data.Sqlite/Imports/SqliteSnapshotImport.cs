@@ -26,9 +26,15 @@ internal class SqliteSnapshotImport : ILogixDbImport
 
     private const string InsertSnapshot =
         """
-        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, source_hash, source_data) 
-        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @source_hash, @source_data)
+        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data) 
+        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
         RETURNING snapshot_id;
+        """;
+
+    private const string InsertProperties =
+        """
+        INSERT INTO snapshot_property (snapshot_id, property_name, property_value)
+        VALUES (@snapshot_id, @property_name, @property_value)
         """;
 
     public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
@@ -53,8 +59,21 @@ internal class SqliteSnapshotImport : ILogixDbImport
             software_revision = snapshot.SoftwareRevision,
             export_date = snapshot.ExportDate,
             export_options = snapshot.ExportOptions,
+            import_date = snapshot.ImportDate,
+            import_user = snapshot.ImportUser,
+            import_machine = snapshot.ImportMachine,
             source_hash = snapshot.SourceHash,
             source_data = snapshot.SourceData
         }, transaction);
+
+        // Post the snapshot metadata to the database.
+        await connection.ExecuteAsync(InsertProperties,
+            snapshot.Metadata.Select(p => new
+            {
+                snapshot_id = snapshot.SnapshotId,
+                property_name = p.Key,
+                property_value = p.Value
+            }).ToList(),
+            transaction);
     }
 }

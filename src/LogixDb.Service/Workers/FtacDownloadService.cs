@@ -50,6 +50,11 @@ public class FtacDownloadService(
 
                 var size = await ReadAssetSize(connection, asset, token);
                 var source = await DownloadAsset(connection, asset, size, token);
+                
+                source.Metadata.Add(nameof(asset.AssetId), asset.AssetId.ToString());
+                source.Metadata.Add(nameof(asset.VersionId), asset.VersionId.ToString());
+                source.Metadata.Add(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
+                source.Metadata.Add(nameof(asset.AssetName), asset.AssetName);
 
                 await sources.Writer.WriteAsync(source, token);
 

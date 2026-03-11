@@ -25,12 +25,14 @@ public sealed class Snapshot
     public string? SchemaRevision { get; init; }
     public string? SoftwareRevision { get; init; }
     public DateTime ExportDate { get; init; } = DateTime.MinValue;
+    public string? ExportUser { get; init; }
     public string? ExportOptions { get; init; }
-    public DateTime ImportDate { get; init; } = DateTime.UtcNow;
+    public DateTime ImportDate { get; init; } = DateTime.Now;
     public string ImportUser { get; init; } = Environment.UserName;
     public string ImportMachine { get; init; } = Environment.MachineName;
     public string SourceHash { get; init; } = string.Empty;
     public byte[] SourceData { get; init; } = [];
+    public Dictionary<string, string> Metadata { get; } = [];
 
     /// <summary>
     /// Creates a new snapshot instance from an L5X source file.
@@ -62,6 +64,7 @@ public sealed class Snapshot
             SchemaRevision = source.Content.SchemaRevision,
             SoftwareRevision = source.Content.SoftwareRevision,
             ExportDate = source.Content.ExportDate,
+            ExportUser = source.Content.Owner,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
             SourceHash = source.Content.Serialize().ToString().Hash().ToHexString(),
             SourceData = source.Content.Serialize().ToString().Compress(),

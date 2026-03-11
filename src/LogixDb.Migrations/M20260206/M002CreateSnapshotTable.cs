@@ -19,11 +19,11 @@ public class M002CreateSnapshotTable : AutoReversingMigration
             .WithColumn("schema_revision").AsString(16).Nullable()
             .WithColumn("software_revision").AsString(16).Nullable()
             .WithColumn("export_date").AsDateTime().Nullable()
-            .WithColumn("export_user").AsDateTime().Nullable()
+            .WithColumn("export_user").AsString(64).Nullable()
             .WithColumn("export_options").AsString(256).Nullable()
-            .WithColumn("import_date").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
-            .WithColumn("import_user").AsString(64).NotNullable().WithDefaultValue(Environment.UserName)
-            .WithColumn("import_machine").AsString(64).NotNullable().WithDefaultValue(Environment.MachineName)
+            .WithColumn("import_date").AsDateTime().NotNullable()
+            .WithColumn("import_user").AsString(64).NotNullable()
+            .WithColumn("import_machine").AsString(64).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable()
             .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 

@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 
@@ -7,7 +8,7 @@ namespace LogixDb.Migrations.M20260309;
 /// Creates the snapshot_info table for storing key-value metadata associated with snapshots.
 /// </summary>
 [UsedImplicitly]
-//[Migration(202603092030, "Create snapshot_info table for snapshot metadata")]
+[Migration(202603092030, "Create snapshot_info table for snapshot metadata")]
 public class M018CreateSnapshotMetadataTable : AutoReversingMigration
 {
     /// <summary>
@@ -15,10 +16,17 @@ public class M018CreateSnapshotMetadataTable : AutoReversingMigration
     /// </summary>
     public override void Up()
     {
-        Create.Table("snapshot_info")
-            .WithPrimaryId("info_id")
+        Create.Table("snapshot_property")
+            .WithPrimaryId("property_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("key").AsString(128).NotNullable()
-            .WithColumn("value").AsString().Nullable();
+            .WithColumn("property_name").AsString().NotNullable()
+            .WithColumn("property_value").AsString().Nullable();
+        
+        // Ensure we can't have duplicate keys for the same snapshot and speed up lookups
+        Create.Index()
+            .OnTable("snapshot_property")
+            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("property_name").Ascending()
+            .WithOptions().Unique();
     }
 }

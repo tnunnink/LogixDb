@@ -15,7 +15,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("instruction", "instruction_id", "int");
             await AssertColumnDefinition("instruction", "snapshot_id", "int");
             await AssertColumnDefinition("instruction", "rung_hash", "nvarchar");
-            await AssertColumnDefinition("instruction", "instruction_index", "int");
+            await AssertColumnDefinition("instruction", "instruction_index", "smallint");
             await AssertColumnDefinition("instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_text", "nvarchar");
             await AssertColumnDefinition("instruction", "is_conditional", "bit");

@@ -10,13 +10,16 @@ public class M20260309Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("snapshot_info");
+            await AssertTableExists("snapshot_property");
 
-            await AssertColumnDefinition("snapshot_info", "snapshot_id", "int");
-            await AssertColumnDefinition("snapshot_info", "key", "nvarchar");
-            await AssertColumnDefinition("snapshot_info", "value", "nvarchar");
+            await AssertColumnDefinition("snapshot_property", "property_id", "int");
+            await AssertColumnDefinition("snapshot_property", "snapshot_id", "int");
+            await AssertColumnDefinition("snapshot_property", "property_name", "nvarchar");
+            await AssertColumnDefinition("snapshot_property", "property_value", "nvarchar");
 
-            await AssertForeignKey("snapshot_info", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertPrimaryKey("snapshot_property", "property_id");
+            await AssertForeignKey("snapshot_property", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("snapshot_property", "snapshot_id", "property_name");
         }
     }
 }

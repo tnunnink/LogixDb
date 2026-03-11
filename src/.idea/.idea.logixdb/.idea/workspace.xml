@@ -10,25 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260309Tests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260309Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerSnapshotImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteSnapshotImport.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M002CreateSnapshotTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260309/M018CreateSnapshotMetadataTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260309/M018CreateSnapshotMetadataTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/InstructionMapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/InstructionMapTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,31 +215,7 @@
       <workItem from="1772719400982" duration="3000" />
       <workItem from="1772723896741" duration="7473000" />
       <workItem from="1772813330639" duration="76666000" />
-      <workItem from="1773191092263" duration="4842000" />
-    </task>
-    <task id="LOCAL-00049" summary="Update appsettings configuration, implement placeholder for FtacMonitorService, and refine project metadata.">
-      <option name="closed" value="true" />
-      <created>1772136044631</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1772136044631</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Update appsettings with LogixConfig section and adjust IDE workspace settings.">
-      <option name="closed" value="true" />
-      <created>1772136461144</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1772136461145</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Add unit tests for `SourceUploadService`, `SourceIngestionService`, and `SourceInfo` classes; update configuration models to use mutable properties; adjust solution and project files.">
-      <option name="closed" value="true" />
-      <created>1772137342092</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1772137342092</updated>
+      <workItem from="1773191092263" duration="5265000" />
     </task>
     <task id="LOCAL-00052" summary="Update package references, add `AssetInfo` and `FtacDownloadService`, modify appsettings defaults, and adjust project formatting.">
       <option name="closed" value="true" />
@@ -627,7 +585,31 @@
       <option name="project" value="LOCAL" />
       <updated>1773139528183</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Add `Index` field to `InstructionRecord` and update related mappings, tests, and migrations; enforce unique index constraints.">
+      <option name="closed" value="true" />
+      <created>1773196091151</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1773196091152</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Add `snapshot_property` table for metadata storage; update snapshot ingestion logic, mappings, and related tests.">
+      <option name="closed" value="true" />
+      <created>1773196111584</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1773196111584</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Bump version to 0.7.0 in project files.">
+      <option name="closed" value="true" />
+      <created>1773196134505</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1773196134505</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,9 +634,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Change all binary `record_hash` and related columns to string format across migrations, models, and tests to standardize hash representation." />
-    <MESSAGE value="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling." />
-    <MESSAGE value="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1." />
     <MESSAGE value="Update PowerShell setup script: improve formatting, add validation for `appsettings.json`, ensure robust SQL Server module handling, and enhance service configuration logic." />
     <MESSAGE value="Remove `Setup-LogixDb.ps1` and replace it with `Setup.ps1` for setup script consistency across codebase and documentation. Update README, release workflow, and related references accordingly." />
     <MESSAGE value="Add `Setup.ps1`: new installation script with service management, database seeding, and environment setup." />
@@ -677,7 +656,10 @@
     <MESSAGE value="Refactor column mappings and update methods for data types in maps; add `GetDataTypeName` extension for dimensional information handling." />
     <MESSAGE value="Bump version to 0.6.3 in project files." />
     <MESSAGE value="Bump version to 0.6.4 in project files; update test file with explicit attribute and new L5X source." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.6.4 in project files; update test file with explicit attribute and new L5X source." />
+    <MESSAGE value="Add `Index` field to `InstructionRecord` and update related mappings, tests, and migrations; enforce unique index constraints." />
+    <MESSAGE value="Add `snapshot_property` table for metadata storage; update snapshot ingestion logic, mappings, and related tests." />
+    <MESSAGE value="Bump version to 0.7.0 in project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.7.0 in project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -27,9 +27,9 @@ internal class SqlServerSnapshotImport : ILogixDbImport
 
     private const string InsertSnapshot =
         """
-        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, source_hash, source_data)
+        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data)
         OUTPUT INSERTED.snapshot_id
-        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @source_hash, @source_data);
+        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
         """;
     
     private const string InsertProperties =

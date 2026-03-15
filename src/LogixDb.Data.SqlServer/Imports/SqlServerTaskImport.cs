@@ -1,6 +1,6 @@
-using System.Data;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
-using Task = L5Sharp.Core.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.SqlServer.Imports;
 
@@ -12,4 +12,16 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// by using a specific set of preconfigured SQL commands and mappings. It works in
 /// conjunction with a parent transaction to ensure atomic operations are performed safely.
 /// </remarks>
-internal class SqlServerTaskImport() : SqlServerImport<TaskRecord>(new TaskMap());
+internal class SqlServerTaskImport : SqlServerImport
+{
+    private readonly TaskMap _map = new();
+
+    /// <inheritdoc />
+    public override Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        var source = snapshot.GetSource();
+        var records = source.Query<L5Sharp.Core.Task>().Select(t => new TaskRecord(snapshot.SnapshotId, t));
+        return ImportRecords(records, _map, session, token);
+    }
+}

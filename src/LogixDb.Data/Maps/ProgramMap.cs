@@ -28,15 +28,6 @@ public class ProgramMap : TableMap<ProgramRecord>
         ColumnMap<ProgramRecord>.For(r => r.Program.Task?.Name, "task_name"),
         ColumnMap<ProgramRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<ProgramRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        return source.Query<Program>()
-            .Select(p => new ProgramRecord(snapshot.SnapshotId, p));
-    }
 }
 
 /// <summary>

@@ -1,12 +1,26 @@
-using System.Data;
-using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.Sqlite.Imports;
 
 /// <summary>
-/// A class responsible for importing AOI (Add-On Instruction) parameter data from an L5X file into an SQLite database.
-/// Implements element import for <see cref="Parameter"/> objects by extracting all parameters from all
-/// Add-On Instructions in the L5X content and mapping them to the database using <see cref="AoiParameterMap"/>.
+/// Handles the import of Add-On Instruction (AOI) parameter records from a LogixDb snapshot into an SQLite database.
+/// This class processes AOI parameters by querying them from the snapshot source and inserting
+/// them into the database using the configured AOI parameter table mapping.
 /// </summary>
-internal class SqliteAoiParameterImport() : SqliteImport<AoiParameterRecord>(new AoiParameterMap());
+internal class SqliteAoiParameterImport : SqliteImport
+{
+    private readonly AoiParameterMap _map = new();
+
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        await using var command = BuildCommand(_map, session);
+        var source = snapshot.GetSource();
+        var records = source.AddOnInstructions
+            .SelectMany(a => a.Parameters.Select(p => new AoiParameterRecord(snapshot.SnapshotId, a.Name, p)))
+            .ToList();
+        await ImportRecords(records, _map, command, token);
+    }
+}

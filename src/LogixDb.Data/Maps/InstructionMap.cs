@@ -37,22 +37,6 @@ public class InstructionMap : TableMap<InstructionRecord>
         ColumnMap<InstructionRecord>.For(x => x.Instruction.IsNative, "is_native", hashable: false),
         ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<InstructionRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        var rungs = source.Query<Rung>().Select(r => new RungRecord(snapshot.SnapshotId, r));
-
-        return rungs.SelectMany(rung =>
-        {
-            var rungHash = RungMap.ComputeHash(rung);
-
-            return rung.Rung.Instructions().Select((i, x) =>
-                new InstructionRecord(snapshot.SnapshotId, rungHash, (short)x, i)
-            );
-        });
-    }
 }
 
 /// <summary>

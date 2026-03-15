@@ -1,18 +1,25 @@
-using System.Data;
-using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.SqlServer.Imports;
 
 /// <summary>
 /// Represents a class responsible for importing AOI (Add-On Instruction) parameters
-/// from a given L5X content structure into a SQL Server database. This class extends
-/// the base <see cref="SqlServerImport{TElement}"/> for handling the import process
-/// specific to AOI parameters.
+/// from a given L5X content structure into a SQL Server database.
 /// </summary>
-/// <remarks>
-/// The import process retrieves AOI parameter elements from the L5X content
-/// and maps them to the corresponding database table using the <see cref="AoiParameterMap"/>.
-/// </remarks>
-/// <seealso cref="SqlServerImport{TElement}"/>
-internal class SqlServerAoiParameterImport() : SqlServerImport<AoiParameterRecord>(new AoiParameterMap());
+internal class SqlServerAoiParameterImport : SqlServerImport
+{
+    private readonly AoiParameterMap _map = new();
+
+    /// <inheritdoc />
+    public override Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        var source = snapshot.GetSource();
+        var records = source.AddOnInstructions.SelectMany(instruction =>
+            instruction.Parameters.Select(parameter =>
+                new AoiParameterRecord(snapshot.SnapshotId, instruction.Name, parameter)));
+        return ImportRecords(records, _map, session, token);
+    }
+}

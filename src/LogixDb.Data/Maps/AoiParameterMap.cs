@@ -31,16 +31,6 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "is_constant"),
         ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<AoiParameterRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        foreach (var instruction in source.AddOnInstructions)
-        foreach (var parameter in instruction.Parameters)
-            yield return new AoiParameterRecord(snapshot.SnapshotId, instruction.Name, parameter);
-    }
 }
 
 /// <summary>

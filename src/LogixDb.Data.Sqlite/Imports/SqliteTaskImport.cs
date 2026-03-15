@@ -1,15 +1,24 @@
-using System.Data;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
-using Task = L5Sharp.Core.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.Sqlite.Imports;
 
 /// <summary>
-/// Represents a class for importing task data into a SQLite database.
+/// Handles the import of task records from a LogixDb snapshot into an SQLite database.
+/// This class processes task entities by querying them from the snapshot source and inserting
+/// them into the database using the configured task table mapping.
 /// </summary>
-/// <remarks>
-/// This class provides functionality to process and import tasks into a SQLite database
-/// by using a specific set of preconfigured SQL commands and mappings. It works in
-/// conjunction with a parent transaction to ensure atomic operations are performed safely.
-/// </remarks>
-internal class SqliteTaskImport() : SqliteImport<TaskRecord>(new TaskMap());
+internal class SqliteTaskImport : SqliteImport
+{
+    private readonly TaskMap _taskMap = new();
+
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        await using var command = BuildCommand(_taskMap, session);
+        var source = snapshot.GetSource();
+        var records = source.Query<L5Sharp.Core.Task>().Select(t => new TaskRecord(snapshot.SnapshotId, t)).ToList();
+        await ImportRecords(records, _taskMap, command, token);
+    }
+}

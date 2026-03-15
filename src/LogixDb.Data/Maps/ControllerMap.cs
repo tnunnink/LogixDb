@@ -37,13 +37,6 @@ public class ControllerMap : TableMap<ControllerRecord>
         //ColumnMap<ControllerRecord>.For(r => r.Controller.EthernetIPMode?.Name, "ethernet_ip_mode")
         ColumnMap<ControllerRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<ControllerRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        return [new ControllerRecord(snapshot.SnapshotId, source.Controller)];
-    }
 }
 
 /// <summary>

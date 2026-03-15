@@ -1,28 +1,26 @@
+using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Data.Sqlite.Imports;
+namespace LogixDb.Data.SqlServer.Imports;
 
 /// <summary>
-/// Handles the import of Add-On Instruction (AOI) operand records from a LogixDb snapshot into an SQLite database.
-/// This class processes AOI operands by querying them from the snapshot source and inserting
-/// them into the database using the configured AOI operand table mapping.
+/// Represents a class responsible for importing AOI (Add-On Instruction) operands
+/// from a given L5X content structure into a SQL Server database.
 /// </summary>
-internal class SqliteAoiOperandImport : SqliteImport
+internal class SqlServerAoiOperandImport : SqlServerImport
 {
     private readonly AoiOperandMap _map = new();
 
-    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+    /// <inheritdoc />
+    public override Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
-        await using var command = BuildCommand(_map, session);
         var source = snapshot.GetSource();
         var records = new List<AoiOperandRecord>();
 
-        var instructions = source.AddOnInstructions.ToList();
-
-        foreach (var instruction in instructions)
+        foreach (var instruction in source.AddOnInstructions)
         {
             byte index = 0;
 
@@ -47,13 +45,13 @@ internal class SqliteAoiOperandImport : SqliteImport
                     parameter.Name,
                     parameter.DataType,
                     parameter.Description,
-                    parameter.Usage == L5Sharp.Core.TagUsage.InOut || parameter.Usage == L5Sharp.Core.TagUsage.Output
+                    parameter.Usage == TagUsage.InOut || parameter.Usage == TagUsage.Output
                 );
 
                 records.Add(operand);
             }
         }
 
-        await ImportRecords(records, _map, command, token);
+        return ImportRecords(records, _map, session, token);
     }
 }

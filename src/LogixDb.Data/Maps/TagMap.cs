@@ -16,28 +16,18 @@ public class TagMap : TableMap<TagRecord>
     public override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
     [
         ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "container_name"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "program_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Base, "base_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
         ColumnMap<TagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Description, "tag_description"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
         ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<TagRecord>.For(r => r.Tag.Constant, "is_constant"),
         ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<TagRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        return source.Query<Tag>()
-            .SelectMany(t => t.Members())
-            .Select(t => new TagRecord(snapshot.SnapshotId, t));
-    }
 }
 
 /// <summary>

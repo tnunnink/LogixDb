@@ -1,15 +1,24 @@
-using System.Data;
-using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.Sqlite.Imports;
 
 /// <summary>
-/// Represents a class for importing Add-On Instruction (AOI) data into a SQLite database.
+/// Handles the import of Add-On Instruction (AOI) records from a LogixDb snapshot into an SQLite database.
+/// This class processes AOI entities by querying them from the snapshot source and inserting
+/// them into the database using the configured AOI table mapping.
 /// </summary>
-/// <remarks>
-/// This class provides functionality to process and import AOIs into a SQLite database
-/// by using a specific set of preconfigured SQL commands and mappings. It works in
-/// conjunction with a parent transaction to ensure atomic operations are performed safely.
-/// </remarks>
-internal class SqliteAoiImport() : SqliteImport<AoiRecord>(new AoiMap());
+internal class SqliteAoiImport : SqliteImport
+{
+    private readonly AoiMap _map = new();
+
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        await using var command = BuildCommand(_map, session);
+        var source = snapshot.GetSource();
+        var records = source.AddOnInstructions.Select(a => new AoiRecord(snapshot.SnapshotId, a)).ToList();
+        await ImportRecords(records, _map, command, token);
+    }
+}

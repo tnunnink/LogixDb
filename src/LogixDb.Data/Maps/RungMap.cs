@@ -16,22 +16,13 @@ public class RungMap : TableMap<RungRecord>
     public override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
     [
         ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "container_name"),
+        ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "program_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
         ColumnMap<RungRecord>.For(r => r.Rung.Comment, "rung_comment"),
         ColumnMap<RungRecord>.For(r => r.Rung.Text, "rung_text"),
         ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<RungRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        return source.Query<Rung>()
-            .Select(r => new RungRecord(snapshot.SnapshotId, r));
-    }
 }
 
 /// <summary>

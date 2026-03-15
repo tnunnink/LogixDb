@@ -1,12 +1,24 @@
-using System.Data;
-using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.Sqlite.Imports;
 
 /// <summary>
-/// A class responsible for importing controller data from an L5X file into an SQLite database.
-/// Implements element import for <see cref="Controller"/> objects by extracting the single
-/// controller instance from the L5X content and mapping it to the database using <see cref="ControllerMap"/>.
+/// Handles the import of controller records from a LogixDb snapshot into an SQLite database.
+/// This class processes the controller entity by querying it from the snapshot source and inserting
+/// it into the database using the configured controller table mapping.
 /// </summary>
-internal class SqliteControllerImport() : SqliteImport<ControllerRecord>(new ControllerMap());
+internal class SqliteControllerImport : SqliteImport
+{
+    private readonly ControllerMap _map = new();
+
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        await using var command = BuildCommand(_map, session);
+        var source = snapshot.GetSource();
+        var records = new List<ControllerRecord> { new(snapshot.SnapshotId, source.Controller) };
+        await ImportRecords(records, _map, command, token);
+    }
+}

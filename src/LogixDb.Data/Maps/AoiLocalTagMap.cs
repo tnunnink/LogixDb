@@ -32,16 +32,6 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "constant"),
         ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash", false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<AoiLocalTagRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        return source.AddOnInstructions
-            .SelectMany(aoi => aoi.LocalTags)
-            .Select(t => new AoiLocalTagRecord(snapshot.SnapshotId, t));
-    }
 }
 
 /// <summary>

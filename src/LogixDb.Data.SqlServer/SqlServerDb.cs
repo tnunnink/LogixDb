@@ -39,6 +39,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         new SqlServerAoiImport(),
         new SqlServerAoiParameterImport(),
         new SqlServerAoiOperandImport(),
+        new SqlServerAoiRungImport(),
         new SqlServerModuleImport(),
         new SqlServerTaskImport(),
         new SqlServerProgramImport(),
@@ -130,11 +131,12 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
         await ValidateMigration(token);
         await HandleSnapshotAction(snapshot.TargetKey, action, token);
         await using var session = await SqlServerDbSession.StartAsync(this, token);
+        var options = new ImportOptions();
 
         try
         {
             foreach (var import in _imports)
-                await import.Process(snapshot, session, token);
+                await import.Process(snapshot, session, options, token);
 
             await session.GetTransaction<DbTransaction>().CommitAsync(token);
         }

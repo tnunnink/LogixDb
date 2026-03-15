@@ -22,15 +22,6 @@ public class DataTypeMap : TableMap<DataTypeRecord>
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
         ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<DataTypeRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        
-        return source.Query<DataType>()
-            .Select(d => new DataTypeRecord(snapshot.SnapshotId, d));
-    }
 }
 
 /// <summary>

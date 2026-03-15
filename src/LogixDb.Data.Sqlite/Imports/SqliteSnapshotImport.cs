@@ -37,7 +37,8 @@ internal class SqliteSnapshotImport : ILogixDbImport
         VALUES (@snapshot_id, @property_name, @property_value)
         """;
 
-    public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
+    public async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
     {
         token.ThrowIfCancellationRequested();
         var connection = session.GetConnection<IDbConnection>();

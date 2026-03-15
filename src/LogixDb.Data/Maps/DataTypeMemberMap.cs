@@ -29,16 +29,6 @@ public class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
             "bit_number"),
         ColumnMap<DataTypeMemberRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<DataTypeMemberRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-
-        return source.Query<DataType>()
-            .SelectMany(d => d.Members)
-            .Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m));
-    }
 }
 
 /// <summary>

@@ -14,7 +14,8 @@ public interface ILogixDbImport
     /// </summary>
     /// <param name="snapshot">The snapshot containing the source data to be imported into the database.</param>
     /// <param name="session">The database session providing access to the connection and transaction for executing the import operations.</param>
+    /// <param name="options">Optional configuration settings that control the behavior of the import operation.</param>
     /// <param name="token">A cancellation token that can be used to cancel the import operation.</param>
     /// <returns>A task representing the asynchronous import operation.</returns>
-    Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default);
+    Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options, CancellationToken token);
 }

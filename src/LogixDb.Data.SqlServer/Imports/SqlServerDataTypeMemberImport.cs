@@ -1,15 +1,24 @@
-using System.Data;
 using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.SqlServer.Imports;
 
 /// <summary>
 /// Represents a class for importing data type member data into a SqlServer database.
 /// </summary>
-/// <remarks>
-/// This class provides functionality to process and import data type members into a SqlServer database
-/// by using a specific set of preconfigured SQL commands and mappings. It works in
-/// conjunction with a parent transaction to ensure atomic operations are performed safely.
-/// </remarks>
-internal class SqlServerDataTypeMemberImport() : SqlServerImport<DataTypeMemberRecord>(new DataTypeMemberMap());
+internal class SqlServerDataTypeMemberImport : SqlServerImport
+{
+    private readonly DataTypeMemberMap _map = new();
+
+    /// <inheritdoc />
+    public override Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        var source = snapshot.GetSource();
+        var records = source.DataTypes.SelectMany(d =>
+            d.Members.Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m)));
+        return ImportRecords(records, _map, session, token);
+    }
+}

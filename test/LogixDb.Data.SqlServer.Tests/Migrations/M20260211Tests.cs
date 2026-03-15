@@ -165,7 +165,7 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("routine", "routine_id", "int");
             await AssertColumnDefinition("routine", "snapshot_id", "int");
-            await AssertColumnDefinition("routine", "container_name", "nvarchar");
+            await AssertColumnDefinition("routine", "program_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_type", "nvarchar");
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
@@ -173,7 +173,7 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("routine", "snapshot_id", "container_name", "routine_name");
+            await AssertUniqueIndex("routine", "snapshot_id", "program_name", "routine_name");
             await AssertIndex("routine", "record_hash", "snapshot_id");
         }
     }
@@ -189,7 +189,7 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("rung", "rung_id", "int");
             await AssertColumnDefinition("rung", "snapshot_id", "int");
-            await AssertColumnDefinition("rung", "container_name", "nvarchar");
+            await AssertColumnDefinition("rung", "program_name", "nvarchar");
             await AssertColumnDefinition("rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
@@ -198,7 +198,7 @@ public class M20260211Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertForeignKey("rung", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("rung", "snapshot_id", "container_name", "routine_name", "rung_number");
+            await AssertUniqueIndex("rung", "snapshot_id", "program_name", "routine_name", "rung_number");
             await AssertIndex("rung", "record_hash", "snapshot_id");
         }
     }

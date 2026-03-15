@@ -12,7 +12,7 @@ public class M009CreateRoutineTable : AutoReversingMigration
         Create.Table("routine")
             .WithPrimaryId("routine_id")
             .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("container_name").AsString(128).NotNullable()
+            .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("routine_type").AsString(32).Nullable()
             .WithColumn("routine_description").AsString(512).Nullable()
@@ -21,7 +21,7 @@ public class M009CreateRoutineTable : AutoReversingMigration
         Create.Index()
             .OnTable("routine")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("container_name").Ascending()
+            .OnColumn("program_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .WithOptions().Unique();
 

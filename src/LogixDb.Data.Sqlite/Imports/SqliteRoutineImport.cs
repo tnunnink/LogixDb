@@ -1,15 +1,25 @@
-using System.Data;
 using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Data.Sqlite.Imports;
 
 /// <summary>
-/// Represents a class for importing routine data into a SQLite database.
+/// Handles the import of routine records from a LogixDb snapshot into an SQLite database.
+/// This class processes routine entities by querying them from the snapshot source and inserting
+/// them into the database using the configured routine table mapping.
 /// </summary>
-/// <remarks>
-/// This class provides functionality to process and import routines into a SQLite database
-/// by using a specific set of preconfigured SQL commands and mappings. It works in
-/// conjunction with a parent transaction to ensure atomic operations are performed safely.
-/// </remarks>
-internal class SqliteRoutineImport() : SqliteImport<RoutineRecord>(new RoutineMap());
+internal class SqliteRoutineImport : SqliteImport
+{
+    private readonly RoutineMap _map = new();
+
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token)
+    {
+        await using var command = BuildCommand(_map, session);
+        var source = snapshot.GetSource();
+        var records = source.Query<Routine>().Select(x => new RoutineRecord(snapshot.SnapshotId, x)).ToList();
+        await ImportRecords(records, _map, command, token);
+    }
+}

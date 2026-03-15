@@ -33,31 +33,6 @@ public class ArgumentMap : TableMap<ArgumentRecord>
         /*ColumnMap<ArgumentRecord>.For(r => string.Join('|', r.Argument.Values), "argument_values", hashable: false),*/
         ColumnMap<ArgumentRecord>.For(ComputeHash, "record_hash", false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<ArgumentRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        var id = snapshot.SnapshotId;
-
-        var rungs = source.Query<Rung>().Select(r => new RungRecord(id, r));
-
-        return rungs.SelectMany(rung =>
-        {
-            var rungHash = RungMap.ComputeHash(rung);
-            
-            return rung.Rung.Instructions().SelectMany((instruction, index) =>
-            {
-                var instructionHash = InstructionMap.ComputeHash(
-                    new InstructionRecord(snapshot.SnapshotId, rungHash, (short)index, instruction)
-                );
-
-                return instruction.Arguments.Select((a, i) =>
-                    new ArgumentRecord(snapshot.SnapshotId, instructionHash, (byte)i, a)
-                );
-            });
-        });
-    }
 }
 
 /// <summary>

@@ -39,13 +39,6 @@ public class AoiMap : TableMap<AoiRecord>
         ColumnMap<AoiRecord>.For(r => r.Aoi.Class?.Name, "component_class"),
         ColumnMap<AoiRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<AoiRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        return source.AddOnInstructions.Select(a => new AoiRecord(snapshot.SnapshotId, a));
-    }
 }
 
 /// <summary>

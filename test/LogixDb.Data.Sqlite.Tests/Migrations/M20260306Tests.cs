@@ -50,7 +50,8 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertPrimaryKey("argument", "argument_id");
             await AssertForeignKey("argument", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("argument", "snapshot_id", "instruction_hash");
+            await AssertUniqueIndex("argument", "snapshot_id", "instruction_hash", "argument_index");
+            await AssertIndex("argument", "argument_text", "snapshot_id", "instruction_hash");
             await AssertIndex("argument", "record_hash", "snapshot_id");
         }
     }

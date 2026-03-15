@@ -1,5 +1,4 @@
 using System.Data;
-using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using Microsoft.Data.Sqlite;
 using Task = System.Threading.Tasks.Task;
@@ -7,42 +6,54 @@ using Task = System.Threading.Tasks.Task;
 namespace LogixDb.Data.Sqlite;
 
 /// <summary>
-/// Provides an abstract base class for importing database elements into an SQLite database.
-/// This class maps elements of type <typeparamref name="TRecord"/> to SQLite database tables
-/// using the provided table mapping and performs optimized bulk insertion of data.
+/// Provides an abstract base class for handling the import of data into an SQLite database
+/// within the LogixDb framework. This class defines common functionality and contract adherence
+/// for specific import implementations.
 /// </summary>
-/// <typeparam name="TRecord">
-/// The type of element being imported. This type must implement the <see cref="ILogixElement"/> interface.
-/// </typeparam>
-internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbImport where TRecord : class
+public abstract class SqliteImport : ILogixDbImport
 {
-    /// <summary>
-    /// Represents the mapping configuration between a data model and a database table.
-    /// The variable is used to define and manage the mapping of columns, parameters, and
-    /// other related operations necessary for database interactions.
-    /// </summary>
-    private readonly TableMap<TRecord> _map = map;
+    /// <inheritdoc />
+    public abstract Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+        CancellationToken token);
 
     /// <summary>
-    /// Processes a snapshot and inserts data into the associated SQLite database session.
+    /// Builds and prepares a parameterized SQLite command for inserting records into the database.
+    /// The command is configured with parameters corresponding to the table columns defined in the mapping.
     /// </summary>
-    /// <param name="snapshot">The snapshot containing the source data to be processed.</param>
-    /// <param name="session">The active database session used for SQLite operations.</param>
-    /// <param name="token">An optional cancellation token to observe during the operation.</param>
-    /// <returns>A task that represents the asynchronous processing operation.</returns>
-    public async Task Process(Snapshot snapshot, ILogixDbSession session, CancellationToken token = default)
+    /// <param name="map">The table mapping configuration that defines the columns and their types for the command.</param>
+    /// <param name="session">The active database session used to get the SQLite connection and transaction.</param>
+    /// <returns>A prepared SQLite command ready for execution with parameterized insert operations.</returns>
+    protected static SqliteCommand BuildCommand<TRecord>(TableMap<TRecord> map, ILogixDbSession session)
+        where TRecord : class
     {
-        token.ThrowIfCancellationRequested();
         var connection = session.GetConnection<SqliteConnection>();
         var transaction = session.GetTransaction<SqliteTransaction>();
 
-        await using var command = new SqliteCommand(BuildInsertStatement(_map), connection, transaction);
-        var columns = _map.Columns.ToList();
+        var command = new SqliteCommand(BuildInsertStatement(map), connection, transaction);
+        var columns = map.Columns.ToList();
         columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
         command.Prepare();
 
-        var records = _map.GetRecords(snapshot);
-        var dataTable = _map.GenerateTable(records);
+        return command;
+    }
+
+    /// <summary>
+    /// Imports a collection of records into the SQLite database by generating a data table
+    /// from the records and executing the provided command for each row.
+    /// </summary>
+    /// <param name="records">The collection of records to import into the database.</param>
+    /// <param name="map">The table mapping configuration used to generate the data table from the records.</param>
+    /// <param name="command">The prepared SQLite command used to execute the insert operations.</param>
+    /// <param name="token">An optional cancellation token to observe during the operation.</param>
+    /// <typeparam name="TRecord">The type of record being imported. Must be a reference type.</typeparam>
+    /// <returns>A task that represents the asynchronous import operation.</returns>
+    protected static async Task ImportRecords<TRecord>(
+        IEnumerable<TRecord> records,
+        TableMap<TRecord> map,
+        SqliteCommand command,
+        CancellationToken token) where TRecord : class
+    {
+        var dataTable = map.GenerateTable(records);
 
         foreach (DataRow row in dataTable.Rows)
         {
@@ -67,7 +78,7 @@ internal abstract class SqliteImport<TRecord>(TableMap<TRecord> map) : ILogixDbI
     /// "INSERT INTO {TableName} (snapshot_id, {column names}, record_hash)
     /// VALUES (@snapshot_id, {parameters}, @record_hash);"
     /// </returns>
-    private static string BuildInsertStatement(TableMap<TRecord> map)
+    private static string BuildInsertStatement<TRecord>(TableMap<TRecord> map) where TRecord : class
     {
         var columns = string.Join(", ", map.Columns.Select(c => c.Name));
         var parameters = string.Join(", ", map.Columns.Select(c => $"@{c.Name}"));

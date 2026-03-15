@@ -10,8 +10,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiOperandImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiRungImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiRungImport.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ImportOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiRungMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260311/M019CreateTagCommentTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260312/M020CreateAoiLogicTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260311Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260312Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260311Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260312Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiParameterImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerAoiParameterImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerArgumentImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerArgumentImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerControllerImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerControllerImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeMemberImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerDataTypeMemberImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerInstructionImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerInstructionImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerModuleImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerModuleImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerProgramImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerProgramImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRoutineImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRoutineImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRungImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerRungImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerSnapshotImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTagImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTagImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTaskImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqlServerTaskImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Imports/SqliteAoiOperandImport.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiOperandImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiOperandImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiParameterImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteAoiParameterImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteArgumentImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteArgumentImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteControllerImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteControllerImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteDataTypeImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteDataTypeImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteDataTypeMemberImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteDataTypeMemberImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteInstructionImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteInstructionImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteModuleImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteModuleImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteProgramImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteProgramImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteRoutineImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteRoutineImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteRungImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteRungImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteSnapshotImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteSnapshotImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteTagImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteTagImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteTaskImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Imports/SqliteTaskImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDbImport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDbImport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMemberMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/TableMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/TableMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260309/M018CreateSnapshotMetadataTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260309/M018CreateSnapshotPropertyTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260309Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260309Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260207Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,10 +122,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9e387381f99f4807bbe1bace84dbc0791d0e00/16/ade923e1/Argument.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9e387381f99f4807bbe1bace84dbc0791d0e00/41/418e22be/Instruction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9e387381f99f4807bbe1bace84dbc0791d0e00/54/eaf6a4c3/Routine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9e387381f99f4807bbe1bace84dbc0791d0e00/cf/dca2e463/ArgumentType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9e387381f99f4807bbe1bace84dbc0791d0e00/f2/057e7d77/AddOnInstruction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1d18f504f3b3b1e92f0922588dd41122d9417b338f4443f214d9ce7334d18c/SqliteCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260311/M019CreateTagCommentTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260312/M020CreateAoiLogicTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -217,6 +296,7 @@
       <workItem from="1772723896741" duration="7473000" />
       <workItem from="1772813330639" duration="76666000" />
       <workItem from="1773191092263" duration="5706000" />
+      <workItem from="1773224240318" duration="41676000" />
     </task>
     <task id="LOCAL-00053" summary="Bump version to 0.4.3 in project files.">
       <option name="closed" value="true" />

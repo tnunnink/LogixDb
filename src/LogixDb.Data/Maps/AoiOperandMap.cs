@@ -22,49 +22,6 @@ public class AoiOperandMap : TableMap<AoiOperandRecord>
         ColumnMap<AoiOperandRecord>.For(r => r.Description, "operand_description"),
         ColumnMap<AoiOperandRecord>.For(r => r.Destructive, "is_destructive")
     ];
-
-    /// <inheritdoc />
-    public override IEnumerable<AoiOperandRecord> GetRecords(Snapshot snapshot)
-    {
-        var source = snapshot.GetSource();
-        var records = new List<AoiOperandRecord>();
-
-        var instructions = source.AddOnInstructions.ToList();
-
-        foreach (var instruction in instructions)
-        {
-            byte index = 0;
-
-            records.Add(new AoiOperandRecord(
-                snapshot.SnapshotId,
-                instruction.Name,
-                index,
-                instruction.Name,
-                instruction.Name,
-                instruction.Description,
-                true
-            ));
-
-            foreach (var parameter in instruction.Parameters.Where(p => p.Required is true))
-            {
-                index++;
-
-                var operand = new AoiOperandRecord(
-                    snapshot.SnapshotId,
-                    instruction.Name,
-                    index,
-                    parameter.Name,
-                    parameter.DataType,
-                    parameter.Description,
-                    parameter.Usage == TagUsage.InOut || parameter.Usage == TagUsage.Output
-                );
-
-                records.Add(operand);
-            }
-        }
-
-        return records;
-    }
 }
 
 /// <summary>

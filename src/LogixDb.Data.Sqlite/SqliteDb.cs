@@ -39,6 +39,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         new SqliteAoiImport(),
         new SqliteAoiParameterImport(),
         new SqliteAoiOperandImport(),
+        new SqliteAoiRungImport(),
         new SqliteModuleImport(),
         new SqliteTaskImport(),
         new SqliteProgramImport(),
@@ -123,11 +124,12 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         await EnsureCreatedAndMigrated();
         await HandleSnapshotAction(snapshot.TargetKey, action, token);
         await using var session = await SqliteDbSession.StartAsync(this, token);
+        var options = new ImportOptions();
 
         try
         {
             foreach (var import in _imports)
-                await import.Process(snapshot, session, token);
+                await import.Process(snapshot, session, options, token);
 
             await session.GetTransaction<SqliteTransaction>().CommitAsync(token);
         }

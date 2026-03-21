@@ -154,13 +154,12 @@ public class ImportCommand : DbCommand
     {
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
 
-        table.AddRow("ID", result.SnapshotId.ToString());
+        table.AddRow("Id", result.SnapshotId.ToString());
         table.AddRow("Key", result.TargetKey);
         table.AddRow("Type", result.TargetType);
         table.AddRow("Name", result.TargetName);
         table.AddRow("Revision", result.SoftwareRevision ?? "?");
-        table.AddRow("Exported", result.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"));
-        table.AddRow("Imported", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("Date", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("User", result.ImportUser);
         table.AddRow("Machine", result.ImportMachine);
         table.AddRow("Hash", result.SourceHash);

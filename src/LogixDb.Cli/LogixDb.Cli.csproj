@@ -24,8 +24,8 @@
 
     <ItemGroup>
         <PackageReference Include="CliWrap" Version="3.10.0"/>
-        <PackageReference Include="L5Sharp" Version="6.0.0-beta.11"/>
-        <PackageReference Include="L5Sharp.Gateway" Version="1.0.1-beta.1"/>
+        <PackageReference Include="L5Sharp" Version="6.0.0" />
+        <PackageReference Include="L5Sharp.Gateway" Version="1.0.1" />
         <PackageReference Include="CliFx" Version="2.3.6"/>
         <PackageReference Include="LogixConverter.Abstractions" Version="0.2.0"/>
         <PackageReference Include="LogixConverter.LogixSdk" Version="0.2.0"/>

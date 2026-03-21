@@ -25,17 +25,15 @@ public class AoiMap : TableMap<AoiRecord>
         ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePreScan, "execute_pre_scan"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePostScan, "execute_post_scan"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.ExecuteEnableInFalse, "execute_enable_in_false"),
-        //todo SQL Server can't import the default date 1/1/0001. It has a minimum range. Need to find a general solution for dates.
-        /*ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedDate, "created_date"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedDate, "created_date"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedBy, "created_by"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.EditedDate, "edited_date"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedBy, "edited_by"),*/
+        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedBy, "edited_by"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.SoftwareRevision?.ToString(), "software_revision"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.AdditionalHelpText, "help_text"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.IsEncrypted, "is_encrypted"),
-        //todo SQL Server can't import the default date 1/1/0001. It has a minimum range. Need to find a general solution for dates.
-        /*ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureID, "signature_id"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureTimestamp, "signature_timestamp"),*/
+        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureID, "signature_id"),
+        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureTimestamp, "signature_timestamp"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Class?.Name, "component_class"),
         ColumnMap<AoiRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];

@@ -24,7 +24,7 @@ public sealed class Snapshot
     public bool IsPartial { get; init; }
     public string? SchemaRevision { get; init; }
     public string? SoftwareRevision { get; init; }
-    public DateTime ExportDate { get; init; } = DateTime.MinValue;
+    public DateTime? ExportDate { get; init; } = DateTime.MinValue;
     public string? ExportUser { get; init; }
     public string? ExportOptions { get; init; }
     public DateTime ImportDate { get; init; } = DateTime.Now;

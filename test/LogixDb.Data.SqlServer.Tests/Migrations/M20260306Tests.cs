@@ -44,15 +44,11 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("argument", "argument_index", "tinyint");
             await AssertColumnDefinition("argument", "argument_type", "nvarchar");
             await AssertColumnDefinition("argument", "argument_text", "nvarchar");
-            await AssertColumnDefinition("argument", "argument_tags", "nvarchar");
-            await AssertColumnDefinition("argument", "argument_values", "nvarchar");
-            await AssertColumnDefinition("argument", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("argument", "argument_id");
             await AssertForeignKey("argument", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("argument", "snapshot_id", "instruction_hash", "argument_index");
-            await AssertIndex("argument", "argument_text", "snapshot_id", "instruction_hash");
-            await AssertIndex("argument", "record_hash", "snapshot_id");
+            await AssertIndex("argument", "snapshot_id", "instruction_hash", "argument_index");
+            await AssertIndex("argument", "snapshot_id", "argument_text");
         }
     }
 }

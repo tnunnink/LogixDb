@@ -14,9 +14,6 @@ namespace LogixDb.Data.Maps;
 /// </remarks>
 public class ArgumentMap : TableMap<ArgumentRecord>
 {
-    private static readonly RungMap RungMap = new();
-    private static readonly InstructionMap InstructionMap = new();
-
     /// <inheritdoc />
     public override string TableName => "argument";
 
@@ -27,11 +24,7 @@ public class ArgumentMap : TableMap<ArgumentRecord>
         ColumnMap<ArgumentRecord>.For(r => r.InstructionHash, "instruction_hash"),
         ColumnMap<ArgumentRecord>.For(r => r.Ordinal, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
-        ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text"),
-        ColumnMap<ArgumentRecord>.For(r => string.Join('|', r.Argument.Tags), "argument_tags", hashable: false),
-        //todo L5Sharp needs to finish this implementation.
-        /*ColumnMap<ArgumentRecord>.For(r => string.Join('|', r.Argument.Values), "argument_values", hashable: false),*/
-        ColumnMap<ArgumentRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text")
     ];
 }
 

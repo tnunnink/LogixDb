@@ -65,12 +65,11 @@ public class ListCommand : DbCommand
 
         var table = new Table().Border(TableBorder.Rounded)
             .AddColumn("Id")
-            .AddColumn("Target Key")
-            .AddColumn("Target Type")
-            .AddColumn("Target Name")
+            .AddColumn("Key")
+            .AddColumn("Type")
+            .AddColumn("Name")
             .AddColumn("Revision")
-            .AddColumn("Exported")
-            .AddColumn("Imported")
+            .AddColumn("Date")
             .AddColumn("User")
             .AddColumn("Machine")
             .AddColumn("Hash");
@@ -83,7 +82,6 @@ public class ListCommand : DbCommand
                 snapshot.TargetType,
                 snapshot.TargetName,
                 snapshot.SoftwareRevision ?? "N/A",
-                snapshot.ExportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.ImportUser,
                 snapshot.ImportMachine,

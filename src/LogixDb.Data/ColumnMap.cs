@@ -196,7 +196,7 @@ public sealed record ColumnMap<T> where T : class
     /// <param name="name">The name of the database column to map the property to.</param>
     /// <param name="hashable">A value indicating whether the column can be used in hashing operations; defaults to <c>true</c>.</param>
     /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the DateTime property and column name.</returns>
-    public static ColumnMap<T> For(Func<T, DateTime> getter, string name, bool hashable = true)
+    public static ColumnMap<T> For(Func<T, DateTime?> getter, string name, bool hashable = true)
     {
         return new ColumnMap<T>
         {

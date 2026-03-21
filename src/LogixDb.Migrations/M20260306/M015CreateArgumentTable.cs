@@ -26,24 +26,15 @@ public class M015CreateArgumentTable : AutoReversingMigration
             .WithColumn("instruction_hash").AsString(32).NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
-            .WithColumn("argument_text").AsString(int.MaxValue).NotNullable()
-            .WithColumn("argument_tags").AsString(int.MaxValue).Nullable()
-            .WithColumn("argument_values").AsString(int.MaxValue).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("argument_text").AsString(255).NotNullable();
 
         Create.Index().OnTable("argument")
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("instruction_hash").Ascending()
-            .OnColumn("argument_index").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("argument_index").Ascending();
 
         Create.Index().OnTable("argument")
-            .OnColumn("argument_text").Ascending()
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("instruction_hash").Ascending();
-        
-        Create.Index().OnTable("argument")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("argument_text").Ascending();
     }
 }

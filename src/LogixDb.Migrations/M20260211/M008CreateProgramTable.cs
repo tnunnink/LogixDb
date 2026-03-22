@@ -10,8 +10,8 @@ public class M008CreateProgramTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("program")
-            .WithPrimaryId("program_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("program_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("program_type").AsString(32).Nullable()
             .WithColumn("program_description").AsString(512).Nullable()

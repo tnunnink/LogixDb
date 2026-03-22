@@ -10,8 +10,8 @@ public class M011CreateAoiTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi")
-            .WithPrimaryId("aoi_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("aoi_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("aoi_name").AsString(128).NotNullable()
             .WithColumn("aoi_revision").AsString(16).Nullable()
             .WithColumn("aoi_revision_extension").AsString(64).Nullable()

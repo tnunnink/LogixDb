@@ -16,9 +16,8 @@ internal class SqliteControllerImport : SqliteImport
     public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
-        await using var command = BuildCommand(_map, session);
         var source = snapshot.GetSource();
         var records = new List<ControllerRecord> { new(snapshot.SnapshotId, source.Controller) };
-        await ImportRecords(records, _map, command, token);
+        await ImportRecords(records, _map, session, token);
     }
 }

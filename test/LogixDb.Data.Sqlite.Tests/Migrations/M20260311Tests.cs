@@ -12,15 +12,14 @@ public class M20260311Tests : SqliteTestFixture
         {
             await AssertTableExists("tag_comment");
 
-            await AssertColumnDefinition("tag_comment", "comment_id", "integer");
+            await AssertColumnDefinition("tag_comment", "comment_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_comment", "snapshot_id", "integer");
-            await AssertColumnDefinition("tag_comment", "program_name", "text");
+            await AssertColumnDefinition("tag_comment", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_comment", "tag_name", "text");
             await AssertColumnDefinition("tag_comment", "tag_comment", "text");
 
             await AssertPrimaryKey("tag_comment", "comment_id");
             await AssertForeignKey("tag_comment", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("tag_comment", "snapshot_id", "program_name", "tag_name");
             await AssertIndex("tag_comment", "tag_name", "snapshot_id");
         }
     }

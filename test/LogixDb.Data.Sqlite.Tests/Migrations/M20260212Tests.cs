@@ -12,7 +12,7 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("aoi");
 
-            await AssertColumnDefinition("aoi", "aoi_id", "integer");
+            await AssertColumnDefinition("aoi", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi", "snapshot_id", "integer");
             await AssertColumnDefinition("aoi", "aoi_name", "text");
             await AssertColumnDefinition("aoi", "aoi_revision", "text");
@@ -51,7 +51,7 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("aoi_parameter");
 
-            await AssertColumnDefinition("aoi_parameter", "parameter_id", "integer");
+            await AssertColumnDefinition("aoi_parameter", "parameter_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_parameter", "snapshot_id", "integer");
             await AssertColumnDefinition("aoi_parameter", "aoi_name", "text");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "text");
@@ -82,7 +82,7 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("module");
 
-            await AssertColumnDefinition("module", "module_id", "integer");
+            await AssertColumnDefinition("module", "module_id", "uniqueidentifier");
             await AssertColumnDefinition("module", "snapshot_id", "integer");
             await AssertColumnDefinition("module", "module_name", "text");
             await AssertColumnDefinition("module", "catalog_number", "text");

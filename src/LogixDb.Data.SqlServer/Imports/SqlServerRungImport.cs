@@ -29,9 +29,8 @@ internal class SqlServerRungImport : SqlServerImport
         foreach (var rung in rungs)
         {
             var rungRecord = new RungRecord(snapshot.SnapshotId, rung);
-            var rungHash = _rungMap.ComputeHash(rungRecord);
             rungRecords.Add(rungRecord);
-            ProcessRung(snapshot.SnapshotId, rungHash, rung, instructionRecords, argumentRecords);
+            ProcessRung(snapshot.SnapshotId, rungRecord.RungId, rung, instructionRecords, argumentRecords);
         }
         
         await ImportRecords(rungRecords, _rungMap, session, token);
@@ -45,43 +44,43 @@ internal class SqlServerRungImport : SqlServerImport
     /// them to the provided collections.
     /// </summary>
     /// <param name="snapshotId">The unique identifier of the snapshot being processed.</param>
-    /// <param name="rungHash">The computed hash of the rung used for identifying uniqueness.</param>
+    /// <param name="runId">The Guid of the rung used for identifying uniqueness.</param>
     /// <param name="rung">The rung to be processed containing instructions and arguments.</param>
     /// <param name="instructionRecords">The collection to which instruction records are added.</param>
     /// <param name="argumentRecords">The collection to which argument records are added.</param>
-    private void ProcessRung(
+    private static void ProcessRung(
         int snapshotId,
-        string rungHash,
+        Guid runId,
         Rung rung,
         List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
         var instructions = rung.Instructions().ToArray();
 
-        for (short i = 0; i < instructions.Length; i++)
+        for (short index = 0; index < instructions.Length; index++)
         {
-            var instruction = instructions[i];
-            var instructionRecord = new InstructionRecord(snapshotId, rungHash, i, instruction);
-            var instructionHash = _instructionMap.ComputeHash(instructionRecord);
+            var instruction = instructions[index];
+            var instructionRecord = new InstructionRecord(snapshotId, runId, index, instruction);
+            var instructionId = instructionRecord.InstructionId;
             instructionRecords.Add(instructionRecord);
 
             var arguments = instruction.Arguments.ToArray();
 
-            for (byte a = 0; a < arguments.Length; a++)
+            for (byte arg = 0; arg < arguments.Length; arg++)
             {
-                var argumentIndex = a;
+                var argumentIndex = arg;
                 var argument = arguments[argumentIndex];
 
                 if (argument.Type == ArgumentType.Expression)
                 {
                     //todo we need a way to get all expression argument including values using L5Sharp.
                     argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(snapshotId, instructionHash, argumentIndex, new Argument(t))
+                        new ArgumentRecord(snapshotId, instructionId, argumentIndex, new Argument(t))
                     ));
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(snapshotId, instructionHash, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(snapshotId, instructionId, argumentIndex, argument));
             }
         }
     }

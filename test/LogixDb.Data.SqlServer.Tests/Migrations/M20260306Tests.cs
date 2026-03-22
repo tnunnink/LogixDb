@@ -12,7 +12,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("instruction");
 
-            await AssertColumnDefinition("instruction", "instruction_id", "int");
+            await AssertColumnDefinition("instruction", "instruction_id", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "snapshot_id", "int");
             await AssertColumnDefinition("instruction", "rung_hash", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_index", "smallint");
@@ -38,7 +38,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("argument");
 
-            await AssertColumnDefinition("argument", "argument_id", "int");
+            await AssertColumnDefinition("argument", "argument_id", "uniqueidentifier");
             await AssertColumnDefinition("argument", "snapshot_id", "int");
             await AssertColumnDefinition("argument", "instruction_hash", "nvarchar");
             await AssertColumnDefinition("argument", "argument_index", "tinyint");

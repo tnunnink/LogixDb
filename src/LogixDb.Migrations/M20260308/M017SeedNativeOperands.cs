@@ -17,6 +17,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
 
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ABL",
             operand_index = 0,
             operand_name = "channel",
@@ -24,6 +25,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ABL",
             operand_index = 1,
             operand_name = "serial_port_control",
@@ -31,6 +33,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ABL",
             operand_index = 2,
             operand_name = "character_count",
@@ -38,6 +41,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ABS",
             operand_index = 0,
             operand_name = "source",
@@ -45,6 +49,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ABS",
             operand_index = 1,
             operand_name = "destination",
@@ -52,6 +57,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACB",
             operand_index = 0,
             operand_name = "channel",
@@ -59,6 +65,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACB",
             operand_index = 1,
             operand_name = "serial_port_control",
@@ -66,6 +73,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACB",
             operand_index = 2,
             operand_name = "character_count",
@@ -73,6 +81,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACL",
             operand_index = 0,
             operand_name = "channel",
@@ -80,6 +89,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACL",
             operand_index = 1,
             operand_name = "clear_serial_port_read",
@@ -87,6 +97,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACL",
             operand_index = 2,
             operand_name = "clear_serial_port_write",
@@ -94,6 +105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACS",
             operand_index = 0,
             operand_name = "source",
@@ -101,6 +113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACS",
             operand_index = 1,
             operand_name = "destination",
@@ -108,6 +121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACOS",
             operand_index = 0,
             operand_name = "source",
@@ -115,6 +129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ACOS",
             operand_index = 1,
             operand_name = "destination",
@@ -122,6 +137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ADD",
             operand_index = 0,
             operand_name = "source_A",
@@ -129,6 +145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ADD",
             operand_index = 1,
             operand_name = "source_B",
@@ -136,6 +153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ADD",
             operand_index = 2,
             operand_name = "destination",
@@ -143,6 +161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AHL",
             operand_index = 0,
             operand_name = "channel",
@@ -150,6 +169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AHL",
             operand_index = 1,
             operand_name = "ANDMask",
@@ -157,6 +177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AHL",
             operand_index = 2,
             operand_name = "ORMask",
@@ -164,6 +185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AHL",
             operand_index = 3,
             operand_name = "serial_port_control",
@@ -171,6 +193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AHL",
             operand_index = 4,
             operand_name = "channel_status",
@@ -178,6 +201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMA",
             operand_index = 0,
             operand_name = "alma_tag",
@@ -185,6 +209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMA",
             operand_index = 1,
             operand_name = "in",
@@ -192,6 +217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMA",
             operand_index = 2,
             operand_name = "program_acknowledge_all",
@@ -199,6 +225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMA",
             operand_index = 3,
             operand_name = "program_disable",
@@ -206,6 +233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMA",
             operand_index = 4,
             operand_name = "program_enable",
@@ -213,6 +241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMD",
             operand_index = 0,
             operand_name = "almd_tag",
@@ -220,6 +249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMD",
             operand_index = 1,
             operand_name = "program_acknowledge",
@@ -227,6 +257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMD",
             operand_index = 2,
             operand_name = "program_reset",
@@ -234,6 +265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMD",
             operand_index = 3,
             operand_name = "program_disable",
@@ -241,6 +273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ALMD",
             operand_index = 4,
             operand_name = "program_enable",
@@ -248,6 +281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AND",
             operand_index = 0,
             operand_name = "source_A",
@@ -255,6 +289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AND",
             operand_index = 1,
             operand_name = "source_B",
@@ -262,6 +297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AND",
             operand_index = 2,
             operand_name = "destination",
@@ -269,6 +305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARD",
             operand_index = 0,
             operand_name = "channel",
@@ -276,6 +313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARD",
             operand_index = 1,
             operand_name = "destination",
@@ -283,6 +321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARD",
             operand_index = 2,
             operand_name = "serial_port_control",
@@ -290,6 +329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARD",
             operand_index = 3,
             operand_name = "string_length",
@@ -297,6 +337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARD",
             operand_index = 4,
             operand_name = "characters_read",
@@ -304,6 +345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARL",
             operand_index = 0,
             operand_name = "channel",
@@ -311,6 +353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARL",
             operand_index = 1,
             operand_name = "destination",
@@ -318,6 +361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARL",
             operand_index = 2,
             operand_name = "serial_port_control",
@@ -325,6 +369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARL",
             operand_index = 3,
             operand_name = "string_length",
@@ -332,6 +377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ARL",
             operand_index = 4,
             operand_name = "characters_read",
@@ -339,6 +385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ASN",
             operand_index = 0,
             operand_name = "source",
@@ -346,6 +393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ASN",
             operand_index = 1,
             operand_name = "destination",
@@ -353,6 +401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ASIN",
             operand_index = 0,
             operand_name = "source",
@@ -360,6 +409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ASIN",
             operand_index = 1,
             operand_name = "destination",
@@ -367,6 +417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ATN",
             operand_index = 0,
             operand_name = "source",
@@ -374,6 +425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ATN",
             operand_index = 1,
             operand_name = "destination",
@@ -381,6 +433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ATAN",
             operand_index = 0,
             operand_name = "source",
@@ -388,6 +441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ATAN",
             operand_index = 1,
             operand_name = "destination",
@@ -395,6 +449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 0,
             operand_name = "avc_tag",
@@ -402,6 +457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 1,
             operand_name = "feedback_type",
@@ -409,6 +465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 2,
             operand_name = "feedback_reation_time",
@@ -416,6 +473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 3,
             operand_name = "delay_type",
@@ -423,6 +481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 4,
             operand_name = "delay_time",
@@ -430,6 +489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 5,
             operand_name = "output_follows_actuate",
@@ -437,6 +497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 6,
             operand_name = "actuate",
@@ -444,6 +505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 7,
             operand_name = "delay_enable",
@@ -451,6 +513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 8,
             operand_name = "feedback_1",
@@ -458,6 +521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 9,
             operand_name = "input_status",
@@ -465,6 +529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 10,
             operand_name = "output_status",
@@ -472,6 +537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVC",
             operand_index = 11,
             operand_name = "reset",
@@ -479,6 +545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 0,
             operand_name = "array",
@@ -486,6 +553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 1,
             operand_name = "dim_to_vary",
@@ -493,6 +561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 2,
             operand_name = "destination",
@@ -500,6 +569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 3,
             operand_name = "control",
@@ -507,6 +577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 4,
             operand_name = "length",
@@ -514,6 +585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AVE",
             operand_index = 5,
             operand_name = "position",
@@ -521,6 +593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWA",
             operand_index = 0,
             operand_name = "channel",
@@ -528,6 +601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWA",
             operand_index = 1,
             operand_name = "source",
@@ -535,6 +609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWA",
             operand_index = 2,
             operand_name = "serial_port_control",
@@ -542,6 +617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWA",
             operand_index = 3,
             operand_name = "string_length",
@@ -549,6 +625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWA",
             operand_index = 4,
             operand_name = "characters_sent",
@@ -556,6 +633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWT",
             operand_index = 0,
             operand_name = "channel",
@@ -563,6 +641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWT",
             operand_index = 1,
             operand_name = "source",
@@ -570,6 +649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWT",
             operand_index = 2,
             operand_name = "serial_port_control",
@@ -577,6 +657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWT",
             operand_index = 3,
             operand_name = "string_length",
@@ -584,6 +665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "AWT",
             operand_index = 4,
             operand_name = "characters_sent",
@@ -591,6 +673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSL",
             operand_index = 0,
             operand_name = "array",
@@ -598,6 +681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSL",
             operand_index = 1,
             operand_name = "control",
@@ -605,6 +689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSL",
             operand_index = 2,
             operand_name = "source_bit",
@@ -612,6 +697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSL",
             operand_index = 3,
             operand_name = "length",
@@ -619,6 +705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSR",
             operand_index = 0,
             operand_name = "array",
@@ -626,6 +713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSR",
             operand_index = 1,
             operand_name = "control",
@@ -633,6 +721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSR",
             operand_index = 2,
             operand_name = "source_bit",
@@ -640,6 +729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BSR",
             operand_index = 3,
             operand_name = "length",
@@ -647,6 +737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BTD",
             operand_index = 0,
             operand_name = "source",
@@ -654,6 +745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BTD",
             operand_index = 1,
             operand_name = "source_bit",
@@ -661,6 +753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BTD",
             operand_index = 2,
             operand_name = "destination",
@@ -668,6 +761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BTD",
             operand_index = 3,
             operand_name = "destination_bit",
@@ -675,6 +769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "BTD",
             operand_index = 4,
             operand_name = "length",
@@ -682,6 +777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 0,
             operand_name = "cbcm_tag",
@@ -689,6 +785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 1,
             operand_name = "ack_type",
@@ -696,6 +793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 2,
             operand_name = "mode",
@@ -703,6 +801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 3,
             operand_name = "takeover_mode",
@@ -710,6 +809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 4,
             operand_name = "enable",
@@ -717,6 +817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 5,
             operand_name = "safety_enable",
@@ -724,6 +825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 6,
             operand_name = "standard_enable",
@@ -731,6 +833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 7,
             operand_name = "arm_continuous",
@@ -738,6 +841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 8,
             operand_name = "start",
@@ -745,6 +849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 9,
             operand_name = "stop_at_top",
@@ -752,6 +857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 10,
             operand_name = "press_in_motion",
@@ -759,6 +865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 11,
             operand_name = "motion_monitor_fault",
@@ -766,6 +873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 12,
             operand_name = "slide_zone",
@@ -773,6 +881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBCM",
             operand_index = 13,
             operand_name = "safety_enable_ack",
@@ -780,6 +889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 0,
             operand_name = "cbim_tag",
@@ -787,6 +897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 1,
             operand_name = "ack_type",
@@ -794,6 +905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 2,
             operand_name = "inch_time",
@@ -801,6 +913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 3,
             operand_name = "enable",
@@ -808,6 +921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 4,
             operand_name = "safety_enable",
@@ -815,6 +929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 5,
             operand_name = "standard_enable",
@@ -822,6 +937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 6,
             operand_name = "start",
@@ -829,6 +945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 7,
             operand_name = "press_in_motion",
@@ -836,6 +953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 8,
             operand_name = "motion_monitor_fault",
@@ -843,6 +961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 9,
             operand_name = "slide_zone",
@@ -850,6 +969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBIM",
             operand_index = 10,
             operand_name = "safety_enable_ack",
@@ -857,6 +977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 0,
             operand_name = "cbssm_tag",
@@ -864,6 +985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 1,
             operand_name = "ack_type",
@@ -871,6 +993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 2,
             operand_name = "takeover_mode",
@@ -878,6 +1001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 3,
             operand_name = "enable",
@@ -885,6 +1009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 4,
             operand_name = "safety_enable",
@@ -892,6 +1017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 5,
             operand_name = "standard_enable",
@@ -899,6 +1025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 6,
             operand_name = "start",
@@ -906,6 +1033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 7,
             operand_name = "press_in_motion",
@@ -913,6 +1041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 8,
             operand_name = "motion_monitor_fault",
@@ -920,6 +1049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 9,
             operand_name = "slide_zone",
@@ -927,6 +1057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CBSSM",
             operand_index = 10,
             operand_name = "saefty_enable_ack",
@@ -934,6 +1065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CLR",
             operand_index = 0,
             operand_name = "destination",
@@ -941,6 +1073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CMP",
             operand_index = 0,
             operand_name = "expression",
@@ -948,6 +1081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CONCAT",
             operand_index = 0,
             operand_name = "sourceA",
@@ -955,6 +1089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CONCAT",
             operand_index = 1,
             operand_name = "sourceB",
@@ -962,6 +1097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CONCAT",
             operand_index = 2,
             operand_name = "destination",
@@ -969,6 +1105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "COP",
             operand_index = 0,
             operand_name = "source",
@@ -976,6 +1113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "COP",
             operand_index = 1,
             operand_name = "destination",
@@ -983,6 +1121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "COP",
             operand_index = 2,
             operand_name = "length",
@@ -990,6 +1129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "COS",
             operand_index = 0,
             operand_name = "source",
@@ -997,6 +1137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "COS",
             operand_index = 1,
             operand_name = "destination",
@@ -1004,6 +1145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 0,
             operand_name = "cpm_tag",
@@ -1011,6 +1153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 1,
             operand_name = "cam_profile",
@@ -1018,6 +1161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 2,
             operand_name = "enable",
@@ -1025,6 +1169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 3,
             operand_name = "brake_cam",
@@ -1032,6 +1177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 4,
             operand_name = "takeover_cam",
@@ -1039,6 +1185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 5,
             operand_name = "dynamic_cam",
@@ -1046,6 +1193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 6,
             operand_name = "input_status",
@@ -1053,6 +1201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 7,
             operand_name = "reverse",
@@ -1060,6 +1209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 8,
             operand_name = "press_motion_status",
@@ -1067,6 +1217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPM",
             operand_index = 9,
             operand_name = "reset",
@@ -1074,6 +1225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPS",
             operand_index = 0,
             operand_name = "source",
@@ -1081,6 +1233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPS",
             operand_index = 1,
             operand_name = "destination",
@@ -1088,6 +1241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPS",
             operand_index = 2,
             operand_name = "length",
@@ -1095,6 +1249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPT",
             operand_index = 0,
             operand_name = "destination",
@@ -1102,6 +1257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CPT",
             operand_index = 1,
             operand_name = "expression",
@@ -1109,6 +1265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 0,
             operand_name = "crout_tag",
@@ -1116,6 +1273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 1,
             operand_name = "feedback_type",
@@ -1123,6 +1281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 2,
             operand_name = "feedback_reaction_time",
@@ -1130,6 +1289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 3,
             operand_name = "actuate",
@@ -1137,6 +1297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 4,
             operand_name = "feedback_1",
@@ -1144,6 +1305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 5,
             operand_name = "feedback_2",
@@ -1151,6 +1313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 6,
             operand_name = "input_status",
@@ -1158,6 +1321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 7,
             operand_name = "output_status",
@@ -1165,6 +1329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CROUT",
             operand_index = 8,
             operand_name = "reset",
@@ -1172,6 +1337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 0,
             operand_name = "csm_tag",
@@ -1179,6 +1345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 1,
             operand_name = "mechanical_delay_timer",
@@ -1186,6 +1353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 2,
             operand_name = "max_pulse_period",
@@ -1193,6 +1361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 3,
             operand_name = "motion_request",
@@ -1200,6 +1369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 4,
             operand_name = "channel_A",
@@ -1207,6 +1377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 5,
             operand_name = "channel_B",
@@ -1214,6 +1385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 6,
             operand_name = "input_status",
@@ -1221,6 +1393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CSM",
             operand_index = 7,
             operand_name = "reset",
@@ -1228,6 +1401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTD",
             operand_index = 0,
             operand_name = "counter",
@@ -1235,6 +1409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTD",
             operand_index = 1,
             operand_name = "preset",
@@ -1242,6 +1417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTD",
             operand_index = 2,
             operand_name = "accum",
@@ -1249,6 +1425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTU",
             operand_index = 0,
             operand_name = "counter",
@@ -1256,6 +1433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTU",
             operand_index = 1,
             operand_name = "preset",
@@ -1263,6 +1441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "CTU",
             operand_index = 2,
             operand_name = "accum",
@@ -1270,6 +1449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 0,
             operand_name = "dcm_tag",
@@ -1277,6 +1457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1284,6 +1465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 2,
             operand_name = "input_type",
@@ -1291,6 +1473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 3,
             operand_name = "descrepancy_time",
@@ -1298,6 +1481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 4,
             operand_name = "channel_A",
@@ -1305,6 +1489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 5,
             operand_name = "channel_B",
@@ -1312,6 +1497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 6,
             operand_name = "input_status",
@@ -1319,6 +1505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCM",
             operand_index = 7,
             operand_name = "reset",
@@ -1326,6 +1513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 0,
             operand_name = "dcs_tag",
@@ -1333,6 +1521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1340,6 +1529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 2,
             operand_name = "input_type",
@@ -1347,6 +1537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 3,
             operand_name = "discrepancy_time",
@@ -1354,6 +1545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 4,
             operand_name = "restart_type",
@@ -1361,6 +1553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 5,
             operand_name = "cold_start_type",
@@ -1368,6 +1561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 6,
             operand_name = "channel_A",
@@ -1375,6 +1569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 7,
             operand_name = "channel_B",
@@ -1382,6 +1577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 8,
             operand_name = "input_status",
@@ -1389,6 +1585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCS",
             operand_index = 9,
             operand_name = "reset",
@@ -1396,6 +1593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 0,
             operand_name = "dcsrt_tag",
@@ -1403,6 +1601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1410,6 +1609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 2,
             operand_name = "input_type",
@@ -1417,6 +1617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 3,
             operand_name = "discrepancy_time",
@@ -1424,6 +1625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 4,
             operand_name = "enable",
@@ -1431,6 +1633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 5,
             operand_name = "channel_A",
@@ -1438,6 +1641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 6,
             operand_name = "channel_B",
@@ -1445,6 +1649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 7,
             operand_name = "input_status",
@@ -1452,6 +1657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSRT",
             operand_index = 8,
             operand_name = "reset",
@@ -1459,6 +1665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 0,
             operand_name = "dcst_tag",
@@ -1466,6 +1673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1473,6 +1681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 2,
             operand_name = "input_type",
@@ -1480,6 +1689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 3,
             operand_name = "discrepancy_time",
@@ -1487,6 +1697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 4,
             operand_name = "restart_type",
@@ -1494,6 +1705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 5,
             operand_name = "cold_start_type",
@@ -1501,6 +1713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 6,
             operand_name = "channel_A",
@@ -1508,6 +1721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 7,
             operand_name = "channel_B",
@@ -1515,6 +1729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 8,
             operand_name = "test_request",
@@ -1522,6 +1737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 9,
             operand_name = "input_status",
@@ -1529,6 +1745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCST",
             operand_index = 10,
             operand_name = "reset",
@@ -1536,6 +1753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 0,
             operand_name = "dcstm_tag",
@@ -1543,6 +1761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1550,6 +1769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 2,
             operand_name = "input_type",
@@ -1557,6 +1777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 3,
             operand_name = "discrepancy_time",
@@ -1564,6 +1785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 4,
             operand_name = "restart_type",
@@ -1571,6 +1793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 5,
             operand_name = "cold_start_type",
@@ -1578,6 +1801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 6,
             operand_name = "test_type",
@@ -1585,6 +1809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 7,
             operand_name = "test_time",
@@ -1592,6 +1817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 8,
             operand_name = "channel_A",
@@ -1599,6 +1825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 9,
             operand_name = "channel_B",
@@ -1606,6 +1833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 10,
             operand_name = "test_request",
@@ -1613,6 +1841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 11,
             operand_name = "mute",
@@ -1620,6 +1849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 12,
             operand_name = "muting_lamp_status",
@@ -1627,6 +1857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 13,
             operand_name = "input_status",
@@ -1634,6 +1865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTM",
             operand_index = 14,
             operand_name = "reset",
@@ -1641,6 +1873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 0,
             operand_name = "dcstl_tag",
@@ -1648,6 +1881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 1,
             operand_name = "safety_function",
@@ -1655,6 +1889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 2,
             operand_name = "input_type",
@@ -1662,6 +1897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 3,
             operand_name = "discrepancy_time",
@@ -1669,6 +1905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 4,
             operand_name = "restart_type",
@@ -1676,6 +1913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 5,
             operand_name = "cold_start_type",
@@ -1683,6 +1921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 6,
             operand_name = "channel_A",
@@ -1690,6 +1929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 7,
             operand_name = "channel_B",
@@ -1697,6 +1937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 8,
             operand_name = "test_request",
@@ -1704,6 +1945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 9,
             operand_name = "unlock_request",
@@ -1711,6 +1953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 10,
             operand_name = "lock_feedback",
@@ -1718,6 +1961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 11,
             operand_name = "hazard_stopped",
@@ -1725,6 +1969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 12,
             operand_name = "input_status",
@@ -1732,6 +1977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DCSTL",
             operand_index = 13,
             operand_name = "reset",
@@ -1739,6 +1985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 0,
             operand_name = "source",
@@ -1746,6 +1993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 1,
             operand_name = "reference",
@@ -1753,6 +2001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 2,
             operand_name = "result",
@@ -1760,6 +2009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 3,
             operand_name = "cmp_control",
@@ -1767,6 +2017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 4,
             operand_name = "length",
@@ -1774,6 +2025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 5,
             operand_name = "position",
@@ -1781,6 +2033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 6,
             operand_name = "result_control",
@@ -1788,6 +2041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 7,
             operand_name = "result_length",
@@ -1795,6 +2049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DDT",
             operand_index = 8,
             operand_name = "result_position",
@@ -1802,6 +2057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DEG",
             operand_index = 0,
             operand_name = "source",
@@ -1809,6 +2065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DEG",
             operand_index = 1,
             operand_name = "destination",
@@ -1816,6 +2073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DELETE",
             operand_index = 0,
             operand_name = "source",
@@ -1823,6 +2081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DELETE",
             operand_index = 1,
             operand_name = "quantity",
@@ -1830,6 +2089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DELETE",
             operand_index = 2,
             operand_name = "start",
@@ -1837,6 +2097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DELETE",
             operand_index = 3,
             operand_name = "destination",
@@ -1844,6 +2105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 0,
             operand_name = "din_tag",
@@ -1851,6 +2113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 1,
             operand_name = "reset_type",
@@ -1858,6 +2121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 2,
             operand_name = "channel_A",
@@ -1865,6 +2129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 3,
             operand_name = "channel_B",
@@ -1872,6 +2137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 4,
             operand_name = "circuit_reset",
@@ -1879,6 +2145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIN",
             operand_index = 5,
             operand_name = "fault_reset",
@@ -1886,6 +2153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIV",
             operand_index = 0,
             operand_name = "source_A",
@@ -1893,6 +2161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIV",
             operand_index = 1,
             operand_name = "source_B",
@@ -1900,6 +2169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DIV",
             operand_index = 2,
             operand_name = "destination",
@@ -1907,6 +2177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DTOS",
             operand_index = 0,
             operand_name = "source",
@@ -1914,6 +2185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DTOS",
             operand_index = 1,
             operand_name = "destination",
@@ -1921,6 +2193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DTR",
             operand_index = 0,
             operand_name = "source",
@@ -1928,6 +2201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DTR",
             operand_index = 1,
             operand_name = "mask",
@@ -1935,6 +2209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "DTR",
             operand_index = 2,
             operand_name = "reference",
@@ -1942,6 +2217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 0,
             operand_name = "enpen_tag",
@@ -1949,6 +2225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 1,
             operand_name = "reset_type",
@@ -1956,6 +2233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 2,
             operand_name = "channel_A",
@@ -1963,6 +2241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 3,
             operand_name = "channel_B",
@@ -1970,6 +2249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 4,
             operand_name = "circuit_reset",
@@ -1977,6 +2257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ENPEN",
             operand_index = 5,
             operand_name = "fault_reset",
@@ -1984,6 +2265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EOT",
             operand_index = 0,
             operand_name = "data_bit",
@@ -1991,6 +2273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 0,
             operand_name = "epms_tag",
@@ -1998,6 +2281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 1,
             operand_name = "input_1",
@@ -2005,6 +2289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 2,
             operand_name = "input_2",
@@ -2012,6 +2297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 3,
             operand_name = "input_3",
@@ -2019,6 +2305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 4,
             operand_name = "input_4",
@@ -2026,6 +2313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 5,
             operand_name = "input_5",
@@ -2033,6 +2321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 6,
             operand_name = "input_6",
@@ -2040,6 +2329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 7,
             operand_name = "input_7",
@@ -2047,6 +2337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 8,
             operand_name = "input_8",
@@ -2054,6 +2345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 9,
             operand_name = "input_status",
@@ -2061,6 +2353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 10,
             operand_name = "lck",
@@ -2068,6 +2361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EPMS",
             operand_index = 11,
             operand_name = "reset",
@@ -2075,6 +2369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EQU",
             operand_index = 0,
             operand_name = "source_A",
@@ -2082,6 +2377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EQU",
             operand_index = 1,
             operand_name = "source_B",
@@ -2089,6 +2385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EQ",
             operand_index = 0,
             operand_name = "source_A",
@@ -2096,6 +2393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EQ",
             operand_index = 1,
             operand_name = "source_B",
@@ -2103,6 +2401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 0,
             operand_name = "estop_tag",
@@ -2110,6 +2409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 1,
             operand_name = "reset_type",
@@ -2117,6 +2417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 2,
             operand_name = "channel_A",
@@ -2124,6 +2425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 3,
             operand_name = "channel_B",
@@ -2131,6 +2433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 4,
             operand_name = "circuit_reset",
@@ -2138,6 +2441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ESTOP",
             operand_index = 5,
             operand_name = "fault_reset",
@@ -2145,6 +2449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EVENT",
             operand_index = 0,
             operand_name = "task",
@@ -2152,6 +2457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 0,
             operand_name = "control",
@@ -2159,6 +2465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 1,
             operand_name = "length",
@@ -2166,6 +2473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 2,
             operand_name = "position",
@@ -2173,6 +2481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 3,
             operand_name = "mode",
@@ -2180,6 +2489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 4,
             operand_name = "destination",
@@ -2187,6 +2497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FAL",
             operand_index = 5,
             operand_name = "expression",
@@ -2194,6 +2505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 0,
             operand_name = "source",
@@ -2201,6 +2513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 1,
             operand_name = "reference",
@@ -2208,6 +2521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 2,
             operand_name = "result",
@@ -2215,6 +2529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 3,
             operand_name = "cmp_control",
@@ -2222,6 +2537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 4,
             operand_name = "length",
@@ -2229,6 +2545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 5,
             operand_name = "position",
@@ -2236,6 +2553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 6,
             operand_name = "result_control",
@@ -2243,6 +2561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 7,
             operand_name = "result_length",
@@ -2250,6 +2569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FBC",
             operand_index = 8,
             operand_name = "result_position",
@@ -2257,6 +2577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFL",
             operand_index = 0,
             operand_name = "source",
@@ -2264,6 +2585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFL",
             operand_index = 1,
             operand_name = "FIFO",
@@ -2271,6 +2593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFL",
             operand_index = 2,
             operand_name = "control",
@@ -2278,6 +2601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFL",
             operand_index = 3,
             operand_name = "length",
@@ -2285,6 +2609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFL",
             operand_index = 4,
             operand_name = "position",
@@ -2292,6 +2617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFU",
             operand_index = 0,
             operand_name = "FIFO",
@@ -2299,6 +2625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFU",
             operand_index = 1,
             operand_name = "destination",
@@ -2306,6 +2633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFU",
             operand_index = 2,
             operand_name = "control",
@@ -2313,6 +2641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFU",
             operand_index = 3,
             operand_name = "length",
@@ -2320,6 +2649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FFU",
             operand_index = 4,
             operand_name = "position",
@@ -2327,6 +2657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FIND",
             operand_index = 0,
             operand_name = "source",
@@ -2334,6 +2665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FIND",
             operand_index = 1,
             operand_name = "search",
@@ -2341,6 +2673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FIND",
             operand_index = 2,
             operand_name = "start",
@@ -2348,6 +2681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FIND",
             operand_index = 3,
             operand_name = "result",
@@ -2355,6 +2689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FLL",
             operand_index = 0,
             operand_name = "source",
@@ -2362,6 +2697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FLL",
             operand_index = 1,
             operand_name = "destination",
@@ -2369,6 +2705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FLL",
             operand_index = 2,
             operand_name = "length",
@@ -2376,6 +2713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FOR",
             operand_index = 0,
             operand_name = "routine_name",
@@ -2383,6 +2721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FOR",
             operand_index = 1,
             operand_name = "index",
@@ -2390,6 +2729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FOR",
             operand_index = 2,
             operand_name = "initial_value",
@@ -2397,6 +2737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FOR",
             operand_index = 3,
             operand_name = "terminal_value",
@@ -2404,6 +2745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FOR",
             operand_index = 4,
             operand_name = "step_size",
@@ -2411,6 +2753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 0,
             operand_name = "fpms_tag",
@@ -2418,6 +2761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 1,
             operand_name = "input_1",
@@ -2425,6 +2769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 2,
             operand_name = "input_2",
@@ -2432,6 +2777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 3,
             operand_name = "input_3",
@@ -2439,6 +2785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 4,
             operand_name = "input_4",
@@ -2446,6 +2793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 5,
             operand_name = "input_5",
@@ -2453,6 +2801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FPMS",
             operand_index = 6,
             operand_name = "fault_reset",
@@ -2460,6 +2809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FRD",
             operand_index = 0,
             operand_name = "source",
@@ -2467,6 +2817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FRD",
             operand_index = 1,
             operand_name = "destination",
@@ -2474,6 +2825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 0,
             operand_name = "fsbm_tag",
@@ -2481,6 +2833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 1,
             operand_name = "restart_type",
@@ -2488,6 +2841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 2,
             operand_name = "S1_S2_time",
@@ -2495,6 +2849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 3,
             operand_name = "S2_LC_time",
@@ -2502,6 +2857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 4,
             operand_name = "LC_S3_time",
@@ -2509,6 +2865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 5,
             operand_name = "S3_S4_time",
@@ -2516,6 +2873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 6,
             operand_name = "maximum_mute_time",
@@ -2523,6 +2881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 7,
             operand_name = "maximum_override_time",
@@ -2530,6 +2889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 8,
             operand_name = "direction",
@@ -2537,6 +2897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 9,
             operand_name = "light_curtain",
@@ -2544,6 +2905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 10,
             operand_name = "sensor_1",
@@ -2551,6 +2913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 11,
             operand_name = "sensor_2",
@@ -2558,6 +2921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 12,
             operand_name = "sensor_3",
@@ -2565,6 +2929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 13,
             operand_name = "sensor_4",
@@ -2572,6 +2937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 14,
             operand_name = "enable_mute",
@@ -2579,6 +2945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 15,
             operand_name = "override",
@@ -2586,6 +2953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 16,
             operand_name = "input_status",
@@ -2593,6 +2961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 17,
             operand_name = "muting_lamp_status",
@@ -2600,6 +2969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSBM",
             operand_index = 18,
             operand_name = "reset",
@@ -2607,6 +2977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSC",
             operand_index = 0,
             operand_name = "control",
@@ -2614,6 +2985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSC",
             operand_index = 1,
             operand_name = "length",
@@ -2621,6 +2993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSC",
             operand_index = 2,
             operand_name = "position",
@@ -2628,6 +3001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSC",
             operand_index = 3,
             operand_name = "mode",
@@ -2635,6 +3009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "FSC",
             operand_index = 4,
             operand_name = "expression",
@@ -2642,6 +3017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GEQ",
             operand_index = 0,
             operand_name = "source_A",
@@ -2649,6 +3025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GEQ",
             operand_index = 1,
             operand_name = "source_B",
@@ -2656,6 +3033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GE",
             operand_index = 0,
             operand_name = "source_A",
@@ -2663,6 +3041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GE",
             operand_index = 1,
             operand_name = "source_B",
@@ -2670,6 +3049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GRT",
             operand_index = 0,
             operand_name = "source_A",
@@ -2677,6 +3057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GRT",
             operand_index = 1,
             operand_name = "source_B",
@@ -2684,6 +3065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GT",
             operand_index = 0,
             operand_name = "source_A",
@@ -2691,6 +3073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GT",
             operand_index = 1,
             operand_name = "source_B",
@@ -2698,6 +3081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GSV",
             operand_index = 0,
             operand_name = "class_name",
@@ -2705,6 +3089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GSV",
             operand_index = 1,
             operand_name = "instance_name",
@@ -2712,6 +3097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GSV",
             operand_index = 2,
             operand_name = "attribute_name",
@@ -2719,6 +3105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "GSV",
             operand_index = 3,
             operand_name = "destination",
@@ -2726,6 +3113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "INSERT",
             operand_index = 0,
             operand_name = "sourceA",
@@ -2733,6 +3121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "INSERT",
             operand_index = 1,
             operand_name = "sourceB",
@@ -2740,6 +3129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "INSERT",
             operand_index = 2,
             operand_name = "start",
@@ -2747,6 +3137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "INSERT",
             operand_index = 3,
             operand_name = "destination",
@@ -2754,6 +3145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "IOT",
             operand_index = 0,
             operand_name = "output_tag",
@@ -2761,6 +3153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JMP",
             operand_index = 0,
             operand_name = "label_name",
@@ -2768,6 +3161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JSR",
             operand_index = 0,
             operand_name = "routine_name",
@@ -2775,6 +3169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JSR",
             operand_index = 1,
             operand_name = "number_of_inputs",
@@ -2782,6 +3177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JSR",
             operand_index = 2,
             operand_name = "parameters",
@@ -2789,6 +3185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JXR",
             operand_index = 0,
             operand_name = "external_routine_name",
@@ -2796,6 +3193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JXR",
             operand_index = 1,
             operand_name = "external_routine_control",
@@ -2803,6 +3201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JXR",
             operand_index = 2,
             operand_name = "parameter",
@@ -2810,6 +3209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "JXR",
             operand_index = 3,
             operand_name = "return_parameter",
@@ -2817,6 +3217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LBL",
             operand_index = 0,
             operand_name = "label_name",
@@ -2824,6 +3225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 0,
             operand_name = "lc_tag",
@@ -2831,6 +3233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 1,
             operand_name = "reset_type",
@@ -2838,6 +3241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 2,
             operand_name = "channel_A",
@@ -2845,6 +3249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 3,
             operand_name = "channel_B",
@@ -2852,6 +3257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 4,
             operand_name = "input_filter_time",
@@ -2859,6 +3265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 5,
             operand_name = "mute_light_curtain",
@@ -2866,6 +3273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 6,
             operand_name = "circuit_reset",
@@ -2873,6 +3281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LC",
             operand_index = 7,
             operand_name = "fault_reset",
@@ -2880,6 +3289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LEQ",
             operand_index = 0,
             operand_name = "source_A",
@@ -2887,6 +3297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LEQ",
             operand_index = 1,
             operand_name = "source_B",
@@ -2894,6 +3305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LE",
             operand_index = 0,
             operand_name = "source_A",
@@ -2901,6 +3313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LE",
             operand_index = 1,
             operand_name = "source_B",
@@ -2908,6 +3321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LES",
             operand_index = 0,
             operand_name = "source_A",
@@ -2915,6 +3329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LES",
             operand_index = 1,
             operand_name = "source_B",
@@ -2922,6 +3337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LT",
             operand_index = 0,
             operand_name = "source_A",
@@ -2929,6 +3345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LT",
             operand_index = 1,
             operand_name = "source_B",
@@ -2936,6 +3353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFL",
             operand_index = 0,
             operand_name = "source",
@@ -2943,6 +3361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFL",
             operand_index = 1,
             operand_name = "LIFO",
@@ -2950,6 +3369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFL",
             operand_index = 2,
             operand_name = "control",
@@ -2957,6 +3377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFL",
             operand_index = 3,
             operand_name = "length",
@@ -2964,6 +3385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFL",
             operand_index = 4,
             operand_name = "position",
@@ -2971,6 +3393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFU",
             operand_index = 0,
             operand_name = "LIFO",
@@ -2978,6 +3401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFU",
             operand_index = 1,
             operand_name = "destination",
@@ -2985,6 +3409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFU",
             operand_index = 2,
             operand_name = "control",
@@ -2992,6 +3417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFU",
             operand_index = 3,
             operand_name = "length",
@@ -2999,6 +3425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LFU",
             operand_index = 4,
             operand_name = "position",
@@ -3006,6 +3433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIM",
             operand_index = 0,
             operand_name = "low_limit",
@@ -3013,6 +3441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIM",
             operand_index = 1,
             operand_name = "test",
@@ -3020,6 +3449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIM",
             operand_index = 2,
             operand_name = "high_limit",
@@ -3027,6 +3457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIMIT",
             operand_index = 0,
             operand_name = "low_limit",
@@ -3034,6 +3465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIMIT",
             operand_index = 1,
             operand_name = "test",
@@ -3041,6 +3473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LIMIT",
             operand_index = 2,
             operand_name = "high_limit",
@@ -3048,6 +3481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LN",
             operand_index = 0,
             operand_name = "source",
@@ -3055,6 +3489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LN",
             operand_index = 1,
             operand_name = "destination",
@@ -3062,6 +3497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LOG",
             operand_index = 0,
             operand_name = "source",
@@ -3069,6 +3505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LOG",
             operand_index = 1,
             operand_name = "destination",
@@ -3076,6 +3513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LOWER",
             operand_index = 0,
             operand_name = "source",
@@ -3083,6 +3521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "LOWER",
             operand_index = 1,
             operand_name = "destination",
@@ -3090,6 +3529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAAT",
             operand_index = 0,
             operand_name = "axis",
@@ -3097,6 +3537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAAT",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3104,6 +3545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAFR",
             operand_index = 0,
             operand_name = "axis",
@@ -3111,6 +3553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAFR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3118,6 +3561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 0,
             operand_name = "slave_axis",
@@ -3125,6 +3569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 1,
             operand_name = "master_axis",
@@ -3132,6 +3577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 2,
             operand_name = "motion_control",
@@ -3139,6 +3585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 3,
             operand_name = "direction",
@@ -3146,6 +3593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 4,
             operand_name = "ratio",
@@ -3153,6 +3601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 5,
             operand_name = "slave_counts",
@@ -3160,6 +3609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 6,
             operand_name = "master_counts",
@@ -3167,6 +3617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 7,
             operand_name = "master_reference",
@@ -3174,6 +3625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 8,
             operand_name = "ratio_format",
@@ -3181,6 +3633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 9,
             operand_name = "clutch",
@@ -3188,6 +3641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 10,
             operand_name = "accel_rate",
@@ -3195,6 +3649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAG",
             operand_index = 11,
             operand_name = "accel_units",
@@ -3202,6 +3657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAH",
             operand_index = 0,
             operand_name = "axis",
@@ -3209,6 +3665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAH",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3216,6 +3673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAHD",
             operand_index = 0,
             operand_name = "axis",
@@ -3223,6 +3681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAHD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3230,6 +3689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAHD",
             operand_index = 2,
             operand_name = "diagnostic_test",
@@ -3237,6 +3697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAHD",
             operand_index = 3,
             operand_name = "observed_direction",
@@ -3244,6 +3705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 0,
             operand_name = "axis",
@@ -3251,6 +3713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3258,6 +3721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 2,
             operand_name = "direction",
@@ -3265,6 +3729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 3,
             operand_name = "speed",
@@ -3272,6 +3737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 4,
             operand_name = "speed_units",
@@ -3279,6 +3745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 5,
             operand_name = "accel_rate",
@@ -3286,6 +3753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 6,
             operand_name = "accel_units",
@@ -3293,6 +3761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 7,
             operand_name = "decel_rate",
@@ -3300,6 +3769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 8,
             operand_name = "decel_units",
@@ -3307,6 +3777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 9,
             operand_name = "profile",
@@ -3314,6 +3785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 10,
             operand_name = "merge",
@@ -3321,6 +3793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAJ",
             operand_index = 11,
             operand_name = "merge_speed",
@@ -3328,6 +3801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 0,
             operand_name = "axis",
@@ -3335,6 +3809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3342,6 +3817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 2,
             operand_name = "move_type",
@@ -3349,6 +3825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 3,
             operand_name = "position",
@@ -3356,6 +3833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 4,
             operand_name = "speed",
@@ -3363,6 +3841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 5,
             operand_name = "speed_units",
@@ -3370,6 +3849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 6,
             operand_name = "accel_rate",
@@ -3377,6 +3857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 7,
             operand_name = "accel_units",
@@ -3384,6 +3865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 8,
             operand_name = "decel_rate",
@@ -3391,6 +3873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 9,
             operand_name = "decel_units",
@@ -3398,6 +3881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 10,
             operand_name = "profile",
@@ -3405,6 +3889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 11,
             operand_name = "merge",
@@ -3412,6 +3897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAM",
             operand_index = 12,
             operand_name = "merge_speed",
@@ -3419,6 +3905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 0,
             operand_name = "axis",
@@ -3426,6 +3913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 1,
             operand_name = "execution_target",
@@ -3433,6 +3921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 2,
             operand_name = "motion_control",
@@ -3440,6 +3929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 3,
             operand_name = "output",
@@ -3447,6 +3937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 4,
             operand_name = "input",
@@ -3454,6 +3945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 5,
             operand_name = "output_cam",
@@ -3461,6 +3953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 6,
             operand_name = "cam_start_position",
@@ -3468,6 +3961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 7,
             operand_name = "cam_end_position",
@@ -3475,6 +3969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 8,
             operand_name = "output_compensation",
@@ -3482,6 +3977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 9,
             operand_name = "execution_mode",
@@ -3489,6 +3985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 10,
             operand_name = "execution_schedule",
@@ -3496,6 +3993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 11,
             operand_name = "axis_arm_position",
@@ -3503,6 +4001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 12,
             operand_name = "cam_arm_position",
@@ -3510,6 +4009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAOC",
             operand_index = 13,
             operand_name = "reference",
@@ -3517,6 +4017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 0,
             operand_name = "slave_axis",
@@ -3524,6 +4025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 1,
             operand_name = "master_axis",
@@ -3531,6 +4033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 2,
             operand_name = "motion_control",
@@ -3538,6 +4041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 3,
             operand_name = "direction",
@@ -3545,6 +4049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 4,
             operand_name = "cam_profile",
@@ -3552,6 +4057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 5,
             operand_name = "slave_scaling",
@@ -3559,6 +4065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 6,
             operand_name = "master_scaling",
@@ -3566,6 +4073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 7,
             operand_name = "execution_mode",
@@ -3573,6 +4081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 8,
             operand_name = "execution_schedule",
@@ -3580,6 +4089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 9,
             operand_name = "master_lock_position",
@@ -3587,6 +4097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 10,
             operand_name = "cam_lock_position",
@@ -3594,6 +4105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 11,
             operand_name = "master_reference",
@@ -3601,6 +4113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAPC",
             operand_index = 12,
             operand_name = "master_direction",
@@ -3608,6 +4121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 0,
             operand_name = "axis",
@@ -3615,6 +4129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3622,6 +4137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 2,
             operand_name = "trigger_condition",
@@ -3629,6 +4145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 3,
             operand_name = "windowed_registration",
@@ -3636,6 +4153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 4,
             operand_name = "minimum_position",
@@ -3643,6 +4161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAR",
             operand_index = 5,
             operand_name = "maximum_position",
@@ -3650,6 +4169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 0,
             operand_name = "axis",
@@ -3657,6 +4177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3664,6 +4185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 2,
             operand_name = "stop_type",
@@ -3671,6 +4193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 3,
             operand_name = "change_decel",
@@ -3678,6 +4201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 4,
             operand_name = "decel_rate",
@@ -3685,6 +4209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAS",
             operand_index = 5,
             operand_name = "decel_units",
@@ -3692,6 +4217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MASD",
             operand_index = 0,
             operand_name = "axis",
@@ -3699,6 +4225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MASD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3706,6 +4233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MASR",
             operand_index = 0,
             operand_name = "axis",
@@ -3713,6 +4241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MASR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3720,6 +4249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 0,
             operand_name = "axis",
@@ -3727,6 +4257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3734,6 +4265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 2,
             operand_name = "direction",
@@ -3741,6 +4273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 3,
             operand_name = "cam_profile",
@@ -3748,6 +4281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 4,
             operand_name = "distance_scaling",
@@ -3755,6 +4289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 5,
             operand_name = "time_scaling",
@@ -3762,6 +4297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 6,
             operand_name = "execution_mode",
@@ -3769,6 +4305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MATC",
             operand_index = 7,
             operand_name = "execution_schedule",
@@ -3776,6 +4313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAW",
             operand_index = 0,
             operand_name = "axis",
@@ -3783,6 +4321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAW",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3790,6 +4329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAW",
             operand_index = 2,
             operand_name = "trigger_condition",
@@ -3797,6 +4337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MAW",
             operand_index = 3,
             operand_name = "position",
@@ -3804,6 +4345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -3811,6 +4353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3818,6 +4361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 2,
             operand_name = "motion_type",
@@ -3825,6 +4369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 3,
             operand_name = "change_speed",
@@ -3832,6 +4377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 4,
             operand_name = "speed",
@@ -3839,6 +4385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 5,
             operand_name = "speed_units",
@@ -3846,6 +4393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 6,
             operand_name = "change_accel",
@@ -3853,6 +4401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 7,
             operand_name = "accel_rate",
@@ -3860,6 +4409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 8,
             operand_name = "accel_units",
@@ -3867,6 +4417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 9,
             operand_name = "change_decel",
@@ -3874,6 +4425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 10,
             operand_name = "decel_rate",
@@ -3881,6 +4433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 11,
             operand_name = "decel_units",
@@ -3888,6 +4441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCD",
             operand_index = 12,
             operand_name = "scope",
@@ -3895,6 +4449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -3902,6 +4457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 1,
             operand_name = "motion_control",
@@ -3909,6 +4465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 2,
             operand_name = "move_type",
@@ -3916,6 +4473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 3,
             operand_name = "position",
@@ -3923,6 +4481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 4,
             operand_name = "circle_type",
@@ -3930,6 +4489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 5,
             operand_name = "radius",
@@ -3937,6 +4497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 6,
             operand_name = "direction",
@@ -3944,6 +4505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 7,
             operand_name = "speed",
@@ -3951,6 +4513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 8,
             operand_name = "speed_units",
@@ -3958,6 +4521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 9,
             operand_name = "accel_rate",
@@ -3965,6 +4529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 10,
             operand_name = "accel_units",
@@ -3972,6 +4537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 11,
             operand_name = "decel_rate",
@@ -3979,6 +4545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 12,
             operand_name = "decel_units",
@@ -3986,6 +4553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 13,
             operand_name = "profile",
@@ -3993,6 +4561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 14,
             operand_name = "termination_type",
@@ -4000,6 +4569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 15,
             operand_name = "merge",
@@ -4007,6 +4577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCM",
             operand_index = 16,
             operand_name = "merge_speed",
@@ -4014,6 +4585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 0,
             operand_name = "motion_control",
@@ -4021,6 +4593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 1,
             operand_name = "cam",
@@ -4028,6 +4601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 2,
             operand_name = "length",
@@ -4035,6 +4609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 3,
             operand_name = "start_slope",
@@ -4042,6 +4617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 4,
             operand_name = "end_slope",
@@ -4049,6 +4625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCCP",
             operand_index = 5,
             operand_name = "cam_profile",
@@ -4056,6 +4633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -4063,6 +4641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4070,6 +4649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 2,
             operand_name = "move_type",
@@ -4077,6 +4657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 3,
             operand_name = "position",
@@ -4084,6 +4665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 4,
             operand_name = "speed",
@@ -4091,6 +4673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 5,
             operand_name = "speed_units",
@@ -4098,6 +4681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 6,
             operand_name = "accel_rate",
@@ -4105,6 +4689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 7,
             operand_name = "accel_units",
@@ -4112,6 +4697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 8,
             operand_name = "decel_rate",
@@ -4119,6 +4705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 9,
             operand_name = "decel_units",
@@ -4126,6 +4713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 10,
             operand_name = "profile",
@@ -4133,6 +4721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 11,
             operand_name = "termination_type",
@@ -4140,6 +4729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 12,
             operand_name = "merge",
@@ -4147,6 +4737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCLM",
             operand_index = 13,
             operand_name = "merge_speed",
@@ -4154,6 +4745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 0,
             operand_name = "axis",
@@ -4161,6 +4753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4168,6 +4761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 2,
             operand_name = "motion_type",
@@ -4175,6 +4769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 3,
             operand_name = "change_speed",
@@ -4182,6 +4777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 4,
             operand_name = "speed",
@@ -4189,6 +4785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 5,
             operand_name = "change_accel",
@@ -4196,6 +4793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 6,
             operand_name = "accel_rate",
@@ -4203,6 +4801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 7,
             operand_name = "change_decel",
@@ -4210,6 +4809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 8,
             operand_name = "decel_rate",
@@ -4217,6 +4817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 9,
             operand_name = "speed_units",
@@ -4224,6 +4825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 10,
             operand_name = "accel_units",
@@ -4231,6 +4833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCD",
             operand_index = 11,
             operand_name = "decel_units",
@@ -4238,6 +4841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -4245,6 +4849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4252,6 +4857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 2,
             operand_name = "stop_type",
@@ -4259,6 +4865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 3,
             operand_name = "change_decel",
@@ -4266,6 +4873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 4,
             operand_name = "decel_rate",
@@ -4273,6 +4881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCS",
             operand_index = 5,
             operand_name = "decel_units",
@@ -4280,6 +4889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSD",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -4287,6 +4897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4294,6 +4905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSR",
             operand_index = 0,
             operand_name = "coordinate_system",
@@ -4301,6 +4913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4308,6 +4921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 0,
             operand_name = "motion_control",
@@ -4315,6 +4929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 1,
             operand_name = "cam_profile",
@@ -4322,6 +4937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 2,
             operand_name = "master_value",
@@ -4329,6 +4945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 3,
             operand_name = "slave_value",
@@ -4336,6 +4953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 4,
             operand_name = "slope_value",
@@ -4343,6 +4961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCSV",
             operand_index = 5,
             operand_name = "slope_derivative",
@@ -4350,6 +4969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCT",
             operand_index = 0,
             operand_name = "source_system",
@@ -4357,6 +4977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCT",
             operand_index = 1,
             operand_name = "target_system",
@@ -4364,6 +4985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCT",
             operand_index = 2,
             operand_name = "motion_control",
@@ -4371,6 +4993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCT",
             operand_index = 3,
             operand_name = "orientation",
@@ -4378,6 +5001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCT",
             operand_index = 4,
             operand_name = "translation",
@@ -4385,6 +5009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 0,
             operand_name = "source_system",
@@ -4392,6 +5017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 1,
             operand_name = "target_system",
@@ -4399,6 +5025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 2,
             operand_name = "motion_control",
@@ -4406,6 +5033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 3,
             operand_name = "orientation",
@@ -4413,6 +5041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 4,
             operand_name = "translation",
@@ -4420,6 +5049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 5,
             operand_name = "transform_direction",
@@ -4427,6 +5057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 6,
             operand_name = "reference_position",
@@ -4434,6 +5065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MCTP",
             operand_index = 7,
             operand_name = "transform_position",
@@ -4441,6 +5073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDF",
             operand_index = 0,
             operand_name = "axis",
@@ -4448,6 +5081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDF",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4455,6 +5089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDO",
             operand_index = 0,
             operand_name = "axis",
@@ -4462,6 +5097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDO",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4469,6 +5105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDO",
             operand_index = 2,
             operand_name = "drive_output",
@@ -4476,6 +5113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDO",
             operand_index = 3,
             operand_name = "drive_units",
@@ -4483,6 +5121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDOC",
             operand_index = 0,
             operand_name = "axis",
@@ -4490,6 +5129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDOC",
             operand_index = 1,
             operand_name = "execution_target",
@@ -4497,6 +5137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDOC",
             operand_index = 2,
             operand_name = "motion_control",
@@ -4504,6 +5145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDOC",
             operand_index = 3,
             operand_name = "disarm_type",
@@ -4511,6 +5153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDR",
             operand_index = 0,
             operand_name = "axis",
@@ -4518,6 +5161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4525,6 +5169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDW",
             operand_index = 0,
             operand_name = "axis",
@@ -4532,6 +5177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MDW",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4539,6 +5185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MEQ",
             operand_index = 0,
             operand_name = "source",
@@ -4546,6 +5193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MEQ",
             operand_index = 1,
             operand_name = "mask",
@@ -4553,6 +5201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MEQ",
             operand_index = 2,
             operand_name = "compare",
@@ -4560,6 +5209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGS",
             operand_index = 0,
             operand_name = "group",
@@ -4567,6 +5217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGS",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4574,6 +5225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGS",
             operand_index = 2,
             operand_name = "stop_mode",
@@ -4581,6 +5233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSD",
             operand_index = 0,
             operand_name = "group",
@@ -4588,6 +5241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4595,6 +5249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSP",
             operand_index = 0,
             operand_name = "group",
@@ -4602,6 +5257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSP",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4609,6 +5265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSR",
             operand_index = 0,
             operand_name = "group",
@@ -4616,6 +5273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MGSR",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4623,6 +5281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MID",
             operand_index = 0,
             operand_name = "source",
@@ -4630,6 +5289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MID",
             operand_index = 1,
             operand_name = "quantity",
@@ -4637,6 +5297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MID",
             operand_index = 2,
             operand_name = "start",
@@ -4644,6 +5305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MID",
             operand_index = 3,
             operand_name = "destination",
@@ -4651,6 +5313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 0,
             operand_name = "mmvc_tag",
@@ -4658,6 +5321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 1,
             operand_name = "enable",
@@ -4665,6 +5329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 2,
             operand_name = "keyswitch",
@@ -4672,6 +5337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 3,
             operand_name = "bottom",
@@ -4679,6 +5345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 4,
             operand_name = "flywheel_stopped",
@@ -4686,6 +5353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 5,
             operand_name = "safety_enable",
@@ -4693,6 +5361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 6,
             operand_name = "actuate",
@@ -4700,6 +5369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 7,
             operand_name = "input_status",
@@ -4707,6 +5377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 8,
             operand_name = "output_status",
@@ -4714,6 +5385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MMVC",
             operand_index = 9,
             operand_name = "reset",
@@ -4721,6 +5393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOD",
             operand_index = 0,
             operand_name = "source_A",
@@ -4728,6 +5401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOD",
             operand_index = 1,
             operand_name = "source_B",
@@ -4735,6 +5409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOD",
             operand_index = 2,
             operand_name = "destination",
@@ -4742,6 +5417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOV",
             operand_index = 0,
             operand_name = "source",
@@ -4749,6 +5425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOV",
             operand_index = 1,
             operand_name = "destination",
@@ -4756,6 +5433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOVE",
             operand_index = 0,
             operand_name = "source",
@@ -4763,6 +5441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MOVE",
             operand_index = 1,
             operand_name = "destination",
@@ -4770,6 +5449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRAT",
             operand_index = 0,
             operand_name = "axis",
@@ -4777,6 +5457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRAT",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4784,6 +5465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRHD",
             operand_index = 0,
             operand_name = "axis",
@@ -4791,6 +5473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRHD",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4798,6 +5481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRHD",
             operand_index = 2,
             operand_name = "diagnostic_test",
@@ -4805,6 +5489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRP",
             operand_index = 0,
             operand_name = "axis",
@@ -4812,6 +5497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRP",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4819,6 +5505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRP",
             operand_index = 2,
             operand_name = "type",
@@ -4826,6 +5513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRP",
             operand_index = 3,
             operand_name = "position_select",
@@ -4833,6 +5521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MRP",
             operand_index = 4,
             operand_name = "position",
@@ -4840,6 +5529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MSF",
             operand_index = 0,
             operand_name = "axis",
@@ -4847,6 +5537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MSF",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4854,6 +5545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MSG",
             operand_index = 0,
             operand_name = "message_control",
@@ -4861,6 +5553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MSO",
             operand_index = 0,
             operand_name = "axis",
@@ -4868,6 +5561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MSO",
             operand_index = 1,
             operand_name = "motion_control",
@@ -4875,6 +5569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MUL",
             operand_index = 0,
             operand_name = "source_A",
@@ -4882,6 +5577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MUL",
             operand_index = 1,
             operand_name = "source_B",
@@ -4889,6 +5585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MUL",
             operand_index = 2,
             operand_name = "destination",
@@ -4896,6 +5593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 0,
             operand_name = "mvc_tag",
@@ -4903,6 +5601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 1,
             operand_name = "feedback_type",
@@ -4910,6 +5609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 2,
             operand_name = "feedback_reaction_time",
@@ -4917,6 +5617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 3,
             operand_name = "actuate",
@@ -4924,6 +5625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 4,
             operand_name = "feedback_1",
@@ -4931,6 +5633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 5,
             operand_name = "feedback_2",
@@ -4938,6 +5641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 6,
             operand_name = "input_status",
@@ -4945,6 +5649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 7,
             operand_name = "output_status",
@@ -4952,6 +5657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVC",
             operand_index = 8,
             operand_name = "reset",
@@ -4959,6 +5665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVM",
             operand_index = 0,
             operand_name = "source",
@@ -4966,6 +5673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVM",
             operand_index = 1,
             operand_name = "mask",
@@ -4973,6 +5681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "MVM",
             operand_index = 2,
             operand_name = "destination",
@@ -4980,6 +5689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NEG",
             operand_index = 0,
             operand_name = "source",
@@ -4987,6 +5697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NEG",
             operand_index = 1,
             operand_name = "destination",
@@ -4994,6 +5705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NEQ",
             operand_index = 0,
             operand_name = "source_A",
@@ -5001,6 +5713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NEQ",
             operand_index = 1,
             operand_name = "source_B",
@@ -5008,6 +5721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NE",
             operand_index = 0,
             operand_name = "source_A",
@@ -5015,6 +5729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NE",
             operand_index = 1,
             operand_name = "source_B",
@@ -5022,6 +5737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NOT",
             operand_index = 0,
             operand_name = "source",
@@ -5029,6 +5745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "NOT",
             operand_index = 1,
             operand_name = "destination",
@@ -5036,6 +5753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ONS",
             operand_index = 0,
             operand_name = "storage_bit",
@@ -5043,6 +5761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OR",
             operand_index = 0,
             operand_name = "source_A",
@@ -5050,6 +5769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OR",
             operand_index = 1,
             operand_name = "source_B",
@@ -5057,6 +5777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OR",
             operand_index = 2,
             operand_name = "destination",
@@ -5064,6 +5785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OSF",
             operand_index = 0,
             operand_name = "storage_bit",
@@ -5071,6 +5793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OSF",
             operand_index = 1,
             operand_name = "output_bit",
@@ -5078,6 +5801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OSR",
             operand_index = 0,
             operand_name = "storage_bit",
@@ -5085,6 +5809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OSR",
             operand_index = 1,
             operand_name = "output_bit",
@@ -5092,6 +5817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OTE",
             operand_index = 0,
             operand_name = "data_bit",
@@ -5099,6 +5825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OTL",
             operand_index = 0,
             operand_name = "data_bit",
@@ -5106,6 +5833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "OTU",
             operand_index = 0,
             operand_name = "data_bit",
@@ -5113,6 +5841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PATT",
             operand_index = 0,
             operand_name = "phase_name",
@@ -5120,6 +5849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PATT",
             operand_index = 1,
             operand_name = "result",
@@ -5127,6 +5857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PCLF",
             operand_index = 0,
             operand_name = "phase_name",
@@ -5134,6 +5865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PCMD",
             operand_index = 0,
             operand_name = "phase_name",
@@ -5141,6 +5873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PCMD",
             operand_index = 1,
             operand_name = "command",
@@ -5148,6 +5881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PCMD",
             operand_index = 2,
             operand_name = "result",
@@ -5155,6 +5889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PDET",
             operand_index = 0,
             operand_name = "phase_name",
@@ -5162,6 +5897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PFL",
             operand_index = 0,
             operand_name = "source",
@@ -5169,6 +5905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 0,
             operand_name = "PID",
@@ -5176,6 +5913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 1,
             operand_name = "process_variable",
@@ -5183,6 +5921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 2,
             operand_name = "tieback",
@@ -5190,6 +5929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 3,
             operand_name = "control_variable",
@@ -5197,6 +5937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 4,
             operand_name = "pid_master_loop",
@@ -5204,6 +5945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 5,
             operand_name = "inhold_bit",
@@ -5211,6 +5953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PID",
             operand_index = 6,
             operand_name = "inhold_value",
@@ -5218,6 +5961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "POVR",
             operand_index = 0,
             operand_name = "phase_name",
@@ -5225,6 +5969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "POVR",
             operand_index = 1,
             operand_name = "command",
@@ -5232,6 +5977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "POVR",
             operand_index = 2,
             operand_name = "result",
@@ -5239,6 +5985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PXRQ",
             operand_index = 0,
             operand_name = "phase_instruction",
@@ -5246,6 +5993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PXRQ",
             operand_index = 1,
             operand_name = "external_request",
@@ -5253,6 +6001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "PXRQ",
             operand_index = 2,
             operand_name = "data_value",
@@ -5260,6 +6009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RAD",
             operand_index = 0,
             operand_name = "source",
@@ -5267,6 +6017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RAD",
             operand_index = 1,
             operand_name = "destination",
@@ -5274,6 +6025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RES",
             operand_index = 0,
             operand_name = "structure",
@@ -5281,6 +6033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RET",
             operand_index = 0,
             operand_name = "outputs",
@@ -5288,6 +6041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 0,
             operand_name = "rin_tag",
@@ -5295,6 +6049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 1,
             operand_name = "reset_type",
@@ -5302,6 +6057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 2,
             operand_name = "channel_A",
@@ -5309,6 +6065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 3,
             operand_name = "channel_B",
@@ -5316,6 +6073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 4,
             operand_name = "circuit_reset",
@@ -5323,6 +6081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RIN",
             operand_index = 5,
             operand_name = "fault_reset",
@@ -5330,6 +6089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 0,
             operand_name = "rout_tag",
@@ -5337,6 +6097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 1,
             operand_name = "feedback_type",
@@ -5344,6 +6105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 2,
             operand_name = "enable",
@@ -5351,6 +6113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 3,
             operand_name = "feedback_1",
@@ -5358,6 +6121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 4,
             operand_name = "feedback_2",
@@ -5365,6 +6129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "ROUT",
             operand_index = 5,
             operand_name = "fault_reset",
@@ -5372,6 +6137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RTO",
             operand_index = 0,
             operand_name = "timer",
@@ -5379,6 +6145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RTO",
             operand_index = 1,
             operand_name = "preset",
@@ -5386,6 +6153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RTO",
             operand_index = 2,
             operand_name = "accum",
@@ -5393,6 +6161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RTOS",
             operand_index = 0,
             operand_name = "source",
@@ -5400,6 +6169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "RTOS",
             operand_index = 1,
             operand_name = "destination",
@@ -5407,6 +6177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SBR",
             operand_index = 0,
             operand_name = "inputs",
@@ -5414,6 +6185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SFP",
             operand_index = 0,
             operand_name = "SFC_routine_name",
@@ -5421,6 +6193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SFP",
             operand_index = 1,
             operand_name = "target_state",
@@ -5428,6 +6201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SFR",
             operand_index = 0,
             operand_name = "SFC_routine_name",
@@ -5435,6 +6209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SFR",
             operand_index = 1,
             operand_name = "step_name",
@@ -5442,6 +6217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SIN",
             operand_index = 0,
             operand_name = "source",
@@ -5449,6 +6225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SIN",
             operand_index = 1,
             operand_name = "destination",
@@ -5456,6 +6233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SIZE",
             operand_index = 0,
             operand_name = "souce",
@@ -5463,6 +6241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SIZE",
             operand_index = 1,
             operand_name = "dimension_to_vary",
@@ -5470,6 +6249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SIZE",
             operand_index = 2,
             operand_name = "size",
@@ -5477,6 +6257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 0,
             operand_name = "smat_tag",
@@ -5484,6 +6265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 1,
             operand_name = "restart_type",
@@ -5491,6 +6273,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 2,
             operand_name = "short_circuit_detect_delay_time",
@@ -5498,6 +6281,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 3,
             operand_name = "channel_A",
@@ -5505,6 +6289,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 4,
             operand_name = "channel_B",
@@ -5512,6 +6297,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 5,
             operand_name = "input_status",
@@ -5519,6 +6305,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SMAT",
             operand_index = 6,
             operand_name = "reset",
@@ -5526,6 +6313,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 0,
             operand_name = "array",
@@ -5533,6 +6321,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 1,
             operand_name = "mask",
@@ -5540,6 +6329,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 2,
             operand_name = "source",
@@ -5547,6 +6337,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 3,
             operand_name = "control",
@@ -5554,6 +6345,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 4,
             operand_name = "length",
@@ -5561,6 +6353,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQI",
             operand_index = 5,
             operand_name = "position",
@@ -5568,6 +6361,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQL",
             operand_index = 0,
             operand_name = "array",
@@ -5575,6 +6369,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQL",
             operand_index = 1,
             operand_name = "source",
@@ -5582,6 +6377,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQL",
             operand_index = 2,
             operand_name = "control",
@@ -5589,6 +6385,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQL",
             operand_index = 3,
             operand_name = "length",
@@ -5596,6 +6393,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQL",
             operand_index = 4,
             operand_name = "position",
@@ -5603,6 +6401,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 0,
             operand_name = "array",
@@ -5610,6 +6409,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 1,
             operand_name = "mask",
@@ -5617,6 +6417,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 2,
             operand_name = "destination",
@@ -5624,6 +6425,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 3,
             operand_name = "control",
@@ -5631,6 +6433,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 4,
             operand_name = "length",
@@ -5638,6 +6441,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQO",
             operand_index = 5,
             operand_name = "position",
@@ -5645,6 +6449,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQR",
             operand_index = 0,
             operand_name = "source",
@@ -5652,6 +6457,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQR",
             operand_index = 1,
             operand_name = "destination",
@@ -5659,6 +6465,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQRT",
             operand_index = 0,
             operand_name = "source",
@@ -5666,6 +6473,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SQRT",
             operand_index = 1,
             operand_name = "destination",
@@ -5673,6 +6481,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SRT",
             operand_index = 0,
             operand_name = "array",
@@ -5680,6 +6489,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SRT",
             operand_index = 1,
             operand_name = "dim_to_vary",
@@ -5687,6 +6497,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SRT",
             operand_index = 2,
             operand_name = "control",
@@ -5694,6 +6505,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SRT",
             operand_index = 3,
             operand_name = "length",
@@ -5701,6 +6513,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SRT",
             operand_index = 4,
             operand_name = "position",
@@ -5708,6 +6521,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SSV",
             operand_index = 0,
             operand_name = "class_name",
@@ -5715,6 +6529,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SSV",
             operand_index = 1,
             operand_name = "instance_name",
@@ -5722,6 +6537,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SSV",
             operand_index = 2,
             operand_name = "attribute_name",
@@ -5729,6 +6545,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SSV",
             operand_index = 3,
             operand_name = "source",
@@ -5736,6 +6553,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 0,
             operand_name = "array",
@@ -5743,6 +6561,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 1,
             operand_name = "dim_to_vary",
@@ -5750,6 +6569,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 2,
             operand_name = "destination",
@@ -5757,6 +6577,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 3,
             operand_name = "control",
@@ -5764,6 +6585,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 4,
             operand_name = "length",
@@ -5771,6 +6593,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STD",
             operand_index = 5,
             operand_name = "position",
@@ -5778,6 +6601,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STOD",
             operand_index = 0,
             operand_name = "source",
@@ -5785,6 +6609,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STOD",
             operand_index = 1,
             operand_name = "destination",
@@ -5792,6 +6617,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STOR",
             operand_index = 0,
             operand_name = "source",
@@ -5799,6 +6625,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "STOR",
             operand_index = 1,
             operand_name = "destination",
@@ -5806,6 +6633,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SUB",
             operand_index = 0,
             operand_name = "source_A",
@@ -5813,6 +6641,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SUB",
             operand_index = 1,
             operand_name = "source_B",
@@ -5820,6 +6649,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SUB",
             operand_index = 2,
             operand_name = "destination",
@@ -5827,6 +6657,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SWPB",
             operand_index = 0,
             operand_name = "source",
@@ -5834,6 +6665,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SWPB",
             operand_index = 1,
             operand_name = "order_mode",
@@ -5841,6 +6673,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "SWPB",
             operand_index = 2,
             operand_name = "destination",
@@ -5848,6 +6681,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TAN",
             operand_index = 0,
             operand_name = "source",
@@ -5855,6 +6689,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TAN",
             operand_index = 1,
             operand_name = "destination",
@@ -5862,6 +6697,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 0,
             operand_name = "thrs_tag",
@@ -5869,6 +6705,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 1,
             operand_name = "active_pin_type",
@@ -5876,6 +6713,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 2,
             operand_name = "active_pin",
@@ -5883,6 +6721,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 3,
             operand_name = "right_button_normally_open",
@@ -5890,6 +6729,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 4,
             operand_name = "right_button_normally_closed",
@@ -5897,6 +6737,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 5,
             operand_name = "left_button_normally_open",
@@ -5904,6 +6745,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 6,
             operand_name = "left_button_normally_closed",
@@ -5911,6 +6753,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRS",
             operand_index = 7,
             operand_name = "fault_reset",
@@ -5918,6 +6761,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 0,
             operand_name = "thrse_tag",
@@ -5925,6 +6769,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 1,
             operand_name = "discprepancy_time",
@@ -5932,6 +6777,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 2,
             operand_name = "enable",
@@ -5939,6 +6785,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 3,
             operand_name = "disconnected",
@@ -5946,6 +6793,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 4,
             operand_name = "right_button_normally_open",
@@ -5953,6 +6801,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 5,
             operand_name = "right_button_normally_closed",
@@ -5960,6 +6809,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 6,
             operand_name = "left_button_normally_open",
@@ -5967,6 +6817,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 7,
             operand_name = "left_button_normally_closed",
@@ -5974,6 +6825,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 8,
             operand_name = "input_status",
@@ -5981,6 +6833,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "THRSE",
             operand_index = 9,
             operand_name = "resest",
@@ -5988,6 +6841,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TOD",
             operand_index = 0,
             operand_name = "source",
@@ -5995,6 +6849,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TOD",
             operand_index = 1,
             operand_name = "destination",
@@ -6002,6 +6857,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TOF",
             operand_index = 0,
             operand_name = "timer",
@@ -6009,6 +6865,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TOF",
             operand_index = 1,
             operand_name = "preset",
@@ -6016,6 +6873,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TOF",
             operand_index = 2,
             operand_name = "accum",
@@ -6023,6 +6881,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TON",
             operand_index = 0,
             operand_name = "timer",
@@ -6030,6 +6889,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TON",
             operand_index = 1,
             operand_name = "preset",
@@ -6037,6 +6897,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TON",
             operand_index = 2,
             operand_name = "accum",
@@ -6044,6 +6905,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TRN",
             operand_index = 0,
             operand_name = "source",
@@ -6051,6 +6913,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TRN",
             operand_index = 1,
             operand_name = "destination",
@@ -6058,6 +6921,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TRUNC",
             operand_index = 0,
             operand_name = "source",
@@ -6065,6 +6929,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TRUNC",
             operand_index = 1,
             operand_name = "destination",
@@ -6072,6 +6937,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 0,
             operand_name = "tsam_tag",
@@ -6079,6 +6945,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 1,
             operand_name = "restart_type",
@@ -6086,6 +6953,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 2,
             operand_name = "S1_S2_time",
@@ -6093,6 +6961,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 3,
             operand_name = "S2_LC_time",
@@ -6100,6 +6969,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 4,
             operand_name = "maximum_mute_time",
@@ -6107,6 +6977,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 5,
             operand_name = "maximum_override_time",
@@ -6114,6 +6985,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 6,
             operand_name = "light_curtain",
@@ -6121,6 +6993,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 7,
             operand_name = "sensor_1",
@@ -6128,6 +7001,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 8,
             operand_name = "sensor_2",
@@ -6135,6 +7009,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 9,
             operand_name = "enable_mute",
@@ -6142,6 +7017,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 10,
             operand_name = "override",
@@ -6149,6 +7025,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 11,
             operand_name = "input_status",
@@ -6156,6 +7033,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 12,
             operand_name = "muting_lamp_status",
@@ -6163,6 +7041,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSAM",
             operand_index = 13,
             operand_name = "reset",
@@ -6170,6 +7049,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 0,
             operand_name = "tssm_tag",
@@ -6177,6 +7057,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 1,
             operand_name = "restart_type",
@@ -6184,6 +7065,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 2,
             operand_name = "S1_S2_discrepancy_time",
@@ -6191,6 +7073,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 3,
             operand_name = "S1_S2_LC_minimum_time",
@@ -6198,6 +7081,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 4,
             operand_name = "S1_S2_LC_maximum_time",
@@ -6205,6 +7089,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 5,
             operand_name = "maximum_mute_time",
@@ -6212,6 +7097,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 6,
             operand_name = "maximum_override_time",
@@ -6219,6 +7105,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 7,
             operand_name = "light_curtain",
@@ -6226,6 +7113,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 8,
             operand_name = "sensor_1",
@@ -6233,6 +7121,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 9,
             operand_name = "sensor_2",
@@ -6240,6 +7129,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 10,
             operand_name = "enable_mute",
@@ -6247,6 +7137,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 11,
             operand_name = "override",
@@ -6254,6 +7145,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 12,
             operand_name = "input_status",
@@ -6261,6 +7153,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 13,
             operand_name = "muting_lamp_status",
@@ -6268,6 +7161,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "TSSM",
             operand_index = 14,
             operand_name = "reset",
@@ -6275,6 +7169,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "UPPER",
             operand_index = 0,
             operand_name = "source",
@@ -6282,6 +7177,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "UPPER",
             operand_index = 1,
             operand_name = "destination",
@@ -6289,6 +7185,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XIC",
             operand_index = 0,
             operand_name = "data_bit",
@@ -6296,6 +7193,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XIO",
             operand_index = 0,
             operand_name = "data_bit",
@@ -6303,6 +7201,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XOR",
             operand_index = 0,
             operand_name = "source_A",
@@ -6310,6 +7209,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XOR",
             operand_index = 1,
             operand_name = "source_B",
@@ -6317,6 +7217,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XOR",
             operand_index = 2,
             operand_name = "destination",
@@ -6324,6 +7225,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XPY",
             operand_index = 0,
             operand_name = "source_A",
@@ -6331,6 +7233,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XPY",
             operand_index = 1,
             operand_name = "source_B",
@@ -6338,6 +7241,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "XPY",
             operand_index = 2,
             operand_name = "destination",
@@ -6345,6 +7249,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EXPT",
             operand_index = 0,
             operand_name = "source_A",
@@ -6352,6 +7257,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EXPT",
             operand_index = 1,
             operand_name = "source_B",
@@ -6359,6 +7265,7 @@ public class M017SeedNativeOperands : AutoReversingMigration
         });
         insert.Row(new
         {
+            operand_id = Guid.NewGuid(),
             instruction_key = "EXPT",
             operand_index = 2,
             operand_name = "destination",

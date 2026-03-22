@@ -13,8 +13,8 @@ public class AoiLocalTagMapTests
         var map = new AoiLocalTagMap();
         var records = new List<AoiLocalTagRecord>
         {
-            new(1, new LocalTag { Name = "Tag1" }),
-            new(1, new LocalTag { Name = "Tag2" })
+            new(1, "ParentAoi", new LocalTag { Name = "Tag1" }),
+            new(1, "ParentAoi", new LocalTag { Name = "Tag2" })
         };
 
         var table = map.GenerateTable(records);
@@ -26,9 +26,8 @@ public class AoiLocalTagMapTests
     public void GenerateTable_WithValidRecords_ShouldHaveExpectedValues()
     {
         var map = new AoiLocalTagMap();
-        var tag = new LocalTag { Name = "TestTag" };
-        tag.Description = "Test Description";
-        var record = new AoiLocalTagRecord(1, tag);
+        var tag = new LocalTag { Name = "TestTag", Description = "Test Description" };
+        var record = new AoiLocalTagRecord(1, "ParentAoi", tag);
 
         var table = map.GenerateTable([record]);
 
@@ -42,7 +41,7 @@ public class AoiLocalTagMapTests
     {
         var map = new AoiLocalTagMap();
         var tag = new LocalTag { Name = "TestTag" };
-        var record = new AoiLocalTagRecord(1, tag);
+        var record = new AoiLocalTagRecord(1, "ParentAoi", tag);
 
         var hash1 = map.ComputeHash(record);
         var hash2 = map.ComputeHash(record);

@@ -16,8 +16,8 @@ public class M018CreateSnapshotPropertyTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("snapshot_property")
-            .WithPrimaryId("property_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("property_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("property_name").AsString().NotNullable()
             .WithColumn("property_value").AsString().Nullable();
         

@@ -13,8 +13,8 @@ public class InstructionMapTests
         var map = new InstructionMap();
         var records = new List<InstructionRecord>
         {
-            new(1, "123", 0, new Instruction("XIC(TestTag)")),
-            new(1, "123", 1, new Instruction("OTE(TestTag)"))
+            new(1, Guid.NewGuid(), 0, new Instruction("XIC(TestTag)")),
+            new(1, Guid.NewGuid(), 1, new Instruction("OTE(TestTag)"))
         };
 
         var table = map.GenerateTable(records);
@@ -27,7 +27,7 @@ public class InstructionMapTests
     {
         var map = new InstructionMap();
         var instr = Instruction.Parse("XIC(TestTag)");
-        var record = new InstructionRecord(1, "123", 0, instr);
+        var record = new InstructionRecord(1, Guid.NewGuid(), 0, instr);
 
         var table = map.GenerateTable([record]);
 
@@ -41,7 +41,7 @@ public class InstructionMapTests
     {
         var map = new InstructionMap();
         var instr = Instruction.Parse("XIC(TestTag)");
-        var record = new InstructionRecord(1, "123", 0, instr);
+        var record = new InstructionRecord(1, Guid.NewGuid(), 0, instr);
 
         var hash1 = map.ComputeHash(record);
         var hash2 = map.ComputeHash(record);

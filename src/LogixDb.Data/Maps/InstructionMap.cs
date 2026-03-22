@@ -15,21 +15,15 @@ namespace LogixDb.Data.Maps;
 /// <seealso cref="TableMap{T}"/>
 public class InstructionMap : TableMap<InstructionRecord>
 {
-    /// <summary>
-    /// Represents the database table mapping for the <see cref="RungRecord"/> type in the Logix system.
-    /// Defines the table structure, including the table name and column mappings, used for persisting
-    /// and retrieving rung-related data to and from the database.
-    /// </summary>
-    private static readonly RungMap RungMap = new();
-
     /// <inheritdoc />
     public override string TableName => "instruction";
 
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
+        ColumnMap<InstructionRecord>.For(r => r.InstructionId, "instruction_id", hashable: false),
         ColumnMap<InstructionRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<InstructionRecord>.For(r => r.RungHash, "rung_hash"),
+        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
@@ -43,4 +37,7 @@ public class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-public record InstructionRecord(int SnapshotId, string RungHash, short Index, Instruction Instruction);
+public record InstructionRecord(int SnapshotId, Guid RungId, short Index, Instruction Instruction)
+{
+    public Guid InstructionId { get; } = Guid.NewGuid();
+}

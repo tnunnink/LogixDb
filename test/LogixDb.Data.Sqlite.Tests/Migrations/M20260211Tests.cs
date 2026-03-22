@@ -12,7 +12,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("controller");
 
-            await AssertColumnDefinition("controller", "controller_id", "integer");
+            await AssertColumnDefinition("controller", "controller_id", "uniqueidentifier");
             await AssertColumnDefinition("controller", "snapshot_id", "integer");
             await AssertColumnDefinition("controller", "controller_name", "text");
             await AssertColumnDefinition("controller", "catalog_number", "text");
@@ -49,7 +49,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("data_type");
 
-            await AssertColumnDefinition("data_type", "type_id", "integer");
+            await AssertColumnDefinition("data_type", "type_id", "uniqueidentifier");
             await AssertColumnDefinition("data_type", "snapshot_id", "integer");
             await AssertColumnDefinition("data_type", "type_name", "text");
             await AssertColumnDefinition("data_type", "type_class", "text");
@@ -73,7 +73,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("data_type_member");
 
-            await AssertColumnDefinition("data_type_member", "member_id", "integer");
+            await AssertColumnDefinition("data_type_member", "member_id", "uniqueidentifier");
             await AssertColumnDefinition("data_type_member", "snapshot_id", "integer");
             await AssertColumnDefinition("data_type_member", "type_name", "text");
             await AssertColumnDefinition("data_type_member", "member_name", "text");
@@ -102,7 +102,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("task");
 
-            await AssertColumnDefinition("task", "task_id", "integer");
+            await AssertColumnDefinition("task", "task_id", "uniqueidentifier");
             await AssertColumnDefinition("task", "snapshot_id", "integer");
             await AssertColumnDefinition("task", "task_name", "text");
             await AssertColumnDefinition("task", "task_type", "text");
@@ -133,7 +133,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("program");
 
-            await AssertColumnDefinition("program", "program_id", "integer");
+            await AssertColumnDefinition("program", "program_id", "uniqueidentifier");
             await AssertColumnDefinition("program", "snapshot_id", "integer");
             await AssertColumnDefinition("program", "program_name", "text");
             await AssertColumnDefinition("program", "program_type", "text");
@@ -163,7 +163,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("routine");
 
-            await AssertColumnDefinition("routine", "routine_id", "integer");
+            await AssertColumnDefinition("routine", "routine_id", "uniqueidentifier");
             await AssertColumnDefinition("routine", "snapshot_id", "integer");
             await AssertColumnDefinition("routine", "program_name", "text");
             await AssertColumnDefinition("routine", "routine_name", "text");
@@ -187,7 +187,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "integer");
+            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("rung", "snapshot_id", "integer");
             await AssertColumnDefinition("rung", "program_name", "text");
             await AssertColumnDefinition("rung", "routine_name", "text");

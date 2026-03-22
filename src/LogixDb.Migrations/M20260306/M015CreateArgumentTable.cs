@@ -21,16 +21,16 @@ public class M015CreateArgumentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("argument")
-            .WithPrimaryId("argument_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("instruction_hash").AsString(32).NotNullable()
+            .WithPrimaryGuid("argument_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
+            .WithColumn("instruction_id").AsGuid().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(255).NotNullable();
 
         Create.Index().OnTable("argument")
             .OnColumn("snapshot_id").Ascending()
-            .OnColumn("instruction_hash").Ascending()
+            .OnColumn("instruction_id").Ascending()
             .OnColumn("argument_index").Ascending();
 
         Create.Index().OnTable("argument")

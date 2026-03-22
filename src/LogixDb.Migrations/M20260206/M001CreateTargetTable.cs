@@ -11,7 +11,7 @@ public class M001CreateTargetTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("target")
-            .WithPrimaryId("target_id")
+            .WithColumn("target_id").AsInt32().PrimaryKey().Identity()
             .WithColumn("target_key").AsString(128).NotNullable()
             .WithColumn("created_on").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime);
 

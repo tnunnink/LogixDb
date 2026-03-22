@@ -15,6 +15,7 @@ public class DataTypeMap : TableMap<DataTypeRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
     [
+        ColumnMap<DataTypeRecord>.For(r => r.TypeId, "type_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
@@ -31,4 +32,7 @@ public class DataTypeMap : TableMap<DataTypeRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this data type record belongs.</param>
 /// <param name="DataType">The Logix data type entity.</param>
-public record DataTypeRecord(int SnapshotId, DataType DataType);
+public record DataTypeRecord(int SnapshotId, DataType DataType)
+{
+    public Guid TypeId { get; } = Guid.NewGuid();
+}

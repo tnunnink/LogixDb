@@ -88,4 +88,22 @@ public static class Extensions
                 $"Element type '{element.GetType().Name}' is not supported for data type name extraction.")
         };
     }
+
+    /// <summary>
+    /// Extracts the string representation of the value from the provided Logix data element.
+    /// Only atomic data types (such as DINT, REAL, BOOL) are supported for value extraction.
+    /// </summary>
+    /// <param name="data">The LogixData element from which to extract the value.</param>
+    /// <returns>
+    /// A string representation of the atomic data value if the data is atomic; otherwise, null
+    /// for complex or structured data types.
+    /// </returns>
+    public static string? GetDataValue(this LogixData data)
+    {
+        return data switch
+        {
+            AtomicData atomic => atomic.ToString(),
+            _ => null
+        };
+    }
 }

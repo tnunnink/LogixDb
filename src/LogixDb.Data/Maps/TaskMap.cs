@@ -15,6 +15,7 @@ public class TaskMap : TableMap<TaskRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
     [
+        ColumnMap<TaskRecord>.For(r => r.TaskId, "task_id", hashable: false),
         ColumnMap<TaskRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name"),
         ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
@@ -38,4 +39,7 @@ public class TaskMap : TableMap<TaskRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this task record belongs.</param>
 /// <param name="Task">The task entity containing metadata, configuration, and execution details.</param>
-public record TaskRecord(int SnapshotId, Task Task);
+public record TaskRecord(int SnapshotId, Task Task)
+{
+    public Guid TaskId { get; } = Guid.NewGuid();
+}

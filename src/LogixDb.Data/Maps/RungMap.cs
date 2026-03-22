@@ -15,6 +15,7 @@ public class RungMap : TableMap<RungRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
     [
+        ColumnMap<RungRecord>.For(r => r.RungId, "rung_id", hashable: false),
         ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<RungRecord>.For(r => r.Rung.Scope.Container, "program_name"),
         ColumnMap<RungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
@@ -32,4 +33,7 @@ public class RungMap : TableMap<RungRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this rung record belongs.</param>
 /// <param name="Rung">The Logix rung entity containing its code and metadata.</param>
-public record RungRecord(int SnapshotId, Rung Rung);
+public record RungRecord(int SnapshotId, Rung Rung)
+{
+    public Guid RungId { get; } = Guid.NewGuid();
+}

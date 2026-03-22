@@ -10,8 +10,8 @@ public class M012CreateAoiParameterTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi_parameter")
-            .WithPrimaryId("parameter_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("parameter_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("aoi_name").AsString(128).NotNullable()
             .WithColumn("parameter_name").AsString(128).NotNullable()
             .WithColumn("parameter_description").AsString(512).Nullable()

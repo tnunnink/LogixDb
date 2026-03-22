@@ -15,6 +15,7 @@ public class AoiRungMap : TableMap<AoiRungRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
     [
+        ColumnMap<AoiRungRecord>.For(r => r.RungId, "rung_id", hashable: false),
         ColumnMap<AoiRungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiRungRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiRungRecord>.For(r => r.RoutineName, "routine_name"),
@@ -25,4 +26,7 @@ public class AoiRungMap : TableMap<AoiRungRecord>
     ];
 }
 
-public record AoiRungRecord(int SnapshotId, string AoiName, string RoutineName, Rung Rung);
+public record AoiRungRecord(int SnapshotId, string AoiName, string RoutineName, Rung Rung)
+{
+    public Guid RungId { get; } = Guid.NewGuid();
+}

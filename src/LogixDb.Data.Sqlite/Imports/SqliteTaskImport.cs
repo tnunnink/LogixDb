@@ -16,9 +16,8 @@ internal class SqliteTaskImport : SqliteImport
     public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
-        await using var command = BuildCommand(_taskMap, session);
         var source = snapshot.GetSource();
         var records = source.Query<L5Sharp.Core.Task>().Select(t => new TaskRecord(snapshot.SnapshotId, t)).ToList();
-        await ImportRecords(records, _taskMap, command, token);
+        await ImportRecords(records, _taskMap, session, token);
     }
 }

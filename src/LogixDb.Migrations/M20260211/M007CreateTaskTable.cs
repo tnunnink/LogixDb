@@ -10,8 +10,8 @@ public class M007CreateTaskTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("task")
-            .WithPrimaryId("task_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("task_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("task_name").AsString(128).NotNullable()
             .WithColumn("task_type").AsString(32).Nullable()
             .WithColumn("task_description").AsString(512).Nullable()

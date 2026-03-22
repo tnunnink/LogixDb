@@ -15,6 +15,7 @@ public class ProgramMap : TableMap<ProgramRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<ProgramRecord>> Columns =>
     [
+        ColumnMap<ProgramRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name"),
         ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
@@ -37,4 +38,7 @@ public class ProgramMap : TableMap<ProgramRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this program record belongs.</param>
 /// <param name="Program">The Logix program entity.</param>
-public record ProgramRecord(int SnapshotId, Program Program);
+public record ProgramRecord(int SnapshotId, Program Program)
+{
+    public Guid ProgramId { get; } = Guid.NewGuid();
+}

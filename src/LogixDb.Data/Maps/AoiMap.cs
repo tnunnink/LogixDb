@@ -15,6 +15,7 @@ public class AoiMap : TableMap<AoiRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiRecord>> Columns =>
     [
+        ColumnMap<AoiRecord>.For(r => r.AoiId, "aoi_id", hashable: false),
         ColumnMap<AoiRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Name, "aoi_name"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Revision?.ToString(), "aoi_revision"),
@@ -46,4 +47,7 @@ public class AoiMap : TableMap<AoiRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this AOI record belongs.</param>
 /// <param name="Aoi">The Logix AOI entity containing its configuration.</param>
-public record AoiRecord(int SnapshotId, AddOnInstruction Aoi);
+public record AoiRecord(int SnapshotId, AddOnInstruction Aoi)
+{
+    public Guid AoiId { get; } = Guid.NewGuid();
+}

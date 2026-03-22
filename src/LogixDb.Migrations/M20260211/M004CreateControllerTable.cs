@@ -10,8 +10,8 @@ public class M004CreateControllerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("controller")
-            .WithPrimaryId("controller_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("controller_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("controller_name").AsString(128).NotNullable()
             .WithColumn("catalog_number").AsString(128).Nullable()
             .WithColumn("controller_revision").AsString(32).Nullable()

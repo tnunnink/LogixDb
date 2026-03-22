@@ -19,11 +19,12 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
+        ColumnMap<AoiLocalTagRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
         ColumnMap<AoiLocalTagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Instruction?.Name, "aoi_name"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "default_value"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.GetDataValue(), "default_value"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "description"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
@@ -35,10 +36,15 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 }
 
 /// <summary>
-/// Represents a database record for an AOI local tag entity.
-/// This record contains the metadata for a specific local tag within an AOI,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// Represents a record for an AOI (Add-On Instruction) local tag that is mapped to the "aoi_parameter" database table.
+/// This record contains relevant information for uniquely identifying and associating an AOI tag with its attributes.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this local tag record belongs.</param>
-/// <param name="Tag">The Logix local tag entity.</param>
-public record AoiLocalTagRecord(int SnapshotId, LocalTag Tag);
+/// <remarks>
+/// The <see cref="AoiLocalTagRecord"/> serves as a structural definition that encapsulates properties such as the snapshot identifier,
+/// the name of the associated AOI, and the tag details.
+/// This record is used in mapping operations for transferring data between the program and the database storage.
+/// </remarks>
+public record AoiLocalTagRecord(int SnapshotId, string AoiName, LocalTag Tag)
+{
+    public Guid ParameterId { get; } = Guid.NewGuid();
+}

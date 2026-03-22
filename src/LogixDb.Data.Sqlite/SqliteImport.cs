@@ -17,42 +17,27 @@ public abstract class SqliteImport : ILogixDbImport
         CancellationToken token);
 
     /// <summary>
-    /// Builds and prepares a parameterized SQLite command for inserting records into the database.
-    /// The command is configured with parameters corresponding to the table columns defined in the mapping.
+    /// Imports a collection of records into the database using the specified table mapping, session, and cancellation token.
     /// </summary>
-    /// <param name="map">The table mapping configuration that defines the columns and their types for the command.</param>
-    /// <param name="session">The active database session used to get the SQLite connection and transaction.</param>
-    /// <returns>A prepared SQLite command ready for execution with parameterized insert operations.</returns>
-    protected static SqliteCommand BuildCommand<TRecord>(TableMap<TRecord> map, ILogixDbSession session)
-        where TRecord : class
+    /// <typeparam name="TRecord">The type of records to be imported. The type must be a class.</typeparam>
+    /// <param name="records">The collection of records to be imported.</param>
+    /// <param name="map">The table mapping used to define the structure of the database table.</param>
+    /// <param name="session">The database session used to access the underlying database connection.</param>
+    /// <param name="token">The cancellation token to observe while waiting for the task to complete.</param>
+    /// <returns>A task representing the asynchronous operation of importing records into the database.</returns>
+    protected static async Task ImportRecords<TRecord>(
+        IEnumerable<TRecord> records,
+        TableMap<TRecord> map,
+        ILogixDbSession session,
+        CancellationToken token) where TRecord : class
     {
         var connection = session.GetConnection<SqliteConnection>();
         var transaction = session.GetTransaction<SqliteTransaction>();
 
-        var command = new SqliteCommand(BuildInsertStatement(map), connection, transaction);
-        var columns = map.Columns.ToList();
-        columns.ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
+        await using var command = new SqliteCommand(BuildInsertStatement(map), connection, transaction);
+        map.Columns.ToList().ForEach(c => command.Parameters.Add($"@{c.Name}", c.Type.ToSqliteType()));
         command.Prepare();
 
-        return command;
-    }
-
-    /// <summary>
-    /// Imports a collection of records into the SQLite database by generating a data table
-    /// from the records and executing the provided command for each row.
-    /// </summary>
-    /// <param name="records">The collection of records to import into the database.</param>
-    /// <param name="map">The table mapping configuration used to generate the data table from the records.</param>
-    /// <param name="command">The prepared SQLite command used to execute the insert operations.</param>
-    /// <param name="token">An optional cancellation token to observe during the operation.</param>
-    /// <typeparam name="TRecord">The type of record being imported. Must be a reference type.</typeparam>
-    /// <returns>A task that represents the asynchronous import operation.</returns>
-    protected static async Task ImportRecords<TRecord>(
-        IEnumerable<TRecord> records,
-        TableMap<TRecord> map,
-        SqliteCommand command,
-        CancellationToken token) where TRecord : class
-    {
         var dataTable = map.GenerateTable(records);
 
         foreach (DataRow row in dataTable.Rows)

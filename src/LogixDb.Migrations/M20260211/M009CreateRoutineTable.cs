@@ -10,8 +10,8 @@ public class M009CreateRoutineTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("routine")
-            .WithPrimaryId("routine_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("routine_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("routine_type").AsString(32).Nullable()

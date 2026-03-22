@@ -17,14 +17,13 @@ internal class SqliteModuleImport : SqliteImport
     public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
-        await using var command = BuildCommand(_map, session);
         var source = snapshot.GetSource();
-        
+
         //Some module elements don't have a name, and we need to skip that for now...
         var records = source.Modules
             .Where(m => !string.IsNullOrEmpty(m.Name))
             .Select(m => new ModuleRecord(snapshot.SnapshotId, m));
-        
-        await ImportRecords(records, _map, command, token);
+
+        await ImportRecords(records, _map, session, token);
     }
 }

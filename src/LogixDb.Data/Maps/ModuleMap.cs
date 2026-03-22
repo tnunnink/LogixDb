@@ -15,6 +15,7 @@ public class ModuleMap : TableMap<ModuleRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<ModuleRecord>> Columns =>
     [
+        ColumnMap<ModuleRecord>.For(r => r.ModuleId, "module_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.Module.Name, "module_name"),
         ColumnMap<ModuleRecord>.For(r => r.Module.CatalogNumber, "catalog_number"),
@@ -42,4 +43,7 @@ public class ModuleMap : TableMap<ModuleRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this module record belongs.</param>
 /// <param name="Module">The Logix module entity.</param>
-public record ModuleRecord(int SnapshotId, Module Module);
+public record ModuleRecord(int SnapshotId, Module Module)
+{
+    public Guid ModuleId { get; } = Guid.NewGuid();
+}

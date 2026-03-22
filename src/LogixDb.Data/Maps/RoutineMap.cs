@@ -16,6 +16,7 @@ public class RoutineMap : TableMap<RoutineRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
     [
+        ColumnMap<RoutineRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Scope.Container, "program_name"),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name"),
@@ -32,4 +33,7 @@ public class RoutineMap : TableMap<RoutineRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this routine record belongs.</param>
 /// <param name="Routine">The Logix routine entity.</param>
-public record RoutineRecord(int SnapshotId, Routine Routine);
+public record RoutineRecord(int SnapshotId, Routine Routine)
+{
+    public Guid RoutineId { get; } = Guid.NewGuid();
+}

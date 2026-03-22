@@ -1,5 +1,3 @@
-using L5Sharp.Core;
-
 namespace LogixDb.Data.Maps;
 
 /// <summary>
@@ -14,6 +12,7 @@ public class AoiOperandMap : TableMap<AoiOperandRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>
     [
+        ColumnMap<AoiOperandRecord>.For(r => r.OperandId, "operand_id", hashable: false),
         ColumnMap<AoiOperandRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiOperandRecord>.For(r => r.Key, "instruction_key"),
         ColumnMap<AoiOperandRecord>.For(r => r.Index, "operand_index"),
@@ -41,4 +40,7 @@ public record AoiOperandRecord(
     string Type,
     string? Description,
     bool Destructive
-);
+)
+{
+    public Guid OperandId { get; } = Guid.NewGuid();
+}

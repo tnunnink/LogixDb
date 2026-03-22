@@ -10,8 +10,8 @@ public class M010CreateRungTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("rung")
-            .WithPrimaryId("rung_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("rung_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()

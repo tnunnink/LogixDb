@@ -10,8 +10,8 @@ public class M013CreateModuleTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("module")
-            .WithPrimaryId("module_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("module_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("module_name").AsString(128).NotNullable()
             .WithColumn("catalog_number").AsString(64).Nullable()
             .WithColumn("module_revision").AsString(16).Nullable()

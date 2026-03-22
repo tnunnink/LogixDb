@@ -11,8 +11,8 @@ public class M002CreateSnapshotTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("snapshot")
-            .WithPrimaryId("snapshot_id")
-            .WithCascadeForeignKey("target_id", "target")
+            .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
+            .WithNumericCascadeForeignKey("target_id", "target")
             .WithColumn("target_type").AsString(128).NotNullable()
             .WithColumn("target_name").AsString(128).NotNullable()
             .WithColumn("is_partial").AsBoolean().NotNullable()

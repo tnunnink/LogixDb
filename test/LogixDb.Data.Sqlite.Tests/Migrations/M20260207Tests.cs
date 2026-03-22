@@ -12,7 +12,7 @@ public class M20260207Tests : SqliteTestFixture
         {
             await AssertTableExists("tag");
 
-            await AssertColumnDefinition("tag", "tag_id", "integer");
+            await AssertColumnDefinition("tag", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag", "snapshot_id", "integer");
             await AssertColumnDefinition("tag", "program_name", "text");
             await AssertColumnDefinition("tag", "tag_name", "text");

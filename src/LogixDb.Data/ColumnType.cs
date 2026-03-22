@@ -13,7 +13,8 @@ public enum ColumnType
     Float,
     Text,
     DateTime,
-    Blob
+    Blob,
+    Guid
 }
 
 public static class ColumnTypeExtensions
@@ -35,6 +36,7 @@ public static class ColumnTypeExtensions
             ColumnType.Text => typeof(string),
             ColumnType.DateTime => typeof(DateTime),
             ColumnType.Blob => typeof(byte[]),
+            ColumnType.Guid => typeof(Guid),
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported column type")
         };
     }

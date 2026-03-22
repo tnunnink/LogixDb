@@ -12,7 +12,7 @@ public class M20260312Tests : SqlServerTestFixture
         {
             await AssertTableExists("aoi_rung");
 
-            await AssertColumnDefinition("aoi_rung", "rung_id", "int");
+            await AssertColumnDefinition("aoi_rung", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_rung", "snapshot_id", "int");
             await AssertColumnDefinition("aoi_rung", "aoi_name", "nvarchar");
             await AssertColumnDefinition("aoi_rung", "routine_name", "nvarchar");

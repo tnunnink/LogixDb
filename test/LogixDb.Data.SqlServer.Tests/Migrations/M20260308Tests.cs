@@ -14,7 +14,7 @@ public class M20260308Tests : SqlServerTestFixture
         {
             await AssertTableExists("operand");
             
-            await AssertColumnDefinition("operand", "operand_id", "int");
+            await AssertColumnDefinition("operand", "operand_id", "uniqueidentifier");
             await AssertColumnDefinition("operand", "snapshot_id", "int");
             await AssertColumnDefinition("operand", "instruction_key", "nvarchar");
             await AssertColumnDefinition("operand", "operand_index", "tinyint");

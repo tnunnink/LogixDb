@@ -10,8 +10,8 @@ public class M003CreateTagTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag")
-            .WithPrimaryId("tag_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("tag_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("program_name").AsString(128).NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("base_name").AsString(128).NotNullable()
@@ -22,6 +22,7 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("is_constant").AsBoolean().Nullable()
+            .WithColumn("alias_for").AsString(256).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("tag")

@@ -12,7 +12,7 @@ public class M20260212Tests : SqlServerTestFixture
         {
             await AssertTableExists("aoi");
 
-            await AssertColumnDefinition("aoi", "aoi_id", "int");
+            await AssertColumnDefinition("aoi", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi", "snapshot_id", "int");
             await AssertColumnDefinition("aoi", "aoi_name", "nvarchar");
             await AssertColumnDefinition("aoi", "aoi_revision", "nvarchar");
@@ -51,7 +51,7 @@ public class M20260212Tests : SqlServerTestFixture
         {
             await AssertTableExists("aoi_parameter");
 
-            await AssertColumnDefinition("aoi_parameter", "parameter_id", "int");
+            await AssertColumnDefinition("aoi_parameter", "parameter_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_parameter", "snapshot_id", "int");
             await AssertColumnDefinition("aoi_parameter", "aoi_name", "nvarchar");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "nvarchar");
@@ -82,7 +82,7 @@ public class M20260212Tests : SqlServerTestFixture
         {
             await AssertTableExists("module");
 
-            await AssertColumnDefinition("module", "module_id", "int");
+            await AssertColumnDefinition("module", "module_id", "uniqueidentifier");
             await AssertColumnDefinition("module", "snapshot_id", "int");
             await AssertColumnDefinition("module", "module_name", "nvarchar");
             await AssertColumnDefinition("module", "catalog_number", "nvarchar");

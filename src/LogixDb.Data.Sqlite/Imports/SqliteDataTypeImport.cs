@@ -12,14 +12,23 @@ namespace LogixDb.Data.Sqlite.Imports;
 /// </summary>
 internal class SqliteDataTypeImport : SqliteImport
 {
-    private readonly DataTypeMap _map = new();
+    private readonly DataTypeMap _dataTypeMap = new();
+    private readonly DataTypeMemberMap _memberMap = new();
 
     public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
-        await using var command = BuildCommand(_map, session);
         var source = snapshot.GetSource();
-        var records = source.Query<DataType>().Select(d => new DataTypeRecord(snapshot.SnapshotId, d)).ToList();
-        await ImportRecords(records, _map, command, token);
+        var dataTypeRecords = new List<DataTypeRecord>();
+        var memberRecords = new List<DataTypeMemberRecord>();
+
+        foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
+        {
+            dataTypeRecords.Add(new DataTypeRecord(snapshot.SnapshotId, dataType));
+            memberRecords.AddRange(dataType.Members.Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m)));
+        }
+
+        await ImportRecords(dataTypeRecords, _dataTypeMap, session, token);
+        await ImportRecords(memberRecords, _memberMap, session, token);
     }
 }

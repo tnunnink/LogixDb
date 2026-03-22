@@ -1,4 +1,5 @@
 using System.Data;
+using FluentMigrator;
 using FluentMigrator.Builders.Create.Table;
 
 namespace LogixDb.Migrations;
@@ -14,16 +15,12 @@ public static class FluentMigrationExtensions
     /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
     /// <param name="name">The name of the column to be added as the primary key.</param>
     /// <returns>Returns the fluent migration builder after adding the primary key column.</returns>
-    public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryId(
+    public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryGuid(
         this ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax,
         string name
     )
     {
-        return syntax.WithColumn(name)
-            .AsInt32()
-            .NotNullable()
-            .PrimaryKey()
-            .Identity();
+        return syntax.WithColumn(name).AsGuid().NotNullable().PrimaryKey();
     }
 
     /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
@@ -37,7 +34,7 @@ public static class FluentMigrationExtensions
         /// <param name="foreignColumn">The name of the column in the foreign table.
         /// If null, the column name will be the same as the foreign key column.</param>
         /// <returns>Returns the fluent migration builder after adding the foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithCascadeForeignKey(string name,
+        public ICreateTableColumnOptionOrWithColumnSyntax WithNumericCascadeForeignKey(string name,
             string foreignTable,
             string? foreignColumn = null
         )

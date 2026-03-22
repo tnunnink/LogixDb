@@ -12,7 +12,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("controller");
 
-            await AssertColumnDefinition("controller", "controller_id", "int");
+            await AssertColumnDefinition("controller", "controller_id", "uniqueidentifier");
             await AssertColumnDefinition("controller", "snapshot_id", "int");
             await AssertColumnDefinition("controller", "controller_name", "nvarchar");
             await AssertColumnDefinition("controller", "catalog_number", "nvarchar");
@@ -49,7 +49,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("data_type");
 
-            await AssertColumnDefinition("data_type", "type_id", "int");
+            await AssertColumnDefinition("data_type", "type_id", "uniqueidentifier");
             await AssertColumnDefinition("data_type", "snapshot_id", "int");
             await AssertColumnDefinition("data_type", "type_name", "nvarchar");
             await AssertColumnDefinition("data_type", "type_class", "nvarchar");
@@ -73,7 +73,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("data_type_member");
 
-            await AssertColumnDefinition("data_type_member", "member_id", "int");
+            await AssertColumnDefinition("data_type_member", "member_id", "uniqueidentifier");
             await AssertColumnDefinition("data_type_member", "snapshot_id", "int");
             await AssertColumnDefinition("data_type_member", "type_name", "nvarchar");
             await AssertColumnDefinition("data_type_member", "member_name", "nvarchar");
@@ -102,7 +102,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("task");
 
-            await AssertColumnDefinition("task", "task_id", "int");
+            await AssertColumnDefinition("task", "task_id", "uniqueidentifier");
             await AssertColumnDefinition("task", "snapshot_id", "int");
             await AssertColumnDefinition("task", "task_name", "nvarchar");
             await AssertColumnDefinition("task", "task_type", "nvarchar");
@@ -133,7 +133,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("program");
 
-            await AssertColumnDefinition("program", "program_id", "int");
+            await AssertColumnDefinition("program", "program_id", "uniqueidentifier");
             await AssertColumnDefinition("program", "snapshot_id", "int");
             await AssertColumnDefinition("program", "program_name", "nvarchar");
             await AssertColumnDefinition("program", "program_type", "nvarchar");
@@ -163,7 +163,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("routine");
 
-            await AssertColumnDefinition("routine", "routine_id", "int");
+            await AssertColumnDefinition("routine", "routine_id", "uniqueidentifier");
             await AssertColumnDefinition("routine", "snapshot_id", "int");
             await AssertColumnDefinition("routine", "program_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
@@ -187,7 +187,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "int");
+            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("rung", "snapshot_id", "int");
             await AssertColumnDefinition("rung", "program_name", "nvarchar");
             await AssertColumnDefinition("rung", "routine_name", "nvarchar");

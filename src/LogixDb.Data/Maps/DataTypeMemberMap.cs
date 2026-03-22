@@ -15,6 +15,7 @@ public class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<DataTypeMemberRecord>> Columns =>
     [
+        ColumnMap<DataTypeMemberRecord>.For(r => r.MemberId, "member_id", hashable: false),
         ColumnMap<DataTypeMemberRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Parent?.Name, "type_name"),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Name, "member_name"),
@@ -38,4 +39,7 @@ public class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this member record belongs.</param>
 /// <param name="Member">The Logix data type member entity.</param>
-public record DataTypeMemberRecord(int SnapshotId, DataTypeMember Member);
+public record DataTypeMemberRecord(int SnapshotId, DataTypeMember Member)
+{
+    public Guid MemberId { get; } = Guid.NewGuid();
+}

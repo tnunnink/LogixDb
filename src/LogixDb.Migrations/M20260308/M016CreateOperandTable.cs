@@ -21,7 +21,7 @@ public class M016CreateOperandTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("operand")
-            .WithPrimaryId("operand_id")
+            .WithPrimaryGuid("operand_id")
             .WithOptionalCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()

@@ -10,14 +10,23 @@ namespace LogixDb.Data.SqlServer.Imports;
 /// </summary>
 internal class SqlServerDataTypeImport : SqlServerImport
 {
-    private readonly DataTypeMap _map = new();
+    private readonly DataTypeMap _dataTypeMap = new();
+    private readonly DataTypeMemberMap _memberMap = new();
 
-    /// <inheritdoc />
-    public override Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
+    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
         CancellationToken token)
     {
         var source = snapshot.GetSource();
-        var records = source.DataTypes.Select(d => new DataTypeRecord(snapshot.SnapshotId, d));
-        return ImportRecords(records, _map, session, token);
+        var dataTypeRecords = new List<DataTypeRecord>();
+        var memberRecords = new List<DataTypeMemberRecord>();
+
+        foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
+        {
+            dataTypeRecords.Add(new DataTypeRecord(snapshot.SnapshotId, dataType));
+            memberRecords.AddRange(dataType.Members.Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m)));
+        }
+
+        await ImportRecords(dataTypeRecords, _dataTypeMap, session, token);
+        await ImportRecords(memberRecords, _memberMap, session, token);
     }
 }

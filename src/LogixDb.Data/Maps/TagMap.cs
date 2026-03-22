@@ -15,6 +15,7 @@ public class TagMap : TableMap<TagRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
     [
+        ColumnMap<TagRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "program_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
@@ -22,10 +23,12 @@ public class TagMap : TableMap<TagRecord>
         ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
         ColumnMap<TagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Value.IsAtomic() ? r.Tag.Value.ToString() : null, "tag_value"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Value.GetDataValue(), "tag_value"),
         ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
         ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
+        /*ColumnMap<TagRecord>.For(r => r.Tag.OpcUAAccess?.Name, "opcua_access"),*/
         ColumnMap<TagRecord>.For(r => r.Tag.Constant, "is_constant"),
+        ColumnMap<TagRecord>.For(r => r.Tag.AliasFor?.LocalPath, "alias_for"),
         ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
@@ -37,4 +40,7 @@ public class TagMap : TableMap<TagRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this tag record belongs.</param>
 /// <param name="Tag">The Logix tag entity containing its configuration and value.</param>
-public record TagRecord(int SnapshotId, Tag Tag);
+public record TagRecord(int SnapshotId, Tag Tag)
+{
+    public Guid TagId { get; } = Guid.NewGuid();
+}

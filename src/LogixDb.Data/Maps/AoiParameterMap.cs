@@ -15,12 +15,12 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
+        ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.GetDataTypeName(), "data_type"),
-        ColumnMap<AoiParameterRecord>.For(
-            r => r.Parameter.Default?.IsAtomic() is true ? r.Parameter.Default?.ToString() : null, "default_value"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.GetDataValue(), "default_value"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
@@ -40,4 +40,7 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this parameter record belongs.</param>
 /// <param name="Parameter">The Logix AOI parameter entity.</param>
-public record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter);
+public record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter)
+{
+    public Guid ParameterId { get; } = Guid.NewGuid();
+}

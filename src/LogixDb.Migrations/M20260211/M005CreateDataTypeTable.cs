@@ -10,8 +10,8 @@ public class M005CreateDataTypeTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("data_type")
-            .WithPrimaryId("type_id")
-            .WithCascadeForeignKey("snapshot_id", "snapshot")
+            .WithPrimaryGuid("type_id")
+            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("type_name").AsString(128).NotNullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()

@@ -15,6 +15,7 @@ public class ControllerMap : TableMap<ControllerRecord>
     /// <inheritdoc />
     public override IReadOnlyList<ColumnMap<ControllerRecord>> Columns =>
     [
+        ColumnMap<ControllerRecord>.For(r => r.ControllerId, "controller_id", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Name, "controller_name"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.ProcessorType, "catalog_number"),
@@ -45,4 +46,7 @@ public class ControllerMap : TableMap<ControllerRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this controller record belongs.</param>
 /// <param name="Controller">The Logix controller entity containing its configuration.</param>
-public record ControllerRecord(int SnapshotId, Controller Controller);
+public record ControllerRecord(int SnapshotId, Controller Controller)
+{
+    public Guid ControllerId { get; } = Guid.NewGuid();
+}

@@ -3,6 +3,7 @@ using CliFx.Exceptions;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
+using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
@@ -25,14 +26,30 @@ namespace LogixDb.Cli.Commands;
 [Command("migrate", Description = "Runs migrations to create and/or ensure the latest database schema")]
 public class MigrateCommand : DbCommand
 {
+    /// <summary>
+    /// Gets or initializes the collection of table names to include during the migration process.
+    /// If specified, only tables matching these names will be migrated. If empty, all tables are included by default.
+    /// </summary>
+    [CommandOption("include", Description = "Specifies the table names to include during migration")]
+    public string[] Include { get; init; } = [];
+
+    /// <summary>
+    /// Gets or initializes the collection of table names to exclude during the migration process.
+    /// Tables matching these names will be skipped during migration.
+    /// </summary>
+    [CommandOption("exclude", Description = "Specifies the table names to exclude during migration")]
+    public string[] Exclude { get; init; } = [];
+
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
+        var options = new TableOptions { Include = Include, Exclude = Exclude };
+
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Migrating database...", _ => database.Migrate(token));
+                .StartAsync("Migrating database...", _ => database.Migrate(options, token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
         }

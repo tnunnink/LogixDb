@@ -7,6 +7,53 @@ namespace LogixDb.Data.Sqlite;
 internal static class SqlStatement
 {
     /// <summary>
+    /// A SQL statement used to ensure the existence of a target entry in the "target" table by inserting a new record
+    /// with the specified target key. If a record with the same target key already exists, the operation does nothing,
+    /// preventing duplicate entries for the key.
+    /// </summary>
+    internal const string EnsureTargetExists =
+        """
+        INSERT INTO target (target_key)
+        VALUES (@target_key)
+        ON CONFLICT(target_key) DO NOTHING;
+        """;
+
+    /// <summary>
+    /// A SQL statement that retrieves the unique identifier of a target entry from the "target" table
+    /// based on the specified target key. The target key is provided as a parameter in the query.
+    /// </summary>
+    internal const string GetTargetId =
+        """
+        SELECT target_id
+        FROM target
+        WHERE target_key = @target_key;
+        """;
+
+    /// <summary>
+    /// A SQL statement used to insert a new snapshot record into the "snapshot" table.
+    /// This statement populates various fields such as target details, schema and software revisions,
+    /// export and import metadata, as well as source hash and data. Upon successful insertion, the
+    /// statement returns the unique identifier (snapshot_id) for the newly created snapshot.
+    /// </summary>
+    internal const string InsertSnapshot =
+        """
+        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data) 
+        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
+        RETURNING snapshot_id;
+        """;
+
+    /// <summary>
+    /// A SQL statement that inserts metadata for a snapshot into the "snapshot_property" table.
+    /// It includes the snapshot ID, property name, and property value as parameters, allowing the
+    /// association of specific metadata properties with a given snapshot.
+    /// </summary>
+    internal const string InsertSnapshotMetadata =
+        """
+        INSERT INTO snapshot_property (snapshot_id, property_name, property_value)
+        VALUES (@snapshot_id, @property_name, @property_value)
+        """;
+
+    /// <summary>
     /// A SQL query string used to retrieve a list of snapshot entries from the database table "snapshot."
     /// The query supports filtering snapshots based on the associated target key by matching it with the
     /// target_id retrieved from the "target" table. If no target key is specified, all snapshots are returned.
@@ -98,7 +145,7 @@ internal static class SqlStatement
     /// A SQL query string used to delete a target entry from the "target" table in the database.
     /// The deletion is performed by matching the target_key value with the key provided via the @target_key parameter.
     /// </summary>
-    internal const string DeleteTargetById = 
+    internal const string DeleteTargetById =
         "DELETE FROM target where target_key = @target_key ";
 
     /// <summary>
@@ -106,7 +153,7 @@ internal static class SqlStatement
     /// table "snapshot" based on the provided snapshot ID. This query ensures the removal
     /// of the snapshot record identified by the "snapshot_id" parameter.
     /// </summary>
-    internal const string DeleteSnapshotById = 
+    internal const string DeleteSnapshotById =
         "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
 
     /// <summary>
@@ -137,5 +184,14 @@ internal static class SqlStatement
         DELETE FROM snapshot 
                WHERE (@target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key))
                AND import_date < @import_date
+        """;
+
+    /// <summary>
+    /// A SQL query used to retrieve the names of all tables in the current SQLite database.
+    /// It queries the SQLite system catalog to list entries of type "table" from the `sqlite_master` table.
+    /// </summary>
+    internal const string GetTableNames =
+        """
+        SELECT name FROM sqlite_master WHERE type = "table"
         """;
 }

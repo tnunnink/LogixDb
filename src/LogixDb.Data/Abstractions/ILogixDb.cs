@@ -11,17 +11,19 @@ public interface ILogixDb
     /// <summary>
     /// Applies pending database migrations to update the schema to the latest version.
     /// </summary>
+    /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(CancellationToken token = default);
+    Task Migrate(TableOptions? options = null, CancellationToken token = default);
 
     /// <summary>
     /// Applies pending database migrations up to the specified schema version.
     /// </summary>
     /// <param name="version">The target schema version to migrate to.</param>
+    /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(long version, CancellationToken token = default);
+    Task Migrate(long version, TableOptions? options = null, CancellationToken token = default);
 
     /// <summary>
     /// Drops or deletes the database, removing all tables and data.
@@ -72,11 +74,10 @@ public interface ILogixDb
     /// Adds a snapshot to the database with the specified action.
     /// </summary>
     /// <param name="snapshot">The snapshot to be added to the database.</param>
-    /// <param name="action">The action to perform when adding the snapshot (e.g., append, replace the latest, or replace all).</param>
+    /// <param name="option">The action to perform when adding the snapshot (e.g., append, replace the latest, or replace all).</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
-        CancellationToken token = default);
+    Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append, CancellationToken token = default);
 
     /// <summary>
     /// Deletes all snapshots matching the specified target key.

@@ -27,7 +27,7 @@ public class ImportCommand : DbCommand
     public string? TargetKey { get; init; }
 
     [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
-    public SnapshotAction Action { get; init; } = SnapshotAction.Append;
+    public ImportOption Action { get; init; } = ImportOption.Append;
 
     [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
     public string? Converter { get; init; }

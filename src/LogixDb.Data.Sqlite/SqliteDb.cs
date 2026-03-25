@@ -1,9 +1,10 @@
 ﻿using System.Data;
+using System.Data.Common;
 using Dapper;
 using FluentMigrator.Runner;
+using FluentMigrator.Runner.Initialization;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Exceptions;
-using LogixDb.Data.Sqlite.Imports;
 using LogixDb.Migrations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,38 +26,19 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// </summary>
     private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
-    /// <summary>
-    /// Represents the collection of imports used in the Sqlite database implementation.
-    /// These imports are responsible for mapping data elements between SQLite and
-    /// the application domain, enabling seamless data operations.
-    /// </summary>
-    private readonly List<ILogixDbImport> _imports =
-    [
-        new SqliteSnapshotImport(),
-        new SqliteControllerImport(),
-        new SqliteDataTypeImport(),
-        new SqliteAoiImport(),
-        new SqliteModuleImport(),
-        new SqliteTaskImport(),
-        new SqliteProgramImport(),
-        new SqliteRoutineImport(),
-        new SqliteRungImport(),
-        new SqliteTagImport()
-    ];
-
     /// <inheritdoc />
-    public async Task Migrate(CancellationToken token = default)
+    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
     {
-        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
         await ConfigurePersistentPerformancePragmas(token);
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, CancellationToken token = default)
+    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
     {
-        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
         await ConfigurePersistentPerformancePragmas(token);
@@ -112,24 +94,33 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, SnapshotAction action = SnapshotAction.Append,
+    public async Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append,
         CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        await HandleSnapshotAction(snapshot.TargetKey, action, token);
-        await using var session = await SqliteDbSession.StartAsync(this, token);
-        var options = new ImportOptions();
+        await HandleSnapshotAction(snapshot.TargetKey, option, token);
+
+        await using var connection = await OpenConnectionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {
-            foreach (var import in _imports)
-                await import.Process(snapshot, session, options, token);
+            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
+            await ImportSnapshotAsync(snapshot, connection, transaction);
 
-            await session.GetTransaction<SqliteTransaction>().CommitAsync(token);
+            // 2. Compile component data into DataTables
+            var options = await GetTableOptions(connection, transaction);
+            var tables = snapshot.Compile(options);
+
+            // 3. Write component data using the Bulk Writer
+            var writer = new SqliteDbWriter(connection, (SqliteTransaction)transaction);
+            await writer.WriteAsync(tables, token);
+
+            await transaction.CommitAsync(token);
         }
         catch (Exception)
         {
-            await session.GetTransaction<SqliteTransaction>().RollbackAsync(token);
+            await transaction.RollbackAsync(token);
             throw;
         }
     }
@@ -168,23 +159,81 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
+    /// Imports a snapshot into the database, ensuring all relevant data is recorded and associated with the specified target.
+    /// </summary>
+    /// <param name="snapshot">The snapshot object containing the data to be imported.</param>
+    /// <param name="conn">The database connection instance used for interaction with the database.</param>
+    /// <param name="tran">The database transaction under which the operations will be executed.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private static async Task ImportSnapshotAsync(Snapshot snapshot, SqliteConnection conn, DbTransaction tran)
+    {
+        // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
+        var key = new { target_key = snapshot.TargetKey };
+        await conn.ExecuteAsync(SqlStatement.EnsureTargetExists, key, tran);
+        var targetId = await conn.QuerySingleAsync<int>(SqlStatement.GetTargetId, key, tran);
+
+        // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
+        snapshot.SnapshotId = await conn.ExecuteScalarAsync<int>(SqlStatement.InsertSnapshot, new
+        {
+            target_id = targetId,
+            target_type = snapshot.TargetType,
+            target_name = snapshot.TargetName,
+            is_partial = snapshot.IsPartial,
+            schema_revision = snapshot.SchemaRevision,
+            software_revision = snapshot.SoftwareRevision,
+            export_date = snapshot.ExportDate,
+            export_options = snapshot.ExportOptions,
+            import_date = snapshot.ImportDate,
+            import_user = snapshot.ImportUser,
+            import_machine = snapshot.ImportMachine,
+            source_hash = snapshot.SourceHash,
+            source_data = snapshot.SourceData
+        }, tran);
+
+        // Post the snapshot metadata to the database.
+        await conn.ExecuteAsync(SqlStatement.InsertSnapshotMetadata,
+            snapshot.Metadata.Select(p => new
+            {
+                snapshot_id = snapshot.SnapshotId,
+                property_name = p.Key,
+                property_value = p.Value
+            }).ToList(),
+            tran);
+    }
+
+    /// <summary>
+    /// Retrieves table options for the database, filtering to include only specific tables relevant to the system.
+    /// </summary>
+    /// <param name="connection">An open SQLite database connection used to query table names.</param>
+    /// <param name="transaction">The database transaction context within which the query runs.</param>
+    /// <returns>A <see cref="TableOptions"/> object specifying the tables to include for further operations.</returns>
+    /// <exception cref="NotImplementedException">Thrown if the method is not yet fully implemented.</exception>
+    private static async Task<TableOptions> GetTableOptions(SqliteConnection connection, DbTransaction transaction)
+    {
+        var names = await connection.QueryAsync<string>(SqlStatement.GetTableNames, transaction);
+        //todo we need to filter this to just known tables of our system and not predefined or other tables users may create.
+        var include = names.ToArray();
+        return new TableOptions { Include = include };
+    }
+
+    /// <summary>
     /// Handles snapshot actions based on the specified action type for a given target key.
     /// </summary>
     /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
     /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
     /// <param name="token">A cancellation token that can be used to signal the operation should be canceled.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
-    private async Task HandleSnapshotAction(string targetKey, SnapshotAction action, CancellationToken token)
+    private async Task HandleSnapshotAction(string targetKey, ImportOption action, CancellationToken token)
     {
         switch (action)
         {
-            case SnapshotAction.ReplaceLatest:
+            case ImportOption.ReplaceLatest:
                 await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey }, token);
                 break;
-            case SnapshotAction.ReplaceAll:
+            case ImportOption.ReplaceAll:
                 await ExecuteSqlAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey }, token);
                 break;
-            case SnapshotAction.Append:
+            case ImportOption.Append:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(action), action, null);
@@ -254,8 +303,9 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// including connection string, version table metadata, and migration scanning.
     /// </summary>
     /// <param name="connectionString">The connection string for the SQLite database.</param>
+    /// <param name="options"></param>
     /// <returns>A configured <see cref="ServiceProvider"/> instance to execute migrations.</returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
     {
         var services = new ServiceCollection();
 
@@ -270,6 +320,8 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
                 .For.Migrations()
             );
 
+        var tags = MigrationTag.GetTags(options);
+        services.Configure<RunnerOptions>(opt => opt.Tags = tags.ToArray());
         return services.BuildServiceProvider();
     }
 

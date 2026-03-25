@@ -44,7 +44,7 @@ public class SourceIngestionServiceTests
         {
             DbConnection = _testDbPath,
             DropPath = _testDropPath,
-            OnConflict = SnapshotAction.Append
+            OnOption = ImportOption.Append
         });
 
         _channel = Channel.CreateUnbounded<SourceInfo>();

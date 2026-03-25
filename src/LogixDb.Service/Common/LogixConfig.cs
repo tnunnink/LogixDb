@@ -38,10 +38,10 @@ public class LogixConfig
     /// </summary>
     /// <remarks>
     /// This property determines how the system should handle scenarios where new database snapshots
-    /// conflict with existing snapshots. The available options, defined in the <see cref="SnapshotAction"/> enumeration,
+    /// conflict with existing snapshots. The available options, defined in the <see cref="ImportOption"/> enumeration,
     /// include appending the snapshot, replacing the latest snapshot, or replacing all existing snapshots.
     /// </remarks>
-    public SnapshotAction OnConflict { get; init; } = SnapshotAction.ReplaceLatest;
+    public ImportOption OnOption { get; init; } = ImportOption.ReplaceLatest;
 
     /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.

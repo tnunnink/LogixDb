@@ -18,7 +18,7 @@ public class ArgumentMap : TableMap<ArgumentRecord>
     public override string TableName => "argument";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentId, "argument_id", hashable: false),
         ColumnMap<ArgumentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

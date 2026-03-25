@@ -13,7 +13,7 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
     public override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
         ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

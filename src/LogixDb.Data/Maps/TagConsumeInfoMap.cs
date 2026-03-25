@@ -1,0 +1,38 @@
+using L5Sharp.Core;
+
+namespace LogixDb.Data.Maps;
+
+/// <summary>
+/// Represents a mapping configuration for the "tag_consume_info" table, defining how the
+/// fields in the <see cref="TagConsumeInfoRecord"/> are associated with the columns in the database table.
+/// </summary>
+public class TagConsumeInfoMap : TableMap<TagConsumeInfoRecord>
+{
+    /// <inheritdoc />
+    public override string TableName => "tag_consume_info";
+
+    /// <inheritdoc />
+    protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>
+    [
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfoId, "consume_info_id", hashable: false),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Producer, "producer"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteTag, "remote_tag"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteInstance, "remote_instance"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => (float)r.ConsumeInfo.RPI, "rpi"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Unicast, "unicast"),
+        ColumnMap<TagConsumeInfoRecord>.For(ComputeHash, "record_hash", hashable: false)
+    ];
+}
+
+/// <summary>
+/// Represents a record containing consume information associated with a tag.
+/// </summary>
+/// <param name="SnapshotId">The identifier for the snapshot associated with the consume information.</param>
+/// <param name="TagId">The unique identifier for the tag associated with the consume information.</param>
+/// <param name="ConsumeInfo">An object containing detailed information about consume-related settings and data.</param>
+public record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
+{
+    public Guid ConsumeInfoId { get; } = Guid.NewGuid();
+}

@@ -14,7 +14,7 @@ public class RoutineMap : TableMap<RoutineRecord>
     public override string TableName => "routine";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
     [
         ColumnMap<RoutineRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

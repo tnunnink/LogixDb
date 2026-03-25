@@ -10,7 +10,7 @@ public class AoiOperandMap : TableMap<AoiOperandRecord>
     public override string TableName => "operand";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>
     [
         ColumnMap<AoiOperandRecord>.For(r => r.OperandId, "operand_id", hashable: false),
         ColumnMap<AoiOperandRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
@@ -39,8 +39,7 @@ public record AoiOperandRecord(
     string Name,
     string Type,
     string? Description,
-    bool Destructive
-)
+    bool Destructive)
 {
     public Guid OperandId { get; } = Guid.NewGuid();
 }

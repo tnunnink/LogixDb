@@ -13,7 +13,7 @@ public class TaskMap : TableMap<TaskRecord>
     public override string TableName => "task";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
     [
         ColumnMap<TaskRecord>.For(r => r.TaskId, "task_id", hashable: false),
         ColumnMap<TaskRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

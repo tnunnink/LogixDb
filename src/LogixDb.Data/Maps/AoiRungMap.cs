@@ -13,7 +13,7 @@ public class AoiRungMap : TableMap<AoiRungRecord>
     public override string TableName => "aoi_rung";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
     [
         ColumnMap<AoiRungRecord>.For(r => r.RungId, "rung_id", hashable: false),
         ColumnMap<AoiRungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

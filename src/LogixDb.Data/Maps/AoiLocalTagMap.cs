@@ -11,13 +11,13 @@ namespace LogixDb.Data.Maps;
 /// They are essentially all the same columns, except that the local tag doesn't have required and visible properties.
 /// I'd prefer not to make separate tables and not to tread these as "tag" instances but as member definitions.
 /// </remarks>
-public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
+internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 {
     /// <inheritdoc />
     public override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
         ColumnMap<AoiLocalTagRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
         ColumnMap<AoiLocalTagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
@@ -25,12 +25,14 @@ public class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.GetDataValue(), "default_value"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "description"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "parameter_description"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.TagType?.Name, "tag_type"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "constant"),
+        ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_visible"),
+        ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_required"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "is_constant"),
         ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash", false)
     ];
 }

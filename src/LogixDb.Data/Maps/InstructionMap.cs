@@ -19,7 +19,7 @@ public class InstructionMap : TableMap<InstructionRecord>
     public override string TableName => "instruction";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
         ColumnMap<InstructionRecord>.For(r => r.InstructionId, "instruction_id", hashable: false),
         ColumnMap<InstructionRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

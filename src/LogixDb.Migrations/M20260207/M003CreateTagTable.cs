@@ -1,10 +1,12 @@
 ﻿using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260207;
 
 [UsedImplicitly]
 [Migration(202602070830, "Creates tag table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
 public class M003CreateTagTable : AutoReversingMigration
 {
     public override void Up()
@@ -21,8 +23,8 @@ public class M003CreateTagTable : AutoReversingMigration
             .WithColumn("tag_value").AsString(256).Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
+            .WithColumn("opcua_access").AsString(32).Nullable()
             .WithColumn("is_constant").AsBoolean().Nullable()
-            .WithColumn("alias_for").AsString(256).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("tag")

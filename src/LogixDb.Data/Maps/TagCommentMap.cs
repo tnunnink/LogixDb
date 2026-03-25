@@ -11,7 +11,7 @@ public class TagCommentMap : TableMap<TagCommentRecord>
     public override string TableName => "tag_comment";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<TagCommentRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<TagCommentRecord>> Columns =>
     [
         ColumnMap<TagCommentRecord>.For(r => r.CommentId, "comment_id", hashable: false),
         ColumnMap<TagCommentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

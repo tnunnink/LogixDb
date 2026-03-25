@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260322;
 
 [UsedImplicitly]
 [Migration(202603220530, "Creates tag_consume_info table with corresponding indexes")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
 public class M022CreateTagConsumeInfoTable : AutoReversingMigration
 {
     public override void Up()

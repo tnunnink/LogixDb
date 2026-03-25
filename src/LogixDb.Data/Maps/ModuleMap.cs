@@ -13,7 +13,7 @@ public class ModuleMap : TableMap<ModuleRecord>
     public override string TableName => "module";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<ModuleRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ModuleRecord>> Columns =>
     [
         ColumnMap<ModuleRecord>.For(r => r.ModuleId, "module_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

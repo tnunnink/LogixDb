@@ -18,7 +18,7 @@ public class TagProduceInfoMap : TableMap<TagProduceInfoRecord>
     public override string TableName => "tag_produce_info";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
     [
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfoId, "porduce_info_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

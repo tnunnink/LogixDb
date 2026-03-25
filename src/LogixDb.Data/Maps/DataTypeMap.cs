@@ -13,7 +13,7 @@ public class DataTypeMap : TableMap<DataTypeRecord>
     public override string TableName => "data_type";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
     [
         ColumnMap<DataTypeRecord>.For(r => r.TypeId, "type_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

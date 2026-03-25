@@ -13,7 +13,7 @@ public class ProgramMap : TableMap<ProgramRecord>
     public override string TableName => "program";
 
     /// <inheritdoc />
-    public override IReadOnlyList<ColumnMap<ProgramRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ProgramRecord>> Columns =>
     [
         ColumnMap<ProgramRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),

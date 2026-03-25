@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111600, "Creates task table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Task)]
 public class M007CreateTaskTable : AutoReversingMigration
 {
     public override void Up()

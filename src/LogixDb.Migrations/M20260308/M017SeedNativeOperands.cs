@@ -1,5 +1,7 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
+
 // ReSharper disable StringLiteralTypo
 
 namespace LogixDb.Migrations.M20260308;
@@ -9,6 +11,7 @@ namespace LogixDb.Migrations.M20260308;
 /// </summary>
 [UsedImplicitly]
 [Migration(202603082130, "Seeds native operand metadata for all supported Logix instructions")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M017SeedNativeOperands : AutoReversingMigration
 {
     public override void Up()

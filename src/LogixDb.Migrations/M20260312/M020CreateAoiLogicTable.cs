@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260312;
 
 [UsedImplicitly]
 [Migration(202603122030, "Creates aoi_rung table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Aoi)]
 public class M020CreateAoiLogicTable : AutoReversingMigration
 {
     public override void Up()

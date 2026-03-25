@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260311;
 
 [UsedImplicitly]
 [Migration(202603110830, "Creates tag_comment table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
 public class M019CreateTagCommentTable : AutoReversingMigration
 {
     public override void Up()

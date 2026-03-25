@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111430, "Creates controller table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Controller)]
 public class M004CreateControllerTable : AutoReversingMigration
 {
     public override void Up()

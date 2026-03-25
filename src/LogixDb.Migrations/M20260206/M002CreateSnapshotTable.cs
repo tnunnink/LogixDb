@@ -1,11 +1,12 @@
 ﻿using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260206;
 
 [UsedImplicitly]
 [Migration(202602061020, "Create snapshot table and associated indexes for target type/name and import date")]
-//[Tags(MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M002CreateSnapshotTable : AutoReversingMigration
 {
     public override void Up()

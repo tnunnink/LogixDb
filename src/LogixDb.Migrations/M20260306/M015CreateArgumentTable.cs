@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260306;
 
@@ -16,6 +17,7 @@ namespace LogixDb.Migrations.M20260306;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603061300, "Creates argument table with corresponding indexes and foreign key relationships")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Rung)]
 public class M015CreateArgumentTable : AutoReversingMigration
 {
     public override void Up()

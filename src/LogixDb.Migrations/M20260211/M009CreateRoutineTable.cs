@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111930, "Creates routine table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Routine)]
 public class M009CreateRoutineTable : AutoReversingMigration
 {
     public override void Up()

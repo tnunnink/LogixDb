@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Migrations;
 
 // ReSharper disable StringLiteralTypo
 
@@ -7,6 +8,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202602262030, @"Grants permissions to the NT SERVICE\LogixDb virtual account used by the windows service.")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M001SqlServerConfigureServiceAccount : Migration
 {
     public override void Up()

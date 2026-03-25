@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260309;
 
@@ -8,6 +9,7 @@ namespace LogixDb.Migrations.M20260309;
 /// </summary>
 [UsedImplicitly]
 [Migration(202603092030, "Create snapshot_info table for snapshot metadata")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M018CreateSnapshotPropertyTable : AutoReversingMigration
 {
     /// <summary>

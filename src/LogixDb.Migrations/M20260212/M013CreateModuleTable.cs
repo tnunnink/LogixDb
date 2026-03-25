@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260212;
 
 [UsedImplicitly]
 [Migration(202602120930, "Creates module table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Module)]
 public class M013CreateModuleTable : AutoReversingMigration
 {
     public override void Up()

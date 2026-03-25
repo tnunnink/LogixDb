@@ -1,10 +1,12 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111500, "Creates data_type table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.DataType)]
 public class M005CreateDataTypeTable : AutoReversingMigration
 {
     public override void Up()

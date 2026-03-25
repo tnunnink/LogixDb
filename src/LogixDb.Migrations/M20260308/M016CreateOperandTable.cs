@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260308;
 
@@ -16,6 +17,7 @@ namespace LogixDb.Migrations.M20260308;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603082100, "Creates operand table with unique composite index on instruction_key and operand_index")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M016CreateOperandTable : AutoReversingMigration
 {
     public override void Up()

@@ -1,5 +1,6 @@
 using FluentMigrator;
 using JetBrains.Annotations;
+using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260306;
 
@@ -14,6 +15,7 @@ namespace LogixDb.Migrations.M20260306;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603061200, "Creates instruction table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Rung)]
 public class M014CreateInstructionTable : AutoReversingMigration
 {
     public override void Up()

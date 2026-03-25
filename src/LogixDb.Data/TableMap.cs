@@ -29,7 +29,7 @@ public abstract class TableMap<T> where T : class
     /// Gets the collection of column mappings that define how properties of the Logix element
     /// are mapped to columns in the database table.
     /// </summary>
-    public abstract IReadOnlyList<ColumnMap<T>> Columns { get; }
+    protected abstract IReadOnlyList<ColumnMap<T>> Columns { get; }
 
     /// <summary>
     /// Generates a DataTable representation of the provided records.
@@ -48,7 +48,7 @@ public abstract class TableMap<T> where T : class
     public DataTable GenerateTable(IEnumerable<T> records)
     {
         var table = new DataTable(TableName);
-        table.Columns.AddRange(Columns.Select(c => new DataColumn(c.Name, c.Type.ToType())).ToArray());
+        table.Columns.AddRange(Columns.Select(c => new DataColumn(c.Name, c.Type)).ToArray());
 
         table.BeginLoadData();
 

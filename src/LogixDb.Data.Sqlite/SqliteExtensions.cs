@@ -5,7 +5,7 @@ namespace LogixDb.Data.Sqlite;
 /// <summary>
 /// Provides extension methods for working with SQLite database types in the LogixDb context.
 /// </summary>
-public static class SqliteExtensions
+internal static class SqliteExtensions
 {
     /// <summary>
     /// Generates a SQLite connection string based on the provided <see cref="SqlConnectionInfo"/>.
@@ -30,22 +30,34 @@ public static class SqliteExtensions
     }
 
     /// <summary>
-    /// Converts a <see cref="ColumnType"/> to its equivalent <see cref="SqliteType"/>.
+    /// Converts a .NET <see cref="Type"/> to its corresponding <see cref="SqliteType"/> representation.
     /// </summary>
-    /// <param name="columnType">The column type to be converted.</param>
-    /// <returns>The corresponding <see cref="SqliteType"/> for the specified <paramref name="columnType"/>.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">
-    /// Thrown when the provided <paramref name="columnType"/> is not supported by the conversion.
+    /// <param name="type">The .NET type to be converted to an equivalent SQLite type.</param>
+    /// <returns>The corresponding <see cref="SqliteType"/> for the provided <paramref name="type"/>.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when the provided <paramref name="type"/> is null.
     /// </exception>
-    public static SqliteType ToSqliteType(this ColumnType columnType)
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the provided <paramref name="type"/> is not supported for SQLite conversion.
+    /// </exception>
+    public static SqliteType ToSqliteType(this Type type)
     {
-        return columnType switch
-        {
-            ColumnType.Boolean or ColumnType.Byte or ColumnType.Int16 or ColumnType.Int32 => SqliteType.Integer,
-            ColumnType.Float => SqliteType.Real,
-            ColumnType.Text or ColumnType.DateTime => SqliteType.Text,
-            ColumnType.Blob => SqliteType.Blob,
-            _ => throw new ArgumentOutOfRangeException(nameof(columnType), columnType, null)
-        };
+        ArgumentNullException.ThrowIfNull(type);
+
+        if (type == typeof(bool) || type == typeof(byte) || type == typeof(short) || type == typeof(int) ||
+            type == typeof(long))
+            return SqliteType.Integer;
+
+        if (type == typeof(float) || type == typeof(double) || type == typeof(decimal))
+            return SqliteType.Real;
+
+        if (type == typeof(string) || type == typeof(DateTime) || type == typeof(DateTimeOffset) ||
+            type == typeof(TimeSpan) || type == typeof(Guid))
+            return SqliteType.Text;
+
+        if (type == typeof(byte[]))
+            return SqliteType.Blob;
+
+        throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported type for SQLite conversion.");
     }
 }

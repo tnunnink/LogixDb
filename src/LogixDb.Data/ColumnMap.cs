@@ -20,7 +20,7 @@ public sealed record ColumnMap<T> where T : class
     /// Gets or sets the database column type to which a property of <typeparamref name="T"/> is mapped.
     /// This defines the data type representation for the column in the database schema, used for type-specific operations.
     /// </summary>
-    public required ColumnType Type { get; init; }
+    public required Type Type { get; init; }
 
     /// <summary>
     /// Gets the function used to extract the column value from an instance of <typeparamref name="T"/>.
@@ -49,7 +49,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Text,
+            Type = typeof(string),
             Getter = getter,
             IsHashable = hashable
         };
@@ -67,7 +67,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Guid,
+            Type = typeof(Guid),
             Getter = x => getter(x),
             IsHashable = hashable
         };
@@ -86,7 +86,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Boolean,
+            Type = typeof(bool),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -105,7 +105,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Boolean,
+            Type = typeof(bool),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -124,7 +124,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Byte,
+            Type = typeof(byte),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -143,7 +143,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Byte,
+            Type = typeof(byte),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -162,7 +162,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Int16,
+            Type = typeof(short),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -181,7 +181,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Int32,
+            Type = typeof(int),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -200,7 +200,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.Float,
+            Type = typeof(float),
             Getter = e => getter(e),
             IsHashable = hashable
         };
@@ -219,7 +219,7 @@ public sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = ColumnType.DateTime,
+            Type = typeof(DateTime),
             Getter = e => getter(e),
             IsHashable = hashable
         };

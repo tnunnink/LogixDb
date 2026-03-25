@@ -3,18 +3,18 @@ using L5Sharp.Core;
 namespace LogixDb.Data.Maps;
 
 /// <summary>
-/// Represents a mapping configuration for the "tag_consume_info" table, defining how the
+/// Represents a mapping configuration for the "tag_consumer" table, defining how the
 /// fields in the <see cref="TagConsumeInfoRecord"/> are associated with the columns in the database table.
 /// </summary>
-public class TagConsumeInfoMap : TableMap<TagConsumeInfoRecord>
+public class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_consume_info";
+    public override string TableName => "tag_consumer";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>
     [
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfoId, "consume_info_id", hashable: false),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumerId, "consumer_id", hashable: false),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id"),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Producer, "producer"),
@@ -34,5 +34,5 @@ public class TagConsumeInfoMap : TableMap<TagConsumeInfoRecord>
 /// <param name="ConsumeInfo">An object containing detailed information about consume-related settings and data.</param>
 public record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
 {
-    public Guid ConsumeInfoId { get; } = Guid.NewGuid();
+    public Guid ConsumerId { get; } = Guid.NewGuid();
 }

@@ -3,7 +3,7 @@ using L5Sharp.Core;
 namespace LogixDb.Data.Maps;
 
 /// <summary>
-/// Represents a mapping configuration for the "tag_produce_info" table, defining how the
+/// Represents a mapping configuration for the "tag_producer" table, defining how the
 /// fields in the <see cref="TagProduceInfoRecord"/> are associated with the columns in the database table.
 /// This class is responsible for specifying column mappings, their characteristics, and the table name.
 /// </summary>
@@ -12,15 +12,15 @@ namespace LogixDb.Data.Maps;
 /// the structure of <see cref="TagProduceInfoRecord"/>. Each property in the record is mapped to a database column,
 /// including metadata regarding its hashability and data transformation if applicable.
 /// </remarks>
-public class TagProduceInfoMap : TableMap<TagProduceInfoRecord>
+public class TagProducerMap : TableMap<TagProduceInfoRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_produce_info";
+    public override string TableName => "tag_producer";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
     [
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfoId, "porduce_info_id", hashable: false),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.ProducerId, "producer_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.TagId, "tag_id"),
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProduceCount, "produce_count"),
@@ -43,5 +43,5 @@ public class TagProduceInfoMap : TableMap<TagProduceInfoRecord>
 /// <param name="ProduceInfo">An object containing detailed information about produce-related settings and data.</param>
 public record TagProduceInfoRecord(int SnapshotId, Guid TagId, ProduceInfo ProduceInfo)
 {
-    public Guid ProduceInfoId { get; } = Guid.NewGuid();
+    public Guid ProducerId { get; } = Guid.NewGuid();
 }

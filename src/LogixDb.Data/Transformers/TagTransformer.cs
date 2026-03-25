@@ -22,8 +22,8 @@ internal class TagTransformer : ILogixDbTransformer
 {
     private readonly TagMap _tagMap = new();
     private readonly TagCommentMap _commentMap = new();
-    private readonly TagProduceInfoMap _produceInfoMap = new();
-    private readonly TagConsumeInfoMap _consumeInfoMap = new();
+    private readonly TagProducerMap _producerMap = new();
+    private readonly TagConsumerMap _consumerMap = new();
     private readonly TagAliasMap _aliasMap = new();
 
     /// <inheritdoc />
@@ -60,8 +60,8 @@ internal class TagTransformer : ILogixDbTransformer
 
         yield return _tagMap.GenerateTable(tagRecords);
         yield return _commentMap.GenerateTable(commentRecords);
-        yield return _produceInfoMap.GenerateTable(producerRecords);
-        yield return _consumeInfoMap.GenerateTable(consumerRecords);
+        yield return _producerMap.GenerateTable(producerRecords);
+        yield return _consumerMap.GenerateTable(consumerRecords);
         yield return _aliasMap.GenerateTable(aliasRecords);
     }
 

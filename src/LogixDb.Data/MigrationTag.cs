@@ -75,20 +75,6 @@ public static class MigrationTag
     public const string Task = "task";
 
     /// <summary>
-    /// Returns a list of all migration tags defined in this class.
-    /// This method uses reflection to dynamically retrieve all constant string fields.
-    /// </summary>
-    /// <returns>A list containing all migration tag values defined in the MigrationTag class.</returns>
-    public static IEnumerable<string> All()
-    {
-        return typeof(MigrationTag)
-            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-            .Where(f => f is { IsLiteral: true, IsInitOnly: false } && f.FieldType == typeof(string))
-            .Select(f => (string)f.GetRawConstantValue()!)
-            .ToList();
-    }
-
-    /// <summary>
     /// Retrieves a filtered list of migration tags based on the specified table options.
     /// </summary>
     /// <param name="options">The table options used to include or exclude specific migration tags.
@@ -112,5 +98,19 @@ public static class MigrationTag
 
         tags.AddRange(set);
         return tags;
+    }
+
+    /// <summary>
+    /// Returns a list of all migration tags defined in this class.
+    /// This method uses reflection to dynamically retrieve all constant string fields.
+    /// </summary>
+    /// <returns>A list containing all migration tag values defined in the MigrationTag class.</returns>
+    private static List<string> All()
+    {
+        return typeof(MigrationTag)
+            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+            .Where(f => f is { IsLiteral: true, IsInitOnly: false } && f.FieldType == typeof(string))
+            .Select(f => (string)f.GetRawConstantValue()!)
+            .ToList();
     }
 }

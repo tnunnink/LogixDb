@@ -10,22 +10,22 @@ public class M20260322Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_produce_info");
+            await AssertTableExists("tag_producer");
 
-            await AssertColumnDefinition("tag_produce_info", "produce_info_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_produce_info", "snapshot_id", "int");
-            await AssertColumnDefinition("tag_produce_info", "tag_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_produce_info", "produce_count", "int");
-            await AssertColumnDefinition("tag_produce_info", "programatically_send_event_trigger", "bit");
-            await AssertColumnDefinition("tag_produce_info", "unicast_permitted", "bit");
-            await AssertColumnDefinition("tag_produce_info", "maximum_rpi", "float");
-            await AssertColumnDefinition("tag_produce_info", "minimum_rpi", "float");
-            await AssertColumnDefinition("tag_produce_info", "default_rpi", "float");
-            await AssertColumnDefinition("tag_produce_info", "record_hash", "nvarchar");
+            await AssertColumnDefinition("tag_producer", "producer_id", "uniqueidentifier");
+            await AssertColumnDefinition("tag_producer", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_producer", "tag_id", "uniqueidentifier");
+            await AssertColumnDefinition("tag_producer", "produce_count", "int");
+            await AssertColumnDefinition("tag_producer", "programatically_send_event_trigger", "bit");
+            await AssertColumnDefinition("tag_producer", "unicast_permitted", "bit");
+            await AssertColumnDefinition("tag_producer", "maximum_rpi", "float");
+            await AssertColumnDefinition("tag_producer", "minimum_rpi", "float");
+            await AssertColumnDefinition("tag_producer", "default_rpi", "float");
+            await AssertColumnDefinition("tag_producer", "record_hash", "nvarchar");
 
-            await AssertPrimaryKey("tag_produce_info", "produce_info_id");
-            await AssertForeignKey("tag_produce_info", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("tag_produce_info", "snapshot_id", "tag_id");
+            await AssertPrimaryKey("tag_producer", "producer_id");
+            await AssertForeignKey("tag_producer", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("tag_producer", "snapshot_id", "tag_id");
         }
     }
 
@@ -36,21 +36,21 @@ public class M20260322Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_consume_info");
+            await AssertTableExists("tag_consumer");
 
-            await AssertColumnDefinition("tag_consume_info", "consume_info_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_consume_info", "snapshot_id", "int");
-            await AssertColumnDefinition("tag_consume_info", "tag_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_consume_info", "producer", "nvarchar");
-            await AssertColumnDefinition("tag_consume_info", "remote_tag", "nvarchar");
-            await AssertColumnDefinition("tag_consume_info", "remote_instance", "int");
-            await AssertColumnDefinition("tag_consume_info", "rpi", "float");
-            await AssertColumnDefinition("tag_consume_info", "unicast", "bit");
-            await AssertColumnDefinition("tag_consume_info", "record_hash", "nvarchar");
+            await AssertColumnDefinition("tag_consumer", "consumer_id", "uniqueidentifier");
+            await AssertColumnDefinition("tag_consumer", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_consumer", "tag_id", "uniqueidentifier");
+            await AssertColumnDefinition("tag_consumer", "producer", "nvarchar");
+            await AssertColumnDefinition("tag_consumer", "remote_tag", "nvarchar");
+            await AssertColumnDefinition("tag_consumer", "remote_instance", "int");
+            await AssertColumnDefinition("tag_consumer", "rpi", "float");
+            await AssertColumnDefinition("tag_consumer", "unicast", "bit");
+            await AssertColumnDefinition("tag_consumer", "record_hash", "nvarchar");
 
-            await AssertPrimaryKey("tag_consume_info", "consume_info_id");
-            await AssertForeignKey("tag_consume_info", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("tag_consume_info", "snapshot_id", "tag_id");
+            await AssertPrimaryKey("tag_consumer", "consumer_id");
+            await AssertForeignKey("tag_consumer", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("tag_consumer", "snapshot_id", "tag_id");
         }
     }
 

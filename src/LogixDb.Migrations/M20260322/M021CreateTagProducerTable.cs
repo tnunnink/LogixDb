@@ -5,14 +5,14 @@ using LogixDb.Data;
 namespace LogixDb.Migrations.M20260322;
 
 [UsedImplicitly]
-[Migration(202603220500, "Creates tag_produce_info table with corresponding indexes")]
+[Migration(202603220500, "Creates tag_producer table with corresponding indexes")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
-public class M021CreateTagProduceInfoTable : AutoReversingMigration
+public class M021CreateTagProducerTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("tag_produce_info")
-            .WithPrimaryGuid("produce_info_id")
+        Create.Table("tag_producer")
+            .WithPrimaryGuid("producer_id")
             .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
             .WithColumn("tag_id").AsGuid().NotNullable()
             .WithColumn("produce_count").AsInt32().NotNullable()
@@ -23,12 +23,12 @@ public class M021CreateTagProduceInfoTable : AutoReversingMigration
             .WithColumn("default_rpi").AsDouble().NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index().OnTable("tag_produce_info")
+        Create.Index().OnTable("tag_producer")
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("tag_id").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("tag_produce_info")
+        Create.Index().OnTable("tag_producer")
             .OnColumn("record_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }

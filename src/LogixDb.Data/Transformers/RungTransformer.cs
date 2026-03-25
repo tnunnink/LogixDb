@@ -1,21 +1,22 @@
+using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
-using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Data.SqlServer.Imports;
+namespace LogixDb.Data.Transformers;
 
 /// <summary>
-/// Represents a class for importing rung data into a SqlServer database.
+/// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
+/// <see cref="DataTable"/> instances focused on rungs and their instructions and arguments.
 /// </summary>
-internal class SqlServerRungImport : SqlServerImport
+internal class RungTransformer : ILogixDbTransformer
 {
     private readonly RungMap _rungMap = new();
     private readonly InstructionMap _instructionMap = new();
     private readonly ArgumentMap _argumentMap = new();
 
-    public override async Task Process(Snapshot snapshot, ILogixDbSession session, ImportOptions options,
-        CancellationToken token)
+    /// <inheritdoc />
+    public IEnumerable<DataTable> Transform(Snapshot snapshot)
     {
         var source = snapshot.GetSource();
         var rungRecords = new List<RungRecord>();
@@ -32,22 +33,12 @@ internal class SqlServerRungImport : SqlServerImport
             rungRecords.Add(rungRecord);
             ProcessRung(snapshot.SnapshotId, rungRecord.RungId, rung, instructionRecords, argumentRecords);
         }
-        
-        await ImportRecords(rungRecords, _rungMap, session, token);
-        await ImportRecords(instructionRecords, _instructionMap, session, token);
-        await ImportRecords(argumentRecords, _argumentMap, session, token);
+
+        yield return _rungMap.GenerateTable(rungRecords);
+        yield return _instructionMap.GenerateTable(instructionRecords);
+        yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    /// <summary>
-    /// Processes a rung by extracting its instructions and their associated arguments,
-    /// creating records for both, and computing their respective hashes before adding
-    /// them to the provided collections.
-    /// </summary>
-    /// <param name="snapshotId">The unique identifier of the snapshot being processed.</param>
-    /// <param name="runId">The Guid of the rung used for identifying uniqueness.</param>
-    /// <param name="rung">The rung to be processed containing instructions and arguments.</param>
-    /// <param name="instructionRecords">The collection to which instruction records are added.</param>
-    /// <param name="argumentRecords">The collection to which argument records are added.</param>
     private static void ProcessRung(
         int snapshotId,
         Guid runId,
@@ -73,7 +64,6 @@ internal class SqlServerRungImport : SqlServerImport
 
                 if (argument.Type == ArgumentType.Expression)
                 {
-                    //todo we need a way to get all expression argument including values using L5Sharp.
                     argumentRecords.AddRange(argument.Tags.Select(t =>
                         new ArgumentRecord(snapshotId, instructionId, argumentIndex, new Argument(t))
                     ));

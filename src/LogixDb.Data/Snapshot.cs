@@ -1,4 +1,7 @@
-﻿using L5Sharp.Core;
+﻿using System.Data;
+using L5Sharp.Core;
+using LogixDb.Data.Abstractions;
+using LogixDb.Data.Transformers;
 
 namespace LogixDb.Data;
 
@@ -10,6 +13,27 @@ namespace LogixDb.Data;
 /// </summary>
 public sealed class Snapshot
 {
+    /// <summary>
+    /// A private readonly dictionary mapping string identifiers to their respective implementations of the
+    /// <see cref="ILogixDbTransformer"/> interface. This field serves as a central repository for
+    /// transformers responsible for processing and transforming various types of Logix database entities,
+    /// such as controllers, data types, AOIs, operands, and more. The keys in the dictionary are case-insensitive,
+    /// allowing for robust and flexible access.
+    /// </summary>
+    private readonly Dictionary<string, ILogixDbTransformer> _transformers = new(StringComparer.OrdinalIgnoreCase)
+    {
+        { "controller", new ControllerTransformer() },
+        { "data_type", new DataTypeTransformer() },
+        { "aoi", new AoiTransformer() },
+        { "operand", new OperandTransformer() },
+        { "module", new ModuleTransformer() },
+        { "tag", new TagTransformer() },
+        { "program", new ProgramTransformer() },
+        { "routine", new RoutineTransformer() },
+        { "rung", new RungTransformer() },
+        { "task", new TaskTransformer() }
+    };
+
     /// <summary>
     /// A private field representing the parsed L5X data associated with the snapshot.
     /// This field is lazily initialized when the source data is decompressed and parsed,
@@ -79,6 +103,29 @@ public sealed class Snapshot
     /// </summary>
     /// <returns>The parsed L5X instance representing the source data of the snapshot.</returns>
     public L5X GetSource() => _l5X ??= L5X.Parse(SourceData.Decompress());
+
+    /// <summary>
+    /// Transforms the Snapshot instance into a set of data tables by applying all registered transformers.
+    /// Each transformer processes the snapshot and generates a collection of tables
+    /// representing structured data extracted from the Snapshot content.
+    /// </summary>
+    /// <param name="options">The options to customize the import behavior and transformation process.</param>
+    /// <returns>An enumerable collection of DataTable objects containing the transformed data.</returns>
+    public IEnumerable<DataTable> Compile(TableOptions options)
+    {
+        // Filter transformers based on provided table options.
+        var transformers = _transformers.Where(kvp => options.ShouldProcess(kvp.Key)).Select(kvp => kvp.Value);
+
+        foreach (var transformer in transformers)
+        {
+            var tables = transformer.Transform(this);
+
+            // Further filter specific DataTables based on what actually exists in the DB schema
+            foreach (var table in tables)
+                if (options.ShouldProcess(table.TableName))
+                    yield return table;
+        }
+    }
 
     /// <summary>
     /// Returns a string representation of the snapshot instance.

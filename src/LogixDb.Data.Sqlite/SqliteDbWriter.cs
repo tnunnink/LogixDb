@@ -9,7 +9,7 @@ namespace LogixDb.Data.Sqlite;
 /// to an SQLite database using a specified connection and transaction. This class is
 /// designed to handle bulk inserts into the database while maintaining transactional integrity.
 /// </summary>
-public class SqliteDbWriter(SqliteConnection connection, SqliteTransaction transaction) : ILogixDbWriter
+internal class SqliteDbWriter(SqliteDbSession session) : ILogixDbWriter
 {
     /// <summary>
     /// Writes a collection of <see cref="DataTable"/> objects to a database asynchronously while allowing cancellation of the operation.
@@ -33,7 +33,7 @@ public class SqliteDbWriter(SqliteConnection connection, SqliteTransaction trans
     /// <returns>A <see cref="Task"/> that represents the asynchronous write operation.</returns>
     private async Task WriteTableAsync(DataTable table, CancellationToken token)
     {
-        await using var command = new SqliteCommand(BuildInsertStatement(table), connection, transaction);
+        await using var command = new SqliteCommand(BuildInsertStatement(table), session.Connection, session.Transaction);
 
         foreach (DataColumn column in table.Columns)
             command.Parameters.Add($"@{column.ColumnName}", column.DataType.ToSqliteType());

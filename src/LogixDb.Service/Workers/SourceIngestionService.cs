@@ -81,7 +81,7 @@ public class SourceIngestionService(
                     snapshot.Metadata.Add(item.Key, item.Value);
 
                 // Upload the snapshot to the configured database.
-                var action = options.Value.OnOption;
+                var action = options.Value.OnImport;
                 await logixDb.AddSnapshot(snapshot, action, stoppingToken);
 
                 // Clean up temp and upload files after processing completes.

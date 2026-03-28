@@ -8,7 +8,7 @@ namespace LogixDb.Data.SqlServer;
 /// Implements a writer for persisting <see cref="DataTable"/> objects to a SQL Server database
 /// using an established <see cref="SqlConnection"/> and optional <see cref="SqlTransaction"/>.
 /// </summary>
-public class SqlServerDbWriter(SqlConnection connection, SqlTransaction transaction) : ILogixDbWriter
+internal class SqlServerDbWriter(SqlDbSession session) : ILogixDbWriter
 {
     /// <summary>
     /// Writes the specified collection of <see cref="DataTable"/> objects to the SQL Server database asynchronously.
@@ -33,7 +33,7 @@ public class SqlServerDbWriter(SqlConnection connection, SqlTransaction transact
     private async Task WriteTableAsync(DataTable table, CancellationToken token)
     {
         // Set up a bulk copy instance to insert records for max performance.
-        using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.KeepIdentity, transaction);
+        using var bulkCopy = new SqlBulkCopy(session.Connection, SqlBulkCopyOptions.KeepIdentity, session.Transaction);
         bulkCopy.DestinationTableName = $"dbo.{table.TableName}";
 
         // We need to explicitly map the column names since the table maps don't include the PK id column.

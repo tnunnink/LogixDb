@@ -98,29 +98,30 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         CancellationToken token = default)
     {
         await EnsureCreatedAndMigrated();
-        await HandleSnapshotAction(snapshot.TargetKey, option, token);
 
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
+        await using var session = await SqliteDbSession.Start(_connection.ToConnectionString(), token);
 
         try
         {
+            // 0. Handle the provided option first to delete any previous snapshot for this target if requested.
+            await HandleSnapshotAction(session, snapshot.TargetKey, option, token);
+
             // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
-            await ImportSnapshotAsync(snapshot, connection, transaction);
+            await ImportSnapshotAsync(session, snapshot);
 
             // 2. Compile component data into DataTables
-            var options = await GetTableOptions(connection, transaction);
+            var options = await GetTableOptions(session);
             var tables = snapshot.Compile(options);
 
             // 3. Write component data using the Bulk Writer
-            var writer = new SqliteDbWriter(connection, (SqliteTransaction)transaction);
+            var writer = new SqliteDbWriter(session);
             await writer.WriteAsync(tables, token);
 
-            await transaction.CommitAsync(token);
+            await session.Commit(token);
         }
         catch (Exception)
         {
-            await transaction.RollbackAsync(token);
+            await session.Rollback(token);
             throw;
         }
     }
@@ -161,19 +162,18 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <summary>
     /// Imports a snapshot into the database, ensuring all relevant data is recorded and associated with the specified target.
     /// </summary>
+    /// <param name="session">The database session used to execute the import operations.</param>
     /// <param name="snapshot">The snapshot object containing the data to be imported.</param>
-    /// <param name="conn">The database connection instance used for interaction with the database.</param>
-    /// <param name="tran">The database transaction under which the operations will be executed.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    private static async Task ImportSnapshotAsync(Snapshot snapshot, SqliteConnection conn, DbTransaction tran)
+    private static async Task ImportSnapshotAsync(SqliteDbSession session, Snapshot snapshot)
     {
         // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
         var key = new { target_key = snapshot.TargetKey };
-        await conn.ExecuteAsync(SqlStatement.EnsureTargetExists, key, tran);
-        var targetId = await conn.QuerySingleAsync<int>(SqlStatement.GetTargetId, key, tran);
+        await session.ExecuteAsync(SqlStatement.EnsureTargetExists, key);
+        var targetId = await session.GetAsync<int>(SqlStatement.GetTargetId, key);
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
-        snapshot.SnapshotId = await conn.ExecuteScalarAsync<int>(SqlStatement.InsertSnapshot, new
+        snapshot.SnapshotId = await session.Connection.ExecuteScalarAsync<int>(SqlStatement.InsertSnapshot, new
         {
             target_id = targetId,
             target_type = snapshot.TargetType,
@@ -188,29 +188,27 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
             import_machine = snapshot.ImportMachine,
             source_hash = snapshot.SourceHash,
             source_data = snapshot.SourceData
-        }, tran);
+        }, session.Transaction);
 
         // Post the snapshot metadata to the database.
-        await conn.ExecuteAsync(SqlStatement.InsertSnapshotMetadata,
+        await session.ExecuteAsync(SqlStatement.InsertSnapshotMetadata,
             snapshot.Metadata.Select(p => new
             {
+                property_id = Guid.NewGuid(),
                 snapshot_id = snapshot.SnapshotId,
                 property_name = p.Key,
                 property_value = p.Value
-            }).ToList(),
-            tran);
+            }).ToList());
     }
 
     /// <summary>
     /// Retrieves table options for the database, filtering to include only specific tables relevant to the system.
     /// </summary>
-    /// <param name="connection">An open SQLite database connection used to query table names.</param>
-    /// <param name="transaction">The database transaction context within which the query runs.</param>
+    /// <param name="session">The database session used to execute the query for table names.</param>
     /// <returns>A <see cref="TableOptions"/> object specifying the tables to include for further operations.</returns>
-    /// <exception cref="NotImplementedException">Thrown if the method is not yet fully implemented.</exception>
-    private static async Task<TableOptions> GetTableOptions(SqliteConnection connection, DbTransaction transaction)
+    private static async Task<TableOptions> GetTableOptions(SqliteDbSession session)
     {
-        var names = await connection.QueryAsync<string>(SqlStatement.GetTableNames, transaction);
+        var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
         //todo we need to filter this to just known tables of our system and not predefined or other tables users may create.
         var include = names.ToArray();
         return new TableOptions { Include = include };
@@ -219,19 +217,20 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <summary>
     /// Handles snapshot actions based on the specified action type for a given target key.
     /// </summary>
+    /// <param name="session">The database session used to execute SQL commands.</param>
     /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
     /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
     /// <param name="token">A cancellation token that can be used to signal the operation should be canceled.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
-    private async Task HandleSnapshotAction(string targetKey, ImportOption action, CancellationToken token)
+    private async Task HandleSnapshotAction(SqliteDbSession session, string targetKey, ImportOption action, CancellationToken token)
     {
         switch (action)
         {
             case ImportOption.ReplaceLatest:
-                await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey }, token);
+                await session.ExecuteAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey });
                 break;
             case ImportOption.ReplaceAll:
-                await ExecuteSqlAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey }, token);
+                await session.ExecuteAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey });
                 break;
             case ImportOption.Append:
                 break;
@@ -249,17 +248,16 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <returns>A task representing the asynchronous operation.</returns>
     private async Task ExecuteSqlAsync(string sql, object? param = null, CancellationToken token = default)
     {
-        await using var connection = await OpenConnectionAsync(token);
-        await using var transaction = await connection.BeginTransactionAsync(token);
+        await using var session = await SqliteDbSession.Start(_connection.ToConnectionString(), token);
 
         try
         {
-            await connection.ExecuteAsync(sql, param, transaction);
-            await transaction.CommitAsync(token);
+            await session.ExecuteAsync(sql, param);
+            await session.Commit(token);
         }
         catch (Exception)
         {
-            await transaction.RollbackAsync(token);
+            await session.Rollback(token);
             throw;
         }
     }

@@ -41,7 +41,7 @@ public class LogixConfig
     /// conflict with existing snapshots. The available options, defined in the <see cref="ImportOption"/> enumeration,
     /// include appending the snapshot, replacing the latest snapshot, or replacing all existing snapshots.
     /// </remarks>
-    public ImportOption OnOption { get; init; } = ImportOption.ReplaceLatest;
+    public ImportOption OnImport { get; init; } = ImportOption.ReplaceLatest;
 
     /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.

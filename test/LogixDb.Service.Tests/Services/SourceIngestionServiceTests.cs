@@ -44,7 +44,7 @@ public class SourceIngestionServiceTests
         {
             DbConnection = _testDbPath,
             DropPath = _testDropPath,
-            OnOption = ImportOption.Append
+            OnImport = ImportOption.Append
         });
 
         _channel = Channel.CreateUnbounded<SourceInfo>();
@@ -90,17 +90,19 @@ public class SourceIngestionServiceTests
         var startTask = service.StartAsync(cts.Token);
 
         // Act
-        await _channel.Writer.WriteAsync(source);
+        await _channel.Writer.WriteAsync(source, cts.Token);
 
         // Wait a bit for processing
-        await System.Threading.Tasks.Task.Delay(1000);
+        await System.Threading.Tasks.Task.Delay(1000, cts.Token);
 
         // Assert
-        var snapshots = await _logixDb.ListSnapshots();
-        Assert.That(snapshots.Count(), Is.EqualTo(1));
-        Assert.That(snapshots.First().TargetName, Is.EqualTo("TestController"));
-
-        Assert.That(File.Exists(filePath), Is.False, "Original file should be deleted");
+        var snapshots = (await _logixDb.ListSnapshots(token: cts.Token)).ToList();
+        Assert.That(snapshots, Has.Count.EqualTo(1));
+        Assert.Multiple(() =>
+        {
+            Assert.That(snapshots.First().TargetName, Is.EqualTo("TestController"));
+            Assert.That(File.Exists(filePath), Is.False, "Original file should be deleted");
+        });
 
         await service.StopAsync(cts.Token);
         await startTask;

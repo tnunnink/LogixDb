@@ -46,8 +46,8 @@ internal static class SqlStatement
     /// </summary>
     internal const string InsertSnapshotMetadata =
         """
-        INSERT INTO snapshot_property (snapshot_id, property_name, property_value)
-        VALUES (@snapshot_id, @property_name, @property_value)
+        INSERT INTO snapshot_property (property_id, snapshot_id, property_name, property_value)
+        VALUES (@property_id, @snapshot_id, @property_name, @property_value)
         """;
 
     /// <summary>

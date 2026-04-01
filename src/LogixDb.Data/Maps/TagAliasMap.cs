@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 public class TagAliasMap : TableMap<TagAliasRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_alias";
+    protected override string TableName => "tag_alias";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagAliasRecord>> Columns =>

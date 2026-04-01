@@ -23,7 +23,7 @@ public abstract class TableMap<T> where T : class
     /// <summary>
     /// Gets the name of the database table that will store the mapped Logix elements.
     /// </summary>
-    public abstract string TableName { get; }
+    protected abstract string TableName { get; }
 
     /// <summary>
     /// Gets the collection of column mappings that define how properties of the Logix element
@@ -82,7 +82,7 @@ public abstract class TableMap<T> where T : class
     /// A string representing the cryptographic hash of the record's hashable fields.
     /// The hash is computed based on the serialized values of the hashable columns.
     /// </returns>
-    public string ComputeHash(T record)
+    protected string ComputeHash(T record)
     {
         var columns = _hashColumns ??= GetHashableColumns();
         var hashBuilder = new StringBuilder();

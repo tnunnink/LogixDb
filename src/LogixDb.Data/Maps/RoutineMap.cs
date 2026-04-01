@@ -11,7 +11,7 @@ namespace LogixDb.Data.Maps;
 public class RoutineMap : TableMap<RoutineRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "routine";
+    protected override string TableName => "routine";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>

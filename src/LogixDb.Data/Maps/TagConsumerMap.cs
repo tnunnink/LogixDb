@@ -9,7 +9,7 @@ namespace LogixDb.Data.Maps;
 public class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_consumer";
+    protected override string TableName => "tag_consumer";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>

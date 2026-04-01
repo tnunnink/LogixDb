@@ -14,7 +14,7 @@ namespace LogixDb.Data.Maps;
 internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "aoi_parameter";
+    protected override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>

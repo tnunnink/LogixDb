@@ -10,7 +10,7 @@ namespace LogixDb.Data.Maps;
 public class AoiParameterMap : TableMap<AoiParameterRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "aoi_parameter";
+    protected override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>

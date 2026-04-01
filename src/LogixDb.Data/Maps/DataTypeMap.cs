@@ -10,7 +10,7 @@ namespace LogixDb.Data.Maps;
 public class DataTypeMap : TableMap<DataTypeRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "data_type";
+    protected override string TableName => "data_type";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>

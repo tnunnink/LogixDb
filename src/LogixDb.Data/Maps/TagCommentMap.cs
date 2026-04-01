@@ -8,7 +8,7 @@ namespace LogixDb.Data.Maps;
 public class TagCommentMap : TableMap<TagCommentRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_comment";
+    protected override string TableName => "tag_comment";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagCommentRecord>> Columns =>

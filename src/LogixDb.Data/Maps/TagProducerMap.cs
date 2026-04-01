@@ -15,7 +15,7 @@ namespace LogixDb.Data.Maps;
 public class TagProducerMap : TableMap<TagProduceInfoRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "tag_producer";
+    protected override string TableName => "tag_producer";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>

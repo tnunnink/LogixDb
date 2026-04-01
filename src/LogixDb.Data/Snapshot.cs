@@ -62,7 +62,7 @@ public sealed class Snapshot
     /// Creates a new snapshot instance from an L5X source file.
     /// Extracts metadata from the L5X content and generates a hash of the serialized source data.
     /// </summary>
-    /// <param name="source">The L5X source file containing Logix controller data to snapshot.</param>
+    /// <param name="source">The L5X source file containing Logix controller data for which to take a snapshot.</param>
     /// <param name="targetKey">An optional custom target key. If not provided, a default key is generated from the
     /// target type and name in the format "targettype://targetname".</param>
     /// <returns>A new Snapshot instance populated with metadata and source data from the L5X file.</returns>
@@ -105,16 +105,16 @@ public sealed class Snapshot
     public L5X GetSource() => _l5X ??= L5X.Parse(SourceData.Decompress());
 
     /// <summary>
-    /// Transforms the Snapshot instance into a set of data tables by applying all registered transformers.
-    /// Each transformer processes the snapshot and generates a collection of tables
-    /// representing structured data extracted from the Snapshot content.
+    /// Compiles the snapshot's data into a collection of DataTables filtered by the given table names.
+    /// Filters the data transformers based on the provided table names, applies the transformations,
+    /// and yields only the DataTables matching the specified names.
     /// </summary>
-    /// <param name="options">The options to customize the import behavior and transformation process.</param>
-    /// <returns>An enumerable collection of DataTable objects containing the transformed data.</returns>
-    public IEnumerable<DataTable> Compile(TableOptions options)
+    /// <param name="tableNames">A collection of table names to filter the data during the compilation process.</param>
+    /// <returns>An enumerable collection of DataTable objects that match the specified table names.</returns>
+    public IEnumerable<DataTable> Compile(ICollection<string> tableNames)
     {
         // Filter transformers based on provided table options.
-        var transformers = _transformers.Where(kvp => options.ShouldProcess(kvp.Key)).Select(kvp => kvp.Value);
+        var transformers = _transformers.Where(kvp => tableNames.Contains(kvp.Key)).Select(kvp => kvp.Value);
 
         foreach (var transformer in transformers)
         {
@@ -122,7 +122,7 @@ public sealed class Snapshot
 
             // Further filter specific DataTables based on what actually exists in the DB schema
             foreach (var table in tables)
-                if (options.ShouldProcess(table.TableName))
+                if (tableNames.Contains(table.TableName))
                     yield return table;
         }
     }

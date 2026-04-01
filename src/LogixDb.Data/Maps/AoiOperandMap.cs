@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 public class AoiOperandMap : TableMap<AoiOperandRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "operand";
+    protected override string TableName => "operand";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>

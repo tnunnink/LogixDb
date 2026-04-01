@@ -13,7 +13,7 @@ internal class AoiTransformer : ILogixDbTransformer
 {
     private readonly AoiMap _aoiMap = new();
     private readonly AoiParameterMap _parameterMap = new();
-    private readonly AoiLocalTagMap _tagMap = new();
+    private readonly AoiLocalTagMap _localTagMap = new();
     private readonly AoiRungMap _rungMap = new();
 
     /// <inheritdoc />
@@ -22,25 +22,25 @@ internal class AoiTransformer : ILogixDbTransformer
         var source = snapshot.GetSource();
         var aoiRecords = new List<AoiRecord>();
         var parameterRecords = new List<AoiParameterRecord>();
-        var tagRecords = new List<AoiLocalTagRecord>();
+        var localTagRecords = new List<AoiLocalTagRecord>();
         var rungRecords = new List<AoiRungRecord>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            if (aoi.IsEncrypted)
-            {
-                continue;
-            }
-
             aoiRecords.Add(new AoiRecord(snapshot.SnapshotId, aoi));
             ProcessParameters(snapshot.SnapshotId, aoi, parameterRecords);
-            ProcessLocalTags(snapshot.SnapshotId, aoi, tagRecords);
-            ProcessRungs(snapshot.SnapshotId, aoi, rungRecords);
+
+            // Only attempt to process local tags and logic/rungs if the AOI is not encrypted
+            if (!aoi.IsEncrypted)
+            {
+                ProcessLocalTags(snapshot.SnapshotId, aoi, localTagRecords);
+                ProcessRungs(snapshot.SnapshotId, aoi, rungRecords);
+            }
         }
 
         yield return _aoiMap.GenerateTable(aoiRecords);
         yield return _parameterMap.GenerateTable(parameterRecords);
-        yield return _tagMap.GenerateTable(tagRecords);
+        yield return _localTagMap.GenerateTable(localTagRecords);
         yield return _rungMap.GenerateTable(rungRecords);
     }
 

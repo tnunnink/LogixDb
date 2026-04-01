@@ -16,7 +16,7 @@ namespace LogixDb.Data.Maps;
 public class InstructionMap : TableMap<InstructionRecord>
 {
     /// <inheritdoc />
-    public override string TableName => "instruction";
+    protected override string TableName => "instruction";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>

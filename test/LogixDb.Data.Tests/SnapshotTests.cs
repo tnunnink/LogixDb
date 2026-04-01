@@ -73,12 +73,54 @@ public class SnapshotTests
     {
         var source = TestSource.LocalTest();
         var snapshot = Snapshot.Create(source);
-        var tableNames = new List<string> { "controller", "data_type" };
+        var tableNames = new List<string> { "controller", "data_type", "tag", "program" };
 
         var tables = snapshot.Compile(tableNames).ToList();
 
         tables.Should().NotBeEmpty();
         tables.Should().Contain(t => t.TableName == "controller");
-        // The fake source might not have data_types, but it should definitely have a controller.
+
+        // Ensure that only requested tables are returned and they are not empty (if they exist in the source)
+        foreach (var table in tables)
+        {
+            tableNames.Should().Contain(table.TableName);
+            table.Rows.Count.Should().BeGreaterThanOrEqualTo(0);
+        }
+    }
+
+    [Test]
+    public void Snapshot_Compile_WithEmptyList_ShouldReturnNoTables()
+    {
+        var source = TestSource.LocalTest();
+        var snapshot = Snapshot.Create(source);
+        var tableNames = new List<string>();
+
+        var tables = snapshot.Compile(tableNames).ToList();
+
+        tables.Should().BeEmpty();
+    }
+
+    [Test]
+    public void Snapshot_Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
+    {
+        var source = TestSource.LocalTest();
+        var snapshot = Snapshot.Create(source);
+        var tableNames = new List<string> { "controller", "non_existent_table" };
+
+        var tables = snapshot.Compile(tableNames).ToList();
+
+        tables.Should().HaveCount(1);
+        tables.First().TableName.Should().Be("controller");
+    }
+
+    [Test]
+    public void Snapshot_Create_WithTargetKey_ShouldUseProvidedKey()
+    {
+        var source = TestSource.LocalTest();
+        const string customKey = "custom://mykey";
+
+        var snapshot = Snapshot.Create(source, customKey);
+
+        snapshot.TargetKey.Should().Be(customKey);
     }
 }

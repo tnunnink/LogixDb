@@ -6,7 +6,7 @@ namespace LogixDb.Data.Maps;
 /// Represents a mapping configuration for the "tag_consumer" table, defining how the
 /// fields in the <see cref="TagConsumeInfoRecord"/> are associated with the columns in the database table.
 /// </summary>
-public class TagConsumerMap : TableMap<TagConsumeInfoRecord>
+internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_consumer";
@@ -32,7 +32,7 @@ public class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 /// <param name="SnapshotId">The identifier for the snapshot associated with the consume information.</param>
 /// <param name="TagId">The unique identifier for the tag associated with the consume information.</param>
 /// <param name="ConsumeInfo">An object containing detailed information about consume-related settings and data.</param>
-public record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
+internal record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
 {
     public Guid ConsumerId { get; } = Guid.NewGuid();
 }

@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Parameter"/> class.
 /// </summary>
-public class AoiParameterMap : TableMap<AoiParameterRecord>
+internal class AoiParameterMap : TableMap<AoiParameterRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_parameter";
@@ -40,7 +40,7 @@ public class AoiParameterMap : TableMap<AoiParameterRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this parameter record belongs.</param>
 /// <param name="Parameter">The Logix AOI parameter entity.</param>
-public record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter)
+internal record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter)
 {
     public Guid ParameterId { get; } = Guid.NewGuid();
 }

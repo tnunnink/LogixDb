@@ -10,7 +10,7 @@ namespace LogixDb.Data;
 /// including the table name and column mappings.
 /// </summary>
 /// <typeparam name="T">The type of Logix element this table map represents must implement ILogixElement.</typeparam>
-public abstract class TableMap<T> where T : class
+internal abstract class TableMap<T> where T : class
 {
     /// <summary>
     /// Stores a collection of column mappings that are involved in calculating the hash of a record.

@@ -116,6 +116,24 @@ public abstract class SqliteTestFixture
         if (result == 0)
             throw new AssertionException($"Table '{tableName}' was not found in the database.");
     }
+    
+    protected async Task AssertTableDoesNotExists(string tableName)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.ExecuteScalarAsync<int>(
+            """
+            SELECT 1
+            FROM sqlite_master
+            WHERE type = 'table' AND name = @name
+            LIMIT 1;
+            """,
+            new { name = tableName }
+        );
+
+        if (result == 1)
+            throw new AssertionException($"Table '{tableName}' was found in the database.");
+    }
 
     /// <summary>
     /// Validates the definition of a specific column in a specified table within the database.

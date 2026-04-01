@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Task"/> class.
 /// </summary>
-public class TaskMap : TableMap<TaskRecord>
+internal class TaskMap : TableMap<TaskRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "task";
@@ -39,7 +39,7 @@ public class TaskMap : TableMap<TaskRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this task record belongs.</param>
 /// <param name="Task">The task entity containing metadata, configuration, and execution details.</param>
-public record TaskRecord(int SnapshotId, Task Task)
+internal record TaskRecord(int SnapshotId, Task Task)
 {
     public Guid TaskId { get; } = Guid.NewGuid();
 }

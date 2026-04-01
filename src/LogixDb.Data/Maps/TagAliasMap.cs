@@ -4,7 +4,7 @@ namespace LogixDb.Data.Maps;
 /// Represents a mapping configuration for the "tag_alias" table, defining how the
 /// fields in the <see cref="TagAliasRecord"/> are associated with the columns in the database table.
 /// </summary>
-public class TagAliasMap : TableMap<TagAliasRecord>
+internal class TagAliasMap : TableMap<TagAliasRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_alias";
@@ -25,7 +25,7 @@ public class TagAliasMap : TableMap<TagAliasRecord>
 /// <param name="SnapshotId">The identifier for the snapshot associated with the alias information.</param>
 /// <param name="TagId">The unique identifier for the tag associated with the alias information.</param>
 /// <param name="AliasFor">The name or path of the tag that is being aliased.</param>
-public record TagAliasRecord(int SnapshotId, Guid TagId, string AliasFor)
+internal record TagAliasRecord(int SnapshotId, Guid TagId, string AliasFor)
 {
     public Guid AliasId { get; } = Guid.NewGuid();
 }

@@ -19,15 +19,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/MigrationTagTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/DbProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/DbProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ColumnMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ColumnMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/DbOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiLocalTagMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiOperandMap.cs" afterDir="false" />
@@ -48,22 +45,12 @@
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagProducerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagProducerMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/SqlConnectionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/SqlProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/TableMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/TableMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/TableOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerMigrateTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/MigrateCommandTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +116,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/Test.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -278,23 +264,7 @@
       <workItem from="1774033743846" duration="24170000" />
       <workItem from="1774385196334" duration="29109000" />
       <workItem from="1774623322615" duration="7696000" />
-      <workItem from="1775050084170" duration="14314000" />
-    </task>
-    <task id="LOCAL-00070" summary="Add M014 and M015 migrations to create `instruction` and `argument` tables with corresponding tests, and remove unused `code_hash` column and index from `rung` table.">
-      <option name="closed" value="true" />
-      <created>1772935164055</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1772935164056</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Refactor import logic for better abstraction in both SQL Server and SQLite implementations. Replace `GetRecords` with `GetData` to return `DataTable`, enhance `SqliteImport` base class, and update mapping logic across import classes. Remove unused SqliteElementImport class.">
-      <option name="closed" value="true" />
-      <created>1772935187410</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1772935187410</updated>
+      <workItem from="1775050084170" duration="17475000" />
     </task>
     <task id="LOCAL-00072" summary="Update README with detailed documentation on CLI commands, ingestion API, FTAC monitoring, database schema, and custom ACD converter configuration. Adjust migrations to replace string hashes with binary hashes for `instruction` and `argument` tables, refine `SqliteImport` implementation, and revise related tests.">
       <option name="closed" value="true" />
@@ -672,7 +642,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775054981638</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Refactor `TableMap` classes to use `protected` access for `TableName` property, update snapshot methods for better filtering, and fix naming in `AoiTransformer`.">
+      <option name="closed" value="true" />
+      <created>1775072118484</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1775072118484</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Replace `SqlConnectionInfo` and `SqlProvider` with `DbConnection` and `DbProvider` across projects, update related methods, and refine type handling in migrations and tests.">
+      <option name="closed" value="true" />
+      <created>1775072156897</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1775072156897</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,8 +684,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.6.3 in project files." />
-    <MESSAGE value="Bump version to 0.6.4 in project files; update test file with explicit attribute and new L5X source." />
     <MESSAGE value="Add `Index` field to `InstructionRecord` and update related mappings, tests, and migrations; enforce unique index constraints." />
     <MESSAGE value="Add `snapshot_property` table for metadata storage; update snapshot ingestion logic, mappings, and related tests." />
     <MESSAGE value="Bump version to 0.7.0 in project files." />
@@ -723,7 +707,9 @@
     <MESSAGE value="Bump package dependencies across projects to latest versions." />
     <MESSAGE value="Update tests to reflect schema changes and improve verification of indexes and column definitions." />
     <MESSAGE value="Adjust IDE workspace settings and update `ControllerMap` to refine null handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjust IDE workspace settings and update `ControllerMap` to refine null handling." />
+    <MESSAGE value="Refactor `TableMap` classes to use `protected` access for `TableName` property, update snapshot methods for better filtering, and fix naming in `AoiTransformer`." />
+    <MESSAGE value="Replace `SqlConnectionInfo` and `SqlProvider` with `DbConnection` and `DbProvider` across projects, update related methods, and refine type handling in migrations and tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Replace `SqlConnectionInfo` and `SqlProvider` with `DbConnection` and `DbProvider` across projects, update related methods, and refine type handling in migrations and tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

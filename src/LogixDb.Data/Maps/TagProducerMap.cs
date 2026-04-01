@@ -12,7 +12,7 @@ namespace LogixDb.Data.Maps;
 /// the structure of <see cref="TagProduceInfoRecord"/>. Each property in the record is mapped to a database column,
 /// including metadata regarding its hashability and data transformation if applicable.
 /// </remarks>
-public class TagProducerMap : TableMap<TagProduceInfoRecord>
+internal class TagProducerMap : TableMap<TagProduceInfoRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_producer";
@@ -41,7 +41,7 @@ public class TagProducerMap : TableMap<TagProduceInfoRecord>
 /// <param name="SnapshotId">The identifier for the snapshot associated with the produce information.</param>
 /// <param name="TagId">The unique identifier for the tag associated with the produce information.</param>
 /// <param name="ProduceInfo">An object containing detailed information about produce-related settings and data.</param>
-public record TagProduceInfoRecord(int SnapshotId, Guid TagId, ProduceInfo ProduceInfo)
+internal record TagProduceInfoRecord(int SnapshotId, Guid TagId, ProduceInfo ProduceInfo)
 {
     public Guid ProducerId { get; } = Guid.NewGuid();
 }

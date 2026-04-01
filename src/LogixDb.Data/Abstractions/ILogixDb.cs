@@ -51,7 +51,7 @@ public interface ILogixDb
     /// </summary>
     /// <param name="targetKey">Optional target key to filter snapshots (format: targettype://targetname).</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task that represents the asynchronous operation, containing a collection of snapshots.</returns>
+    /// <returns>A task that represents the asynchronous operation containing a collection of snapshots.</returns>
     Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default);
 
     /// <summary>

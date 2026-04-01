@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Tag"/> class.
 /// </summary>
-public class TagMap : TableMap<TagRecord>
+internal class TagMap : TableMap<TagRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag";
@@ -39,7 +39,7 @@ public class TagMap : TableMap<TagRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this tag record belongs.</param>
 /// <param name="Tag">The Logix tag entity containing its configuration and value.</param>
-public record TagRecord(int SnapshotId, Tag Tag)
+internal record TagRecord(int SnapshotId, Tag Tag)
 {
     public Guid TagId { get; } = Guid.NewGuid();
 }

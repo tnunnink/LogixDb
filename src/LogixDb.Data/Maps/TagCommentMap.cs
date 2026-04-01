@@ -5,7 +5,7 @@ namespace LogixDb.Data.Maps;
 /// associated with tags within a snapshot. Each record uniquely identifies a tag by its hash and name
 /// within a specific snapshot.
 /// </summary>
-public class TagCommentMap : TableMap<TagCommentRecord>
+internal class TagCommentMap : TableMap<TagCommentRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_comment";
@@ -26,7 +26,7 @@ public class TagCommentMap : TableMap<TagCommentRecord>
 /// Each record uniquely identifies a comment by associating a unique tag identifier, snapshot identifier,
 /// tag name, and its comment text.
 /// </summary>
-public record TagCommentRecord(int SnapshotId, Guid TagId, string TagName, string TagComment)
+internal record TagCommentRecord(int SnapshotId, Guid TagId, string TagName, string TagComment)
 {
     public Guid CommentId { get; } = Guid.NewGuid();
 }

@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="DataType"/> class.
 /// </summary>
-public class DataTypeMap : TableMap<DataTypeRecord>
+internal class DataTypeMap : TableMap<DataTypeRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "data_type";
@@ -32,7 +32,7 @@ public class DataTypeMap : TableMap<DataTypeRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this data type record belongs.</param>
 /// <param name="DataType">The Logix data type entity.</param>
-public record DataTypeRecord(int SnapshotId, DataType DataType)
+internal record DataTypeRecord(int SnapshotId, DataType DataType)
 {
     public Guid TypeId { get; } = Guid.NewGuid();
 }

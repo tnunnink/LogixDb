@@ -8,7 +8,7 @@ namespace LogixDb.Data;
 /// and map it to a specific database column with the appropriate type and constraints.
 /// </summary>
 /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
-public sealed record ColumnMap<T> where T : class
+internal sealed record ColumnMap<T> where T : class
 {
     /// <summary>
     /// Gets or sets the name of the database column to which a property of <typeparamref name="T"/> is mapped.

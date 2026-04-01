@@ -12,7 +12,7 @@ namespace LogixDb.Data.Maps;
 /// database table columns. It is used to define how data is serialized and deserialized
 /// between domain objects and database records.
 /// </remarks>
-public class ArgumentMap : TableMap<ArgumentRecord>
+internal class ArgumentMap : TableMap<ArgumentRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "argument";
@@ -41,7 +41,7 @@ public class ArgumentMap : TableMap<ArgumentRecord>
 /// <param name="InstructionId">The hash of the parent instruction that contains this argument.</param>
 /// <param name="Index">The zero-based position of this argument within the instruction's argument list.</param>
 /// <param name="Argument">The L5Sharp Argument object containing the argument's type, value, and metadata.</param>
-public record ArgumentRecord(int SnapshotId, Guid InstructionId, byte Index, Argument Argument)
+internal record ArgumentRecord(int SnapshotId, Guid InstructionId, byte Index, Argument Argument)
 {
     public Guid ArgumentId { get; } = Guid.NewGuid();
 }

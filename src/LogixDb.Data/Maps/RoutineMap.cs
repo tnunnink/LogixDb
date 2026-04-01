@@ -8,7 +8,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Routine"/> class.
 /// </summary>
-public class RoutineMap : TableMap<RoutineRecord>
+internal class RoutineMap : TableMap<RoutineRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "routine";
@@ -33,7 +33,7 @@ public class RoutineMap : TableMap<RoutineRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this routine record belongs.</param>
 /// <param name="Routine">The Logix routine entity.</param>
-public record RoutineRecord(int SnapshotId, Routine Routine)
+internal record RoutineRecord(int SnapshotId, Routine Routine)
 {
     public Guid RoutineId { get; } = Guid.NewGuid();
 }

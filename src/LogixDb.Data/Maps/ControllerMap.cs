@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Controller"/> class.
 /// </summary>
-public class ControllerMap : TableMap<ControllerRecord>
+internal class ControllerMap : TableMap<ControllerRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "controller";
@@ -46,7 +46,7 @@ public class ControllerMap : TableMap<ControllerRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this controller record belongs.</param>
 /// <param name="Controller">The Logix controller entity containing its configuration.</param>
-public record ControllerRecord(int SnapshotId, Controller Controller)
+internal record ControllerRecord(int SnapshotId, Controller Controller)
 {
     public Guid ControllerId { get; } = Guid.NewGuid();
 }

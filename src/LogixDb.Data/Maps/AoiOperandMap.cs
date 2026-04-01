@@ -4,7 +4,7 @@ namespace LogixDb.Data.Maps;
 /// Represents a table mapping for AOI (Add-On Instruction) operands, which defines how operand data
 /// is extracted from Logix snapshots and mapped to database records.
 /// </summary>
-public class AoiOperandMap : TableMap<AoiOperandRecord>
+internal class AoiOperandMap : TableMap<AoiOperandRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "operand";

@@ -39,5 +39,46 @@ public class SnapshotTests
         var snapshot = Snapshot.Create(source);
 
         snapshot.Should().NotBeNull();
+        snapshot.TargetKey.Should().Be($"{source.Content.TargetType?.ToLower()}://{source.Content.TargetName}");
+        snapshot.TargetType.Should().Be(source.Content.TargetType);
+        snapshot.TargetName.Should().Be(source.Content.TargetName);
+        snapshot.IsPartial.Should().Be(source.Content.ContainsContext);
+        snapshot.SourceHash.Should().NotBeEmpty();
+        snapshot.SourceData.Should().NotBeEmpty();
+    }
+
+    [Test]
+    public void Snapshot_GetSource_ShouldReturnParsedL5X()
+    {
+        var source = TestSource.LocalTest();
+        var snapshot = Snapshot.Create(source);
+
+        var retrievedSource = snapshot.GetSource();
+
+        retrievedSource.Should().NotBeNull();
+        retrievedSource.Content.TargetName.Should().Be(source.Content.TargetName);
+    }
+
+    [Test]
+    public void Snapshot_ToString_ShouldReturnTargetKey()
+    {
+        var source = TestSource.LocalTest();
+        var snapshot = Snapshot.Create(source);
+
+        snapshot.ToString().Should().Be(snapshot.TargetKey);
+    }
+
+    [Test]
+    public void Snapshot_Compile_ShouldReturnExpectedTables()
+    {
+        var source = TestSource.LocalTest();
+        var snapshot = Snapshot.Create(source);
+        var tableNames = new List<string> { "controller", "data_type" };
+
+        var tables = snapshot.Compile(tableNames).ToList();
+
+        tables.Should().NotBeEmpty();
+        tables.Should().Contain(t => t.TableName == "controller");
+        // The fake source might not have data_types, but it should definitely have a controller.
     }
 }

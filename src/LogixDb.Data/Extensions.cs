@@ -9,7 +9,7 @@ namespace LogixDb.Data;
 /// Provides extension methods for string and byte array manipulation, including compression,
 /// decompression, and hashing operations used throughout the LogixDb system.
 /// </summary>
-public static class Extensions
+internal static class Extensions
 {
     /// <summary>
     /// Compresses a string into a byte array using GZip compression.
@@ -54,7 +54,7 @@ public static class Extensions
     /// </summary>
     /// <param name="text">The input string to hash.</param>
     /// <returns>A byte array representing the computed MD5 hash of the input text.</returns>
-    public static byte[] Hash(this string text)
+    internal static byte[] Hash(this string text)
     {
         return MD5.HashData(Encoding.UTF8.GetBytes(text));
     }
@@ -64,7 +64,7 @@ public static class Extensions
     /// </summary>
     /// <param name="binary">The byte array to be converted.</param>
     /// <returns>A string containing the lowercase hexadecimal representation of the input byte array.</returns>
-    public static string ToHexString(this byte[] binary)
+    internal static string ToHexString(this byte[] binary)
     {
         return Convert.ToHexStringLower(binary);
     }
@@ -78,7 +78,7 @@ public static class Extensions
     /// <exception cref="InvalidOperationException">
     /// Thrown when the element type is unsupported for data type name extraction.
     /// </exception>
-    public static string GetDataTypeName(this ILogixElement element)
+    internal static string GetDataTypeName(this ILogixElement element)
     {
         return element switch
         {
@@ -98,7 +98,7 @@ public static class Extensions
     /// A string representation of the atomic data value if the data is atomic; otherwise, null
     /// for complex or structured data types.
     /// </returns>
-    public static string? GetDataValue(this LogixData data)
+    internal static string? GetDataValue(this LogixData data)
     {
         return data switch
         {

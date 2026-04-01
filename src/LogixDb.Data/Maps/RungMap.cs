@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Rung"/> class.
 /// </summary>
-public class RungMap : TableMap<RungRecord>
+internal class RungMap : TableMap<RungRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "rung";
@@ -33,7 +33,7 @@ public class RungMap : TableMap<RungRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this rung record belongs.</param>
 /// <param name="Rung">The Logix rung entity containing its code and metadata.</param>
-public record RungRecord(int SnapshotId, Rung Rung)
+internal record RungRecord(int SnapshotId, Rung Rung)
 {
     public Guid RungId { get; } = Guid.NewGuid();
 }

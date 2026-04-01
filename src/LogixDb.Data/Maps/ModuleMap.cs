@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Module"/> class.
 /// </summary>
-public class ModuleMap : TableMap<ModuleRecord>
+internal class ModuleMap : TableMap<ModuleRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "module";
@@ -43,7 +43,7 @@ public class ModuleMap : TableMap<ModuleRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this module record belongs.</param>
 /// <param name="Module">The Logix module entity.</param>
-public record ModuleRecord(int SnapshotId, Module Module)
+internal record ModuleRecord(int SnapshotId, Module Module)
 {
     public Guid ModuleId { get; } = Guid.NewGuid();
 }

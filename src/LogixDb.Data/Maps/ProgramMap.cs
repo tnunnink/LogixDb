@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Program"/> class.
 /// </summary>
-public class ProgramMap : TableMap<ProgramRecord>
+internal class ProgramMap : TableMap<ProgramRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "program";
@@ -38,7 +38,7 @@ public class ProgramMap : TableMap<ProgramRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this program record belongs.</param>
 /// <param name="Program">The Logix program entity.</param>
-public record ProgramRecord(int SnapshotId, Program Program)
+internal record ProgramRecord(int SnapshotId, Program Program)
 {
     public Guid ProgramId { get; } = Guid.NewGuid();
 }

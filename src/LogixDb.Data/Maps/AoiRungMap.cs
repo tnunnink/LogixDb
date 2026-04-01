@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// Provides metadata about the table name and its associated column mappings.
 /// This class is used to define how the data is structured and translated into the database.
 /// </summary>
-public class AoiRungMap : TableMap<AoiRungRecord>
+internal class AoiRungMap : TableMap<AoiRungRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_rung";
@@ -26,7 +26,7 @@ public class AoiRungMap : TableMap<AoiRungRecord>
     ];
 }
 
-public record AoiRungRecord(int SnapshotId, string AoiName, string RoutineName, Rung Rung)
+internal record AoiRungRecord(int SnapshotId, string AoiName, string RoutineName, Rung Rung)
 {
     public Guid RungId { get; } = Guid.NewGuid();
 }

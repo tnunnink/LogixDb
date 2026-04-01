@@ -13,7 +13,7 @@ namespace LogixDb.Data.Maps;
 /// functionality provided by the <see cref="TableMap{T}"/> base class.
 /// </remarks>
 /// <seealso cref="TableMap{T}"/>
-public class InstructionMap : TableMap<InstructionRecord>
+internal class InstructionMap : TableMap<InstructionRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "instruction";
@@ -37,7 +37,7 @@ public class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-public record InstructionRecord(int SnapshotId, Guid RungId, short Index, Instruction Instruction)
+internal record InstructionRecord(int SnapshotId, Guid RungId, short Index, Instruction Instruction)
 {
     public Guid InstructionId { get; } = Guid.NewGuid();
 }

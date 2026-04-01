@@ -46,7 +46,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 /// the name of the associated AOI, and the tag details.
 /// This record is used in mapping operations for transferring data between the program and the database storage.
 /// </remarks>
-public record AoiLocalTagRecord(int SnapshotId, string AoiName, LocalTag Tag)
+internal record AoiLocalTagRecord(int SnapshotId, string AoiName, LocalTag Tag)
 {
     public Guid ParameterId { get; } = Guid.NewGuid();
 }

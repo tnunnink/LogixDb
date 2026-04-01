@@ -17,8 +17,4 @@
       <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="M20260325\" />
-    </ItemGroup>
-
 </Project>

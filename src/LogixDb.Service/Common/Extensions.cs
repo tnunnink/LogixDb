@@ -25,14 +25,14 @@ public static class Extensions
         if (config is null)
             throw new ArgumentNullException(nameof(config));
 
-        var connection = SqlConnectionInfo.Parse(config.DbConnection);
+        var connection = DbConnection.Parse(config.DbConnection);
 
         switch (connection.Provider)
         {
-            case SqlProvider.SqlServer:
+            case DbProvider.SqlServer:
                 services.AddTransient<ILogixDb>(_ => new SqlServerDb(connection));
                 break;
-            case SqlProvider.Sqlite:
+            case DbProvider.Sqlite:
                 services.AddTransient<ILogixDb>(_ => new SqliteDb(connection));
                 break;
             default:

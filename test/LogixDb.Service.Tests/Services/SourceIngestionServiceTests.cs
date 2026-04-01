@@ -31,7 +31,7 @@ public class SourceIngestionServiceTests
         _testDropPath = Path.Combine(Path.GetTempPath(), "LogixDbUploads", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(_testDropPath);
 
-        var connectionInfo = SqlConnectionInfo.Parse(_testDbPath);
+        var connectionInfo = DbConnection.Parse(_testDbPath);
         _logixDb = new SqliteDb(connectionInfo);
         // We need to migrate the database for it to be valid
         _logixDb.Migrate().GetAwaiter().GetResult();
@@ -117,7 +117,7 @@ public class SourceIngestionServiceTests
         // Create an empty file to simulate unmigrated DB
         File.WriteAllBytes(unmigratedDbPath, []);
 
-        var connectionInfo = SqlConnectionInfo.Parse(unmigratedDbPath);
+        var connectionInfo = DbConnection.Parse(unmigratedDbPath);
         var unmigratedDb = new SqliteDb(connectionInfo);
 
         var service = new SourceIngestionService(

@@ -13,7 +13,7 @@ public class SqliteDbMigrateTests
     [Explicit("Only run this locally as it is to refresh a database in the project folder")]
     public async Task MigrateLocalTestDatabaseForWritingQueriesAgainst()
     {
-        var connection = new SqlConnectionInfo(SqlProvider.Sqlite, "../../../logix.db");
+        var connection = new DbConnection(DbProvider.Sqlite, "../../../logix.db");
         var database = new SqliteDb(connection);
         await database.Drop();
         await database.Migrate();

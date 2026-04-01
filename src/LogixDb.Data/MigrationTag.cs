@@ -75,12 +75,12 @@ public static class MigrationTag
     public const string Task = "task";
 
     /// <summary>
-    /// Retrieves a filtered list of migration tags based on the specified table options.
+    /// Retrieves a filtered list of migration tags based on the specified <see cref="DbOptions"/>.
     /// </summary>
     /// <param name="options">The table options used to include or exclude specific migration tags.
     /// If null or both Include and Exclude are empty, defaults to returning all component migration tags.</param>
     /// <returns>A collection of migration tags filtered according to the provided options.</returns>
-    public static IEnumerable<string> GetTags(TableOptions? options)
+    public static IEnumerable<string> GetTags(DbOptions? options)
     {
         var tags = new List<string> { Required };
 
@@ -90,8 +90,7 @@ public static class MigrationTag
             tags.Add(Component);
             return tags;
         }
-
-        // Seed the tags list with all migration tags for all components.
+        
         var set = All().ToHashSet();
         if (options.Include.Length > 0) set.IntersectWith(options.Include);
         if (options.Exclude.Length > 0) set.ExceptWith(options.Exclude);

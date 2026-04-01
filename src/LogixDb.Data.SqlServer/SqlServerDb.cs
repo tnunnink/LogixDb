@@ -15,17 +15,17 @@ namespace LogixDb.Data.SqlServer;
 /// Provides functionality for database creation, migration, snapshot management,
 /// importing, exporting, and purging operations.
 /// </summary>
-public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
+public sealed class SqlServerDb(DbConnection connection) : ILogixDb
 {
     /// <summary>
     /// Encapsulates connection-specific information for interacting with a SQL Server database.
     /// This includes details such as data source, catalog, authentication credentials, and other
     /// configuration settings necessary for establishing and managing the database connection.
     /// </summary>
-    private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+    private readonly DbConnection _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(DbOptions? options = null, CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
@@ -34,7 +34,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, DbOptions? options = null, CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
@@ -116,8 +116,8 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
             await ImportSnapshotAsync(session, snapshot);
 
             // 2. Compile component data into DataTables
-            var options = await GetTableOptions(session);
-            var tables = snapshot.Compile(options);
+            var tableNames = await GetTableNames(session);
+            var tables = snapshot.Compile(tableNames);
 
             // 3. Write component data using the Bulk Writer
             var writer = new SqlServerDbWriter(session);
@@ -214,13 +214,10 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// </summary>
     /// <param name="session">The database session used to execute the query for table names.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains an instance of <c>TableOptions</c> specifying the included table names.</returns>
-    private static async Task<TableOptions> GetTableOptions(SqlDbSession session)
+    private static async Task<ICollection<string>> GetTableNames(SqlDbSession session)
     {
         var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
-        //todo we need to filter this to just known tables of our system and not predefined or other tables users may create.
-        // to do this I think we might just need to seed a metadata table that contains the list of our tables.
-        var include = names.ToArray();
-        return new TableOptions { Include = include };
+        return names.ToArray();
     }
 
     /// <summary>
@@ -231,7 +228,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// <param name="action">The type of import operation to perform, such as replacing or appending data.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the specified import action is not supported.</exception>
     /// <returns>A task that represents the asynchronous handling of the import option.</returns>
-    private async Task HandleImportOption(SqlDbSession session, string targetKey, ImportOption action)
+    private static async Task HandleImportOption(SqlDbSession session, string targetKey, ImportOption action)
     {
         switch (action)
         {
@@ -350,7 +347,7 @@ public sealed class SqlServerDb(SqlConnectionInfo connection) : ILogixDb
     /// A <see cref="ServiceProvider"/> configured with migration-specific services that
     /// include SQL Server support and migration scanning in the relevant assemblies.
     /// </returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, DbOptions? options = null)
     {
         var services = new ServiceCollection();
 

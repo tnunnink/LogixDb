@@ -43,7 +43,7 @@ public class MigrateCommand : DbCommand
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        var options = new TableOptions { Include = Include, Exclude = Exclude };
+        var options = new DbOptions { Include = Include, Exclude = Exclude };
 
         try
         {

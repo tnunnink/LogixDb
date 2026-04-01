@@ -16,12 +16,12 @@ public static class DbProvider
     /// <param name="connection">The connection information that includes the provider type, data source, and optional credentials.</param>
     /// <returns>An instance of <see cref="ILogixDb"/> corresponding to the specified SQL provider.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the provided SQL provider is not supported.</exception>
-    public static ILogixDb GetDatabase(SqlConnectionInfo connection)
+    public static ILogixDb GetDatabase(DbConnection connection)
     {
         return connection.Provider switch
         {
-            SqlProvider.Sqlite => new SqliteDb(connection),
-            SqlProvider.SqlServer => new SqlServerDb(connection),
+            Data.DbProvider.Sqlite => new SqliteDb(connection),
+            Data.DbProvider.SqlServer => new SqlServerDb(connection),
             _ => throw new ArgumentOutOfRangeException(nameof(connection), connection.Provider,
                 "Unsupported SQL provider")
         };

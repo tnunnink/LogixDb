@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
+using DbProvider = LogixDb.Cli.Common.DbProvider;
 
 namespace LogixDb.Cli.Commands;
 
@@ -35,7 +36,7 @@ public abstract class DbCommand : ICommand
         if (string.IsNullOrWhiteSpace(Connection))
             throw new CommandException("Database argument 'connection' is required.", ErrorCodes.UsageError);
 
-        var connection = SqlConnectionInfo.Parse(Connection);
+        var connection = DbConnection.Parse(Connection);
         var database = DbProvider.GetDatabase(connection);
         var cancellation = console.RegisterCancellationHandler();
         return ExecuteAsync(console, database, cancellation);

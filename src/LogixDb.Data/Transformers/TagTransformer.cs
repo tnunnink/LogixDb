@@ -77,9 +77,13 @@ internal class TagTransformer : ILogixDbTransformer
         {
             if (comment.Operand.Contains(tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
             {
-                var bitTag = TagName.Combine(baseName, comment.Operand);
-                var text = string.Concat(tag.Description, " ", comment.Value);
-                yield return new TagCommentRecord(snapshotId, tagId, bitTag, text);
+                var tagName = TagName.Combine(baseName, comment.Operand);
+
+                var tagComment = !string.IsNullOrWhiteSpace(tag.Description)
+                    ? string.Concat(tag.Description, " ", comment.Value).Trim()
+                    : comment.Value;
+
+                yield return new TagCommentRecord(snapshotId, tagId, tagName, tagComment);
             }
         }
     }

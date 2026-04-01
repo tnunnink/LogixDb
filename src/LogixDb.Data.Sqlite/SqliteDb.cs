@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Common;
 using Dapper;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
@@ -16,18 +15,18 @@ namespace LogixDb.Data.Sqlite;
 /// This class provides methods to manage database migrations, snapshots, and data import/export processes
 /// within an SQLite database.
 /// </summary>
-public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
+public sealed class SqliteDb(DbConnection connection) : ILogixDb
 {
     /// <summary>
     /// Represents the connection information required for interacting with an SQLite database.
     /// This variable contains details such as the database file path, credentials, and other
-    /// configuration parameters encapsulated in a <see cref="SqlConnectionInfo"/> instance.
+    /// configuration parameters encapsulated in a <see cref="DbConnection"/> instance.
     /// It serves as the primary connection descriptor for database operations.
     /// </summary>
-    private readonly SqlConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+    private readonly DbConnection _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(DbOptions? options = null, CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
@@ -36,7 +35,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, DbOptions? options = null, CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
@@ -104,14 +103,14 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
         try
         {
             // 0. Handle the provided option first to delete any previous snapshot for this target if requested.
-            await HandleSnapshotAction(session, snapshot.TargetKey, option, token);
+            await HandleSnapshotAction(session, snapshot.TargetKey, option);
 
             // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
             await ImportSnapshotAsync(session, snapshot);
 
             // 2. Compile component data into DataTables
-            var options = await GetTableOptions(session);
-            var tables = snapshot.Compile(options);
+            var tableNames = await GetTableNames(session);
+            var tables = snapshot.Compile(tableNames);
 
             // 3. Write component data using the Bulk Writer
             var writer = new SqliteDbWriter(session);
@@ -205,13 +204,11 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// Retrieves table options for the database, filtering to include only specific tables relevant to the system.
     /// </summary>
     /// <param name="session">The database session used to execute the query for table names.</param>
-    /// <returns>A <see cref="TableOptions"/> object specifying the tables to include for further operations.</returns>
-    private static async Task<TableOptions> GetTableOptions(SqliteDbSession session)
+    /// <returns>A <see cref="DbOptions"/> object specifying the tables to include for further operations.</returns>
+    private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
         var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
-        //todo we need to filter this to just known tables of our system and not predefined or other tables users may create.
-        var include = names.ToArray();
-        return new TableOptions { Include = include };
+        return names.ToArray();
     }
 
     /// <summary>
@@ -220,9 +217,8 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <param name="session">The database session used to execute SQL commands.</param>
     /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
     /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
-    /// <param name="token">A cancellation token that can be used to signal the operation should be canceled.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
-    private async Task HandleSnapshotAction(SqliteDbSession session, string targetKey, ImportOption action, CancellationToken token)
+    private static async Task HandleSnapshotAction(SqliteDbSession session, string targetKey, ImportOption action)
     {
         switch (action)
         {
@@ -303,7 +299,7 @@ public sealed class SqliteDb(SqlConnectionInfo connection) : ILogixDb
     /// <param name="connectionString">The connection string for the SQLite database.</param>
     /// <param name="options"></param>
     /// <returns>A configured <see cref="ServiceProvider"/> instance to execute migrations.</returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, DbOptions? options = null)
     {
         var services = new ServiceCollection();
 

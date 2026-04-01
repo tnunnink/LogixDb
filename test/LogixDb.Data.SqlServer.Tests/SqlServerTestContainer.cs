@@ -45,8 +45,8 @@ public static class SqlServerTestContainer
 
         await _container.StartAsync();
 
-        var connection = new SqlConnectionInfo(
-            SqlProvider.SqlServer,
+        var connection = new DbConnection(
+            DbProvider.SqlServer,
             _container.Hostname,
             Database: "logix",
             Port: _container.GetMappedPublicPort(),

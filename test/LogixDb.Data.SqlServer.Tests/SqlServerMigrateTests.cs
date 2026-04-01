@@ -7,8 +7,8 @@ public class SqlServerMigrationTest
     [Explicit("Manually run against local test server to check migrations and develop SQL queries against")]
     public async Task Build_WithLocalContainerServer_ShouldCreateAndMigrateDatabase()
     {
-        var connectionInfo = new SqlConnectionInfo(
-            Provider: SqlProvider.SqlServer,
+        var connectionInfo = new DbConnection(
+            Provider: DbProvider.SqlServer,
             Source: "localhost,1433",
             Database: "logixdb",
             User: "sa",

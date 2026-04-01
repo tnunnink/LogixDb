@@ -8,14 +8,14 @@ namespace LogixDb.Data.Sqlite;
 internal static class SqliteExtensions
 {
     /// <summary>
-    /// Generates a SQLite connection string based on the provided <see cref="SqlConnectionInfo"/>.
+    /// Generates a SQLite connection string based on the provided <see cref="DbConnection"/>.
     /// </summary>
     /// <param name="info">The SQL connection information containing details like data source and authentication.</param>
     /// <returns>A SQLite connection string constructed from the specified <paramref name="info"/>.</returns>
     /// <exception cref="ArgumentNullException">
     /// Thrown when the provided <paramref name="info"/> is null.
     /// </exception>
-    public static string ToConnectionString(this SqlConnectionInfo info)
+    public static string ToConnectionString(this DbConnection info)
     {
         ArgumentNullException.ThrowIfNull(info);
 

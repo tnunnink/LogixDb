@@ -14,7 +14,7 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("instruction", "instruction_id", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "snapshot_id", "int");
-            await AssertColumnDefinition("instruction", "rung_hash", "nvarchar");
+            await AssertColumnDefinition("instruction", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "instruction_index", "smallint");
             await AssertColumnDefinition("instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_text", "nvarchar");
@@ -24,7 +24,7 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("instruction", "instruction_id");
             await AssertForeignKey("instruction", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("instruction", "snapshot_id", "rung_hash", "instruction_index");
+            await AssertUniqueIndex("instruction", "snapshot_id", "rung_id", "instruction_index");
             await AssertIndex("instruction", "record_hash", "snapshot_id");
         }
     }
@@ -40,14 +40,14 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("argument", "argument_id", "uniqueidentifier");
             await AssertColumnDefinition("argument", "snapshot_id", "int");
-            await AssertColumnDefinition("argument", "instruction_hash", "nvarchar");
+            await AssertColumnDefinition("argument", "instruction_id", "uniqueidentifier");
             await AssertColumnDefinition("argument", "argument_index", "tinyint");
             await AssertColumnDefinition("argument", "argument_type", "nvarchar");
             await AssertColumnDefinition("argument", "argument_text", "nvarchar");
 
             await AssertPrimaryKey("argument", "argument_id");
             await AssertForeignKey("argument", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertIndex("argument", "snapshot_id", "instruction_hash", "argument_index");
+            await AssertIndex("argument", "snapshot_id", "instruction_id", "argument_index");
             await AssertIndex("argument", "snapshot_id", "argument_text");
         }
     }

@@ -97,7 +97,7 @@ public abstract class SqlServerTestFixture
     {
         using var connection = await Database.Connect();
 
-        var result = await connection.QuerySingleAsync<string>(
+        var result = await connection.QuerySingleOrDefaultAsync<string>(
             """
             SELECT DATA_TYPE
             FROM INFORMATION_SCHEMA.COLUMNS

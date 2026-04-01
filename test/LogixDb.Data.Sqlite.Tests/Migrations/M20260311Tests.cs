@@ -20,6 +20,7 @@ public class M20260311Tests : SqliteTestFixture
 
             await AssertPrimaryKey("tag_comment", "comment_id");
             await AssertForeignKey("tag_comment", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertIndex("tag_comment", "snapshot_id", "tag_id", "tag_name");
             await AssertIndex("tag_comment", "tag_name", "snapshot_id");
         }
     }

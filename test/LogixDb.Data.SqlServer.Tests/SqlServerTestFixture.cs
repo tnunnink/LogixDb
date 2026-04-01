@@ -72,7 +72,7 @@ public abstract class SqlServerTestFixture
     {
         using var connection = await Database.Connect();
 
-        var result = await connection.QuerySingleAsync<int>(
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
             SELECT 1
             FROM INFORMATION_SCHEMA.TABLES
@@ -83,6 +83,30 @@ public abstract class SqlServerTestFixture
 
         if (result < 1)
             throw new AssertionException($"Table '{tableName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies that the specified table does not exist in the database by querying the
+    /// INFORMATION_SCHEMA.TABLES view. If the table is found, an exception is thrown.
+    /// </summary>
+    /// <param name="tableName">The name of the table to verify non-existence for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified table is found in the database.</exception>
+    protected static async Task AssertTableDoesNotExists(string tableName)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_NAME = @tableName
+            """,
+            new { tableName }
+        );
+
+        if (result == 1)
+            throw new AssertionException($"Table '{tableName}' was found in the database.");
     }
 
     /// <summary>

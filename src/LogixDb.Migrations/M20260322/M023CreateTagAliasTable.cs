@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260322;
 
 [UsedImplicitly]
 [Migration(202603220600, "Creates tag_alias table with corresponding indexes")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
 public class M023CreateTagAliasTable : AutoReversingMigration
 {
     public override void Up()

@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111630, "Creates program table with corresponding indexes and keys")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Program)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Program)]
 public class M008CreateProgramTable : AutoReversingMigration
 {
     public override void Up()

@@ -17,7 +17,7 @@ namespace LogixDb.Migrations.M20260306;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603061300, "Creates argument table with corresponding indexes and foreign key relationships")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Rung)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
 public class M015CreateArgumentTable : AutoReversingMigration
 {
     public override void Up()

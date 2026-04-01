@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260322;
 
 [UsedImplicitly]
 [Migration(202603220500, "Creates tag_producer table with corresponding indexes")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
 public class M021CreateTagProducerTable : AutoReversingMigration
 {
     public override void Up()

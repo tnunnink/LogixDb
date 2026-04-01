@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260322;
 
 [UsedImplicitly]
 [Migration(202603220530, "Creates tag_consumer table with corresponding indexes")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Component, MigrationTag.Tag)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
 public class M022CreateTagConsumerTable : AutoReversingMigration
 {
     public override void Up()

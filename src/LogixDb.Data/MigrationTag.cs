@@ -15,12 +15,6 @@ public static class MigrationTag
     public const string Required = nameof(Required);
 
     /// <summary>
-    /// Marks migrations that add or modify component-related tables in the database schema.
-    /// Component migrations typically include tables for managing modules and other hardware components.
-    /// </summary>
-    public const string Component = nameof(Component);
-
-    /// <summary>
     /// Marks migrations related to creating or modifying controller-specific tables in the database schema.
     /// Controller migrations typically include structures necessary for managing hardware controllers and their configurations.
     /// </summary>
@@ -82,20 +76,18 @@ public static class MigrationTag
     /// <returns>A collection of migration tags filtered according to the provided options.</returns>
     public static IEnumerable<string> GetTags(DbOptions? options)
     {
-        var tags = new List<string> { Required };
+        var tags = All().ToHashSet();
 
         if (options is null || (options.Include.Length == 0 && options.Exclude.Length == 0))
         {
-            //This should select all component migrations
-            tags.Add(Component);
             return tags;
         }
-        
-        var set = All().ToHashSet();
-        if (options.Include.Length > 0) set.IntersectWith(options.Include);
-        if (options.Exclude.Length > 0) set.ExceptWith(options.Exclude);
 
-        tags.AddRange(set);
+        if (options.Include.Length > 0) tags.IntersectWith(options.Include);
+        if (options.Exclude.Length > 0) tags.ExceptWith(options.Exclude);
+
+        // just ensure that require is always present
+        tags.Add(Required);
         return tags;
     }
 

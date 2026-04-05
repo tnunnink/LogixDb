@@ -16,14 +16,13 @@ namespace LogixDb.Migrations.M20260306;
 [UsedImplicitly]
 [Migration(202603061200, "Creates instruction table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
-public class M014CreateInstructionTable : AutoReversingMigration
+public class M202603061200CreateInstructionTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("instruction")
             .WithPrimaryGuid("instruction_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("rung_id").AsGuid().NotNullable()
+            .WithRequiredRelation("rung_id", "rung")
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
@@ -31,16 +30,12 @@ public class M014CreateInstructionTable : AutoReversingMigration
             .WithColumn("is_native").AsBoolean().NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("instruction")
-            .OnColumn("snapshot_id").Ascending()
+        Create.Index().OnTable("instruction")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("instruction")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+        Create.Index().OnTable("instruction")
+            .OnColumn("record_hash").Ascending();
     }
 }

@@ -1,4 +1,5 @@
-﻿using FluentMigrator;
+﻿using System.Data;
+using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -7,13 +8,13 @@ namespace LogixDb.Migrations.M20260206;
 [UsedImplicitly]
 [Migration(202602061020, "Create snapshot table and associated indexes for target type/name and import date")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
-public class M002CreateSnapshotTable : AutoReversingMigration
+public class M202602061020CreateSnapshotTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("snapshot")
             .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
-            .WithNumericCascadeForeignKey("target_id", "target")
+            .WithRequiredRelation("target_id", "target")
             .WithColumn("target_type").AsString(128).NotNullable()
             .WithColumn("target_name").AsString(128).NotNullable()
             .WithColumn("is_partial").AsBoolean().NotNullable()

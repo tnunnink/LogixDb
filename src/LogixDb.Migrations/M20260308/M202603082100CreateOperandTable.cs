@@ -18,13 +18,13 @@ namespace LogixDb.Migrations.M20260308;
 [UsedImplicitly]
 [Migration(202603082100, "Creates operand table with unique composite index on instruction_key and operand_index")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
-public class M016CreateOperandTable : AutoReversingMigration
+public class M202603082100CreateOperandTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("operand")
             .WithPrimaryGuid("operand_id")
-            .WithOptionalCascadeForeignKey("snapshot_id", "snapshot")
+            .WithSnapshotRelation(nullable: true)
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()

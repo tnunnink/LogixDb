@@ -18,14 +18,13 @@ namespace LogixDb.Migrations.M20260306;
 [UsedImplicitly]
 [Migration(202603061300, "Creates argument table with corresponding indexes and foreign key relationships")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
-public class M015CreateArgumentTable : AutoReversingMigration
+public class M202603061300CreateArgumentTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("argument")
             .WithPrimaryGuid("argument_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("instruction_id").AsGuid().NotNullable()
+            .WithRequiredRelation("instruction_id", "instruction")
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(255).NotNullable();

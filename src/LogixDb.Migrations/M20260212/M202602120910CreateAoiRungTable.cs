@@ -2,35 +2,31 @@ using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
-namespace LogixDb.Migrations.M20260211;
+namespace LogixDb.Migrations.M20260212;
 
 [UsedImplicitly]
-[Migration(202602111945, "Creates rung table with corresponding indexes and keys")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
-public class M010CreateRungTable : AutoReversingMigration
+[Migration(202602120910, "Creates aoi_rung table with corresponding indexes and keys")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Aoi)]
+public class M202602120910CreateAoiRungTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("rung")
+        Create.Table("aoi_rung")
             .WithPrimaryGuid("rung_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("program_name").AsString(128).NotNullable()
+            .WithRequiredRelation("aoi_id", "aoi")
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
-            .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
+            .WithColumn("rung_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("rung")
-            .OnColumn("snapshot_id").Ascending()
-            .OnColumn("program_name").Ascending()
+        Create.Index().OnTable("aoi_rung")
+            .OnColumn("aoi_id").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("rung")
+        Create.Index().OnTable("aoi_rung")
             .OnColumn("record_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }

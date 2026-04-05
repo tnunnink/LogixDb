@@ -7,19 +7,19 @@ namespace LogixDb.Migrations.M20260211;
 [UsedImplicitly]
 [Migration(202602111500, "Creates data_type table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
-public class M005CreateDataTypeTable : AutoReversingMigration
+public class M202602111500CreateDataTypeTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("data_type")
             .WithPrimaryGuid("type_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("type_name").AsString(128).NotNullable()
+            .WithSnapshotRelation()
+            .WithColumn("type_name").AsString(256).NotNullable()
+            .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
-            .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
-        
+
         Create.Index()
             .OnTable("data_type")
             .OnColumn("snapshot_id").Ascending()

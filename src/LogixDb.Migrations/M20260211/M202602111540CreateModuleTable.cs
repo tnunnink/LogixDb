@@ -2,26 +2,27 @@ using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
-namespace LogixDb.Migrations.M20260212;
+namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
-[Migration(202602120930, "Creates module table with corresponding indexes and keys")]
+[Migration(202602111540, "Creates module table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Module)]
-public class M013CreateModuleTable : AutoReversingMigration
+public class M202602111540CreateModuleTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("module")
             .WithPrimaryGuid("module_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("module_name").AsString(128).NotNullable()
-            .WithColumn("catalog_number").AsString(64).Nullable()
-            .WithColumn("module_revision").AsString(16).Nullable()
+            .WithSnapshotRelation()
+            .WithOptionalRelation("parent_id", "module", "module_id")
+            .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
+            .WithColumn("catalog_number").AsString(64).Nullable()
+            .WithColumn("revision").AsString(16).Nullable()
             .WithColumn("vendor_id").AsInt32().Nullable()
             .WithColumn("product_id").AsInt32().Nullable()
             .WithColumn("product_code").AsInt16().Nullable()
-            .WithColumn("parent_name").AsString(128).Nullable()
+            .WithColumn("parent_name").AsString(256).Nullable()
             .WithColumn("parent_port").AsByte().Nullable()
             .WithColumn("electronic_keying").AsString(32).Nullable()
             .WithColumn("is_inhibited").AsBoolean().Nullable()
@@ -31,14 +32,16 @@ public class M013CreateModuleTable : AutoReversingMigration
             .WithColumn("slot_number").AsByte().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("module")
+        Create.Index().OnTable("module")
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("module_name").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("module")
+        Create.Index().OnTable("module")
+            .OnColumn("parent_id").Ascending()
+            .OnColumn("snapshot_id").Ascending();
+
+        Create.Index().OnTable("module")
             .OnColumn("record_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }

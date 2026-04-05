@@ -7,19 +7,19 @@ namespace LogixDb.Migrations.M20260211;
 [UsedImplicitly]
 [Migration(202602111600, "Creates task table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Task)]
-public class M007CreateTaskTable : AutoReversingMigration
+public class M202602111600CreateTaskTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("task")
             .WithPrimaryGuid("task_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("task_name").AsString(128).NotNullable()
-            .WithColumn("task_type").AsString(32).Nullable()
+            .WithSnapshotRelation()
+            .WithColumn("task_name").AsString(256).NotNullable()
             .WithColumn("task_description").AsString(512).Nullable()
-            .WithColumn("task_priority").AsByte().Nullable()
-            .WithColumn("task_rate").AsFloat().Nullable()
-            .WithColumn("task_watchdog").AsFloat().Nullable()
+            .WithColumn("task_type").AsString(32).Nullable()
+            .WithColumn("priority").AsByte().Nullable()
+            .WithColumn("rate").AsFloat().Nullable()
+            .WithColumn("watchdog").AsFloat().Nullable()
             .WithColumn("is_inhibited").AsBoolean().Nullable()
             .WithColumn("disable_outputs").AsBoolean().Nullable()
             .WithColumn("event_trigger").AsString(32).Nullable()
@@ -32,7 +32,7 @@ public class M007CreateTaskTable : AutoReversingMigration
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("task_name").Ascending()
             .WithOptions().Unique();
-        
+
         Create.Index()
             .OnTable("task")
             .OnColumn("record_hash").Ascending()

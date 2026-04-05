@@ -7,12 +7,12 @@ namespace LogixDb.Migrations.M20260206;
 [UsedImplicitly]
 [Migration(202602061010, "Creates target table with unique target key index")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
-public class M001CreateTargetTable : AutoReversingMigration
+public class M202602061010CreateTargetTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("target")
-            .WithColumn("target_id").AsInt32().PrimaryKey().Identity()
+            .WithPrimaryGuid("target_id")
             .WithColumn("target_key").AsString(128).NotNullable()
             .WithColumn("created_on").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime);
 

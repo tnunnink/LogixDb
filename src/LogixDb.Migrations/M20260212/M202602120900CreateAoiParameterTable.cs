@@ -7,18 +7,17 @@ namespace LogixDb.Migrations.M20260212;
 [UsedImplicitly]
 [Migration(202602120900, "Creates aoi_parameter table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Aoi)]
-public class M012CreateAoiParameterTable : AutoReversingMigration
+public class M202602120900CreateAoiParameterTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("aoi_parameter")
             .WithPrimaryGuid("parameter_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("aoi_name").AsString(128).NotNullable()
-            .WithColumn("parameter_name").AsString(128).NotNullable()
+            .WithRequiredRelation("aoi_id", "aoi")
+            .WithColumn("parameter_name").AsString(256).NotNullable()
             .WithColumn("parameter_description").AsString(512).Nullable()
-            .WithColumn("data_type").AsString(128).Nullable()
-            .WithColumn("default_value").AsString(128).Nullable()
+            .WithColumn("data_type").AsString(256).Nullable()
+            .WithColumn("default_value").AsString(256).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
@@ -28,10 +27,8 @@ public class M012CreateAoiParameterTable : AutoReversingMigration
             .WithColumn("is_constant").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("aoi_parameter")
-            .OnColumn("snapshot_id").Ascending()
-            .OnColumn("aoi_name").Ascending()
+        Create.Index().OnTable("aoi_parameter")
+            .OnColumn("aoi_id").Ascending()
             .OnColumn("parameter_name").Ascending()
             .WithOptions().Unique();
     }

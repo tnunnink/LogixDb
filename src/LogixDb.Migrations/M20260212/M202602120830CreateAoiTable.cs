@@ -7,14 +7,14 @@ namespace LogixDb.Migrations.M20260212;
 [UsedImplicitly]
 [Migration(202602120830, "Creates aoi table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Aoi)]
-public class M011CreateAoiTable : AutoReversingMigration
+public class M202602120830CreateAoiTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("aoi")
             .WithPrimaryGuid("aoi_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("aoi_name").AsString(128).NotNullable()
+            .WithSnapshotRelation()
+            .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("aoi_revision").AsString(16).Nullable()
             .WithColumn("aoi_revision_extension").AsString(64).Nullable()
             .WithColumn("aoi_revision_note").AsString(512).Nullable()

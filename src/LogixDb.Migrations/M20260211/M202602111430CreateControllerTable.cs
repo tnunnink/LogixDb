@@ -7,20 +7,20 @@ namespace LogixDb.Migrations.M20260211;
 [UsedImplicitly]
 [Migration(202602111430, "Creates controller table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Controller)]
-public class M004CreateControllerTable : AutoReversingMigration
+public class M202602111430CreateControllerTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("controller")
             .WithPrimaryGuid("controller_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("controller_name").AsString(128).NotNullable()
-            .WithColumn("catalog_number").AsString(128).Nullable()
+            .WithSnapshotRelation()
+            .WithColumn("controller_name").AsString(256).NotNullable()
+            .WithColumn("catalog_number").AsString(256).Nullable()
             .WithColumn("controller_revision").AsString(32).Nullable()
             .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("project_creation_date").AsDateTime().Nullable()
             .WithColumn("last_modified_date").AsDateTime().Nullable()
-            .WithColumn("communication_path").AsString(128).Nullable()
+            .WithColumn("communication_path").AsString(256).Nullable()
             .WithColumn("sfc_execution_control").AsString(32).Nullable()
             .WithColumn("sfc_restart_position").AsString(32).Nullable()
             .WithColumn("sfc_last_scan").AsString(32).Nullable()

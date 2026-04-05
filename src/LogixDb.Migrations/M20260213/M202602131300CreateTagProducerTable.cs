@@ -2,19 +2,18 @@ using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
-namespace LogixDb.Migrations.M20260322;
+namespace LogixDb.Migrations.M20260213;
 
 [UsedImplicitly]
-[Migration(202603220500, "Creates tag_producer table with corresponding indexes")]
+[Migration(202602131300, "Creates tag_producer table with corresponding indexes")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
-public class M021CreateTagProducerTable : AutoReversingMigration
+public class M202602131300CreateTagProducerTable : AutoReversingMigration
 {
     public override void Up()
     {
         Create.Table("tag_producer")
             .WithPrimaryGuid("producer_id")
-            .WithNumericCascadeForeignKey("snapshot_id", "snapshot")
-            .WithColumn("tag_id").AsGuid().NotNullable()
+            .WithRequiredRelation("tag_id", "tag")
             .WithColumn("produce_count").AsInt32().NotNullable()
             .WithColumn("programatically_send_event_trigger").AsBoolean().NotNullable()
             .WithColumn("unicast_permitted").AsBoolean().NotNullable()
@@ -24,12 +23,11 @@ public class M021CreateTagProducerTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("tag_producer")
-            .OnColumn("snapshot_id").Ascending()
             .OnColumn("tag_id").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_producer")
             .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("tag_id").Ascending();
     }
 }

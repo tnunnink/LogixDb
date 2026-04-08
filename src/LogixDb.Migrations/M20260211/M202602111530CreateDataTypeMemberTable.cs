@@ -17,7 +17,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()
-            .WithColumn("dimension").AsInt16().Nullable()
+            .WithColumn("dimensions").AsString(32).Nullable()
             .WithColumn("radix").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("is_hidden").AsBoolean().Nullable()

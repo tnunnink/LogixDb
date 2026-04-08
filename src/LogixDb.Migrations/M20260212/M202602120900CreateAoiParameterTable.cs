@@ -17,6 +17,8 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
             .WithColumn("parameter_name").AsString(256).NotNullable()
             .WithColumn("parameter_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()
+            .WithColumn("dimensions").AsString(32).Nullable()
+            .WithColumn("radix").AsString(32).Nullable()
             .WithColumn("default_value").AsString(256).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()

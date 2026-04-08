@@ -15,7 +15,7 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
             .WithPrimaryGuid("producer_id")
             .WithRequiredRelation("tag_id", "tag")
             .WithColumn("produce_count").AsInt32().NotNullable()
-            .WithColumn("programatically_send_event_trigger").AsBoolean().NotNullable()
+            .WithColumn("send_event_trigger").AsBoolean().NotNullable()
             .WithColumn("unicast_permitted").AsBoolean().NotNullable()
             .WithColumn("maximum_rpi").AsDouble().NotNullable()
             .WithColumn("minimum_rpi").AsDouble().NotNullable()

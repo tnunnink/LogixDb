@@ -17,6 +17,8 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithOptionalRelation("program_id", "program")
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
+            .WithColumn("dimensions").AsString(32).Nullable()
+            .WithColumn("radix").AsString(32).Nullable()
             .WithColumn("external_access").AsString(32).Nullable()
             .WithColumn("opcua_access").AsString(32).Nullable()
             .WithColumn("is_constant").AsBoolean().Nullable()

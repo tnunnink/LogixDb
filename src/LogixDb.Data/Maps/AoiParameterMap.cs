@@ -15,13 +15,14 @@ internal class AoiParameterMap : TableMap<AoiParameterRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
-        ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
-        ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<AoiParameterRecord>.For(r => r.AoiName, "aoi_name"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.GetDataTypeName(), "data_type"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.GetDataValue(), "default_value"),
+        ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id"),
+        ColumnMap<AoiParameterRecord>.For(r => r.AoiId, "aoi_id"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.DataType, "data_type"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Dimension.ToIndex(), "dimensions"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Radix?.Name, "radix"),
+        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.GetDataValue(), "default_value"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.TagType?.Name, "tag_type"),
@@ -38,9 +39,7 @@ internal class AoiParameterMap : TableMap<AoiParameterRecord>
 /// This record contains the metadata and configuration for a specific AOI parameter,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this parameter record belongs.</param>
-/// <param name="Parameter">The Logix AOI parameter entity.</param>
-internal record AoiParameterRecord(int SnapshotId, string AoiName, Parameter Parameter)
+internal record AoiParameterRecord(Guid? AoiId, Parameter Parameter)
 {
     public Guid ParameterId { get; } = Guid.NewGuid();
 }

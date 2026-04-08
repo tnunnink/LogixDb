@@ -12,8 +12,7 @@ internal class TagAliasMap : TableMap<TagAliasRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<TagAliasRecord>> Columns =>
     [
-        ColumnMap<TagAliasRecord>.For(r => r.AliasId, "alias_id", hashable: false),
-        ColumnMap<TagAliasRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TagAliasRecord>.For(r => r.AliasId, "alias_id"),
         ColumnMap<TagAliasRecord>.For(r => r.TagId, "tag_id"),
         ColumnMap<TagAliasRecord>.For(r => r.AliasFor, "alias_for")
     ];
@@ -22,10 +21,9 @@ internal class TagAliasMap : TableMap<TagAliasRecord>
 /// <summary>
 /// Represents a record containing alias information associated with a tag.
 /// </summary>
-/// <param name="SnapshotId">The identifier for the snapshot associated with the alias information.</param>
 /// <param name="TagId">The unique identifier for the tag associated with the alias information.</param>
 /// <param name="AliasFor">The name or path of the tag that is being aliased.</param>
-internal record TagAliasRecord(int SnapshotId, Guid TagId, string AliasFor)
+internal record TagAliasRecord(Guid TagId, string AliasFor)
 {
     public Guid AliasId { get; } = Guid.NewGuid();
 }

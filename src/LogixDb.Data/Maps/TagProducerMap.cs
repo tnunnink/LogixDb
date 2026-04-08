@@ -21,15 +21,14 @@ internal class TagProducerMap : TableMap<TagProduceInfoRecord>
     protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
     [
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProducerId, "producer_id", hashable: false),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.TagId, "tag_id"),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProduceCount, "produce_count"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProgrammaticallySendEventTrigger,
-            "programatically_send_event_trigger"),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProgrammaticallySendEventTrigger, "send_event_trigger"),
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.UnicastPermitted, "unicast_permitted"),
-        ColumnMap<TagProduceInfoRecord>.For(r => (float)r.ProduceInfo.MaximumRPI, "maximum_rpi"),
-        ColumnMap<TagProduceInfoRecord>.For(r => (float)r.ProduceInfo.MinimumRPI, "minimum_rpi"),
-        ColumnMap<TagProduceInfoRecord>.For(r => (float)r.ProduceInfo.DefaultRPI, "default_rpi")
+        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.MaximumRPI, "maximum_rpi"),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.MinimumRPI, "minimum_rpi"),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.DefaultRPI, "default_rpi"),
+        ColumnMap<TagProduceInfoRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
 }
 
@@ -38,10 +37,9 @@ internal class TagProducerMap : TableMap<TagProduceInfoRecord>
 /// This record includes details such as the snapshot identifier, tag identifier,
 /// and produce-related metadata encapsulated in the <see cref="ProduceInfo"/> object.
 /// </summary>
-/// <param name="SnapshotId">The identifier for the snapshot associated with the produce information.</param>
 /// <param name="TagId">The unique identifier for the tag associated with the produce information.</param>
 /// <param name="ProduceInfo">An object containing detailed information about produce-related settings and data.</param>
-internal record TagProduceInfoRecord(int SnapshotId, Guid TagId, ProduceInfo ProduceInfo)
+internal record TagProduceInfoRecord(Guid TagId, ProduceInfo ProduceInfo)
 {
     public Guid ProducerId { get; } = Guid.NewGuid();
 }

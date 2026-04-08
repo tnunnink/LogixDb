@@ -17,10 +17,11 @@ internal class ModuleMap : TableMap<ModuleRecord>
     [
         ColumnMap<ModuleRecord>.For(r => r.ModuleId, "module_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<ModuleRecord>.For(r => r.Module.Name, "module_name"),
-        ColumnMap<ModuleRecord>.For(r => r.Module.CatalogNumber, "catalog_number"),
-        ColumnMap<ModuleRecord>.For(r => r.Module.Revision.ToString(), "module_revision"),
+        ColumnMap<ModuleRecord>.For(r => r.ParentId, "parent_id", hashable: false),
+        ColumnMap<ModuleRecord>.For(r => r.Module.Name, "module_name", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.Module.Description, "module_description"),
+        ColumnMap<ModuleRecord>.For(r => r.Module.CatalogNumber, "catalog_number"),
+        ColumnMap<ModuleRecord>.For(r => r.Module.Revision.ToString(), "revision"),
         ColumnMap<ModuleRecord>.For(r => r.Module.Vendor, "vendor_id"),
         ColumnMap<ModuleRecord>.For(r => r.Module.ProductType, "product_id"),
         ColumnMap<ModuleRecord>.For(r => r.Module.ProductCode, "product_code"),
@@ -32,7 +33,9 @@ internal class ModuleMap : TableMap<ModuleRecord>
         ColumnMap<ModuleRecord>.For(r => r.Module.SafetyEnabled, "is_safety_enabled"),
         ColumnMap<ModuleRecord>.For(r => r.Module.IP?.ToString(), "ip_address"),
         ColumnMap<ModuleRecord>.For(r => r.Module.Slot, "slot_number"),
-        ColumnMap<ModuleRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<ModuleRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<ModuleRecord>.For(r => r.Module.Hash(), "source_hash", hashable: false),
+        ColumnMap<ModuleRecord>.For(r => r.Module.Compress(), "source_data", hashable: false)
     ];
 }
 
@@ -43,7 +46,7 @@ internal class ModuleMap : TableMap<ModuleRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this module record belongs.</param>
 /// <param name="Module">The Logix module entity.</param>
-internal record ModuleRecord(int SnapshotId, Module Module)
+internal record ModuleRecord(int SnapshotId, Guid? ParentId, Module Module)
 {
     public Guid ModuleId { get; } = Guid.NewGuid();
 }

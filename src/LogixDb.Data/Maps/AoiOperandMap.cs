@@ -12,8 +12,8 @@ internal class AoiOperandMap : TableMap<AoiOperandRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>
     [
-        ColumnMap<AoiOperandRecord>.For(r => r.OperandId, "operand_id", hashable: false),
-        ColumnMap<AoiOperandRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<AoiOperandRecord>.For(r => r.OperandId, "operand_id"),
+        ColumnMap<AoiOperandRecord>.For(r => r.SnapshotId, "snapshot_id"),
         ColumnMap<AoiOperandRecord>.For(r => r.Key, "instruction_key"),
         ColumnMap<AoiOperandRecord>.For(r => r.Index, "operand_index"),
         ColumnMap<AoiOperandRecord>.For(r => r.Name, "operand_name"),

@@ -6,11 +6,6 @@ namespace LogixDb.Data.Maps;
 /// Represents a mapping configuration for LocalTag objects to the "aoi_parameter" database table.
 /// This class defines how specific properties of LocalTag elements are mapped to corresponding table columns.
 /// </summary>
-/// <remarks>
-/// This is my way of combining the local tags and parameters for an AOI into a single table in the database.
-/// They are essentially all the same columns, except that the local tag doesn't have required and visible properties.
-/// I'd prefer not to make separate tables and not to tread these as "tag" instances but as member definitions.
-/// </remarks>
 internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 {
     /// <inheritdoc />
@@ -19,13 +14,14 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
-        ColumnMap<AoiLocalTagRecord>.For(r => r.ParameterId, "parameter_id", hashable: false),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.SnapshotId, "snapshot_id", false),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiName, "aoi_name"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.GetDataValue(), "default_value"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.ParameterId, "parameter_id"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiId, "aoi_id"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name", hashable: false),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "parameter_description"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.DataType, "data_type"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Dimensions.ToIndex(), "dimensions"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Radix.Name, "radix"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.GetDataValue(), "default_value"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.TagType?.Name, "tag_type"),
@@ -46,7 +42,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 /// the name of the associated AOI, and the tag details.
 /// This record is used in mapping operations for transferring data between the program and the database storage.
 /// </remarks>
-internal record AoiLocalTagRecord(int SnapshotId, string AoiName, LocalTag Tag)
+internal record AoiLocalTagRecord(Guid? AoiId, LocalTag Tag)
 {
     public Guid ParameterId { get; } = Guid.NewGuid();
 }

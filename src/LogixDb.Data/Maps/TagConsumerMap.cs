@@ -15,12 +15,11 @@ internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
     protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>
     [
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumerId, "consumer_id", hashable: false),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Producer, "producer"),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteTag, "remote_tag"),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteInstance, "remote_instance"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => (float)r.ConsumeInfo.RPI, "rpi"),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RPI, "rpi"),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Unicast, "unicast"),
         ColumnMap<TagConsumeInfoRecord>.For(ComputeHash, "record_hash", hashable: false)
     ];
@@ -29,10 +28,9 @@ internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 /// <summary>
 /// Represents a record containing consume information associated with a tag.
 /// </summary>
-/// <param name="SnapshotId">The identifier for the snapshot associated with the consume information.</param>
-/// <param name="TagId">The unique identifier for the tag associated with the consume information.</param>
+/// <param name="TagId">The unique identifier for the tag associated with the consumer information.</param>
 /// <param name="ConsumeInfo">An object containing detailed information about consume-related settings and data.</param>
-internal record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
+internal record TagConsumeInfoRecord(Guid TagId, ConsumeInfo ConsumeInfo)
 {
     public Guid ConsumerId { get; } = Guid.NewGuid();
 }

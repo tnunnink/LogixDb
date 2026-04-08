@@ -17,17 +17,19 @@ internal class ProgramMap : TableMap<ProgramRecord>
     [
         ColumnMap<ProgramRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
+        ColumnMap<ProgramRecord>.For(r => r.TaskId, "task_id", hashable: false),
+        ColumnMap<ProgramRecord>.For(r => r.ParentId, "parent_id", hashable: false),
+        ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.Program.Description, "program_description"),
+        ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
         ColumnMap<ProgramRecord>.For(r => r.Program.MainRoutineName, "main_routine"),
         ColumnMap<ProgramRecord>.For(r => r.Program.FaultRoutineName, "fault_routine"),
         ColumnMap<ProgramRecord>.For(r => r.Program.Disabled, "is_disabled"),
         ColumnMap<ProgramRecord>.For(r => r.Program.UseAsFolder, "is_folder"),
         ColumnMap<ProgramRecord>.For(r => r.Program.TestEdits, "has_test_edits"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Parent?.Name, "parent_name"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Task?.Name, "task_name"),
-        ColumnMap<ProgramRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<ProgramRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<ProgramRecord>.For(r => r.Program.Hash(), "source_hash", hashable: false),
+        ColumnMap<ProgramRecord>.For(r => r.Program.Compress(), "source_data", hashable: false)
     ];
 }
 
@@ -36,9 +38,7 @@ internal class ProgramMap : TableMap<ProgramRecord>
 /// This record contains the metadata for a specific Logix program,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this program record belongs.</param>
-/// <param name="Program">The Logix program entity.</param>
-internal record ProgramRecord(int SnapshotId, Program Program)
+internal record ProgramRecord(int SnapshotId, Guid? TaskId, Guid? ParentId, Program Program)
 {
     public Guid ProgramId { get; } = Guid.NewGuid();
 }

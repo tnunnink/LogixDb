@@ -17,10 +17,10 @@ internal class ControllerMap : TableMap<ControllerRecord>
     [
         ColumnMap<ControllerRecord>.For(r => r.ControllerId, "controller_id", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.Name, "controller_name"),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.ProcessorType, "catalog_number"),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.Revision.ToString(), "controller_revision"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.Name, "controller_name", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Description, "controller_description"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.ProcessorType, "catalog_number"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.Revision.ToString(), "revision"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.ProjectCreationDate, "project_creation_date"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.LastModifiedDate, "last_modified_date"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.CommPath, "communication_path"),
@@ -32,7 +32,8 @@ internal class ControllerMap : TableMap<ControllerRecord>
         ColumnMap<ControllerRecord>.For(r => r.Controller.InhibitAutomaticFirmwareUpdate, "inhibit_firmware_updates"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.CanUseRPIFromProducer, "allow_rfi_from_producer"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.PassThroughConfiguration?.Name, "pass_through_option"),
-        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties, "download_documentation"),
+        ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectDocumentationAndExtendedProperties,
+            "download_documentation"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.DownloadProjectCustomProperties, "download_properties"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.EtherNetIPMode?.Name, "ethernet_ip_mode"),
         ColumnMap<ControllerRecord>.For(ComputeHash, "record_hash", hashable: false)

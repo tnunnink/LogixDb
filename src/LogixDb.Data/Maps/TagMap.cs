@@ -17,18 +17,19 @@ internal class TagMap : TableMap<TagRecord>
     [
         ColumnMap<TagRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Scope.Container, "program_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.TagName.Base, "base_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Parent?.TagName.LocalPath, "parent_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.TagName.Element, "member_name"),
-        ColumnMap<TagRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Value.GetDataValue(), "tag_value"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
+        ColumnMap<TagRecord>.For(r => r.ProgramId, "program_id", hashable: false),
+        ColumnMap<TagRecord>.For(r => r.Tag.Name, "tag_name", hashable: false),
+        ColumnMap<TagRecord>.For(r => r.Tag.DataType, "data_type"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Dimensions.ToIndex(), "dimensions"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Radix.Name, "radix"),
         ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<TagRecord>.For(r => r.Tag.OpcUAAccess?.Name ?? Access.None, "opcua_access"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Constant, "is_constant"),
-        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<TagRecord>.For(r => r.Tag.Constant ?? false, "is_constant"),
+        ColumnMap<TagRecord>.For(r => r.Tag.TagType?.Name ?? TagType.Base, "tag_type"),
+        ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name ?? TagUsage.Normal, "tag_usage"),
+        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<TagRecord>.For(r => r.Tag.Hash(), "source_hash", hashable: false),
+        ColumnMap<TagRecord>.For(r => r.Tag.Compress(), "source_data", hashable: false)
     ];
 }
 
@@ -39,7 +40,7 @@ internal class TagMap : TableMap<TagRecord>
 /// </summary>
 /// <param name="SnapshotId">The unique identifier of the snapshot to which this tag record belongs.</param>
 /// <param name="Tag">The Logix tag entity containing its configuration and value.</param>
-internal record TagRecord(int SnapshotId, Tag Tag)
+internal record TagRecord(int SnapshotId, Guid? ProgramId, Tag Tag)
 {
     public Guid TagId { get; } = Guid.NewGuid();
 }

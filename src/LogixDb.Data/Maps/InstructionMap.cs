@@ -22,8 +22,7 @@ internal class InstructionMap : TableMap<InstructionRecord>
     protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
         ColumnMap<InstructionRecord>.For(r => r.InstructionId, "instruction_id", hashable: false),
-        ColumnMap<InstructionRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
+        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
@@ -37,7 +36,7 @@ internal class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-internal record InstructionRecord(int SnapshotId, Guid RungId, short Index, Instruction Instruction)
+internal record InstructionRecord(Guid RungId, short Index, Instruction Instruction)
 {
     public Guid InstructionId { get; } = Guid.NewGuid();
 }

@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Data.Maps;
 
@@ -17,12 +16,13 @@ internal class RoutineMap : TableMap<RoutineRecord>
     protected override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
     [
         ColumnMap<RoutineRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
-        ColumnMap<RoutineRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<RoutineRecord>.For(r => r.Routine.Scope.Container, "program_name"),
-        ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name"),
+        ColumnMap<RoutineRecord>.For(r => r.ProgramId, "program_id", hashable: false),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Type.Name, "routine_type"),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "routine_description"),
-        ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Hash(), "source_hash", hashable: false),
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Compress(), "source_data", hashable: false)
     ];
 }
 
@@ -31,9 +31,7 @@ internal class RoutineMap : TableMap<RoutineRecord>
 /// This record contains the metadata for a specific Logix routine,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this routine record belongs.</param>
-/// <param name="Routine">The Logix routine entity.</param>
-internal record RoutineRecord(int SnapshotId, Routine Routine)
+internal record RoutineRecord(Guid? ProgramId, Routine Routine)
 {
     public Guid RoutineId { get; } = Guid.NewGuid();
 }

@@ -20,8 +20,7 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
-        ColumnMap<ArgumentRecord>.For(r => r.ArgumentId, "argument_id", hashable: false),
-        ColumnMap<ArgumentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<ArgumentRecord>.For(r => r.ArgumentId, "argument_id"),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionId, "instruction_id"),
         ColumnMap<ArgumentRecord>.For(r => r.Index, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
@@ -37,11 +36,7 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 /// from the database, including their relationship to a snapshot and parent instruction,
 /// as well as their position and content.
 /// </remarks>
-/// <param name="SnapshotId">The identifier of the snapshot to which this argument belongs.</param>
-/// <param name="InstructionId">The hash of the parent instruction that contains this argument.</param>
-/// <param name="Index">The zero-based position of this argument within the instruction's argument list.</param>
-/// <param name="Argument">The L5Sharp Argument object containing the argument's type, value, and metadata.</param>
-internal record ArgumentRecord(int SnapshotId, Guid InstructionId, byte Index, Argument Argument)
+internal record ArgumentRecord(Guid InstructionId, byte Index, Argument Argument)
 {
     public Guid ArgumentId { get; } = Guid.NewGuid();
 }

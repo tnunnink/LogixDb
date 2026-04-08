@@ -17,11 +17,13 @@ internal class DataTypeMap : TableMap<DataTypeRecord>
     [
         ColumnMap<DataTypeRecord>.For(r => r.TypeId, "type_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name"),
+        ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name", hashable: false),
+        ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Family.Name, "type_family"),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
-        ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<DataTypeRecord>.For(r => r.DataType.Hash(), "source_hash", hashable: false),
+        ColumnMap<DataTypeRecord>.For(r => r.DataType.Compress(), "source_data", hashable: false)
     ];
 }
 

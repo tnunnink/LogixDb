@@ -17,18 +17,20 @@ internal class TaskMap : TableMap<TaskRecord>
     [
         ColumnMap<TaskRecord>.For(r => r.TaskId, "task_id", hashable: false),
         ColumnMap<TaskRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name", hashable: false),
         ColumnMap<TaskRecord>.For(r => r.Task.Description, "task_description"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Priority, "task_priority"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Rate, "task_rate"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Watchdog, "task_watchdog"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Priority, "priority"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Rate, "scan_rate"),
+        ColumnMap<TaskRecord>.For(r => r.Task.Watchdog, "watchdog"),
         ColumnMap<TaskRecord>.For(r => r.Task.InhibitTask, "is_inhibited"),
         ColumnMap<TaskRecord>.For(r => r.Task.DisableUpdateOutputs, "disable_outputs"),
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTrigger?.Name, "event_trigger"),
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTag?.LocalPath, "event_tag"),
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EnableTimeout, "enable_timeout"),
-        ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false),
+        ColumnMap<TaskRecord>.For(r => r.Task.Hash(), "source_hash", hashable: false),
+        ColumnMap<TaskRecord>.For(r => r.Task.Compress(), "source_data", hashable: false)
     ];
 }
 

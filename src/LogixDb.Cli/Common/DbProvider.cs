@@ -16,7 +16,7 @@ public static class DbProvider
     /// <param name="connection">The connection information that includes the provider type, data source, and optional credentials.</param>
     /// <returns>An instance of <see cref="ILogixDb"/> corresponding to the specified SQL provider.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the provided SQL provider is not supported.</exception>
-    public static ILogixDb GetDatabase(DbConnection connection)
+    public static ILogixDb GetDatabase(DbConnectionInfo connection)
     {
         return connection.Provider switch
         {

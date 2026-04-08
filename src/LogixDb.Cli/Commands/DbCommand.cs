@@ -36,7 +36,7 @@ public abstract class DbCommand : ICommand
         if (string.IsNullOrWhiteSpace(Connection))
             throw new CommandException("Database argument 'connection' is required.", ErrorCodes.UsageError);
 
-        var connection = DbConnection.Parse(Connection);
+        var connection = DbConnectionInfo.Parse(Connection);
         var database = DbProvider.GetDatabase(connection);
         var cancellation = console.RegisterCancellationHandler();
         return ExecuteAsync(console, database, cancellation);

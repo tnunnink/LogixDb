@@ -9,7 +9,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on rungs and their instructions and arguments.
 /// </summary>
-internal class RungTransformer : ILogixDbTransformer
+internal class RungTransformer : ISnapshotTransformer
 {
     private readonly RungMap _rungMap = new();
     private readonly InstructionMap _instructionMap = new();
@@ -29,9 +29,10 @@ internal class RungTransformer : ILogixDbTransformer
 
         foreach (var rung in rungs)
         {
-            var rungRecord = new RungRecord(snapshot.SnapshotId, rung);
+            var routineId = rung.Routine?.Metadata.Get<Guid>("id");
+            var rungRecord = new RungRecord(routineId, rung);
             rungRecords.Add(rungRecord);
-            ProcessRung(snapshot.SnapshotId, rungRecord.RungId, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungRecord.RungId, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -39,11 +40,7 @@ internal class RungTransformer : ILogixDbTransformer
         yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    private static void ProcessRung(
-        int snapshotId,
-        Guid runId,
-        Rung rung,
-        List<InstructionRecord> instructionRecords,
+    private static void ProcessRung(Guid rungId, Rung rung, List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
         var instructions = rung.Instructions().ToArray();
@@ -51,7 +48,7 @@ internal class RungTransformer : ILogixDbTransformer
         for (short index = 0; index < instructions.Length; index++)
         {
             var instruction = instructions[index];
-            var instructionRecord = new InstructionRecord(snapshotId, runId, index, instruction);
+            var instructionRecord = new InstructionRecord(rungId, index, instruction);
             var instructionId = instructionRecord.InstructionId;
             instructionRecords.Add(instructionRecord);
 
@@ -65,12 +62,12 @@ internal class RungTransformer : ILogixDbTransformer
                 if (argument.Type == ArgumentType.Expression)
                 {
                     argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(snapshotId, instructionId, argumentIndex, new Argument(t))
+                        new ArgumentRecord(instructionId, argumentIndex, new Argument(t))
                     ));
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(snapshotId, instructionId, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(instructionId, argumentIndex, argument));
             }
         }
     }

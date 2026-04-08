@@ -10,7 +10,7 @@ namespace LogixDb.Data.Transformers;
 /// containing Add-On Instruction (AOI) operand data. Extracts the AOI name as the primary operand,
 /// followed by all required parameters with their names, data types, descriptions, and output status.
 /// </summary>
-public class OperandTransformer : ILogixDbTransformer
+public class OperandTransformer : ISnapshotTransformer
 {
     private readonly AoiOperandMap _map = new();
 

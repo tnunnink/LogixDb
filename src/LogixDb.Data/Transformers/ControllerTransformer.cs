@@ -8,7 +8,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on the controller.
 /// </summary>
-internal class ControllerTransformer : ILogixDbTransformer
+internal class ControllerTransformer : ISnapshotTransformer
 {
     private readonly ControllerMap _map = new();
 

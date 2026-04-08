@@ -15,7 +15,7 @@ namespace LogixDb.Data.Transformers;
 /// The transformation process involves creating records for the data types and their
 /// associated members, which are subsequently mapped into tables.
 /// </remarks>
-internal class DataTypeTransformer : ILogixDbTransformer
+internal class DataTypeTransformer : ISnapshotTransformer
 {
     private readonly DataTypeMap _typeMap = new();
     private readonly DataTypeMemberMap _memberMap = new();
@@ -29,8 +29,11 @@ internal class DataTypeTransformer : ILogixDbTransformer
 
         foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
         {
-            dataTypeRecords.Add(new DataTypeRecord(snapshot.SnapshotId, dataType));
-            memberRecords.AddRange(dataType.Members.Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, m)));
+            var type = new DataTypeRecord(snapshot.SnapshotId, dataType);
+            var members = dataType.Members.Select(m => new DataTypeMemberRecord(type.TypeId, m));
+
+            dataTypeRecords.Add(type);
+            memberRecords.AddRange(members);
         }
 
         yield return _typeMap.GenerateTable(dataTypeRecords);

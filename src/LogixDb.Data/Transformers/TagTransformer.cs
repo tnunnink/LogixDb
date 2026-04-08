@@ -18,9 +18,10 @@ namespace LogixDb.Data.Transformers;
 /// The transformation process yields the resulting data as a sequence of
 /// <see cref="DataTable"/> objects, which can then be persisted to a database.
 /// </remarks>
-internal class TagTransformer : ILogixDbTransformer
+internal class TagTransformer : ISnapshotTransformer
 {
     private readonly TagMap _tagMap = new();
+    private readonly TagMemberMap _memberMap = new();
     private readonly TagCommentMap _commentMap = new();
     private readonly TagProducerMap _producerMap = new();
     private readonly TagConsumerMap _consumerMap = new();
@@ -31,59 +32,73 @@ internal class TagTransformer : ILogixDbTransformer
     {
         var source = snapshot.GetSource();
         var tagRecords = new List<TagRecord>();
+        var memberRecords = new List<TagMemberRecord>();
         var commentRecords = new List<TagCommentRecord>();
         var producerRecords = new List<TagProduceInfoRecord>();
         var consumerRecords = new List<TagConsumeInfoRecord>();
         var aliasRecords = new List<TagAliasRecord>();
+        var memberLookup = new Dictionary<TagName, TagMemberRecord>();
 
-        var tags = source.Query<Tag>().SelectMany(t => t.Members());
+        var tags = source.Query<Tag>();
 
         foreach (var tag in tags)
         {
-            var snapshotId = snapshot.SnapshotId;
-            var tagRecord = new TagRecord(snapshotId, tag);
-            var tagId = tagRecord.TagId;
-            var tagName = tag.TagName.LocalPath;
+            //todo there should probably be an easier way from L5Sharp
+            Guid? programId = tag.TryGetDocument(out var document) &&
+                              document.TryGet<Program>(tag.Scope.Container, out var container)
+                ? container.Metadata.Get<Guid>("id")
+                : null;
 
+            var tagRecord = new TagRecord(snapshot.SnapshotId, programId, tag);
             tagRecords.Add(tagRecord);
-            commentRecords.AddRange(GetTagComments(tag, snapshotId, tagId, tagName));
 
             if (tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(snapshotId, tagId, tag.ProduceInfo));
+                producerRecords.Add(new TagProduceInfoRecord(tagRecord.TagId, tag.ProduceInfo));
 
             if (tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(snapshotId, tagId, tag.ConsumeInfo));
+                consumerRecords.Add(new TagConsumeInfoRecord(tagRecord.TagId, tag.ConsumeInfo));
 
             if (tag.AliasFor is not null)
-                aliasRecords.Add(new TagAliasRecord(snapshotId, tagId, tag.AliasFor.LocalPath));
+                aliasRecords.Add(new TagAliasRecord(tagRecord.TagId, tag.AliasFor.LocalPath));
+
+            foreach (var member in tag.Members())
+            {
+                var parentName = member.Parent?.TagName ?? TagName.Empty;
+                Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
+                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, tag);
+                memberRecords.Add(memberRecord);
+                commentRecords.AddRange(GetTagComments(memberRecord));
+                memberLookup.TryAdd(member.TagName, memberRecord); // todo should we throw?
+            }
         }
 
         yield return _tagMap.GenerateTable(tagRecords);
+        yield return _memberMap.GenerateTable(memberRecords);
         yield return _commentMap.GenerateTable(commentRecords);
         yield return _producerMap.GenerateTable(producerRecords);
         yield return _consumerMap.GenerateTable(consumerRecords);
         yield return _aliasMap.GenerateTable(aliasRecords);
     }
 
-    private static IEnumerable<TagCommentRecord> GetTagComments(Tag tag, int snapshotId, Guid tagId, string baseName)
+    private static IEnumerable<TagCommentRecord> GetTagComments(TagMemberRecord record)
     {
-        if (tag.Description is not null)
-            yield return new TagCommentRecord(snapshotId, tagId, baseName, tag.Description);
+        if (record.Tag.Description is not null)
+            yield return new TagCommentRecord(record.MemberId, record.Tag.TagName, record.Tag.Description);
 
-        if (tag.Comments is null)
+        if (record.Tag.Comments is null)
             yield break;
 
-        foreach (var comment in tag.Comments)
+        foreach (var comment in record.Tag.Comments)
         {
-            if (comment.Operand.Contains(tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
+            if (comment.Operand.Contains(record.Tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
             {
-                var tagName = TagName.Combine(baseName, comment.Operand);
+                var tagName = TagName.Combine(record.Tag.TagName.Base, comment.Operand);
 
-                var tagComment = !string.IsNullOrWhiteSpace(tag.Description)
-                    ? string.Concat(tag.Description, " ", comment.Value).Trim()
+                var tagComment = !string.IsNullOrWhiteSpace(record.Tag.Description)
+                    ? string.Concat(record.Tag.Description, " ", comment.Value).Trim()
                     : comment.Value;
 
-                yield return new TagCommentRecord(snapshotId, tagId, tagName, tagComment);
+                yield return new TagCommentRecord(record.MemberId, tagName, tagComment);
             }
         }
     }

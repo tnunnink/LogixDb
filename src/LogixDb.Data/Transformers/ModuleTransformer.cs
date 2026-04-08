@@ -8,7 +8,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on modules.
 /// </summary>
-internal class ModuleTransformer : ILogixDbTransformer
+internal class ModuleTransformer : ISnapshotTransformer
 {
     private readonly ModuleMap _map = new();
 
@@ -16,11 +16,24 @@ internal class ModuleTransformer : ILogixDbTransformer
     public IEnumerable<DataTable> Transform(Snapshot snapshot)
     {
         var source = snapshot.GetSource();
+        var records = new Dictionary<string, ModuleRecord>(StringComparer.OrdinalIgnoreCase);
 
-        var records = source.Modules
-            .Where(m => !string.IsNullOrEmpty(m.Name))
-            .Select(m => new ModuleRecord(snapshot.SnapshotId, m));
+        foreach (var module in source.Modules)
+        {
+            // Some module elements don't have a name (VFD peripherals) not sure if these are worth adding or not.
+            if (string.IsNullOrEmpty(module.Name)) continue;
 
-        yield return _map.GenerateTable(records);
+            var parentName = module.ParentModule ?? string.Empty;
+            var parent = records.GetValueOrDefault(parentName);
+            var record = new ModuleRecord(snapshot.SnapshotId, parent?.ModuleId, module);
+
+            if (!records.TryAdd(record.Module.Name, record))
+                throw new InvalidOperationException(
+                    $"Duplicate module name encountered: '{record.Module.Name}'. Each module must have a unique name within the snapshot.");
+
+            records.Add(module.Name, record);
+        }
+
+        yield return _map.GenerateTable(records.Values);
     }
 }

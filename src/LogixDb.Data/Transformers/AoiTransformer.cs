@@ -9,7 +9,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on Add-On Instructions (AOI).
 /// </summary>
-internal class AoiTransformer : ILogixDbTransformer
+internal class AoiTransformer : ISnapshotTransformer
 {
     private readonly AoiMap _aoiMap = new();
     private readonly AoiParameterMap _parameterMap = new();
@@ -27,14 +27,16 @@ internal class AoiTransformer : ILogixDbTransformer
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            aoiRecords.Add(new AoiRecord(snapshot.SnapshotId, aoi));
-            ProcessParameters(snapshot.SnapshotId, aoi, parameterRecords);
+            var aoiRecord = new AoiRecord(snapshot.SnapshotId, aoi);
+            aoiRecords.Add(aoiRecord);
+
+            ProcessParameters(aoiRecord, parameterRecords);
 
             // Only attempt to process local tags and logic/rungs if the AOI is not encrypted
             if (!aoi.IsEncrypted)
             {
-                ProcessLocalTags(snapshot.SnapshotId, aoi, localTagRecords);
-                ProcessRungs(snapshot.SnapshotId, aoi, rungRecords);
+                ProcessLocalTags(aoiRecord, localTagRecords);
+                ProcessRungs(aoiRecord, rungRecords);
             }
         }
 
@@ -44,31 +46,47 @@ internal class AoiTransformer : ILogixDbTransformer
         yield return _rungMap.GenerateTable(rungRecords);
     }
 
-    private static void ProcessParameters(int snapshotId, AddOnInstruction aoi, List<AoiParameterRecord> records)
+    /// <summary>
+    /// Processes the parameters of an Add-On Instruction (AOI) and adds them as records to the provided collection.
+    /// </summary>
+    /// <param name="parent">The parent AOI record containing details of the AOI.</param>
+    /// <param name="records">The collection where the processed AOI parameter records will be added.</param>
+    private static void ProcessParameters(AoiRecord parent, List<AoiParameterRecord> records)
     {
-        foreach (var parameter in aoi.Parameters)
+        foreach (var parameter in parent.Aoi.Parameters)
         {
-            var record = new AoiParameterRecord(snapshotId, aoi.Name, parameter);
+            var record = new AoiParameterRecord(parent.AoiId, parameter);
             records.Add(record);
         }
     }
 
-    private static void ProcessLocalTags(int snapshotId, AddOnInstruction aoi, List<AoiLocalTagRecord> records)
+    /// <summary>
+    /// Processes the collection of local tags defined within a specified Add-On Instruction (AOI) and
+    /// converts them into a list of <see cref="AoiLocalTagRecord"/> records for persistence.
+    /// </summary>
+    /// <param name="parent">The <see cref="AoiRecord"/> representing the parent Add-On Instruction.</param>
+    /// <param name="records">The collection where generated <see cref="AoiLocalTagRecord"/> instances will be added.</param>
+    private static void ProcessLocalTags(AoiRecord parent, List<AoiLocalTagRecord> records)
     {
-        foreach (var localTag in aoi.LocalTags)
+        foreach (var localTag in parent.Aoi.LocalTags)
         {
-            var record = new AoiLocalTagRecord(snapshotId, aoi.Name, localTag);
+            var record = new AoiLocalTagRecord(parent.AoiId, localTag);
             records.Add(record);
         }
     }
 
-    private static void ProcessRungs(int snapshotId, AddOnInstruction aoi, List<AoiRungRecord> records)
+    /// <summary>
+    /// Processes the rungs within the routines of a given AOI and adds them as records to the provided collection.
+    /// </summary>
+    /// <param name="parent">The parent AOI record associated with the routines and their rungs.</param>
+    /// <param name="records">The collection of rung records to which processed rungs will be added.</param>
+    private static void ProcessRungs(AoiRecord parent, List<AoiRungRecord> records)
     {
-        var routines = aoi.Routines.Where(r => r.Type == RoutineType.RLL);
+        var routines = parent.Aoi.Routines.Where(r => r.Type == RoutineType.RLL);
 
         foreach (var routine in routines)
         {
-            var rungs = routine.Rungs.Select(r => new AoiRungRecord(snapshotId, aoi.Name, routine.Name, r));
+            var rungs = routine.Rungs.Select(r => new AoiRungRecord(parent.AoiId, routine.Name, r));
             records.AddRange(rungs);
         }
     }

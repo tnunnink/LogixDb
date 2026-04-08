@@ -27,7 +27,7 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_producer")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("tag_id").Ascending();
+            .OnColumn("tag_id").Ascending()
+            .OnColumn("record_hash").Ascending();
     }
 }

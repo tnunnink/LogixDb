@@ -17,7 +17,9 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("routine_type").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(32).NotNullable()
+            .WithColumn("source_hash").AsString(32).NotNullable()
+            .WithColumn("source_data").AsBinary().NotNullable();
 
         Create.Index().OnTable("routine")
             .OnColumn("program_id").Ascending()
@@ -25,6 +27,11 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("routine")
+            .OnColumn("routine_name").Ascending()
             .OnColumn("record_hash").Ascending();
+        
+        Create.Index().OnTable("routine")
+            .OnColumn("source_hash").Ascending()
+            .OnColumn("program_id").Ascending();
     }
 }

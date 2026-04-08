@@ -30,12 +30,10 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
             .WithColumn("argument_text").AsString(255).NotNullable();
 
         Create.Index().OnTable("argument")
-            .OnColumn("snapshot_id").Ascending()
             .OnColumn("instruction_id").Ascending()
             .OnColumn("argument_index").Ascending();
 
         Create.Index().OnTable("argument")
-            .OnColumn("snapshot_id").Ascending()
             .OnColumn("argument_text").Ascending();
     }
 }

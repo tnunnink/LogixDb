@@ -13,22 +13,26 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
     {
         Create.Table("data_type")
             .WithPrimaryGuid("type_id")
-            .WithSnapshotRelation()
+            .WithSnapshotRelation(nullable: true)
             .WithColumn("type_name").AsString(256).NotNullable()
             .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(32).NotNullable()
+            .WithColumn("source_hash").AsString(32).NotNullable()
+            .WithColumn("source_data").AsBinary().NotNullable();
 
-        Create.Index()
-            .OnTable("data_type")
+        Create.Index().OnTable("data_type")
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("type_name").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("data_type")
-            .OnColumn("record_hash").Ascending()
+        Create.Index().OnTable("data_type")
+            .OnColumn("type_name").Ascending()
+            .OnColumn("record_hash").Ascending();
+
+        Create.Index().OnTable("data_type")
+            .OnColumn("source_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

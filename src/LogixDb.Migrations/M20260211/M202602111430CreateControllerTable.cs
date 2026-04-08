@@ -15,9 +15,9 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithPrimaryGuid("controller_id")
             .WithSnapshotRelation()
             .WithColumn("controller_name").AsString(256).NotNullable()
+            .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(256).Nullable()
             .WithColumn("controller_revision").AsString(32).Nullable()
-            .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("project_creation_date").AsDateTime().Nullable()
             .WithColumn("last_modified_date").AsDateTime().Nullable()
             .WithColumn("communication_path").AsString(256).Nullable()
@@ -46,12 +46,16 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithColumn("permission_set").AsString().Nullable()
             .WithColumn("changed_to_detect").AsString().Nullable()
             .WithColumn("trusted_slots").AsString(64).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("content_hash").AsString(32).NotNullable();
 
         Create.Index()
             .OnTable("controller")
             .OnColumn("controller_name").Ascending()
             .OnColumn("snapshot_id").Ascending()
             .WithOptions().Unique();
+
+        Create.Index().OnTable("controller")
+            .OnColumn("controller_name").Ascending()
+            .OnColumn("content_hash").Ascending();
     }
 }

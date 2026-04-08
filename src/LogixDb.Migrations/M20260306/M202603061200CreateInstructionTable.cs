@@ -24,8 +24,8 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
             .WithPrimaryGuid("instruction_id")
             .WithRequiredRelation("rung_id", "rung")
             .WithColumn("instruction_index").AsInt16().NotNullable()
-            .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
+            .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("is_conditional").AsBoolean().NotNullable()
             .WithColumn("is_native").AsBoolean().NotNullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
@@ -36,6 +36,7 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("instruction")
-            .OnColumn("record_hash").Ascending();
+            .OnColumn("record_hash").Ascending()
+            .OnColumn("rung_id").Ascending();
     }
 }

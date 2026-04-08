@@ -26,7 +26,7 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_consumer")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("tag_id").Ascending();
+            .OnColumn("tag_id").Ascending()
+            .OnColumn("record_hash").Ascending();
     }
 }

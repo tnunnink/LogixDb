@@ -28,6 +28,6 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
 
         Create.Index().OnTable("aoi_rung")
             .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("aoi_id").Ascending();
     }
 }

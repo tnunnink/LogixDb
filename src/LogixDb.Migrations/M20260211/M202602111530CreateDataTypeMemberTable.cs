@@ -25,10 +25,13 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("bit_number").AsByte().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("data_type_member")
+        Create.Index().OnTable("data_type_member")
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
+
+        Create.Index().OnTable("data_type_member")
+            .OnColumn("member_name").Ascending()
+            .OnColumn("record_hash").Ascending();
     }
 }

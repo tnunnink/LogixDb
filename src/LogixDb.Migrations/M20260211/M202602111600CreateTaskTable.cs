@@ -18,24 +18,28 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("task_description").AsString(512).Nullable()
             .WithColumn("task_type").AsString(32).Nullable()
             .WithColumn("priority").AsByte().Nullable()
-            .WithColumn("rate").AsFloat().Nullable()
+            .WithColumn("scan_rate").AsFloat().Nullable()
             .WithColumn("watchdog").AsFloat().Nullable()
             .WithColumn("is_inhibited").AsBoolean().Nullable()
             .WithColumn("disable_outputs").AsBoolean().Nullable()
             .WithColumn("event_trigger").AsString(32).Nullable()
             .WithColumn("event_tag").AsString(128).Nullable()
             .WithColumn("enable_timeout").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(32).NotNullable()
+            .WithColumn("source_hash").AsString(32).NotNullable()
+            .WithColumn("source_data").AsBinary().NotNullable();
 
-        Create.Index()
-            .OnTable("task")
+        Create.Index().OnTable("task")
             .OnColumn("snapshot_id").Ascending()
             .OnColumn("task_name").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("task")
-            .OnColumn("record_hash").Ascending()
+        Create.Index().OnTable("task")
+            .OnColumn("task_name").Ascending()
+            .OnColumn("record_hash").Ascending();
+        
+        Create.Index().OnTable("task")
+            .OnColumn("source_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

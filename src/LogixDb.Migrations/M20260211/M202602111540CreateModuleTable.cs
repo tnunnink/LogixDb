@@ -30,7 +30,9 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("is_safety_enabled").AsBoolean().Nullable()
             .WithColumn("ip_address").AsString(32).Nullable()
             .WithColumn("slot_number").AsByte().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(32).NotNullable()
+            .WithColumn("source_hash").AsString(32).NotNullable()
+            .WithColumn("source_data").AsBinary().NotNullable();
 
         Create.Index().OnTable("module")
             .OnColumn("snapshot_id").Ascending()
@@ -42,7 +44,11 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .OnColumn("snapshot_id").Ascending();
 
         Create.Index().OnTable("module")
-            .OnColumn("record_hash").Ascending()
+            .OnColumn("module_name").Ascending()
+            .OnColumn("record_hash").Ascending();
+        
+        Create.Index().OnTable("module")
+            .OnColumn("source_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();
     }
 }

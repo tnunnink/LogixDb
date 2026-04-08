@@ -19,16 +19,13 @@ public class M202602111945CreateRungTable : AutoReversingMigration
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
 
-        Create.Index()
-            .OnTable("rung")
-            .OnColumn("snapshot_id").Ascending()
+        Create.Index().OnTable("rung")
             .OnColumn("routine_id").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
 
-        Create.Index()
-            .OnTable("rung")
+        Create.Index().OnTable("rung")
             .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("routine_id").Ascending();
     }
 }

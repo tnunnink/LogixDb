@@ -31,5 +31,9 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
             .OnColumn("aoi_id").Ascending()
             .OnColumn("parameter_name").Ascending()
             .WithOptions().Unique();
+        
+        Create.Index().OnTable("aoi_parameter")
+            .OnColumn("parameter_name").Ascending()
+            .OnColumn("record_hash").Ascending();
     }
 }

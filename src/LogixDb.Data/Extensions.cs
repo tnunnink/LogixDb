@@ -140,4 +140,18 @@ internal static class Extensions
     {
         return member.BitNumber is not null ? (byte)member.BitNumber : null;
     }
+
+    /// <summary>
+    /// Retrieves the associated program for a given tag if the tag is scoped to a program and the program can be successfully resolved.
+    /// </summary>
+    /// <param name="tag">The tag for which the associated program is to be retrieved.</param>
+    /// <returns>The program associated with the tag if it can be resolved; otherwise, null.</returns>
+    internal static Program? GetProgram(this Tag tag)
+    {
+        if (!tag.Scope.IsProgram) return null;
+        if (!tag.TryGetDocument(out var document)) return null;
+        if (string.IsNullOrWhiteSpace(tag.Scope.Container)) return null;
+        if (!document.TryGet<Program>(tag.Scope.Container, out var program)) return null;
+        return program;
+    }
 }

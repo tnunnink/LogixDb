@@ -207,6 +207,24 @@ internal sealed record ColumnMap<T> where T : class
     }
 
     /// <summary>
+    /// Creates a new column map for an integer-based property of an element with a specified database column name.
+    /// </summary>
+    /// <param name="getter">A function that retrieves the nullable integer value from the element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <param name="hashable">A value indicating whether the column can be used in hashing operations; defaults to <c>true</c>.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{T}"/> configured for the integer property and column name.</returns>
+    public static ColumnMap<T> For(Func<T, int?> getter, string name, bool hashable = true)
+    {
+        return new ColumnMap<T>
+        {
+            Name = name,
+            Type = typeof(int),
+            Getter = e => getter(e),
+            IsHashable = hashable
+        };
+    }
+
+    /// <summary>
     /// Creates a new column map for a float-based property of a Logix element with a specified database column name.
     /// </summary>
     /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
@@ -215,6 +233,25 @@ internal sealed record ColumnMap<T> where T : class
     /// <param name="hashable">A value indicating whether the column can be used in hashing operations; defaults to <c>true</c>.</param>
     /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the float property and column name.</returns>
     public static ColumnMap<T> For(Func<T, float> getter, string name, bool hashable = true)
+    {
+        return new ColumnMap<T>
+        {
+            Name = name,
+            Type = typeof(float),
+            Getter = e => getter(e),
+            IsHashable = hashable
+        };
+    }
+    
+    /// <summary>
+    /// Creates a new column map for a float-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the float value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <param name="hashable">A value indicating whether the column can be used in hashing operations; defaults to <c>true</c>.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{TElement}"/> configured for the float property and column name.</returns>
+    public static ColumnMap<T> For(Func<T, float?> getter, string name, bool hashable = true)
     {
         return new ColumnMap<T>
         {
@@ -276,7 +313,7 @@ internal sealed record ColumnMap<T> where T : class
         return new ColumnMap<T>
         {
             Name = name,
-            Type = typeof(byte),
+            Type = typeof(byte[]),
             Getter = getter,
             IsHashable = hashable
         };

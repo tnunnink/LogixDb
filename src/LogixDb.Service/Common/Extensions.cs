@@ -25,7 +25,7 @@ public static class Extensions
         if (config is null)
             throw new ArgumentNullException(nameof(config));
 
-        var connection = DbConnection.Parse(config.DbConnection);
+        var connection = DbConnectionInfo.Parse(config.DbConnection);
 
         switch (connection.Provider)
         {

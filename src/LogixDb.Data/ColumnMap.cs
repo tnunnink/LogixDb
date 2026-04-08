@@ -226,6 +226,25 @@ internal sealed record ColumnMap<T> where T : class
     }
 
     /// <summary>
+    /// Creates a new column map for a double-based property of a Logix element with a specified database column name.
+    /// </summary>
+    /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
+    /// <param name="getter">A function that retrieves the double value from the Logix element to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <param name="hashable">A value indicating whether the column can be used in hashing operations; defaults to <c>true</c>.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{T}"/> configured for the double property and column name.</returns>
+    public static ColumnMap<T> For(Func<T, double> getter, string name, bool hashable = true)
+    {
+        return new ColumnMap<T>
+        {
+            Name = name,
+            Type = typeof(float),
+            Getter = e => getter(e),
+            IsHashable = hashable
+        };
+    }
+
+    /// <summary>
     /// Creates a new column map for a DateTime-based property of a Logix element with a specified database column name.
     /// </summary>
     /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
@@ -243,7 +262,15 @@ internal sealed record ColumnMap<T> where T : class
             IsHashable = hashable
         };
     }
-    
+
+    /// <summary>
+    /// Creates a new column map for a byte array-based property of a specified entity with a given database column name.
+    /// </summary>
+    /// <typeparam name="T">The type of the entity being mapped, constrained to reference types.</typeparam>
+    /// <param name="getter">A function that retrieves the byte array value from the entity to be mapped to the database column.</param>
+    /// <param name="name">The name of the database column to map the property to.</param>
+    /// <param name="hashable">A value indicating whether the column can be utilized in hashing operations; defaults to <c>false</c>.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{T}"/> configured for the byte array property and column name.</returns>
     public static ColumnMap<T> For(Func<T, byte[]> getter, string name, bool hashable = false)
     {
         return new ColumnMap<T>

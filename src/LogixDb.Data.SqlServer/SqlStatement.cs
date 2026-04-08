@@ -15,18 +15,8 @@ internal static class SqlStatement
         """
         IF NOT EXISTS (SELECT 1 FROM target WHERE target_key = @target_key)
         BEGIN
-            INSERT INTO target (target_key) VALUES (@target_key)
+            INSERT INTO target (target_id, target_key) VALUES (@target_id, @target_key)
         END
-        """;
-
-    /// <summary>
-    /// A SQL query string used to retrieve the target ID from the database for a specified target key.
-    /// </summary>
-    internal const string GetTargetId =
-        """
-        SELECT target_id
-        FROM target
-        WHERE target_key = @target_key;
         """;
 
     /// <summary>

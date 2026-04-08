@@ -15,17 +15,17 @@ namespace LogixDb.Data.SqlServer;
 /// Provides functionality for database creation, migration, snapshot management,
 /// importing, exporting, and purging operations.
 /// </summary>
-public sealed class SqlServerDb(DbConnection connection) : ILogixDb
+public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Encapsulates connection-specific information for interacting with a SQL Server database.
     /// This includes details such as data source, catalog, authentication credentials, and other
     /// configuration settings necessary for establishing and managing the database connection.
     /// </summary>
-    private readonly DbConnection _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+    private readonly DbConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(DbOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
@@ -34,7 +34,7 @@ public sealed class SqlServerDb(DbConnection connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, DbOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
@@ -175,9 +175,11 @@ public sealed class SqlServerDb(DbConnection connection) : ILogixDb
     private static async Task ImportSnapshotAsync(SqlDbSession session, Snapshot snapshot)
     {
         // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
-        var key = new { target_key = snapshot.TargetKey };
-        await session.ExecuteAsync(SqlStatement.EnsureTargetExists, key);
-        var targetId = await session.GetAsync<int>(SqlStatement.GetTargetId, key);
+        var targetId = Guid.NewGuid();
+
+        await session.ExecuteAsync(SqlStatement.EnsureTargetExists,
+            new { target_id = targetId, target_key = snapshot.TargetKey }
+        );
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
         snapshot.SnapshotId = await session.GetAsync<int>(SqlStatement.InsertSnapshot, new
@@ -347,7 +349,7 @@ public sealed class SqlServerDb(DbConnection connection) : ILogixDb
     /// A <see cref="ServiceProvider"/> configured with migration-specific services that
     /// include SQL Server support and migration scanning in the relevant assemblies.
     /// </returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, DbOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
     {
         var services = new ServiceCollection();
 

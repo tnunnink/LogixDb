@@ -9,7 +9,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202602262030, @"Grants permissions to the NT SERVICE\LogixDb virtual account used by the windows service.")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
-public class M001SqlServerConfigureServiceAccount : Migration
+public class M202602262030SqlServerConfigureServiceAccount : Migration
 {
     public override void Up()
     {

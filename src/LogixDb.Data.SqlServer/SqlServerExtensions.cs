@@ -8,9 +8,9 @@ namespace LogixDb.Data.SqlServer;
 public static class SqlServerExtensions
 {
     /// <summary>
-    /// Converts the given <see cref="DbConnection"/> into a connection string for SQL Server.
+    /// Converts the given <see cref="DbConnectionInfo"/> into a connection string for SQL Server.
     /// </summary>
-    /// <param name="info">An instance of <see cref="DbConnection"/> that contains the connection details.</param>
+    /// <param name="info">An instance of <see cref="DbConnectionInfo"/> that contains the connection details.</param>
     /// <param name="database">An optional database name to override the default catalog defined in <paramref name="info"/>.</param>
     /// <returns>A SQL Server connection string based on the provided connection information.</returns>
     /// <exception cref="ArgumentOutOfRangeException">
@@ -19,7 +19,7 @@ public static class SqlServerExtensions
     /// <exception cref="ArgumentNullException">
     /// Thrown when <paramref name="info"/> is null.
     /// </exception>
-    public static string ToConnectionString(this DbConnection info, string? database = null)
+    public static string ToConnectionString(this DbConnectionInfo info, string? database = null)
     {
         ArgumentNullException.ThrowIfNull(info);
 

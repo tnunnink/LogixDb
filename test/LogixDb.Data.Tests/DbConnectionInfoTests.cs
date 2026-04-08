@@ -3,13 +3,13 @@ using FluentAssertions;
 namespace LogixDb.Data.Tests;
 
 [TestFixture]
-public class DbConnectionTests
+public class DbConnectionInfoTests
 {
     [Test]
     public void Parse_SqliteConnection_ShouldReturnSqliteProvider()
     {
         const string connectionString = "test.db";
-        var connection = DbConnection.Parse(connectionString);
+        var connection = DbConnectionInfo.Parse(connectionString);
 
         connection.Provider.Should().Be(DbProvider.Sqlite);
         connection.Source.Should().Be(connectionString);
@@ -19,7 +19,7 @@ public class DbConnectionTests
     public void Parse_SqliteConnectionPath_ShouldReturnSqliteProvider()
     {
         const string connectionString = @"C:\Data\test.db";
-        var connection = DbConnection.Parse(connectionString);
+        var connection = DbConnectionInfo.Parse(connectionString);
 
         connection.Provider.Should().Be(DbProvider.Sqlite);
         connection.Source.Should().Be(connectionString);
@@ -30,7 +30,7 @@ public class DbConnectionTests
     {
         const string connectionString =
             "MyDatabase@MyServer;User=admin;Password=secret;Port=1234;Trust=true;Encrypt=true";
-        var connection = DbConnection.Parse(connectionString);
+        var connection = DbConnectionInfo.Parse(connectionString);
 
         connection.Provider.Should().Be(DbProvider.SqlServer);
         connection.Database.Should().Be("MyDatabase");
@@ -46,7 +46,7 @@ public class DbConnectionTests
     public void Parse_SqlServerMinimalConnection_ShouldReturnSqlServerProviderWithDefaults()
     {
         const string connectionString = "MyDatabase@MyServer";
-        var connection = DbConnection.Parse(connectionString);
+        var connection = DbConnectionInfo.Parse(connectionString);
 
         connection.Provider.Should().Be(DbProvider.SqlServer);
         connection.Database.Should().Be("MyDatabase");
@@ -61,7 +61,7 @@ public class DbConnectionTests
     {
         const string connectionString = "MyDatabase@MyServer;InvalidPart";
 
-        Action act = () => DbConnection.Parse(connectionString);
+        Action act = () => DbConnectionInfo.Parse(connectionString);
 
         act.Should().Throw<FormatException>();
     }
@@ -71,7 +71,7 @@ public class DbConnectionTests
     {
         const string connectionString = "InvalidConnection";
 
-        Action act = () => DbConnection.Parse(connectionString);
+        Action act = () => DbConnectionInfo.Parse(connectionString);
 
         act.Should().Throw<ArgumentException>();
     }

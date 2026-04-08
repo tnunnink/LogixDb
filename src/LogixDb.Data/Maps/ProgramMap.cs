@@ -18,7 +18,7 @@ internal class ProgramMap : TableMap<ProgramRecord>
         ColumnMap<ProgramRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.TaskId, "task_id", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.ParentId, "parent_id", hashable: false),
+        ColumnMap<ProgramRecord>.For(r => r.FolderId, "folder_id", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name", hashable: false),
         ColumnMap<ProgramRecord>.For(r => r.Program.Description, "program_description"),
         ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
@@ -38,7 +38,7 @@ internal class ProgramMap : TableMap<ProgramRecord>
 /// This record contains the metadata for a specific Logix program,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-internal record ProgramRecord(int SnapshotId, Guid? TaskId, Guid? ParentId, Program Program)
+internal record ProgramRecord(int SnapshotId, Guid? TaskId, Guid? FolderId, Program Program)
 {
     public Guid ProgramId { get; } = Guid.NewGuid();
 }

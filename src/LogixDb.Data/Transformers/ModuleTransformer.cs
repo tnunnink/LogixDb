@@ -30,8 +30,6 @@ internal class ModuleTransformer : ISnapshotTransformer
             if (!records.TryAdd(record.Module.Name, record))
                 throw new InvalidOperationException(
                     $"Duplicate module name encountered: '{record.Module.Name}'. Each module must have a unique name within the snapshot.");
-
-            records.Add(module.Name, record);
         }
 
         yield return _map.GenerateTable(records.Values);

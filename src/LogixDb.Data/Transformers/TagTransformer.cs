@@ -43,13 +43,9 @@ internal class TagTransformer : ISnapshotTransformer
 
         foreach (var tag in tags)
         {
-            //todo there should probably be an easier way from L5Sharp
-            Guid? programId = tag.TryGetDocument(out var document) &&
-                              document.TryGet<Program>(tag.Scope.Container, out var container)
-                ? container.Metadata.Get<Guid>("id")
-                : null;
-
-            var tagRecord = new TagRecord(snapshot.SnapshotId, programId, tag);
+            //todo there should probably be a way from L5Sharp to do this...
+            var program = tag.GetProgram();
+            var tagRecord = new TagRecord(snapshot.SnapshotId, program?.Metadata.Get<Guid>("id"), tag);
             tagRecords.Add(tagRecord);
 
             if (tag.ProduceInfo is not null)
@@ -63,12 +59,19 @@ internal class TagTransformer : ISnapshotTransformer
 
             foreach (var member in tag.Members())
             {
+                //Get parent id using the lookup
                 var parentName = member.Parent?.TagName ?? TagName.Empty;
                 Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
-                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, tag);
+
+                //Generate member record and comment records and add to collections.
+                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, member);
+
+                if (!memberLookup.TryAdd(member.TagName, memberRecord))
+                    throw new InvalidOperationException(
+                        $"Duplicate member TagName encountered: '{member.TagName}'. Each member must have a unique TagName within the tag.");
+
                 memberRecords.Add(memberRecord);
                 commentRecords.AddRange(GetTagComments(memberRecord));
-                memberLookup.TryAdd(member.TagName, memberRecord); // todo should we throw?
             }
         }
 

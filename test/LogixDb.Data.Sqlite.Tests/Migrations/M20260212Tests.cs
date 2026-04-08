@@ -4,7 +4,7 @@ namespace LogixDb.Data.Sqlite.Tests.Migrations;
 public class M20260212Tests : SqliteTestFixture
 {
     [Test]
-    public async Task MigrateUp_ToM011_CreatesAoiTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202602120830_CreatesAoiTableWithExpectedColumns()
     {
         await Database.Migrate(202602120830);
 
@@ -15,35 +15,38 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi", "snapshot_id", "integer");
             await AssertColumnDefinition("aoi", "aoi_name", "text");
+            await AssertColumnDefinition("aoi", "aoi_description", "text");
             await AssertColumnDefinition("aoi", "aoi_revision", "text");
             await AssertColumnDefinition("aoi", "aoi_revision_extension", "text");
             await AssertColumnDefinition("aoi", "aoi_revision_note", "text");
             await AssertColumnDefinition("aoi", "aoi_vendor", "text");
-            await AssertColumnDefinition("aoi", "aoi_description", "text");
-            await AssertColumnDefinition("aoi", "execute_pre_scan", "integer");
-            await AssertColumnDefinition("aoi", "execute_post_scan", "integer");
-            await AssertColumnDefinition("aoi", "execute_enable_in_false", "integer");
+            await AssertColumnDefinition("aoi", "aoi_help_text", "text");
             await AssertColumnDefinition("aoi", "created_date", "datetime");
             await AssertColumnDefinition("aoi", "created_by", "text");
             await AssertColumnDefinition("aoi", "edited_date", "datetime");
             await AssertColumnDefinition("aoi", "edited_by", "text");
             await AssertColumnDefinition("aoi", "software_revision", "text");
-            await AssertColumnDefinition("aoi", "help_text", "text");
+            await AssertColumnDefinition("aoi", "execute_pre_scan", "integer");
+            await AssertColumnDefinition("aoi", "execute_post_scan", "integer");
+            await AssertColumnDefinition("aoi", "execute_enable_in_false", "integer");
             await AssertColumnDefinition("aoi", "is_encrypted", "integer");
             await AssertColumnDefinition("aoi", "signature_id", "text");
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "text");
             await AssertColumnDefinition("aoi", "record_hash", "text");
+            await AssertColumnDefinition("aoi", "source_hash", "text");
+            await AssertColumnDefinition("aoi", "source_data", "blob");
 
             await AssertPrimaryKey("aoi", "aoi_id");
             await AssertForeignKey("aoi", "snapshot_id", "snapshot", "snapshot_id");
             await AssertUniqueIndex("aoi", "snapshot_id", "aoi_name");
-            await AssertIndex("aoi", "record_hash", "snapshot_id");
+            await AssertIndex("aoi", "aoi_name", "record_hash");
+            await AssertIndex("aoi", "source_hash", "snapshot_id");
         }
     }
 
     [Test]
-    public async Task MigrateUp_ToM012_CreatesAoiParameterTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202602120900_CreatesAoiParameterTableWithExpectedColumns()
     {
         await Database.Migrate(202602120900);
 
@@ -52,12 +55,13 @@ public class M20260212Tests : SqliteTestFixture
             await AssertTableExists("aoi_parameter");
 
             await AssertColumnDefinition("aoi_parameter", "parameter_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi_parameter", "snapshot_id", "integer");
-            await AssertColumnDefinition("aoi_parameter", "aoi_name", "text");
+            await AssertColumnDefinition("aoi_parameter", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "text");
-            await AssertColumnDefinition("aoi_parameter", "data_type", "text");
-            await AssertColumnDefinition("aoi_parameter", "default_value", "text");
             await AssertColumnDefinition("aoi_parameter", "parameter_description", "text");
+            await AssertColumnDefinition("aoi_parameter", "data_type", "text");
+            await AssertColumnDefinition("aoi_parameter", "dimensions", "text");
+            await AssertColumnDefinition("aoi_parameter", "radix", "text");
+            await AssertColumnDefinition("aoi_parameter", "default_value", "text");
             await AssertColumnDefinition("aoi_parameter", "external_access", "text");
             await AssertColumnDefinition("aoi_parameter", "tag_usage", "text");
             await AssertColumnDefinition("aoi_parameter", "tag_type", "text");
@@ -68,43 +72,33 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi_parameter", "record_hash", "text");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
-            await AssertForeignKey("aoi_parameter", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("aoi_parameter", "snapshot_id", "aoi_name", "parameter_name");
+            await AssertForeignKey("aoi_parameter", "aoi_id", "aoi", "aoi_id");
+            await AssertUniqueIndex("aoi_parameter", "aoi_id", "parameter_name");
+            await AssertIndex("aoi_parameter", "parameter_name", "record_hash");
         }
     }
 
     [Test]
-    public async Task MigrateUp_ToM013_CreatesModuleTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202602120910_CreatesAoiRungTableWithExpectedColumns()
     {
-        await Database.Migrate(202602120930);
+        await Database.Migrate(202602120910);
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("module");
+            await AssertTableExists("aoi_rung");
 
-            await AssertColumnDefinition("module", "module_id", "uniqueidentifier");
-            await AssertColumnDefinition("module", "snapshot_id", "integer");
-            await AssertColumnDefinition("module", "module_name", "text");
-            await AssertColumnDefinition("module", "catalog_number", "text");
-            await AssertColumnDefinition("module", "module_revision", "text");
-            await AssertColumnDefinition("module", "module_description", "text");
-            await AssertColumnDefinition("module", "vendor_id", "integer");
-            await AssertColumnDefinition("module", "product_id", "integer");
-            await AssertColumnDefinition("module", "product_code", "integer");
-            await AssertColumnDefinition("module", "parent_name", "text");
-            await AssertColumnDefinition("module", "parent_port", "integer");
-            await AssertColumnDefinition("module", "electronic_keying", "text");
-            await AssertColumnDefinition("module", "is_inhibited", "integer");
-            await AssertColumnDefinition("module", "is_major_fault_enabled", "integer");
-            await AssertColumnDefinition("module", "is_safety_enabled", "integer");
-            await AssertColumnDefinition("module", "ip_address", "text");
-            await AssertColumnDefinition("module", "slot_number", "integer");
-            await AssertColumnDefinition("module", "record_hash", "text");
+            await AssertColumnDefinition("aoi_rung", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("aoi_rung", "aoi_id", "uniqueidentifier");
+            await AssertColumnDefinition("aoi_rung", "routine_name", "text");
+            await AssertColumnDefinition("aoi_rung", "rung_number", "integer");
+            await AssertColumnDefinition("aoi_rung", "rung_text", "text");
+            await AssertColumnDefinition("aoi_rung", "rung_comment", "text");
+            await AssertColumnDefinition("aoi_rung", "record_hash", "text");
 
-            await AssertPrimaryKey("module", "module_id");
-            await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("module", "snapshot_id", "module_name");
-            await AssertIndex("module", "record_hash", "snapshot_id");
+            await AssertPrimaryKey("aoi_rung", "rung_id");
+            await AssertForeignKey("aoi_rung", "aoi_id", "aoi", "aoi_id");
+            await AssertUniqueIndex("aoi_rung", "aoi_id", "routine_name", "rung_number");
+            await AssertIndex("aoi_rung", "record_hash", "aoi_id");
         }
     }
 }

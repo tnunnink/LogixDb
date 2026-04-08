@@ -4,7 +4,7 @@ namespace LogixDb.Data.Sqlite.Tests.Migrations;
 public class M20260308Tests : SqliteTestFixture
 {
     [Test]
-    public async Task MigrateUp_ToM016_CreatesOperandTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202603082100_CreatesOperandTableWithExpectedColumns()
     {
         await Database.Migrate(202603082100);
 
@@ -29,7 +29,7 @@ public class M20260308Tests : SqliteTestFixture
     }
 
     [Test]
-    public async Task MigrateUp_ToM017_SeedsExpectedOperands()
+    public async Task MigrateUp_ToM202603082130_SeedsExpectedOperands()
     {
         await Database.Migrate(202603082130);
 

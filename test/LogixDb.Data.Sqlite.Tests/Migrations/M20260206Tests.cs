@@ -4,7 +4,7 @@
 public class M20260206Tests : SqliteTestFixture
 {
     [Test]
-    public async Task MigrateUp_ToM001_CreatesTargetTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202602061010_CreatesTargetTableWithExpectedColumns()
     {
         await Database.Migrate(202602061010);
 
@@ -12,7 +12,7 @@ public class M20260206Tests : SqliteTestFixture
         {
             await AssertTableExists("target");
 
-            await AssertColumnDefinition("target", "target_id", "integer");
+            await AssertColumnDefinition("target", "target_id", "uniqueidentifier");
             await AssertColumnDefinition("target", "target_key", "text");
             await AssertColumnDefinition("target", "created_on", "datetime");
 
@@ -22,7 +22,7 @@ public class M20260206Tests : SqliteTestFixture
     }
 
     [Test]
-    public async Task MigrateUp_ToM002_CreatesTargetTableWithExpectedColumns()
+    public async Task MigrateUp_ToM202602061020_CreatesSnapshotTableWithExpectedColumns()
     {
         await Database.Migrate(202602061020);
 
@@ -31,7 +31,7 @@ public class M20260206Tests : SqliteTestFixture
             await AssertTableExists("snapshot");
 
             await AssertColumnDefinition("snapshot", "snapshot_id", "integer");
-            await AssertColumnDefinition("snapshot", "target_id", "integer");
+            await AssertColumnDefinition("snapshot", "target_id", "uniqueidentifier");
             await AssertColumnDefinition("snapshot", "target_type", "text");
             await AssertColumnDefinition("snapshot", "target_name", "text");
             await AssertColumnDefinition("snapshot", "is_partial", "integer");
@@ -48,6 +48,26 @@ public class M20260206Tests : SqliteTestFixture
 
             await AssertPrimaryKey("snapshot", "snapshot_id");
             await AssertForeignKey("snapshot", "target_id", "target", "target_id");
+        }
+    }
+
+    [Test]
+    public async Task MigrateUp_ToM202602061030_CreatesSnapshotPropertyTableWithExpectedColumns()
+    {
+        await Database.Migrate(202602061030);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("snapshot_property");
+
+            await AssertColumnDefinition("snapshot_property", "property_id", "uniqueidentifier");
+            await AssertColumnDefinition("snapshot_property", "snapshot_id", "integer");
+            await AssertColumnDefinition("snapshot_property", "property_name", "text");
+            await AssertColumnDefinition("snapshot_property", "property_value", "text");
+
+            await AssertPrimaryKey("snapshot_property", "property_id");
+            await AssertForeignKey("snapshot_property", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertUniqueIndex("snapshot_property", "snapshot_id", "property_name");
         }
     }
 }

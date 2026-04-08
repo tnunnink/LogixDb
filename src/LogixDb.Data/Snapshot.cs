@@ -15,24 +15,25 @@ public sealed class Snapshot
 {
     /// <summary>
     /// A private readonly dictionary mapping string identifiers to their respective implementations of the
-    /// <see cref="ILogixDbTransformer"/> interface. This field serves as a central repository for
+    /// <see cref="ISnapshotTransformer"/> interface. This field serves as a central repository for
     /// transformers responsible for processing and transforming various types of Logix database entities,
     /// such as controllers, data types, AOIs, operands, and more. The keys in the dictionary are case-insensitive,
     /// allowing for robust and flexible access.
     /// </summary>
-    private readonly Dictionary<string, ILogixDbTransformer> _transformers = new(StringComparer.OrdinalIgnoreCase)
-    {
-        { "controller", new ControllerTransformer() },
-        { "data_type", new DataTypeTransformer() },
-        { "aoi", new AoiTransformer() },
-        { "operand", new OperandTransformer() },
-        { "module", new ModuleTransformer() },
-        { "tag", new TagTransformer() },
-        { "program", new ProgramTransformer() },
-        { "routine", new RoutineTransformer() },
-        { "rung", new RungTransformer() },
-        { "task", new TaskTransformer() }
-    };
+    private readonly Dictionary<string, ISnapshotTransformer> _transformers =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            { "controller", new ControllerTransformer() },
+            { "data_type", new DataTypeTransformer() },
+            { "aoi", new AoiTransformer() },
+            { "operand", new OperandTransformer() },
+            { "module", new ModuleTransformer() },
+            { "task", new TaskTransformer() },
+            { "program", new ProgramTransformer() },
+            { "routine", new RoutineTransformer() },
+            { "rung", new RungTransformer() },
+            { "tag", new TagTransformer() }
+        };
 
     /// <summary>
     /// A private field representing the parsed L5X data associated with the snapshot.

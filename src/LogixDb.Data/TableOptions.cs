@@ -5,7 +5,7 @@ namespace LogixDb.Data;
 /// during snapshot transformation and database migration operations.
 /// Supports both include (whitelist) and exclude (blacklist) patterns for selective processing.
 /// </summary>
-public class DbOptions
+public class TableOptions
 {
     /// <summary>
     /// Gets the list of table names to include for processing.

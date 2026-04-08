@@ -5,7 +5,7 @@ namespace LogixDb.Data;
 /// with a SQL database. This record encapsulates details about the provider,
 /// source, database, authentication credentials, port, and encryption settings.
 /// </summary>
-public sealed record DbConnection(
+public sealed record DbConnectionInfo(
     DbProvider Provider,
     string Source,
     string? Database = null,
@@ -49,12 +49,12 @@ public sealed record DbConnection(
     /// <returns>A new instance of <c>DbConnection</c> populated with the parsed connection details.</returns>
     /// <exception cref="ArgumentException">Thrown when the SQL provider cannot be inferred
     /// from the connection string.</exception>
-    public static DbConnection Parse(string connection)
+    public static DbConnectionInfo Parse(string connection)
     {
         var provider = InferProvider(connection);
 
         if (provider == DbProvider.Sqlite)
-            return new DbConnection(provider, connection);
+            return new DbConnectionInfo(provider, connection);
 
         var parts = connection.Split(SemiColon);
         var dataSource = parts[0];
@@ -62,7 +62,7 @@ public sealed record DbConnection(
         var catalog = dataSource[..atIndex];
         var datasource = dataSource[(atIndex + 1)..];
 
-        var info = new DbConnection(provider, datasource, catalog);
+        var info = new DbConnectionInfo(provider, datasource, catalog);
 
         for (var i = 1; i < parts.Length; i++)
         {

@@ -56,7 +56,7 @@ internal static class Extensions
     /// <returns>A byte array representing the computed MD5 hash of the input text.</returns>
     internal static byte[] Hash(this string text)
     {
-        return MD5.HashData(Encoding.UTF8.GetBytes(text));
+        return MD5.HashData(Encoding.Unicode.GetBytes(text));
     }
 
     /// <summary>
@@ -69,24 +69,48 @@ internal static class Extensions
         return Convert.ToHexStringLower(binary);
     }
 
-    /// <summary>
-    /// Retrieves the data type name of the provided Logix element.
-    /// For tags and parameters with dimensions, the dimensional index is appended to the data type name.
-    /// </summary>
-    /// <param name="element">The Logix element from which to extract the data type name.</param>
-    /// <returns>A string representing the data type name, including dimensional information if applicable.</returns>
-    /// <exception cref="InvalidOperationException">
-    /// Thrown when the element type is unsupported for data type name extraction.
-    /// </exception>
-    internal static string GetDataTypeName(this ILogixElement element)
+    /// <param name="element"></param>
+    extension(ILogixElement element)
     {
-        return element switch
+        /// <summary>
+        /// Serializes and compresses the Logix element into a byte array using GZip compression.
+        /// The element is first serialized to XML format, then compressed to reduce storage size.
+        /// </summary>
+        /// <returns></returns>
+        internal byte[] Compress()
         {
-            Tag t => t.Dimensions > 0 ? $"{t.DataType}{t.Dimensions.ToIndex()}" : t.DataType,
-            Parameter p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType,
-            _ => throw new InvalidOperationException(
-                $"Element type '{element.GetType().Name}' is not supported for data type name extraction.")
-        };
+            return element.Serialize().ToString().Compress();
+        }
+
+        /// <summary>
+        /// Computes the hash of a serialized Logix element and returns its lowercase hexadecimal string representation.
+        /// The Logix element is serialized to XML format before hashing using MD5 and
+        /// converting the result to a hexadecimal string.
+        /// </summary>
+        /// <returns>A string representing the MD5 hash of the serialized Logix element in lowercase hexadecimal format.</returns>
+        internal string Hash()
+        {
+            return element.Serialize().ToString().Hash().ToHexString();
+        }
+
+        /// <summary>
+        /// Retrieves the data type name of the provided Logix element.
+        /// For tags and parameters with dimensions, the dimensional index is appended to the data type name.
+        /// </summary>
+        /// <returns>A string representing the data type name, including dimensional information if applicable.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the element type is unsupported for data type name extraction.
+        /// </exception>
+        internal string GetDataTypeName()
+        {
+            return element switch
+            {
+                Tag t => t.Dimensions > 0 ? $"{t.DataType}{t.Dimensions.ToIndex()}" : t.DataType,
+                Parameter p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType,
+                _ => throw new InvalidOperationException(
+                    $"Element type '{element.GetType().Name}' is not supported for data type name extraction.")
+            };
+        }
     }
 
     /// <summary>
@@ -105,5 +129,15 @@ internal static class Extensions
             AtomicData atomic => atomic.ToString(),
             _ => null
         };
+    }
+
+    /// <summary>
+    /// Retrieves the bit number associated with a given <c>DataTypeMember</c>, if available.
+    /// </summary>
+    /// <param name="member">The <c>DataTypeMember</c> from which the bit number is to be obtained.</param>
+    /// <returns>The bit number as a byte if it is not null; otherwise, null.</returns>
+    internal static byte? GetBitNumber(this DataTypeMember member)
+    {
+        return member.BitNumber is not null ? (byte)member.BitNumber : null;
     }
 }

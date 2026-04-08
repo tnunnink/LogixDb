@@ -14,7 +14,7 @@ public interface ILogixDb
     /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(DbOptions? options = null, CancellationToken token = default);
+    Task Migrate(TableOptions? options = null, CancellationToken token = default);
 
     /// <summary>
     /// Applies pending database migrations up to the specified schema version.
@@ -23,7 +23,7 @@ public interface ILogixDb
     /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(long version, DbOptions? options = null, CancellationToken token = default);
+    Task Migrate(long version, TableOptions? options = null, CancellationToken token = default);
 
     /// <summary>
     /// Drops or deletes the database, removing all tables and data.

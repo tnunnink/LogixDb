@@ -7,7 +7,7 @@ namespace LogixDb.Data.Abstractions;
 /// that can be written to a database. Implementations of this interface are responsible for mapping the snapshot data
 /// into the appropriate table structure for database persistence.
 /// </summary>
-internal interface ILogixDbTransformer
+internal interface ISnapshotTransformer
 {
     /// <summary>
     /// Transforms the specified <see cref="Snapshot"/> into a collection of <see cref="DataTable"/> objects

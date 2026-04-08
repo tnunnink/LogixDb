@@ -175,10 +175,13 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     private static async Task ImportSnapshotAsync(SqlDbSession session, Snapshot snapshot)
     {
         // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
-        var targetId = Guid.NewGuid();
-
         await session.ExecuteAsync(SqlStatement.EnsureTargetExists,
-            new { target_id = targetId, target_key = snapshot.TargetKey }
+            new { target_id = Guid.NewGuid(), target_key = snapshot.TargetKey }
+        );
+
+        // Retrieve the target key back from the database since it could already exist.
+        var targetId = Guid.Parse(
+            await session.GetAsync<string>(SqlStatement.GetTargetId, new { target_key = snapshot.TargetKey })
         );
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.

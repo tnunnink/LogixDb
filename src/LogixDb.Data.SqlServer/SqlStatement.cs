@@ -18,6 +18,13 @@ internal static class SqlStatement
             INSERT INTO target (target_id, target_key) VALUES (@target_id, @target_key)
         END
         """;
+    
+    /// <summary>
+    /// A SQL statement used to retrieve the unique identifier (target_id) for a specific entry
+    /// in the "target" table based on the provided target key. If the target key exists in the
+    /// database, the corresponding target_id is returned.
+    /// </summary>
+    internal const string GetTargetId = "SELECT target_id FROM target WHERE target_key = @target_key";
 
     /// <summary>
     /// A SQL query string used to insert a new snapshot record into the database and return the generated snapshot ID.

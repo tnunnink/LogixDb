@@ -15,18 +15,18 @@ namespace LogixDb.Data.Sqlite;
 /// This class provides methods to manage database migrations, snapshots, and data import/export processes
 /// within an SQLite database.
 /// </summary>
-public sealed class SqliteDb(DbConnection connection) : ILogixDb
+public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Represents the connection information required for interacting with an SQLite database.
     /// This variable contains details such as the database file path, credentials, and other
-    /// configuration parameters encapsulated in a <see cref="DbConnection"/> instance.
+    /// configuration parameters encapsulated in a <see cref="DbConnectionInfo"/> instance.
     /// It serves as the primary connection descriptor for database operations.
     /// </summary>
-    private readonly DbConnection _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+    private readonly DbConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(DbOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
@@ -35,7 +35,7 @@ public sealed class SqliteDb(DbConnection connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, DbOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
@@ -167,9 +167,11 @@ public sealed class SqliteDb(DbConnection connection) : ILogixDb
     private static async Task ImportSnapshotAsync(SqliteDbSession session, Snapshot snapshot)
     {
         // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
-        var key = new { target_key = snapshot.TargetKey };
-        await session.ExecuteAsync(SqlStatement.EnsureTargetExists, key);
-        var targetId = await session.GetAsync<int>(SqlStatement.GetTargetId, key);
+        var targetId = Guid.NewGuid();
+
+        await session.ExecuteAsync(SqlStatement.EnsureTargetExists,
+            new { target_id = targetId, target_key = snapshot.TargetKey }
+        );
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
         snapshot.SnapshotId = await session.Connection.ExecuteScalarAsync<int>(SqlStatement.InsertSnapshot, new
@@ -204,7 +206,7 @@ public sealed class SqliteDb(DbConnection connection) : ILogixDb
     /// Retrieves table options for the database, filtering to include only specific tables relevant to the system.
     /// </summary>
     /// <param name="session">The database session used to execute the query for table names.</param>
-    /// <returns>A <see cref="DbOptions"/> object specifying the tables to include for further operations.</returns>
+    /// <returns>A <see cref="TableOptions"/> object specifying the tables to include for further operations.</returns>
     private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
         var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
@@ -299,7 +301,7 @@ public sealed class SqliteDb(DbConnection connection) : ILogixDb
     /// <param name="connectionString">The connection string for the SQLite database.</param>
     /// <param name="options"></param>
     /// <returns>A configured <see cref="ServiceProvider"/> instance to execute migrations.</returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, DbOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
     {
         var services = new ServiceCollection();
 

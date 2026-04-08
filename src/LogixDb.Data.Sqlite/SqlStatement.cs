@@ -13,20 +13,9 @@ internal static class SqlStatement
     /// </summary>
     internal const string EnsureTargetExists =
         """
-        INSERT INTO target (target_key)
-        VALUES (@target_key)
+        INSERT INTO target (target_id, target_key)
+        VALUES (@target_id, @target_key)
         ON CONFLICT(target_key) DO NOTHING;
-        """;
-
-    /// <summary>
-    /// A SQL statement that retrieves the unique identifier of a target entry from the "target" table
-    /// based on the specified target key. The target key is provided as a parameter in the query.
-    /// </summary>
-    internal const string GetTargetId =
-        """
-        SELECT target_id
-        FROM target
-        WHERE target_key = @target_key;
         """;
 
     /// <summary>

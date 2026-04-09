@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using LogixDb.Service.Common;
 using Microsoft.Data.SqlClient;
@@ -82,11 +83,16 @@ public class FtacMonitorService(
 
         while (await reader.ReadAsync(token))
         {
+            var assetName = reader.GetString(2);
+
+            if (!IsMatch(assetName, options.Value.FtacFilters))
+                continue;
+
             var asset = new AssetInfo
             {
                 AssetId = reader.GetGuid(0),
                 VersionId = reader.GetGuid(1),
-                AssetName = reader.GetString(2),
+                AssetName = assetName,
                 VersionNumber = reader.GetInt32(3)
             };
 
@@ -96,5 +102,47 @@ public class FtacMonitorService(
             if (logger.IsEnabled(LogLevel.Information))
                 logger.LogInformation("Polled New Asset: {AssetName}", asset.AssetName);
         }
+    }
+
+    /// <summary>
+    /// Determines whether the specified asset name matches the given filter criteria.
+    /// </summary>
+    /// <param name="assetName">The name of the asset to evaluate against the filter criteria.</param>
+    /// <param name="filters">
+    /// A collection of filter patterns. Filters can include whitelist patterns (e.g., "*.ACD") or blacklist patterns
+    /// prefixed with '!' to exclude (e.g., "!*.TMP").
+    /// </param>
+    /// <returns>
+    /// A boolean value indicating whether the asset name satisfies the filter criteria. Returns true if the asset name matches
+    /// the whitelist criteria or no filters are defined, and false if it matches any blacklist pattern or does not match the
+    /// whitelist patterns.
+    /// </returns>
+    private static bool IsMatch(string assetName, string[] filters)
+    {
+        if (filters.Length == 0) return true;
+        var whitelists = filters.Where(f => !f.StartsWith('!')).ToList();
+        var blacklists = filters.Where(f => f.StartsWith('!')).Select(f => f[1..]).ToList(); //strip out '!'
+
+        // 1. Check Blacklists (Any match = exclude)
+        if (blacklists.Any(pattern => FitsMask(assetName, pattern)))
+            return false;
+
+        // 2. Check Whitelists (If any exist, must match at least one)
+        if (whitelists.Count > 0)
+            return whitelists.Any(pattern => FitsMask(assetName, pattern));
+
+        return true;
+    }
+
+    /// <summary>
+    /// Determines whether the specified file name matches the given file mask pattern.
+    /// </summary>
+    /// <param name="fileName">The name of the file to be checked against the mask.</param>
+    /// <param name="fileMask">The pattern defining the file mask, which may include wildcard characters such as '*' and '?'.</param>
+    /// <returns>True if the file name matches the mask; otherwise, false.</returns>
+    private static bool FitsMask(string fileName, string fileMask)
+    {
+        var pattern = "^" + Regex.Escape(fileMask).Replace(@"\*", ".*").Replace(@"\?", ".") + "$";
+        return Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase);
     }
 }

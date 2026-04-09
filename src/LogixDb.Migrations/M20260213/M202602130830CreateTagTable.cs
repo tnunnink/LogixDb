@@ -24,9 +24,9 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("is_constant").AsBoolean().Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
-            .WithColumn("content_hash").AsString(32).NotNullable()
+            .WithColumn("record_hash").AsString(32).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable()
-            .WithColumn("source_data").AsString(32).NotNullable();
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index().OnTable("tag")
             .OnColumn("snapshot_id").Ascending()

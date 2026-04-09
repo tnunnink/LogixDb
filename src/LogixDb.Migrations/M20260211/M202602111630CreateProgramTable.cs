@@ -26,7 +26,7 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("has_test_edits").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable()
-            .WithColumn("source_data").AsBinary().NotNullable();
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index().OnTable("program")
             .OnColumn("snapshot_id").Ascending()

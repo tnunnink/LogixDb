@@ -27,7 +27,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("enable_timeout").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable()
-            .WithColumn("source_data").AsBinary().NotNullable();
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index().OnTable("task")
             .OnColumn("snapshot_id").Ascending()

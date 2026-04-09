@@ -32,7 +32,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("slot_number").AsByte().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable()
-            .WithColumn("source_data").AsBinary().NotNullable();
+            .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index().OnTable("module")
             .OnColumn("snapshot_id").Ascending()

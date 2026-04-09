@@ -180,9 +180,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         );
 
         // Retrieve the target key back from the database since it could already exist.
-        var targetId = Guid.Parse(
-            await session.GetAsync<string>(SqlStatement.GetTargetId, new { target_key = snapshot.TargetKey })
-        );
+        var targetId = await session.GetAsync<Guid>(SqlStatement.GetTargetId, new { target_key = snapshot.TargetKey });
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
         snapshot.SnapshotId = await session.GetAsync<int>(SqlStatement.InsertSnapshot, new

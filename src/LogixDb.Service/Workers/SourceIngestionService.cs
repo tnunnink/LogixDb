@@ -102,7 +102,7 @@ public class SourceIngestionService(
     /// Determines whether the current database connection is invalid by attempting to verify connectivity.
     /// </summary>
     /// <param name="stoppingToken">The cancellation token to observe while performing the operation.</param>
-    /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating whether the connection is invalid.</returns>
+    /// <returns>A task that represents the asynchronous operation containing a boolean value indicating whether the connection is invalid.</returns>
     private async Task ValidateDatabase(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
@@ -144,7 +144,7 @@ public class SourceIngestionService(
     /// </summary>
     /// <param name="source">The source information containing the file metadata and type.</param>
     /// <param name="token">The cancellation token to observe while performing the operation.</param>
-    /// <returns>A task that represents the asynchronous operation, containing the path to the temporary .L5X file.</returns>
+    /// <returns>A task that represents the asynchronous operation containing the path to the temporary .L5X file.</returns>
     private async Task<string> ConvertOrCopy(SourceInfo source, CancellationToken token)
     {
         var tempLocation = Path.Combine(

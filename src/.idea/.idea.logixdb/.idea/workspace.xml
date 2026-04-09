@@ -19,8 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDbWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDbWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,15 +229,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="5430000" />
-    </task>
-    <task id="LOCAL-00106" summary="Remove all SQLite import classes and associated abstractions; consolidate functionality under centralized implementations for improved maintainability.">
-      <option name="closed" value="true" />
-      <created>1774466861150</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1774466861150</updated>
+      <workItem from="1775745455754" duration="6831000" />
     </task>
     <task id="LOCAL-00107" summary="Remove `ColumnType` enum and associated extensions; replace with native .NET `Type` usage in column mappings and database interactions for improved simplicity and consistency.">
       <option name="closed" value="true" />
@@ -621,7 +615,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775750281831</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Update README to include selective migration options, FTAC filter enhancements, and updated database schema details.">
+      <option name="closed" value="true" />
+      <created>1775751266822</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1775751266822</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +649,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `ILogixDbTransformer` with `ISnapshotTransformer`, update transformer logic to improve hierarchical relationships, eliminate redundant operations, and refine metadata handling for `Snapshot`." />
     <MESSAGE value="Rename `ILogixDbTransformer` to `ISnapshotTransformer` and `DbOptions` to `TableOptions`, and update related references." />
     <MESSAGE value="Add `record_hash` column to `tag_comment` table, refine indexes, and enforce uniqueness on `member_id` and `tag_name`." />
     <MESSAGE value="Rename and refine columns across migration scripts for consistency (`programatically_send_event_trigger` to `send_event_trigger`, `dimension` to `dimensions`), and add `dimensions` and `radix` columns to relevant tables." />
@@ -672,7 +673,8 @@
     <MESSAGE value="Update README with selective migration details, enhanced FTAC filter configuration, and updated database schema documentation; add filtering logic to FtacMonitorService." />
     <MESSAGE value="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods." />
     <MESSAGE value="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter." />
+    <MESSAGE value="Update README to include selective migration options, FTAC filter enhancements, and updated database schema details." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README to include selective migration options, FTAC filter enhancements, and updated database schema details." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -689,19 +691,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs</url>
-          <line>95</line>
-          <properties documentPath="C:\Users\tnunnink\Documents\Projects\LogixDb\src\LogixDb.Service\Workers\SourceIngestionService.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
-            <startOffsets>
-              <option value="4675" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4754" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -35,6 +35,9 @@ internal class SqlServerDbWriter(SqlDbSession session) : ILogixDbWriter
         // Set up a bulk copy instance to insert records for max performance.
         using var bulkCopy = new SqlBulkCopy(session.Connection, SqlBulkCopyOptions.KeepIdentity, session.Transaction);
         bulkCopy.DestinationTableName = $"dbo.{table.TableName}";
+        
+        // Increase timeout to handle large files (0 = infinite)
+        bulkCopy.BulkCopyTimeout = 0;
 
         // We need to explicitly map the column names since the table maps don't include the PK id column.
         table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));

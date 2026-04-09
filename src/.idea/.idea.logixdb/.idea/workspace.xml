@@ -19,30 +19,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbMigrateTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260207/M003CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M005CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M005CreateDataTypeTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M006CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M006CreateDataTypeMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M007CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M007CreateTaskTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M008CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M008CreateProgramTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M012CreateAoiParameterTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M012CreateAoiParameterTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M014CreateInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260311/M019CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260311/M019CreateTagCommentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260312/M020CreateAoiLogicTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260312/M020CreateAoiLogicTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M021CreateTagProducerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M021CreateTagProducerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M022CreateTagConsumerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M022CreateTagConsumerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M023CreateTagAliasTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260322/M023CreateTagAliasTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerMigrateTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061020CreateSnapshotTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061020CreateSnapshotTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260207Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260309Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260311Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260312Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260322Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbMigrateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,13 +71,15 @@
     &quot;assignee&quot;: &quot;tnunnink&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tnunnink/LogixDb.git",
-    "accountId": "44eadc35-9d54-442c-b32c-a90545d57e74"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tnunnink/LogixDb.git&quot;,
+    &quot;accountId&quot;: &quot;44eadc35-9d54-442c-b32c-a90545d57e74&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -85,26 +88,13 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDbWriter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDbTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDbWriter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagAliasMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/OperandTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M004CreateControllerTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M005CreateDataTypeTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M006CreateDataTypeMemberTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M007CreateTaskTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M008CreateProgramTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M009CreateRoutineTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260211/M010CreateRungTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M011CreateAoiTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260212/M013CreateModuleTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260306/M015CreateArgumentTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260311/M019CreateTagCommentTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260312/M020CreateAoiLogicTable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260322/M023CreateTagAliasTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -141,6 +131,7 @@
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
     "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
     "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
+    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
     "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
     "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
@@ -167,7 +158,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -257,175 +248,8 @@
       <workItem from="1774033743846" duration="24170000" />
       <workItem from="1774385196334" duration="29109000" />
       <workItem from="1774623322615" duration="7696000" />
-      <workItem from="1775050084170" duration="19272000" />
-    </task>
-    <task id="LOCAL-00074" summary="Change `record_hash` and related columns from binary to string format in tests for SQLite and SQL Server to ensure consistent hash handling.">
-      <option name="closed" value="true" />
-      <created>1772941532340</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1772941532340</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Refactor import logic to replace `GetRecords` with `GetData`, returning `DataTable` for improved abstraction; update all SQL Server and SQLite imports and mappings accordingly. Add `SqlServerInstructionImport` and `SqlServerArgumentImport`. Bump version to 0.5.1.">
-      <option name="closed" value="true" />
-      <created>1772966183572</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1772966183572</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Update PowerShell setup script: improve formatting, add validation for `appsettings.json`, ensure robust SQL Server module handling, and enhance service configuration logic.">
-      <option name="closed" value="true" />
-      <created>1772966552202</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1772966552202</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Remove `Setup-LogixDb.ps1` and replace it with `Setup.ps1` for setup script consistency across codebase and documentation. Update README, release workflow, and related references accordingly.">
-      <option name="closed" value="true" />
-      <created>1772966635379</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1772966635379</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Add `Setup.ps1`: new installation script with service management, database seeding, and environment setup.">
-      <option name="closed" value="true" />
-      <created>1772967647985</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1772967647985</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Tag migrations as required and bump version to 0.5.2.">
-      <option name="closed" value="true" />
-      <created>1772967958690</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1772967958690</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Mark migrations `M001CreateTargetTable` and `M002CreateSnapshotTable` as optional by commenting out `[Tags(MigrationTag.Required)]`.">
-      <option name="closed" value="true" />
-      <created>1772968177444</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1772968177444</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Bump version to 0.5.3 in project files.">
-      <option name="closed" value="true" />
-      <created>1772968717452</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1772968717452</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Increase `argument_text`, `argument_tags`, and `argument_values` column size to `int.MaxValue` in `M015CreateArgumentTable`.">
-      <option name="closed" value="true" />
-      <created>1772970197301</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1772970197301</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Bump version to 0.5.4 in project files.">
-      <option name="closed" value="true" />
-      <created>1772983759938</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1772983759938</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Update `.idea` workspace: adjust paths, add tasks, and increment task counter.">
-      <option name="closed" value="true" />
-      <created>1772983770501</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1772983770501</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Fix README: correct mermaid diagram formatting by adding `erDiagram`.">
-      <option name="closed" value="true" />
-      <created>1772983953994</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1772983953995</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Add migrations and tests for `operand` table creation and seeding.&#10;&#10;- Create `M016CreateOperandTable` migration and define schema changes.&#10;- Add `M017SeedInitialOperands` for operand metadata seeding.&#10;- Implement unit tests for migration verification and data seeding.">
-      <option name="closed" value="true" />
-      <created>1773050832979</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1773050832979</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Refactor import logic to use `GetRecords` in maps, removing redundant `GetData` abstraction.">
-      <option name="closed" value="true" />
-      <created>1773050845741</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1773050845741</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Bump version to 0.5.5 in project files.">
-      <option name="closed" value="true" />
-      <created>1773051292519</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1773051292519</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Rename database column mappings and fields for consistency; bump version to 0.5.6.">
-      <option name="closed" value="true" />
-      <created>1773065361161</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1773065361161</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Rename database column mappings and fields for consistency; add cascade foreign key methods; added AoiOperandMap.cs and corresponding imports to bring aoi operand data into database. bump version to 0.6.0.">
-      <option name="closed" value="true" />
-      <created>1773105895999</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1773105895999</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Rename database column mappings for test assertions to ensure consistency with updated schema; update workspace configuration.">
-      <option name="closed" value="true" />
-      <created>1773106243126</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1773106243126</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Remove redundant test assertion for `operand` table record existence.">
-      <option name="closed" value="true" />
-      <created>1773106682014</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1773106682014</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Create `snapshot_info` table for metadata storage; update data access logic for `AddOnInstruction` and bump version to 0.6.1.">
-      <option name="closed" value="true" />
-      <created>1773108684565</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1773108684566</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Bump version to 0.6.2 in project files; comment out incompatible SQL Server date mappings.">
-      <option name="closed" value="true" />
-      <created>1773137269672</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1773137269672</updated>
+      <workItem from="1775050084170" duration="55168000" />
+      <workItem from="1775246912199" duration="60830000" />
     </task>
     <task id="LOCAL-00095" summary="Refactor column mappings and update methods for data types in maps; add `GetDataTypeName` extension for dimensional information handling.">
       <option name="closed" value="true" />
@@ -651,7 +475,175 @@
       <option name="project" value="LOCAL" />
       <updated>1775075251683</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="Remove `Component` migration tag, update related migrations, refactor tag filtering logic, and add table-specific migration tests.">
+      <option name="closed" value="true" />
+      <created>1775076801981</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1775076801981</updated>
+    </task>
+    <task id="LOCAL-00124" summary="Reorganized migration versions and folders and moved to more parent/child hierarchical relationship pattern to normalize the database. Major updates to tag related tables. Updates to fluent migration helpers.">
+      <option name="closed" value="true" />
+      <created>1775419672162</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1775419672162</updated>
+    </task>
+    <task id="LOCAL-00125" summary="Normalize database schema by refining indexes, updating column definitions, and adding new columns (e.g., `source_hash`, `source_data`), while reorganizing migration scripts for better consistency and maintainability.">
+      <option name="closed" value="true" />
+      <created>1775674793792</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674793792</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Update `SqlStatement` logic, replace `DbConnection` with `DbConnectionInfo`, refine migration methods, and bump `L5Sharp` to v6.0.2.">
+      <option name="closed" value="true" />
+      <created>1775674809442</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674809442</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Replace `DbConnection` with `DbConnectionInfo`, refine migration scripts, update `SqlStatement` logic, and bump `L5Sharp` to v6.0.2.">
+      <option name="closed" value="true" />
+      <created>1775674871049</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674871049</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Bump `L5Sharp` package version to 6.0.2 in testing project.">
+      <option name="closed" value="true" />
+      <created>1775674907293</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674907293</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Rename `DbConnectionTests` to `DbConnectionInfoTests`, update tests to use `DbConnectionInfo.Parse`, and bump `L5Sharp` to v6.0.2.">
+      <option name="closed" value="true" />
+      <created>1775674917801</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674917801</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Rename `DbOptions` to `TableOptions`, replace `ILogixDbTransformer` with `ISnapshotTransformer`, extend `Extensions`, update `ColumnMap` and `DbConnection` types, and refine migration logic.">
+      <option name="closed" value="true" />
+      <created>1775674946203</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1775674946203</updated>
+    </task>
+    <task id="LOCAL-00131" summary="Replace `ILogixDbTransformer` with `ISnapshotTransformer`, update transformer logic to improve hierarchical relationships, eliminate redundant operations, and refine metadata handling for `Snapshot`.">
+      <option name="closed" value="true" />
+      <created>1775675107425</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1775675107425</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Rename `ILogixDbTransformer` to `ISnapshotTransformer` and `DbOptions` to `TableOptions`, and update related references.">
+      <option name="closed" value="true" />
+      <created>1775675121786</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1775675121786</updated>
+    </task>
+    <task id="LOCAL-00133" summary="Add `record_hash` column to `tag_comment` table, refine indexes, and enforce uniqueness on `member_id` and `tag_name`.">
+      <option name="closed" value="true" />
+      <created>1775675902989</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1775675902989</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Rename and refine columns across migration scripts for consistency (`programatically_send_event_trigger` to `send_event_trigger`, `dimension` to `dimensions`), and add `dimensions` and `radix` columns to relevant tables.">
+      <option name="closed" value="true" />
+      <created>1775677561866</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677561866</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Refine column definitions in mapping classes for consistency, update record definitions to align with hierarchical relationships, add `source_hash` and `source_data` columns, and introduce `TagMemberRecord` for detailed tag member mapping.">
+      <option name="closed" value="true" />
+      <created>1775677585156</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677585156</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Add `For` overloads in `ColumnMap` for mapping `double` and `byte[]` properties, with hashable configuration options.">
+      <option name="closed" value="true" />
+      <created>1775677594489</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677594489</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Bump `L5Sharp` package version to 6.0.2 in data project.">
+      <option name="closed" value="true" />
+      <created>1775677607815</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677607815</updated>
+    </task>
+    <task id="LOCAL-00138" summary="Rename `DbOptions` to `TableOptions`, replace `DbConnection` with `DbConnectionInfo`, and bump `L5Sharp` to v6.0.2 in CLI project.">
+      <option name="closed" value="true" />
+      <created>1775677620877</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677620877</updated>
+    </task>
+    <task id="LOCAL-00139" summary="Replace `DbConnection` with `DbConnectionInfo` in `Extensions`.">
+      <option name="closed" value="true" />
+      <created>1775677636720</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1775677636720</updated>
+    </task>
+    <task id="LOCAL-00140" summary="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) and rename existing migration test classes for consistency, updating corresponding migration logic and test assertions.">
+      <option name="closed" value="true" />
+      <created>1775682854458</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682854458</updated>
+    </task>
+    <task id="LOCAL-00141" summary="Add `GetProgram` method to `Tag` extension, refine `ColumnMap` with new overloads for `int` and `float` properties, and enhance `ControllerMap` with additional redundancy, safety, and security mappings.">
+      <option name="closed" value="true" />
+      <created>1775682862098</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682862098</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Refine transformers and mappings: fix duplicate checks in `ModuleTransformer`, rename `ParentId` to `FolderId` across `ProgramMap` and `ProgramRecord`, and streamline tag handling in `TagTransformer`.">
+      <option name="closed" value="true" />
+      <created>1775682886692</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682886692</updated>
+    </task>
+    <task id="LOCAL-00143" summary="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it.">
+      <option name="closed" value="true" />
+      <created>1775682898868</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1775682898868</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,32 +669,32 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.7.0 in project files." />
-    <MESSAGE value="Add `import_date`, `import_user`, and `import_machine` fields to `snapshot` table; update SQL Server snapshot import logic." />
-    <MESSAGE value="Refactor import classes to remove generic constraints, introduce `ImportOptions`, and update import logic for SQL Server and SQLite; add `tag_comment` and `aoi_rung` support with related mappings, migrations, and tests." />
-    <MESSAGE value="Remove `SqlServerInstructionImport` and `SqlServerArgumentImport` along with their SQLite counterparts; refactor `SqliteRungImport` to centralize instruction and argument imports; update column mappings, dependencies, and migrations accordingly." />
-    <MESSAGE value="Remove individual AOI import classes for parameter, operand, rung, and data type members in both SQL Server and SQLite implementations; consolidate logic into central import classes. Add `tag_consume_info` table with indices and mappings; update related migrations and tests. Adjust all entities id column data type to `uniqueidentifier`." />
-    <MESSAGE value="Make `Columns` property `protected override` across all mapping classes, add `tag_consume_info` and `tag_alias` tables with mappings and migrations, and fix minor typos in migrations." />
-    <MESSAGE value="Remove all SQLite import classes and associated abstractions; consolidate functionality under centralized implementations for improved maintainability." />
-    <MESSAGE value="Remove `ColumnType` enum and associated extensions; replace with native .NET `Type` usage in column mappings and database interactions for improved simplicity and consistency." />
-    <MESSAGE value="Replace `SnapshotAction` enum with `ImportOption`, refactor snapshot ingestion logic and method signatures across database implementations, add support for table inclusion/exclusion options during migrations." />
-    <MESSAGE value="Add `MigrationTag` class for tagging migrations, apply tags across all migrations, and refactor migration tests to reflect tagging changes." />
-    <MESSAGE value="Remove `ImportOptions` class and related usages; update migration project to include new folder structure." />
-    <MESSAGE value="Remove all test classes for mapping and data import logic; migrate test coverage to consolidated implementations." />
-    <MESSAGE value="Remove all unit tests for mapping classes, tasks, and snapshot seeding logic." />
-    <MESSAGE value="Remove `Microsoft.Extensions.Hosting` package reference from `LogixDb.Service` project file to streamline dependencies." />
-    <MESSAGE value="Update user dictionary to include `uniqueidentifier` term" />
-    <MESSAGE value="Update `.idea/workspace.xml` to reflect recent file restructuring and consolidate changes related to transformer classes and new database writer implementations." />
-    <MESSAGE value="Rename `tag_consume_info` and `tag_produce_info` to `tag_consumer` and `tag_producer` across mappings, migrations, transformers, tests, and related usages; fix column and table mapping inconsistencies." />
-    <MESSAGE value="Bump package dependencies to latest versions across all projects and refine controller revision/ethernet mode mapping logic." />
-    <MESSAGE value="Bump package dependencies across projects to latest versions." />
-    <MESSAGE value="Update tests to reflect schema changes and improve verification of indexes and column definitions." />
-    <MESSAGE value="Adjust IDE workspace settings and update `ControllerMap` to refine null handling." />
-    <MESSAGE value="Refactor `TableMap` classes to use `protected` access for `TableName` property, update snapshot methods for better filtering, and fix naming in `AoiTransformer`." />
     <MESSAGE value="Replace `SqlConnectionInfo` and `SqlProvider` with `DbConnection` and `DbProvider` across projects, update related methods, and refine type handling in migrations and tests." />
     <MESSAGE value="Make internal all public mappings, update tests for `Snapshot` and `MigrationTag`, refine `DbOptions`, and add table-specific migration assertions." />
     <MESSAGE value="Remove `MigrationTagTests`, add `DbConnectionTests`, and expand `SnapshotTests` for better coverage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `MigrationTagTests`, add `DbConnectionTests`, and expand `SnapshotTests` for better coverage." />
+    <MESSAGE value="Remove `Component` migration tag, update related migrations, refactor tag filtering logic, and add table-specific migration tests." />
+    <MESSAGE value="Reorganized migration versions and folders and moved to more parent/child hierarchical relationship pattern to normalize the database. Major updates to tag related tables. Updates to fluent migration helpers." />
+    <MESSAGE value="Normalize database schema by refining indexes, updating column definitions, and adding new columns (e.g., `source_hash`, `source_data`), while reorganizing migration scripts for better consistency and maintainability." />
+    <MESSAGE value="Update `SqlStatement` logic, replace `DbConnection` with `DbConnectionInfo`, refine migration methods, and bump `L5Sharp` to v6.0.2." />
+    <MESSAGE value="Remove `M001SqlServerConfigureServiceAccount` migration, update `SqlStatement` logic, replace `DbConnection` with `DbConnectionInfo`, refine migration methods, and bump `L5Sharp` to v6.0.2." />
+    <MESSAGE value="Replace `DbConnection` with `DbConnectionInfo`, refine migration scripts, update `SqlStatement` logic, and bump `L5Sharp` to v6.0.2." />
+    <MESSAGE value="Bump `L5Sharp` package version to 6.0.2 in testing project." />
+    <MESSAGE value="Rename `DbConnectionTests` to `DbConnectionInfoTests`, update tests to use `DbConnectionInfo.Parse`, and bump `L5Sharp` to v6.0.2." />
+    <MESSAGE value="Rename `DbOptions` to `TableOptions`, replace `ILogixDbTransformer` with `ISnapshotTransformer`, extend `Extensions`, update `ColumnMap` and `DbConnection` types, and refine migration logic." />
+    <MESSAGE value="Replace `ILogixDbTransformer` with `ISnapshotTransformer`, update transformer logic to improve hierarchical relationships, eliminate redundant operations, and refine metadata handling for `Snapshot`." />
+    <MESSAGE value="Rename `ILogixDbTransformer` to `ISnapshotTransformer` and `DbOptions` to `TableOptions`, and update related references." />
+    <MESSAGE value="Add `record_hash` column to `tag_comment` table, refine indexes, and enforce uniqueness on `member_id` and `tag_name`." />
+    <MESSAGE value="Rename and refine columns across migration scripts for consistency (`programatically_send_event_trigger` to `send_event_trigger`, `dimension` to `dimensions`), and add `dimensions` and `radix` columns to relevant tables." />
+    <MESSAGE value="Refine column definitions in mapping classes for consistency, update record definitions to align with hierarchical relationships, add `source_hash` and `source_data` columns, and introduce `TagMemberRecord` for detailed tag member mapping." />
+    <MESSAGE value="Add `For` overloads in `ColumnMap` for mapping `double` and `byte[]` properties, with hashable configuration options." />
+    <MESSAGE value="Bump `L5Sharp` package version to 6.0.2 in data project." />
+    <MESSAGE value="Rename `DbOptions` to `TableOptions`, replace `DbConnection` with `DbConnectionInfo`, and bump `L5Sharp` to v6.0.2 in CLI project." />
+    <MESSAGE value="Replace `DbConnection` with `DbConnectionInfo` in `Extensions`." />
+    <MESSAGE value="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) and rename existing migration test classes for consistency, updating corresponding migration logic and test assertions." />
+    <MESSAGE value="Add `GetProgram` method to `Tag` extension, refine `ColumnMap` with new overloads for `int` and `float` properties, and enhance `ControllerMap` with additional redundancy, safety, and security mappings." />
+    <MESSAGE value="Refine transformers and mappings: fix duplicate checks in `ModuleTransformer`, rename `ParentId` to `FolderId` across `ProgramMap` and `ProgramRecord`, and streamline tag handling in `TagTransformer`." />
+    <MESSAGE value="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

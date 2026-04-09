@@ -20,8 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,23 +227,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="4436000" />
-    </task>
-    <task id="LOCAL-00104" summary="Remove individual AOI import classes for parameter, operand, rung, and data type members in both SQL Server and SQLite implementations; consolidate logic into central import classes. Add `tag_consume_info` table with indices and mappings; update related migrations and tests. Adjust all entities id column data type to `uniqueidentifier`.">
-      <option name="closed" value="true" />
-      <created>1774206906226</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1774206906226</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Make `Columns` property `protected override` across all mapping classes, add `tag_consume_info` and `tag_alias` tables with mappings and migrations, and fix minor typos in migrations.">
-      <option name="closed" value="true" />
-      <created>1774466848474</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1774466848475</updated>
+      <workItem from="1775745455754" duration="5430000" />
     </task>
     <task id="LOCAL-00106" summary="Remove all SQLite import classes and associated abstractions; consolidate functionality under centralized implementations for improved maintainability.">
       <option name="closed" value="true" />
@@ -622,7 +605,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775744096454</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods.">
+      <option name="closed" value="true" />
+      <created>1775750274546</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1775750274546</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter.">
+      <option name="closed" value="true" />
+      <created>1775750281831</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1775750281831</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,9 +647,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump `L5Sharp` package version to 6.0.2 in testing project." />
-    <MESSAGE value="Rename `DbConnectionTests` to `DbConnectionInfoTests`, update tests to use `DbConnectionInfo.Parse`, and bump `L5Sharp` to v6.0.2." />
-    <MESSAGE value="Rename `DbOptions` to `TableOptions`, replace `ILogixDbTransformer` with `ISnapshotTransformer`, extend `Extensions`, update `ColumnMap` and `DbConnection` types, and refine migration logic." />
     <MESSAGE value="Replace `ILogixDbTransformer` with `ISnapshotTransformer`, update transformer logic to improve hierarchical relationships, eliminate redundant operations, and refine metadata handling for `Snapshot`." />
     <MESSAGE value="Rename `ILogixDbTransformer` to `ISnapshotTransformer` and `DbOptions` to `TableOptions`, and update related references." />
     <MESSAGE value="Add `record_hash` column to `tag_comment` table, refine indexes, and enforce uniqueness on `member_id` and `tag_name`." />
@@ -673,7 +669,10 @@
     <MESSAGE value="Update `.idea` workspace configuration: adjust paths, refine highlighting settings, and reorganize recent migration and test references for improved consistency." />
     <MESSAGE value="Remove unused `System.Data` using directive from `M202602061020CreateSnapshotTable`." />
     <MESSAGE value="Replace `TableOptions` with `ComponentOptions`, update migration methods to simplify filtering logic, and refactor `EnsureCreatedAndMigrated` into `EnsureDatabase`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replace `TableOptions` with `ComponentOptions`, update migration methods to simplify filtering logic, and refactor `EnsureCreatedAndMigrated` into `EnsureDatabase`." />
+    <MESSAGE value="Update README with selective migration details, enhanced FTAC filter configuration, and updated database schema documentation; add filtering logic to FtacMonitorService." />
+    <MESSAGE value="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods." />
+    <MESSAGE value="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

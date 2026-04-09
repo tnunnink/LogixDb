@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace LogixDb.Data;
 
 /// <summary>
@@ -18,90 +16,71 @@ public static class MigrationTag
     /// Marks migrations related to creating or modifying controller-specific tables in the database schema.
     /// Controller migrations typically include structures necessary for managing hardware controllers and their configurations.
     /// </summary>
-    public const string Controller = "controller";
+    public const string Controller = nameof(ComponentOptions.Controller);
 
     /// <summary>
     /// Marks migrations that add or modify data type-related tables in the database schema.
     /// DataType migrations typically include tables for managing user-defined data types, atomic types, and structure definitions.
     /// </summary>
-    public const string DataType = "data_type";
+    public const string DataType = nameof(ComponentOptions.DataType);
 
     /// <summary>
     /// Marks migrations related to Add-On Instructions (AOI) in the database schema.
     /// AOI migrations include tables for AOI definitions, parameters, local tags, operands, and rungs.
     /// </summary>
-    public const string Aoi = "aoi";
+    public const string Aoi = nameof(ComponentOptions.Aoi);
 
     /// <summary>
     /// Marks migrations related to module-related tables in the database schema.
     /// Module migrations typically include hardware module configurations and their associated data.
     /// </summary>
-    public const string Module = "module";
+    public const string Module = nameof(ComponentOptions.Module);
 
     /// <summary>
     /// Marks migrations that add or modify tag-related tables in the database schema.
     /// Tag migrations typically include tables for managing controller tags, program tags, and their associated data.
     /// </summary>
-    public const string Tag = "tag";
-
-    /// <summary>
-    /// Marks migrations related to program-related tables in the database schema.
-    /// Program migrations include tables for managing control programs and their associated configurations.
-    /// </summary>
-    public const string Program = "program";
-
-    /// <summary>
-    /// Marks migrations related to routine-related tables in the database schema.
-    /// Routine migrations include tables for managing code routines within programs or AOIs.
-    /// </summary>
-    public const string Routine = "routine";
+    public const string Tag = nameof(ComponentOptions.Tag);
 
     /// <summary>
     /// Marks migrations related to ladder rungs and logic in the database schema.
     /// Rung migrations include tables for rungs, instructions, and their arguments.
     /// </summary>
-    public const string Rung = "rung";
+    public const string Logic = nameof(ComponentOptions.Logic);
 
     /// <summary>
-    /// Marks migrations related to task-related tables in the database schema.
-    /// Task migrations include tables for managing execution tasks and their schedules.
+    /// Retrieves a collection of migration tags based on the specified component options.
+    /// Combines constant tag values dynamically depending on the flags set in the provided options.
     /// </summary>
-    public const string Task = "task";
-
-    /// <summary>
-    /// Retrieves a filtered list of migration tags based on the specified <see cref="TableOptions"/>.
-    /// </summary>
-    /// <param name="options">The table options used to include or exclude specific migration tags.
-    /// If null or both Include and Exclude are empty, defaults to returning all component migration tags.</param>
-    /// <returns>A collection of migration tags filtered according to the provided options.</returns>
-    public static IEnumerable<string> GetTags(TableOptions? options)
+    /// <param name="options">
+    /// The component options used to determine which migration tags to include.
+    /// This parameter is a flags-based enumeration where multiple options can be combined.
+    /// </param>
+    /// <returns>
+    /// An enumerable collection of strings containing the selected migration tags.
+    /// </returns>
+    public static IEnumerable<string> GetTags(ComponentOptions options)
     {
-        var tags = All().ToHashSet();
+        var tags = new List<string> { Required };
 
-        if (options is null || (options.Include.Length == 0 && options.Exclude.Length == 0))
-        {
-            return tags;
-        }
+        if (options.HasFlag(ComponentOptions.Controller))
+            tags.Add(Controller);
 
-        if (options.Include.Length > 0) tags.IntersectWith(options.Include);
-        if (options.Exclude.Length > 0) tags.ExceptWith(options.Exclude);
+        if (options.HasFlag(ComponentOptions.DataType))
+            tags.Add(DataType);
 
-        // just ensure that require is always present
-        tags.Add(Required);
+        if (options.HasFlag(ComponentOptions.Aoi))
+            tags.Add(Aoi);
+
+        if (options.HasFlag(ComponentOptions.Module))
+            tags.Add(Module);
+
+        if (options.HasFlag(ComponentOptions.Tag))
+            tags.Add(Tag);
+
+        if (options.HasFlag(ComponentOptions.Logic))
+            tags.Add(Logic);
+
         return tags;
-    }
-
-    /// <summary>
-    /// Returns a list of all migration tags defined in this class.
-    /// This method uses reflection to dynamically retrieve all constant string fields.
-    /// </summary>
-    /// <returns>A list containing all migration tag values defined in the MigrationTag class.</returns>
-    private static List<string> All()
-    {
-        return typeof(MigrationTag)
-            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-            .Where(f => f is { IsLiteral: true, IsInitOnly: false } && f.FieldType == typeof(string))
-            .Select(f => (string)f.GetRawConstantValue()!)
-            .ToList();
     }
 }

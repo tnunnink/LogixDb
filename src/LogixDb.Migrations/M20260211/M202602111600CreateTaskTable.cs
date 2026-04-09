@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111600, "Creates task table with corresponding indexes and keys")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Task)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Tag, MigrationTag.Logic)]
 public class M202602111600CreateTaskTable : AutoReversingMigration
 {
     public override void Up()

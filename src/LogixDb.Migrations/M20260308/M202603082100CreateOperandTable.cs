@@ -17,7 +17,7 @@ namespace LogixDb.Migrations.M20260308;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603082100, "Creates operand table with unique composite index on instruction_key and operand_index")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]
 public class M202603082100CreateOperandTable : AutoReversingMigration
 {
     public override void Up()

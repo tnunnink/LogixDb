@@ -26,33 +26,30 @@ public class SqlServerMigrationTest : SqlServerTestFixture
     }
     
     [Test]
-    public async Task Migrate_IncludeSpecificTableNames_ShouldOnlyHaveConfiguredTables()
+    public async Task Migrate_OnlyControllerAndTagBasedTables_ShouldOnlyHaveExpectedTables()
     {
-        var options = new TableOptions { Include = ["controller", "tag"] };
-        
-        await Database.Migrate(options);
+        await Database.Migrate(ComponentOptions.Controller | ComponentOptions.Tag);
 
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("snapshot");
         await AssertTableExists("snapshot_property");
-        await AssertTableExists("operand");
 
         // Included Tables
         await AssertTableExists("controller");
+        await AssertTableExists("task");
+        await AssertTableExists("program");
         await AssertTableExists("tag");
         await AssertTableExists("tag_member");
         await AssertTableExists("tag_comment");
         await AssertTableExists("tag_producer");
         await AssertTableExists("tag_consumer");
         await AssertTableExists("tag_alias");
-        
+
         // Excluded Tables
         await AssertTableDoesNotExists("data_type");
         await AssertTableDoesNotExists("data_type_member");
         await AssertTableDoesNotExists("module");
-        await AssertTableDoesNotExists("task");
-        await AssertTableDoesNotExists("program");
         await AssertTableDoesNotExists("routine");
         await AssertTableDoesNotExists("rung");
         await AssertTableDoesNotExists("instruction");
@@ -60,44 +57,74 @@ public class SqlServerMigrationTest : SqlServerTestFixture
         await AssertTableDoesNotExists("aoi");
         await AssertTableDoesNotExists("aoi_parameter");
         await AssertTableDoesNotExists("aoi_rung");
+        await AssertTableDoesNotExists("operand");
     }
 
     [Test]
-    public async Task Migrate_ExcludeSpecificTableNames_ShouldNotHaveExcludedTables()
+    public async Task Migrate_OnlyLogicBasedTables_ShouldOnlyHaveLogicTables()
     {
-        var options = new TableOptions { Exclude = ["instruction", "rung"] };
-
-        await Database.Migrate(options);
+        await Database.Migrate(ComponentOptions.Logic);
 
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("snapshot");
         await AssertTableExists("snapshot_property");
-        await AssertTableExists("operand");
 
-        // Included Tables (not explicitly excluded, and Include is empty)
-        await AssertTableExists("controller");
-        await AssertTableExists("data_type");
-        await AssertTableExists("data_type_member");
-        await AssertTableExists("module");
+        // Included Tables
         await AssertTableExists("task");
         await AssertTableExists("program");
         await AssertTableExists("routine");
-        await AssertTableExists("aoi");
-        await AssertTableExists("aoi_parameter");
-        await AssertTableExists("aoi_rung");
-        await AssertTableExists("tag");
-        await AssertTableExists("tag_member");
-        await AssertTableExists("tag_comment");
-        await AssertTableExists("tag_producer");
-        await AssertTableExists("tag_consumer");
-        await AssertTableExists("tag_alias");
-        
+        await AssertTableExists("rung");
+        await AssertTableExists("instruction");
+        await AssertTableExists("argument");
+        await AssertTableExists("operand");
+
         // Excluded Tables
-        // Since "rung" tag is excluded, all tables with "rung" tag should be missing
-        // "rung", "instruction", "argument" all have MigrationTag.Rung
+        await AssertTableDoesNotExists("controller");
+        await AssertTableDoesNotExists("data_type");
+        await AssertTableDoesNotExists("data_type_member");
+        await AssertTableDoesNotExists("module");
+        await AssertTableDoesNotExists("aoi");
+        await AssertTableDoesNotExists("aoi_parameter");
+        await AssertTableDoesNotExists("aoi_rung");
+        await AssertTableDoesNotExists("tag");
+        await AssertTableDoesNotExists("tag_member");
+        await AssertTableDoesNotExists("tag_comment");
+        await AssertTableDoesNotExists("tag_producer");
+        await AssertTableDoesNotExists("tag_consumer");
+        await AssertTableDoesNotExists("tag_alias");
+    }
+
+    [Test]
+    public async Task Migrate_NoComponentTables_ShouldHaveNoComponentTables()
+    {
+        await Database.Migrate(ComponentOptions.None);
+
+        // Required Tables
+        await AssertTableExists("target");
+        await AssertTableExists("snapshot");
+        await AssertTableExists("snapshot_property");
+
+        // Excluded Tables
+        await AssertTableDoesNotExists("task");
+        await AssertTableDoesNotExists("program");
+        await AssertTableDoesNotExists("routine");
         await AssertTableDoesNotExists("rung");
         await AssertTableDoesNotExists("instruction");
         await AssertTableDoesNotExists("argument");
+        await AssertTableDoesNotExists("operand");
+        await AssertTableDoesNotExists("controller");
+        await AssertTableDoesNotExists("data_type");
+        await AssertTableDoesNotExists("data_type_member");
+        await AssertTableDoesNotExists("module");
+        await AssertTableDoesNotExists("aoi");
+        await AssertTableDoesNotExists("aoi_parameter");
+        await AssertTableDoesNotExists("aoi_rung");
+        await AssertTableDoesNotExists("tag");
+        await AssertTableDoesNotExists("tag_member");
+        await AssertTableDoesNotExists("tag_comment");
+        await AssertTableDoesNotExists("tag_producer");
+        await AssertTableDoesNotExists("tag_consumer");
+        await AssertTableDoesNotExists("tag_alias");
     }
 }

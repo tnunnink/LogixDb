@@ -6,7 +6,7 @@ namespace LogixDb.Migrations.M20260211;
 
 [UsedImplicitly]
 [Migration(202602111945, "Creates rung table with corresponding indexes and keys")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
 public class M202602111945CreateRungTable : AutoReversingMigration
 {
     public override void Up()

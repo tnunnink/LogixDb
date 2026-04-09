@@ -25,7 +25,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     private readonly DbConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(ComponentOptions options = ComponentOptions.All, CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
@@ -34,12 +34,13 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, ComponentOptions options = ComponentOptions.All,
+        CancellationToken token = default)
     {
         await EnsureCreated(token);
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        runner.MigrateUp();
+        runner.MigrateUp(version);
     }
 
     /// <inheritdoc />
@@ -62,7 +63,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         await ExecuteSqlAsync(SqlStatement.DeleteAllTargets, token: token);
     }
 
@@ -75,7 +76,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QueryAsync<Snapshot>(SqlStatement.ListSnapshots, key);
@@ -84,7 +85,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetLatestSnapshot, key);
@@ -93,7 +94,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetSnapshotById, key);
@@ -103,7 +104,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     public async Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append,
         CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
 
         await using var session = await SqlDbSession.Start(_connection.ToConnectionString(), token);
 
@@ -135,7 +136,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteTargetById, param, token);
     }
@@ -144,7 +145,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
         CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         var param = new { target_key = targetKey, import_date = importDate };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotsBefore, param, token);
     }
@@ -152,7 +153,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, param, token);
     }
@@ -160,7 +161,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        await ValidateMigration(token);
+        await EnsureDatabase(token);
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
     }
@@ -275,7 +276,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// Validates connection to the database and then ensures that all pending migrations
     /// have been applied to the database.
     /// </summary>
-    private async Task ValidateMigration(CancellationToken token = default)
+    private async Task EnsureDatabase(CancellationToken token = default)
     {
         try
         {
@@ -289,7 +290,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
                 $"Failed to connect to database with error '{e.Message}' Ensure migration by running the 'migrate' command.");
         }
 
-        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), ComponentOptions.None);
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
         if (runner.HasMigrationsToApplyUp())
@@ -350,7 +351,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     /// A <see cref="ServiceProvider"/> configured with migration-specific services that
     /// include SQL Server support and migration scanning in the relevant assemblies.
     /// </returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, ComponentOptions options)
     {
         var services = new ServiceCollection();
 

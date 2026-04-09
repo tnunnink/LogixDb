@@ -11,7 +11,7 @@ namespace LogixDb.Migrations.M20260308;
 /// </summary>
 [UsedImplicitly]
 [Migration(202603082130, "Seeds native operand metadata for all supported Logix instructions")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]
 public class M202603082130SeedNativeOperands : AutoReversingMigration
 {
     public override void Up()

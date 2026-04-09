@@ -26,7 +26,8 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     private readonly DbConnectionInfo _connection = connection ?? throw new ArgumentNullException(nameof(connection));
 
     /// <inheritdoc />
-    public async Task Migrate(TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(ComponentOptions options = ComponentOptions.All,
+        CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
@@ -35,11 +36,12 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task Migrate(long version, TableOptions? options = null, CancellationToken token = default)
+    public async Task Migrate(long version, ComponentOptions options = ComponentOptions.All,
+        CancellationToken token = default)
     {
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
-        runner.MigrateUp();
+        runner.MigrateUp(version);
         await ConfigurePersistentPerformancePragmas(token);
     }
 
@@ -55,7 +57,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task Purge(CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         await ExecuteSqlAsync(SqlStatement.DeleteAllTargets, token: token);
     }
 
@@ -68,7 +70,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QueryAsync<Snapshot>(SqlStatement.ListSnapshots, key);
@@ -77,7 +79,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetLatestSnapshot, key);
@@ -86,7 +88,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { snapshot_id = snapshotId };
         return await connection.QuerySingleAsync<Snapshot>(SqlStatement.GetSnapshotById, key);
@@ -96,7 +98,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     public async Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append,
         CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
 
         await using var session = await SqliteDbSession.Start(_connection.ToConnectionString(), token);
 
@@ -128,7 +130,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteTargetById, param, token);
     }
@@ -137,7 +139,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     public async Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null,
         CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         var param = new { target_key = targetKey, import_date = importDate };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotsBefore, param, token);
     }
@@ -145,7 +147,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         var param = new { target_key = targetKey };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotByLatest, param, token);
     }
@@ -153,7 +155,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <inheritdoc />
     public async Task DeleteSnapshot(int snapshotId, CancellationToken token = default)
     {
-        await EnsureCreatedAndMigrated();
+        await EnsureDatabase();
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
     }
@@ -206,10 +208,10 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
-    /// Retrieves table options for the database, filtering to include only specific tables relevant to the system.
+    /// Retrieves the names of all tables in the current SQLite database session.
     /// </summary>
-    /// <param name="session">The database session used to execute the query for table names.</param>
-    /// <returns>A <see cref="TableOptions"/> object specifying the tables to include for further operations.</returns>
+    /// <param name="session">The SQLite database session used for executing the query.</param>
+    /// <returns>A collection of table names present in the SQLite database.</returns>
     private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
         var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
@@ -282,12 +284,13 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// Thrown when there are unapplied migrations that need to be applied to bring
     /// the database to the required state.
     /// </exception>
-    private async Task EnsureCreatedAndMigrated()
+    private async Task EnsureDatabase()
     {
         if (!File.Exists(_connection.Source))
             throw new FileNotFoundException($"Database file not found: {_connection.Source}");
 
-        await using var provider = BuildMigrationProvider(_connection.ToConnectionString());
+        // Just make sure the required tables exist. The component tables could be filtered out, which is fine.
+        await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), ComponentOptions.None);
         var runner = provider.GetRequiredService<IMigrationRunner>();
 
         if (runner.HasMigrationsToApplyUp())
@@ -304,7 +307,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <param name="connectionString">The connection string for the SQLite database.</param>
     /// <param name="options"></param>
     /// <returns>A configured <see cref="ServiceProvider"/> instance to execute migrations.</returns>
-    private static ServiceProvider BuildMigrationProvider(string connectionString, TableOptions? options = null)
+    private static ServiceProvider BuildMigrationProvider(string connectionString, ComponentOptions options)
     {
         var services = new ServiceCollection();
 

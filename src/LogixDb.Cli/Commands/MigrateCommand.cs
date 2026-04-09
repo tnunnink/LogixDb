@@ -27,29 +27,22 @@ namespace LogixDb.Cli.Commands;
 public class MigrateCommand : DbCommand
 {
     /// <summary>
-    /// Gets or initializes the collection of table names to include during the migration process.
-    /// If specified, only tables matching these names will be migrated. If empty, all tables are included by default.
+    /// Gets or initializes the collection of Logix components to include during the migration process.
+    /// Multiple components can be specified (e.g., --components Controller Tag).
+    /// If not specified, all components are included by default.
     /// </summary>
-    [CommandOption("include", Description = "Specifies the table names to include during migration")]
-    public string[] Include { get; init; } = [];
-
-    /// <summary>
-    /// Gets or initializes the collection of table names to exclude during the migration process.
-    /// Tables matching these names will be skipped during migration.
-    /// </summary>
-    [CommandOption("exclude", Description = "Specifies the table names to exclude during migration")]
-    public string[] Exclude { get; init; } = [];
+    [CommandOption("components", Description = "Specifies the Logix components to include during migration")]
+    public ComponentOptions Components { get; init; } = ComponentOptions.All;
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        var options = new TableOptions { Include = Include, Exclude = Exclude };
-
+        
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Migrating database...", _ => database.Migrate(options, token));
+                .StartAsync("Migrating database...", _ => database.Migrate(Components, token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
         }

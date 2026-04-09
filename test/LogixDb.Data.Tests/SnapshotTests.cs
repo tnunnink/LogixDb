@@ -73,14 +73,14 @@ public class SnapshotTests
     {
         var source = TestSource.LocalTest();
         var snapshot = Snapshot.Create(source);
-        var tableNames = new List<string> { "controller", "data_type", "tag", "program" };
+        var tableNames = new List<string> { "controller", "tag", "task", "program" };
 
         var tables = snapshot.Compile(tableNames).ToList();
 
         tables.Should().NotBeEmpty();
         tables.Should().Contain(t => t.TableName == "controller");
 
-        // Ensure that only requested tables are returned and they are not empty (if they exist in the source)
+        // Ensure that only requested tables are returned, and they are not empty (if they exist in the source)
         foreach (var table in tables)
         {
             tableNames.Should().Contain(table.TableName);

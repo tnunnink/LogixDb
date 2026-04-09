@@ -15,7 +15,7 @@ namespace LogixDb.Migrations.M20260306;
 /// </remarks>
 [UsedImplicitly]
 [Migration(202603061200, "Creates instruction table with corresponding indexes and keys")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Rung)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
 public class M202603061200CreateInstructionTable : AutoReversingMigration
 {
     public override void Up()

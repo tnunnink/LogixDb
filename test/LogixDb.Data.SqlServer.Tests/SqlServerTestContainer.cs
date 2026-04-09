@@ -45,7 +45,7 @@ public static class SqlServerTestContainer
 
         await _container.StartAsync();
 
-        var connection = new DbConnection(
+        var connection = new DbConnectionInfo(
             DbProvider.SqlServer,
             _container.Hostname,
             Database: "logix",

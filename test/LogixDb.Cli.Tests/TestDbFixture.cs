@@ -12,7 +12,7 @@ public abstract class TestDbFixture
     protected TestDbFixture()
     {
         DbConnection = Path.Combine(Path.GetTempPath(), $"LogixTest_{Guid.NewGuid():N}.db");
-        Database = new SqliteDb(new DbConnection(DbProvider.Sqlite, DbConnection));
+        Database = new SqliteDb(new DbConnectionInfo(DbProvider.Sqlite, DbConnection));
     }
 
     /// <summary>

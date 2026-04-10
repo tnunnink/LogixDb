@@ -23,16 +23,16 @@ public partial class ImportCommand : DbCommand
 {
     [Required]
     [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
-    public string? SourcePath { get; init; }
+    public string? SourcePath { get; set; }
 
     [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
-    public string? TargetKey { get; init; }
+    public string? TargetKey { get; set; }
 
     [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
-    public ImportOption Action { get; init; } = ImportOption.Append;
+    public ImportOption Action { get; set; } = ImportOption.Append;
 
     [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
-    public string? Converter { get; init; }
+    public string? Converter { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)

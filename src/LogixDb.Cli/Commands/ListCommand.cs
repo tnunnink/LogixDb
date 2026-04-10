@@ -27,7 +27,7 @@ namespace LogixDb.Cli.Commands;
 public partial class ListCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
-    public string? TargetKey { get; init; }
+    public string? TargetKey { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)

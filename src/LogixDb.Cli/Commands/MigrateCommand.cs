@@ -32,7 +32,7 @@ public partial class MigrateCommand : DbCommand
     /// If not specified, all components are included by default.
     /// </summary>
     [CommandOption("components", Description = "Specifies the Logix components to include during migration")]
-    public ComponentOptions Components { get; init; } = ComponentOptions.All;
+    public ComponentOptions Components { get; set; } = ComponentOptions.All;
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)

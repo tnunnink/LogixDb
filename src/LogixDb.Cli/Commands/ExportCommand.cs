@@ -27,13 +27,13 @@ namespace LogixDb.Cli.Commands;
 public partial class ExportCommand : DbCommand
 {
     [CommandOption("output", 'o', Description = "Output file path for the exported L5X file (defaults to <TargetKey>.L5X)")]
-    public string? OutputPath { get; init; }
+    public string? OutputPath { get; set; }
 
     [CommandOption("target", 't', Description = "Target key to export (exports the latest snapshot for this target)")]
-    public string? TargetKey { get; init; }
+    public string? TargetKey { get; set; }
 
     [CommandOption("id", Description = "Export a snapshot with the specified ID")]
-    public int SnapshotId { get; init; }
+    public int SnapshotId { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)

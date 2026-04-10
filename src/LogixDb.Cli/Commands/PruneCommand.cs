@@ -28,16 +28,16 @@ namespace LogixDb.Cli.Commands;
 public partial class PruneCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Target key to prune (standard format: targettype://targetname)")]
-    public string? Target { get; init; }
+    public string? Target { get; set; }
 
     [CommandOption("id", Description = "Delete a snapshot with the specified ID.")]
-    public int SnapshotId { get; init; }
+    public int SnapshotId { get; set; }
 
     [CommandOption("latest", Description = "Delete the latest snapshot for the specified target")]
-    public bool Latest { get; init; }
+    public bool Latest { get; set; }
 
     [CommandOption("before", Description = "Delete snapshots imported before the specified date.")]
-    public string? Before { get; init; }
+    public string? Before { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)

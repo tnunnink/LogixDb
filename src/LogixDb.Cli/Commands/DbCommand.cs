@@ -21,7 +21,7 @@ public abstract class DbCommand : ICommand
     [Required]
     [CommandOption("connection", 'c', Description =
         "The database connection path. For SQLite, specify a file path. For SQL Server, use format 'database@host'.")]
-    public string Connection { get; init; } = string.Empty;
+    public string Connection { get; set; } = string.Empty;
 
     /// <summary>
     /// Executes the asynchronous command logic.

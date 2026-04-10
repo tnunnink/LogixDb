@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -24,7 +24,7 @@ namespace LogixDb.Cli.Commands;
 /// </example>
 [PublicAPI]
 [Command("list", Description = "Lists all snapshots, optionally filtered by target key")]
-public class ListCommand : DbCommand
+public partial class ListCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
     public string? TargetKey { get; init; }

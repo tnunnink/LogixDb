@@ -1,6 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using System.Xml;
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using CliWrap;
 using JetBrains.Annotations;
@@ -18,9 +19,10 @@ namespace LogixDb.Cli.Commands;
 /// </summary>
 [PublicAPI]
 [Command("import", Description = "Imports an L5X file as a new snapshot into the database")]
-public class ImportCommand : DbCommand
+public partial class ImportCommand : DbCommand
 {
-    [CommandOption("source", 's', IsRequired = true, Description = "Path to the source L5X file to add")]
+    [Required]
+    [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; init; }
 
     [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]

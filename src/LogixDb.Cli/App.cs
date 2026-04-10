@@ -7,7 +7,7 @@ public static class App
 {
     public static async Task<int> Main()
     {
-        return await new CliApplicationBuilder()
+        return await new CommandLineApplicationBuilder()
             .SetTitle("LogixDb")
             .SetDescription(
                 "A command-line tool for transforming Rockwell Logix controller projects to a SQL database.")

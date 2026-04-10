@@ -20,7 +20,7 @@ public class ImportCommandTests : TestDbFixture
     public async Task Import_FileNotFound_ShouldReturnExpectedErrorCode()
     {
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ImportCommand>(console);
+        var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "import", 
@@ -40,7 +40,7 @@ public class ImportCommandTests : TestDbFixture
         source.Save(testFile);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ImportCommand>(console);
+        var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "import", 
@@ -61,7 +61,7 @@ public class ImportCommandTests : TestDbFixture
         source.Save(testFile);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ImportCommand>(console);
+        var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "import", 
@@ -89,7 +89,7 @@ public class ImportCommandTests : TestDbFixture
         await Database.AddSnapshot(snapshot1);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ImportCommand>(console);
+        var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "import", "-c", DbConnection,

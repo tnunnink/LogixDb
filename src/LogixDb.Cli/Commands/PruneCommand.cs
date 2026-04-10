@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -25,7 +25,7 @@ namespace LogixDb.Cli.Commands;
 /// </example>
 [PublicAPI]
 [Command("prune", Description = "Delete snapshots by ID, date, or target")]
-public class PruneCommand : DbCommand
+public partial class PruneCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Target key to prune (standard format: targettype://targetname)")]
     public string? Target { get; init; }

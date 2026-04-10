@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -24,7 +24,7 @@ namespace LogixDb.Cli.Commands;
 /// </example>
 [PublicAPI]
 [Command("migrate", Description = "Runs migrations to create and/or ensure the latest database schema")]
-public class MigrateCommand : DbCommand
+public partial class MigrateCommand : DbCommand
 {
     /// <summary>
     /// Gets or initializes the collection of Logix components to include during the migration process.

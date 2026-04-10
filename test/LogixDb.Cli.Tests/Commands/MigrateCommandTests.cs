@@ -10,7 +10,7 @@ public class MigrateCommandTests : TestDbFixture
     public async Task Migrate_ValidSqliteConnectionPath_ShouldCreateDatabaseFile()
     {
         var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<MigrateCommand>(console);
+        var app = TestApp.Create(console, MigrateCommand.Descriptor);
 
         var exitCode = await app.RunAsync(["migrate", "-c", DbConnection]);
 

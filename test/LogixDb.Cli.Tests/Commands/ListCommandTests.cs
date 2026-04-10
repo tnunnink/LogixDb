@@ -18,7 +18,7 @@ public class ListCommandTests : TestDbFixture
     public async Task List_EmptyDatabase_ShouldReturnZeroExitCode()
     {
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ListCommand>(console);
+        var app = TestApp.Create(console, ListCommand.Descriptor);
 
         var exitCode = await app.RunAsync(["list", "-c", DbConnection]);
         Assert.That(exitCode, Is.Zero);
@@ -28,7 +28,7 @@ public class ListCommandTests : TestDbFixture
     public async Task List_WithTargetFilter_ShouldReturnZeroExitCode()
     {
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ListCommand>(console);
+        var app = TestApp.Create(console, ListCommand.Descriptor);
 
         var exitCode = await app.RunAsync(
         [
@@ -47,7 +47,7 @@ public class ListCommandTests : TestDbFixture
         await Database.AddSnapshot(snapshot);
 
         using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create<ListCommand>(console);
+        var app = TestApp.Create(console, ListCommand.Descriptor);
 
         var exitCode = await app.RunAsync(["list", "-c", DbConnection]);
 

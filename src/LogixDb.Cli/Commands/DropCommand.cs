@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -18,7 +18,7 @@ namespace LogixDb.Cli.Commands;
 /// </remarks>
 [PublicAPI]
 [Command("drop", Description = "Drops the entire database, permanently deleting all tables and data")]
-public class DropCommand : DbCommand
+public partial class DropCommand : DbCommand
 {
     private const string Confirm =
         "Are you sure you want to drop the entire database? This action cannot be undone.";

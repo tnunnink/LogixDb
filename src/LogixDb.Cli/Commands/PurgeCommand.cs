@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -14,7 +14,7 @@ namespace LogixDb.Cli.Commands;
 /// </summary>
 [PublicAPI]
 [Command("purge", Description = "Purges all data from the database while preserving the schema structure")]
-public class PurgeCommand : DbCommand
+public partial class PurgeCommand : DbCommand
 {
     private const string Confirm =
         "Are you sure you want to purge all data from the database? This action cannot be undone.";

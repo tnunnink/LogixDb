@@ -1,6 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using CliFx;
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -18,7 +18,8 @@ namespace LogixDb.Cli.Commands;
 [PublicAPI]
 public abstract class DbCommand : ICommand
 {
-    [CommandOption("connection", 'c', IsRequired = true, Description =
+    [Required]
+    [CommandOption("connection", 'c', Description =
         "The database connection path. For SQLite, specify a file path. For SQL Server, use format 'database@host'.")]
     public string Connection { get; init; } = string.Empty;
 

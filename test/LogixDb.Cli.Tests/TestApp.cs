@@ -1,4 +1,5 @@
 ﻿using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using LogixDb.Cli.Commands;
 
@@ -10,19 +11,19 @@ namespace LogixDb.Cli.Tests;
 public static class TestApp
 {
     /// <summary>
-    /// Creates and configures an instance of a CLI application for testing purposes.
+    /// Creates a configured CLI application using the provided console and command descriptor.
     /// </summary>
-    /// <param name="console">An optional custom console implementation. If not provided, a default in-memory console is used.</param>
-    /// <returns>A configured instance of <see cref="CliApplication"/>.</returns>
-    public static CliApplication Create<TCommand>(IConsole console) where TCommand : class, ICommand
+    /// <param name="console">The console interface to be used for CLI input and output.</param>
+    /// <param name="descriptor">The command descriptor that specifies the command to be added to the application.</param>
+    /// <returns>An instance of <see cref="CommandLineApplication"/> configured with the specified options.</returns>
+    public static CommandLineApplication Create(IConsole console, CommandDescriptor descriptor)
     {
-        return new CliApplicationBuilder()
+        return new CommandLineApplicationBuilder()
             .SetTitle("Logix.Cli")
             .SetDescription("Console application providing CLI for Logix projects.")
             .SetExecutableName("logix")
             .UseConsole(console)
-            .AddCommand<TCommand>()
-            //.AddCommandsFrom(typeof(DbCommand).Assembly)
+            .AddCommand(descriptor)
             .Build();
     }
 }

@@ -83,14 +83,25 @@ internal class TagTransformer : ISnapshotTransformer
         yield return _aliasMap.GenerateTable(aliasRecords);
     }
 
+    /// <summary>
+    /// Extracts and generates a collection of comment records based on the given tag member record.
+    /// </summary>
+    /// <param name="record">
+    /// The tag member record for which to retrieve and create associated comment records.
+    /// </param>
+    /// <returns>
+    /// A collection of <see cref="TagCommentRecord"/> objects representing the comments associated with the given tag member record.
+    /// </returns>
     private static IEnumerable<TagCommentRecord> GetTagComments(TagMemberRecord record)
     {
         if (record.Tag.Description is not null)
-            yield return new TagCommentRecord(record.MemberId, record.Tag.TagName, record.Tag.Description);
+            yield return new TagCommentRecord(record.MemberId, record.Tag.TagName.LocalPath, record.Tag.Description);
 
         if (record.Tag.Comments is null)
             yield break;
 
+        // The following code is for bit-level comments only.
+        // All based tags are covered by the internal description logic of L5Sharp.
         foreach (var comment in record.Tag.Comments)
         {
             if (comment.Operand.Contains(record.Tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))

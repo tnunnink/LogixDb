@@ -1,5 +1,5 @@
-using CliFx.Attributes;
-using CliFx.Exceptions;
+using CliFx;
+using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
@@ -24,7 +24,7 @@ namespace LogixDb.Cli.Commands;
 /// </example>
 [PublicAPI]
 [Command("export", Description = "Exports a snapshot to an L5X file by target or ID")]
-public class ExportCommand : DbCommand
+public partial class ExportCommand : DbCommand
 {
     [CommandOption("output", 'o', Description = "Output file path for the exported L5X file (defaults to <TargetKey>.L5X)")]
     public string? OutputPath { get; init; }

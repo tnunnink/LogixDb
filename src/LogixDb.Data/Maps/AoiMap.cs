@@ -37,8 +37,7 @@ internal class AoiMap : TableMap<AoiRecord>
         ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureTimestamp, "signature_timestamp"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Class?.Name, "component_class"),
         ColumnMap<AoiRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Hash(), "source_hash", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Compress(), "source_data", hashable: false)
+        ColumnMap<AoiRecord>.For(r => r.Aoi.Hash(), "source_hash", hashable: false)
     ];
 }
 

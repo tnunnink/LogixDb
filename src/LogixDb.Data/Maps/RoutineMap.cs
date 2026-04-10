@@ -21,8 +21,7 @@ internal class RoutineMap : TableMap<RoutineRecord>
         ColumnMap<RoutineRecord>.For(r => r.Routine.Type.Name, "routine_type"),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Description, "routine_description"),
         ColumnMap<RoutineRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<RoutineRecord>.For(r => r.Routine.Hash(), "source_hash", hashable: false),
-        ColumnMap<RoutineRecord>.For(r => r.Routine.Compress(), "source_data", hashable: false)
+        ColumnMap<RoutineRecord>.For(r => r.Routine.Hash(), "source_hash", hashable: false)
     ];
 }
 

@@ -28,8 +28,7 @@ internal class TagMap : TableMap<TagRecord>
         ColumnMap<TagRecord>.For(r => r.Tag.TagType?.Name ?? TagType.Base, "tag_type"),
         ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name ?? TagUsage.Normal, "tag_usage"),
         ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Hash(), "source_hash", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Compress(), "source_data", hashable: false)
+        ColumnMap<TagRecord>.For(r => r.Tag.Hash(), "source_hash", hashable: false)
     ];
 }
 

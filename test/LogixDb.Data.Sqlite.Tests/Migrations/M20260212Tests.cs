@@ -35,7 +35,6 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi", "component_class", "text");
             await AssertColumnDefinition("aoi", "record_hash", "text");
             await AssertColumnDefinition("aoi", "source_hash", "text");
-            await AssertColumnDefinition("aoi", "source_data", "blob");
 
             await AssertPrimaryKey("aoi", "aoi_id");
             await AssertForeignKey("aoi", "snapshot_id", "snapshot", "snapshot_id");

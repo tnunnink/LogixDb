@@ -72,7 +72,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type", "type_description", "nvarchar");
             await AssertColumnDefinition("data_type", "record_hash", "nvarchar");
             await AssertColumnDefinition("data_type", "source_hash", "nvarchar");
-            await AssertColumnDefinition("data_type", "source_data", "varbinary");
 
             await AssertPrimaryKey("data_type", "type_id");
             await AssertForeignKey("data_type", "snapshot_id", "snapshot", "snapshot_id");
@@ -135,7 +134,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("task", "enable_timeout", "bit");
             await AssertColumnDefinition("task", "record_hash", "nvarchar");
             await AssertColumnDefinition("task", "source_hash", "nvarchar");
-            await AssertColumnDefinition("task", "source_data", "varbinary");
 
             await AssertPrimaryKey("task", "task_id");
             await AssertForeignKey("task", "snapshot_id", "snapshot", "snapshot_id");
@@ -168,7 +166,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("program", "has_test_edits", "bit");
             await AssertColumnDefinition("program", "record_hash", "nvarchar");
             await AssertColumnDefinition("program", "source_hash", "nvarchar");
-            await AssertColumnDefinition("program", "source_data", "varbinary");
 
             await AssertPrimaryKey("program", "program_id");
             await AssertForeignKey("program", "snapshot_id", "snapshot", "snapshot_id");
@@ -197,7 +194,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
             await AssertColumnDefinition("routine", "record_hash", "nvarchar");
             await AssertColumnDefinition("routine", "source_hash", "nvarchar");
-            await AssertColumnDefinition("routine", "source_data", "varbinary");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "program_id", "program", "program_id");
@@ -257,7 +253,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("module", "slot_number", "tinyint");
             await AssertColumnDefinition("module", "record_hash", "nvarchar");
             await AssertColumnDefinition("module", "source_hash", "nvarchar");
-            await AssertColumnDefinition("module", "source_data", "varbinary");
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");

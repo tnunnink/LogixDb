@@ -72,7 +72,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("data_type", "type_description", "text");
             await AssertColumnDefinition("data_type", "record_hash", "text");
             await AssertColumnDefinition("data_type", "source_hash", "text");
-            await AssertColumnDefinition("data_type", "source_data", "blob");
 
             await AssertPrimaryKey("data_type", "type_id");
             await AssertForeignKey("data_type", "snapshot_id", "snapshot", "snapshot_id");
@@ -135,7 +134,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("task", "enable_timeout", "integer");
             await AssertColumnDefinition("task", "record_hash", "text");
             await AssertColumnDefinition("task", "source_hash", "text");
-            await AssertColumnDefinition("task", "source_data", "blob");
 
             await AssertPrimaryKey("task", "task_id");
             await AssertForeignKey("task", "snapshot_id", "snapshot", "snapshot_id");
@@ -168,7 +166,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("program", "has_test_edits", "integer");
             await AssertColumnDefinition("program", "record_hash", "text");
             await AssertColumnDefinition("program", "source_hash", "text");
-            await AssertColumnDefinition("program", "source_data", "blob");
 
             await AssertPrimaryKey("program", "program_id");
             await AssertForeignKey("program", "snapshot_id", "snapshot", "snapshot_id");
@@ -197,7 +194,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
             await AssertColumnDefinition("routine", "source_hash", "text");
-            await AssertColumnDefinition("routine", "source_data", "blob");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "program_id", "program", "program_id");
@@ -258,7 +254,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("module", "slot_number", "integer");
             await AssertColumnDefinition("module", "record_hash", "text");
             await AssertColumnDefinition("module", "source_hash", "text");
-            await AssertColumnDefinition("module", "source_data", "blob");
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "snapshot_id", "snapshot", "snapshot_id");

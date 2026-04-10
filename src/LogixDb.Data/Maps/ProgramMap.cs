@@ -28,8 +28,7 @@ internal class ProgramMap : TableMap<ProgramRecord>
         ColumnMap<ProgramRecord>.For(r => r.Program.UseAsFolder, "is_folder"),
         ColumnMap<ProgramRecord>.For(r => r.Program.TestEdits, "has_test_edits"),
         ColumnMap<ProgramRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Hash(), "source_hash", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Compress(), "source_data", hashable: false)
+        ColumnMap<ProgramRecord>.For(r => r.Program.Hash(), "source_hash", hashable: false)
     ];
 }
 

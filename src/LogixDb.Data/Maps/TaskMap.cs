@@ -29,8 +29,7 @@ internal class TaskMap : TableMap<TaskRecord>
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTag?.LocalPath, "event_tag"),
         ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EnableTimeout, "enable_timeout"),
         ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Hash(), "source_hash", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Compress(), "source_data", hashable: false)
+        ColumnMap<TaskRecord>.For(r => r.Task.Hash(), "source_hash", hashable: false)
     ];
 }
 

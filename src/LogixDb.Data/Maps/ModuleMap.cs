@@ -34,8 +34,7 @@ internal class ModuleMap : TableMap<ModuleRecord>
         ColumnMap<ModuleRecord>.For(r => r.Module.IP?.ToString(), "ip_address"),
         ColumnMap<ModuleRecord>.For(r => r.Module.Slot, "slot_number"),
         ColumnMap<ModuleRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<ModuleRecord>.For(r => r.Module.Hash(), "source_hash", hashable: false),
-        ColumnMap<ModuleRecord>.For(r => r.Module.Compress(), "source_data", hashable: false)
+        ColumnMap<ModuleRecord>.For(r => r.Module.Hash(), "source_hash", hashable: false)
     ];
 }
 

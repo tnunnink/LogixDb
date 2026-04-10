@@ -43,9 +43,7 @@ internal class TagTransformer : ISnapshotTransformer
 
         foreach (var tag in tags)
         {
-            //todo there should probably be a way from L5Sharp to do this...
-            var program = tag.GetProgram();
-            var tagRecord = new TagRecord(snapshot.SnapshotId, program?.Metadata.Get<Guid>("id"), tag);
+            var tagRecord = new TagRecord(snapshot.SnapshotId, tag.Program?.Metadata.Get<Guid>("id"), tag);
             tagRecords.Add(tagRecord);
 
             if (tag.ProduceInfo is not null)

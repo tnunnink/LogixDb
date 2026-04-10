@@ -142,16 +142,24 @@ internal static class Extensions
     }
 
     /// <summary>
-    /// Retrieves the associated program for a given tag if the tag is scoped to a program and the program can be successfully resolved.
+    /// Converts a Dimensions object to its SQL-compatible string format.
+    /// If the Dimensions object is empty, it converts it to its index representation; otherwise, returns null.
     /// </summary>
-    /// <param name="tag">The tag for which the associated program is to be retrieved.</param>
-    /// <returns>The program associated with the tag if it can be resolved; otherwise, null.</returns>
-    internal static Program? GetProgram(this Tag tag)
+    /// <param name="dimensions">The Dimensions object to be converted.</param>
+    /// <returns>A SQL-compatible string representation of the Dimensions object, or null if the object is not empty.</returns>
+    internal static string? ToSqlFormat(this Dimensions? dimensions)
     {
-        if (!tag.Scope.IsProgram) return null;
-        if (!tag.TryGetDocument(out var document)) return null;
-        if (string.IsNullOrWhiteSpace(tag.Scope.Container)) return null;
-        if (!document.TryGet<Program>(tag.Scope.Container, out var program)) return null;
-        return program;
+        return dimensions?.IsEmpty is true ? dimensions.ToIndex() : null;
+    }
+
+    /// <summary>
+    /// Converts the specified dimensions object into its SQL-compatible string format.
+    /// If the dimensions object is null, returns null.
+    /// </summary>
+    /// <param name="dimensions">The dimensions object to convert.</param>
+    /// <returns>A SQL-compatible string representation of the dimensions, or null if the input is null.</returns>
+    internal static string? ToSqlFormat(this Radix? radix)
+    {
+        return radix is not null && radix != Radix.Null ? radix.Name : null;
     }
 }

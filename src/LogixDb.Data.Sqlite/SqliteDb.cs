@@ -95,8 +95,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append,
-        CancellationToken token = default)
+    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
         await EnsureDatabase();
 
@@ -104,14 +103,14 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
 
         try
         {
-            // 0. Handle the provided option first to delete any previous snapshot for this target if requested.
-            await HandleSnapshotAction(session, snapshot.TargetKey, option);
+            // 0. Remove all data for the latest snapshot content.
+            //await PruneLatestSnapshot(session, snapshot.TargetKey);
 
             // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
             await ImportSnapshotAsync(session, snapshot);
 
             // 2. Compile component data into DataTables
-            var tableNames = await GetTableNames(session);
+            var tableNames = await GetComponentTables(session);
             var tables = snapshot.Compile(tableNames);
 
             // 3. Write component data using the Bulk Writer
@@ -208,38 +207,41 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
+    /// Deletes all data associated with the latest snapshot for the specified target key in all relevant tables.
+    /// </summary>
+    /// <param name="session">The database session used to execute commands and manage connection state.</param>
+    /// <param name="targetKey">The key identifying the target whose latest snapshot data should be removed.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if no valid snapshot is found for the specified target key.</exception>
+    private static async Task PruneLatestSnapshot(SqliteDbSession session, string targetKey)
+    {
+        var snapshotId = await session.GetOrDefaultAsync<int?>(
+            SqlStatement.GetLatestSnapshotId,
+            new { target_key = targetKey }
+        );
+
+        var tables = await GetComponentTables(session);
+
+        foreach (var table in tables)
+        {
+            // Just for safety, safeguard against known required tables.
+            if (table.StartsWith("sqlite")) continue;
+            if (table is "target" or "snapshot" or "snapshot_property" or "migration") continue;
+            var sql = $"DELETE FROM {table} WHERE snapshot_id = @snapshot_id";
+            await session.ExecuteAsync(sql, new { snapshot_id = snapshotId });
+        }
+    }
+
+    /// <summary>
     /// Retrieves the names of all tables in the current SQLite database session.
     /// </summary>
     /// <param name="session">The SQLite database session used for executing the query.</param>
     /// <returns>A collection of table names present in the SQLite database.</returns>
-    private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
+    private static async Task<ICollection<string>> GetComponentTables(SqliteDbSession session)
     {
-        var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
+        List<string> components = ["controller", "data_type", "aoi", "module", "tag", "program", "task"];
+        var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames, new { components });
         return names.ToArray();
-    }
-
-    /// <summary>
-    /// Handles snapshot actions based on the specified action type for a given target key.
-    /// </summary>
-    /// <param name="session">The database session used to execute SQL commands.</param>
-    /// <param name="targetKey">The key identifying the target for the snapshot action.</param>
-    /// <param name="action">The type of action to perform on the snapshot (Append, ReplaceLatest, or ReplaceAll).</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified action is not recognized.</exception>
-    private static async Task HandleSnapshotAction(SqliteDbSession session, string targetKey, ImportOption action)
-    {
-        switch (action)
-        {
-            case ImportOption.ReplaceLatest:
-                await session.ExecuteAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey });
-                break;
-            case ImportOption.ReplaceAll:
-                await session.ExecuteAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey });
-                break;
-            case ImportOption.Append:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(action), action, null);
-        }
     }
 
     /// <summary>

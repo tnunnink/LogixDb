@@ -130,27 +130,57 @@ internal static class SqlStatement
         """;
 
     /// <summary>
+    /// A SQL statement used to retrieve the most recent snapshot ID associated with a specific target key.
+    /// The query joins the "snapshot" and "target" tables to identify the relevant record, orders the
+    /// results by the import date in descending order, and limits the output to a single record.
+    /// </summary>
+    internal const string GetLatestSnapshotId =
+        """
+        SELECT snapshot_id 
+        FROM snapshot s
+        JOIN target t on t.target_id = s.target_id
+        WHERE t.target_key = @target_key
+        ORDER BY import_date DESC
+        LIMIT 1
+        """;
+
+    /// <summary>
+    /// A SQL statement defined to delete all related content associated with a specific snapshot identifier.
+    /// This operation removes entries from multiple tables, including "controller", "data_type", "aoi", "module",
+    /// "tag", "program", "task", and "operand", where the "snapshot_id" matches the given parameter.
+    /// It is used to ensure that no residual data remains for the specified snapshot in the database.
+    /// </summary>
+    internal const string DeleteSnapshotContent =
+        """
+        DELETE FROM controller WHERE snapshot_id = @snapshot_id;
+        DELETE FROM data_type WHERE snapshot_id = @snapshot_id;
+        DELETE FROM aoi WHERE snapshot_id = @snapshot_id;
+        DELETE FROM module WHERE snapshot_id = @snapshot_id;
+        DELETE FROM tag WHERE snapshot_id = @snapshot_id;
+        DELETE FROM program WHERE snapshot_id = @snapshot_id;
+        DELETE FROM task WHERE snapshot_id = @snapshot_id;
+        DELETE FROM operand WHERE snapshot_id = @snapshot_id;
+        """;
+
+    /// <summary>
     /// A SQL query string used to delete all entries from the "target" database table.
     /// This query ensures that every record in the table where the target_id is greater than zero is removed,
     /// effectively clearing the table of all targets.
     /// </summary>
-    internal const string DeleteAllTargets =
-        "DELETE FROM target WHERE target_id > 0";
+    internal const string DeleteAllTargets = "DELETE FROM target WHERE target_id > 0";
 
     /// <summary>
     /// A SQL query string used to delete a target entry from the "target" table in the database.
     /// The deletion is performed by matching the target_key value with the key provided via the @target_key parameter.
     /// </summary>
-    internal const string DeleteTargetById =
-        "DELETE FROM target where target_key = @target_key ";
+    internal const string DeleteTargetById = "DELETE FROM target where target_key = @target_key ";
 
     /// <summary>
     /// A SQL query string designed to delete a specific snapshot entry from the database
     /// table "snapshot" based on the provided snapshot ID. This query ensures the removal
     /// of the snapshot record identified by the "snapshot_id" parameter.
     /// </summary>
-    internal const string DeleteSnapshotById =
-        "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
+    internal const string DeleteSnapshotById = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
 
     /// <summary>
     /// A SQL query string used to delete the latest snapshot entry from the "snapshot" table, determined by the most recent
@@ -188,6 +218,8 @@ internal static class SqlStatement
     /// </summary>
     internal const string GetTableNames =
         """
-        SELECT name FROM sqlite_master WHERE type = "table"
+        SELECT name 
+        FROM sqlite_master 
+        WHERE type = 'table' AND name IN @components
         """;
 }

@@ -1,4 +1,3 @@
-using LogixDb.Data;
 using Microsoft.Data.SqlClient;
 
 namespace LogixDb.Service.Common;
@@ -32,16 +31,6 @@ public class LogixConfig
     /// file uploads. The drop path is immutable once initialized in configuration settings.
     /// </remarks>
     public string DropPath { get; init; } = @"C:\Program Data\LogixDb";
-
-    /// <summary>
-    /// Gets the conflict resolution behavior to apply when handling database snapshots in the LogixDb service.
-    /// </summary>
-    /// <remarks>
-    /// This property determines how the system should handle scenarios where new database snapshots
-    /// conflict with existing snapshots. The available options, defined in the <see cref="ImportOption"/> enumeration,
-    /// include appending the snapshot, replacing the latest snapshot, or replacing all existing snapshots.
-    /// </remarks>
-    public ImportOption OnImport { get; init; } = ImportOption.ReplaceLatest;
 
     /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.

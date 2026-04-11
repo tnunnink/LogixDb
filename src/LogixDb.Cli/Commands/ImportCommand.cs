@@ -28,9 +28,6 @@ public partial class ImportCommand : DbCommand
     [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
     public string? TargetKey { get; set; }
 
-    [CommandOption("action", 'a', Description = "The action to take when importing the snapshot.")]
-    public ImportOption Action { get; set; } = ImportOption.Append;
-
     [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
     public string? Converter { get; set; }
 
@@ -73,7 +70,7 @@ public partial class ImportCommand : DbCommand
                 var content = await L5X.LoadAsync(importTarget, token);
                 var snapshot = Snapshot.Create(content, TargetKey);
                 ctx.Status("Importing source to database...");
-                await database.AddSnapshot(snapshot, Action, token);
+                await database.AddSnapshot(snapshot, token);
                 return snapshot;
             });
 

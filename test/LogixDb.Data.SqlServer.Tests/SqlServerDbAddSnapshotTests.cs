@@ -64,7 +64,7 @@ public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
         await Task.Delay(1000);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot3, ImportOption.ReplaceLatest);
+        await Database.AddSnapshot(snapshot3);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
@@ -85,7 +85,7 @@ public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
         await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2, ImportOption.ReplaceLatest);
+        await Database.AddSnapshot(snapshot2);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -102,7 +102,7 @@ public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
         await Database.AddSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot3, ImportOption.ReplaceAll);
+        await Database.AddSnapshot(snapshot3);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -119,7 +119,7 @@ public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
         await Database.AddSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot3, ImportOption.ReplaceLatest);
+        await Database.AddSnapshot(snapshot3);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
@@ -138,7 +138,7 @@ public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
         await Database.AddSnapshot(snapshot3);
 
         var snapshot4 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot4, ImportOption.ReplaceAll);
+        await Database.AddSnapshot(snapshot4);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));

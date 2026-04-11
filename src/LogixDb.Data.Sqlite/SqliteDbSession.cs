@@ -56,7 +56,7 @@ internal sealed class SqliteDbSession : IAsyncDisposable
     {
         await Connection.ExecuteAsync(sql, param, Transaction);
     }
-    
+
     /// <summary>
     /// Executes the specified SQL command asynchronously using the current database session's
     /// connection and transaction context.
@@ -67,6 +67,18 @@ internal sealed class SqliteDbSession : IAsyncDisposable
     public Task<T> GetAsync<T>(string sql, object? param = null)
     {
         return Connection.QuerySingleAsync<T>(sql, param, Transaction);
+    }
+
+    /// <summary>
+    /// Executes a SQL query and returns a single result of the specified type, or the default value if no result is found.
+    /// </summary>
+    /// <param name="sql">The SQL query to be executed.</param>
+    /// <param name="param">The parameters to be used in the query. This can be null if no parameters are required.</param>
+    /// <typeparam name="T">The type of the result to be returned.</typeparam>
+    /// <returns>A task representing the asynchronous operation, containing the result of the query or the default value if no result is found.</returns>
+    public Task<T?> GetOrDefaultAsync<T>(string sql, object? param = null)
+    {
+        return Connection.QuerySingleOrDefaultAsync<T>(sql, param, Transaction);
     }
 
     /// <summary>

@@ -101,8 +101,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append,
-        CancellationToken token = default)
+    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
         await EnsureDatabase(token);
 
@@ -110,8 +109,8 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
 
         try
         {
-            // 0. Handle the provided option first to delete any previous snapshot for this target if requested.
-            await HandleImportOption(session, snapshot.TargetKey, option);
+            // 0. 
+            await PruneLatestSnapshot(session, snapshot.TargetKey);
 
             // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
             await ImportSnapshotAsync(session, snapshot);
@@ -214,6 +213,26 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
+    /// Deletes all data associated with the latest snapshot for the specified target key in all relevant tables.
+    /// </summary>
+    /// <param name="session">The database session used to execute commands and manage connection state.</param>
+    /// <param name="targetKey">The key identifying the target whose latest snapshot data should be removed.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if no valid snapshot is found for the specified target key.</exception>
+    private static async Task PruneLatestSnapshot(SqlDbSession session, string targetKey)
+    {
+        var snapshotId = await session.GetOrDefaultAsync<int?>(
+            SqlStatement.GetLatestSnapshotId,
+            new { target_key = targetKey }
+        );
+
+        if (snapshotId is not null)
+        {
+            await session.ExecuteAsync(SqlStatement.DeleteSnapshotContent, new { snapshot_id = snapshotId });
+        }
+    }
+
+    /// <summary>
     /// Retrieves table options containing information about the tables in the database that should be included in operations.
     /// </summary>
     /// <param name="session">The database session used to execute the query for table names.</param>
@@ -222,31 +241,6 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     {
         var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
         return names.ToArray();
-    }
-
-    /// <summary>
-    /// Handles the import action for a specific target key based on the specified import option.
-    /// </summary>
-    /// <param name="session">The database session used to execute SQL commands.</param>
-    /// <param name="targetKey">The unique identifier of the target to be handled during the import process.</param>
-    /// <param name="action">The type of import operation to perform, such as replacing or appending data.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the specified import action is not supported.</exception>
-    /// <returns>A task that represents the asynchronous handling of the import option.</returns>
-    private static async Task HandleImportOption(SqlDbSession session, string targetKey, ImportOption action)
-    {
-        switch (action)
-        {
-            case ImportOption.ReplaceLatest:
-                await session.ExecuteAsync(SqlStatement.DeleteSnapshotByLatest, new { target_key = targetKey });
-                break;
-            case ImportOption.ReplaceAll:
-                await session.ExecuteAsync(SqlStatement.DeleteTargetById, new { target_key = targetKey });
-                break;
-            case ImportOption.Append:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(action), action, null);
-        }
     }
 
     /// <summary>

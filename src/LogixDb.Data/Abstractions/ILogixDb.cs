@@ -74,10 +74,9 @@ public interface ILogixDb
     /// Adds a snapshot to the database with the specified action.
     /// </summary>
     /// <param name="snapshot">The snapshot to be added to the database.</param>
-    /// <param name="option">The action to perform when adding the snapshot (e.g., append, replace the latest, or replace all).</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task AddSnapshot(Snapshot snapshot, ImportOption option = ImportOption.Append, CancellationToken token = default);
+    Task AddSnapshot(Snapshot snapshot, CancellationToken token = default);
 
     /// <summary>
     /// Deletes all snapshots matching the specified target key.

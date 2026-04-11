@@ -43,8 +43,7 @@ public class SourceIngestionServiceTests
         _optionsMock.Setup(o => o.Value).Returns(new LogixConfig
         {
             DbConnection = _testDbPath,
-            DropPath = _testDropPath,
-            OnImport = ImportOption.Append
+            DropPath = _testDropPath
         });
 
         _channel = Channel.CreateUnbounded<SourceInfo>();

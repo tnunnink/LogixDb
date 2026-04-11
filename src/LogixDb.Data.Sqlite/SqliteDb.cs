@@ -218,7 +218,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     private static async Task PruneSnapshotsAsync(string targetKey, SqliteDbSession session)
     {
         var key = new { target_key = targetKey };
-        var snapshots = await session.GetAsync<IEnumerable<Snapshot>>(SqlStatement.ListSnapshots, key);
+        var snapshots = await session.GetAllAsync<Snapshot>(SqlStatement.ListSnapshots, key);
         var ids = snapshots.Select(s => s.SnapshotId).ToList();
 
         List<string> targets = ["controller", "data_type", "aoi", "module", "tag", "program", "task", "operand"];

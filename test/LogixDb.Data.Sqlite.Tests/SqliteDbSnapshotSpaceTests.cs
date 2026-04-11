@@ -29,7 +29,7 @@ public class SqliteDbSnapshotSpaceTests : SqliteTestFixture
             // Use LocalExample() for a more realistic L5X file size
             var snapshot = Snapshot.Create(TestSource.LocalExample());
             
-            await Database.AddSnapshot(snapshot);
+            await Database.ArchiveSnapshot(snapshot);
 
             var currentSize = new FileInfo(TempDb).Length;
             var delta = currentSize - previousSize;

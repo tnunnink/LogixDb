@@ -110,6 +110,24 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
+    /// Asserts that a record does not exist in a specified table with a specific value for a given column.
+    /// An exception is thrown if a matching record is found.
+    /// </summary>
+    protected static async Task AssertRecordDoesNotExist(string tableName, string columnName, object expected)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleAsync<int>(
+            $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
+            new { expected }
+        );
+
+        Assert.That(result, Is.EqualTo(0),
+            $"Record with '{columnName}={expected}' exists in table '{tableName}' but should not"
+        );
+    }
+
+    /// <summary>
     /// Verifies the existence and data type for the specified column in a given table within the database.
     /// Throws an assertion exception if the column does not exist or its data type does not match the expected type.
     /// </summary>

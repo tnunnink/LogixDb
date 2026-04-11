@@ -145,24 +145,6 @@ internal static class SqlStatement
         """;
 
     /// <summary>
-    /// A SQL statement defined to delete all related content associated with a specific snapshot identifier.
-    /// This operation removes entries from multiple tables, including "controller", "data_type", "aoi", "module",
-    /// "tag", "program", "task", and "operand", where the "snapshot_id" matches the given parameter.
-    /// It is used to ensure that no residual data remains for the specified snapshot in the database.
-    /// </summary>
-    internal const string DeleteSnapshotContent =
-        """
-        DELETE FROM controller WHERE snapshot_id = @snapshot_id;
-        DELETE FROM data_type WHERE snapshot_id = @snapshot_id;
-        DELETE FROM aoi WHERE snapshot_id = @snapshot_id;
-        DELETE FROM module WHERE snapshot_id = @snapshot_id;
-        DELETE FROM tag WHERE snapshot_id = @snapshot_id;
-        DELETE FROM program WHERE snapshot_id = @snapshot_id;
-        DELETE FROM task WHERE snapshot_id = @snapshot_id;
-        DELETE FROM operand WHERE snapshot_id = @snapshot_id;
-        """;
-
-    /// <summary>
     /// A SQL query string used to delete all entries from the "target" database table.
     /// This query ensures that every record in the table where the target_id is greater than zero is removed,
     /// effectively clearing the table of all targets.

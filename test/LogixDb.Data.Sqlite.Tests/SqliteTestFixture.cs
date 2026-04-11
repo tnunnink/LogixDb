@@ -136,6 +136,24 @@ public abstract class SqliteTestFixture
     }
 
     /// <summary>
+    /// Asserts that a record does not exist in a specified table with a specific value for a given column.
+    /// An exception is thrown if a matching record is found.
+    /// </summary>
+    protected async Task AssertRecordDoesNotExist(string tableName, string columnName, object expected)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleAsync<int>(
+            $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
+            new { expected }
+        );
+
+        Assert.That(result, Is.EqualTo(0),
+            $"Record with '{columnName}={expected}' exists in table '{tableName}' but should not"
+        );
+    }
+
+    /// <summary>
     /// Validates the definition of a specific column in a specified table within the database.
     /// Ensures the column exists and its type matches the expected type.
     /// </summary>

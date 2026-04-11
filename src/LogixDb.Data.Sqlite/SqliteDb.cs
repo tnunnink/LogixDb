@@ -95,35 +95,15 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
+    public Task ArchiveSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
-        await EnsureDatabase();
+        return SaveSnapshotInternal(snapshot, prune: true, token);
+    }
 
-        await using var session = await SqliteDbSession.Start(_connection.ToConnectionString(), token);
-
-        try
-        {
-            // 0. Remove all data for the latest snapshot content.
-            //await PruneLatestSnapshot(session, snapshot.TargetKey);
-
-            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
-            await ImportSnapshotAsync(session, snapshot);
-
-            // 2. Compile component data into DataTables
-            var tableNames = await GetComponentTables(session);
-            var tables = snapshot.Compile(tableNames);
-
-            // 3. Write component data using the Bulk Writer
-            var writer = new SqliteDbWriter(session);
-            await writer.WriteAsync(tables, token);
-
-            await session.Commit(token);
-        }
-        catch (Exception)
-        {
-            await session.Rollback(token);
-            throw;
-        }
+    /// <inheritdoc />
+    public Task AppendSnapshot(Snapshot snapshot, CancellationToken token = default)
+    {
+        return SaveSnapshotInternal(snapshot, prune: false, token);
     }
 
     /// <inheritdoc />
@@ -157,6 +137,46 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         await EnsureDatabase();
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
+    }
+
+    /// <summary>
+    /// Saves the specified snapshot data to the database and optionally prunes the latest snapshot data for the same target key.
+    /// </summary>
+    /// <param name="snapshot">The snapshot to be saved, including its metadata and component data.</param>
+    /// <param name="prune">A boolean indicating whether to prune the latest snapshot data for the same target key before saving.</param>
+    /// <param name="token">A cancellation token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation of saving the snapshot.</returns>
+    private async Task SaveSnapshotInternal(Snapshot snapshot, bool prune, CancellationToken token)
+    {
+        await EnsureDatabase();
+        await using var session = await SqliteDbSession.Start(_connection.ToConnectionString(), token);
+
+        try
+        {
+            // 0. Prune previous snapshot content from component tables if requested.
+            if (prune)
+            {
+                await PruneLatestSnapshot(session, snapshot.TargetKey);
+            }
+
+            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
+            await ImportSnapshotAsync(session, snapshot);
+
+            // 2. Compile component data into DataTables
+            var tableNames = await GetComponentTables(session);
+            var tables = snapshot.Compile(tableNames);
+
+            // 3. Write component data using the Bulk Writer
+            var writer = new SqliteDbWriter(session);
+            await writer.WriteAsync(tables, token);
+
+            await session.Commit(token);
+        }
+        catch (Exception)
+        {
+            await session.Rollback(token);
+            throw;
+        }
     }
 
     /// <summary>
@@ -224,9 +244,6 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
 
         foreach (var table in tables)
         {
-            // Just for safety, safeguard against known required tables.
-            if (table.StartsWith("sqlite")) continue;
-            if (table is "target" or "snapshot" or "snapshot_property" or "migration") continue;
             var sql = $"DELETE FROM {table} WHERE snapshot_id = @snapshot_id";
             await session.ExecuteAsync(sql, new { snapshot_id = snapshotId });
         }

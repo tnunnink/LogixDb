@@ -15,7 +15,7 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshot_ById_ShouldRemoveSnapshot()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot);
+        await Database.ArchiveSnapshot(snapshot);
 
         await Database.DeleteSnapshot(snapshot.SnapshotId);
 
@@ -27,10 +27,10 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshot_ById_ShouldOnlyRemoveSpecifiedSnapshot()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         await Database.DeleteSnapshot(snapshot1.SnapshotId);
 
@@ -43,13 +43,13 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotsFor_ExistingTarget_ShouldRemoveAllForTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.AddSnapshot(snapshot3);
+        await Database.ArchiveSnapshot(snapshot3);
 
         await Database.DeleteSnapshotsFor(snapshot1.TargetKey);
 
@@ -62,7 +62,7 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotsFor_NonExistentTarget_ShouldNotAffectOthers()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot);
+        await Database.ArchiveSnapshot(snapshot);
 
         await Database.DeleteSnapshotsFor("nonexistent://target");
 
@@ -74,7 +74,7 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotLatest_SingleSnapshot_ShouldRemoveIt()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot);
+        await Database.ArchiveSnapshot(snapshot);
 
         await Database.DeleteSnapshotLatest(snapshot.TargetKey);
 
@@ -86,12 +86,12 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotLatest_MultipleSnapshots_ShouldOnlyRemoveLatest()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         await Task.Delay(1000); // Ensure different timestamps
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         await Database.DeleteSnapshotLatest(snapshot1.TargetKey);
 
@@ -104,7 +104,7 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotsBefore_DateInPast_ShouldNotRemoveAnything()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot);
+        await Database.ArchiveSnapshot(snapshot);
 
         await Database.DeleteSnapshotsBefore(DateTime.Now.AddDays(-2));
 
@@ -116,10 +116,10 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotsBefore_DateInFuture_ShouldRemoveAll()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         await Database.DeleteSnapshotsBefore(DateTime.Now.AddDays(1));
 
@@ -131,10 +131,10 @@ public class SqliteDbDeleteSnapshotTests : SqliteTestFixture
     public async Task DeleteSnapshotsBefore_WithTargetKey_ShouldOnlyAffectSpecifiedTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         await Database.DeleteSnapshotsBefore(DateTime.Now.AddDays(1), snapshot1.TargetKey);
 

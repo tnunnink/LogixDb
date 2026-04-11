@@ -101,7 +101,21 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
+    public Task ArchiveSnapshot(Snapshot snapshot, CancellationToken token = default)
+    {
+        return SaveSnapshotInternal(snapshot, prune: true, token);
+    }
+
+    /// <inheritdoc />
+    public Task AppendSnapshot(Snapshot snapshot, CancellationToken token = default)
+    {
+        return SaveSnapshotInternal(snapshot, prune: false, token);
+    }
+
+    /// <summary>
+    /// Saves a snapshot to the database, optionally pruning the detailed content of the most recent snapshot.
+    /// </summary>
+    private async Task SaveSnapshotInternal(Snapshot snapshot, bool prune, CancellationToken token)
     {
         await EnsureDatabase(token);
 
@@ -109,8 +123,10 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
 
         try
         {
-            // 0. 
-            await PruneLatestSnapshot(session, snapshot.TargetKey);
+            if (prune)
+            {
+                await PruneLatestSnapshot(session, snapshot.TargetKey);
+            }
 
             // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
             await ImportSnapshotAsync(session, snapshot);

@@ -22,7 +22,7 @@ public class SqlServerDbListSnapshotTests : SqlServerTestFixture
     [Test]
     public async Task ListSnapshots_HasSingleSnapshot_ShouldHaveExpectedCount()
     {
-        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
 
         var result = (await Database.ListSnapshots()).ToArray();
 
@@ -32,9 +32,9 @@ public class SqlServerDbListSnapshotTests : SqlServerTestFixture
     [Test]
     public async Task ListSnapshots_MultipleSnapshots_ShouldHaveExpectedCount()
     {
-        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
-        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
-        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
 
         var result = (await Database.ListSnapshots()).ToArray();
 
@@ -45,10 +45,10 @@ public class SqlServerDbListSnapshotTests : SqlServerTestFixture
     public async Task ListSnapshots_FilterByTargetKey_ShouldReturnMatchingOnly()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest(), "Controller://DifferentTarget");
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         var result = (await Database.ListSnapshots(snapshot1.TargetKey)).ToArray();
 
@@ -59,7 +59,7 @@ public class SqlServerDbListSnapshotTests : SqlServerTestFixture
     [Test]
     public async Task ListSnapshots_FilterByNonExistentTargetKey_ShouldReturnEmpty()
     {
-        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
 
         var result = (await Database.ListSnapshots("nonexistent://target")).ToArray();
 
@@ -70,10 +70,10 @@ public class SqlServerDbListSnapshotTests : SqlServerTestFixture
     public async Task ListSnapshots_MultipleSnapshotsSameTarget_ShouldReturnAll()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2);
+        await Database.ArchiveSnapshot(snapshot2);
 
         var result = (await Database.ListSnapshots(snapshot1.TargetKey)).ToArray();
 

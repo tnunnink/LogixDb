@@ -9,7 +9,7 @@ public class SqliteDbPurgeTests : SqliteTestFixture
     public async Task Purge_WhenCalled_ShouldRemoveAllSnapshots()
     {
         await Database.Migrate();
-        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
 
         await Database.Purge();
 
@@ -20,7 +20,7 @@ public class SqliteDbPurgeTests : SqliteTestFixture
     public async Task Purge_WhenCalled_NotTablesHaveRecords()
     {
         await Database.Migrate();
-        await Database.ArchiveSnapshot(Snapshot.Create(TestSource.LocalTest()));
+        await Database.AddSnapshot(Snapshot.Create(TestSource.LocalTest()));
 
         await Database.Purge();
 

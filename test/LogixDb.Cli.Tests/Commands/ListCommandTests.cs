@@ -44,7 +44,7 @@ public class ListCommandTests : TestDbFixture
     public async Task List_WithSingleSnapshot_ShouldReturnZeroExitCode()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ListCommand.Descriptor);

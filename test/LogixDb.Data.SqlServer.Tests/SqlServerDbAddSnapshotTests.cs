@@ -1,13 +1,12 @@
 using System.Diagnostics;
 using Dapper;
-using L5Sharp.Core;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Data.Sqlite.Tests;
+namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
+public class SqlServerDbAddSnapshotTests : SqlServerTestFixture
 {
     [SetUp]
     protected async Task Setup()
@@ -16,22 +15,22 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_LocalTestSource_ShouldReturnValidId()
+    public async Task AddSnapshot_LocalTestSource_ShouldReturnValidId()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
 
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         Assert.That(snapshot.SnapshotId, Is.GreaterThan(0));
     }
 
     [Test]
-    public async Task ArchiveSnapshot_LocalExampleSource_ShouldReturnValidId()
+    public async Task AddSnapshot_LocalExampleSource_ShouldReturnValidId()
     {
         var snapshot = Snapshot.Create(TestSource.LocalExample());
 
         var stopwatch = Stopwatch.StartNew();
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
         stopwatch.Stop();
 
         Console.WriteLine(stopwatch.ElapsedMilliseconds);
@@ -40,26 +39,26 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
 
 
     [Test]
-    public async Task ArchiveSnapshot_ExistingSnapshot_ShouldPrunePreviousContent()
+    public async Task AddSnapshot_ExistingSnapshot_ShouldPrunePreviousContent()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AppendSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         await Task.Delay(1000); // Ensure different timestamps
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
 
         var snapshots = result.OrderBy(s => s.SnapshotId).ToArray();
-        
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That(snapshots[0].SnapshotId, Is.EqualTo(snapshot1.SnapshotId));
             Assert.That(snapshots[1].SnapshotId, Is.EqualTo(snapshot2.SnapshotId));
-            
+
             // Previous should have NO content (pruned)
             await AssertRecordDoesNotExist("controller", "snapshot_id", snapshot1.SnapshotId);
             // Latest should HAVE content
@@ -68,17 +67,17 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_ExistingSnapshot_ShouldPrunePreviousContentTwice()
+    public async Task AddSnapshot_ExistingSnapshot_ShouldPrunePreviousContentTwice()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
-        
+
         // Previous should have NO content (pruned)
         await AssertRecordDoesNotExist("controller", "snapshot_id", snapshot1.SnapshotId);
         // Latest should HAVE content
@@ -86,62 +85,62 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_MultipleExistingSnapshots_ShouldPruneAllPreviousSnapshotsContent()
+    public async Task AddSnapshot_MultipleExistingSnapshots_ShouldPruneAllPreviousSnapshotsContent()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot3);
+        await Database.AddSnapshot(snapshot3);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
-        
+
         await AssertRecordDoesNotExist("controller", "snapshot_id", snapshot1.SnapshotId);
         await AssertRecordDoesNotExist("controller", "snapshot_id", snapshot2.SnapshotId);
         await AssertRecordExists("controller", "snapshot_id", snapshot3.SnapshotId);
     }
 
     [Test]
-    public async Task ArchiveSnapshot_DifferentTargets_ShouldOnlyAffectSameTarget()
+    public async Task AddSnapshot_DifferentTargets_ShouldOnlyAffectSameTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot3);
+        await Database.AddSnapshot(snapshot3);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
-        
+
         // Target 1: snapshot1 (pruned), snapshot3 (active)
         await AssertRecordDoesNotExist("controller", "snapshot_id", snapshot1.SnapshotId);
         await AssertRecordExists("controller", "snapshot_id", snapshot3.SnapshotId);
-        
+
         // Target 2: snapshot2 (active)
         await AssertRecordExists("controller", "snapshot_id", snapshot2.SnapshotId);
     }
 
     [Test]
-    public async Task ArchiveSnapshot_MultipleSnapshotsDifferentTargets_ShouldOnlyAffectSameTarget()
+    public async Task AddSnapshot_MultipleSnapshotsDifferentTargets_ShouldOnlyAffectSameTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var snapshot3 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.ArchiveSnapshot(snapshot3);
+        await Database.AddSnapshot(snapshot3);
 
         var snapshot4 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot4);
+        await Database.AddSnapshot(snapshot4);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(4));
@@ -156,10 +155,10 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_MultipleTimes_ShouldSetImportDate()
+    public async Task AddSnapshot_MultipleTimes_ShouldSetImportDate()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         using var connection = await Database.Connect();
         var importDate = await connection.QuerySingleAsync<DateTime>(
@@ -172,38 +171,38 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_ShouldPopulateTargetTable()
+    public async Task AddSnapshot_ShouldPopulateTargetTable()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         await AssertRecordExists("target", "target_key", snapshot.TargetKey);
     }
 
     [Test]
-    public async Task ArchiveSnapshot_WithSameTargetTwice_ShouldReuseSameTargetId()
+    public async Task AddSnapshot_WithSameTargetTwice_ShouldReuseSameTargetId()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
-        await AssertRecordCount("target", 1);
+        using var connection = await Database.Connect();
+        var count = await connection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM target");
+        Assert.That(count, Is.EqualTo(1));
     }
 
     [Test]
-    public async Task ArchiveSnapshot_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
+    public async Task AddSnapshot_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
     {
         var snapshot = Snapshot.Create(TestSource.Custom(c =>
         {
-            c.DataTypes.Add(new DataType("TestType") { Description = "This is a test" });
+            c.DataTypes.Add(new L5Sharp.Core.DataType("TestType") { Description = "This is a test" });
         }));
 
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         await AssertRecordExists("data_type", "type_name", "TestType");
     }
-    
-    
 }

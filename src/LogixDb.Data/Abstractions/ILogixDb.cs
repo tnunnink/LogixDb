@@ -69,7 +69,7 @@ public interface ILogixDb
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the specified snapshot.</returns>
     Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default);
-    
+
     /// <summary>
     /// Adds a snapshot to the database and archives previous snapshots for the same target key.
     /// This operation prunes the detailed content of the most recent snapshot while 
@@ -78,16 +78,7 @@ public interface ILogixDb
     /// <param name="snapshot">The snapshot to be archived in the database.</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task ArchiveSnapshot(Snapshot snapshot, CancellationToken token = default);
-
-    /// <summary>
-    /// Adds a snapshot to the database and appends it to the history for the target key.
-    /// No existing data is pruned, and the full content history of all previous snapshots is retained.
-    /// </summary>
-    /// <param name="snapshot">The snapshot to be appended to the database history.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task AppendSnapshot(Snapshot snapshot, CancellationToken token = default);
+    Task AddSnapshot(Snapshot snapshot, CancellationToken token = default);
 
     /// <summary>
     /// Deletes all snapshots matching the specified target key.

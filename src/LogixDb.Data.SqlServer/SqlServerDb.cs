@@ -101,15 +101,23 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <inheritdoc />
-    public Task ArchiveSnapshot(Snapshot snapshot, CancellationToken token = default)
+    public async Task AddSnapshot(Snapshot snapshot, CancellationToken token = default)
     {
-        return SaveSnapshotInternal(snapshot, prune: true, token);
-    }
+        await EnsureDatabase(token);
+        await using var session = await SqlDbSession.Start(_connection.ToConnectionString(), token);
 
-    /// <inheritdoc />
-    public Task AppendSnapshot(Snapshot snapshot, CancellationToken token = default)
-    {
-        return SaveSnapshotInternal(snapshot, prune: false, token);
+        try
+        {
+            await PruneSnapshotsAsync(snapshot.TargetKey, session);
+            await CreateSnapshotAsync(session, snapshot);
+            await SaveSnapshotAsync(snapshot, session, token);
+            await session.Commit(token);
+        }
+        catch (Exception)
+        {
+            await session.Rollback(token);
+            throw;
+        }
     }
 
     /// <inheritdoc />
@@ -146,49 +154,13 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
-    /// Saves a snapshot to the database, optionally pruning the detailed content of the most recent snapshot.
-    /// </summary>
-    private async Task SaveSnapshotInternal(Snapshot snapshot, bool prune, CancellationToken token)
-    {
-        await EnsureDatabase(token);
-        await using var session = await SqlDbSession.Start(_connection.ToConnectionString(), token);
-
-        try
-        {
-            // 0. Prune previous snapshot content from component tables if requested.
-            if (prune)
-            {
-                await PruneLatestSnapshot(session, snapshot.TargetKey);
-            }
-
-            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
-            await ImportSnapshotAsync(session, snapshot);
-
-            // 2. Compile component data into DataTables
-            var tableNames = await GetTableNames(session);
-            var tables = snapshot.Compile(tableNames);
-
-            // 3. Write component data using the Bulk Writer
-            var writer = new SqlServerDbWriter(session);
-            await writer.WriteAsync(tables, token);
-
-            await session.Commit(token);
-        }
-        catch (Exception)
-        {
-            await session.Rollback(token);
-            throw;
-        }
-    }
-
-    /// <summary>
     /// Imports the given snapshot into the database by ensuring the target exists,
     /// inserting the snapshot record, and storing the snapshot metadata.
     /// </summary>
     /// <param name="session">The database session used to execute the import operations.</param>
     /// <param name="snapshot">The snapshot object containing data to be imported into the database.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
-    private static async Task ImportSnapshotAsync(SqlDbSession session, Snapshot snapshot)
+    private static async Task CreateSnapshotAsync(SqlDbSession session, Snapshot snapshot)
     {
         // Ensure the target entry exists and get the corresponding target id to use for the snapshot insert.
         await session.ExecuteAsync(SqlStatement.EnsureTargetExists,
@@ -229,25 +201,36 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
     }
 
     /// <summary>
-    /// Deletes all data associated with the latest snapshot for the specified target key in all relevant tables.
+    /// Saves snapshot data into the database using the provided session.
     /// </summary>
-    /// <param name="session">The database session used to execute commands and manage connection state.</param>
-    /// <param name="targetKey">The key identifying the target whose latest snapshot data should be removed.</param>
+    /// <param name="snapshot">The snapshot containing the data to be saved.</param>
+    /// <param name="session">The database session used for executing the saving operation.</param>
+    /// <param name="token">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
-    /// <exception cref="InvalidOperationException">Thrown if no valid snapshot is found for the specified target key.</exception>
-    private static async Task PruneLatestSnapshot(SqlDbSession session, string targetKey)
+    private static async Task SaveSnapshotAsync(Snapshot snapshot, SqlDbSession session, CancellationToken token)
     {
-        var snapshotId = await session.GetOrDefaultAsync<int?>(
-            SqlStatement.GetLatestSnapshotId,
-            new { target_key = targetKey }
-        );
+        var writer = new SqlServerDbWriter(session);
+        var tableNames = await GetTableNames(session);
+        var tables = snapshot.Compile(tableNames);
+        await writer.WriteAsync(tables, token);
+    }
 
-        if (snapshotId is null) return;
+    /// <summary>
+    /// Removes all existing snapshots associated with the specified target key from the database.
+    /// </summary>
+    /// <param name="targetKey">The key identifying the target for which snapshots should be pruned.</param>
+    /// <param name="session">The database session used to execute the pruning operation.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    private static async Task PruneSnapshotsAsync(string targetKey, SqlDbSession session)
+    {
+        var key = new { target_key = targetKey };
+        var snapshots = await session.GetAsync<IEnumerable<Snapshot>>(SqlStatement.ListSnapshots, key);
+        var ids = snapshots.Select(s => s.SnapshotId).ToList();
 
         List<string> targets = ["controller", "data_type", "aoi", "module", "tag", "program", "task", "operand"];
         var tables = await GetTableNames(session);
-        
-        // filter and order the tables to prevent cross-table reference issues (mainly with task and program)
+
+        // filter and order the tables to prevent FK reference issues (mainly with task and program)
         var orderedTables = targets
             .Where(target => tables.Contains(target, StringComparer.OrdinalIgnoreCase))
             .ToList();
@@ -255,8 +238,8 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         foreach (var table in orderedTables)
         {
             if (!targets.Contains(table)) continue;
-            var sql = $"DELETE FROM {table} WHERE snapshot_id = @snapshot_id";
-            await session.ExecuteAsync(sql, new { snapshot_id = snapshotId });
+            var sql = $"DELETE FROM {table} WHERE snapshot_id IN @ids";
+            await session.ExecuteAsync(sql, new { ids });
         }
     }
 

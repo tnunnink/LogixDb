@@ -1,7 +1,6 @@
 using CliFx.Infrastructure;
 using LogixDb.Cli.Commands;
 using LogixDb.Cli.Common;
-using LogixDb.Data;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 
@@ -75,37 +74,5 @@ public class ImportCommandTests : TestDbFixture
         var snapshots = await Database.ListSnapshots();
         Assert.That(snapshots.First().TargetKey, Is.EqualTo("Controller://CustomTarget"));
         File.Delete(testFile);
-    }
-
-    [Test]
-    public async Task Import_WithAppendFlag_ShouldContainMultipleSnapshotsWithData()
-    {
-        //Generate and save L5X to the local directory for command.
-        var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
-        var source = TestSource.Fake();
-        source.Save(testFile);
-
-        var snapshot = Snapshot.Create(TestSource.LocalTest(), "TestTarget");
-        await Database.AppendSnapshot(snapshot);
-
-        using var console = new FakeInMemoryConsole();
-        var app = TestApp.Create(console, ImportCommand.Descriptor);
-
-        var exitCode = await app.RunAsync([
-            "import", 
-            "-c", DbConnection,
-            "-s", testFile,
-            "-t", "TestTarget",
-            "--append"
-        ]);
-        
-        var snapshots = (await Database.ListSnapshots("TestTarget")).ToList();
-        
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(exitCode, Is.Zero);
-            Assert.That(snapshots, Has.Count.EqualTo(2));
-        }
-
     }
 }

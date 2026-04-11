@@ -15,7 +15,7 @@ public class SqliteDbGetSnapshotTests : SqliteTestFixture
     public async Task GetLatest_ContainsSingleSnapshot_ShouldNotBeNull()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         var result = await Database.GetSnapshotLatest(snapshot.TargetKey);
 
@@ -32,12 +32,12 @@ public class SqliteDbGetSnapshotTests : SqliteTestFixture
     public async Task GetLatest_ContainsMultipleSnapshots_ShouldReturnLatest()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         await Task.Delay(1000); // Ensure different timestamps
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var result = await Database.GetSnapshotLatest(snapshot1.TargetKey);
 
@@ -49,7 +49,7 @@ public class SqliteDbGetSnapshotTests : SqliteTestFixture
     public async Task GetSnapshotById_ExistingId_ShouldReturnSnapshot()
     {
         var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot);
+        await Database.AddSnapshot(snapshot);
 
         var result = await Database.GetSnapshotById(snapshot.SnapshotId);
 
@@ -66,10 +66,10 @@ public class SqliteDbGetSnapshotTests : SqliteTestFixture
     public async Task GetSnapshotById_MultipleSnapshots_ShouldReturnCorrectOne()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot1);
+        await Database.AddSnapshot(snapshot1);
 
         var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.ArchiveSnapshot(snapshot2);
+        await Database.AddSnapshot(snapshot2);
 
         var result = await Database.GetSnapshotById(snapshot1.SnapshotId);
 

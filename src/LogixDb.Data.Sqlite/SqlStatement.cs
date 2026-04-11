@@ -1,7 +1,7 @@
 namespace LogixDb.Data.Sqlite;
 
 /// <summary>
-/// Provides a collection of SQL query strings used for interacting with a SQLite database
+/// Provides a collection of SQL query strings used for interacting with an SQLite database
 /// in the "snapshot" and related tables.
 /// </summary>
 internal static class SqlStatement
@@ -36,6 +36,22 @@ internal static class SqlStatement
         INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data) 
         VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
         RETURNING snapshot_id;
+        """;
+
+    /// <summary>
+    /// A SQL statement designed to update an existing record in the "snapshot" table.
+    /// It modifies the values for source hash, source data, import date, import user,
+    /// and import machine for a specific snapshot identified by its unique snapshot ID.
+    /// </summary>
+    internal const string UpdateSnapshot =
+        """
+        UPDATE snapshot SET 
+            source_hash = @source_hash, 
+            source_data = @source_data, 
+            import_date = @import_date, 
+            import_user = @import_user, 
+            import_machine = @import_machine
+        WHERE snapshot_id = @snapshot_id
         """;
 
     /// <summary>
@@ -134,14 +150,13 @@ internal static class SqlStatement
     /// The query joins the "snapshot" and "target" tables to identify the relevant record, orders the
     /// results by the import date in descending order, and limits the output to a single record.
     /// </summary>
-    internal const string GetLatestSnapshotId =
+    internal const string GetSnapshotIds =
         """
         SELECT snapshot_id 
         FROM snapshot s
         JOIN target t on t.target_id = s.target_id
         WHERE t.target_key = @target_key
         ORDER BY import_date DESC
-        LIMIT 1
         """;
 
     /// <summary>
@@ -190,8 +205,8 @@ internal static class SqlStatement
     internal const string DeleteSnapshotsBefore =
         """
         DELETE FROM snapshot 
-               WHERE (@target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key))
-               AND import_date < @import_date
+           WHERE (@target_key is null or target_id = (SELECT target_id FROM target where target_key = @target_key))
+           AND import_date < @import_date
         """;
 
     /// <summary>

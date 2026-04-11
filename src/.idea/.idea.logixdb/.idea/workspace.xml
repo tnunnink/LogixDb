@@ -19,27 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/DataTypeMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ProgramMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +76,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbSnapshotSpaceTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -141,6 +123,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
     "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
@@ -247,39 +230,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="21831000" />
-    </task>
-    <task id="LOCAL-00114" summary="Update `.idea/workspace.xml` to reflect recent file restructuring and consolidate changes related to transformer classes and new database writer implementations.">
-      <option name="closed" value="true" />
-      <created>1774467042386</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1774467042386</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Rename `tag_consume_info` and `tag_produce_info` to `tag_consumer` and `tag_producer` across mappings, migrations, transformers, tests, and related usages; fix column and table mapping inconsistencies.">
-      <option name="closed" value="true" />
-      <created>1774475409004</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1774475409004</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Bump package dependencies across projects to latest versions.">
-      <option name="closed" value="true" />
-      <created>1775054963519</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1775054963519</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Update tests to reflect schema changes and improve verification of indexes and column definitions.">
-      <option name="closed" value="true" />
-      <created>1775054976753</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1775054976753</updated>
+      <workItem from="1775745455754" duration="38277000" />
     </task>
     <task id="LOCAL-00118" summary="Adjust IDE workspace settings and update `ControllerMap` to refine null handling.">
       <option name="closed" value="true" />
@@ -641,7 +592,39 @@
       <option name="project" value="LOCAL" />
       <updated>1775836694049</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Remove unused `source_data` column mappings and associated migration definitions across all mapping classes and database schema files.">
+      <option name="closed" value="true" />
+      <created>1775841156285</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1775841156285</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests.">
+      <option name="closed" value="true" />
+      <created>1775899968858</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1775899968858</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests.">
+      <option name="closed" value="true" />
+      <created>1775902328162</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1775902328162</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures.">
+      <option name="closed" value="true" />
+      <created>1775902428398</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1775902428398</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,10 +650,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `DbConnection` with `DbConnectionInfo` in `Extensions`." />
-    <MESSAGE value="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) and rename existing migration test classes for consistency, updating corresponding migration logic and test assertions." />
-    <MESSAGE value="Add `GetProgram` method to `Tag` extension, refine `ColumnMap` with new overloads for `int` and `float` properties, and enhance `ControllerMap` with additional redundancy, safety, and security mappings." />
-    <MESSAGE value="Refine transformers and mappings: fix duplicate checks in `ModuleTransformer`, rename `ParentId` to `FolderId` across `ProgramMap` and `ProgramRecord`, and streamline tag handling in `TagTransformer`." />
     <MESSAGE value="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it." />
     <MESSAGE value="Rename and refine columns across migration scripts for consistency (`controller_revision` to `revision`, `content_hash` to `record_hash`), update `source_data` columns to allow max binary size, and add `security_code` column to `controller` table." />
     <MESSAGE value="Optimize `GetTargetId` call in `ImportSnapshotAsync` by directly parsing `Guid` from query result." />
@@ -692,6 +671,10 @@
     <MESSAGE value="Refactor mapping classes to use `ToSqlFormat` for `dimensions` and `radix`, streamline tag program resolution in `TagTransformer`, and enhance extension methods for SQL compatibility." />
     <MESSAGE value="Bump version to 0.8.3 across projects." />
     <MESSAGE value="Bump L5Sharp to v6.0.4 across projects." />
+    <MESSAGE value="Remove unused `source_data` column mappings and associated migration definitions across all mapping classes and database schema files." />
+    <MESSAGE value="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests." />
+    <MESSAGE value="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests." />
+    <MESSAGE value="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures." />
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">

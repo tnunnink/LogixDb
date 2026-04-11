@@ -40,7 +40,7 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
 
 
     [Test]
-    public async Task ArchiveSnapshot_WithReplaceLatest_ShouldPrunePreviousContent()
+    public async Task ArchiveSnapshot_ExistingSnapshot_ShouldPrunePreviousContent()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
         await Database.AppendSnapshot(snapshot1);
@@ -68,7 +68,7 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_WithReplaceLatestOnSingleSnapshot_ShouldPrunePreviousContent()
+    public async Task ArchiveSnapshot_ExistingSnapshot_ShouldPrunePreviousContentTwice()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
         await Database.ArchiveSnapshot(snapshot1);
@@ -86,7 +86,7 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_WithReplaceAll_ShouldPruneAllPreviousSnapshotsContent()
+    public async Task ArchiveSnapshot_MultipleExistingSnapshots_ShouldPruneAllPreviousSnapshotsContent()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
         await Database.ArchiveSnapshot(snapshot1);
@@ -106,7 +106,7 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_WithReplaceLatestDifferentTargets_ShouldOnlyAffectSameTarget()
+    public async Task ArchiveSnapshot_DifferentTargets_ShouldOnlyAffectSameTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
         await Database.ArchiveSnapshot(snapshot1);
@@ -129,7 +129,7 @@ public class SqliteDbArchiveSnapshotTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task ArchiveSnapshot_WithReplaceAllDifferentTargets_ShouldOnlyAffectSameTarget()
+    public async Task ArchiveSnapshot_MultipleSnapshotsDifferentTargets_ShouldOnlyAffectSameTarget()
     {
         var snapshot1 = Snapshot.Create(TestSource.LocalTest());
         await Database.ArchiveSnapshot(snapshot1);

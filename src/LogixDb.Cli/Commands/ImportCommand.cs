@@ -7,7 +7,6 @@ using CliWrap;
 using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
-using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using Spectre.Console;
 using Snapshot = LogixDb.Data.Snapshot;
@@ -30,6 +29,9 @@ public partial class ImportCommand : DbCommand
 
     [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
     public string? Converter { get; set; }
+    
+    [CommandOption("append", Description = "Append snapshot without archiving existing snapshots")]
+    public bool Append { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
@@ -69,8 +71,13 @@ public partial class ImportCommand : DbCommand
                 ctx.Status("Loading L5X file...");
                 var content = await L5X.LoadAsync(importTarget, token);
                 var snapshot = Snapshot.Create(content, TargetKey);
+
                 ctx.Status("Importing source to database...");
-                await database.ArchiveSnapshot(snapshot, token);
+                if (Append)
+                    await database.AppendSnapshot(snapshot, token);
+                else
+                    await database.ArchiveSnapshot(snapshot, token);
+
                 return snapshot;
             });
 

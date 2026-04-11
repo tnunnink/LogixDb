@@ -112,42 +112,6 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         return SaveSnapshotInternal(snapshot, prune: false, token);
     }
 
-    /// <summary>
-    /// Saves a snapshot to the database, optionally pruning the detailed content of the most recent snapshot.
-    /// </summary>
-    private async Task SaveSnapshotInternal(Snapshot snapshot, bool prune, CancellationToken token)
-    {
-        await EnsureDatabase(token);
-
-        await using var session = await SqlDbSession.Start(_connection.ToConnectionString(), token);
-
-        try
-        {
-            if (prune)
-            {
-                await PruneLatestSnapshot(session, snapshot.TargetKey);
-            }
-
-            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
-            await ImportSnapshotAsync(session, snapshot);
-
-            // 2. Compile component data into DataTables
-            var tableNames = await GetTableNames(session);
-            var tables = snapshot.Compile(tableNames);
-
-            // 3. Write component data using the Bulk Writer
-            var writer = new SqlServerDbWriter(session);
-            await writer.WriteAsync(tables, token);
-
-            await session.Commit(token);
-        }
-        catch (Exception)
-        {
-            await session.Rollback(token);
-            throw;
-        }
-    }
-
     /// <inheritdoc />
     public async Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default)
     {
@@ -179,6 +143,42 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         await EnsureDatabase(token);
         var param = new { snapshot_id = snapshotId };
         await ExecuteSqlAsync(SqlStatement.DeleteSnapshotById, param, token);
+    }
+
+    /// <summary>
+    /// Saves a snapshot to the database, optionally pruning the detailed content of the most recent snapshot.
+    /// </summary>
+    private async Task SaveSnapshotInternal(Snapshot snapshot, bool prune, CancellationToken token)
+    {
+        await EnsureDatabase(token);
+        await using var session = await SqlDbSession.Start(_connection.ToConnectionString(), token);
+
+        try
+        {
+            // 0. Prune previous snapshot content from component tables if requested.
+            if (prune)
+            {
+                await PruneLatestSnapshot(session, snapshot.TargetKey);
+            }
+
+            // 1. Ensure Snapshot and Target records exist first (sets snapshot.SnapshotId)
+            await ImportSnapshotAsync(session, snapshot);
+
+            // 2. Compile component data into DataTables
+            var tableNames = await GetTableNames(session);
+            var tables = snapshot.Compile(tableNames);
+
+            // 3. Write component data using the Bulk Writer
+            var writer = new SqlServerDbWriter(session);
+            await writer.WriteAsync(tables, token);
+
+            await session.Commit(token);
+        }
+        catch (Exception)
+        {
+            await session.Rollback(token);
+            throw;
+        }
     }
 
     /// <summary>
@@ -242,9 +242,21 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
             new { target_key = targetKey }
         );
 
-        if (snapshotId is not null)
+        if (snapshotId is null) return;
+
+        List<string> targets = ["controller", "data_type", "aoi", "module", "tag", "program", "task", "operand"];
+        var tables = await GetTableNames(session);
+        
+        // filter and order the tables to prevent cross-table reference issues (mainly with task and program)
+        var orderedTables = targets
+            .Where(target => tables.Contains(target, StringComparer.OrdinalIgnoreCase))
+            .ToList();
+
+        foreach (var table in orderedTables)
         {
-            await session.ExecuteAsync(SqlStatement.DeleteSnapshotContent, new { snapshot_id = snapshotId });
+            if (!targets.Contains(table)) continue;
+            var sql = $"DELETE FROM {table} WHERE snapshot_id = @snapshot_id";
+            await session.ExecuteAsync(sql, new { snapshot_id = snapshotId });
         }
     }
 

@@ -66,7 +66,9 @@ public static class FluentMigrationExtensions
         /// <param name="primaryTable">The name of the primary table that the foreign key references.</param>
         /// <param name="primaryColumn">The name of the column in the primary table to which the foreign key relates. If not specified, defaults to the same name as <paramref name="columnName"/>.</param>
         /// <returns>Returns the fluent migration builder after adding the nullable foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithOptionalRelation(string columnName, string primaryTable,
+        public ICreateTableColumnOptionOrWithColumnSyntax WithOptionalRelation(
+            string columnName, 
+            string primaryTable,
             string? primaryColumn = null
         )
         {
@@ -74,8 +76,7 @@ public static class FluentMigrationExtensions
                 .WithColumn(columnName)
                 .AsGuid()
                 .Nullable()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName)
-                .OnDeleteOrUpdate(Rule.None);
+                .ForeignKey(primaryTable, primaryColumn ?? columnName);
         }
     }
 }

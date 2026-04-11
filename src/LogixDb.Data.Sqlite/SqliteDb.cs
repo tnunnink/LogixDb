@@ -163,7 +163,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
             await ImportSnapshotAsync(session, snapshot);
 
             // 2. Compile component data into DataTables
-            var tableNames = await GetComponentTables(session);
+            var tableNames = await GetTableNames(session);
             var tables = snapshot.Compile(tableNames);
 
             // 3. Write component data using the Bulk Writer
@@ -240,24 +240,32 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
             new { target_key = targetKey }
         );
 
-        var tables = await GetComponentTables(session);
+        if (snapshotId is null) return;
 
-        foreach (var table in tables)
+        List<string> targets = ["controller", "data_type", "aoi", "module", "tag", "program", "task", "operand"];
+        var tables = await GetTableNames(session);
+
+        // filter and order the tables to prevent cross-table reference issues (mainly with task and program)
+        var orderedTables = targets
+            .Where(target => tables.Contains(target, StringComparer.OrdinalIgnoreCase))
+            .ToList();
+
+        foreach (var table in orderedTables)
         {
+            if (!targets.Contains(table)) continue;
             var sql = $"DELETE FROM {table} WHERE snapshot_id = @snapshot_id";
             await session.ExecuteAsync(sql, new { snapshot_id = snapshotId });
         }
     }
 
     /// <summary>
-    /// Retrieves the names of all tables in the current SQLite database session.
+    /// Retrieves the names of all relevant tables from the SQLite database.
     /// </summary>
-    /// <param name="session">The SQLite database session used for executing the query.</param>
-    /// <returns>A collection of table names present in the SQLite database.</returns>
-    private static async Task<ICollection<string>> GetComponentTables(SqliteDbSession session)
+    /// <param name="session">The SQLite database session to execute the query against.</param>
+    /// <returns>A collection of table names as strings.</returns>
+    private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
-        List<string> components = ["controller", "data_type", "aoi", "module", "tag", "program", "task"];
-        var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames, new { components });
+        var names = await session.GetAllAsync<string>(SqlStatement.GetTableNames);
         return names.ToArray();
     }
 

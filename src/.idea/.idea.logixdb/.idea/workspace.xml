@@ -19,8 +19,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlStatement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlStatement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbArchiveSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbArchiveSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveSnapshotTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,15 +236,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="38277000" />
-    </task>
-    <task id="LOCAL-00118" summary="Adjust IDE workspace settings and update `ControllerMap` to refine null handling.">
-      <option name="closed" value="true" />
-      <created>1775054981638</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1775054981638</updated>
+      <workItem from="1775745455754" duration="41471000" />
     </task>
     <task id="LOCAL-00119" summary="Refactor `TableMap` classes to use `protected` access for `TableName` property, update snapshot methods for better filtering, and fix naming in `AoiTransformer`.">
       <option name="closed" value="true" />
@@ -624,7 +622,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775902428398</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic.">
+      <option name="closed" value="true" />
+      <created>1775902498852</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1775902498852</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,8 +656,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it." />
-    <MESSAGE value="Rename and refine columns across migration scripts for consistency (`controller_revision` to `revision`, `content_hash` to `record_hash`), update `source_data` columns to allow max binary size, and add `security_code` column to `controller` table." />
     <MESSAGE value="Optimize `GetTargetId` call in `ImportSnapshotAsync` by directly parsing `Guid` from query result." />
     <MESSAGE value="Revise migration test classes for consistency and update test assertions to reflect refined schema changes, including renamed columns, adjusted data types, and added indices." />
     <MESSAGE value="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) to clean up deprecated test cases." />
@@ -675,7 +679,9 @@
     <MESSAGE value="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests." />
     <MESSAGE value="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests." />
     <MESSAGE value="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Replace `WithOptionalRelation` with `WithGuidColumn` across migrations and extend `FluentMigrationExtensions` to support generic GUID column creation." />
+    <MESSAGE value="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -692,6 +698,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs</url>
+          <line>256</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerDb.cs" containingFunctionPresentation="Method 'PruneLatestSnapshot'">
+            <startOffsets>
+              <option value="10607" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10636" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -86,7 +86,7 @@ public class ImportCommandTests : TestDbFixture
         source.Save(testFile);
 
         var snapshot1 = Snapshot.Create(TestSource.LocalTest(), "TestTarget");
-        await Database.AddSnapshot(snapshot1);
+        await Database.ArchiveSnapshot(snapshot1);
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ImportCommand.Descriptor);

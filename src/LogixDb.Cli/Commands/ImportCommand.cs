@@ -70,7 +70,7 @@ public partial class ImportCommand : DbCommand
                 var content = await L5X.LoadAsync(importTarget, token);
                 var snapshot = Snapshot.Create(content, TargetKey);
                 ctx.Status("Importing source to database...");
-                await database.AddSnapshot(snapshot, token);
+                await database.ArchiveSnapshot(snapshot, token);
                 return snapshot;
             });
 

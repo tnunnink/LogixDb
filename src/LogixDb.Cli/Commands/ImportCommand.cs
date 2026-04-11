@@ -73,6 +73,7 @@ public partial class ImportCommand : DbCommand
                 var snapshot = Snapshot.Create(content, TargetKey);
 
                 ctx.Status("Importing source to database...");
+                
                 if (Append)
                     await database.AppendSnapshot(snapshot, token);
                 else

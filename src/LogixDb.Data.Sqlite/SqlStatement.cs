@@ -198,10 +198,5 @@ internal static class SqlStatement
     /// A SQL query used to retrieve the names of all tables in the current SQLite database.
     /// It queries the SQLite system catalog to list entries of type "table" from the `sqlite_master` table.
     /// </summary>
-    internal const string GetTableNames =
-        """
-        SELECT name 
-        FROM sqlite_master 
-        WHERE type = 'table' AND name IN @components
-        """;
+    internal const string GetTableNames = "SELECT name FROM sqlite_master WHERE type = 'table'";
 }

@@ -23,7 +23,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
-            "import", 
+            "import",
             "-c", DbConnection,
             "-s", "Fake.L5X"
         ]);
@@ -43,7 +43,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
-            "import", 
+            "import",
             "-c", DbConnection,
             "-s", testFile
         ]);
@@ -64,7 +64,7 @@ public class ImportCommandTests : TestDbFixture
         var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
-            "import", 
+            "import",
             "-c", DbConnection,
             "-s", testFile,
             "-t", "Controller://CustomTarget"
@@ -78,26 +78,34 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Import_WithReplaceLatestAction_ShouldReplaceLatest()
+    public async Task Import_WithAppendFlag_ShouldContainMultipleSnapshotsWithData()
     {
         //Generate and save L5X to the local directory for command.
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
         var source = TestSource.Fake();
         source.Save(testFile);
 
-        var snapshot1 = Snapshot.Create(TestSource.LocalTest(), "TestTarget");
-        await Database.ArchiveSnapshot(snapshot1);
+        var snapshot = Snapshot.Create(TestSource.LocalTest(), "TestTarget");
+        await Database.AppendSnapshot(snapshot);
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ImportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
-            "import", "-c", DbConnection,
+            "import", 
+            "-c", DbConnection,
             "-s", testFile,
             "-t", "TestTarget",
-            "-a", "ReplaceLatest"
+            "--append"
         ]);
+        
+        var snapshots = (await Database.ListSnapshots("TestTarget")).ToList();
+        
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(exitCode, Is.Zero);
+            Assert.That(snapshots, Has.Count.EqualTo(2));
+        }
 
-        Assert.That(exitCode, Is.Zero);
     }
 }

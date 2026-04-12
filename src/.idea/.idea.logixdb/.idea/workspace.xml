@@ -19,7 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,15 +231,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="48758000" />
-    </task>
-    <task id="LOCAL-00122" summary="Remove `MigrationTagTests`, add `DbConnectionTests`, and expand `SnapshotTests` for better coverage.">
-      <option name="closed" value="true" />
-      <created>1775075251683</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1775075251683</updated>
+      <workItem from="1775745455754" duration="52410000" />
     </task>
     <task id="LOCAL-00123" summary="Remove `Component` migration tag, update related migrations, refactor tag filtering logic, and add table-specific migration tests.">
       <option name="closed" value="true" />
@@ -624,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775936793993</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval.">
+      <option name="closed" value="true" />
+      <created>1775937072529</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1775937072529</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +651,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `DbConnection` with `DbConnectionInfo` across test classes for consistency and improved clarity." />
     <MESSAGE value="Revise `SqlServerDbMigrateTests` for better clarity and consistency: rename test method, replace `DbConnection` with `DbConnectionInfo`, update options (`DbOptions` to `TableOptions`), and refine test assertions." />
     <MESSAGE value="Update `.idea` workspace configuration: adjust paths, refine highlighting settings, and reorganize recent migration and test references for improved consistency." />
     <MESSAGE value="Remove unused `System.Data` using directive from `M202602061020CreateSnapshotTable`." />
@@ -675,7 +675,8 @@
     <MESSAGE value="Refactor snapshot handling: standardize table filtering and ordering logic in `PruneLatestSnapshot`, rename methods for clarity, and update associated tests." />
     <MESSAGE value="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests." />
     <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
+    <MESSAGE value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

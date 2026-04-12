@@ -158,13 +158,16 @@ ingests them into the configured LogixDb.
 
 #### Configuration
 
-To enable FTAC monitoring, update the `LogixConfig` section in the service's `appsettings.json`:
+To configure the Windows service, update the `LogixConfig` section in `appsettings.json`:
 
-| Setting          | Type       | Default | Description                                                                             |
-|------------------|------------|---------|-----------------------------------------------------------------------------------------|
-| `FtacMonitor`    | `Boolean`  | `false` | Enables or disables the FTAC monitoring background services.                            |
-| `FtacConnection` | `String`   | `null`  | Optional SQL connection string override for the AssetCentre database.                   |
-| `FtacFilters`    | `String[]` | `[]`    | A list of asset name filters (wildcards supported) to limit which assets are monitored. |
+| Setting          | Type       | Default | Description                                                                                                        |
+|------------------|------------|---------|--------------------------------------------------------------------------------------------------------------------|
+| `DbConnection`   | `String`   | `null`  | The connection string for the LogixDb database (SQLite file path or `DatabaseName@ServerHost` for SQL Server).     |
+| `DropPath`       | `String`   | `null`  | The local directory where `.L5X` or `.ACD` files are placed for background ingestion.                              |
+| `AcdConverter`   | `String`   | `null`  | Path to a custom CLI tool for converting ACD to L5X. Expected contract: `convert -i <input> -o <output> --force`.  |
+| `FtacMonitor`    | `Boolean`  | `false` | Enables or disables the FTAC monitoring background services.                                                       |
+| `FtacConnection` | `String`   | `null`  | Optional SQL connection string override for the AssetCentre database.                                              |
+| `FtacFilters`    | `String[]` | `[]`    | A list of asset name filters (wildcards supported) to limit which assets are monitored.                            |
 
 > [!IMPORTANT]
 > The service account running LogixDb must have `SELECT` and `EXECUTE` permissions on the FactoryTalk AssetCentre
@@ -175,28 +178,7 @@ To enable FTAC monitoring, update the `LogixConfig` section in the service's `ap
 ```json
 {
   "LogixConfig": {
-    "DbConnection": "logix@localhost",
-    "OnImport": "ReplaceLatest",
-    "FtacMonitor": true,
-    "FtacFilters": [
-      "Area1*",
-      "Line2*",
-      "!*Backup*"
-    ]
-  }
-}
-```
-
-#### Comprehensive Example
-
-The `LogixConfig` section in `appsettings.json` supports several advanced options for fine-tuning ingestion and
-monitoring.
-
-```json
-{
-  "LogixConfig": {
     "DbConnection": "LogixDb@localhost",
-    "OnImport": "ReplaceLatest",
     "DropPath": "C:\\ProgramData\\LogixDb\\Uploads",
     "AcdConverter": "C:\\Tools\\AcdToL5x.exe",
     "FtacMonitor": true,
@@ -209,12 +191,6 @@ monitoring.
   }
 }
 ```
-
-| Setting | Description |
-| :--- | :--- |
-| `OnImport` | Strategy for handling existing snapshots: `Append`, `ReplaceLatest` (default), or `ReplaceAll`. |
-| `AcdConverter` | Path to a custom CLI tool for converting ACD to L5X. Expected contract: `convert -i <input> -o <output>`. |
-| `FtacConnection` | Overrides the default local AssetCentre connection string. Use for remote databases or specific credentials. |
 
 #### FTAC Asset Name Filtering
 
@@ -271,24 +247,6 @@ SDK-based converter.
 
 The custom converter must support the following CLI arguments:
 `convert -i <input_path> -o <output_path> --force`
-
-#### Configuration
-
-To configure a custom converter, update the `LogixConfig` section in the service's `appsettings.json`:
-
-| Setting        | Type     | Default | Description                                                                        |
-|----------------|----------|---------|------------------------------------------------------------------------------------|
-| `AcdConverter` | `String` | `null`  | The full path to a custom command-line executable for `.ACD` to `.L5X` conversion. |
-
-#### Example Configuration
-
-```json
-{
-  "LogixConfig": {
-    "AcdConverter": "C:\\Tools\\MyCustomConverter.exe"
-  }
-}
-```
 
 > [!NOTE]
 > This capability is provided to allow users to integrate their own conversion tools and to ensure that LogixDb

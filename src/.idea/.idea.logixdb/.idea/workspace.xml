@@ -19,8 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,23 +231,7 @@
       <workItem from="1774623322615" duration="7696000" />
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
-      <workItem from="1775745455754" duration="52410000" />
-    </task>
-    <task id="LOCAL-00123" summary="Remove `Component` migration tag, update related migrations, refactor tag filtering logic, and add table-specific migration tests.">
-      <option name="closed" value="true" />
-      <created>1775076801981</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1775076801981</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Reorganized migration versions and folders and moved to more parent/child hierarchical relationship pattern to normalize the database. Major updates to tag related tables. Updates to fluent migration helpers.">
-      <option name="closed" value="true" />
-      <created>1775419672162</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1775419672162</updated>
+      <workItem from="1775745455754" duration="53150000" />
     </task>
     <task id="LOCAL-00125" summary="Normalize database schema by refining indexes, updating column definitions, and adding new columns (e.g., `source_hash`, `source_data`), while reorganizing migration scripts for better consistency and maintainability.">
       <option name="closed" value="true" />
@@ -625,7 +609,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775937072529</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot.">
+      <option name="closed" value="true" />
+      <created>1775990806016</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1775990806016</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli.">
+      <option name="closed" value="true" />
+      <created>1775990900357</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1775990900357</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -651,8 +651,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Revise `SqlServerDbMigrateTests` for better clarity and consistency: rename test method, replace `DbConnection` with `DbConnectionInfo`, update options (`DbOptions` to `TableOptions`), and refine test assertions." />
-    <MESSAGE value="Update `.idea` workspace configuration: adjust paths, refine highlighting settings, and reorganize recent migration and test references for improved consistency." />
     <MESSAGE value="Remove unused `System.Data` using directive from `M202602061020CreateSnapshotTable`." />
     <MESSAGE value="Replace `TableOptions` with `ComponentOptions`, update migration methods to simplify filtering logic, and refactor `EnsureCreatedAndMigrated` into `EnsureDatabase`." />
     <MESSAGE value="Update README with selective migration details, enhanced FTAC filter configuration, and updated database schema documentation; add filtering logic to FtacMonitorService." />
@@ -676,7 +674,9 @@
     <MESSAGE value="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests." />
     <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
     <MESSAGE value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
+    <MESSAGE value="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot." />
+    <MESSAGE value="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

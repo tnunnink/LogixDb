@@ -31,6 +31,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
+        await ConfigureDatabase(token);
     }
 
     /// <inheritdoc />
@@ -41,6 +42,7 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp(version);
+        await ConfigureDatabase(token);
     }
 
     /// <inheritdoc />
@@ -374,5 +376,15 @@ public sealed class SqlServerDb(DbConnectionInfo connection) : ILogixDb
         var tags = MigrationTag.GetTags(options);
         services.Configure<RunnerOptions>(opt => opt.Tags = tags.ToArray());
         return services.BuildServiceProvider();
+    }
+
+    /// <summary>
+    /// Configures the connected SQL Server database by setting specific database-level properties.
+    /// </summary>
+    /// <param name="token">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+    private async Task ConfigureDatabase(CancellationToken token)
+    {
+        await using var connection = await OpenConnectionAsync(token);
+        await connection.ExecuteAsync("ALTER DATABASE CURRENT SET RECOVERY SIMPLE;");
     }
 }

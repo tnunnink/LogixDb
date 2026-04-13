@@ -32,7 +32,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
-        await ConfigurePersistentPerformancePragmas(token);
+        await ConfigureDatabase(token);
     }
 
     /// <inheritdoc />
@@ -42,7 +42,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         await using var provider = BuildMigrationProvider(_connection.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp(version);
-        await ConfigurePersistentPerformancePragmas(token);
+        await ConfigureDatabase(token);
     }
 
     /// <inheritdoc />
@@ -344,7 +344,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// incremental vacuum, and memory configurations such as mmap size and cache size.
     /// These settings are tailored to improve performance while maintaining data integrity.
     /// </remarks>
-    private async Task ConfigurePersistentPerformancePragmas(CancellationToken token)
+    private async Task ConfigureDatabase(CancellationToken token)
     {
         await using var connection = await OpenConnectionAsync(token);
 

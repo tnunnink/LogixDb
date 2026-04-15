@@ -32,6 +32,7 @@ public class M20260206Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("snapshot", "snapshot_id", "int");
             await AssertColumnDefinition("snapshot", "target_id", "uniqueidentifier");
+            await AssertColumnDefinition("snapshot", "version_number", "int");
             await AssertColumnDefinition("snapshot", "target_type", "nvarchar");
             await AssertColumnDefinition("snapshot", "target_name", "nvarchar");
             await AssertColumnDefinition("snapshot", "is_partial", "bit");

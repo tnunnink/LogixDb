@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
@@ -23,32 +24,29 @@ namespace LogixDb.Cli.Commands;
 /// - OutputPath: Specifies the output file path for the exported L5X file.
 /// </example>
 [PublicAPI]
-[Command("export", Description = "Exports a snapshot to an L5X file by target or ID")]
+[Command("export", Description = "Export a snapshot to an L5X file")]
 public partial class ExportCommand : DbCommand
 {
-    [CommandOption("output", 'o', Description = "Output file path for the exported L5X file (defaults to <TargetKey>.L5X)")]
-    public string? OutputPath { get; set; }
+    [Required]
+    [CommandOption("output", 'o', Description = "Output path for the exported L5X file")]
+    public string OutputPath { get; set; } = string.Empty;
 
-    [CommandOption("target", 't', Description = "Target key to export (exports the latest snapshot for this target)")]
-    public string? TargetKey { get; set; }
+    [Required]
+    [CommandOption("target", 't', Description = "Target key to export")]
+    public string TargetKey { get; set; } = string.Empty;
 
-    [CommandOption("id", Description = "Export a snapshot with the specified ID")]
-    public int SnapshotId { get; set; }
+    [Required]
+    [CommandOption("version", 'v', Description = "Version number of the snapshot to export (0 for latest)")]
+    public int Version { get; set; }
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        ValidateOptions();
-
         try
         {
-            var snapshot = !string.IsNullOrWhiteSpace(TargetKey)
-                ? await database.GetSnapshotLatest(TargetKey, token)
-                : await database.GetSnapshotById(SnapshotId, token);
-
-            var savePath = OutputPath ?? $"{snapshot.TargetKey}.L5X";
+            var snapshot = await database.GetSnapshot(TargetKey, Version, token);
             var source = snapshot.GetSource();
-            source.Save(savePath);
+            source.Save(OutputPath);
         }
         catch (Exception e)
         {
@@ -57,38 +55,6 @@ public partial class ExportCommand : DbCommand
                 ErrorCodes.InternalError,
                 false, e
             );
-        }
-    }
-
-    /// <summary>
-    /// Validates the options provided for the command execution to ensure correct usage.
-    /// This method checks whether the required options (--target or --id) are specified,
-    /// and ensures only one of these options is provided at a time.
-    /// Throws a <see cref="CommandException"/> if the validation fails.
-    /// </summary>
-    /// <exception cref="CommandException">
-    /// Thrown when none of the required options (--target, --id) are provided,
-    /// or when multiple options are specified.
-    /// The error code <see cref="ErrorCodes.UsageError"/> is used to indicate the validation error.
-    /// </exception>
-    private void ValidateOptions()
-    {
-        var optionCount = 0;
-        if (!string.IsNullOrWhiteSpace(TargetKey)) optionCount++;
-        if (SnapshotId > 0) optionCount++;
-
-        switch (optionCount)
-        {
-            case 0:
-                throw new CommandException(
-                    "Missing required arguments. Must specify one option (--target, --id).",
-                    ErrorCodes.UsageError
-                );
-            case > 1:
-                throw new CommandException(
-                    "Cannot specify multiple export options (--target, --id).",
-                    ErrorCodes.UsageError
-                );
         }
     }
 }

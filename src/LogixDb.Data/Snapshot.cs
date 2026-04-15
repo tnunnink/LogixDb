@@ -43,6 +43,7 @@ public sealed class Snapshot
     private L5X? _l5X;
 
     public int SnapshotId { get; set; }
+    public int VersionNumber { get; init; }
     public string TargetKey { get; init; } = string.Empty;
     public string TargetType { get; init; } = string.Empty;
     public string TargetName { get; init; } = string.Empty;

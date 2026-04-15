@@ -12,27 +12,27 @@ public class SqlServerDbDeleteSnapshotTests : SqlServerTestFixture
     }
 
     [Test]
-    public async Task DeleteSnapshot_ById_ShouldRemoveSnapshot()
+    public async Task DeleteSnapshot_ByVersion_ShouldRemoveSnapshot()
     {
-        var snapshot = Snapshot.Create(TestSource.LocalTest());
+        var snapshot = Snapshot.Create(TestSource.LocalTest(), "local_test");
         await Database.AddSnapshot(snapshot);
 
-        await Database.DeleteSnapshot(snapshot.SnapshotId);
+        await Database.DeleteSnapshot("local_test", 1);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Is.Empty);
     }
 
     [Test]
-    public async Task DeleteSnapshot_ById_ShouldOnlyRemoveSpecifiedSnapshot()
+    public async Task DeleteSnapshot_ByVersion_ShouldOnlyRemoveSpecifiedSnapshot()
     {
-        var snapshot1 = Snapshot.Create(TestSource.LocalTest());
+        var snapshot1 = Snapshot.Create(TestSource.LocalTest(), "local_test");
         await Database.AddSnapshot(snapshot1);
 
-        var snapshot2 = Snapshot.Create(TestSource.LocalTest());
+        var snapshot2 = Snapshot.Create(TestSource.LocalTest(), "local_test");
         await Database.AddSnapshot(snapshot2);
 
-        await Database.DeleteSnapshot(snapshot1.SnapshotId);
+        await Database.DeleteSnapshot("local_test", 1);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -51,7 +51,7 @@ public class SqlServerDbDeleteSnapshotTests : SqlServerTestFixture
         var snapshot3 = Snapshot.Create(TestSource.LocalTest(), "Controller://CustomTarget");
         await Database.AddSnapshot(snapshot3);
 
-        await Database.DeleteSnapshotsFor(snapshot1.TargetKey);
+        await Database.DeleteSnapshots(snapshot1.TargetKey);
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -64,40 +64,10 @@ public class SqlServerDbDeleteSnapshotTests : SqlServerTestFixture
         var snapshot = Snapshot.Create(TestSource.LocalTest());
         await Database.AddSnapshot(snapshot);
 
-        await Database.DeleteSnapshotsFor("nonexistent://target");
+        await Database.DeleteSnapshots("nonexistent://target");
 
         var result = (await Database.ListSnapshots()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
-    }
-
-    [Test]
-    public async Task DeleteSnapshotLatest_SingleSnapshot_ShouldRemoveIt()
-    {
-        var snapshot = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot);
-
-        await Database.DeleteSnapshotLatest(snapshot.TargetKey);
-
-        var result = (await Database.ListSnapshots()).ToArray();
-        Assert.That(result, Is.Empty);
-    }
-
-    [Test]
-    public async Task DeleteSnapshotLatest_MultipleSnapshots_ShouldOnlyRemoveLatest()
-    {
-        var snapshot1 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot1);
-
-        await Task.Delay(1000);
-
-        var snapshot2 = Snapshot.Create(TestSource.LocalTest());
-        await Database.AddSnapshot(snapshot2);
-
-        await Database.DeleteSnapshotLatest(snapshot1.TargetKey);
-
-        var result = (await Database.ListSnapshots()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(1));
-        Assert.That(result[0].SnapshotId, Is.EqualTo(snapshot1.SnapshotId));
     }
 
     [Test]

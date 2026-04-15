@@ -55,20 +55,13 @@ public interface ILogixDb
     Task<IEnumerable<Snapshot>> ListSnapshots(string? targetKey = null, CancellationToken token = default);
 
     /// <summary>
-    /// Retrieves the latest snapshot associated with the specified target key.
+    /// Retrieves a snapshot from the database based on the specified target key and version.
     /// </summary>
-    /// <param name="targetKey">The key used to identify the target whose latest snapshot will be retrieved.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the latest snapshot for the specified target key.</returns>
-    Task<Snapshot> GetSnapshotLatest(string targetKey, CancellationToken token = default);
-
-    /// <summary>
-    /// Retrieves a snapshot from the database based on the specified snapshot ID.
-    /// </summary>
-    /// <param name="snapshotId">The unique identifier of the snapshot to retrieve.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the specified snapshot.</returns>
-    Task<Snapshot> GetSnapshotById(int snapshotId, CancellationToken token = default);
+    /// <param name="targetKey">The unique identifier of the target whose snapshot is being retrieved.</param>
+    /// <param name="version">The version number of the snapshot to retrieve.</param>
+    /// <param name="token">A cancellation token to cancel the operation, if needed.</param>
+    /// <returns>A task representing the asynchronous operation, with a result of the requested snapshot.</returns>
+    Task<Snapshot> GetSnapshot(string targetKey, int version = 0, CancellationToken token = default);
 
     /// <summary>
     /// Adds a snapshot to the database and archives previous snapshots for the same target key.
@@ -86,7 +79,16 @@ public interface ILogixDb
     /// <param name="targetKey">The target key identifying the snapshot(s) to delete (format: targettype://targetname).</param>
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task DeleteSnapshotsFor(string targetKey, CancellationToken token = default);
+    Task DeleteSnapshots(string targetKey, CancellationToken token = default);
+
+    /// <summary>
+    /// Deletes a specific snapshot by its target key and version number.
+    /// </summary>
+    /// <param name="targetKey">The target key identifying the snapshot to delete (format: targettype://targetname).</param>
+    /// <param name="version">The version number of the snapshot to delete.</param>
+    /// <param name="token">A cancellation token to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task DeleteSnapshot(string targetKey, int version, CancellationToken token = default);
 
     /// <summary>
     /// Deletes snapshots created before the specified cutoff date. Optionally filters snapshots by a target key.
@@ -96,20 +98,4 @@ public interface ILogixDb
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     Task DeleteSnapshotsBefore(DateTime importDate, string? targetKey = null, CancellationToken token = default);
-
-    /// <summary>
-    /// Deletes the latest snapshot associated with the specified target key.
-    /// </summary>
-    /// <param name="targetKey">The key identifying the target whose latest snapshot should be deleted.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task DeleteSnapshotLatest(string targetKey, CancellationToken token = default);
-
-    /// <summary>
-    /// Deletes a specific snapshot by its unique identifier.
-    /// </summary>
-    /// <param name="snapshotId">The unique identifier of the snapshot to delete.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task DeleteSnapshot(int snapshotId, CancellationToken token = default);
 }

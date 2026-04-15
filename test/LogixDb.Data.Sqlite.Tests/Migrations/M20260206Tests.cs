@@ -32,6 +32,7 @@ public class M20260206Tests : SqliteTestFixture
 
             await AssertColumnDefinition("snapshot", "snapshot_id", "integer");
             await AssertColumnDefinition("snapshot", "target_id", "uniqueidentifier");
+            await AssertColumnDefinition("snapshot", "version_number", "integer");
             await AssertColumnDefinition("snapshot", "target_type", "text");
             await AssertColumnDefinition("snapshot", "target_name", "text");
             await AssertColumnDefinition("snapshot", "is_partial", "integer");

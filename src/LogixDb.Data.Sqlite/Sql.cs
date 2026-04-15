@@ -4,7 +4,7 @@ namespace LogixDb.Data.Sqlite;
 /// Provides a collection of SQL query strings used for interacting with an SQLite database
 /// in the "snapshot" and related tables.
 /// </summary>
-internal static class SqlStatement
+internal static class Sql
 {
     /// <summary>
     /// A SQL statement used to ensure the existence of a target entry in the "target" table by inserting a new record
@@ -23,7 +23,16 @@ internal static class SqlStatement
     /// in the "target" table based on the provided target key. If the target key exists in the
     /// database, the corresponding target_id is returned.
     /// </summary>
-    internal const string GetTargetId = "SELECT target_id FROM target WHERE target_key = @target_key";
+    internal const string GetTargetId =
+        "SELECT target_id FROM target WHERE target_key = @target_key";
+
+    /// <summary>
+    /// A SQL query that retrieves the latest version number associated with a specified target ID
+    /// from the "snapshot" table. The query filters by the provided target ID to fetch the
+    /// maximum version number or returns zero if no version exists.
+    /// </summary>
+    internal const string GetLatestVersion =
+        "SELECT IFNULL(MAX(version_number), 0) FROM snapshot WHERE target_id = @target_id";
 
     /// <summary>
     /// A SQL statement used to insert a new snapshot record into the "snapshot" table.
@@ -33,25 +42,9 @@ internal static class SqlStatement
     /// </summary>
     internal const string InsertSnapshot =
         """
-        INSERT INTO snapshot (target_id, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data) 
-        VALUES (@target_id, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
+        INSERT INTO snapshot (target_id, version_number, target_type, target_name, is_partial, schema_revision, software_revision, export_date, export_options, import_date, import_user, import_machine, source_hash, source_data) 
+        VALUES (@target_id, @version_number, @target_type, @target_name, @is_partial, @schema_revision, @software_revision, @export_date, @export_options, @import_date, @import_user, @import_machine, @source_hash, @source_data)
         RETURNING snapshot_id;
-        """;
-
-    /// <summary>
-    /// A SQL statement designed to update an existing record in the "snapshot" table.
-    /// It modifies the values for source hash, source data, import date, import user,
-    /// and import machine for a specific snapshot identified by its unique snapshot ID.
-    /// </summary>
-    internal const string UpdateSnapshot =
-        """
-        UPDATE snapshot SET 
-            source_hash = @source_hash, 
-            source_data = @source_data, 
-            import_date = @import_date, 
-            import_user = @import_user, 
-            import_machine = @import_machine
-        WHERE snapshot_id = @snapshot_id
         """;
 
     /// <summary>
@@ -74,6 +67,7 @@ internal static class SqlStatement
         """
         SELECT snapshot_id [SnapshotId],
               t.target_id [TargetId],
+              s.version_number [VersionNumber],
               t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
@@ -92,13 +86,17 @@ internal static class SqlStatement
         """;
 
     /// <summary>
-    /// A SQL query string used to fetch a snapshot entry from the database table "snapshot"
-    /// where the snapshot ID matches the specified parameter.
+    /// A SQL query used to retrieve a snapshot from the "snapshot" table
+    /// by joining it with the "target" table. This query selects metadata
+    /// and content fields associated with a specified target key and version number.
+    /// The result includes details such as snapshot ID, target information,
+    /// schema and software revisions, export and import metadata, and source data.
     /// </summary>
-    internal const string GetSnapshotById =
+    internal const string GetSnapshot =
         """
         SELECT snapshot_id [SnapshotId],
               t.target_id [TargetId],
+              s.version_number [VersionNumber],
               t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
@@ -114,7 +112,7 @@ internal static class SqlStatement
               source_data [SourceData] 
         FROM snapshot s
         JOIN target t on t.target_id = s.target_id
-        WHERE snapshot_id = @snapshot_id
+        WHERE t.target_key = @target_key and s.version_number = @version_number
         """;
 
     /// <summary>
@@ -125,6 +123,7 @@ internal static class SqlStatement
         """
         SELECT snapshot_id [SnapshotId],
               t.target_id [TargetId],
+              s.version_number [VersionNumber],
               t.target_key [TargetKey],
               target_type [TargetType],
               target_name [TargetName],
@@ -146,54 +145,27 @@ internal static class SqlStatement
         """;
 
     /// <summary>
-    /// A SQL statement used to retrieve the most recent snapshot ID associated with a specific target key.
-    /// The query joins the "snapshot" and "target" tables to identify the relevant record, orders the
-    /// results by the import date in descending order, and limits the output to a single record.
-    /// </summary>
-    internal const string GetSnapshotIds =
-        """
-        SELECT snapshot_id 
-        FROM snapshot s
-        JOIN target t on t.target_id = s.target_id
-        WHERE t.target_key = @target_key
-        ORDER BY import_date DESC
-        """;
-
-    /// <summary>
     /// A SQL query string used to delete all entries from the "target" database table.
     /// This query ensures that every record in the table where the target_id is greater than zero is removed,
     /// effectively clearing the table of all targets.
     /// </summary>
-    internal const string DeleteAllTargets = "DELETE FROM target WHERE target_id > 0";
+    internal const string DeleteTargets = "DELETE FROM target WHERE target_id > 0";
 
     /// <summary>
     /// A SQL query string used to delete a target entry from the "target" table in the database.
     /// The deletion is performed by matching the target_key value with the key provided via the @target_key parameter.
     /// </summary>
-    internal const string DeleteTargetById = "DELETE FROM target where target_key = @target_key ";
+    internal const string DeleteTarget = "DELETE FROM target where target_key = @target_key ";
 
     /// <summary>
-    /// A SQL query string designed to delete a specific snapshot entry from the database
-    /// table "snapshot" based on the provided snapshot ID. This query ensures the removal
-    /// of the snapshot record identified by the "snapshot_id" parameter.
+    /// A SQL query string used to delete a specific snapshot from the database
+    /// based on the target key and version number provided.
     /// </summary>
-    internal const string DeleteSnapshotById = "DELETE FROM snapshot WHERE snapshot_id = @snapshot_id;";
-
-    /// <summary>
-    /// A SQL query string used to delete the latest snapshot entry from the "snapshot" table, determined by the most recent
-    /// import_date. The query optionally filters snapshots by a specified target key, matching it to the target_id from
-    /// the "target" table. If no target key is provided, the latest snapshot is deleted regardless of its associated target.
-    /// </summary>
-    internal const string DeleteSnapshotByLatest =
+    internal const string DeleteSnapshotByVersion =
         """
         DELETE FROM snapshot 
-        WHERE snapshot_id = (
-            SELECT snapshot_id 
-            FROM snapshot 
-            WHERE (@target_key IS NULL OR target_id = (SELECT target_id FROM target WHERE target_key = @target_key))
-            ORDER BY import_date DESC 
-            LIMIT 1
-        )
+        WHERE target_id = (SELECT target_id FROM target WHERE target_key = @target_key)
+        AND version_number = @version_number
         """;
 
     /// <summary>

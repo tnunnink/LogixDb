@@ -66,6 +66,7 @@ public partial class ListCommand : DbCommand
         var table = new Table().Border(TableBorder.Rounded)
             .AddColumn("Id")
             .AddColumn("Key")
+            .AddColumn("Version")
             .AddColumn("Type")
             .AddColumn("Name")
             .AddColumn("Revision")
@@ -81,6 +82,7 @@ public partial class ListCommand : DbCommand
                 snapshot.TargetKey,
                 snapshot.TargetType,
                 snapshot.TargetName,
+                snapshot.VersionNumber.ToString(),
                 snapshot.SoftwareRevision ?? "N/A",
                 snapshot.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 snapshot.ImportUser,

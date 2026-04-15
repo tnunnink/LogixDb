@@ -14,11 +14,12 @@ public class M202602061020CreateSnapshotTable : AutoReversingMigration
         Create.Table("snapshot")
             .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
             .WithRequiredRelation("target_id", "target")
+            .WithColumn("version_number").AsInt32().NotNullable()
             .WithColumn("target_type").AsString(128).NotNullable()
             .WithColumn("target_name").AsString(128).NotNullable()
-            .WithColumn("is_partial").AsBoolean().NotNullable()
             .WithColumn("schema_revision").AsString(16).Nullable()
             .WithColumn("software_revision").AsString(16).Nullable()
+            .WithColumn("is_partial").AsBoolean().NotNullable()
             .WithColumn("export_date").AsDateTime().Nullable()
             .WithColumn("export_user").AsString(64).Nullable()
             .WithColumn("export_options").AsString(256).Nullable()
@@ -32,6 +33,12 @@ public class M202602061020CreateSnapshotTable : AutoReversingMigration
             .OnTable("snapshot")
             .OnColumn("target_type").Ascending()
             .OnColumn("target_name").Ascending();
+
+        Create.Index()
+            .OnTable("snapshot")
+            .OnColumn("target_id").Ascending()
+            .OnColumn("version_number").Ascending()
+            .WithOptions().Unique();
 
         Create.Index()
             .OnTable("snapshot")

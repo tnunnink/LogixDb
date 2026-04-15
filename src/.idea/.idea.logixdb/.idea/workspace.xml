@@ -20,16 +20,25 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDbWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerDbWriter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlStatement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Sql.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqlStatement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Sql.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/ILogixDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Snapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061020CreateSnapshotTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061020CreateSnapshotTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbGetSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbGetSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbDeleteSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbDeleteSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetSnapshotTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +49,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="2" />
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -64,9 +73,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/SourceGeneratedDocuments/C943202ED7809E209CD83F81/CliFx.Generators/CliFx.Generators.CommandDescriptorGenerator/CommandRegistrations.g.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -241,15 +250,8 @@
       <workItem from="1775050084170" duration="55168000" />
       <workItem from="1775246912199" duration="68779000" />
       <workItem from="1775745455754" duration="55085000" />
-      <workItem from="1776095408815" duration="5472000" />
-    </task>
-    <task id="LOCAL-00126" summary="Update `SqlStatement` logic, replace `DbConnection` with `DbConnectionInfo`, refine migration methods, and bump `L5Sharp` to v6.0.2.">
-      <option name="closed" value="true" />
-      <created>1775674809442</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1775674809442</updated>
+      <workItem from="1776095408815" duration="11528000" />
+      <workItem from="1776265893906" duration="7349000" />
     </task>
     <task id="LOCAL-00127" summary="Replace `DbConnection` with `DbConnectionInfo`, refine migration scripts, update `SqlStatement` logic, and bump `L5Sharp` to v6.0.2.">
       <option name="closed" value="true" />
@@ -635,7 +637,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775991547298</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="Bump project versions to 0.9.1, update `L5Sharp` dependency to v6.0.5, and refactor database configuration methods for clarity and consistency. Updated SqlServerDb.cs and SqlServerDbWriter.cs to prevent log growth as much as possible">
+      <option name="closed" value="true" />
+      <created>1776110349592</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1776110349592</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +671,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `TableOptions` with `ComponentOptions`, update migration methods to simplify filtering logic, and refactor `EnsureCreatedAndMigrated` into `EnsureDatabase`." />
     <MESSAGE value="Update README with selective migration details, enhanced FTAC filter configuration, and updated database schema documentation; add filtering logic to FtacMonitorService." />
     <MESSAGE value="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods." />
     <MESSAGE value="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter." />
@@ -686,7 +695,8 @@
     <MESSAGE value="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot." />
     <MESSAGE value="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli." />
     <MESSAGE value="Update README to refine configuration instructions, expand setting descriptions, and improve example clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README to refine configuration instructions, expand setting descriptions, and improve example clarity." />
+    <MESSAGE value="Bump project versions to 0.9.1, update `L5Sharp` dependency to v6.0.5, and refactor database configuration methods for clarity and consistency. Updated SqlServerDb.cs and SqlServerDbWriter.cs to prevent log growth as much as possible" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.9.1, update `L5Sharp` dependency to v6.0.5, and refactor database configuration methods for clarity and consistency. Updated SqlServerDb.cs and SqlServerDbWriter.cs to prevent log growth as much as possible" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

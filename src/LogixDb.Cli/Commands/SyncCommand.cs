@@ -33,7 +33,7 @@ public partial class SyncCommand : DbCommand
 
     protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
     {
-        var snapshot = await database.GetSnapshotLatest(TargetKey, token);
+        var snapshot = await database.GetSnapshot(TargetKey, token: token);
 
         if (snapshot is null)
             throw new CommandException($"No snapshot found for target key: {TargetKey}", ErrorCodes.FileNotFound);

@@ -156,6 +156,7 @@ public partial class ImportCommand : DbCommand
         table.AddRow("Key", result.TargetKey);
         table.AddRow("Type", result.TargetType);
         table.AddRow("Name", result.TargetName);
+        table.AddRow("Version", result.VersionNumber.ToString());
         table.AddRow("Revision", result.SoftwareRevision ?? "?");
         table.AddRow("Date", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("User", result.ImportUser);

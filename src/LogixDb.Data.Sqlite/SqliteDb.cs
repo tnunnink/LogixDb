@@ -15,7 +15,8 @@ namespace LogixDb.Data.Sqlite;
 /// This class provides methods to manage database migrations, snapshots, and data import/export processes
 /// within an SQLite database.
 /// </summary>
-public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
+public sealed class 
+    SqliteDb(DbConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Represents the connection information required for interacting with an SQLite database.
@@ -58,7 +59,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     public async Task Purge(CancellationToken token = default)
     {
         await EnsureDatabase();
-        await ExecuteSqlAsync(Sql.DeleteTargets, token: token);
+        await ExecuteSqlAsync(SqlCode.DeleteTargets, token: token);
     }
 
     /// <inheritdoc />
@@ -73,7 +74,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         await EnsureDatabase();
         await using var connection = await OpenConnectionAsync(token);
         var key = new { target_key = targetKey };
-        return await connection.QueryAsync<Snapshot>(Sql.ListSnapshots, key);
+        return await connection.QueryAsync<Snapshot>(SqlCode.ListSnapshots, key);
     }
 
     /// <inheritdoc />
@@ -85,12 +86,12 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         if (version > 0)
         {
             return await connection.QuerySingleAsync<Snapshot>(
-                Sql.GetSnapshot,
+                SqlCode.GetSnapshot,
                 new { target_key = targetKey, version_number = version }
             );
         }
 
-        return await connection.QuerySingleAsync<Snapshot>(Sql.GetLatestSnapshot, new { target_key = targetKey });
+        return await connection.QuerySingleAsync<Snapshot>(SqlCode.GetLatestSnapshot, new { target_key = targetKey });
     }
 
     /// <inheritdoc />
@@ -118,7 +119,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         await EnsureDatabase();
         var param = new { target_key = targetKey };
-        await ExecuteSqlAsync(Sql.DeleteTarget, param, token);
+        await ExecuteSqlAsync(SqlCode.DeleteTarget, param, token);
     }
 
     /// <inheritdoc />
@@ -126,7 +127,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         await EnsureDatabase();
         var param = new { target_key = targetKey, version_number = version };
-        await ExecuteSqlAsync(Sql.DeleteSnapshotByVersion, param, token);
+        await ExecuteSqlAsync(SqlCode.DeleteSnapshotByVersion, param, token);
     }
 
     /// <inheritdoc />
@@ -135,7 +136,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         await EnsureDatabase();
         var param = new { target_key = targetKey, import_date = importDate };
-        await ExecuteSqlAsync(Sql.DeleteSnapshotsBefore, param, token);
+        await ExecuteSqlAsync(SqlCode.DeleteSnapshotsBefore, param, token);
     }
 
     /// <summary>
@@ -148,17 +149,17 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         // Ensure the target entry exists for the provided key.
         var target = new { target_id = Guid.NewGuid(), target_key = snapshot.TargetKey };
-        await session.ExecuteAsync(Sql.EnsureTargetExists, target);
+        await session.ExecuteAsync(SqlCode.EnsureTargetExists, target);
 
         // Retrieve the target id back from the database since it could already exist.
-        var targetId = await session.GetAsync<string>(Sql.GetTargetId, new { target_key = snapshot.TargetKey });
+        var targetId = await session.GetAsync<string>(SqlCode.GetTargetId, new { target_key = snapshot.TargetKey });
         var targetGuid = Guid.Parse(targetId);
 
         // Retrieve the target key back from the database since it could already exist.
-        var versionNumber = await session.GetAsync<int>(Sql.GetLatestVersion, new { target_id = targetGuid });
+        var versionNumber = await session.GetAsync<int>(SqlCode.GetLatestVersion, new { target_id = targetGuid });
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
-        snapshot.SnapshotId = await session.Connection.ExecuteScalarAsync<int>(Sql.InsertSnapshot, new
+        snapshot.SnapshotId = await session.Connection.ExecuteScalarAsync<int>(SqlCode.InsertSnapshot, new
         {
             target_id = targetGuid,
             version_number = versionNumber + 1,
@@ -177,7 +178,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
         }, session.Transaction);
 
         // Post the snapshot metadata to the database.
-        await session.ExecuteAsync(Sql.InsertSnapshotMetadata,
+        await session.ExecuteAsync(SqlCode.InsertSnapshotMetadata,
             snapshot.Metadata.Select(p => new
             {
                 property_id = Guid.NewGuid(),
@@ -211,7 +212,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     private static async Task PruneSnapshotsAsync(string targetKey, SqliteDbSession session)
     {
         var key = new { target_key = targetKey };
-        var snapshots = await session.GetAllAsync<Snapshot>(Sql.ListSnapshots, key);
+        var snapshots = await session.GetAllAsync<Snapshot>(SqlCode.ListSnapshots, key);
         var ids = snapshots.Select(s => s.SnapshotId).ToList();
 
         List<string> targets = ["controller", "data_type", "aoi", "module", "tag", "program", "task", "operand"];
@@ -237,7 +238,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <returns>A collection of table names as strings.</returns>
     private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
-        var names = await session.GetAllAsync<string>(Sql.GetTableNames);
+        var names = await session.GetAllAsync<string>(SqlCode.GetTableNames);
         return names.ToArray();
     }
 

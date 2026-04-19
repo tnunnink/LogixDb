@@ -22,7 +22,8 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
     {
         Create.Table("instruction")
             .WithPrimaryGuid("instruction_id")
-            .WithRequiredRelation("rung_id", "rung")
+            .WithSnapshotRelation()
+            .WithParentRelation("rung_id", "rung")
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()

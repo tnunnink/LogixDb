@@ -18,6 +18,7 @@ internal class TagMemberMap : TableMap<TagMemberRecord>
     protected override IReadOnlyList<ColumnMap<TagMemberRecord>> Columns =>
     [
         ColumnMap<TagMemberRecord>.For(r => r.MemberId, "member_id"),
+        ColumnMap<TagMemberRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagMemberRecord>.For(r => r.TagId, "tag_id"),
         ColumnMap<TagMemberRecord>.For(r => r.ParentId, "parent_id"),
         ColumnMap<TagMemberRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
@@ -33,7 +34,7 @@ internal class TagMemberMap : TableMap<TagMemberRecord>
 /// Provides the necessary structure for database interactions and schema definition
 /// in conjunction with <see cref="TagMemberMap"/>.
 /// </summary>
-internal record TagMemberRecord(Guid TagId, Guid? ParentId, Tag Tag)
+internal record TagMemberRecord(int SnapshotId, Guid TagId, Guid? ParentId, Tag Tag)
 {
     public Guid MemberId { get; } = Guid.NewGuid();
 }

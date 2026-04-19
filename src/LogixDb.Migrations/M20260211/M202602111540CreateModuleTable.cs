@@ -14,7 +14,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
         Create.Table("module")
             .WithPrimaryGuid("module_id")
             .WithSnapshotRelation()
-            .WithOptionalRelation("parent_id", "module", "module_id")
+            .WithParentRelation("parent_id", "module", "module_id", nullable: true)
             .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(64).Nullable()
@@ -45,7 +45,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
         Create.Index().OnTable("module")
             .OnColumn("module_name").Ascending()
             .OnColumn("record_hash").Ascending();
-        
+
         Create.Index().OnTable("module")
             .OnColumn("source_hash").Ascending()
             .OnColumn("snapshot_id").Ascending();

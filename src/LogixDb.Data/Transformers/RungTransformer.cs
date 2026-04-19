@@ -30,9 +30,9 @@ internal class RungTransformer : ISnapshotTransformer
         foreach (var rung in rungs)
         {
             var routineId = rung.Routine?.Metadata.Get<Guid>("id");
-            var rungRecord = new RungRecord(routineId, rung);
+            var rungRecord = new RungRecord(snapshot.SnapshotId, routineId, rung);
             rungRecords.Add(rungRecord);
-            ProcessRung(rungRecord.RungId, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungRecord.RungId, snapshot.SnapshotId, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -40,7 +40,8 @@ internal class RungTransformer : ISnapshotTransformer
         yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    private static void ProcessRung(Guid rungId, Rung rung, List<InstructionRecord> instructionRecords,
+    private static void ProcessRung(Guid rungId, int snapshotId, Rung rung,
+        List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
         var instructions = rung.Instructions().ToArray();
@@ -48,7 +49,7 @@ internal class RungTransformer : ISnapshotTransformer
         for (short index = 0; index < instructions.Length; index++)
         {
             var instruction = instructions[index];
-            var instructionRecord = new InstructionRecord(rungId, index, instruction);
+            var instructionRecord = new InstructionRecord(snapshotId, rungId, index, instruction);
             var instructionId = instructionRecord.InstructionId;
             instructionRecords.Add(instructionRecord);
 
@@ -62,12 +63,12 @@ internal class RungTransformer : ISnapshotTransformer
                 if (argument.Type == ArgumentType.Expression)
                 {
                     argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(instructionId, argumentIndex, new Argument(t))
+                        new ArgumentRecord(snapshotId, instructionId, argumentIndex, new Argument(t))
                     ));
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(instructionId, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(snapshotId, instructionId, argumentIndex, argument));
             }
         }
     }

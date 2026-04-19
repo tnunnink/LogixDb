@@ -21,6 +21,7 @@ internal class TagProducerMap : TableMap<TagProduceInfoRecord>
     protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
     [
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProducerId, "producer_id", hashable: false),
+        ColumnMap<TagProduceInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProduceCount, "produce_count"),
         ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProgrammaticallySendEventTrigger, "send_event_trigger"),
@@ -39,7 +40,7 @@ internal class TagProducerMap : TableMap<TagProduceInfoRecord>
 /// </summary>
 /// <param name="TagId">The unique identifier for the tag associated with the produce information.</param>
 /// <param name="ProduceInfo">An object containing detailed information about produce-related settings and data.</param>
-internal record TagProduceInfoRecord(Guid TagId, ProduceInfo ProduceInfo)
+internal record TagProduceInfoRecord(int SnapshotId, Guid TagId, ProduceInfo ProduceInfo)
 {
     public Guid ProducerId { get; } = Guid.NewGuid();
 }

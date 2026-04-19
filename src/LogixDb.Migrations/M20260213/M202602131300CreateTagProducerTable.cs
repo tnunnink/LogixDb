@@ -13,7 +13,8 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
     {
         Create.Table("tag_producer")
             .WithPrimaryGuid("producer_id")
-            .WithRequiredRelation("tag_id", "tag")
+            .WithSnapshotRelation()
+            .WithParentRelation("tag_id", "tag")
             .WithColumn("produce_count").AsInt32().NotNullable()
             .WithColumn("send_event_trigger").AsBoolean().NotNullable()
             .WithColumn("unicast_permitted").AsBoolean().NotNullable()

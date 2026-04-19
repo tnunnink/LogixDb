@@ -47,13 +47,13 @@ internal class TagTransformer : ISnapshotTransformer
             tagRecords.Add(tagRecord);
 
             if (tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(tagRecord.TagId, tag.ProduceInfo));
+                producerRecords.Add(new TagProduceInfoRecord(snapshot.SnapshotId, tagRecord.TagId, tag.ProduceInfo));
 
             if (tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(tagRecord.TagId, tag.ConsumeInfo));
+                consumerRecords.Add(new TagConsumeInfoRecord(snapshot.SnapshotId, tagRecord.TagId, tag.ConsumeInfo));
 
             if (tag.AliasFor is not null)
-                aliasRecords.Add(new TagAliasRecord(tagRecord.TagId, tag.AliasFor.LocalPath));
+                aliasRecords.Add(new TagAliasRecord(snapshot.SnapshotId, tagRecord.TagId, tag.AliasFor.LocalPath));
 
             foreach (var member in tag.Members())
             {
@@ -62,14 +62,14 @@ internal class TagTransformer : ISnapshotTransformer
                 Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
 
                 //Generate member record and comment records and add to collections.
-                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, member);
+                var memberRecord = new TagMemberRecord(snapshot.SnapshotId, tagRecord.TagId, parentId, member);
 
                 if (!memberLookup.TryAdd(member.TagName, memberRecord))
                     throw new InvalidOperationException(
                         $"Duplicate member TagName encountered: '{member.TagName}'. Each member must have a unique TagName within the tag.");
 
                 memberRecords.Add(memberRecord);
-                commentRecords.AddRange(GetTagComments(memberRecord));
+                commentRecords.AddRange(GetTagComments(snapshot.SnapshotId, memberRecord));
             }
         }
 
@@ -82,24 +82,28 @@ internal class TagTransformer : ISnapshotTransformer
     }
 
     /// <summary>
-    /// Extracts and generates a collection of comment records based on the given tag member record.
+    /// Extracts comments from a provided tag member record and generates a collection of tag comment records.
     /// </summary>
-    /// <param name="record">
-    /// The tag member record for which to retrieve and create associated comment records.
-    /// </param>
-    /// <returns>
-    /// A collection of <see cref="TagCommentRecord"/> objects representing the comments associated with the given tag member record.
-    /// </returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(TagMemberRecord record)
+    /// <param name="snapshotId">The unique identifier of the snapshot to associate with the generated comments.</param>
+    /// <param name="record">The tag member record containing tag metadata and associated details.</param>
+    /// <returns>A collection of tag comment records generated from the provided tag member record.</returns>
+    private static IEnumerable<TagCommentRecord> GetTagComments(int snapshotId, TagMemberRecord record)
     {
         if (record.Tag.Description is not null)
-            yield return new TagCommentRecord(record.MemberId, record.Tag.TagName.LocalPath, record.Tag.Description);
+        {
+            yield return new TagCommentRecord(
+                snapshotId,
+                record.MemberId,
+                record.Tag.TagName.LocalPath,
+                record.Tag.Description
+            );
+        }
 
         if (record.Tag.Comments is null)
             yield break;
 
         // The following code is for bit-level comments only.
-        // All based tags are covered by the internal description logic of L5Sharp.
+        // All based tags are covered by the code above using L5Sharp internal logic.
         foreach (var comment in record.Tag.Comments)
         {
             if (comment.Operand.Contains(record.Tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
@@ -110,7 +114,7 @@ internal class TagTransformer : ISnapshotTransformer
                     ? string.Concat(record.Tag.Description, " ", comment.Value).Trim()
                     : comment.Value;
 
-                yield return new TagCommentRecord(record.MemberId, tagName, tagComment);
+                yield return new TagCommentRecord(snapshotId, record.MemberId, tagName, tagComment);
             }
         }
     }

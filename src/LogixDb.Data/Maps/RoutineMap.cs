@@ -16,6 +16,7 @@ internal class RoutineMap : TableMap<RoutineRecord>
     protected override IReadOnlyList<ColumnMap<RoutineRecord>> Columns =>
     [
         ColumnMap<RoutineRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
+        ColumnMap<RoutineRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Name, "routine_name", hashable: false),
         ColumnMap<RoutineRecord>.For(r => r.Routine.Type.Name, "routine_type"),
@@ -30,7 +31,7 @@ internal class RoutineMap : TableMap<RoutineRecord>
 /// This record contains the metadata for a specific Logix routine,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-internal record RoutineRecord(Guid? ProgramId, Routine Routine)
+internal record RoutineRecord(int SnapshotId, Guid? ProgramId, Routine Routine)
 {
     public Guid RoutineId { get; } = Guid.NewGuid();
 }

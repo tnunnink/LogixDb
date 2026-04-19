@@ -13,8 +13,9 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
     {
         Create.Table("tag_member")
             .WithPrimaryGuid("member_id")
-            .WithRequiredRelation("tag_id", "tag")
-            .WithOptionalRelation("parent_id", "tag_member", "member_id")
+            .WithSnapshotRelation()
+            .WithParentRelation("tag_id", "tag")
+            .WithParentRelation("parent_id", "tag_member", "member_id", nullable: true)
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("member_name").AsString(128).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
@@ -24,6 +25,10 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .OnColumn("tag_id").Ascending()
             .OnColumn("tag_name").Ascending()
             .WithOptions().Unique();
+        
+        Create.Index().OnTable("tag_member")
+            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("tag_name").Ascending();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("parent_id").Ascending()

@@ -30,7 +30,7 @@ internal class DataTypeTransformer : ISnapshotTransformer
         foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
         {
             var type = new DataTypeRecord(snapshot.SnapshotId, dataType);
-            var members = dataType.Members.Select(m => new DataTypeMemberRecord(type.TypeId, m));
+            var members = dataType.Members.Select(m => new DataTypeMemberRecord(snapshot.SnapshotId, type.TypeId, m));
 
             dataTypeRecords.Add(type);
             memberRecords.AddRange(members);

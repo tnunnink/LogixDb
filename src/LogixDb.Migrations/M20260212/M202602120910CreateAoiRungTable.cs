@@ -13,7 +13,8 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
     {
         Create.Table("aoi_rung")
             .WithPrimaryGuid("rung_id")
-            .WithRequiredRelation("aoi_id", "aoi")
+            .WithSnapshotRelation()
+            .WithParentRelation("aoi_id", "aoi")
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).NotNullable()

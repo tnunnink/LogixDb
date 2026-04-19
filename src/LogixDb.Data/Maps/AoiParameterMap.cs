@@ -16,6 +16,7 @@ internal class AoiParameterMap : TableMap<AoiParameterRecord>
     protected override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
     [
         ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id"),
+        ColumnMap<AoiParameterRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.AoiId, "aoi_id"),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name", hashable: false),
         ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
@@ -39,7 +40,7 @@ internal class AoiParameterMap : TableMap<AoiParameterRecord>
 /// This record contains the metadata and configuration for a specific AOI parameter,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-internal record AoiParameterRecord(Guid? AoiId, Parameter Parameter)
+internal record AoiParameterRecord(int SnapshotId, Guid? AoiId, Parameter Parameter)
 {
     public Guid ParameterId { get; } = Guid.NewGuid();
 }

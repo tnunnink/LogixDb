@@ -21,6 +21,7 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentId, "argument_id"),
+        ColumnMap<ArgumentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionId, "instruction_id"),
         ColumnMap<ArgumentRecord>.For(r => r.Index, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
@@ -36,7 +37,7 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 /// from the database, including their relationship to a snapshot and parent instruction,
 /// as well as their position and content.
 /// </remarks>
-internal record ArgumentRecord(Guid InstructionId, byte Index, Argument Argument)
+internal record ArgumentRecord(int SnapshotId, Guid InstructionId, byte Index, Argument Argument)
 {
     public Guid ArgumentId { get; } = Guid.NewGuid();
 }

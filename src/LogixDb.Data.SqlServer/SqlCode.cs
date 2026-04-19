@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer;
 /// This class is used for common database operations such as querying snapshots
 /// or deleting target entries.
 /// </summary>
-internal static class Sql
+internal static class SqlCode
 {
     /// <summary>
     /// A SQL query string used to ensure that a target entry exists in the database for the specified target key.

@@ -13,7 +13,7 @@ public class M202602061020CreateSnapshotTable : AutoReversingMigration
     {
         Create.Table("snapshot")
             .WithColumn("snapshot_id").AsInt32().PrimaryKey().Identity()
-            .WithRequiredRelation("target_id", "target")
+            .WithParentRelation("target_id", "target")
             .WithColumn("version_number").AsInt32().NotNullable()
             .WithColumn("target_type").AsString(128).NotNullable()
             .WithColumn("target_name").AsString(128).NotNullable()

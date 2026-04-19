@@ -4,7 +4,7 @@ namespace LogixDb.Data.Sqlite;
 /// Provides a collection of SQL query strings used for interacting with an SQLite database
 /// in the "snapshot" and related tables.
 /// </summary>
-internal static class Sql
+internal static class SqlCode
 {
     /// <summary>
     /// A SQL statement used to ensure the existence of a target entry in the "target" table by inserting a new record

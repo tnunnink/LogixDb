@@ -44,39 +44,19 @@ public static class FluentMigrationExtensions
         /// <param name="columnName">The name of the foreign key column to be added to the table.</param>
         /// <param name="primaryTable">The name of the table that contains the primary key being referenced.</param>
         /// <param name="primaryColumn">The name of the primary key column in the referenced table. If null, uses the same name as columnName.</param>
+        /// <param name="nullable">Indicates whether the foreign key column should allow null values. If true, the column is nullable; otherwise, it is not nullable.</param>
         /// <returns>Returns the fluent migration builder after adding and configuring the foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithRequiredRelation(string columnName, string primaryTable,
-            string? primaryColumn = null
-        )
-        {
-            return syntax
-                .WithColumn(columnName)
-                .AsGuid()
-                .NotNullable()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName)
-                .OnDeleteOrUpdate(Rule.Cascade);
-        }
-
-        /// <summary>
-        /// Adds a nullable foreign key column to the table, linking to the specified primary table.
-        /// The column is configured as a GUID and supports optional relations with no cascading
-        /// delete or update behavior.
-        /// </summary>
-        /// <param name="columnName">The name of the foreign key column to be added to the current table.</param>
-        /// <param name="primaryTable">The name of the primary table that the foreign key references.</param>
-        /// <param name="primaryColumn">The name of the column in the primary table to which the foreign key relates. If not specified, defaults to the same name as <paramref name="columnName"/>.</param>
-        /// <returns>Returns the fluent migration builder after adding the nullable foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithOptionalRelation(
-            string columnName, 
+        public ICreateTableColumnOptionOrWithColumnSyntax WithParentRelation(
+            string columnName,
             string primaryTable,
-            string? primaryColumn = null
+            string? primaryColumn = null,
+            bool nullable = false
         )
         {
-            return syntax
-                .WithColumn(columnName)
-                .AsGuid()
-                .Nullable()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName);
+            syntax = syntax.WithColumn(columnName).AsGuid();
+            syntax = nullable ? syntax.Nullable() : syntax.NotNullable();
+            syntax = syntax.ForeignKey(primaryTable, primaryColumn ?? columnName);
+            return syntax;
         }
     }
 }

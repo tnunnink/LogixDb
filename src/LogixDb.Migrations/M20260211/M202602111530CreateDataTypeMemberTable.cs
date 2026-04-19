@@ -13,7 +13,8 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
     {
         Create.Table("data_type_member")
             .WithPrimaryGuid("member_id")
-            .WithRequiredRelation("type_id", "data_type")
+            .WithSnapshotRelation(nullable: true)
+            .WithParentRelation("type_id", "data_type")
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()

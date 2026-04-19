@@ -24,7 +24,8 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
     {
         Create.Table("argument")
             .WithPrimaryGuid("argument_id")
-            .WithRequiredRelation("instruction_id", "instruction")
+            .WithSnapshotRelation()
+            .WithParentRelation("instruction_id", "instruction")
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(255).NotNullable();

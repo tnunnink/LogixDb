@@ -24,7 +24,7 @@ public partial class ImportCommand : DbCommand
     [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
     public string? SourcePath { get; set; }
 
-    [CommandOption("target", 't', Description = "Optional target key override (format: targettype://targetname)")]
+    [CommandOption("target", 't', Description = "Optional target key override (default: <TargetType>://<TargetName>)")]
     public string? TargetKey { get; set; }
 
     [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]

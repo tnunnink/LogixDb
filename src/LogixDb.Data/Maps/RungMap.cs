@@ -22,7 +22,7 @@ internal class RungMap : TableMap<RungRecord>
         ColumnMap<RungRecord>.For(r => r.Rung.Comment, "rung_comment"),
         ColumnMap<RungRecord>.For(r => r.Rung.Text, "rung_text"),
         ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<RungRecord>.For(r => r.Rung.Text.Hash(), "code_hash", hashable: false)
+        /*ColumnMap<RungRecord>.For(r => r.Rung.Text.Hash(), "code_hash", hashable: false)*/
     ];
 }
 

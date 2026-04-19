@@ -15,8 +15,7 @@ namespace LogixDb.Data.Sqlite;
 /// This class provides methods to manage database migrations, snapshots, and data import/export processes
 /// within an SQLite database.
 /// </summary>
-public sealed class 
-    SqliteDb(DbConnectionInfo connection) : ILogixDb
+public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
 {
     /// <summary>
     /// Represents the connection information required for interacting with an SQLite database.

@@ -33,7 +33,7 @@ public static class FluentMigrationExtensions
         {
             syntax = syntax.WithColumn("snapshot_id").AsInt32();
             syntax = nullable ? syntax.Nullable() : syntax.NotNullable();
-            syntax = syntax.ForeignKey("snapshot", "snapshot_id").OnDeleteOrUpdate(Rule.Cascade);
+            syntax = syntax.ForeignKey("snapshot_instance", "snapshot_id").OnDeleteOrUpdate(Rule.Cascade);
             return syntax;
         }
 

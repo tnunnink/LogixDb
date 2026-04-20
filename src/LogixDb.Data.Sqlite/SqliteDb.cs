@@ -118,7 +118,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         await EnsureDatabase();
         var param = new { target_key = targetKey };
-        await ExecuteSqlAsync(SqlCode.DeleteTarget, param, token);
+        await ExecuteSqlAsync(SqlCode.PurgeTarget, param, token);
     }
 
     /// <inheritdoc />
@@ -148,20 +148,19 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     {
         // Ensure the target entry exists for the provided key.
         var target = new { target_id = Guid.NewGuid(), target_key = snapshot.TargetKey };
-        await session.ExecuteAsync(SqlCode.EnsureTargetExists, target);
+        await session.ExecuteAsync(SqlCode.EnsureTarget, target);
 
-        // Retrieve the target id back from the database since it could already exist.
+        /*// Retrieve the target id back from the database since it could already exist.
         var targetId = await session.GetAsync<string>(SqlCode.GetTargetId, new { target_key = snapshot.TargetKey });
         var targetGuid = Guid.Parse(targetId);
 
         // Retrieve the target key back from the database since it could already exist.
-        var versionNumber = await session.GetAsync<int>(SqlCode.GetLatestVersion, new { target_id = targetGuid });
+        var versionNumber = await session.GetAsync<int>(SqlCode.GetLatestVersion, new { target_id = targetGuid });*/
 
         // Post the provided snapshot to the database. Update the snapshot instance with the inserted ID.
         snapshot.SnapshotId = await session.Connection.ExecuteScalarAsync<int>(SqlCode.InsertSnapshot, new
         {
-            target_id = targetGuid,
-            version_number = versionNumber + 1,
+            target_key = snapshot.TargetKey,
             target_type = snapshot.TargetType,
             target_name = snapshot.TargetName,
             schema_revision = snapshot.SchemaRevision,
@@ -237,7 +236,7 @@ public sealed class SqliteDb(DbConnectionInfo connection) : ILogixDb
     /// <returns>A collection of table names as strings.</returns>
     private static async Task<ICollection<string>> GetTableNames(SqliteDbSession session)
     {
-        var names = await session.GetAllAsync<string>(SqlCode.GetTableNames);
+        var names = await session.GetAllAsync<string>(SqlCode.GetComponentTables);
         return names.ToArray();
     }
 

@@ -2,8 +2,8 @@ namespace LogixDb.Data.Maps;
 
 /// <summary>
 /// Defines the mapping configuration for the tag_comment table, which stores user-defined comments
-/// associated with tags within a snapshot. Each record uniquely identifies a tag by its hash and name
-/// within a specific snapshot.
+/// associated with tags within a target. Each record uniquely identifies a tag by its hash and name
+/// within a specific target.
 /// </summary>
 internal class TagCommentMap : TableMap<TagCommentRecord>
 {
@@ -23,7 +23,7 @@ internal class TagCommentMap : TableMap<TagCommentRecord>
 }
 
 /// <summary>
-/// Represents a record containing information about a tag's comments within a specific snapshot.
+/// Represents a record containing information about a tag's comments within a specific target.
 /// Each record uniquely identifies a comment by associating a unique tag identifier, instance identifier,
 /// tag name, and its comment text.
 /// </summary>

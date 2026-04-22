@@ -14,10 +14,10 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command to import an L5X file as a new snapshot into the database.
+/// Represents a command to import an L5X file as a new target into the database.
 /// </summary>
 [PublicAPI]
-[Command("import", Description = "Imports an L5X file as a new snapshot into the database")]
+[Command("import", Description = "Imports an L5X file as a new target into the database")]
 public partial class ImportCommand : DbCommand
 {
     [Required]
@@ -48,7 +48,7 @@ public partial class ImportCommand : DbCommand
     }
 
     /// <summary>
-    /// Imports a specified L5X file into the database as a new snapshot.
+    /// Imports a specified L5X file into the database as a new target.
     /// </summary>
     private async ValueTask ImportFileAsync(IConsole console, IDbManager database, string importTarget,
         CancellationToken token)
@@ -136,10 +136,10 @@ public partial class ImportCommand : DbCommand
     }
 
     /// <summary>
-    /// Outputs the details of a snapshot result to the console in a tabular format.
+    /// Outputs the details of a target result to the console in a tabular format.
     /// </summary>
     /// <param name="console">The console instance used to write the output.</param>
-    /// <param name="target">The snapshot result containing the details to display.</param>
+    /// <param name="target">The target result containing the details to display.</param>
     private static void OutputResult(IConsole console, Target target)
     {
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
@@ -154,7 +154,7 @@ public partial class ImportCommand : DbCommand
         table.AddRow("Machine", target.ImportMachine);
         table.AddRow("Hash", target.SourceHash);
 
-        console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
+        console.Ansi().MarkupLine("[green]✓[/] Target imported successfully");
         console.Ansi().Write(table);
     }
 }

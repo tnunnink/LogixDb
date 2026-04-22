@@ -41,7 +41,7 @@ public class ListCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task List_WithSingleSnapshot_ShouldReturnZeroExitCode()
+    public async Task List_WithSingleTarget_ShouldReturnZeroExitCode()
     {
         var target = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target);

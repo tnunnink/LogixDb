@@ -9,24 +9,24 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command for pruning snapshots and other related resources in the LogixDb CLI.
+/// Represents a command for pruning targets and other related resources in the LogixDb CLI.
 /// </summary>
 /// <remarks>
-/// The <see cref="PruneCommand"/> class provides functionality to delete specific snapshots,
-/// snapshots imported before a specific date, or the latest snapshot tied to a target.
+/// The <see cref="PruneCommand"/> class provides functionality to delete specific targets,
+/// targets imported before a specific date, or the latest instance tied to a target.
 /// Use the provided command options to specify pruning behavior.
 /// This command inherits from <see cref="DbCommand"/>, allowing database connection configuration.
 /// </remarks>
 /// <example>
 /// This command supports the following options:
 /// - Target: Specifies the target resource to be pruned.
-/// - Version: Deletes a snapshot with a specific version number.
-/// - SnapshotId: Deletes a snapshot with a specific ID.
-/// - Before: Deletes snapshots imported before a given date.
-/// - Latest: Deletes the latest snapshot for a specified target.
+/// - Version: Deletes a target with a specific version number.
+/// - TargetId: Deletes a target with a specific ID.
+/// - Before: Deletes targets imported before a given date.
+/// - Latest: Deletes the latest instance for a specified target.
 /// </example>
 [PublicAPI]
-[Command("prune", Description = "Delete snapshots by version, date, or target")]
+[Command("prune", Description = "Delete targets by version, date, or target")]
 public partial class PruneCommand : DbCommand
 {
     [CommandOption("target", 't',
@@ -45,7 +45,7 @@ public partial class PruneCommand : DbCommand
                 _ => manager.PruneTarget(Target, token)
             );
 
-            console.Ansi().MarkupLine($"[green]✓[/] Snapshot instances for '{Target}' pruned successfully");
+            console.Ansi().MarkupLine($"[green]✓[/] Target instances for '{Target}' pruned successfully");
         }
         catch (Exception e)
         {

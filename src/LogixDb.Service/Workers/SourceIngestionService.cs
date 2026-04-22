@@ -71,7 +71,7 @@ public class SourceIngestionService(
                 // Create a temp L5X file for processing, either converting it from ACD or just copying it, depending on the file type.
                 var tempFile = await ConvertOrCopy(source, stoppingToken);
 
-                // Load the L5X file, create a snapshot and add it to the database.
+                // Load the L5X file, create a target and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
                 var target = Target.Create(content);
 

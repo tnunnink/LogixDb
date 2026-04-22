@@ -29,7 +29,7 @@ internal class RungMap : TableMap<RungRecord>
 /// <summary>
 /// Represents a database record for a rung entity.
 /// This record contains the metadata and code for a specific Logix rung,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 internal record RungRecord(int InstanceId, Guid? RoutineId, Rung Rung)
 {

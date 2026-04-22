@@ -71,8 +71,8 @@ public class ImportCommandTests : TestDbFixture
 
         Assert.That(exitCode, Is.Zero);
 
-        var snapshots = await Database.ListTargets();
-        Assert.That(snapshots.First().TargetKey, Is.EqualTo("Controller://CustomTarget"));
+        var targets = await Database.ListTargets();
+        Assert.That(targets.First().TargetKey, Is.EqualTo("Controller://CustomTarget"));
         File.Delete(testFile);
     }
 }

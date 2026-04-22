@@ -41,7 +41,7 @@ internal class ModuleMap : TableMap<ModuleRecord>
 /// <summary>
 /// Represents a database record for a module entity.
 /// This record contains the metadata for a specific Logix module,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this module record belongs.</param>
 /// <param name="Module">The Logix module entity.</param>

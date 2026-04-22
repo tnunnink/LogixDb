@@ -9,20 +9,20 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command to archive a snapshot instance, removing its expanded relational data
-/// while preserving the historical snapshot metadata and L5X blob.
+/// Represents a command to archive a target instance, removing its expanded relational data
+/// while preserving the historical target metadata and L5X blob.
 /// </summary>
 [PublicAPI]
 [Command("archive",
-    Description = "Removes expanded relational data for a snapshot while preserving its archive record")]
+    Description = "Removes expanded relational data for a target while preserving its archive record")]
 public partial class ArchiveCommand : DbCommand
 {
     [CommandOption("target", 't',
-        Description = "Target key of the snapshot to archive (format: targettype://targetname)")]
+        Description = "Target key of the target to archive (format: targettype://targetname)")]
     public string? Target { get; set; }
 
     [CommandOption("version", 'v',
-        Description = "Version number of the snapshot to archive. If 0, the latest version is archived.")]
+        Description = "Version number of the target to archive. If 0, the latest version is archived.")]
     public int Version { get; set; }
 
     /// <inheritdoc />
@@ -34,12 +34,12 @@ public partial class ArchiveCommand : DbCommand
         try
         {
             await console.Ansi().Status().StartAsync(
-                $"Archiving snapshot '{Target}' version {(Version == 0 ? "latest" : Version)}...",
+                $"Archiving target '{Target}' version {(Version == 0 ? "latest" : Version)}...",
                 _ => manager.ArchiveTarget(Target, Version, token)
             );
 
             console.Ansi().MarkupLine(
-                $"[green]✓[/] Snapshot '{Target}' version {(Version == 0 ? "latest" : Version)} archived successfully");
+                $"[green]✓[/] Target '{Target}' version {(Version == 0 ? "latest" : Version)} archived successfully");
         }
         catch (Exception e)
         {

@@ -35,7 +35,7 @@ internal class TagMap : TableMap<TagRecord>
 /// <summary>
 /// Represents a database record for a tag entity.
 /// This record contains the metadata and configuration for a specific Logix tag,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this tag record belongs.</param>
 /// <param name="Tag">The Logix tag entity containing its configuration and value.</param>

@@ -57,7 +57,7 @@ internal class ControllerMap : TableMap<ControllerRecord>
 /// <summary>
 /// Represents a database record for a controller entity.
 /// This record contains the metadata and configuration for a specific Logix controller,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this controller record belongs.</param>
 /// <param name="Controller">The Logix controller entity containing its configuration.</param>

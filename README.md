@@ -20,16 +20,16 @@ LogixDb currently offers a few tools for users to work with.
 
 ### CLI
 
-Interactive command-line tool for managing database operations. Use it for importing L5X/ACD files, exporting snapshots,
+Interactive command-line tool for managing database operations. Use it for importing L5X/ACD files, exporting targets,
 and performing database maintenance. See the table below for a complete list of available commands.
 
 | Command     | Description                                                                                        |
 |-------------|----------------------------------------------------------------------------------------------------|
 | **migrate** | Runs migrations to ensure the latest schema. Supports selective table creation via `--components`. |
-| **import**  | Imports an L5X or ACD file as a new snapshot into the database                                     |
-| **list**    | Lists all snapshots, optionally filtered by target key                                             |
-| **export**  | Exports a snapshot to an L5X file by target or ID                                                  |
-| **prune**   | Delete snapshots by ID, date, or target                                                            |
+| **import**  | Imports an L5X or ACD file as a new target into the database                                     |
+| **list**    | Lists all targets, optionally filtered by target key                                             |
+| **export**  | Exports a target to an L5X file by target or ID                                                  |
+| **prune**   | Delete targets by ID, date, or target                                                            |
 | **purge**   | Purges all data from the database while preserving the schema                                      |
 | **drop**    | Drops the entire database, permanently deleting all tables and data                                |
 
@@ -81,19 +81,19 @@ logixdb migrate -c "C:\Data\Logix.db" --components 48
 logixdb import -c "C:\Data\Logix.db" -s "C:\Projects\MyProject.L5X" -t "PLC://Main_Controller"
 ```
 
-**List all snapshots for a specific target (SQL Server)**:
+**List all targets for a specific target (SQL Server)**:
 
 ```powershell
 logixdb list -c "LogixDb@localhost" -t "PLC://Main_Controller"
 ```
 
-**Export the latest snapshot to a file**:
+**Export the latest target to a file**:
 
 ```powershell
 logixdb export -c "LogixDb@localhost" -t "PLC://Main_Controller" -o "C:\Exports\Backup.L5X"
 ```
 
-**Prune snapshots older than a specific date**:
+**Prune targets older than a specific date**:
 
 ```powershell
 logixdb prune -c "LogixDb@localhost" --before "2024-01-01"
@@ -118,7 +118,7 @@ The `/ingest` endpoint expects a `multipart/form-data` request with a single `fi
 source file.
 
 Custom metadata can be associated with an upload by including request headers prefixed with `Logix-`. These headers
-will be extracted and stored alongside the snapshot metadata.
+will be extracted and stored alongside the target metadata.
 
 Example: `Logix-Target: PLC_A` or `Logix-Environment: Production`.
 
@@ -335,7 +335,7 @@ Both the CLI and the Windows Service provide detailed logging.
 
 ## Database Schema
 
-LogixDb uses a snapshot-based relational schema to store PLC project data. This structure allows for version
+LogixDb uses a target-based relational schema to store PLC project data. This structure allows for version
 tracking and historical analysis of changes across different imports of the same PLC project.
 
 ### Core Architecture
@@ -343,23 +343,23 @@ tracking and historical analysis of changes across different imports of the same
 The schema is organized around three primary levels:
 
 1. **Target**: Represents a unique asset or project (e.g., `PLC://Main_Controller`).
-2. **Snapshot**: A specific version of a target, created during an `import` operation. It contains metadata about
+2. **target**: A specific version of a target, created during an `import` operation. It contains metadata about
    the import (date, user, machine) and the original source file (`source_data`).
 3. **Entities**: The granular components of the Logix project (Tags, Routines, Logic, etc.) associated with a
-   specific `snapshot_id`.
+   specific `target_id`.
 
 ```mermaid
 erDiagram
-    TARGET ||--o{ SNAPSHOT : contains
-    SNAPSHOT ||--o{ SNAPSHOT_PROPERTY : has
-    SNAPSHOT ||--o{ CONTROLLER : "1:1"
-    SNAPSHOT ||--o{ TAG : contains
-    SNAPSHOT ||--o{ PROGRAM : contains
-    SNAPSHOT ||--o{ TASK : contains
-    SNAPSHOT ||--o{ AOI : contains
-    SNAPSHOT ||--o{ DATA_TYPE : contains
-    SNAPSHOT ||--o{ MODULE : contains
-    SNAPSHOT ||--o{ OPERAND : "seed data"
+    TARGET ||--o{ target : contains
+    target ||--o{ target_PROPERTY : has
+    target ||--o{ CONTROLLER : "1:1"
+    target ||--o{ TAG : contains
+    target ||--o{ PROGRAM : contains
+    target ||--o{ TASK : contains
+    target ||--o{ AOI : contains
+    target ||--o{ DATA_TYPE : contains
+    target ||--o{ MODULE : contains
+    target ||--o{ OPERAND : "seed data"
 
     TAG ||--o{ TAG_MEMBER : has
     TAG_MEMBER ||--o{ TAG_COMMENT : "0..1"
@@ -383,8 +383,8 @@ erDiagram
 | Table               | Description                                                                                    |
 |---------------------|------------------------------------------------------------------------------------------------|
 | `target`            | Stores unique target keys for identifying different PLC projects.                              |
-| `snapshot`          | Links an import to a target. Stores the raw source file and import metadata.                   |
-| `snapshot_property` | Key-value metadata for snapshots (e.g., custom headers from the Ingestion API).                |
+| `target`          | Links an import to a target. Stores the raw source file and import metadata.                   |
+| `target_property` | Key-value metadata for targets (e.g., custom headers from the Ingestion API).                |
 | `controller`        | Global controller settings (name, processor type, revision, etc.).                             |
 | `data_type`         | User-defined and system-defined data type definitions.                                         |
 | `data_type_member`  | Individual members of a data type, including their name, data type, and dimensions.            |
@@ -408,28 +408,28 @@ erDiagram
 
 ### Relationships
 
-Most tables include a `snapshot_id` column that serves as a foreign key to the `snapshot` table. This allows you to
+Most tables include a `target_id` column that serves as a foreign key to the `target` table. This allows you to
 query all components of a specific project version using a single ID. For example, to find all tags for a specific
-snapshot:
+target:
 
 ```sql
 SELECT *
 FROM tag
-WHERE snapshot_id = 42;
+WHERE target_id = 42;
 ```
 
 ### Entity Comparison & Hashing
 
 LogixDb employs several hashing and data storage strategies to facilitate quick comparisons, change detection (diffing),
-and full reconstruction of original Logix elements across different snapshots.
+and full reconstruction of original Logix elements across different targets.
 
 #### Record Hash (`record_hash`)
 
 Every entity record in the database includes a `record_hash`. This hash is an **MD5 hash** of the **UTF-16 Unicode
 encoded** string representation of the **hashable fields** of the database record itself (excluding internal IDs like
-`snapshot_id` or `primary_key`).
+`target_id` or `primary_key`).
 
-- **Purpose**: Primarily used for **diffing** and identifying if a record's data has changed between snapshots at a
+- **Purpose**: Primarily used for **diffing** and identifying if a record's data has changed between targets at a
   granular level. It allows the system to quickly detect modifications without comparing every column individually.
 - **Calculation**: It is a deterministic MD5 hash of the serialized column names and values for all columns marked
   as `IsHashable` in the `TableMap`.
@@ -449,12 +449,12 @@ file.
 
 The `record_hash` and `source_hash` columns enable high-performance diffing between different versions of your project.
 
-#### Find changed tags between two snapshots
+#### Find changed tags between two targets
 
 ```sql
--- Compare Snapshot A and Snapshot B for the same target
-DECLARE @SnapshotA INT = 1;
-DECLARE @SnapshotB INT = 2;
+-- Compare target A and target B for the same target
+DECLARE @targetA INT = 1;
+DECLARE @targetB INT = 2;
 
 SELECT COALESCE(a.tag_name, b.tag_name) AS TagName,
        CASE
@@ -463,8 +463,8 @@ SELECT COALESCE(a.tag_name, b.tag_name) AS TagName,
            WHEN a.record_hash <> b.record_hash THEN 'Modified'
            ELSE 'Unchanged'
            END                  AS ChangeStatus
-FROM (SELECT * FROM tag WHERE snapshot_id = @SnapshotA) a
-         FULL OUTER JOIN (SELECT * FROM tag WHERE snapshot_id = @SnapshotB) b ON a.Name = b.Name
+FROM (SELECT * FROM tag WHERE target_id = @targetA) a
+         FULL OUTER JOIN (SELECT * FROM tag WHERE target_id = @targetB) b ON a.Name = b.Name
 WHERE ISNULL(a.record_hash, '') <> ISNULL(b.record_hash, '');
 ```
 

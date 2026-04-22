@@ -35,7 +35,7 @@ internal class ProgramMap : TableMap<ProgramRecord>
 /// <summary>
 /// Represents a database record for a program entity.
 /// This record contains the metadata for a specific Logix program,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 internal record ProgramRecord(int InstanceId, Guid? TaskId, Guid? FolderId, Program Program)
 {

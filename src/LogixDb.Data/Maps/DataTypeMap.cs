@@ -29,7 +29,7 @@ internal class DataTypeMap : TableMap<DataTypeRecord>
 /// <summary>
 /// Represents a database record for a data type entity.
 /// This record contains the metadata for a specific Logix data type,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this data type record belongs.</param>
 /// <param name="DataType">The Logix data type entity.</param>

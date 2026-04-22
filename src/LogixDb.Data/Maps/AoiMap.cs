@@ -44,7 +44,7 @@ internal class AoiMap : TableMap<AoiRecord>
 /// <summary>
 /// Represents a database record for an AOI entity.
 /// This record contains metadata and configuration for a specific Logix AOI,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this AOI record belongs.</param>
 /// <param name="Aoi">The Logix AOI entity containing its configuration.</param>

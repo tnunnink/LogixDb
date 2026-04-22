@@ -38,7 +38,7 @@ internal class AoiParameterMap : TableMap<AoiParameterRecord>
 /// <summary>
 /// Represents a database record for an AOI parameter entity.
 /// This record contains the metadata and configuration for a specific AOI parameter,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 internal record AoiParameterRecord(int InstanceId, Guid? AoiId, Parameter Parameter)
 {

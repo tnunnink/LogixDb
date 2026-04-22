@@ -9,18 +9,18 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 /// <summary>
-/// Represents a command to restore a snapshot's compressed blob into relational tables.
+/// Represents a command to restore a target's compressed blob into relational tables.
 /// </summary>
 [PublicAPI]
-[Command("restore", Description = "Expands an archived snapshot into relational tables")]
+[Command("restore", Description = "Expands an archived target into relational tables")]
 public partial class RestoreCommand : DbCommand
 {
     [CommandOption("target", 't',
-        Description = "Target key of the snapshot to restore (format: targettype://targetname)")]
+        Description = "Target key of the target to restore (format: targettype://targetname)")]
     public string? Target { get; set; }
 
     [CommandOption("version", 'v',
-        Description = "Version number of the snapshot to restore. If 0, the latest version is restored.")]
+        Description = "Version number of the target to restore. If 0, the latest version is restored.")]
     public int Version { get; set; }
 
     /// <inheritdoc />
@@ -32,12 +32,12 @@ public partial class RestoreCommand : DbCommand
         try
         {
             await console.Ansi().Status().StartAsync(
-                $"Restoring snapshot '{Target}' version {(Version == 0 ? "latest" : Version)}...",
+                $"Restoring target '{Target}' version {(Version == 0 ? "latest" : Version)}...",
                 _ => manager.RestoreTarget(Target, Version, token)
             );
 
             console.Ansi().MarkupLine(
-                $"[green]✓[/] Snapshot '{Target}' version {(Version == 0 ? "latest" : Version)} restored successfully");
+                $"[green]✓[/] Target '{Target}' version {(Version == 0 ? "latest" : Version)} restored successfully");
         }
         catch (Exception e)
         {

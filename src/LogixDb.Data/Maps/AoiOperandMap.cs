@@ -2,7 +2,7 @@ namespace LogixDb.Data.Maps;
 
 /// <summary>
 /// Represents a table mapping for AOI (Add-On Instruction) operands, which defines how operand data
-/// is extracted from Logix snapshots and mapped to database records.
+/// is extracted from Logix targets and mapped to database records.
 /// </summary>
 internal class AoiOperandMap : TableMap<AoiOperandRecord>
 {

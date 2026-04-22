@@ -27,7 +27,7 @@ public static class SqlServerTestContainer
     /// <remarks>
     /// This property is initialized during the test lifecycle setup and represents a configured
     /// database connection to a SQL Server instance running in a container. It allows for executing
-    /// database operations such as migrations, snapshots, and data interactions during tests.
+    /// database operations such as migrations, targets, and data interactions during tests.
     /// </remarks>
     public static IDbManager Database { get; private set; }
 

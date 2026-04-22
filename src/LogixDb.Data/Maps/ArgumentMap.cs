@@ -30,11 +30,11 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 }
 
 /// <summary>
-/// Represents a database record for an instruction argument within a snapshot.
+/// Represents a database record for an instruction argument within a target.
 /// </summary>
 /// <remarks>
 /// This record encapsulates the data necessary to store and retrieve instruction arguments
-/// from the database, including their relationship to a snapshot and parent instruction,
+/// from the database, including their relationship to a target and parent instruction,
 /// as well as their position and content.
 /// </remarks>
 internal record ArgumentRecord(int InstanceId, Guid InstructionId, byte Index, Argument Argument)

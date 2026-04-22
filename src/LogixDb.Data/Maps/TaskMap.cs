@@ -36,7 +36,7 @@ internal class TaskMap : TableMap<TaskRecord>
 /// <summary>
 /// Represents a database record for a task entity.
 /// This record contains properties for the task's associated metadata and configuration settings
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 /// <param name="InstanceId">The unique identifier of the instance to which this task record belongs.</param>
 /// <param name="Task">The task entity containing metadata, configuration, and execution details.</param>

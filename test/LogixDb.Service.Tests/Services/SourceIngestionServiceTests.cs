@@ -97,11 +97,11 @@ public class SourceIngestionServiceTests
         await System.Threading.Tasks.Task.Delay(1000, cts.Token);
 
         // Assert
-        var snapshots = (await _dbManager.ListTargets(token: cts.Token)).ToList();
-        Assert.That(snapshots, Has.Count.EqualTo(1));
+        var targets = (await _dbManager.ListTargets(token: cts.Token)).ToList();
+        Assert.That(targets, Has.Count.EqualTo(1));
         Assert.Multiple(() =>
         {
-            Assert.That(snapshots.First().TargetName, Is.EqualTo("TestController"));
+            Assert.That(targets.First().TargetName, Is.EqualTo("TestController"));
             Assert.That(File.Exists(filePath), Is.False, "Original file should be deleted");
         });
 

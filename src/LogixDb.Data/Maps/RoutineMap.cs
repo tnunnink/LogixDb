@@ -29,7 +29,7 @@ internal class RoutineMap : TableMap<RoutineRecord>
 /// <summary>
 /// Represents a database record for a routine entity.
 /// This record contains the metadata for a specific Logix routine,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 internal record RoutineRecord(int InstanceId, Guid? ProgramId, Routine Routine)
 {

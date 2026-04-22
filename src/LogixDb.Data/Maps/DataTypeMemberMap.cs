@@ -34,7 +34,7 @@ internal class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
 /// <summary>
 /// Represents a database record for a data type member entity.
 /// This record contains the metadata for a specific member of a Logix data type,
-/// as well as the unique identifier linking it to a specific database snapshot.
+/// as well as the unique identifier linking it to a specific database target.
 /// </summary>
 internal record DataTypeMemberRecord(int InstanceId, Guid TypeId, DataTypeMember Member)
 {

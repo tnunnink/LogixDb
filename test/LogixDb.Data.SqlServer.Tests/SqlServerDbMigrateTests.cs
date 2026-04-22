@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging.Testing;
+
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
@@ -20,11 +22,11 @@ public class SqlServerMigrationTest : SqlServerTestFixture
             Trust: true
         );
 
-        var database = new SqlServerDb(connectionInfo);
+        var database = new SqlServerManager(connectionInfo, new FakeLogger());
         await database.Drop();
         await database.Migrate();
     }
-    
+
     [Test]
     public async Task Migrate_OnlyControllerAndTagBasedTables_ShouldOnlyHaveExpectedTables()
     {
@@ -32,8 +34,9 @@ public class SqlServerMigrationTest : SqlServerTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Included Tables
         await AssertTableExists("controller");
@@ -67,8 +70,9 @@ public class SqlServerMigrationTest : SqlServerTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Included Tables
         await AssertTableExists("task");
@@ -102,8 +106,9 @@ public class SqlServerMigrationTest : SqlServerTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Excluded Tables
         await AssertTableDoesNotExists("task");

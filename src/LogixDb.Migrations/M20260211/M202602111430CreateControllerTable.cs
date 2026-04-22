@@ -13,7 +13,7 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
     {
         Create.Table("controller")
             .WithPrimaryGuid("controller_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithColumn("controller_name").AsString(256).NotNullable()
             .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(256).Nullable()
@@ -52,7 +52,7 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
         Create.Index()
             .OnTable("controller")
             .OnColumn("controller_name").Ascending()
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("controller")

@@ -13,7 +13,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
     {
         Create.Table("task")
             .WithPrimaryGuid("task_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithColumn("task_name").AsString(256).NotNullable()
             .WithColumn("task_description").AsString(512).Nullable()
             .WithColumn("task_type").AsString(32).Nullable()
@@ -29,7 +29,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("task")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("task_name").Ascending()
             .WithOptions().Unique();
 
@@ -39,6 +39,6 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
         
         Create.Index().OnTable("task")
             .OnColumn("source_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
     }
 }

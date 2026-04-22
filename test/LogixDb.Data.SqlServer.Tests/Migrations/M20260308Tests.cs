@@ -15,7 +15,7 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertTableExists("operand");
             
             await AssertColumnDefinition("operand", "operand_id", "uniqueidentifier");
-            await AssertColumnDefinition("operand", "snapshot_id", "int");
+            await AssertColumnDefinition("operand", "instance_id", "int");
             await AssertColumnDefinition("operand", "instruction_key", "nvarchar");
             await AssertColumnDefinition("operand", "operand_index", "tinyint");
             await AssertColumnDefinition("operand", "operand_name", "nvarchar");
@@ -25,8 +25,8 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertColumnDefinition("operand", "is_destructive", "bit");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertForeignKey("operand", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("operand", "snapshot_id", "instruction_key", "operand_index");
+            await AssertForeignKey("operand", "instance_id", "target_instance", "instance_id");
+            await AssertUniqueIndex("operand", "instance_id", "instruction_key", "operand_index");
         }
     }
 

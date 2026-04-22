@@ -7,9 +7,9 @@ using CliWrap;
 using JetBrains.Annotations;
 using L5Sharp.Core;
 using LogixDb.Cli.Common;
+using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using Spectre.Console;
-using Snapshot = LogixDb.Data.Snapshot;
 
 namespace LogixDb.Cli.Commands;
 
@@ -31,7 +31,7 @@ public partial class ImportCommand : DbCommand
     public string? Converter { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
@@ -39,26 +39,18 @@ public partial class ImportCommand : DbCommand
         if (StringComparer.OrdinalIgnoreCase.Equals(Path.GetExtension(SourcePath), ".acd"))
         {
             var tempSource = await ConvertFileAsync(console, Path.GetFullPath(SourcePath), token);
-            await ImportFileAsync(console, database, tempSource, token);
+            await ImportFileAsync(console, manager, tempSource, token);
             File.Delete(tempSource);
             return;
         }
 
-        await ImportFileAsync(console, database, Path.GetFullPath(SourcePath), token);
+        await ImportFileAsync(console, manager, Path.GetFullPath(SourcePath), token);
     }
 
     /// <summary>
     /// Imports a specified L5X file into the database as a new snapshot.
     /// </summary>
-    /// <param name="console">The console interface used to display output to the user.</param>
-    /// <param name="database">The database instance where the file will be imported.</param>
-    /// <param name="importTarget">The fully qualified path to the target L5X file to import.</param>
-    /// <param name="token">A cancellation token to observe while waiting for the task to complete.</param>
-    /// <returns>A task representing the asynchronous import operation.</returns>
-    /// <exception cref="CommandException">
-    /// Thrown when the L5X file fails to parse, or the import operation encounters an error.
-    /// </exception>
-    private async ValueTask ImportFileAsync(IConsole console, ILogixDb database, string importTarget,
+    private async ValueTask ImportFileAsync(IConsole console, IDbManager database, string importTarget,
         CancellationToken token)
     {
         try
@@ -67,10 +59,10 @@ public partial class ImportCommand : DbCommand
             {
                 ctx.Status("Loading L5X file...");
                 var content = await L5X.LoadAsync(importTarget, token);
-                var snapshot = Snapshot.Create(content, TargetKey);
+                var target = Target.Create(content, TargetKey);
                 ctx.Status("Importing source to database...");
-                await database.AddSnapshot(snapshot, token);
-                return snapshot;
+                await database.ImportTarget(target, token);
+                return target;
             });
 
             OutputResult(console, result);
@@ -147,21 +139,20 @@ public partial class ImportCommand : DbCommand
     /// Outputs the details of a snapshot result to the console in a tabular format.
     /// </summary>
     /// <param name="console">The console instance used to write the output.</param>
-    /// <param name="result">The snapshot result containing the details to display.</param>
-    private static void OutputResult(IConsole console, Snapshot result)
+    /// <param name="target">The snapshot result containing the details to display.</param>
+    private static void OutputResult(IConsole console, Target target)
     {
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
 
-        table.AddRow("Id", result.SnapshotId.ToString());
-        table.AddRow("Key", result.TargetKey);
-        table.AddRow("Type", result.TargetType);
-        table.AddRow("Name", result.TargetName);
-        table.AddRow("Version", result.VersionNumber.ToString());
-        table.AddRow("Revision", result.SoftwareRevision ?? "?");
-        table.AddRow("Date", result.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
-        table.AddRow("User", result.ImportUser);
-        table.AddRow("Machine", result.ImportMachine);
-        table.AddRow("Hash", result.SourceHash);
+        table.AddRow("Key", target.TargetKey);
+        table.AddRow("Type", target.TargetType);
+        table.AddRow("Name", target.TargetName);
+        table.AddRow("Version", target.VersionNumber.ToString());
+        table.AddRow("Revision", target.SoftwareRevision ?? "?");
+        table.AddRow("Date", target.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
+        table.AddRow("User", target.ImportUser);
+        table.AddRow("Machine", target.ImportMachine);
+        table.AddRow("Hash", target.SourceHash);
 
         console.Ansi().MarkupLine("[green]✓[/] Snapshot imported successfully");
         console.Ansi().Write(table);

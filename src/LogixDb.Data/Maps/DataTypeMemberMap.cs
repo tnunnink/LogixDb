@@ -16,7 +16,7 @@ internal class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
     protected override IReadOnlyList<ColumnMap<DataTypeMemberRecord>> Columns =>
     [
         ColumnMap<DataTypeMemberRecord>.For(r => r.MemberId, "member_id", hashable: false),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<DataTypeMemberRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<DataTypeMemberRecord>.For(r => r.TypeId, "type_id", hashable: false),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Name, "member_name", hashable: false),
         ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Description, "member_description"),
@@ -36,7 +36,7 @@ internal class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
 /// This record contains the metadata for a specific member of a Logix data type,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-internal record DataTypeMemberRecord(int SnapshotId, Guid TypeId, DataTypeMember Member)
+internal record DataTypeMemberRecord(int InstanceId, Guid TypeId, DataTypeMember Member)
 {
     public Guid MemberId { get; } = Guid.NewGuid();
 }

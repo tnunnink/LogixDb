@@ -7,6 +7,8 @@ using LogixDb.Service.Common;
 using LogixDb.Service.Workers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging.Testing;
 using Microsoft.Extensions.Options;
 using Moq;
 
@@ -22,7 +24,7 @@ public class SourceIngestionServiceTests
     private Channel<SourceInfo> _channel;
     private string _testDbPath;
     private string _testDropPath;
-    private SqliteDb _logixDb;
+    private SqliteManager _dbManager;
 
     [SetUp]
     public void Setup()
@@ -32,9 +34,9 @@ public class SourceIngestionServiceTests
         Directory.CreateDirectory(_testDropPath);
 
         var connectionInfo = DbConnectionInfo.Parse(_testDbPath);
-        _logixDb = new SqliteDb(connectionInfo);
+        _dbManager = new SqliteManager(connectionInfo, new FakeLogger());
         // We need to migrate the database for it to be valid
-        _logixDb.Migrate().GetAwaiter().GetResult();
+        _dbManager.Migrate().GetAwaiter().GetResult();
 
         _fileConverterMock = new Mock<ILogixFileConverter>();
         _lifetimeMock = new Mock<IHostApplicationLifetime>();
@@ -79,7 +81,7 @@ public class SourceIngestionServiceTests
 
         var service = new SourceIngestionService(
             _channel,
-            _logixDb,
+            _dbManager,
             _fileConverterMock.Object,
             _lifetimeMock.Object,
             _optionsMock.Object,
@@ -95,7 +97,7 @@ public class SourceIngestionServiceTests
         await System.Threading.Tasks.Task.Delay(1000, cts.Token);
 
         // Assert
-        var snapshots = (await _logixDb.ListSnapshots(token: cts.Token)).ToList();
+        var snapshots = (await _dbManager.ListTargets(token: cts.Token)).ToList();
         Assert.That(snapshots, Has.Count.EqualTo(1));
         Assert.Multiple(() =>
         {
@@ -117,7 +119,7 @@ public class SourceIngestionServiceTests
         File.WriteAllBytes(unmigratedDbPath, []);
 
         var connectionInfo = DbConnectionInfo.Parse(unmigratedDbPath);
-        var unmigratedDb = new SqliteDb(connectionInfo);
+        var unmigratedDb = new SqliteManager(connectionInfo, NullLogger.Instance);
 
         var service = new SourceIngestionService(
             _channel,

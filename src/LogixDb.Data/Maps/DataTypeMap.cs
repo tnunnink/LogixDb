@@ -16,7 +16,7 @@ internal class DataTypeMap : TableMap<DataTypeRecord>
     protected override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
     [
         ColumnMap<DataTypeRecord>.For(r => r.TypeId, "type_id", hashable: false),
-        ColumnMap<DataTypeRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<DataTypeRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name", hashable: false),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
         ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
@@ -31,9 +31,9 @@ internal class DataTypeMap : TableMap<DataTypeRecord>
 /// This record contains the metadata for a specific Logix data type,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this data type record belongs.</param>
+/// <param name="InstanceId">The unique identifier of the instance to which this data type record belongs.</param>
 /// <param name="DataType">The Logix data type entity.</param>
-internal record DataTypeRecord(int SnapshotId, DataType DataType)
+internal record DataTypeRecord(int InstanceId, DataType DataType)
 {
     public Guid TypeId { get; } = Guid.NewGuid();
 }

@@ -13,7 +13,7 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
     {
         Create.Table("tag_member")
             .WithPrimaryGuid("member_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("tag_id", "tag")
             .WithParentRelation("parent_id", "tag_member", "member_id", nullable: true)
             .WithColumn("tag_name").AsString(256).NotNullable()
@@ -27,7 +27,7 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .WithOptions().Unique();
         
         Create.Index().OnTable("tag_member")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("tag_name").Ascending();
 
         Create.Index().OnTable("tag_member")

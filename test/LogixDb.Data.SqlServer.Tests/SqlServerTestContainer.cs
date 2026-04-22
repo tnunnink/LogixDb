@@ -1,4 +1,5 @@
 using LogixDb.Data.Abstractions;
+using Microsoft.Extensions.Logging.Testing;
 using Testcontainers.MsSql;
 
 namespace LogixDb.Data.SqlServer.Tests;
@@ -20,7 +21,7 @@ public static class SqlServerTestContainer
     private static MsSqlContainer _container;
 
     /// <summary>
-    /// Provides an instance of <see cref="ILogixDb"/> for interacting with the LogixDb database
+    /// Provides an instance of <see cref="IDbManager"/> for interacting with the LogixDb database
     /// within the context of integration tests using the SqlServerTestContainer.
     /// </summary>
     /// <remarks>
@@ -28,7 +29,7 @@ public static class SqlServerTestContainer
     /// database connection to a SQL Server instance running in a container. It allows for executing
     /// database operations such as migrations, snapshots, and data interactions during tests.
     /// </remarks>
-    public static ILogixDb Database { get; private set; }
+    public static IDbManager Database { get; private set; }
 
     /// <summary>
     /// Performs a one-time setup for initializing the SQL Server test environment. This includes
@@ -54,7 +55,7 @@ public static class SqlServerTestContainer
             Password: "LogixDb!Test123"
         );
 
-        Database = new SqlServerDb(connection);
+        Database = new SqlServerManager(connection, new FakeLogger());
     }
 
     /// <summary>

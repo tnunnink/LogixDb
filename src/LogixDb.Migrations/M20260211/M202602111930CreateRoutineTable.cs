@@ -13,7 +13,7 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
     {
         Create.Table("routine")
             .WithPrimaryGuid("routine_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("program_id", "program")
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()

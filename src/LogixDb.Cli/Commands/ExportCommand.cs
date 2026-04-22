@@ -40,13 +40,26 @@ public partial class ExportCommand : DbCommand
     public int Version { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         try
         {
-            var snapshot = await database.GetSnapshot(TargetKey, Version, token);
-            var source = snapshot.GetSource();
+            var target = await manager.GetTarget(TargetKey, Version, token);
+
+            if (target is null)
+            {
+                throw new CommandException(
+                    $"Target '{TargetKey}' with version {Version} not found.",
+                    ErrorCodes.TargetNotFound
+                );
+            }
+
+            var source = target.GetSource();
             source.Save(OutputPath);
+        }
+        catch (CommandException)
+        {
+            throw;
         }
         catch (Exception e)
         {

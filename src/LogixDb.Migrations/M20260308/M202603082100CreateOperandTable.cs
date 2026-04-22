@@ -4,17 +4,6 @@ using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260308;
 
-/// <summary>
-/// Represents a database migration that creates the operand table for storing instruction operand metadata
-/// in the Logix system.
-/// </summary>
-/// <remarks>
-/// This migration creates the "operand" table with columns for operand identification, type information,
-/// format specifications, and descriptions. Each operand is associated with a specific instruction through
-/// the instruction_key column and ordered by operand_index. The table includes metadata about whether
-/// the operand is destructive (modifies the value). A unique composite index is created on instruction_key
-/// and operand_index to ensure each instruction's operands are uniquely identified by their position.
-/// </remarks>
 [UsedImplicitly]
 [Migration(202603082100, "Creates operand table with unique composite index on instruction_key and operand_index")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]
@@ -24,7 +13,7 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
     {
         Create.Table("operand")
             .WithPrimaryGuid("operand_id")
-            .WithSnapshotRelation(nullable: true)
+            .WithInstanceRelation(nullable: true)
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()
@@ -35,7 +24,7 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("operand")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("instruction_key").Ascending()
             .OnColumn("operand_index").Ascending()
             .WithOptions().Unique();

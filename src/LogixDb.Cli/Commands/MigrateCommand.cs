@@ -35,14 +35,14 @@ public partial class MigrateCommand : DbCommand
     public ComponentOptions Components { get; set; } = ComponentOptions.All;
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         
         try
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Migrating database...", _ => database.Migrate(Components, token));
+                .StartAsync("Migrating database...", _ => manager.Migrate(Components, token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
         }

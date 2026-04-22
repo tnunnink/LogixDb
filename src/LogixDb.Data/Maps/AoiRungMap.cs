@@ -16,7 +16,7 @@ internal class AoiRungMap : TableMap<AoiRungRecord>
     protected override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
     [
         ColumnMap<AoiRungRecord>.For(r => r.RungId, "rung_id"),
-        ColumnMap<AoiRungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<AoiRungRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<AoiRungRecord>.For(r => r.AoiId, "aoi_id"),
         ColumnMap<AoiRungRecord>.For(r => r.RoutineName, "routine_name"),
         ColumnMap<AoiRungRecord>.For(r => r.Rung.Number, "rung_number"),
@@ -26,7 +26,7 @@ internal class AoiRungMap : TableMap<AoiRungRecord>
     ];
 }
 
-internal record AoiRungRecord(int SnapshotId, Guid AoiId, string RoutineName, Rung Rung)
+internal record AoiRungRecord(int InstanceId, Guid AoiId, string RoutineName, Rung Rung)
 {
     public Guid RungId { get; } = Guid.NewGuid();
 }

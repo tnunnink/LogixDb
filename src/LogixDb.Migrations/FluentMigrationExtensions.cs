@@ -25,15 +25,31 @@ public static class FluentMigrationExtensions
     extension(ICreateTableColumnOptionOrWithColumnSyntax syntax)
     {
         /// <summary>
-        /// Configures the current table with a foreign key to the snapshot table using the snapshot_id column as the
-        /// relation column. This column is a non-nullable integer with cascade delete or update options configured. 
+        /// Configures the current table with a foreign key to the target_archive table using the archive_id column as the
+        /// relation column. This column is a non-nullable integer with cascade delete or update options configured.
         /// </summary>
-        /// <returns>Returns the fluent migration builder after adding the snapshot foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithSnapshotRelation(bool nullable = false)
+        /// <returns>Returns the fluent migration builder after adding the target_archive foreign key column.</returns>
+        public ICreateTableColumnOptionOrWithColumnSyntax WithVersionRelation()
         {
-            syntax = syntax.WithColumn("snapshot_id").AsInt32();
+            return syntax
+                .WithColumn("version_id")
+                .AsGuid()
+                .NotNullable()
+                .ForeignKey("target_version", "version_id")
+                .OnDeleteOrUpdate(Rule.Cascade);
+        }
+
+        /// <summary>
+        /// Configures the current table with a foreign key to the target_instance table using the instance_id column as the relation column.
+        /// The column is of type integer with optional nullability and is configured with cascade delete or update options.
+        /// </summary>
+        /// <param name="nullable">Specifies whether the instance_id column should allow null values. If true, the column is nullable; otherwise, it is not nullable.</param>
+        /// <returns>Returns the fluent migration builder after configuring the target_instance foreign key column.</returns>
+        public ICreateTableColumnOptionOrWithColumnSyntax WithInstanceRelation(bool nullable = false)
+        {
+            syntax = syntax.WithColumn("instance_id").AsInt32();
             syntax = nullable ? syntax.Nullable() : syntax.NotNullable();
-            syntax = syntax.ForeignKey("snapshot_instance", "snapshot_id").OnDeleteOrUpdate(Rule.Cascade);
+            syntax = syntax.ForeignKey("target_instance", "instance_id").OnDeleteOrUpdate(Rule.Cascade);
             return syntax;
         }
 

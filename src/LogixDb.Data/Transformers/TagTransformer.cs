@@ -6,19 +6,19 @@ using LogixDb.Data.Maps;
 namespace LogixDb.Data.Transformers;
 
 /// <summary>
-/// Represents a transformer that processes a data snapshot and maps its contents
+/// Represents a transformer that processes a data Target and maps its contents
 /// into database-compatible table structures. Specifically designed to handle
-/// the processing and structuring of tag-related information within a given snapshot.
+/// the processing and structuring of tag-related information within a given Target.
 /// </summary>
 /// <remarks>
 /// The <see cref="TagTransformer"/> extracts the tag-related data from
-/// a provided <see cref="Snapshot"/> and converts it into multiple collections of
+/// a provided <see cref="Target"/> and converts it into multiple collections of
 /// records, each corresponding to different table structures such as tags,
 /// comments, produce information, consume information, and aliases.
 /// The transformation process yields the resulting data as a sequence of
 /// <see cref="DataTable"/> objects, which can then be persisted to a database.
 /// </remarks>
-internal class TagTransformer : ISnapshotTransformer
+internal class TagTransformer : IDbTransformer
 {
     private readonly TagMap _tagMap = new();
     private readonly TagMemberMap _memberMap = new();
@@ -28,9 +28,9 @@ internal class TagTransformer : ISnapshotTransformer
     private readonly TagAliasMap _aliasMap = new();
 
     /// <inheritdoc />
-    public IEnumerable<DataTable> Transform(Snapshot snapshot)
+    public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = snapshot.GetSource();
+        var source = target.GetSource();
         var tagRecords = new List<TagRecord>();
         var memberRecords = new List<TagMemberRecord>();
         var commentRecords = new List<TagCommentRecord>();
@@ -43,17 +43,17 @@ internal class TagTransformer : ISnapshotTransformer
 
         foreach (var tag in tags)
         {
-            var tagRecord = new TagRecord(snapshot.SnapshotId, tag.Program?.Metadata.Get<Guid>("id"), tag);
+            var tagRecord = new TagRecord(target.InstanceId, tag.Program?.Metadata.Get<Guid>("id"), tag);
             tagRecords.Add(tagRecord);
 
             if (tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(snapshot.SnapshotId, tagRecord.TagId, tag.ProduceInfo));
+                producerRecords.Add(new TagProduceInfoRecord(target.InstanceId, tagRecord.TagId, tag.ProduceInfo));
 
             if (tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(snapshot.SnapshotId, tagRecord.TagId, tag.ConsumeInfo));
+                consumerRecords.Add(new TagConsumeInfoRecord(target.InstanceId, tagRecord.TagId, tag.ConsumeInfo));
 
             if (tag.AliasFor is not null)
-                aliasRecords.Add(new TagAliasRecord(snapshot.SnapshotId, tagRecord.TagId, tag.AliasFor.LocalPath));
+                aliasRecords.Add(new TagAliasRecord(target.InstanceId, tagRecord.TagId, tag.AliasFor.LocalPath));
 
             foreach (var member in tag.Members())
             {
@@ -62,14 +62,14 @@ internal class TagTransformer : ISnapshotTransformer
                 Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
 
                 //Generate member record and comment records and add to collections.
-                var memberRecord = new TagMemberRecord(snapshot.SnapshotId, tagRecord.TagId, parentId, member);
+                var memberRecord = new TagMemberRecord(target.InstanceId, tagRecord.TagId, parentId, member);
 
                 if (!memberLookup.TryAdd(member.TagName, memberRecord))
                     throw new InvalidOperationException(
                         $"Duplicate member TagName encountered: '{member.TagName}'. Each member must have a unique TagName within the tag.");
 
                 memberRecords.Add(memberRecord);
-                commentRecords.AddRange(GetTagComments(snapshot.SnapshotId, memberRecord));
+                commentRecords.AddRange(GetTagComments(target.InstanceId, memberRecord));
             }
         }
 
@@ -84,15 +84,15 @@ internal class TagTransformer : ISnapshotTransformer
     /// <summary>
     /// Extracts comments from a provided tag member record and generates a collection of tag comment records.
     /// </summary>
-    /// <param name="snapshotId">The unique identifier of the snapshot to associate with the generated comments.</param>
+    /// <param name="instanceId">The unique identifier of the Target to associate with the generated comments.</param>
     /// <param name="record">The tag member record containing tag metadata and associated details.</param>
     /// <returns>A collection of tag comment records generated from the provided tag member record.</returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(int snapshotId, TagMemberRecord record)
+    private static IEnumerable<TagCommentRecord> GetTagComments(int instanceId, TagMemberRecord record)
     {
         if (record.Tag.Description is not null)
         {
             yield return new TagCommentRecord(
-                snapshotId,
+                instanceId,
                 record.MemberId,
                 record.Tag.TagName.LocalPath,
                 record.Tag.Description
@@ -114,7 +114,7 @@ internal class TagTransformer : ISnapshotTransformer
                     ? string.Concat(record.Tag.Description, " ", comment.Value).Trim()
                     : comment.Value;
 
-                yield return new TagCommentRecord(snapshotId, record.MemberId, tagName, tagComment);
+                yield return new TagCommentRecord(instanceId, record.MemberId, tagName, tagComment);
             }
         }
     }

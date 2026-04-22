@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.Testing;
 using NUnit.Framework.Legacy;
 
 namespace LogixDb.Data.Sqlite.Tests;
@@ -14,7 +15,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
     public async Task MigrateLocalTestDatabaseForWritingQueriesAgainst()
     {
         var connection = new DbConnectionInfo(DbProvider.Sqlite, "../../../logix.db");
-        var database = new SqliteDb(connection);
+        var database = new SqliteManager(connection, new FakeLogger());
         await database.Drop();
         await database.Migrate();
         FileAssert.Exists("../../../logix.db");
@@ -27,8 +28,9 @@ public class SqliteDbMigrateTests : SqliteTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Included Tables
         await AssertTableExists("controller");
@@ -62,8 +64,9 @@ public class SqliteDbMigrateTests : SqliteTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Included Tables
         await AssertTableExists("task");
@@ -97,8 +100,9 @@ public class SqliteDbMigrateTests : SqliteTestFixture
 
         // Required Tables
         await AssertTableExists("target");
-        await AssertTableExists("snapshot");
-        await AssertTableExists("snapshot_property");
+        await AssertTableExists("target_version");
+        await AssertTableExists("target_instance");
+        await AssertTableExists("target_info");
 
         // Excluded Tables
         await AssertTableDoesNotExists("task");

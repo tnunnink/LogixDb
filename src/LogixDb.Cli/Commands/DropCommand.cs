@@ -24,7 +24,7 @@ public partial class DropCommand : DbCommand
         "Are you sure you want to drop the entire database? This action cannot be undone.";
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         if (!await console.Ansi().ConfirmAsync(Confirm, false, token))
         {
@@ -36,7 +36,7 @@ public partial class DropCommand : DbCommand
         {
             await console.Ansi()
                 .Status()
-                .StartAsync("Dropping database...", _ => database.Drop(token));
+                .StartAsync("Dropping database...", _ => manager.Drop(token));
 
             console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
         }

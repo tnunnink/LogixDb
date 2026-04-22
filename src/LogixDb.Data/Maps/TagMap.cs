@@ -16,7 +16,7 @@ internal class TagMap : TableMap<TagRecord>
     protected override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
     [
         ColumnMap<TagRecord>.For(r => r.TagId, "tag_id", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TagRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.ProgramId, "program_id", hashable: false),
         ColumnMap<TagRecord>.For(r => r.Tag.Name, "tag_name", hashable: false),
         ColumnMap<TagRecord>.For(r => r.Tag.DataType, "data_type"),
@@ -37,9 +37,9 @@ internal class TagMap : TableMap<TagRecord>
 /// This record contains the metadata and configuration for a specific Logix tag,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this tag record belongs.</param>
+/// <param name="InstanceId">The unique identifier of the instance to which this tag record belongs.</param>
 /// <param name="Tag">The Logix tag entity containing its configuration and value.</param>
-internal record TagRecord(int SnapshotId, Guid? ProgramId, Tag Tag)
+internal record TagRecord(int InstanceId, Guid? ProgramId, Tag Tag)
 {
     public Guid TagId { get; } = Guid.NewGuid();
 }

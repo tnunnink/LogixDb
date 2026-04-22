@@ -6,19 +6,19 @@ using LogixDb.Data.Maps;
 namespace LogixDb.Data.Transformers;
 
 /// <summary>
-/// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
+/// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on rungs and their instructions and arguments.
 /// </summary>
-internal class RungTransformer : ISnapshotTransformer
+internal class RungTransformer : IDbTransformer
 {
     private readonly RungMap _rungMap = new();
     private readonly InstructionMap _instructionMap = new();
     private readonly ArgumentMap _argumentMap = new();
 
     /// <inheritdoc />
-    public IEnumerable<DataTable> Transform(Snapshot snapshot)
+    public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = snapshot.GetSource();
+        var source = target.GetSource();
         var rungRecords = new List<RungRecord>();
         var instructionRecords = new List<InstructionRecord>();
         var argumentRecords = new List<ArgumentRecord>();
@@ -30,9 +30,9 @@ internal class RungTransformer : ISnapshotTransformer
         foreach (var rung in rungs)
         {
             var routineId = rung.Routine?.Metadata.Get<Guid>("id");
-            var rungRecord = new RungRecord(snapshot.SnapshotId, routineId, rung);
+            var rungRecord = new RungRecord(target.InstanceId, routineId, rung);
             rungRecords.Add(rungRecord);
-            ProcessRung(rungRecord.RungId, snapshot.SnapshotId, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungRecord.RungId, target.InstanceId, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -40,7 +40,7 @@ internal class RungTransformer : ISnapshotTransformer
         yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    private static void ProcessRung(Guid rungId, int snapshotId, Rung rung,
+    private static void ProcessRung(Guid rungId, int instanceId, Rung rung,
         List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
@@ -49,7 +49,7 @@ internal class RungTransformer : ISnapshotTransformer
         for (short index = 0; index < instructions.Length; index++)
         {
             var instruction = instructions[index];
-            var instructionRecord = new InstructionRecord(snapshotId, rungId, index, instruction);
+            var instructionRecord = new InstructionRecord(instanceId, rungId, index, instruction);
             var instructionId = instructionRecord.InstructionId;
             instructionRecords.Add(instructionRecord);
 
@@ -63,12 +63,12 @@ internal class RungTransformer : ISnapshotTransformer
                 if (argument.Type == ArgumentType.Expression)
                 {
                     argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(snapshotId, instructionId, argumentIndex, new Argument(t))
+                        new ArgumentRecord(instanceId, instructionId, argumentIndex, new Argument(t))
                     ));
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(snapshotId, instructionId, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(instanceId, instructionId, argumentIndex, argument));
             }
         }
     }

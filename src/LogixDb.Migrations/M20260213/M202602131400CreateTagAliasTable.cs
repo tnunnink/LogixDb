@@ -13,7 +13,7 @@ public class M202602131400CreateTagAliasTable : AutoReversingMigration
     {
         Create.Table("tag_alias")
             .WithPrimaryGuid("alias_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("tag_id", "tag")
             .WithColumn("alias_for").AsString(256).NotNullable();
 

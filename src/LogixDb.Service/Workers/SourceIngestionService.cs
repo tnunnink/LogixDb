@@ -26,11 +26,11 @@ namespace LogixDb.Service.Workers;
 /// The asynchronous channel from which <see cref="SourceInfo"/> items are read for processing. This serves as
 /// the primary mechanism to manage ingestion task flow.
 /// </param>
-/// <param name="logixDb">
+/// <param name="manager">
 /// The database abstraction used to perform associated operations such as migrations or data updates during
 /// ingestion tasks.
 /// </param>
-/// <param name="fileConverter">
+/// <param name="converter">
 /// The file converter used for transforming source files into a standardized format. This ensures the integrity
 /// of data before persisting it into the database.
 /// </param>
@@ -44,8 +44,8 @@ namespace LogixDb.Service.Workers;
 /// </param>
 public class SourceIngestionService(
     Channel<SourceInfo> channel,
-    ILogixDb logixDb,
-    ILogixFileConverter fileConverter,
+    IDbManager manager,
+    ILogixFileConverter converter,
     IHostApplicationLifetime lifetime,
     IOptions<LogixConfig> options,
     ILogger<SourceIngestionService> logger) : BackgroundService
@@ -73,15 +73,15 @@ public class SourceIngestionService(
 
                 // Load the L5X file, create a snapshot and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
-                var snapshot = Snapshot.Create(content);
+                var target = Target.Create(content);
 
                 // Load the metadata configured for the source instance.
-                snapshot.Metadata.Add(nameof(source.SourceId), source.SourceId.ToString());
+                target.Info.Add(nameof(source.SourceId), source.SourceId.ToString());
                 foreach (var item in source.Metadata)
-                    snapshot.Metadata.Add(item.Key, item.Value);
+                    target.Info.Add(item.Key, item.Value);
 
-                // Upload the snapshot to the database.
-                await logixDb.AddSnapshot(snapshot, stoppingToken);
+                // Import the target to the database.
+                await manager.ImportTarget(target, stoppingToken);
 
                 // Clean up temp and upload files after processing completes.
                 File.Delete(tempFile);
@@ -108,7 +108,7 @@ public class SourceIngestionService(
         {
             try
             {
-                await logixDb.ListSnapshots(token: stoppingToken);
+                await manager.ListTargets(token: stoppingToken);
                 logger.LogInformation("Database connection verified. Ingestion service started and waiting uploads...");
                 break;
             }
@@ -198,7 +198,7 @@ public class SourceIngestionService(
         }
 
         // Fall back the default file converter
-        await fileConverter.ConvertAsync(source.FilePath, tempFile, token: token);
+        await converter.ConvertAsync(source.FilePath, tempFile, token: token);
     }
 
     /// <summary>

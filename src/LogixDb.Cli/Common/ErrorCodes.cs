@@ -30,4 +30,9 @@ public static class ErrorCodes
     /// Indicates the specified file or project path was not found.
     /// </summary>
     public const int FileNotFound = 5;
+
+    /// <summary>
+    /// Indicates that the specified target resource, item, or entity was not found during command execution.
+    /// </summary>
+    public const int TargetNotFound = 6;
 }

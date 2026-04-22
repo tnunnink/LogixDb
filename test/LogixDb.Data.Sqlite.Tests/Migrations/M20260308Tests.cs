@@ -13,7 +13,7 @@ public class M20260308Tests : SqliteTestFixture
             await AssertTableExists("operand");
 
             await AssertColumnDefinition("operand", "operand_id", "uniqueidentifier");
-            await AssertColumnDefinition("operand", "snapshot_id", "integer");
+            await AssertColumnDefinition("operand", "instance_id", "integer");
             await AssertColumnDefinition("operand", "instruction_key", "text");
             await AssertColumnDefinition("operand", "operand_index", "integer");
             await AssertColumnDefinition("operand", "operand_name", "text");
@@ -23,8 +23,8 @@ public class M20260308Tests : SqliteTestFixture
             await AssertColumnDefinition("operand", "is_destructive", "integer");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertForeignKey("operand", "snapshot_id", "snapshot", "snapshot_id");
-            await AssertUniqueIndex("operand", "snapshot_id", "instruction_key", "operand_index");
+            await AssertForeignKey("operand", "instance_id", "target_instance", "instance_id");
+            await AssertUniqueIndex("operand", "instance_id", "instruction_key", "operand_index");
         }
     }
 

@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Scripts\*.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
       <ProjectReference Include="..\LogixDb.Migrations\LogixDb.Migrations.csproj" />
     </ItemGroup>

@@ -6,23 +6,23 @@ using LogixDb.Data.Maps;
 namespace LogixDb.Data.Transformers;
 
 /// <summary>
-/// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
+/// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on routines.
 /// </summary>
-internal class RoutineTransformer : ISnapshotTransformer
+internal class RoutineTransformer : IDbTransformer
 {
     private readonly RoutineMap _map = new();
 
     /// <inheritdoc />
-    public IEnumerable<DataTable> Transform(Snapshot snapshot)
+    public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = snapshot.GetSource();
+        var source = target.GetSource();
         var records = new List<RoutineRecord>();
 
         foreach (var routine in source.Programs.SelectMany(p => p.Routines))
         {
             var programId = routine.Program?.Metadata.Get<Guid>("id");
-            var record = new RoutineRecord(snapshot.SnapshotId, programId, routine);
+            var record = new RoutineRecord(target.InstanceId, programId, routine);
             routine.Metadata.Add("id", record.RoutineId);
             records.Add(record);
         }

@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
-using DbProvider = LogixDb.Cli.Common.DbProvider;
 
 namespace LogixDb.Cli.Commands;
 
@@ -19,8 +18,8 @@ namespace LogixDb.Cli.Commands;
 public abstract class DbCommand : ICommand
 {
     [Required]
-    [CommandOption("connection", 'c', Description =
-        "The database connection path. For SQLite, specify a file path. For SQL Server, use format 'database@host'.")]
+    [CommandOption("connection", 'c',
+        Description = "The database connection path. Specify file path (SQLite) or 'database@host' (SQL Server)")]
     public string Connection { get; set; } = string.Empty;
 
     /// <summary>
@@ -38,9 +37,9 @@ public abstract class DbCommand : ICommand
             throw new CommandException("Database argument 'connection' is required.", ErrorCodes.UsageError);
 
         var connection = DbConnectionInfo.Parse(Connection);
-        var database = DbProvider.GetDatabase(connection);
+        var manager = DatabaseResolver.GetDatabase(connection);
         var cancellation = console.RegisterCancellationHandler();
-        return ExecuteAsync(console, database, cancellation);
+        return ExecuteAsync(console, manager, cancellation);
     }
 
     /// <summary>
@@ -48,8 +47,8 @@ public abstract class DbCommand : ICommand
     /// This method must be implemented by derived classes to define the actual command behavior.
     /// </summary>
     /// <param name="console">The console interface for interacting with the user and displaying output.</param>
-    /// <param name="database">The connected Logix database instance to operate on.</param>
+    /// <param name="manager">The connected Logix database instance to operate on.</param>
     /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
     /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
-    protected abstract ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token);
+    protected abstract ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token);
 }

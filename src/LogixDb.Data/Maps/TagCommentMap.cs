@@ -14,7 +14,7 @@ internal class TagCommentMap : TableMap<TagCommentRecord>
     protected override IReadOnlyList<ColumnMap<TagCommentRecord>> Columns =>
     [
         ColumnMap<TagCommentRecord>.For(r => r.CommentId, "comment_id", hashable: false),
-        ColumnMap<TagCommentRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TagCommentRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<TagCommentRecord>.For(r => r.MemberId, "member_id", hashable: false),
         ColumnMap<TagCommentRecord>.For(r => r.TagName, "tag_name", hashable: false),
         ColumnMap<TagCommentRecord>.For(r => r.TagComment, "tag_comment"),
@@ -24,10 +24,10 @@ internal class TagCommentMap : TableMap<TagCommentRecord>
 
 /// <summary>
 /// Represents a record containing information about a tag's comments within a specific snapshot.
-/// Each record uniquely identifies a comment by associating a unique tag identifier, snapshot identifier,
+/// Each record uniquely identifies a comment by associating a unique tag identifier, instance identifier,
 /// tag name, and its comment text.
 /// </summary>
-internal record TagCommentRecord(int SnapshotId, Guid MemberId, string TagName, string TagComment)
+internal record TagCommentRecord(int InstanceId, Guid MemberId, string TagName, string TagComment)
 {
     public Guid CommentId { get; } = Guid.NewGuid();
 }

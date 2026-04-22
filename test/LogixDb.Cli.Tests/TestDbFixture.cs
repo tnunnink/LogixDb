@@ -1,18 +1,25 @@
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Sqlite;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace LogixDb.Cli.Tests;
 
 /// <summary>
-/// 
+/// Abstract base class that provides a temporary SQLite database fixture for use in unit tests.
 /// </summary>
+/// <remarks>
+/// This class creates a unique SQLite database file for each test execution and provides access to
+/// a database manager instance via the <see cref="Database"/> property. The database file is automatically
+/// cleaned up after the tests are run by invoking the <see cref="TearDown"/> method.
+/// </remarks>
 public abstract class TestDbFixture
 {
     protected TestDbFixture()
     {
         DbConnection = Path.Combine(Path.GetTempPath(), $"LogixTest_{Guid.NewGuid():N}.db");
-        Database = new SqliteDb(new DbConnectionInfo(DbProvider.Sqlite, DbConnection));
+        var connectionInfo = new DbConnectionInfo(DbProvider.Sqlite, DbConnection);
+        Database = new SqliteManager(connectionInfo, NullLogger.Instance);
     }
 
     /// <summary>
@@ -25,11 +32,11 @@ public abstract class TestDbFixture
 
     /// <summary>
     /// Provides access to the database instance used during testing.
-    /// This property is an implementation of the <see cref="ILogixDb"/> interface and is
+    /// This property is an implementation of the <see cref="IDbManager"/> interface and is
     /// initialized with a SQLite database connection. The database is bound to the temporary
     /// file path defined by the <c>TempDb</c> property, ensuring a unique and isolated testing context.
     /// </summary>
-    protected ILogixDb Database { get; }
+    protected IDbManager Database { get; }
 
     /// <summary>
     /// Cleans up the temporary database created during tests by removing the

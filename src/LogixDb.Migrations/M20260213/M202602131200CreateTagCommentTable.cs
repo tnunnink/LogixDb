@@ -13,7 +13,7 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
     {
         Create.Table("tag_comment")
             .WithPrimaryGuid("comment_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("member_id", "tag_member")
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("tag_comment").AsString(int.MaxValue).NotNullable()

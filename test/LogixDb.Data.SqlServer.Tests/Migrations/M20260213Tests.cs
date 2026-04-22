@@ -13,7 +13,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag");
 
             await AssertColumnDefinition("tag", "tag_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag", "snapshot_id", "int");
+            await AssertColumnDefinition("tag", "instance_id", "int");
             await AssertColumnDefinition("tag", "program_id", "uniqueidentifier");
             await AssertColumnDefinition("tag", "tag_name", "nvarchar");
             await AssertColumnDefinition("tag", "data_type", "nvarchar");
@@ -28,12 +28,12 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "source_hash", "nvarchar");
 
             await AssertPrimaryKey("tag", "tag_id");
-            await AssertForeignKey("tag", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag", "program_id", "program", "program_id");
-            await AssertUniqueIndex("tag", "snapshot_id", "program_id", "tag_name");
-            await AssertIndex("tag", "tag_name", "snapshot_id");
-            await AssertIndex("tag", "data_type", "snapshot_id");
-            await AssertIndex("tag", "record_hash", "snapshot_id");
+            await AssertUniqueIndex("tag", "instance_id", "program_id", "tag_name");
+            await AssertIndex("tag", "tag_name", "instance_id");
+            await AssertIndex("tag", "data_type", "instance_id");
+            await AssertIndex("tag", "record_hash", "instance_id");
         }
     }
 
@@ -47,7 +47,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag_member");
 
             await AssertColumnDefinition("tag_member", "member_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_member", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_member", "instance_id", "int");
             await AssertColumnDefinition("tag_member", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_member", "parent_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_member", "tag_name", "nvarchar");
@@ -56,7 +56,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag_member", "tag_value", "nvarchar");
 
             await AssertPrimaryKey("tag_member", "member_id");
-            await AssertForeignKey("tag_member", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag_member", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
             await AssertForeignKey("tag_member", "parent_id", "tag_member", "member_id");
             await AssertUniqueIndex("tag_member", "tag_id", "tag_name");
@@ -76,14 +76,14 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag_comment");
 
             await AssertColumnDefinition("tag_comment", "comment_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_comment", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_comment", "instance_id", "int");
             await AssertColumnDefinition("tag_comment", "member_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_comment", "tag_name", "nvarchar");
             await AssertColumnDefinition("tag_comment", "tag_comment", "nvarchar");
             await AssertColumnDefinition("tag_comment", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag_comment", "comment_id");
-            await AssertForeignKey("tag_comment", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag_comment", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag_comment", "member_id", "tag_member", "member_id");
             await AssertUniqueIndex("tag_comment", "member_id", "tag_name");
             await AssertIndex("tag_comment", "tag_name", "member_id");
@@ -101,7 +101,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag_producer");
 
             await AssertColumnDefinition("tag_producer", "producer_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_producer", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_producer", "instance_id", "int");
             await AssertColumnDefinition("tag_producer", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_producer", "produce_count", "int");
             await AssertColumnDefinition("tag_producer", "send_event_trigger", "bit");
@@ -112,7 +112,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag_producer", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag_producer", "producer_id");
-            await AssertForeignKey("tag_producer", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag_producer", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag_producer", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_producer", "tag_id");
             await AssertIndex("tag_producer", "tag_id", "record_hash");
@@ -129,7 +129,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag_consumer");
 
             await AssertColumnDefinition("tag_consumer", "consumer_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_consumer", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_consumer", "instance_id", "int");
             await AssertColumnDefinition("tag_consumer", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_consumer", "producer", "nvarchar");
             await AssertColumnDefinition("tag_consumer", "remote_tag", "nvarchar");
@@ -139,7 +139,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag_consumer", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag_consumer", "consumer_id");
-            await AssertForeignKey("tag_consumer", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag_consumer", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag_consumer", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_consumer", "tag_id");
             await AssertIndex("tag_consumer", "tag_id", "record_hash");
@@ -156,12 +156,12 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertTableExists("tag_alias");
 
             await AssertColumnDefinition("tag_alias", "alias_id", "uniqueidentifier");
-            await AssertColumnDefinition("tag_alias", "snapshot_id", "int");
+            await AssertColumnDefinition("tag_alias", "instance_id", "int");
             await AssertColumnDefinition("tag_alias", "tag_id", "uniqueidentifier");
             await AssertColumnDefinition("tag_alias", "alias_for", "nvarchar");
 
             await AssertPrimaryKey("tag_alias", "alias_id");
-            await AssertForeignKey("tag_alias", "snapshot_id", "snapshot", "snapshot_id");
+            await AssertForeignKey("tag_alias", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("tag_alias", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_alias", "tag_id");
             await AssertIndex("tag_alias", "alias_for");

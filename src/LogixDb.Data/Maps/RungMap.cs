@@ -16,7 +16,7 @@ internal class RungMap : TableMap<RungRecord>
     protected override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
     [
         ColumnMap<RungRecord>.For(r => r.RungId, "rung_id", hashable: false),
-        ColumnMap<RungRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<RungRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<RungRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
         ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
         ColumnMap<RungRecord>.For(r => r.Rung.Comment, "rung_comment"),
@@ -31,7 +31,7 @@ internal class RungMap : TableMap<RungRecord>
 /// This record contains the metadata and code for a specific Logix rung,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-internal record RungRecord(int SnapshotId, Guid? RoutineId, Rung Rung)
+internal record RungRecord(int InstanceId, Guid? RoutineId, Rung Rung)
 {
     public Guid RungId { get; } = Guid.NewGuid();
 }

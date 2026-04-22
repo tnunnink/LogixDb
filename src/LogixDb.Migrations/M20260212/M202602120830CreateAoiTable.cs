@@ -13,7 +13,7 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
     {
         Create.Table("aoi")
             .WithPrimaryGuid("aoi_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("aoi_description").AsString(512).Nullable()
             .WithColumn("aoi_revision").AsString(16).Nullable()
@@ -37,7 +37,7 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("aoi")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("aoi_name").Ascending()
             .WithOptions().Unique();
 
@@ -47,6 +47,6 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
         
         Create.Index().OnTable("aoi")
             .OnColumn("source_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
     }
 }

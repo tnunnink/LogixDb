@@ -6,10 +6,10 @@ using LogixDb.Data.Maps;
 namespace LogixDb.Data.Transformers;
 
 /// <summary>
-/// Provides functionality to transform a <see cref="Snapshot"/> object into a collection of
+/// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on Add-On Instructions (AOI).
 /// </summary>
-internal class AoiTransformer : ISnapshotTransformer
+internal class AoiTransformer : IDbTransformer
 {
     private readonly AoiMap _aoiMap = new();
     private readonly AoiParameterMap _parameterMap = new();
@@ -17,9 +17,9 @@ internal class AoiTransformer : ISnapshotTransformer
     private readonly AoiRungMap _rungMap = new();
 
     /// <inheritdoc />
-    public IEnumerable<DataTable> Transform(Snapshot snapshot)
+    public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = snapshot.GetSource();
+        var source = target.GetSource();
         var aoiRecords = new List<AoiRecord>();
         var parameterRecords = new List<AoiParameterRecord>();
         var localTagRecords = new List<AoiLocalTagRecord>();
@@ -27,22 +27,22 @@ internal class AoiTransformer : ISnapshotTransformer
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            var aoiRecord = new AoiRecord(snapshot.SnapshotId, aoi);
+            var aoiRecord = new AoiRecord(target.InstanceId, aoi);
             aoiRecords.Add(aoiRecord);
 
             parameterRecords.AddRange(aoi.Parameters.Select(p =>
-                new AoiParameterRecord(snapshot.SnapshotId, aoiRecord.AoiId, p))
+                new AoiParameterRecord(target.InstanceId, aoiRecord.AoiId, p))
             );
 
             // Only attempt to process local tags and logic/rungs if the AOI is not encrypted. 
             if (!aoi.IsEncrypted)
             {
                 localTagRecords.AddRange(aoi.LocalTags.Select(t =>
-                    new AoiLocalTagRecord(snapshot.SnapshotId, aoiRecord.AoiId, t))
+                    new AoiLocalTagRecord(target.InstanceId, aoiRecord.AoiId, t))
                 );
 
                 rungRecords.AddRange(aoi.Routines.Where(r => r.Type == RoutineType.RLL).SelectMany(r =>
-                    r.Rungs.Select(rung => new AoiRungRecord(snapshot.SnapshotId, aoiRecord.AoiId, r.Name, rung)))
+                    r.Rungs.Select(rung => new AoiRungRecord(target.InstanceId, aoiRecord.AoiId, r.Name, rung)))
                 );
             }
         }

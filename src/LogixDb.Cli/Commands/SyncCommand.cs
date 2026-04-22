@@ -8,8 +8,8 @@ using JetBrains.Annotations;
 using L5Sharp.Core;
 using L5Sharp.Gateway;
 using L5Sharp.Gateway.Extensions;
+using LogixDb.Data;
 using Spectre.Console;
-using Snapshot = LogixDb.Data.Snapshot;
 
 namespace LogixDb.Cli.Commands;
 
@@ -31,9 +31,9 @@ public partial class SyncCommand : DbCommand
             "The slot number of the PLC processor in the chassis. If not provided will use comm path from source project.")]
     public int Slot { get; set; } = -1;
 
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
-        var snapshot = await database.GetSnapshot(TargetKey, token: token);
+        var snapshot = await manager.GetTarget(TargetKey, token: token);
 
         if (snapshot is null)
             throw new CommandException($"No snapshot found for target key: {TargetKey}", ErrorCodes.FileNotFound);
@@ -49,10 +49,10 @@ public partial class SyncCommand : DbCommand
             await source.Upload(client, token);
 
             ctx.Status("Creating new snapshot...");
-            var updated = Snapshot.Create(source, TargetKey);
+            var updated = Target.Create(source, TargetKey);
 
             ctx.Status("Adding snapshot to database...");
-            await database.AddSnapshot(updated, token);
+            await manager.ImportTarget(updated, token);
         });
 
         console.Ansi().MarkupLine("[green]✓[/] Successfully synced tag data from PLC.");

@@ -23,22 +23,22 @@ namespace LogixDb.Cli.Commands;
 /// The filtering by target key can help narrow results for specific targets.
 /// </example>
 [PublicAPI]
-[Command("list", Description = "Lists all snapshots, optionally filtered by target key")]
+[Command("list", Description = "Lists all target versions, optionally filtered by target key")]
 public partial class ListCommand : DbCommand
 {
     [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
     public string? TargetKey { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, ILogixDb database, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         try
         {
-            var snapshots = await console.Ansi()
-                .Status()
-                .StartAsync("Retrieving snapshots...", _ => database.ListSnapshots(TargetKey, token));
+            var targets = await console.Ansi().Status().StartAsync("Retrieving snapshots...",
+                _ => manager.ListTargets(TargetKey, token)
+            );
 
-            OutputSnapshots(console, snapshots.ToList());
+            OutputResults(console, targets.ToList());
         }
         catch (Exception e)
         {
@@ -54,17 +54,16 @@ public partial class ListCommand : DbCommand
     /// Displays a formatted table of snapshots to the console.
     /// </summary>
     /// <param name="console">The console instance used for rendering output.</param>
-    /// <param name="snapshots">The list of snapshots to display.</param>
-    private static void OutputSnapshots(IConsole console, List<Snapshot> snapshots)
+    /// <param name="targets">The list of snapshots to display.</param>
+    private static void OutputResults(IConsole console, List<Target> targets)
     {
-        if (snapshots.Count == 0)
+        if (targets.Count == 0)
         {
             console.Ansi().MarkupLine("[yellow]No snapshots found[/]");
             return;
         }
 
         var table = new Table().Border(TableBorder.Rounded)
-            .AddColumn("Id")
             .AddColumn("Key")
             .AddColumn("Version")
             .AddColumn("Type")
@@ -75,10 +74,9 @@ public partial class ListCommand : DbCommand
             .AddColumn("Machine")
             .AddColumn("Hash");
 
-        foreach (var snapshot in snapshots.OrderByDescending(s => s.ImportDate))
+        foreach (var snapshot in targets.OrderByDescending(s => s.ImportDate))
         {
             table.AddRow(
-                snapshot.SnapshotId.ToString(),
                 snapshot.TargetKey,
                 snapshot.TargetType,
                 snapshot.TargetName,
@@ -92,6 +90,6 @@ public partial class ListCommand : DbCommand
         }
 
         console.Ansi().Write(table);
-        console.Ansi().MarkupLine($"\n[green]Total:[/] {snapshots.Count} snapshot(s)");
+        console.Ansi().MarkupLine($"\n[green]Total:[/] {targets.Count} snapshot(s)");
     }
 }

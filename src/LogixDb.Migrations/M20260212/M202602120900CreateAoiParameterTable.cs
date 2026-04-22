@@ -13,7 +13,7 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
     {
         Create.Table("aoi_parameter")
             .WithPrimaryGuid("parameter_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("aoi_id", "aoi")
             .WithColumn("parameter_name").AsString(256).NotNullable()
             .WithColumn("parameter_description").AsString(512).Nullable()

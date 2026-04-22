@@ -13,7 +13,7 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
     {
         Create.Table("program")
             .WithPrimaryGuid("program_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("task_id", "task", nullable: true)
             .WithParentRelation("folder_id", "program", "program_id", nullable: true)
             .WithColumn("program_name").AsString(256).NotNullable()
@@ -28,13 +28,13 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("program")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("program_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("program")
             .OnColumn("folder_id").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
 
         Create.Index().OnTable("program")
             .OnColumn("program_name").Ascending()
@@ -42,6 +42,6 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
 
         Create.Index().OnTable("program")
             .OnColumn("source_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
     }
 }

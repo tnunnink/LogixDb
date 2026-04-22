@@ -19,13 +19,29 @@ public abstract class SqlServerTestFixture
     /// and integration with the test container for SQL Server.
     /// </summary>
     /// <remarks>
-    /// The property is instantiated as a concrete implementation of <see cref="ILogixDb"/>
-    /// (specifically <see cref="SqlServerDb"/>) using a generated SQL Server test container.
+    /// The property is instantiated as a concrete implementation of <see cref="IDbManager"/>
+    /// (specifically <see cref="SqlServerManager"/>) using a generated SQL Server test container.
     /// </remarks>
     /// <value>
-    /// An instance of <see cref="ILogixDb"/> used to interact with the database.
+    /// An instance of <see cref="IDbManager"/> used to interact with the database.
     /// </value>
-    protected static ILogixDb Database => SqlServerTestContainer.Database;
+    protected static IDbManager Database => SqlServerTestContainer.Database;
+
+    /// <summary>
+    /// Asserts that the specified table contains exactly the expected number of records.
+    /// </summary>
+    /// <param name="tableName">The name of the table to query.</param>
+    /// <param name="expectedCount">The expected number of records in the table.</param>
+    /// <returns>A task that represents the asynchronous assertion operation.</returns>
+    protected static async Task AssertRecordCount(string tableName, int expectedCount)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleAsync<int>($"SELECT COUNT(*) FROM {tableName}");
+
+        Assert.That(result, Is.EqualTo(expectedCount),
+            $"Expected {expectedCount} records in table '{tableName}', but found {result}");
+    }
 
     /// <summary>
     /// Cleans up after each test by dropping the database instance used during the test.
@@ -200,7 +216,7 @@ public abstract class SqlServerTestFixture
     {
         using var connection = await Database.Connect();
 
-        var result = await connection.QuerySingleAsync<int>(
+        var result = await connection.QueryFirstOrDefaultAsync<int>(
             """
             SELECT 1
             FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc

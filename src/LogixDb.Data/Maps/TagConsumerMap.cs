@@ -15,7 +15,7 @@ internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
     protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>
     [
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumerId, "consumer_id", hashable: false),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<TagConsumeInfoRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id", hashable: false),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Producer, "producer"),
         ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteTag, "remote_tag"),
@@ -31,7 +31,7 @@ internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
 /// </summary>
 /// <param name="TagId">The unique identifier for the tag associated with the consumer information.</param>
 /// <param name="ConsumeInfo">An object containing detailed information about consume-related settings and data.</param>
-internal record TagConsumeInfoRecord(int SnapshotId, Guid TagId, ConsumeInfo ConsumeInfo)
+internal record TagConsumeInfoRecord(int InstanceId, Guid TagId, ConsumeInfo ConsumeInfo)
 {
     public Guid ConsumerId { get; } = Guid.NewGuid();
 }

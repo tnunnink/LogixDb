@@ -1,6 +1,7 @@
 using System.Data;
 using Dapper;
 using LogixDb.Data.Abstractions;
+using Microsoft.Extensions.Logging.Testing;
 
 namespace LogixDb.Data.Sqlite.Tests;
 
@@ -24,7 +25,7 @@ public abstract class SqliteTestFixture
     /// </summary>
     protected SqliteTestFixture()
     {
-        Database = new SqliteDb(new DbConnectionInfo(DbProvider.Sqlite, TempDb));
+        Database = new SqliteManager(new DbConnectionInfo(DbProvider.Sqlite, TempDb), new FakeLogger());
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ public abstract class SqliteTestFixture
     /// Provides functionality for lifecycle management, migrations, and other database operations
     /// required during the execution of unit tests.
     /// </summary>
-    protected ILogixDb Database { get; }
+    protected IDbManager Database { get; }
 
     /// <summary>
     /// Performs cleanup operations after a test within the fixture has run. This method attempts to
@@ -116,7 +117,7 @@ public abstract class SqliteTestFixture
         if (result == 0)
             throw new AssertionException($"Table '{tableName}' was not found in the database.");
     }
-    
+
     protected async Task AssertTableDoesNotExists(string tableName)
     {
         using var connection = await Database.Connect();
@@ -148,7 +149,7 @@ public abstract class SqliteTestFixture
             new { expected }
         );
 
-        Assert.That(result, Is.EqualTo(0),
+        Assert.That(result, Is.Zero,
             $"Record with '{columnName}={expected}' exists in table '{tableName}' but should not"
         );
     }

@@ -6,9 +6,6 @@ using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260308;
 
-/// <summary>
-/// Represents a FluentMigrator migration that seeds the initial set of operands into the database.
-/// </summary>
 [UsedImplicitly]
 [Migration(202603082130, "Seeds native operand metadata for all supported Logix instructions")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]

@@ -13,7 +13,7 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
     {
         Create.Table("tag_consumer")
             .WithPrimaryGuid("consumer_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("tag_id", "tag")
             .WithColumn("producer").AsString().NotNullable()
             .WithColumn("remote_tag").AsString().NotNullable()

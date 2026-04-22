@@ -16,7 +16,7 @@ internal class ControllerMap : TableMap<ControllerRecord>
     protected override IReadOnlyList<ColumnMap<ControllerRecord>> Columns =>
     [
         ColumnMap<ControllerRecord>.For(r => r.ControllerId, "controller_id", hashable: false),
-        ColumnMap<ControllerRecord>.For(r => r.SnapshotId, "snapshot_id", hashable: false),
+        ColumnMap<ControllerRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Name, "controller_name", hashable: false),
         ColumnMap<ControllerRecord>.For(r => r.Controller.Description, "controller_description"),
         ColumnMap<ControllerRecord>.For(r => r.Controller.ProcessorType, "catalog_number"),
@@ -59,9 +59,9 @@ internal class ControllerMap : TableMap<ControllerRecord>
 /// This record contains the metadata and configuration for a specific Logix controller,
 /// as well as the unique identifier linking it to a specific database snapshot.
 /// </summary>
-/// <param name="SnapshotId">The unique identifier of the snapshot to which this controller record belongs.</param>
+/// <param name="InstanceId">The unique identifier of the instance to which this controller record belongs.</param>
 /// <param name="Controller">The Logix controller entity containing its configuration.</param>
-internal record ControllerRecord(int SnapshotId, Controller Controller)
+internal record ControllerRecord(int InstanceId, Controller Controller)
 {
     public Guid ControllerId { get; } = Guid.NewGuid();
 }

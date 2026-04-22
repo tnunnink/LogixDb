@@ -1,4 +1,5 @@
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging;
 
 namespace LogixDb.Data.Sqlite;
 
@@ -60,4 +61,5 @@ internal static class SqliteExtensions
 
         throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported type for SQLite conversion.");
     }
+
 }

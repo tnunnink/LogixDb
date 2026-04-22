@@ -22,18 +22,21 @@ public static class Extensions
     // ReSharper disable once UnusedMethodReturnValue.Global this is the standard pattern even if not using fluently
     public static IServiceCollection AddLogixDb(this IServiceCollection services, LogixConfig? config)
     {
-        if (config is null)
-            throw new ArgumentNullException(nameof(config));
+        ArgumentNullException.ThrowIfNull(config);
 
         var connection = DbConnectionInfo.Parse(config.DbConnection);
 
         switch (connection.Provider)
         {
             case DbProvider.SqlServer:
-                services.AddTransient<ILogixDb>(_ => new SqlServerDb(connection));
+                services.AddTransient<IDbManager>(p =>
+                    new SqliteManager(connection, p.GetRequiredService<ILogger>())
+                );
                 break;
             case DbProvider.Sqlite:
-                services.AddTransient<ILogixDb>(_ => new SqliteDb(connection));
+                services.AddTransient<IDbManager>(p =>
+                    new SqlServerManager(connection, p.GetRequiredService<ILogger>())
+                );
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(config), connection.Provider, "Unsupported SQL provider");

@@ -13,7 +13,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
     {
         Create.Table("tag")
             .WithPrimaryGuid("tag_id")
-            .WithSnapshotRelation()
+            .WithInstanceRelation()
             .WithParentRelation("program_id", "program", nullable: true)
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
@@ -28,21 +28,21 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("tag")
-            .OnColumn("snapshot_id").Ascending()
+            .OnColumn("instance_id").Ascending()
             .OnColumn("program_id").Ascending()
             .OnColumn("tag_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag")
             .OnColumn("tag_name").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
 
         Create.Index().OnTable("tag")
             .OnColumn("data_type").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
 
         Create.Index().OnTable("tag")
             .OnColumn("record_hash").Ascending()
-            .OnColumn("snapshot_id").Ascending();
+            .OnColumn("instance_id").Ascending();
     }
 }

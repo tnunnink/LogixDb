@@ -4,15 +4,15 @@ using LogixDb.Testing;
 namespace LogixDb.Data.Tests;
 
 [TestFixture]
-public class SnapshotTests
+public class TargetTests
 {
     [Test]
-    public void Snapshot_CanBeCreated_WithRequiredFields()
+    public void Target_CanBeCreated_WithRequiredFields()
     {
         var sourceData = new byte[] { 1, 2, 3, 4, 5 };
-        var snapshot = new Snapshot
+        var snapshot = new Target
         {
-            SnapshotId = 1,
+            InstanceId = 1,
             TargetType = "Controller",
             TargetName = "TestController",
             IsPartial = false,
@@ -23,7 +23,7 @@ public class SnapshotTests
             SourceData = sourceData
         };
 
-        snapshot.SnapshotId.Should().Be(1);
+        snapshot.InstanceId.Should().Be(1);
         snapshot.TargetType.Should().Be("Controller");
         snapshot.TargetName.Should().Be("TestController");
         snapshot.IsPartial.Should().BeFalse();
@@ -32,11 +32,11 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_CreateFromFakeSource_ShouldHaveExpectedFields()
+    public void Target_CreateFromFakeSource_ShouldHaveExpectedFields()
     {
         var source = TestSource.LocalTest();
 
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
 
         snapshot.Should().NotBeNull();
         snapshot.TargetKey.Should().Be($"{source.Content.TargetType?.ToLower()}://{source.Content.TargetName}");
@@ -48,10 +48,10 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_GetSource_ShouldReturnParsedL5X()
+    public void Target_GetSource_ShouldReturnParsedL5X()
     {
         var source = TestSource.LocalTest();
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
 
         var retrievedSource = snapshot.GetSource();
 
@@ -60,19 +60,19 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_ToString_ShouldReturnTargetKey()
+    public void Target_ToString_ShouldReturnTargetKey()
     {
         var source = TestSource.LocalTest();
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
 
         snapshot.ToString().Should().Be(snapshot.TargetKey);
     }
 
     [Test]
-    public void Snapshot_Compile_ShouldReturnExpectedTables()
+    public void Target_Compile_ShouldReturnExpectedTables()
     {
         var source = TestSource.LocalTest();
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
         var tableNames = new List<string> { "controller", "tag", "task", "program" };
 
         var tables = snapshot.Compile(tableNames).ToList();
@@ -89,10 +89,10 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_Compile_WithEmptyList_ShouldReturnNoTables()
+    public void Target_Compile_WithEmptyList_ShouldReturnNoTables()
     {
         var source = TestSource.LocalTest();
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
         var tableNames = new List<string>();
 
         var tables = snapshot.Compile(tableNames).ToList();
@@ -101,10 +101,10 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
+    public void Target_Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
     {
         var source = TestSource.LocalTest();
-        var snapshot = Snapshot.Create(source);
+        var snapshot = Target.Create(source);
         var tableNames = new List<string> { "controller", "non_existent_table" };
 
         var tables = snapshot.Compile(tableNames).ToList();
@@ -114,12 +114,12 @@ public class SnapshotTests
     }
 
     [Test]
-    public void Snapshot_Create_WithTargetKey_ShouldUseProvidedKey()
+    public void Target_Create_WithTargetKey_ShouldUseProvidedKey()
     {
         var source = TestSource.LocalTest();
         const string customKey = "custom://mykey";
 
-        var snapshot = Snapshot.Create(source, customKey);
+        var snapshot = Target.Create(source, customKey);
 
         snapshot.TargetKey.Should().Be(customKey);
     }

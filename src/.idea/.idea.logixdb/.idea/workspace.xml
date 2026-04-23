@@ -19,7 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/GetTargetByLatest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/GetTargetByLatest.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +144,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "configurable.group.junie",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -237,23 +241,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="25345000" />
-    </task>
-    <task id="LOCAL-00137" summary="Bump `L5Sharp` package version to 6.0.2 in data project.">
-      <option name="closed" value="true" />
-      <created>1775677607815</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1775677607815</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Rename `DbOptions` to `TableOptions`, replace `DbConnection` with `DbConnectionInfo`, and bump `L5Sharp` to v6.0.2 in CLI project.">
-      <option name="closed" value="true" />
-      <created>1775677620877</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1775677620877</updated>
+      <workItem from="1776867316310" duration="27240000" />
     </task>
     <task id="LOCAL-00139" summary="Replace `DbConnection` with `DbConnectionInfo` in `Extensions`.">
       <option name="closed" value="true" />
@@ -631,7 +619,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776950858220</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="Update `GetTargetByLatest.sql` to rename aliases for clarity and consistency in SQL query">
+      <option name="closed" value="true" />
+      <created>1776951269743</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1776951269743</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring.">
+      <option name="closed" value="true" />
+      <created>1776951273232</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1776951273232</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,8 +661,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump L5Sharp to v6.0.4 across projects." />
-    <MESSAGE value="Remove unused `source_data` column mappings and associated migration definitions across all mapping classes and database schema files." />
     <MESSAGE value="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests." />
     <MESSAGE value="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests." />
     <MESSAGE value="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures." />
@@ -682,7 +684,9 @@
     <MESSAGE value="Refactor transaction handling in `SqlServerManager` and `SqliteManager`, improve `Target.Compile` logic, and add comprehensive unit tests for `Target`." />
     <MESSAGE value="Update migration scripts to use generic `WithRelation&lt;T&gt;` method for foreign key definitions, enhancing type specificity and consistency across tables." />
     <MESSAGE value="Refactor SQL scripts for improved readability and consistency, standardizing formatting and simplifying complex queries where applicable." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor SQL scripts for improved readability and consistency, standardizing formatting and simplifying complex queries where applicable." />
+    <MESSAGE value="Update `GetTargetByLatest.sql` to rename aliases for clarity and consistency in SQL query" />
+    <MESSAGE value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

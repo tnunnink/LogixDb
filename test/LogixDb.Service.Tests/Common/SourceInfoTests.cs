@@ -12,14 +12,14 @@ public class SourceInfoTests
     {
         var sourceInfo = SourceInfo.Create("test.L5X", "C:\\Temp");
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(sourceInfo.SourceId, Is.Not.EqualTo(Guid.Empty));
             Assert.That(sourceInfo.FileType, Is.EqualTo(FileType.L5X));
             Assert.That(sourceInfo.FileName, Is.EqualTo("test.L5X"));
             Assert.That(sourceInfo.FilePath, Does.StartWith("C:\\Temp"));
             Assert.That(sourceInfo.FilePath, Does.EndWith(".L5X"));
-        });
+        }
     }
 
     [Test]

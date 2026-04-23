@@ -4,7 +4,6 @@ using L5Sharp.Core;
 using LogixConverter.Abstractions;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
-using LogixDb.Data.Exceptions;
 using LogixDb.Service.Common;
 using Microsoft.Extensions.Options;
 using Task = System.Threading.Tasks.Task;
@@ -46,7 +45,6 @@ public class SourceIngestionService(
     Channel<SourceInfo> channel,
     IDbManager manager,
     ILogixFileConverter converter,
-    IHostApplicationLifetime lifetime,
     IOptions<LogixConfig> options,
     ILogger<SourceIngestionService> logger) : BackgroundService
 {
@@ -68,7 +66,8 @@ public class SourceIngestionService(
                 if (logger.IsEnabled(LogLevel.Information))
                     logger.LogInformation("Processing {FileName}...", source.FileName);
 
-                // Create a temp L5X file for processing, either converting it from ACD or just copying it, depending on the file type.
+                // Create a temp L5X file for processing, either converting it from ACD or just copying it,
+                // depending on the file type.
                 var tempFile = await ConvertOrCopy(source, stoppingToken);
 
                 // Load the L5X file, create a target and add it to the database.
@@ -110,13 +109,6 @@ public class SourceIngestionService(
             {
                 await manager.ListTargets(token: stoppingToken);
                 logger.LogInformation("Database connection verified. Ingestion service started and waiting uploads...");
-                break;
-            }
-            catch (MigrationRequiredException ex)
-            {
-                logger.LogCritical(ex,
-                    "Database migration is required. Manual migration must be performed before the service can start.");
-                lifetime.StopApplication();
                 break;
             }
             catch (Exception)

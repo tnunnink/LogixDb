@@ -70,7 +70,7 @@ public class FtacMonitorService(
             SELECT [AssetId], [VersionId], [AssetName], [VersionNumber], [AddEditDate]
             FROM [dbo].[arch_AssetVersions] 
             WHERE [AddEditDate] > @LastDate AND [AssetName] LIKE '%.ACD'
-            ORDER BY [AddEditDate] ASC
+            ORDER BY [AddEditDate]
             """;
 
         var connectionString = options.Value.GetFtacConnectionString();

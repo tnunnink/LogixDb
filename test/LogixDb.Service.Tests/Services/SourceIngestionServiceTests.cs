@@ -5,9 +5,7 @@ using LogixDb.Data;
 using LogixDb.Data.Sqlite;
 using LogixDb.Service.Common;
 using LogixDb.Service.Workers;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging.Testing;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -18,7 +16,6 @@ namespace LogixDb.Service.Tests.Services;
 public class SourceIngestionServiceTests
 {
     private Mock<ILogixFileConverter> _fileConverterMock;
-    private Mock<IHostApplicationLifetime> _lifetimeMock;
     private Mock<ILogger<SourceIngestionService>> _loggerMock;
     private Mock<IOptions<LogixConfig>> _optionsMock;
     private Channel<SourceInfo> _channel;
@@ -39,7 +36,6 @@ public class SourceIngestionServiceTests
         _dbManager.Migrate().GetAwaiter().GetResult();
 
         _fileConverterMock = new Mock<ILogixFileConverter>();
-        _lifetimeMock = new Mock<IHostApplicationLifetime>();
         _loggerMock = new Mock<ILogger<SourceIngestionService>>();
         _optionsMock = new Mock<IOptions<LogixConfig>>();
         _optionsMock.Setup(o => o.Value).Returns(new LogixConfig
@@ -63,13 +59,13 @@ public class SourceIngestionServiceTests
     {
         // Arrange
         var sourceId = Guid.NewGuid();
-        var fileName = "test.L5X";
+        const string fileName = "test.L5X";
         var filePath = Path.Combine(_testDropPath, $"{sourceId:N}.L5X");
 
         // Create a dummy L5X file
-        var l5x = L5X.Parse(
+        var l5X = L5X.Parse(
             "<RSLogix5000Content TargetName=\"TestController\" TargetType=\"Controller\" SchemaRevision=\"1.0\"></RSLogix5000Content>");
-        l5x.Save(filePath);
+        l5X.Save(filePath);
 
         var source = new SourceInfo
         {
@@ -83,7 +79,6 @@ public class SourceIngestionServiceTests
             _channel,
             _dbManager,
             _fileConverterMock.Object,
-            _lifetimeMock.Object,
             _optionsMock.Object,
             _loggerMock.Object);
 
@@ -99,45 +94,13 @@ public class SourceIngestionServiceTests
         // Assert
         var targets = (await _dbManager.ListTargets(token: cts.Token)).ToList();
         Assert.That(targets, Has.Count.EqualTo(1));
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(targets.First().TargetName, Is.EqualTo("TestController"));
             Assert.That(File.Exists(filePath), Is.False, "Original file should be deleted");
-        });
+        }
 
         await service.StopAsync(cts.Token);
         await startTask;
-    }
-
-    [Test]
-    public async System.Threading.Tasks.Task ExecuteAsync_MigrationRequired_ShouldShutdownApp()
-    {
-        // Arrange
-        // Create a new DB but don't migrate it
-        var unmigratedDbPath = Path.Combine(Path.GetTempPath(), $"LogixDb_Unmigrated_{Guid.NewGuid():N}.db");
-        // Create an empty file to simulate unmigrated DB
-        File.WriteAllBytes(unmigratedDbPath, []);
-
-        var connectionInfo = DbConnectionInfo.Parse(unmigratedDbPath);
-        var unmigratedDb = new SqliteManager(connectionInfo, NullLogger.Instance);
-
-        var service = new SourceIngestionService(
-            _channel,
-            unmigratedDb,
-            _fileConverterMock.Object,
-            _lifetimeMock.Object,
-            _optionsMock.Object,
-            _loggerMock.Object);
-
-        // Act
-        var startTask = service.StartAsync(CancellationToken.None);
-        // Add a delay to ensure the background task has time to run and call StopApplication
-        await System.Threading.Tasks.Task.Delay(500);
-        await startTask;
-
-        // Assert
-        _lifetimeMock.Verify(l => l.StopApplication(), Times.Once);
-
-        if (File.Exists(unmigratedDbPath)) File.Delete(unmigratedDbPath);
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
@@ -14,15 +15,14 @@ namespace LogixDb.Cli.Commands;
 /// </summary>
 [PublicAPI]
 [Command("archive",
-    Description = "Removes expanded relational data for a target while preserving its archive record")]
+    Description = "Removes instance relational data for a target while preserving its archived version record")]
 public partial class ArchiveCommand : DbCommand
 {
-    [CommandOption("target", 't',
-        Description = "Target key of the target to archive (format: targettype://targetname)")]
+    [Required]
+    [CommandOption("target", 't', Description = "Target key to archive (format: targettype://targetname)")]
     public string? Target { get; set; }
 
-    [CommandOption("version", 'v',
-        Description = "Version number of the target to archive. If 0, the latest version is archived.")]
+    [CommandOption("version", 'v', Description = "Version number to archive. If 0, the latest version is archived.")]
     public int Version { get; set; }
 
     /// <inheritdoc />

@@ -34,9 +34,9 @@ public partial class DropCommand : DbCommand
 
         try
         {
-            await console.Ansi()
-                .Status()
-                .StartAsync("Dropping database...", _ => manager.Drop(token));
+            await console.Ansi().Status().StartAsync("Dropping database...",
+                _ => manager.Drop(token)
+            );
 
             console.Ansi().MarkupLine("[green]✓[/] Database dropped successfully");
         }

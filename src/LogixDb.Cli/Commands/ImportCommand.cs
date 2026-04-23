@@ -13,11 +13,10 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command to import an L5X file as a new target into the database.
-/// </summary>
 [PublicAPI]
-[Command("import", Description = "Imports an L5X file as a new target into the database")]
+[Command("import",
+    Description =
+        "Imports an L5X file by posting to target version table and parsing/inserting new instance data (Post + Restore)")]
 public partial class ImportCommand : DbCommand
 {
     [Required]

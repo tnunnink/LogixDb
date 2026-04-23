@@ -9,10 +9,6 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command to purge all data from the database while preserving the schema.
-/// This command removes all records from tables but keeps the database structure intact.
-/// </summary>
 [PublicAPI]
 [Command("purge", Description = "Permanently removes a target and its entire version history")]
 public partial class PurgeCommand : DbCommand

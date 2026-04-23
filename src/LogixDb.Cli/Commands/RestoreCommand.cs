@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
@@ -8,19 +9,15 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command to restore a target's compressed blob into relational tables.
-/// </summary>
 [PublicAPI]
-[Command("restore", Description = "Expands an archived target into relational tables")]
+[Command("restore", Description = "Restores target version into relational tables (creates new instance data)")]
 public partial class RestoreCommand : DbCommand
 {
-    [CommandOption("target", 't',
-        Description = "Target key of the target to restore (format: targettype://targetname)")]
+    [Required]
+    [CommandOption("target", 't', Description = "Target key to restore (format: targettype://targetname)")]
     public string? Target { get; set; }
 
-    [CommandOption("version", 'v',
-        Description = "Version number of the target to restore. If 0, the latest version is restored.")]
+    [CommandOption("version", 'v', Description = "Version number to restore. If 0, the latest version is restored.")]
     public int Version { get; set; }
 
     /// <inheritdoc />

@@ -19,11 +19,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacMonitorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ArchiveCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ArchiveCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PostCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PostCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/RestoreCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/RestoreCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,31 +247,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="27240000" />
-    </task>
-    <task id="LOCAL-00139" summary="Replace `DbConnection` with `DbConnectionInfo` in `Extensions`.">
-      <option name="closed" value="true" />
-      <created>1775677636720</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1775677636720</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) and rename existing migration test classes for consistency, updating corresponding migration logic and test assertions.">
-      <option name="closed" value="true" />
-      <created>1775682854458</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1775682854458</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Add `GetProgram` method to `Tag` extension, refine `ColumnMap` with new overloads for `int` and `float` properties, and enhance `ControllerMap` with additional redundancy, safety, and security mappings.">
-      <option name="closed" value="true" />
-      <created>1775682862098</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1775682862098</updated>
+      <workItem from="1776867316310" duration="28088000" />
     </task>
     <task id="LOCAL-00142" summary="Refine transformers and mappings: fix duplicate checks in `ModuleTransformer`, rename `ParentId` to `FolderId` across `ProgramMap` and `ProgramRecord`, and streamline tag handling in `TagTransformer`.">
       <option name="closed" value="true" />
@@ -635,7 +617,31 @@
       <option name="project" value="LOCAL" />
       <updated>1776951273232</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="Remove unused dependencies and obsolete methods, refactor test assertions for clarity, and improve naming consistency in SourceIngestionService and related tests.">
+      <option name="closed" value="true" />
+      <created>1776953120934</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1776953120934</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Remove `MigrationRequiredException` as it is no longer used.">
+      <option name="closed" value="true" />
+      <created>1776953124068</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1776953124068</updated>
+    </task>
+    <task id="LOCAL-00190" summary="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used.">
+      <option name="closed" value="true" />
+      <created>1776953194174</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1776953194174</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,9 +667,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests." />
-    <MESSAGE value="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests." />
-    <MESSAGE value="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures." />
     <MESSAGE value="Replace `WithOptionalRelation` with `WithGuidColumn` across migrations and extend `FluentMigrationExtensions` to support generic GUID column creation." />
     <MESSAGE value="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic." />
     <MESSAGE value="Refactor snapshot handling: standardize table filtering and ordering logic in `PruneLatestSnapshot`, rename methods for clarity, and update associated tests." />
@@ -686,7 +689,10 @@
     <MESSAGE value="Refactor SQL scripts for improved readability and consistency, standardizing formatting and simplifying complex queries where applicable." />
     <MESSAGE value="Update `GetTargetByLatest.sql` to rename aliases for clarity and consistency in SQL query" />
     <MESSAGE value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
+    <MESSAGE value="Remove unused dependencies and obsolete methods, refactor test assertions for clarity, and improve naming consistency in SourceIngestionService and related tests." />
+    <MESSAGE value="Remove `MigrationRequiredException` as it is no longer used." />
+    <MESSAGE value="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

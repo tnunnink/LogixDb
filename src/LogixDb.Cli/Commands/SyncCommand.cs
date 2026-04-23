@@ -21,14 +21,10 @@ public partial class SyncCommand : DbCommand
     [CommandOption("target", 't', Description = "The target key of the project to sync")]
     public string TargetKey { get; set; } = string.Empty;
 
-    [CommandOption("ip",
-        Description =
-            "The IP address of the PLC to connect to. If not provided will use comm path from source project.")]
+    [CommandOption("ip", Description = "Processor IP address. Defaults to comm path from source project.")]
     public string? IpAddress { get; set; }
 
-    [CommandOption("slot",
-        Description =
-            "The slot number of the PLC processor in the chassis. If not provided will use comm path from source project.")]
+    [CommandOption("slot", Description = "Processor slot number. Defaults to  comm path from source project.")]
     public int Slot { get; set; } = -1;
 
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)

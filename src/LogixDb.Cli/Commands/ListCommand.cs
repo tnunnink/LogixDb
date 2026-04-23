@@ -9,19 +9,6 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command for listing all targets in the database, optionally filtered by a target key.
-/// </summary>
-/// <remarks>
-/// This command retrieves and displays targets from the database. The results can be filtered
-/// by specifying a target key, which is expected in the format "targettype://targetname".
-/// The output includes a table of target details such as ID, target key, target type,
-/// target name, revision, user, machine, and import/export dates.
-/// </remarks>
-/// <example>
-/// Use this command to query and review targets stored in the database.
-/// The filtering by target key can help narrow results for specific targets.
-/// </example>
 [PublicAPI]
 [Command("list", Description = "Lists all target versions, optionally filtered by target key")]
 public partial class ListCommand : DbCommand

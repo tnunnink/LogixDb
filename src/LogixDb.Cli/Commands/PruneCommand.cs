@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
@@ -8,30 +9,13 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command for pruning targets and other related resources in the LogixDb CLI.
-/// </summary>
-/// <remarks>
-/// The <see cref="PruneCommand"/> class provides functionality to delete specific targets,
-/// targets imported before a specific date, or the latest instance tied to a target.
-/// Use the provided command options to specify pruning behavior.
-/// This command inherits from <see cref="DbCommand"/>, allowing database connection configuration.
-/// </remarks>
-/// <example>
-/// This command supports the following options:
-/// - Target: Specifies the target resource to be pruned.
-/// - Version: Deletes a target with a specific version number.
-/// - TargetId: Deletes a target with a specific ID.
-/// - Before: Deletes targets imported before a given date.
-/// - Latest: Deletes the latest instance for a specified target.
-/// </example>
 [PublicAPI]
-[Command("prune", Description = "Delete targets by version, date, or target")]
+[Command("prune", Description = "Deletes all instance data for a specified target (retains version history)")]
 public partial class PruneCommand : DbCommand
 {
-    [CommandOption("target", 't',
-        Description = "Target key of the instances to prune (format: targettype://targetname)")]
-    public string? Target { get; set; }
+    [Required]
+    [CommandOption("target", 't', Description = "Target key to prune (format: targettype://targetname)")]
+    public string Target { get; set; } = string.Empty;
 
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)

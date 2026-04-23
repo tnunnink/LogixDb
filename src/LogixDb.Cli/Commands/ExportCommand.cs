@@ -24,7 +24,7 @@ namespace LogixDb.Cli.Commands;
 /// - OutputPath: Specifies the output file path for the exported L5X file.
 /// </example>
 [PublicAPI]
-[Command("export", Description = "Export a target to an L5X file")]
+[Command("export", Description = "Export a target version to an L5X file")]
 public partial class ExportCommand : DbCommand
 {
     [Required]
@@ -35,7 +35,6 @@ public partial class ExportCommand : DbCommand
     [CommandOption("target", 't', Description = "Target key to export")]
     public string TargetKey { get; set; } = string.Empty;
 
-    [Required]
     [CommandOption("version", 'v', Description = "Version number of the target to export (0 for latest)")]
     public int Version { get; set; }
 

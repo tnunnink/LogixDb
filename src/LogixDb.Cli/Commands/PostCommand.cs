@@ -13,12 +13,8 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command to post an L5X file as a new target archive into the database.
-/// This only archives the metadata and source blob without expanding it into relational tables.
-/// </summary>
 [PublicAPI]
-[Command("post", Description = "Posts an L5X file as a new target archive into the database")]
+[Command("post", Description = "Posts an L5X file to the target version table")]
 public partial class PostCommand : DbCommand
 {
     [Required]
@@ -61,7 +57,7 @@ public partial class PostCommand : DbCommand
                 ctx.Status("Loading L5X file...");
                 var content = await L5X.LoadAsync(importTarget, token);
                 var target = Target.Create(content, TargetKey);
-                ctx.Status("Posting archive to database...");
+                ctx.Status("Posting source to database...");
                 await database.PostTarget(target, token);
                 return target;
             });

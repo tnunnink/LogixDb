@@ -24,7 +24,7 @@ public static class Extensions
         {
             Ansi = AnsiSupport.Detect,
             ColorSystem = ColorSystemSupport.Detect,
-            Out = new AnsiConsoleOutput(console.Output)
+            Out = new AnsiConsoleOutput(console.Output),
         });
     }
 }

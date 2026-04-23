@@ -119,7 +119,10 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
 
         var target = await GetTargetAsync(targetKey, version, token);
 
-        if (target?.InstanceId > 0)
+        if (target is null)
+            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
+
+        if (target.InstanceId > 0)
             await ExecuteSqliteScriptAsync(SqliteScript.DeleteVersionInstance, new { target.InstanceId }, token);
     }
 
@@ -127,24 +130,14 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     public Task PruneTarget(string targetKey, CancellationToken token = default)
     {
         logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
-
-        return ExecuteSqliteScriptAsync(
-            SqliteScript.DeleteTargetInstances,
-            new { TargetKey = targetKey },
-            token
-        );
+        return ExecuteSqliteScriptAsync(SqliteScript.DeleteTargetInstances, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task DeleteTarget(string targetKey, CancellationToken token = default)
     {
         logger.LogInformation("Deleting target {TargetKey}", targetKey);
-
-        return ExecuteSqliteScriptAsync(
-            SqliteScript.DeleteTarget,
-            new { TargetKey = targetKey },
-            token
-        );
+        return ExecuteSqliteScriptAsync(SqliteScript.DeleteTarget, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
@@ -278,7 +271,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
             var tableNames = await connection.QueryAsync<string>(
                 SqliteScript.GetComponentTables,
                 transaction: transaction);
-            
+
             var dataTables = target.Compile(tableNames.ToArray());
 
             var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);

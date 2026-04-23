@@ -118,7 +118,10 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo, ILogger lo
 
         var target = await GetTargetAsync(targetKey, version, token);
 
-        if (target?.InstanceId > 0)
+        if (target is null)
+            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
+
+        if (target.InstanceId > 0)
             await ExecuteSqlScriptAsync(SqlServerScript.DeleteVersionInstance, new { target.InstanceId }, token);
     }
 
@@ -126,24 +129,14 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo, ILogger lo
     public Task PruneTarget(string targetKey, CancellationToken token = default)
     {
         logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
-
-        return ExecuteSqlScriptAsync(
-            SqlServerScript.DeleteTargetInstances,
-            new { TargetKey = targetKey },
-            token
-        );
+        return ExecuteSqlScriptAsync(SqlServerScript.DeleteTargetInstances, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task DeleteTarget(string targetKey, CancellationToken token = default)
     {
         logger.LogInformation("Deleting target {TargetKey}", targetKey);
-
-        return ExecuteSqlScriptAsync(
-            SqlServerScript.DeleteTarget,
-            new { TargetKey = targetKey },
-            token
-        );
+        return ExecuteSqlScriptAsync(SqlServerScript.DeleteTarget, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />

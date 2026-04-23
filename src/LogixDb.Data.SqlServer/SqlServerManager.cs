@@ -270,7 +270,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo, ILogger lo
     private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
     {
         await using var connection = await OpenConnection(token);
-        await using var transaction = (SqlTransaction)await connection.BeginTransactionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {
@@ -280,10 +280,13 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo, ILogger lo
                 transaction
             );
 
-            var tableNames = (await connection.QueryAsync<string>(SqlServerScript.GetComponentTables)).ToArray();
+            var tableNames = await connection.QueryAsync<string>(
+                SqlServerScript.GetComponentTables,
+                transaction: transaction);
+
             var dataTables = target.Compile(tableNames.ToArray());
 
-            var writer = new SqlServerWriter(connection, transaction);
+            var writer = new SqlServerWriter(connection, (SqlTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
 
             await transaction.CommitAsync(token);

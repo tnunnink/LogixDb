@@ -8,7 +8,7 @@ namespace LogixDb.Data.SqlServer;
 /// Implements a writer for persisting <see cref="DataTable"/> objects to a SQL Server database
 /// using an established <see cref="SqlConnection"/> and optional <see cref="SqlTransaction"/>.
 /// </summary>
-internal class SqlServerWriter(SqlConnection connection, SqlTransaction? transaction = null) : IDbWriter
+internal class SqlServerWriter(SqlConnection connection, SqlTransaction transaction) : IDbWriter
 {
     /// <summary>
     /// Writes the specified collection of <see cref="DataTable"/> objects to the SQL Server database asynchronously.

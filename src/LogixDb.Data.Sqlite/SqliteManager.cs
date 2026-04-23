@@ -68,7 +68,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     public async Task<IEnumerable<Target>> ListTargets(string? targetKey = null, CancellationToken token = default)
     {
         logger.LogInformation("Listing targets {TargetKey}", targetKey ?? "all");
-        
+
         ConfigureSqlite();
         await using var connection = await OpenConnection(token);
         return await connection.QueryAsync<Target>(SqliteScript.ListTargets, new { TargetKey = targetKey });
@@ -275,9 +275,10 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
                 transaction
             );
 
-            var tableNames =
-                (await connection.QueryAsync<string>(SqliteScript.GetComponentTables, transaction: transaction))
-                .ToArray();
+            var tableNames = await connection.QueryAsync<string>(
+                SqliteScript.GetComponentTables,
+                transaction: transaction);
+            
             var dataTables = target.Compile(tableNames.ToArray());
 
             var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);

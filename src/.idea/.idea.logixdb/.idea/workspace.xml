@@ -19,18 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ArchiveCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ArchiveCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PostCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PostCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/RestoreCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/RestoreCommandTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,15 +240,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="35205000" />
-    </task>
-    <task id="LOCAL-00144" summary="Rename and refine columns across migration scripts for consistency (`controller_revision` to `revision`, `content_hash` to `record_hash`), update `source_data` columns to allow max binary size, and add `security_code` column to `controller` table.">
-      <option name="closed" value="true" />
-      <created>1775695956775</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1775695956775</updated>
+      <workItem from="1776867316310" duration="36663000" />
     </task>
     <task id="LOCAL-00145" summary="Optimize `GetTargetId` call in `ImportSnapshotAsync` by directly parsing `Guid` from query result.">
       <option name="closed" value="true" />
@@ -644,7 +626,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776965503927</updated>
     </task>
-    <option name="localTasksCounter" value="193" />
+    <task id="LOCAL-00193" summary="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests.">
+      <option name="closed" value="true" />
+      <created>1776967017614</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1776967017614</updated>
+    </task>
+    <option name="localTasksCounter" value="194" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,7 +660,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor snapshot handling: standardize table filtering and ordering logic in `PruneLatestSnapshot`, rename methods for clarity, and update associated tests." />
     <MESSAGE value="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests." />
     <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
     <MESSAGE value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
@@ -695,7 +684,8 @@
     <MESSAGE value="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used." />
     <MESSAGE value="Simplify and clarify CLI command descriptions; add required attributes for better validation consistency." />
     <MESSAGE value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
+    <MESSAGE value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

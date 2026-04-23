@@ -1,7 +1,7 @@
 # LogixDb
 
 An ETL tool for managing and automating ingestion of Rockwell Automation Logix Designer ACD/L5X project files
-into a structured and transparent SQL database schema, enabling workflows such as project analysis, validation,
+into a relational SQL database schema, enabling workflows such as project analysis, validation,
 documentation, change tracking, and versioning.
 
 ## Motivation
@@ -23,15 +23,30 @@ LogixDb currently offers a few tools for users to work with.
 Interactive command-line tool for managing database operations. Use it for importing L5X/ACD files, exporting targets,
 and performing database maintenance. See the table below for a complete list of available commands.
 
-| Command     | Description                                                                                        |
-|-------------|----------------------------------------------------------------------------------------------------|
-| **migrate** | Runs migrations to ensure the latest schema. Supports selective table creation via `--components`. |
-| **import**  | Imports an L5X or ACD file as a new target into the database                                     |
-| **list**    | Lists all targets, optionally filtered by target key                                             |
-| **export**  | Exports a target to an L5X file by target or ID                                                  |
-| **prune**   | Delete targets by ID, date, or target                                                            |
-| **purge**   | Purges all data from the database while preserving the schema                                      |
-| **drop**    | Drops the entire database, permanently deleting all tables and data                                |
+| Command | Description |
+| :--- | :--- |
+| **`migrate`** | Runs database migrations to ensure the schema is up to date. Supports selective table creation via `--components`. |
+| **`post`** | Uploads an L5X/ACD file into the `target_version` table as a compressed blob. This archives the version without expanding relational data. |
+| **`restore`** | Expands a previously **posted** version into relational entity tables (Tags, Programs, etc.), creating a searchable **instance**. |
+| **`import`** | A convenience command that performs a **post** followed immediately by a **restore**. This is the standard way to ingest and parse a project. |
+| **`archive`** | The inverse of restore. It removes the expanded relational data for a specific version while keeping the compressed L5X blob in the `target_version` table. |
+| **`sync`** | Connects to an online PLC to upload live tag values and creates a new archived version in the database. |
+| **`list`** | Lists all registered targets and their available versions. |
+| **`export`** | Exports a specific version or target back to an L5X file. |
+| **`prune`** | Deletes all expanded relational "instances" for a target, keeping only the version history (the compressed blobs). |
+| **`purge`** | Permanently deletes a target and its entire history, including all versions and instances. |
+| **`drop`** | Drops the entire database schema and all associated data. |
+
+### Core Concepts
+
+LogixDb separates the **storage** of project files from the **analysis** of their relational data. This architecture allows for efficient historical tracking while minimizing database growth.
+
+*   **Post**: Saves the raw L5X/ACD file and metadata into the `target_version` table. No relational data (tags, rungs, etc.) is created at this stage.
+*   **Restore**: Parses a **posted** version into relational tables (Tags, Programs, etc.), creating a searchable **instance**.
+*   **Import**: Performs both **Post** and **Restore** in one step.
+*   **Archive**: Wipes the relational data for a specific version to save space but retains the original file in `target_version` for future restoration.
+*   **Prune**: A bulk archive operation that removes all relational "instances" for a target, effectively moving the history into "cold storage."
+*   **Purge**: Deletes all traces of a target, including its metadata and all archived versions.
 
 #### Example Usage
 
@@ -81,22 +96,22 @@ logixdb migrate -c "C:\Data\Logix.db" --components 48
 logixdb import -c "C:\Data\Logix.db" -s "C:\Projects\MyProject.L5X" -t "PLC://Main_Controller"
 ```
 
-**List all targets for a specific target (SQL Server)**:
+**List all versions for a specific target (SQL Server)**:
 
 ```powershell
 logixdb list -c "LogixDb@localhost" -t "PLC://Main_Controller"
 ```
 
-**Export the latest target to a file**:
+**Export a specific version to a file**:
 
 ```powershell
-logixdb export -c "LogixDb@localhost" -t "PLC://Main_Controller" -o "C:\Exports\Backup.L5X"
+logixdb export -c "LogixDb@localhost" -t "PLC://Main_Controller" -v 1 -o "C:\Exports\Backup_v1.L5X"
 ```
 
-**Prune targets older than a specific date**:
+**Prune instances for a target**:
 
 ```powershell
-logixdb prune -c "LogixDb@localhost" --before "2024-01-01"
+logixdb prune -c "LogixDb@localhost" -t "PLC://Main_Controller"
 ```
 
 ### Ingestion API Endpoint
@@ -338,53 +353,40 @@ Both the CLI and the Windows Service provide detailed logging.
 LogixDb uses a target-based relational schema to store PLC project data. This structure allows for version
 tracking and historical analysis of changes across different imports of the same PLC project.
 
-### Core Architecture
+### SQL Schema Architecture
 
-The schema is organized around three primary levels:
+The LogixDb schema is designed to support multiple versions of multiple PLC targets, with the ability to "hydrate" specific versions into relational data on demand.
 
-1. **Target**: Represents a unique asset or project (e.g., `PLC://Main_Controller`).
-2. **target**: A specific version of a target, created during an `import` operation. It contains metadata about
-   the import (date, user, machine) and the original source file (`source_data`).
-3. **Entities**: The granular components of the Logix project (Tags, Routines, Logic, etc.) associated with a
-   specific `target_id`.
+#### Core ER Diagram
 
 ```mermaid
 erDiagram
-    TARGET ||--o{ target : contains
-    target ||--o{ target_PROPERTY : has
-    target ||--o{ CONTROLLER : "1:1"
-    target ||--o{ TAG : contains
-    target ||--o{ PROGRAM : contains
-    target ||--o{ TASK : contains
-    target ||--o{ AOI : contains
-    target ||--o{ DATA_TYPE : contains
-    target ||--o{ MODULE : contains
-    target ||--o{ OPERAND : "seed data"
-
-    TAG ||--o{ TAG_MEMBER : has
-    TAG_MEMBER ||--o{ TAG_COMMENT : "0..1"
-    TAG ||--o{ TAG_ALIAS : "0..1"
-    TAG ||--o{ TAG_PRODUCER : "0..1"
-    TAG ||--o{ TAG_CONSUMER : "0..1"
-
-    DATA_TYPE ||--o{ DATA_TYPE_MEMBER : defines
-
-    AOI ||--o{ AOI_PARAMETER : defines
-    AOI ||--o{ AOI_RUNG : contains
-
-    PROGRAM ||--o{ ROUTINE : defines
-    ROUTINE ||--o{ RUNG : contains
-    RUNG ||--o{ INSTRUCTION : contains
-    INSTRUCTION ||--o{ ARGUMENT : takes
+    target ||--o{ target_version : "has many"
+    target_version ||--o{ target_instance : "restored as"
+    target_instance ||--o{ controller : "1:1"
+    target_instance ||--o{ tag : contains
+    target_instance ||--o{ program : contains
+    target_instance ||--o{ task : contains
+    target_instance ||--o{ aoi : contains
+    target_instance ||--o{ data_type : contains
+    target_instance ||--o{ module : contains
 ```
 
-### Primary Tables
+#### Primary Tables
+
+*   **`target`**: Defines the identity of a PLC (e.g., `PLC://Line1_Main`). It acts as the root for all versions.
+*   **`target_version`**: Stores the historical records for a target. Each record contains the compressed L5X `source_data`, metadata (software revision, export date), and a unique `version_number`.
+*   **`target_instance`**: Represents an "active" or "restored" version. When a version is restored, a record is created here to link the version to its relational entities.
+*   **Relational Entities**: Tables like `tag`, `program`, `rung`, and `aoi` store the actual Logix components. Every entity record is linked to a specific `instance_id`, allowing multiple versions of the same project to coexist in the database if needed.
+
+### Primary Tables Detailed List
 
 | Table               | Description                                                                                    |
 |---------------------|------------------------------------------------------------------------------------------------|
 | `target`            | Stores unique target keys for identifying different PLC projects.                              |
-| `target`          | Links an import to a target. Stores the raw source file and import metadata.                   |
-| `target_property` | Key-value metadata for targets (e.g., custom headers from the Ingestion API).                |
+| `target_version`    | Links an import to a target. Stores the raw source file and import metadata.                   |
+| `target_instance`   | Junction table representing a hydrated version of a project.                                   |
+| `target_property`   | Key-value metadata for targets (e.g., custom headers from the Ingestion API).                |
 | `controller`        | Global controller settings (name, processor type, revision, etc.).                             |
 | `data_type`         | User-defined and system-defined data type definitions.                                         |
 | `data_type_member`  | Individual members of a data type, including their name, data type, and dimensions.            |
@@ -408,28 +410,27 @@ erDiagram
 
 ### Relationships
 
-Most tables include a `target_id` column that serves as a foreign key to the `target` table. This allows you to
-query all components of a specific project version using a single ID. For example, to find all tags for a specific
-target:
+Most entity tables include an `instance_id` column that serves as a foreign key to the `target_instance` table. This allows you to
+query all components of a specific project instance using a single ID. For example, to find all tags for a specific
+instance:
 
 ```sql
 SELECT *
 FROM tag
-WHERE target_id = 42;
+WHERE instance_id = 42;
 ```
 
 ### Entity Comparison & Hashing
 
-LogixDb employs several hashing and data storage strategies to facilitate quick comparisons, change detection (diffing),
+LogixDb uses several hashing and data storage strategies to facilitate quick comparisons, change detection (diffing),
 and full reconstruction of original Logix elements across different targets.
 
 #### Record Hash (`record_hash`)
 
-Every entity record in the database includes a `record_hash`. This hash is an **MD5 hash** of the **UTF-16 Unicode
+Every entity record in the database includes a `record_hash`. This hash is an **MD5 hash** with **UTF-16 Unicode
 encoded** string representation of the **hashable fields** of the database record itself (excluding internal IDs like
-`target_id` or `primary_key`).
-
-- **Purpose**: Primarily used for **diffing** and identifying if a record's data has changed between targets at a
+`instance_id` or `primary_key`).
+- **Purpose**: Primarily used for **diffing** and identifying if a record's data has changed between project instances at a
   granular level. It allows the system to quickly detect modifications without comparing every column individually.
 - **Calculation**: It is a deterministic MD5 hash of the serialized column names and values for all columns marked
   as `IsHashable` in the `TableMap`.
@@ -449,12 +450,12 @@ file.
 
 The `record_hash` and `source_hash` columns enable high-performance diffing between different versions of your project.
 
-#### Find changed tags between two targets
+#### Find changed tags between two instances
 
 ```sql
--- Compare target A and target B for the same target
-DECLARE @targetA INT = 1;
-DECLARE @targetB INT = 2;
+-- Compare instance A and instance B
+DECLARE @instanceA INT = 1;
+DECLARE @instanceB INT = 2;
 
 SELECT COALESCE(a.tag_name, b.tag_name) AS TagName,
        CASE
@@ -463,25 +464,27 @@ SELECT COALESCE(a.tag_name, b.tag_name) AS TagName,
            WHEN a.record_hash <> b.record_hash THEN 'Modified'
            ELSE 'Unchanged'
            END                  AS ChangeStatus
-FROM (SELECT * FROM tag WHERE target_id = @targetA) a
-         FULL OUTER JOIN (SELECT * FROM tag WHERE target_id = @targetB) b ON a.Name = b.Name
+FROM (SELECT * FROM tag WHERE instance_id = @instanceA) a
+         FULL OUTER JOIN (SELECT * FROM tag WHERE instance_id = @instanceB) b ON a.tag_name = b.tag_name
 WHERE ISNULL(a.record_hash, '') <> ISNULL(b.record_hash, '');
 ```
 
-#### Identify source-identical logic across different PLCs
+#### Identify source-identical logic across different project versions
 
 ```sql
--- Find routines that have identical L5X source content across different targets
+-- Find routines that have identical L5X source content across different instances
 SELECT routine_name, source_hash, COUNT(*) as Occurrences
 FROM routine
 GROUP BY routine_name, source_hash
 HAVING COUNT(*) > 1;
 ```
 
-### Troubleshooting
+### Troubleshooting & FAQ
 
 | Issue | Probable Cause | Remedy |
 | :--- | :--- | :--- |
+| **Entity tables (tags, etc.) are empty** | The version was **posted** but not **restored**. | Run `logixdb restore -t <target_key> -v <version>` to expand the data. |
+| **Database size is growing too fast** | Too many versions are currently expanded (restored). | Use `logixdb prune -t <target_key>` to archive older instances while keeping their history. |
 | **FTAC Polling returns 0 assets** | Filter is too restrictive or permissions issue. | Check `FtacFilters` and ensure the service account has `SELECT` on the AC database. |
 | **ACD Conversion Fails** | Studio 5000 version mismatch or licensing. | Ensure the correct version of Studio 5000 is installed and licensed on the service machine. |
 | **Migration Errors** | Database file is locked or user lacks schema permissions. | Stop the service before running manual migrations; ensure the user has `db_owner` or equivalent. |

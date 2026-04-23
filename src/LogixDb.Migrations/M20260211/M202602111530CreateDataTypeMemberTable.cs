@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("data_type_member")
-            .WithPrimaryGuid("member_id")
-            .WithInstanceRelation(nullable: true)
-            .WithParentRelation("type_id", "data_type")
+            .WithPrimaryKey("member_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
+            .WithRelation("type_id", "data_type").NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()

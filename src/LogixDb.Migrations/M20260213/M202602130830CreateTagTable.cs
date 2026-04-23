@@ -1,4 +1,5 @@
-﻿using FluentMigrator;
+﻿using System.Data;
+using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -12,9 +13,9 @@ public class M202602130830CreateTagTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag")
-            .WithPrimaryGuid("tag_id")
-            .WithInstanceRelation()
-            .WithParentRelation("program_id", "program", nullable: true)
+            .WithPrimaryKey("tag_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("program_id", "program").Nullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("dimensions").AsString(32).Nullable()

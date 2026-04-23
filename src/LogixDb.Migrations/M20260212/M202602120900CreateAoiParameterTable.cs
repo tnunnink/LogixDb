@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi_parameter")
-            .WithPrimaryGuid("parameter_id")
-            .WithInstanceRelation()
-            .WithParentRelation("aoi_id", "aoi")
+            .WithPrimaryKey("parameter_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("aoi_id", "aoi").NotNullable()
             .WithColumn("parameter_name").AsString(256).NotNullable()
             .WithColumn("parameter_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()

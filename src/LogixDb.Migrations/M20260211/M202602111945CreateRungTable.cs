@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602111945CreateRungTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("rung")
-            .WithPrimaryGuid("rung_id")
-            .WithInstanceRelation()
-            .WithParentRelation("routine_id", "routine")
+            .WithPrimaryKey("rung_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("routine_id", "routine").NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()

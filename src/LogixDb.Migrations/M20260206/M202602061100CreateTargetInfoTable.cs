@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,8 +13,8 @@ public class M202602061100CreateTargetInfoTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("target_info")
-            .WithPrimaryGuid("property_id")
-            .WithVersionRelation()
+            .WithPrimaryKey("property_id")
+            .WithRelation("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("property_name").AsString().NotNullable()
             .WithColumn("property_value").AsString().Nullable();
 

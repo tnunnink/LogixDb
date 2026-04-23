@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator.Builders.Create.Table;
 
 namespace LogixDb.Migrations;
@@ -14,7 +13,7 @@ public static class FluentMigrationExtensions
     /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
     /// <param name="name">The name of the column to be added as the primary key.</param>
     /// <returns>Returns the fluent migration builder after adding the primary key column.</returns>
-    public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryGuid(
+    public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryKey(
         this ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax,
         string name
     )
@@ -22,57 +21,24 @@ public static class FluentMigrationExtensions
         return syntax.WithColumn(name).AsGuid().NotNullable().PrimaryKey();
     }
 
-    extension(ICreateTableColumnOptionOrWithColumnSyntax syntax)
+    /// <summary>
+    /// Adds a foreign key relation to a column, linking it to a primary key in another table.
+    /// </summary>
+    /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
+    /// <param name="columnName">The name of the column to which the foreign key relation is added.</param>
+    /// <param name="primaryTable">The name of the primary table containing the referenced key.</param>
+    /// <param name="primaryColumn">The name of the primary key column in the primary table. Defaults to the value of <paramref name="columnName"/> if not specified.</param>
+    /// <returns>Returns the fluent migration builder after adding the foreign key relation.</returns>
+    public static ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax WithRelation(
+        this ICreateTableColumnOptionOrWithColumnSyntax syntax,
+        string columnName,
+        string primaryTable,
+        string? primaryColumn = null
+    )
     {
-        /// <summary>
-        /// Configures the current table with a foreign key to the target_archive table using the archive_id column as the
-        /// relation column. This column is a non-nullable integer with cascade delete or update options configured.
-        /// </summary>
-        /// <returns>Returns the fluent migration builder after adding the target_archive foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithVersionRelation()
-        {
-            return syntax
-                .WithColumn("version_id")
-                .AsGuid()
-                .NotNullable()
-                .ForeignKey("target_version", "version_id")
-                .OnDeleteOrUpdate(Rule.Cascade);
-        }
-
-        /// <summary>
-        /// Configures the current table with a foreign key to the target_instance table using the instance_id column as the relation column.
-        /// The column is of type integer with optional nullability and is configured with cascade delete or update options.
-        /// </summary>
-        /// <param name="nullable">Specifies whether the instance_id column should allow null values. If true, the column is nullable; otherwise, it is not nullable.</param>
-        /// <returns>Returns the fluent migration builder after configuring the target_instance foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithInstanceRelation(bool nullable = false)
-        {
-            syntax = syntax.WithColumn("instance_id").AsInt32();
-            syntax = nullable ? syntax.Nullable() : syntax.NotNullable();
-            syntax = syntax.ForeignKey("target_instance", "instance_id").OnDeleteOrUpdate(Rule.Cascade);
-            return syntax;
-        }
-
-        /// <summary>
-        /// Adds a foreign key column to the table with the specified name and links it to the referenced table.
-        /// The column is configured as a non-nullable GUID with cascade delete or update behavior.
-        /// </summary>
-        /// <param name="columnName">The name of the foreign key column to be added to the table.</param>
-        /// <param name="primaryTable">The name of the table that contains the primary key being referenced.</param>
-        /// <param name="primaryColumn">The name of the primary key column in the referenced table. If null, uses the same name as columnName.</param>
-        /// <param name="nullable">Indicates whether the foreign key column should allow null values. If true, the column is nullable; otherwise, it is not nullable.</param>
-        /// <returns>Returns the fluent migration builder after adding and configuring the foreign key column.</returns>
-        public ICreateTableColumnOptionOrWithColumnSyntax WithParentRelation(
-            string columnName,
-            string primaryTable,
-            string? primaryColumn = null,
-            bool nullable = false
-        )
-        {
-            syntax = syntax.WithColumn(columnName).AsGuid();
-            syntax = nullable ? syntax.Nullable() : syntax.NotNullable();
-            syntax = syntax.ForeignKey(primaryTable, primaryColumn ?? columnName);
-            return syntax;
-        }
+        return syntax
+            .WithColumn(columnName)
+            .AsGuid()
+            .ForeignKey(primaryTable, primaryColumn ?? columnName);
     }
 }

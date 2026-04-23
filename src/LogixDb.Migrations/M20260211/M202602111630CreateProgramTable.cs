@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,10 +13,10 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("program")
-            .WithPrimaryGuid("program_id")
-            .WithInstanceRelation()
-            .WithParentRelation("task_id", "task", nullable: true)
-            .WithParentRelation("folder_id", "program", "program_id", nullable: true)
+            .WithPrimaryKey("program_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("task_id", "task").Nullable()
+            .WithRelation("folder_id", "program", "program_id").Nullable()
             .WithColumn("program_name").AsString(256).NotNullable()
             .WithColumn("program_description").AsString(512).Nullable()
             .WithColumn("program_type").AsString(32).Nullable()

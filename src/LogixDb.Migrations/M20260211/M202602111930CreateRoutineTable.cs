@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("routine")
-            .WithPrimaryGuid("routine_id")
-            .WithInstanceRelation()
-            .WithParentRelation("program_id", "program")
+            .WithPrimaryKey("routine_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("program_id", "program").NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("routine_type").AsString(32).Nullable()

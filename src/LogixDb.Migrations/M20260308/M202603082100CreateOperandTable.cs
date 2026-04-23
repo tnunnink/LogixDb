@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,8 +13,8 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("operand")
-            .WithPrimaryGuid("operand_id")
-            .WithInstanceRelation(nullable: true)
+            .WithPrimaryKey("operand_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()

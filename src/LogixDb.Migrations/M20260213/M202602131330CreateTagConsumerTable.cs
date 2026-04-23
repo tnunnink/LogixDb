@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_consumer")
-            .WithPrimaryGuid("consumer_id")
-            .WithInstanceRelation()
-            .WithParentRelation("tag_id", "tag")
+            .WithPrimaryKey("consumer_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("tag_id", "tag").NotNullable()
             .WithColumn("producer").AsString().NotNullable()
             .WithColumn("remote_tag").AsString().NotNullable()
             .WithColumn("remote_instance").AsInt32().NotNullable()

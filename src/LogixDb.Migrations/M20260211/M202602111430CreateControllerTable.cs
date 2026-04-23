@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,8 +13,8 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("controller")
-            .WithPrimaryGuid("controller_id")
-            .WithInstanceRelation()
+            .WithPrimaryKey("controller_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("controller_name").AsString(256).NotNullable()
             .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(256).Nullable()

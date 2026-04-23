@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,9 +13,9 @@ public class M202602131400CreateTagAliasTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_alias")
-            .WithPrimaryGuid("alias_id")
-            .WithInstanceRelation()
-            .WithParentRelation("tag_id", "tag")
+            .WithPrimaryKey("alias_id")
+            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation("tag_id", "tag").NotNullable()
             .WithColumn("alias_for").AsString(256).NotNullable();
 
         Create.Index().OnTable("tag_alias")

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging.Testing;
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlServerMigrationTest : SqlServerTestFixture
+public class SqlDbMigrateTest : SqlServerTestFixture
 {
     /// <summary>
     /// This test is mostly just to refresh a local db instance to inspect and write queries against.

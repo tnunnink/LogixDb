@@ -17,8 +17,8 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
     public async Task MeasureTargetSpaceGrowth()
     {
         // 1. Initial State
-        var initialSize = new FileInfo(TempDb).Length;
-        Console.WriteLine($"Initial Database Size (Schema Only): {initialSize / 1024.0:F2} KB");
+        var initialSize = await GetDatabaseSize();
+        Console.WriteLine($"Initial Database Size (Schema Only): {initialSize:F2} MB");
 
         // 2. Import Multiple Targets
         const int iterations = 10;
@@ -31,22 +31,22 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
             
             await Database.ImportTarget(target);
 
-            var currentSize = new FileInfo(TempDb).Length;
+            var currentSize = await GetDatabaseSize();
             var delta = currentSize - previousSize;
             
-            Console.WriteLine($"Import {i}: Total Size = {currentSize / 1024.0:F2} KB (+{delta / 1024.0:F2} KB)");
+            Console.WriteLine($"Import {i} completed: Total Size = {currentSize:F2} MB (+{delta:F2} MB)");
             
             previousSize = currentSize;
         }
 
         // 3. Final Verification
-        var finalSize = new FileInfo(TempDb).Length;
+        var finalSize = await GetDatabaseSize();
         var totalGrowth = finalSize - initialSize;
         var averageGrowth = totalGrowth / iterations;
 
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine($"Total Growth after {iterations} imports: {totalGrowth / 1024.0:F2} KB");
-        Console.WriteLine($"Average size per target: {averageGrowth / 1024.0:F2} KB");
+        Console.WriteLine($"Total Growth after {iterations} imports: {totalGrowth:F2} MB");
+        Console.WriteLine($"Average size per target: {averageGrowth:F2} MB");
 
         Assert.That(finalSize, Is.GreaterThan(initialSize), "Database size should increase after imports.");
     }

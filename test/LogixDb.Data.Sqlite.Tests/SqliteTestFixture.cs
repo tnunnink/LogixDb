@@ -55,6 +55,16 @@ public abstract class SqliteTestFixture
     }
 
     /// <summary>
+    /// Retrieves the current size of the database in megabytes.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation. The result contains the size of the database in megabytes as a decimal.</returns>
+    protected static Task<decimal> GetDatabaseSize()
+    {
+        var size = new FileInfo(TempDb).Length;
+        return Task.FromResult(Math.Round((decimal)size / 1024 / 1024, 2));
+    }
+
+    /// <summary>
     /// Asserts that a record exists in a specified table with a specific value for a given column.
     /// An exception is thrown if no matching record is found.
     /// </summary>

@@ -19,11 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbRestoreTargetTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbRestoreTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbArchiveTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbArchiveTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerDbMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbMigrateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,15 +242,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="37709000" />
-    </task>
-    <task id="LOCAL-00146" summary="Revise migration test classes for consistency and update test assertions to reflect refined schema changes, including renamed columns, adjusted data types, and added indices.">
-      <option name="closed" value="true" />
-      <created>1775695988476</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1775695988476</updated>
+      <workItem from="1776867316310" duration="40874000" />
     </task>
     <task id="LOCAL-00147" summary="Remove legacy migration test classes (`M20260309Tests`, `M20260311Tests`, `M20260312Tests`, `M20260322Tests`) to clean up deprecated test cases.">
       <option name="closed" value="true" />
@@ -637,7 +628,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776968480851</updated>
     </task>
-    <option name="localTasksCounter" value="195" />
+    <task id="LOCAL-00195" summary="Add new test classes for SQL Server and SQLite to validate `RestoreTarget` functionality; update existing tests to ensure proper exception handling for non-existent targets.">
+      <option name="closed" value="true" />
+      <created>1776972615680</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1776972615680</updated>
+    </task>
+    <option name="localTasksCounter" value="196" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +662,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
     <MESSAGE value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
     <MESSAGE value="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot." />
     <MESSAGE value="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli." />
@@ -688,7 +686,8 @@
     <MESSAGE value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
     <MESSAGE value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
     <MESSAGE value="Update README with refined command descriptions, improved schema documentation, and clarified usage examples." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README with refined command descriptions, improved schema documentation, and clarified usage examples." />
+    <MESSAGE value="Add new test classes for SQL Server and SQLite to validate `RestoreTarget` functionality; update existing tests to ensure proper exception handling for non-existent targets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new test classes for SQL Server and SQLite to validate `RestoreTarget` functionality; update existing tests to ensure proper exception handling for non-existent targets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

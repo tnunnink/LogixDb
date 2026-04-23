@@ -56,6 +56,28 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
+    /// Retrieves the current size of the database in megabytes.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation. The result contains the size of the database in megabytes as a long.</returns>
+    protected static async Task<decimal> GetDatabaseSize()
+    {
+        using var connection = await Database.Connect();
+
+        return await connection.QuerySingleAsync<decimal>(
+            """
+            SELECT CAST(SUM(FILEPROPERTY(name, 'SpaceUsed')) * 8 / 1024.0 AS DECIMAL(10,2)) AS SpaceUsedMB
+            FROM sys.database_files
+            WHERE type_desc = 'ROWS';
+            """);
+        // """
+        // SELECT CAST(SUM(size) * 8 / 1024 AS DECIMAL(10,2)) AS SizeMB
+        // FROM sys.master_files
+        // WHERE database_id = DB_ID()
+        // GROUP BY database_id;
+        // """);
+    }
+
+    /// <summary>
     /// Asserts that a record exists in a specified table with a specific value for a given column.
     /// An exception is thrown if no matching record is found.
     /// </summary>

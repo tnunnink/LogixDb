@@ -16,8 +16,8 @@ SELECT TOP 1
     v.import_machine         [ImportMachine],
     v.source_hash            [SourceHash],
     v.source_data            [SourceData] 
-FROM target_version s
-JOIN target t on t.target_id = s.target_id
-LEFT JOIN target_instance ti ON ti.version_id = s.version_id
+FROM target_version v
+JOIN target t on t.target_id = v.target_id
+LEFT JOIN target_instance i ON i.version_id = v.version_id
 WHERE t.target_key = @TargetKey
 ORDER BY import_date DESC

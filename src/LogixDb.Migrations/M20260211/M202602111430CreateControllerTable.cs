@@ -14,7 +14,7 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
     {
         Create.Table("controller")
             .WithPrimaryKey("controller_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("controller_name").AsString(256).NotNullable()
             .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(256).Nullable()

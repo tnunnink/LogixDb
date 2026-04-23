@@ -14,8 +14,8 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
     {
         Create.Table("routine")
             .WithPrimaryKey("routine_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
-            .WithRelation("program_id", "program").NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("program_id", "program").NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("routine_type").AsString(32).Nullable()

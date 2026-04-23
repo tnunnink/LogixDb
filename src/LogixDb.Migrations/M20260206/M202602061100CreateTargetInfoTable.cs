@@ -14,7 +14,7 @@ public class M202602061100CreateTargetInfoTable : AutoReversingMigration
     {
         Create.Table("target_info")
             .WithPrimaryKey("property_id")
-            .WithRelation("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("property_name").AsString().NotNullable()
             .WithColumn("property_value").AsString().Nullable();
 

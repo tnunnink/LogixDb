@@ -14,7 +14,7 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
     {
         Create.Table("data_type")
             .WithPrimaryKey("type_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
             .WithColumn("type_name").AsString(256).NotNullable()
             .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("type_class").AsString(32).Nullable()

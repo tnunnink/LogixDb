@@ -14,7 +14,7 @@ public class M202602061030CreateTargetInstanceTable : AutoReversingMigration
     {
         Create.Table("target_instance")
             .WithColumn("instance_id").AsInt32().PrimaryKey().Identity()
-            .WithRelation("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("restored_on").AsDateTime().NotNullable()
             .WithColumn("restored_by").AsString(64).NotNullable();
     }

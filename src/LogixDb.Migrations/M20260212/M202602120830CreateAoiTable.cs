@@ -14,7 +14,7 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
     {
         Create.Table("aoi")
             .WithPrimaryKey("aoi_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("aoi_description").AsString(512).Nullable()
             .WithColumn("aoi_revision").AsString(16).Nullable()

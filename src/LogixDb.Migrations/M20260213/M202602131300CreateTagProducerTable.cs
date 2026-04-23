@@ -14,8 +14,8 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
     {
         Create.Table("tag_producer")
             .WithPrimaryKey("producer_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
-            .WithRelation("tag_id", "tag").NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("tag_id", "tag").NotNullable()
             .WithColumn("produce_count").AsInt32().NotNullable()
             .WithColumn("send_event_trigger").AsBoolean().NotNullable()
             .WithColumn("unicast_permitted").AsBoolean().NotNullable()

@@ -14,8 +14,8 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
     {
         Create.Table("module")
             .WithPrimaryKey("module_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
-            .WithRelation("parent_id", "module", "module_id").Nullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("parent_id", "module", "module_id").Nullable()
             .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(64).Nullable()

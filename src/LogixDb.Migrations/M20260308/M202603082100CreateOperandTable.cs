@@ -14,7 +14,7 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
     {
         Create.Table("operand")
             .WithPrimaryKey("operand_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).Nullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()

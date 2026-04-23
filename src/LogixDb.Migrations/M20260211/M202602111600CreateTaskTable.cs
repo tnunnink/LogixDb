@@ -14,7 +14,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
     {
         Create.Table("task")
             .WithPrimaryKey("task_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("task_name").AsString(256).NotNullable()
             .WithColumn("task_description").AsString(512).Nullable()
             .WithColumn("task_type").AsString(32).Nullable()

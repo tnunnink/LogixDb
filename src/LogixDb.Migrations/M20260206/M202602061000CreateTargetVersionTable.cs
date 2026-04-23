@@ -14,7 +14,7 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
     {
         Create.Table("target_version")
             .WithPrimaryKey("version_id")
-            .WithRelation("target_id", "target").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("target_id", "target").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("version_number").AsInt32().NotNullable()
             .WithColumn("target_type").AsString(128).NotNullable()
             .WithColumn("target_name").AsString(128).NotNullable()

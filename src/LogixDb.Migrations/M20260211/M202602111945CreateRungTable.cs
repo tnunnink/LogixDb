@@ -14,8 +14,8 @@ public class M202602111945CreateRungTable : AutoReversingMigration
     {
         Create.Table("rung")
             .WithPrimaryKey("rung_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
-            .WithRelation("routine_id", "routine").NotNullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("routine_id", "routine").NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()

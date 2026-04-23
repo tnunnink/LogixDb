@@ -14,9 +14,9 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
     {
         Create.Table("program")
             .WithPrimaryKey("program_id")
-            .WithRelation("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
-            .WithRelation("task_id", "task").Nullable()
-            .WithRelation("folder_id", "program", "program_id").Nullable()
+            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("task_id", "task").Nullable()
+            .WithRelation<Guid>("folder_id", "program", "program_id").Nullable()
             .WithColumn("program_name").AsString(256).NotNullable()
             .WithColumn("program_description").AsString(512).Nullable()
             .WithColumn("program_type").AsString(32).Nullable()

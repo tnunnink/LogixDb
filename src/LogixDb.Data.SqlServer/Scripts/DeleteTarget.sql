@@ -1,1 +1,3 @@
-DELETE FROM target WHERE target_key = @TargetKey
+DELETE
+FROM target
+WHERE target_key = @TargetKey

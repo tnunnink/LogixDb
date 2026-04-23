@@ -1,1 +1,3 @@
-DELETE FROM target_instance WHERE instance_id = @InstanceId
+DELETE
+FROM target_instance
+WHERE instance_id = @InstanceId

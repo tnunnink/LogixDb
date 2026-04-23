@@ -19,8 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbRestoreTargetTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbRestoreTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbArchiveTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbArchiveTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbArchiveTargetTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,15 +243,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="36663000" />
-    </task>
-    <task id="LOCAL-00145" summary="Optimize `GetTargetId` call in `ImportSnapshotAsync` by directly parsing `Guid` from query result.">
-      <option name="closed" value="true" />
-      <created>1775695970020</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1775695970020</updated>
+      <workItem from="1776867316310" duration="37709000" />
     </task>
     <task id="LOCAL-00146" summary="Revise migration test classes for consistency and update test assertions to reflect refined schema changes, including renamed columns, adjusted data types, and added indices.">
       <option name="closed" value="true" />
@@ -634,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776967017614</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Update README with refined command descriptions, improved schema documentation, and clarified usage examples.">
+      <option name="closed" value="true" />
+      <created>1776968480851</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1776968480851</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +663,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests." />
     <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
     <MESSAGE value="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval." />
     <MESSAGE value="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot." />
@@ -685,7 +687,8 @@
     <MESSAGE value="Simplify and clarify CLI command descriptions; add required attributes for better validation consistency." />
     <MESSAGE value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
     <MESSAGE value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
+    <MESSAGE value="Update README with refined command descriptions, improved schema documentation, and clarified usage examples." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README with refined command descriptions, improved schema documentation, and clarified usage examples." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

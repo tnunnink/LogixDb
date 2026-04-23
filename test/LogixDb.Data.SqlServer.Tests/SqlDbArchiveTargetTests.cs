@@ -31,9 +31,9 @@ public class SqlDbArchiveTargetTests : SqlServerTestFixture
     }
 
     [Test]
-    public Task ArchiveTarget_NonExistentTarget_ShouldNotThrow()
+    public Task ArchiveTarget_NonExistentTarget_ShouldThrowException()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.ArchiveTarget("NonExistent", 1));
+        Assert.ThrowsAsync<InvalidOperationException>(async () => await Database.ArchiveTarget("NonExistent", 1));
         return Task.CompletedTask;
     }
 }

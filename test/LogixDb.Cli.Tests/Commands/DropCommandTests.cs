@@ -13,18 +13,17 @@ public class DropCommandTests : TestDbFixture
     }
     
     [Test]
-    public async Task Drop_ConfirmedByUser_ShouldReturnZeroExitCode()
+    public async Task Drop_WithForce_ShouldReturnZero()
     {
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, DropCommand.Descriptor);
 
-        console.WriteInput("y");
-        
         var exitCode = await app.RunAsync([
             "drop",
-            "-c", DbConnection
+            "-c", DbConnection,
+            "--force"
         ]);
-        
+
         Assert.That(exitCode, Is.Zero);
     }
 }

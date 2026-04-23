@@ -14,16 +14,16 @@ public class PurgeCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Purge_ConfirmedByUser_ShouldReturnZeroExitCode()
+    public async Task Purge_WithForce_ShouldReturnZero()
     {
         using var console = new FakeInMemoryConsole();
-        console.WriteInput("y");
         var app = TestApp.Create(console, PurgeCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "purge",
             "-c", DbConnection,
-            "-t", "Controller://Fake"
+            "-t", "Controller://Test",
+            "--force"
         ]);
 
         Assert.That(exitCode, Is.Zero);

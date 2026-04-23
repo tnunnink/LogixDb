@@ -27,4 +27,18 @@ public class PruneCommandTests : TestDbFixture
 
         Assert.That(exitCode, Is.Zero);
     }
+    [Test]
+    public async Task Prune_ValidTarget_ShouldReturnZero()
+    {
+        using var console = new FakeInMemoryConsole();
+        var app = TestApp.Create(console, PruneCommand.Descriptor);
+
+        var exitCode = await app.RunAsync([
+            "prune",
+            "-c", DbConnection,
+            "-t", "Controller://Test"
+        ]);
+
+        Assert.That(exitCode, Is.Zero);
+    }
 }

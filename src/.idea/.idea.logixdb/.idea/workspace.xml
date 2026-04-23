@@ -19,18 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ArchiveCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PostCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/RestoreCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ArchiveCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ArchiveCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PostCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PostCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/RestoreCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/RestoreCommandTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +68,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb4b860ad274bc3f8c7c0fb32f03875bbb0b45fa99f710d430d12922eed4/AnsiConsoleExtensions.Progress.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db398197bcf0ab46a130924adda9d23eb9504867e1a1a0869eaf405db5c647/SqlMapper.Async.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
@@ -120,6 +121,7 @@
     "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
     "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
+    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
     "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
     "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
     "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
@@ -248,15 +250,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="33690000" />
-    </task>
-    <task id="LOCAL-00143" summary="Add `GetTargetId` SQL statement to retrieve `target_id` by `target_key` and update `ImportSnapshotAsync` to use it.">
-      <option name="closed" value="true" />
-      <created>1775682898868</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1775682898868</updated>
+      <workItem from="1776867316310" duration="35205000" />
     </task>
     <task id="LOCAL-00144" summary="Rename and refine columns across migration scripts for consistency (`controller_revision` to `revision`, `content_hash` to `record_hash`), update `source_data` columns to allow max binary size, and add `security_code` column to `controller` table.">
       <option name="closed" value="true" />
@@ -642,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776953957833</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests.">
+      <option name="closed" value="true" />
+      <created>1776965503927</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1776965503927</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +670,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic." />
     <MESSAGE value="Refactor snapshot handling: standardize table filtering and ordering logic in `PruneLatestSnapshot`, rename methods for clarity, and update associated tests." />
     <MESSAGE value="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests." />
     <MESSAGE value="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic." />
@@ -693,7 +694,8 @@
     <MESSAGE value="Remove `MigrationRequiredException` as it is no longer used." />
     <MESSAGE value="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used." />
     <MESSAGE value="Simplify and clarify CLI command descriptions; add required attributes for better validation consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplify and clarify CLI command descriptions; add required attributes for better validation consistency." />
+    <MESSAGE value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -725,29 +727,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs</url>
-          <line>225</line>
+          <line>237</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerManager.cs" containingFunctionPresentation="Method 'PostTargetVersionAsync'">
             <startOffsets>
-              <option value="9587" />
+              <option value="10458" />
             </startOffsets>
             <endOffsets>
-              <option value="9679" />
+              <option value="10550" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/DropCommandTests.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Cli.Tests\Commands\DropCommandTests.cs" containingFunctionPresentation="Method 'Drop_ConfirmedByUser_ShouldReturnZeroExitCode'">
+          <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/RestoreCommand.cs</url>
+          <line>25</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\RestoreCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
             <startOffsets>
-              <option value="605" />
+              <option value="899" />
             </startOffsets>
             <endOffsets>
-              <option value="605" />
+              <option value="937" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs</url>
+          <line>118</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.Sqlite\SqliteManager.cs" containingFunctionPresentation="Method 'RestoreTarget'">
+            <startOffsets>
+              <option value="4868" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4964" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

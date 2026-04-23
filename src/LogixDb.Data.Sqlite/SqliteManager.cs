@@ -20,13 +20,29 @@ namespace LogixDb.Data.Sqlite;
 /// connecting to the database, and managing the database file lifecycle.
 /// </remarks>
 [SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging")]
-public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logger) : IDbManager
+public sealed class SqliteManager : IDbManager
 {
+    private readonly DbConnectionInfo _connectionInfo;
+    private readonly ILogger _logger;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SqliteManager"/> class with the specified connection information and logger.
+    /// </summary>
+    /// <param name="connectionInfo">The database connection information containing details such as the database file path.</param>
+    /// <param name="logger">The logger instance used for logging database operations and events.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="connectionInfo"/> or <paramref name="logger"/> is <c>null</c>.</exception>
+    public SqliteManager(DbConnectionInfo connectionInfo, ILogger logger)
+    {
+        _connectionInfo = connectionInfo ?? throw new ArgumentNullException(nameof(connectionInfo));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        ConfigureSqlite();
+    }
+
     /// <inheritdoc />
     public async Task Migrate(ComponentOptions options = ComponentOptions.All,
         CancellationToken token = default)
     {
-        await using var provider = BuildMigrationProvider(connectionInfo.ToConnectionString(), options);
+        await using var provider = BuildMigrationProvider(_connectionInfo.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
         await ConfigureDatabase(token);
@@ -36,7 +52,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     public async Task Migrate(long version, ComponentOptions options = ComponentOptions.All,
         CancellationToken token = default)
     {
-        await using var provider = BuildMigrationProvider(connectionInfo.ToConnectionString(), options);
+        await using var provider = BuildMigrationProvider(_connectionInfo.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp(version);
         await ConfigureDatabase(token);
@@ -45,9 +61,9 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public Task Drop(CancellationToken token = default)
     {
-        if (File.Exists(connectionInfo.Source))
+        if (File.Exists(_connectionInfo.Source))
         {
-            File.Delete(connectionInfo.Source);
+            File.Delete(_connectionInfo.Source);
         }
 
         return Task.CompletedTask;
@@ -56,10 +72,10 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public async Task<IDbConnection> Connect(CancellationToken token = default)
     {
-        if (!File.Exists(connectionInfo.Source))
-            throw new FileNotFoundException($"Database file not found: {connectionInfo.Source}");
+        if (!File.Exists(_connectionInfo.Source))
+            throw new FileNotFoundException($"Database file not found: {_connectionInfo.Source}");
 
-        var connection = new SqliteConnection(connectionInfo.ToConnectionString());
+        var connection = new SqliteConnection(_connectionInfo.ToConnectionString());
         await connection.OpenAsync(token);
         return connection;
     }
@@ -67,9 +83,8 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public async Task<IEnumerable<Target>> ListTargets(string? targetKey = null, CancellationToken token = default)
     {
-        logger.LogInformation("Listing targets {TargetKey}", targetKey ?? "all");
+        _logger.LogInformation("Listing targets {TargetKey}", targetKey ?? "all");
 
-        ConfigureSqlite();
         await using var connection = await OpenConnection(token);
         return await connection.QueryAsync<Target>(SqliteScript.ListTargets, new { TargetKey = targetKey });
     }
@@ -77,21 +92,21 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
-        logger.LogInformation("Getting target {TargetKey} (version: {Version})", targetKey, version);
+        _logger.LogInformation("Getting target {TargetKey} (version: {Version})", targetKey, version);
         return GetTargetAsync(targetKey, version, token);
     }
 
     /// <inheritdoc />
     public Task PostTarget(Target target, CancellationToken token = default)
     {
-        logger.LogInformation("Posting new version for target {TargetKey}", target.TargetKey);
+        _logger.LogInformation("Posting new version for target {TargetKey}", target.TargetKey);
         return PostTargetVersionAsync(target, token);
     }
 
     /// <inheritdoc />
     public async Task ImportTarget(Target target, CancellationToken token = default)
     {
-        logger.LogInformation("Importing target {TargetKey}", target.TargetKey);
+        _logger.LogInformation("Importing target {TargetKey}", target.TargetKey);
 
         await PostTargetVersionAsync(target, token);
         await ExecuteSqliteScriptAsync(SqliteScript.DeleteTargetInstances, new { target.TargetKey }, token);
@@ -101,7 +116,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public async Task RestoreTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
-        logger.LogInformation("Restoring target {TargetKey} (version: {Version})", targetKey, version);
+        _logger.LogInformation("Restoring target {TargetKey} (version: {Version})", targetKey, version);
 
         var target = await GetTargetAsync(targetKey, version, token);
 
@@ -115,7 +130,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public async Task ArchiveTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
-        logger.LogInformation("Archiving target {TargetKey} (version: {Version})", targetKey, version);
+        _logger.LogInformation("Archiving target {TargetKey} (version: {Version})", targetKey, version);
 
         var target = await GetTargetAsync(targetKey, version, token);
 
@@ -129,21 +144,21 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public Task PruneTarget(string targetKey, CancellationToken token = default)
     {
-        logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
+        _logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
         return ExecuteSqliteScriptAsync(SqliteScript.DeleteTargetInstances, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task DeleteTarget(string targetKey, CancellationToken token = default)
     {
-        logger.LogInformation("Deleting target {TargetKey}", targetKey);
+        _logger.LogInformation("Deleting target {TargetKey}", targetKey);
         return ExecuteSqliteScriptAsync(SqliteScript.DeleteTarget, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task TruncateTarget(string targetKey, int beforeVersion, CancellationToken token = default)
     {
-        logger.LogInformation("Truncating versions for target {TargetKey} before version {Version}", targetKey,
+        _logger.LogInformation("Truncating versions for target {TargetKey} before version {Version}", targetKey,
             beforeVersion);
 
         return ExecuteSqliteScriptAsync(
@@ -156,7 +171,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <inheritdoc />
     public Task TruncateTarget(string targetKey, DateTime beforeDate, CancellationToken token = default)
     {
-        logger.LogInformation("Truncating versions for target {TargetKey} before {Date}", targetKey, beforeDate);
+        _logger.LogInformation("Truncating versions for target {TargetKey} before {Date}", targetKey, beforeDate);
 
         return ExecuteSqliteScriptAsync(
             SqliteScript.DeleteVersionsBeforeDate,
@@ -166,23 +181,11 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     }
 
     /// <summary>
-    /// Configures SQLite-specific settings for Dapper by modifying type mappings and adding a custom type handler for GUIDs.
-    /// Removes existing type maps for <see cref="Guid"/> and nullable <see cref="Guid"/> types
-    /// and registers a custom <see cref="SqliteGuidHandler"/> to handle GUID serialization and deserialization.
-    /// </summary>
-    private static void ConfigureSqlite()
-    {
-        SqlMapper.RemoveTypeMap(typeof(Guid));
-        SqlMapper.RemoveTypeMap(typeof(Guid?));
-        SqlMapper.AddTypeHandler(new SqliteGuidHandler());
-    }
-
-    /// <summary>
     /// Executes the specified SQL script asynchronously using the database session.
     /// </summary>
     private async Task ExecuteSqliteScriptAsync(string scriptName, object parameters, CancellationToken token)
     {
-        await using var connection = (SqliteConnection)await Connect(token);
+        await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
@@ -202,18 +205,17 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// </summary>
     private async Task<Target?> GetTargetAsync(string targetKey, int version, CancellationToken token)
     {
-        ConfigureSqlite();
-        await using var dbConnection = (SqliteConnection)await Connect(token);
+        await using var connection = await OpenConnection(token);
 
         if (version > 0)
         {
-            return await dbConnection.QuerySingleOrDefaultAsync<Target>(
+            return await connection.QuerySingleOrDefaultAsync<Target>(
                 SqliteScript.GetTargetByVersion,
                 new { TargetKey = targetKey, VersionNumber = version }
             );
         }
 
-        return await dbConnection.QuerySingleOrDefaultAsync<Target>(
+        return await connection.QuerySingleOrDefaultAsync<Target>(
             SqliteScript.GetTargetByLatest,
             new { TargetKey = targetKey }
         );
@@ -224,7 +226,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// </summary>
     private async Task PostTargetVersionAsync(Target target, CancellationToken token)
     {
-        await using var connection = (SqliteConnection)await Connect(token);
+        await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
@@ -257,7 +259,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// </summary>
     private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
     {
-        await using var connection = (SqliteConnection)await Connect(token);
+        await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
@@ -293,9 +295,21 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// <returns>A task that represents the asynchronous operation. The task result contains the opened <see cref="SqliteConnection"/> instance.</returns>
     private async Task<SqliteConnection> OpenConnection(CancellationToken token)
     {
-        var connection = new SqliteConnection(connectionInfo.ToConnectionString());
+        var connection = new SqliteConnection(_connectionInfo.ToConnectionString());
         await connection.OpenAsync(token);
         return connection;
+    }
+
+    /// <summary>
+    /// Configures SQLite-specific settings for Dapper by modifying type mappings and adding a custom type handler for GUIDs.
+    /// Removes existing type maps for <see cref="Guid"/> and nullable <see cref="Guid"/> types
+    /// and registers a custom <see cref="SqliteGuidHandler"/> to handle GUID serialization and deserialization.
+    /// </summary>
+    private static void ConfigureSqlite()
+    {
+        SqlMapper.RemoveTypeMap(typeof(Guid));
+        SqlMapper.RemoveTypeMap(typeof(Guid?));
+        SqlMapper.AddTypeHandler(new SqliteGuidHandler());
     }
 
     /// <summary>
@@ -339,7 +353,7 @@ public sealed class SqliteManager(DbConnectionInfo connectionInfo, ILogger logge
     /// </remarks>
     private async Task ConfigureDatabase(CancellationToken token)
     {
-        await using var connection = new SqliteConnection(connectionInfo.ToConnectionString());
+        await using var connection = new SqliteConnection(_connectionInfo.ToConnectionString());
         await connection.OpenAsync(token);
 
         await connection.ExecuteAsync(

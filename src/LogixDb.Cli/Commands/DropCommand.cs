@@ -23,10 +23,13 @@ public partial class DropCommand : DbCommand
     private const string Confirm =
         "Are you sure you want to drop the entire database? This action cannot be undone.";
 
+    [CommandOption("force", 'f', Description = "Skip confirmation prompt.")]
+    public bool Force { get; set; }
+
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
-        if (!await console.Ansi().ConfirmAsync(Confirm, false, token))
+        if (!Force && !await console.Ansi().ConfirmAsync(Confirm, false, token))
         {
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;

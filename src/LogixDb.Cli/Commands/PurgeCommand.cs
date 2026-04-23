@@ -17,11 +17,14 @@ public partial class PurgeCommand : DbCommand
     [CommandOption("target", 't', Description = "Target key to purge (format: targettype://targetname)")]
     public string Target { get; set; } = string.Empty;
 
+    [CommandOption("force", 'f', Description = "Skip confirmation prompt.")]
+    public bool Force { get; set; }
+
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         var confirm = $"Are you sure you want to purge all data for target '{Target}'? This action cannot be undone.";
-        if (!await console.Ansi().ConfirmAsync(confirm, false, token))
+        if (!Force && !await console.Ansi().ConfirmAsync(confirm, false, token))
         {
             console.Ansi().MarkupLine("[yellow]Operation cancelled[/]");
             return;

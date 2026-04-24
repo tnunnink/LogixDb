@@ -20,7 +20,10 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,31 +243,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="45974000" />
-    </task>
-    <task id="LOCAL-00150" summary="Update `.idea` workspace configuration: adjust paths, refine highlighting settings, and reorganize recent migration and test references for improved consistency.">
-      <option name="closed" value="true" />
-      <created>1775696033641</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1775696033641</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Remove unused `System.Data` using directive from `M202602061020CreateSnapshotTable`.">
-      <option name="closed" value="true" />
-      <created>1775696083136</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1775696083136</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Replace `TableOptions` with `ComponentOptions`, update migration methods to simplify filtering logic, and refactor `EnsureCreatedAndMigrated` into `EnsureDatabase`.">
-      <option name="closed" value="true" />
-      <created>1775744096454</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1775744096454</updated>
+      <workItem from="1776867316310" duration="48861000" />
     </task>
     <task id="LOCAL-00153" summary="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods.">
       <option name="closed" value="true" />
@@ -634,7 +613,31 @@
       <option name="project" value="LOCAL" />
       <updated>1777040653188</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="Fix incorrect dependency injection for `SqlServerManager` and `SqliteManager` in `Extensions.cs`.">
+      <option name="closed" value="true" />
+      <created>1777041789561</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1777041789561</updated>
+    </task>
+    <task id="LOCAL-00200" summary="Bump project versions to 0.10.2 in Service and CLI.">
+      <option name="closed" value="true" />
+      <created>1777041851020</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1777041851020</updated>
+    </task>
+    <task id="LOCAL-00201" summary="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers">
+      <option name="closed" value="true" />
+      <created>1777041866544</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1777041866544</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,9 +663,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update README to refine configuration instructions, expand setting descriptions, and improve example clarity." />
-    <MESSAGE value="Bump project versions to 0.9.1, update `L5Sharp` dependency to v6.0.5, and refactor database configuration methods for clarity and consistency. Updated SqlServerDb.cs and SqlServerDbWriter.cs to prevent log growth as much as possible" />
-    <MESSAGE value="Refactor delete and get snapshot methods to use version-based logic, update SQL queries for consistency, and revise related tests to reflect changes." />
     <MESSAGE value="Refactor migration scripts to replace `WithRequiredRelation` and `WithOptionalRelation` with unified `WithParentRelation`. Add snapshot-related updates for consistency across tables and schema mapping. Bump CLI version to 0.10.0." />
     <MESSAGE value="Add `snapshot_id` column and relevant foreign key constraints to migration tests for improved schema consistency and validation." />
     <MESSAGE value="Introduce `snapshot_instance` table to track restored snapshots, update SQL logic for snapshot handling, and refine migration scripts for consistency." />
@@ -685,7 +685,10 @@
     <MESSAGE value="Replace `GetDatabaseSizeInBytes` helper with `GetDatabaseSize` in tests for consistency; standardize size outputs in MB; update related test assertions and console logs." />
     <MESSAGE value="Update dependencies across projects and switch to `UploadAsync` in `SyncCommand` for consistency." />
     <MESSAGE value="Bump project versions to 0.10.1 in Service and CLI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.10.1 in Service and CLI." />
+    <MESSAGE value="Fix incorrect dependency injection for `SqlServerManager` and `SqliteManager` in `Extensions.cs`." />
+    <MESSAGE value="Bump project versions to 0.10.2 in Service and CLI." />
+    <MESSAGE value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -716,19 +719,6 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs</url>
-          <line>237</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerManager.cs" containingFunctionPresentation="Method 'PostTargetVersionAsync'">
-            <startOffsets>
-              <option value="10458" />
-            </startOffsets>
-            <endOffsets>
-              <option value="10550" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/RestoreCommand.cs</url>
           <line>25</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\RestoreCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
@@ -740,19 +730,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs</url>
-          <line>118</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.Sqlite\SqliteManager.cs" containingFunctionPresentation="Method 'RestoreTarget'">
-            <startOffsets>
-              <option value="4868" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4964" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

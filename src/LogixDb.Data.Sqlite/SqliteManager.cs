@@ -259,8 +259,13 @@ public sealed class SqliteManager : IDbManager
     /// </summary>
     private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
     {
+        // Before writing anything, convert this target instance into required data tables.
+        // If this fails on some parsing issue, then we can stop before trying to write anything.
+        var dataTables = await CompileTargetDataAsync(target, token);
+
         await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
+        var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);
 
         try
         {
@@ -270,20 +275,38 @@ public sealed class SqliteManager : IDbManager
                 transaction
             );
 
-            var tableNames = await connection.QueryAsync<string>(
-                SqliteScript.GetComponentTables,
-                transaction: transaction);
-
-            var dataTables = target.Compile(tableNames.ToArray());
-
-            var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
-
             await transaction.CommitAsync(token);
         }
         catch (Exception)
         {
             await transaction.RollbackAsync(token);
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// Compiles the target data into a list of data tables based on the associated table names.
+    /// </summary>
+    /// <param name="target">The target instance containing the data to compile into data tables.</param>
+    /// <param name="token">The cancellation token to observe while waiting for the operation to complete.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains a list
+    /// of <see cref="DataTable"/> instances representing the compiled target data.
+    /// </returns>
+    private async Task<List<DataTable>> CompileTargetDataAsync(Target target, CancellationToken token)
+    {
+        await using var connection = await OpenConnection(token);
+
+        try
+        {
+            var tableNames = await connection.QueryAsync<string>(SqliteScript.GetComponentTables);
+            var dataTables = target.Compile(tableNames.ToArray());
+            return dataTables.ToList();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to compile target data for {TargetKey}", target.TargetKey);
             throw;
         }
     }

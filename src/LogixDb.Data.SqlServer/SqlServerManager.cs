@@ -277,23 +277,34 @@ public sealed class SqlServerManager : IDbManager
     /// <returns>A task that represents the asynchronous restoration operation.</returns>
     private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
     {
-        // Before writing anything, convert this target instance into required data tables.
-        // If this fails on some parsing issue, then we can stop before trying to write anything.
-        var dataTables = await CompileTargetDataAsync(target, token);
-
         await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);
-        var writer = new SqlServerWriter(connection, (SqlTransaction)transaction);
 
         try
         {
+            // 1. Get the InstanceId first as it's required for compilation.
             target.InstanceId = await connection.ExecuteScalarAsync<int>(
                 SqlServerScript.PostInstance,
                 new { target.VersionId, RestoredOn = DateTime.Now, RestoredBy = Environment.UserName },
                 transaction
             );
 
+            // 2. Get the table names from the schema.
+            var tableNames = await connection.QueryAsync<string>(
+                SqlServerScript.GetComponentTables,
+                transaction: transaction
+            );
+
+            // 3. Compile AND Materialize the data tables.
+            // Calling .ToList() here is critical: it forces L5Sharp to parse all data
+            // and maps them to DataTables before we start the bulk copy process.
+            // If this fails, we only have one record to roll back.
+            var dataTables = target.Compile(tableNames.ToArray()).ToList();
+
+            // 4. Perform the bulk write for each table.
+            var writer = new SqlServerWriter(connection, (SqlTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
+
             await transaction.CommitAsync(token);
         }
         catch (Exception ex)

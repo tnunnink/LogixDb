@@ -22,6 +22,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInstance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInstance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
@@ -243,15 +244,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="48861000" />
-    </task>
-    <task id="LOCAL-00153" summary="Filter assets in `FtacMonitorService` using configurable whitelist and blacklist patterns. Add `IsMatch` and `FitsMask` utility methods.">
-      <option name="closed" value="true" />
-      <created>1775750274546</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1775750274546</updated>
+      <workItem from="1776867316310" duration="51348000" />
     </task>
     <task id="LOCAL-00154" summary="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter.">
       <option name="closed" value="true" />
@@ -637,7 +630,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777041866544</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3.">
+      <option name="closed" value="true" />
+      <created>1777045277686</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1777045277686</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +664,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor migration scripts to replace `WithRequiredRelation` and `WithOptionalRelation` with unified `WithParentRelation`. Add snapshot-related updates for consistency across tables and schema mapping. Bump CLI version to 0.10.0." />
     <MESSAGE value="Add `snapshot_id` column and relevant foreign key constraints to migration tests for improved schema consistency and validation." />
     <MESSAGE value="Introduce `snapshot_instance` table to track restored snapshots, update SQL logic for snapshot handling, and refine migration scripts for consistency." />
     <MESSAGE value="Performed major refactor of Snapshot.cs to Target.cs and updated core database tables to support version history and instance expantion. Updated CLI. Updated abstractions, migrations, tests, and moved static SQL code to scripts." />
@@ -688,7 +688,8 @@
     <MESSAGE value="Fix incorrect dependency injection for `SqlServerManager` and `SqliteManager` in `Extensions.cs`." />
     <MESSAGE value="Bump project versions to 0.10.2 in Service and CLI." />
     <MESSAGE value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
+    <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

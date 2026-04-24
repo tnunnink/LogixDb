@@ -17,13 +17,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="L5Sharp" Version="6.0.5" />
-        <PackageReference Include="L5Sharp.Gateway" Version="1.0.1" />
+        <PackageReference Include="L5Sharp" Version="6.0.6" />
+        <PackageReference Include="L5Sharp.Gateway" Version="1.1.0" />
         <PackageReference Include="Dapper" Version="2.1.72" />
         <PackageReference Include="FluentMigrator" Version="8.0.1"/>
         <PackageReference Include="FluentMigrator.Runner.Core" Version="8.0.1"/>
         <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="8.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.7" />
         <PackageReference Include="JetBrains.Annotations" Version="2025.2.2"/>
     </ItemGroup>
 

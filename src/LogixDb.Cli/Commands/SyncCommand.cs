@@ -42,7 +42,7 @@ public partial class SyncCommand : DbCommand
         {
             ctx.Status("Uploading tag data from PLC...");
             using var client = new PlcClient(ipAddress, slotNumber);
-            await source.Upload(client, token);
+            await source.UploadAsync(client, token);
 
             ctx.Status("Creating new target...");
             var updated = Target.Create(source, TargetKey);

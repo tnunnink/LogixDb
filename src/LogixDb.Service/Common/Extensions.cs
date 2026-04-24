@@ -30,12 +30,12 @@ public static class Extensions
         {
             case DbProvider.SqlServer:
                 services.AddTransient<IDbManager>(p =>
-                    new SqliteManager(connection, p.GetRequiredService<ILogger>())
+                    new SqlServerManager(connection, p.GetRequiredService<ILogger<SqlServerManager>>())
                 );
                 break;
             case DbProvider.Sqlite:
                 services.AddTransient<IDbManager>(p =>
-                    new SqlServerManager(connection, p.GetRequiredService<ILogger>())
+                    new SqliteManager(connection, p.GetRequiredService<ILogger<SqliteManager>>())
                 );
                 break;
             default:

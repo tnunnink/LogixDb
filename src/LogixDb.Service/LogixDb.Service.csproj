@@ -14,7 +14,7 @@
     <ItemGroup>
         <PackageReference Include="CliWrap" Version="3.10.1"/>
         <PackageReference Include="LogixConverter.LogixSdk" Version="0.2.2"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.7" />
     </ItemGroup>
 

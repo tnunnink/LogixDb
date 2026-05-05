@@ -20,11 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInstance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInstance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,59 +104,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
-    "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
-    "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
-    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
-    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
-    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
-    "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
-    "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
-    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
-    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
-    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
-    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
-    "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
-    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
-    "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.junie",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Debug&quot;,
+    &quot;023f2559-4d27-4bd0-b75c-e1f573990a1d.executor&quot;: &quot;Debug&quot;,
+    &quot;04139c1b-5b64-4aed-b537-1f9c61cac291.executor&quot;: &quot;Debug&quot;,
+    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
+    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
+    &quot;34c483ea-991b-4a3f-a7ce-9d756930abc5.executor&quot;: &quot;Debug&quot;,
+    &quot;35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor&quot;: &quot;Debug&quot;,
+    &quot;41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor&quot;: &quot;Debug&quot;,
+    &quot;487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor&quot;: &quot;Debug&quot;,
+    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
+    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
+    &quot;7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor&quot;: &quot;Debug&quot;,
+    &quot;8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor&quot;: &quot;Debug&quot;,
+    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
+    &quot;bab2bab0-9cea-416e-aaea-975b3296228d.executor&quot;: &quot;Debug&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.junie&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "SQLite",
-      "TSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;,
+      &quot;TSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.100696936" />
@@ -244,15 +240,7 @@
       <workItem from="1776265893906" duration="15925000" />
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
-      <workItem from="1776867316310" duration="51348000" />
-    </task>
-    <task id="LOCAL-00154" summary="Update `.idea` workspace configuration: adjust path references, refine task metadata, and update local task counter.">
-      <option name="closed" value="true" />
-      <created>1775750281831</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1775750281831</updated>
+      <workItem from="1776867316310" duration="67484000" />
     </task>
     <task id="LOCAL-00155" summary="Update README to include selective migration options, FTAC filter enhancements, and updated database schema details.">
       <option name="closed" value="true" />
@@ -638,7 +626,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777045277686</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4.">
+      <option name="closed" value="true" />
+      <created>1777050336470</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1777050336470</updated>
+    </task>
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +660,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `snapshot_id` column and relevant foreign key constraints to migration tests for improved schema consistency and validation." />
     <MESSAGE value="Introduce `snapshot_instance` table to track restored snapshots, update SQL logic for snapshot handling, and refine migration scripts for consistency." />
     <MESSAGE value="Performed major refactor of Snapshot.cs to Target.cs and updated core database tables to support version history and instance expantion. Updated CLI. Updated abstractions, migrations, tests, and moved static SQL code to scripts." />
     <MESSAGE value="Replaced snapshot with target for documentation and variable names" />
@@ -689,7 +684,8 @@
     <MESSAGE value="Bump project versions to 0.10.2 in Service and CLI." />
     <MESSAGE value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
     <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
+    <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

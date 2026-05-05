@@ -46,13 +46,13 @@ internal class TagTransformer : IDbTransformer
             var tagRecord = new TagRecord(target.InstanceId, tag.Program?.Metadata.Get<Guid>("id"), tag);
             tagRecords.Add(tagRecord);
 
-            if (tag.ProduceInfo is not null)
+            if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
                 producerRecords.Add(new TagProduceInfoRecord(target.InstanceId, tagRecord.TagId, tag.ProduceInfo));
 
-            if (tag.ConsumeInfo is not null)
+            if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
                 consumerRecords.Add(new TagConsumeInfoRecord(target.InstanceId, tagRecord.TagId, tag.ConsumeInfo));
 
-            if (tag.AliasFor is not null)
+            if (TagType.Alias.Equals(tag.TagType) && tag.AliasFor is not null)
                 aliasRecords.Add(new TagAliasRecord(target.InstanceId, tagRecord.TagId, tag.AliasFor.LocalPath));
 
             foreach (var member in tag.Members())

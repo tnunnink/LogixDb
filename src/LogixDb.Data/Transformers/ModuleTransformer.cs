@@ -25,7 +25,7 @@ internal class ModuleTransformer : IDbTransformer
 
             var parentName = module.ParentModule ?? string.Empty;
             var parent = records.GetValueOrDefault(parentName);
-            var record = new ModuleRecord(target.InstanceId, parent?.ModuleId, module);
+            var record = new ModuleRecord(parent?.ModuleId, module);
 
             if (!records.TryAdd(record.Module.Name, record))
                 throw new InvalidOperationException(

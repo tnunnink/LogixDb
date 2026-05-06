@@ -16,7 +16,7 @@ internal class ControllerTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var records = new List<ControllerRecord> { new(target.InstanceId, source.Controller) };
+        var records = new List<ControllerRecord> { new(source.Controller) };
         yield return _map.GenerateTable(records);
     }
 }

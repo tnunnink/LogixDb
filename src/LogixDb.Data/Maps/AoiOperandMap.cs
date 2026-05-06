@@ -13,7 +13,6 @@ internal class AoiOperandMap : TableMap<AoiOperandRecord>
     protected override IReadOnlyList<ColumnMap<AoiOperandRecord>> Columns =>
     [
         ColumnMap<AoiOperandRecord>.For(r => r.OperandId, "operand_id"),
-        ColumnMap<AoiOperandRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<AoiOperandRecord>.For(r => r.Key, "instruction_key"),
         ColumnMap<AoiOperandRecord>.For(r => r.Index, "operand_index"),
         ColumnMap<AoiOperandRecord>.For(r => r.Name, "operand_name"),
@@ -33,7 +32,6 @@ internal class AoiOperandMap : TableMap<AoiOperandRecord>
 /// that describe its functionality and behavior in the context of AOI usage.
 /// </remarks>
 public record AoiOperandRecord(
-    int InstanceId,
     string Key,
     byte Index,
     string Name,

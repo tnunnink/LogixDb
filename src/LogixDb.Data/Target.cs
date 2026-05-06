@@ -44,7 +44,6 @@ public sealed class Target
 
     public Guid TargetId { get; init; } = Guid.NewGuid();
     public Guid VersionId { get; init; } = Guid.NewGuid();
-    public int InstanceId { get; set; }
     public string TargetKey { get; init; } = string.Empty;
     public int VersionNumber { get; init; }
     public string TargetType { get; init; } = string.Empty;

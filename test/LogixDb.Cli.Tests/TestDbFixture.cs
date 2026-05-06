@@ -1,7 +1,6 @@
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Sqlite;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace LogixDb.Cli.Tests;
 
@@ -19,7 +18,7 @@ public abstract class TestDbFixture
     {
         DbConnection = Path.Combine(Path.GetTempPath(), $"LogixTest_{Guid.NewGuid():N}.db");
         var connectionInfo = new DbConnectionInfo(DbProvider.Sqlite, DbConnection);
-        Database = new SqliteManager(connectionInfo, NullLogger.Instance);
+        Database = new SqliteManager(connectionInfo);
     }
 
     /// <summary>

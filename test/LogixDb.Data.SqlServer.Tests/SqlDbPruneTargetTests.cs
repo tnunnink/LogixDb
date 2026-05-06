@@ -20,7 +20,7 @@ public class SqlDbPruneTargetTests : SqlServerTestFixture
         var target2 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target2);
         
-        await Database.PruneTarget(target1.TargetKey);
+        await Database.DeleteVersion(target1.TargetKey, TODO);
 
         await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
         await AssertRecordDoesNotExist("controller", "instance_id", target2.InstanceId);
@@ -29,6 +29,6 @@ public class SqlDbPruneTargetTests : SqlServerTestFixture
     [Test]
     public async Task PruneTarget_NonExistentTarget_ShouldNotThrow()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.PruneTarget("NonExistent"));
+        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersion("NonExistent", TODO));
     }
 }

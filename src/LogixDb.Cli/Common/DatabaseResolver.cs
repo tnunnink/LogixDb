@@ -21,8 +21,8 @@ public static class DatabaseResolver
     {
         return connection.Provider switch
         {
-            DbProvider.Sqlite => new SqliteManager(connection, NullLogger.Instance),
-            DbProvider.SqlServer => new SqlServerManager(connection, NullLogger.Instance),
+            DbProvider.Sqlite => new SqliteManager(connection),
+            DbProvider.SqlServer => new SqlServerManager(connection),
             _ => throw new ArgumentOutOfRangeException(nameof(connection), connection.Provider,
                 "Unsupported SQL provider")
         };

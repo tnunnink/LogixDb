@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Logging.Testing;
-
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
@@ -22,7 +20,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
             Trust: true
         );
 
-        var database = new SqlServerManager(connectionInfo, new FakeLogger());
+        var database = new SqlServerManager(connectionInfo);
         await database.Drop();
         await database.Migrate();
     }

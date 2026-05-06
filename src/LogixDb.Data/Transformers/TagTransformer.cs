@@ -43,17 +43,17 @@ internal class TagTransformer : IDbTransformer
 
         foreach (var tag in tags)
         {
-            var tagRecord = new TagRecord(target.InstanceId, tag.Program?.Metadata.Get<Guid>("id"), tag);
+            var tagRecord = new TagRecord(tag.Program?.Metadata.Get<Guid>("id"), tag);
             tagRecords.Add(tagRecord);
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(target.InstanceId, tagRecord.TagId, tag.ProduceInfo));
+                producerRecords.Add(new TagProduceInfoRecord(tagRecord.TagId, tag.ProduceInfo));
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(target.InstanceId, tagRecord.TagId, tag.ConsumeInfo));
+                consumerRecords.Add(new TagConsumeInfoRecord(tagRecord.TagId, tag.ConsumeInfo));
 
             if (TagType.Alias.Equals(tag.TagType) && tag.AliasFor is not null)
-                aliasRecords.Add(new TagAliasRecord(target.InstanceId, tagRecord.TagId, tag.AliasFor.LocalPath));
+                aliasRecords.Add(new TagAliasRecord(tagRecord.TagId, tag.AliasFor.LocalPath));
 
             foreach (var member in tag.Members())
             {
@@ -62,14 +62,14 @@ internal class TagTransformer : IDbTransformer
                 Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
 
                 //Generate member record and comment records and add to collections.
-                var memberRecord = new TagMemberRecord(target.InstanceId, tagRecord.TagId, parentId, member);
+                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, member);
 
                 if (!memberLookup.TryAdd(member.TagName, memberRecord))
                     throw new InvalidOperationException(
                         $"Duplicate member TagName encountered: '{member.TagName}'. Each member must have a unique TagName within the tag.");
 
                 memberRecords.Add(memberRecord);
-                commentRecords.AddRange(GetTagComments(target.InstanceId, memberRecord));
+                commentRecords.AddRange(GetTagComments(memberRecord));
             }
         }
 
@@ -84,15 +84,13 @@ internal class TagTransformer : IDbTransformer
     /// <summary>
     /// Extracts comments from a provided tag member record and generates a collection of tag comment records.
     /// </summary>
-    /// <param name="instanceId">The unique identifier of the Target to associate with the generated comments.</param>
     /// <param name="record">The tag member record containing tag metadata and associated details.</param>
     /// <returns>A collection of tag comment records generated from the provided tag member record.</returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(int instanceId, TagMemberRecord record)
+    private static IEnumerable<TagCommentRecord> GetTagComments(TagMemberRecord record)
     {
         if (record.Tag.Description is not null)
         {
             yield return new TagCommentRecord(
-                instanceId,
                 record.MemberId,
                 record.Tag.TagName.LocalPath,
                 record.Tag.Description
@@ -114,7 +112,7 @@ internal class TagTransformer : IDbTransformer
                     ? string.Concat(record.Tag.Description, " ", comment.Value).Trim()
                     : comment.Value;
 
-                yield return new TagCommentRecord(instanceId, record.MemberId, tagName, tagComment);
+                yield return new TagCommentRecord(record.MemberId, tagName, tagComment);
             }
         }
     }

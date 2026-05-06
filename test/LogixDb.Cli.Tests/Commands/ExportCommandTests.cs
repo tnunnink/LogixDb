@@ -39,7 +39,7 @@ public class ExportCommandTests : TestDbFixture
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
         var source = TestSource.LocalTest();
         source.Save(testFile);
-        await Database.PostTarget(Target.Create(source, "TestTarget"));
+        await Database.ImportTarget(Target.Create(source, "TestTarget"));
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ExportCommand.Descriptor);

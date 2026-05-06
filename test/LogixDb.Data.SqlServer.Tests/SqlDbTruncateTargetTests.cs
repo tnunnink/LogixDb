@@ -20,7 +20,7 @@ public class SqlDbTruncateTargetTests : SqlServerTestFixture
         var target2 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target2);
 
-        await Database.TruncateTarget(target1.TargetKey, 2);
+        await Database.DeleteVersions(target1.TargetKey, 2);
 
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -40,7 +40,7 @@ public class SqlDbTruncateTargetTests : SqlServerTestFixture
         var target2 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target2);
 
-        await Database.TruncateTarget(target1.TargetKey, cutoff);
+        await Database.DeleteVersions(target1.TargetKey, cutoff);
 
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
@@ -50,7 +50,7 @@ public class SqlDbTruncateTargetTests : SqlServerTestFixture
     [Test]
     public async Task TruncateTarget_NonExistentKey_ShouldNotThrow()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.TruncateTarget("NonExistent", 1));
-        Assert.DoesNotThrowAsync(async () => await Database.TruncateTarget("NonExistent", DateTime.Now));
+        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", 1));
+        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", DateTime.Now));
     }
 }

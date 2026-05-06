@@ -23,7 +23,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(result.InstanceId, Is.EqualTo(target.InstanceId));
+            Assert.That(result.VersionId, Is.EqualTo(target.VersionId));
             Assert.That(result.TargetKey, Is.EqualTo(target.TargetKey));
         }
     }
@@ -42,7 +42,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
         var result = await Database.GetTarget(target1.TargetKey);
 
         Assert.That(result, Is.Not.Null);
-        Assert.That(result.InstanceId, Is.EqualTo(target2.InstanceId));
+        Assert.That(result.VersionId, Is.EqualTo(target2.VersionId));
     }
 
     [Test]
@@ -57,7 +57,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(result.InstanceId, Is.EqualTo(target.InstanceId));
+            Assert.That(result.VersionId, Is.EqualTo(target.VersionId));
             Assert.That(result.TargetKey, Is.EqualTo(target.TargetKey));
         }
     }
@@ -76,7 +76,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.InstanceId, Is.GreaterThan(0));
+            Assert.That(result.VersionId, Is.Not.Empty);
             Assert.That(result.TargetKey, Is.EqualTo(target1.TargetKey));
             Assert.That(result.VersionNumber, Is.EqualTo(2));
         }

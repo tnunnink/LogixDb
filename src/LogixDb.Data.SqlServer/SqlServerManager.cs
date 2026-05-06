@@ -7,7 +7,6 @@ using LogixDb.Migrations;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Dapper;
-using Microsoft.Extensions.Logging;
 
 namespace LogixDb.Data.SqlServer;
 
@@ -17,28 +16,13 @@ namespace LogixDb.Data.SqlServer;
 /// and dropping operations.
 /// </summary>
 [SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging")]
-public sealed class SqlServerManager : IDbManager
+public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManager
 {
-    private readonly DbConnectionInfo _connectionInfo;
-    private readonly ILogger _logger;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SqlServerManager"/> class with the specified connection information and logger.
-    /// </summary>
-    /// <param name="connectionInfo">The database connection information used to connect to the SQL Server instance.</param>
-    /// <param name="logger">The logger instance used for logging operations and diagnostics.</param>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="connectionInfo"/> or <paramref name="logger"/> is null.</exception>
-    public SqlServerManager(DbConnectionInfo connectionInfo, ILogger logger)
-    {
-        _connectionInfo = connectionInfo ?? throw new ArgumentNullException(nameof(connectionInfo));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-
     /// <inheritdoc />
     public async Task Migrate(ComponentOptions options = ComponentOptions.All, CancellationToken token = default)
     {
         await EnsureCreated(token);
-        await using var provider = BuildMigrationProvider(_connectionInfo.ToConnectionString(), options);
+        await using var provider = BuildMigrationProvider(connectionInfo.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp();
         await ConfigureDatabase(token);
@@ -49,7 +33,7 @@ public sealed class SqlServerManager : IDbManager
         CancellationToken token = default)
     {
         await EnsureCreated(token);
-        await using var provider = BuildMigrationProvider(_connectionInfo.ToConnectionString(), options);
+        await using var provider = BuildMigrationProvider(connectionInfo.ToConnectionString(), options);
         var runner = provider.GetRequiredService<IMigrationRunner>();
         runner.MigrateUp(version);
         await ConfigureDatabase(token);
@@ -64,18 +48,18 @@ public sealed class SqlServerManager : IDbManager
             $"""
              IF EXISTS (SELECT * FROM sys.databases WHERE name = @DatabaseName)
              BEGIN
-               ALTER DATABASE [{_connectionInfo.Database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-               DROP DATABASE [{_connectionInfo.Database}]
+               ALTER DATABASE [{connectionInfo.Database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+               DROP DATABASE [{connectionInfo.Database}]
              END
              """,
-            new { DatabaseName = _connectionInfo.Database }
+            new { DatabaseName = connectionInfo.Database }
         );
     }
 
     /// <inheritdoc />
     public async Task<IDbConnection> Connect(CancellationToken token = default)
     {
-        var connection = new SqlConnection(_connectionInfo.ToConnectionString());
+        var connection = new SqlConnection(connectionInfo.ToConnectionString());
         await connection.OpenAsync(token);
         return connection;
     }
@@ -83,83 +67,63 @@ public sealed class SqlServerManager : IDbManager
     /// <inheritdoc />
     public async Task<IEnumerable<Target>> ListTargets(string? targetKey = null, CancellationToken token = default)
     {
-        _logger.LogInformation("Listing targets {TargetKey}", targetKey ?? "all");
         await using var connection = await OpenConnection(token);
-        return await connection.QueryAsync<Target>(SqlServerScript.ListTargets, new { TargetKey = targetKey });
+
+        return await connection.QueryAsync<Target>(
+            SqlServerScript.ListTargets,
+            new { TargetKey = targetKey }
+        );
     }
 
     /// <inheritdoc />
-    public Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
+    public async Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
-        _logger.LogInformation("Getting target {TargetKey} (version: {Version})", targetKey, version);
-        return GetTargetAsync(targetKey, version, token);
-    }
+        await using var connection = await OpenConnection(token);
 
-    /// <inheritdoc />
-    public Task PostTarget(Target target, CancellationToken token = default)
-    {
-        _logger.LogInformation("Posting new version for target {TargetKey}", target.TargetKey);
-        return PostTargetVersionAsync(target, token);
+        if (version > 0)
+        {
+            return await connection.QuerySingleOrDefaultAsync<Target>(
+                SqlServerScript.GetTargetByVersion,
+                new { TargetKey = targetKey, VersionNumber = version }
+            );
+        }
+
+        return await connection.QuerySingleOrDefaultAsync<Target>(
+            SqlServerScript.GetTargetByLatest,
+            new { TargetKey = targetKey }
+        );
     }
 
     /// <inheritdoc />
     public async Task ImportTarget(Target target, CancellationToken token = default)
     {
-        _logger.LogInformation("Importing target {TargetKey}", target.TargetKey);
-
         await PostTargetVersionAsync(target, token);
-        await ExecuteSqlScriptAsync(SqlServerScript.DeleteTargetInstances, new { target.TargetKey }, token);
         await RestoreTargetVersionAsync(target, token);
-    }
-
-    /// <inheritdoc />
-    public async Task RestoreTarget(string targetKey, int version = 0, CancellationToken token = default)
-    {
-        _logger.LogInformation("Restoring target {TargetKey} (version: {Version})", targetKey, version);
-
-        var target = await GetTargetAsync(targetKey, version, token);
-
-        if (target is null)
-            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
-
-        if (target.InstanceId == 0)
-            await RestoreTargetVersionAsync(target, token);
-    }
-
-    /// <inheritdoc />
-    public async Task ArchiveTarget(string targetKey, int version = 0, CancellationToken token = default)
-    {
-        _logger.LogInformation("Archiving target {TargetKey} (version: {Version})", targetKey, version);
-
-        var target = await GetTargetAsync(targetKey, version, token);
-
-        if (target is null)
-            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
-
-        if (target.InstanceId > 0)
-            await ExecuteSqlScriptAsync(SqlServerScript.DeleteVersionInstance, new { target.InstanceId }, token);
-    }
-
-    /// <inheritdoc />
-    public Task PruneTarget(string targetKey, CancellationToken token = default)
-    {
-        _logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
-        return ExecuteSqlScriptAsync(SqlServerScript.DeleteTargetInstances, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task DeleteTarget(string targetKey, CancellationToken token = default)
     {
-        _logger.LogInformation("Deleting target {TargetKey}", targetKey);
-        return ExecuteSqlScriptAsync(SqlServerScript.DeleteTarget, new { TargetKey = targetKey }, token);
+        return ExecuteSqlScriptAsync(
+            SqlServerScript.DeleteTarget,
+            new { TargetKey = targetKey },
+            token
+        );
     }
 
     /// <inheritdoc />
-    public Task TruncateTarget(string targetKey, int beforeVersion, CancellationToken token = default)
+    public Task DeleteVersion(string targetKey, int versionNumber, CancellationToken token = default)
     {
-        _logger.LogInformation("Truncating versions for target {TargetKey} before version {Version}", targetKey,
-            beforeVersion);
+        return ExecuteSqlScriptAsync(
+            SqlServerScript.DeleteTargetInstances,
+            new { TargetKey = targetKey },
+            token
+        );
+    }
 
+    /// <inheritdoc />
+    public Task DeleteVersions(string targetKey, int beforeVersion, CancellationToken token = default)
+    {
         return ExecuteSqlScriptAsync(
             SqlServerScript.DeleteVersionsByNumber,
             new { TargetKey = targetKey, VersionNumber = beforeVersion },
@@ -168,10 +132,8 @@ public sealed class SqlServerManager : IDbManager
     }
 
     /// <inheritdoc />
-    public Task TruncateTarget(string targetKey, DateTime beforeDate, CancellationToken token = default)
+    public Task DeleteVersions(string targetKey, DateTime beforeDate, CancellationToken token = default)
     {
-        _logger.LogInformation("Truncating versions for target {TargetKey} before {Date}", targetKey, beforeDate);
-
         return ExecuteSqlScriptAsync(
             SqlServerScript.DeleteVersionsBeforeDate,
             new { TargetKey = targetKey, BeforeDate = beforeDate },
@@ -196,37 +158,11 @@ public sealed class SqlServerManager : IDbManager
             await connection.ExecuteAsync(scriptName, parameters, transaction);
             await transaction.CommitAsync(token);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _logger.LogError(ex, "Failed to execute script {ScriptName}", scriptName);
             await transaction.RollbackAsync(token);
             throw;
         }
-    }
-
-    /// <summary>
-    /// Retrieves a target from the database based on the specified key and version.
-    /// </summary>
-    /// <param name="targetKey">The unique key identifying the target.</param>
-    /// <param name="version">The version of the target to retrieve. If not specified, the latest version will be retrieved.</param>
-    /// <param name="token">The cancellation token to observe for operation cancellation.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the requested target.</returns>
-    private async Task<Target?> GetTargetAsync(string targetKey, int version, CancellationToken token)
-    {
-        await using var connection = await OpenConnection(token);
-
-        if (version > 0)
-        {
-            return await connection.QuerySingleOrDefaultAsync<Target>(
-                SqlServerScript.GetTargetByVersion,
-                new { TargetKey = targetKey, VersionNumber = version }
-            );
-        }
-
-        return await connection.QuerySingleOrDefaultAsync<Target>(
-            SqlServerScript.GetTargetByLatest,
-            new { TargetKey = targetKey }
-        );
     }
 
     /// <summary>
@@ -260,9 +196,8 @@ public sealed class SqlServerManager : IDbManager
 
             await transaction.CommitAsync(token);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _logger.LogError(ex, "Failed to post target version for {TargetKey}", target.TargetKey);
             await transaction.RollbackAsync(token);
             throw;
         }
@@ -282,61 +217,26 @@ public sealed class SqlServerManager : IDbManager
 
         try
         {
-            // 1. Get the InstanceId first as it's required for compilation.
-            target.InstanceId = await connection.ExecuteScalarAsync<int>(
-                SqlServerScript.PostInstance,
-                new { target.VersionId, RestoredOn = DateTime.Now, RestoredBy = Environment.UserName },
-                transaction
-            );
-
-            // 2. Get the table names from the schema.
+            // 1. Get the table names from the schema to determine which component to import
             var tableNames = await connection.QueryAsync<string>(
                 SqlServerScript.GetComponentTables,
                 transaction: transaction
             );
 
-            // 3. Compile AND Materialize the data tables.
+            // 2. Compile AND Materialize the data tables.
             // Calling .ToList() here is critical: it forces L5Sharp to parse all data
-            // and maps them to DataTables before we start the bulk copy process.
-            // If this fails, we only have one record to roll back.
+            // and maps them to DataTables before we start the bulk copy process, preventing rollback exceptions.
             var dataTables = target.Compile(tableNames.ToArray()).ToList();
 
-            // 4. Perform the bulk write for each table.
+            // 3. Perform a bulk write of all compiled data to the database.
             var writer = new SqlServerWriter(connection, (SqlTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
 
             await transaction.CommitAsync(token);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _logger.LogError(ex, "Failed to restore target version for {TargetKey}", target.TargetKey);
             await transaction.RollbackAsync(token);
-            throw;
-        }
-    }
-
-    /// <summary>
-    /// Compiles the target data into a list of data tables based on the associated table names.
-    /// </summary>
-    /// <param name="target">The target instance containing the data to compile into data tables.</param>
-    /// <param name="token">The cancellation token to observe while waiting for the operation to complete.</param>
-    /// <returns>
-    /// A task that represents the asynchronous operation. The task result contains a list
-    /// of <see cref="DataTable"/> instances representing the compiled target data.
-    /// </returns>
-    private async Task<List<DataTable>> CompileTargetDataAsync(Target target, CancellationToken token)
-    {
-        await using var connection = await OpenConnection(token);
-
-        try
-        {
-            var tableNames = await connection.QueryAsync<string>(SqlServerScript.GetComponentTables);
-            var dataTables = target.Compile(tableNames.ToArray());
-            return dataTables.ToList();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Failed to compile target data for {TargetKey}", target.TargetKey);
             throw;
         }
     }
@@ -354,10 +254,10 @@ public sealed class SqlServerManager : IDbManager
             $"""
              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = @DatabaseName)
              BEGIN
-                 CREATE DATABASE [{_connectionInfo.Database}]
+                 CREATE DATABASE [{connectionInfo.Database}]
              END
              """,
-            new { DatabaseName = _connectionInfo.Database }
+            new { DatabaseName = connectionInfo.Database }
         );
     }
 
@@ -368,7 +268,7 @@ public sealed class SqlServerManager : IDbManager
     /// <returns>Returns a <see cref="SqlConnection"/> object representing the opened connection to the master database.</returns>
     private async Task<SqlConnection> OpenMasterConnectionAsync(CancellationToken token)
     {
-        var connectionString = _connectionInfo.ToConnectionString("master");
+        var connectionString = connectionInfo.ToConnectionString("master");
         var masterConnection = new SqlConnection(connectionString);
         await masterConnection.OpenAsync(token);
         return masterConnection;
@@ -381,7 +281,7 @@ public sealed class SqlServerManager : IDbManager
     /// <returns>A task representing the asynchronous operation. The task result contains an <see cref="IDbConnection"/> instance representing the open connection.</returns>
     private async Task<SqlConnection> OpenConnection(CancellationToken token)
     {
-        var connection = new SqlConnection(_connectionInfo.ToConnectionString());
+        var connection = new SqlConnection(connectionInfo.ToConnectionString());
         await connection.OpenAsync(token);
         return connection;
     }

@@ -29,8 +29,8 @@ internal class DataTypeTransformer : IDbTransformer
 
         foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
         {
-            var type = new DataTypeRecord(target.InstanceId, dataType);
-            var members = dataType.Members.Select(m => new DataTypeMemberRecord(target.InstanceId, type.TypeId, m));
+            var type = new DataTypeRecord(dataType);
+            var members = dataType.Members.Select(m => new DataTypeMemberRecord(type.TypeId, m));
 
             dataTypeRecords.Add(type);
             memberRecords.AddRange(members);

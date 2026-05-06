@@ -16,7 +16,6 @@ internal class ModuleMap : TableMap<ModuleRecord>
     protected override IReadOnlyList<ColumnMap<ModuleRecord>> Columns =>
     [
         ColumnMap<ModuleRecord>.For(r => r.ModuleId, "module_id", hashable: false),
-        ColumnMap<ModuleRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.ParentId, "parent_id", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.Module.Name, "module_name", hashable: false),
         ColumnMap<ModuleRecord>.For(r => r.Module.Description, "module_description"),
@@ -43,9 +42,8 @@ internal class ModuleMap : TableMap<ModuleRecord>
 /// This record contains the metadata for a specific Logix module,
 /// as well as the unique identifier linking it to a specific database target.
 /// </summary>
-/// <param name="InstanceId">The unique identifier of the instance to which this module record belongs.</param>
 /// <param name="Module">The Logix module entity.</param>
-internal record ModuleRecord(int InstanceId, Guid? ParentId, Module Module)
+internal record ModuleRecord(Guid? ParentId, Module Module)
 {
     public Guid ModuleId { get; } = Guid.NewGuid();
 }

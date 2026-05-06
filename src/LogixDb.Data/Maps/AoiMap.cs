@@ -16,7 +16,6 @@ internal class AoiMap : TableMap<AoiRecord>
     protected override IReadOnlyList<ColumnMap<AoiRecord>> Columns =>
     [
         ColumnMap<AoiRecord>.For(r => r.AoiId, "aoi_id", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Name, "aoi_name", hashable: false),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Description, "aoi_description"),
         ColumnMap<AoiRecord>.For(r => r.Aoi.Revision?.ToString(), "aoi_revision"),
@@ -46,9 +45,8 @@ internal class AoiMap : TableMap<AoiRecord>
 /// This record contains metadata and configuration for a specific Logix AOI,
 /// as well as the unique identifier linking it to a specific database target.
 /// </summary>
-/// <param name="InstanceId">The unique identifier of the instance to which this AOI record belongs.</param>
 /// <param name="Aoi">The Logix AOI entity containing its configuration.</param>
-internal record AoiRecord(int InstanceId, AddOnInstruction Aoi)
+internal record AoiRecord(AddOnInstruction Aoi)
 {
     public Guid AoiId { get; } = Guid.NewGuid();
 }

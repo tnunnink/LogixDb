@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging.Testing;
 using NUnit.Framework.Legacy;
 
 namespace LogixDb.Data.Sqlite.Tests;
@@ -15,7 +14,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
     public async Task MigrateLocalTestDatabaseForWritingQueriesAgainst()
     {
         var connection = new DbConnectionInfo(DbProvider.Sqlite, "../../../logix.db");
-        var database = new SqliteManager(connection, new FakeLogger());
+        var database = new SqliteManager(connection);
         await database.Drop();
         await database.Migrate();
         FileAssert.Exists("../../../logix.db");

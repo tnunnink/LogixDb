@@ -7,7 +7,6 @@ using LogixDb.Data.Abstractions;
 using LogixDb.Migrations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace LogixDb.Data.Sqlite;
 
@@ -22,19 +21,21 @@ namespace LogixDb.Data.Sqlite;
 [SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging")]
 public sealed class SqliteManager : IDbManager
 {
+    /// <summary>
+    /// Stores the connection information required to configure and interact with a SQLite database.
+    /// This includes details such as the database provider, source file, and optional parameters
+    /// like user credentials, encryption settings, and connection port.
+    /// </summary>
     private readonly DbConnectionInfo _connectionInfo;
-    private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SqliteManager"/> class with the specified connection information and logger.
+    /// Initializes a new instance of the <see cref="SqliteManager"/> class with the specified database connection information.
     /// </summary>
-    /// <param name="connectionInfo">The database connection information containing details such as the database file path.</param>
-    /// <param name="logger">The logger instance used for logging database operations and events.</param>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="connectionInfo"/> or <paramref name="logger"/> is <c>null</c>.</exception>
-    public SqliteManager(DbConnectionInfo connectionInfo, ILogger logger)
+    /// <param name="connectionInfo">The connection information used to configure and connect to the SQLite database.</param>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="connectionInfo"/> is null.</exception>
+    public SqliteManager(DbConnectionInfo connectionInfo)
     {
         _connectionInfo = connectionInfo ?? throw new ArgumentNullException(nameof(connectionInfo));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         ConfigureSqlite();
     }
 
@@ -83,84 +84,59 @@ public sealed class SqliteManager : IDbManager
     /// <inheritdoc />
     public async Task<IEnumerable<Target>> ListTargets(string? targetKey = null, CancellationToken token = default)
     {
-        _logger.LogInformation("Listing targets {TargetKey}", targetKey ?? "all");
-
         await using var connection = await OpenConnection(token);
         return await connection.QueryAsync<Target>(SqliteScript.ListTargets, new { TargetKey = targetKey });
     }
 
     /// <inheritdoc />
-    public Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
+    public async Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
-        _logger.LogInformation("Getting target {TargetKey} (version: {Version})", targetKey, version);
-        return GetTargetAsync(targetKey, version, token);
-    }
+        await using var connection = await OpenConnection(token);
 
-    /// <inheritdoc />
-    public Task PostTarget(Target target, CancellationToken token = default)
-    {
-        _logger.LogInformation("Posting new version for target {TargetKey}", target.TargetKey);
-        return PostTargetVersionAsync(target, token);
+        if (version > 0)
+        {
+            return await connection.QuerySingleOrDefaultAsync<Target>(
+                SqliteScript.GetTargetByVersion,
+                new { TargetKey = targetKey, VersionNumber = version }
+            );
+        }
+
+        return await connection.QuerySingleOrDefaultAsync<Target>(
+            SqliteScript.GetTargetByLatest,
+            new { TargetKey = targetKey }
+        );
     }
 
     /// <inheritdoc />
     public async Task ImportTarget(Target target, CancellationToken token = default)
     {
-        _logger.LogInformation("Importing target {TargetKey}", target.TargetKey);
-
         await PostTargetVersionAsync(target, token);
-        await ExecuteSqliteScriptAsync(SqliteScript.DeleteTargetInstances, new { target.TargetKey }, token);
         await RestoreTargetVersionAsync(target, token);
-    }
-
-    /// <inheritdoc />
-    public async Task RestoreTarget(string targetKey, int version = 0, CancellationToken token = default)
-    {
-        _logger.LogInformation("Restoring target {TargetKey} (version: {Version})", targetKey, version);
-
-        var target = await GetTargetAsync(targetKey, version, token);
-
-        if (target is null)
-            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
-
-        if (target.InstanceId == 0)
-            await RestoreTargetVersionAsync(target, token);
-    }
-
-    /// <inheritdoc />
-    public async Task ArchiveTarget(string targetKey, int version = 0, CancellationToken token = default)
-    {
-        _logger.LogInformation("Archiving target {TargetKey} (version: {Version})", targetKey, version);
-
-        var target = await GetTargetAsync(targetKey, version, token);
-
-        if (target is null)
-            throw new InvalidOperationException($"Target '{targetKey}' with version {version} not found");
-
-        if (target.InstanceId > 0)
-            await ExecuteSqliteScriptAsync(SqliteScript.DeleteVersionInstance, new { target.InstanceId }, token);
-    }
-
-    /// <inheritdoc />
-    public Task PruneTarget(string targetKey, CancellationToken token = default)
-    {
-        _logger.LogInformation("Pruning instances for target {TargetKey}", targetKey);
-        return ExecuteSqliteScriptAsync(SqliteScript.DeleteTargetInstances, new { TargetKey = targetKey }, token);
     }
 
     /// <inheritdoc />
     public Task DeleteTarget(string targetKey, CancellationToken token = default)
     {
-        _logger.LogInformation("Deleting target {TargetKey}", targetKey);
-        return ExecuteSqliteScriptAsync(SqliteScript.DeleteTarget, new { TargetKey = targetKey }, token);
+        return ExecuteSqliteScriptAsync(
+            SqliteScript.DeleteTarget,
+            new { TargetKey = targetKey },
+            token
+        );
     }
 
     /// <inheritdoc />
-    public Task TruncateTarget(string targetKey, int beforeVersion, CancellationToken token = default)
+    public Task DeleteVersion(string targetKey, int versionNumber, CancellationToken token = default)
     {
-        _logger.LogInformation("Truncating versions for target {TargetKey} before version {Version}", targetKey,
-            beforeVersion);
+        return ExecuteSqliteScriptAsync(
+            SqliteScript.DeleteVersion,
+            new { TargetKey = targetKey },
+            token
+        );
+    }
 
+    /// <inheritdoc />
+    public Task DeleteVersions(string targetKey, int beforeVersion, CancellationToken token = default)
+    {
         return ExecuteSqliteScriptAsync(
             SqliteScript.DeleteVersionsByNumber,
             new { TargetKey = targetKey, VersionNumber = beforeVersion },
@@ -169,10 +145,8 @@ public sealed class SqliteManager : IDbManager
     }
 
     /// <inheritdoc />
-    public Task TruncateTarget(string targetKey, DateTime beforeDate, CancellationToken token = default)
+    public Task DeleteVersions(string targetKey, DateTime beforeDate, CancellationToken token = default)
     {
-        _logger.LogInformation("Truncating versions for target {TargetKey} before {Date}", targetKey, beforeDate);
-
         return ExecuteSqliteScriptAsync(
             SqliteScript.DeleteVersionsBeforeDate,
             new { TargetKey = targetKey, BeforeDate = beforeDate },
@@ -198,27 +172,6 @@ public sealed class SqliteManager : IDbManager
             await transaction.RollbackAsync(token);
             throw;
         }
-    }
-
-    /// <summary>
-    /// Retrieves a target from the database based on the specified key and version.
-    /// </summary>
-    private async Task<Target?> GetTargetAsync(string targetKey, int version, CancellationToken token)
-    {
-        await using var connection = await OpenConnection(token);
-
-        if (version > 0)
-        {
-            return await connection.QuerySingleOrDefaultAsync<Target>(
-                SqliteScript.GetTargetByVersion,
-                new { TargetKey = targetKey, VersionNumber = version }
-            );
-        }
-
-        return await connection.QuerySingleOrDefaultAsync<Target>(
-            SqliteScript.GetTargetByLatest,
-            new { TargetKey = targetKey }
-        );
     }
 
     /// <summary>
@@ -264,61 +217,26 @@ public sealed class SqliteManager : IDbManager
 
         try
         {
-            // 1. Get the InstanceId first as it's required for compilation.
-            target.InstanceId = await connection.ExecuteScalarAsync<int>(
-                SqliteScript.PostInstance,
-                new { target.VersionId, RestoredOn = DateTime.Now, RestoredBy = Environment.UserName },
-                transaction
-            );
-
-            // 2. Get the table names from the schema.
+            // 1. Get the table names from the schema to determine which component to import
             var tableNames = await connection.QueryAsync<string>(
                 SqliteScript.GetComponentTables,
                 transaction: transaction
             );
 
-            // 3. Compile AND Materialize the data tables.
+            // 2. Compile AND Materialize the data tables.
             // Calling .ToList() here is critical: it forces L5Sharp to parse all data
-            // and maps them to DataTables before we start the bulk copy process.
-            // If this fails, we only have one record to roll back.
+            // and maps them to DataTables before we start the bulk copy process, preventing rollback exceptions.
             var dataTables = target.Compile(tableNames.ToArray()).ToList();
 
-            // 4. Perform the bulk write for each table.
+            // 3. Perform a bulk write of all compiled data to the database.
             var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
 
             await transaction.CommitAsync(token);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            _logger.LogError(ex, "Failed to restore target version for {TargetKey}", target.TargetKey);
             await transaction.RollbackAsync(token);
-            throw;
-        }
-    }
-
-    /// <summary>
-    /// Compiles the target data into a list of data tables based on the associated table names.
-    /// </summary>
-    /// <param name="target">The target instance containing the data to compile into data tables.</param>
-    /// <param name="token">The cancellation token to observe while waiting for the operation to complete.</param>
-    /// <returns>
-    /// A task that represents the asynchronous operation. The task result contains a list
-    /// of <see cref="DataTable"/> instances representing the compiled target data.
-    /// </returns>
-    private async Task<List<DataTable>> CompileTargetDataAsync(Target target, CancellationToken token)
-    {
-        await using var connection = await OpenConnection(token);
-
-        try
-        {
-            var tableNames = await connection.QueryAsync<string>(SqliteScript.GetComponentTables);
-            var dataTables = target.Compile(tableNames.ToArray());
-            return dataTables.ToList();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Failed to compile target data for {TargetKey}", target.TargetKey);
             throw;
         }
     }

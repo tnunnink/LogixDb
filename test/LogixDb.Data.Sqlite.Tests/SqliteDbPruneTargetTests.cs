@@ -20,14 +20,7 @@ public class SqliteDbPruneTargetTests : SqliteTestFixture
         var target2 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target2);
         
-        // Manual restore to have two instances (ImportTarget prunes previous instances of same target by default in its current implementation)
-        // Actually, current ImportTarget implementation:
-        // await PostTargetVersionAsync(target, token);
-        // await ExecuteSqlScriptAsync(SqliteScript.DeleteTargetInstances, new { target.TargetKey }, token);
-        // await RestoreTargetVersionAsync(target, token);
-        // So it already prunes.
-        
-        await Database.PruneTarget(target1.TargetKey);
+        await Database.DeleteVersion(target1.TargetKey, TODO);
 
         await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
         await AssertRecordDoesNotExist("controller", "instance_id", target2.InstanceId);
@@ -36,6 +29,6 @@ public class SqliteDbPruneTargetTests : SqliteTestFixture
     [Test]
     public async Task PruneTarget_NonExistentTarget_ShouldNotThrow()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.PruneTarget("NonExistent"));
+        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersion("NonExistent", TODO));
     }
 }

@@ -6,13 +6,13 @@ using LogixDb.Data;
 namespace LogixDb.Migrations.M20260206;
 
 [UsedImplicitly]
-[Migration(202602061000, "Create version table and associated indexes for target type/name and import date")]
+[Migration(202602061000, "Create target version table and associated indexes for target type/name and import date")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
-public class M202602061000CreateVersionTable : AutoReversingMigration
+public class M202602061000CreateTargetVersionTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("version")
+        Create.Table("target_version")
             .WithPrimaryKey("version_id")
             .WithRelation<Guid>("target_id", "target").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("version_number").AsInt32().NotNullable()
@@ -30,18 +30,18 @@ public class M202602061000CreateVersionTable : AutoReversingMigration
             .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index()
-            .OnTable("version")
+            .OnTable("target_version")
             .OnColumn("target_type").Ascending()
             .OnColumn("target_name").Ascending();
 
         Create.Index()
-            .OnTable("version")
+            .OnTable("target_version")
             .OnColumn("target_id").Ascending()
             .OnColumn("version_number").Ascending()
             .WithOptions().Unique();
 
         Create.Index()
-            .OnTable("version")
+            .OnTable("target_version")
             .OnColumn("target_id").Ascending()
             .OnColumn("import_date").Descending();
     }

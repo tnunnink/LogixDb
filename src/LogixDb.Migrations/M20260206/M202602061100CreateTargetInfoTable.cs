@@ -6,7 +6,7 @@ using LogixDb.Data;
 namespace LogixDb.Migrations.M20260206;
 
 [UsedImplicitly]
-[Migration(202602061100, "Create target_info table for target version metadata")]
+[Migration(202602061100, "Create target info table for target version metadata")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Required)]
 public class M202602061100CreateTargetInfoTable : AutoReversingMigration
 {

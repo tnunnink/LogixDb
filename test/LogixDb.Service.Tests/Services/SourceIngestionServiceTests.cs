@@ -6,7 +6,6 @@ using LogixDb.Data.Sqlite;
 using LogixDb.Service.Common;
 using LogixDb.Service.Workers;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Testing;
 using Microsoft.Extensions.Options;
 using Moq;
 
@@ -31,7 +30,7 @@ public class SourceIngestionServiceTests
         Directory.CreateDirectory(_testDropPath);
 
         var connectionInfo = DbConnectionInfo.Parse(_testDbPath);
-        _dbManager = new SqliteManager(connectionInfo, new FakeLogger());
+        _dbManager = new SqliteManager(connectionInfo);
         // We need to migrate the database for it to be valid
         _dbManager.Migrate().GetAwaiter().GetResult();
 

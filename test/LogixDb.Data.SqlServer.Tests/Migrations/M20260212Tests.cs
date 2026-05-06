@@ -13,7 +13,6 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertTableExists("aoi");
 
             await AssertColumnDefinition("aoi", "aoi_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi", "instance_id", "int");
             await AssertColumnDefinition("aoi", "aoi_name", "nvarchar");
             await AssertColumnDefinition("aoi", "aoi_description", "nvarchar");
             await AssertColumnDefinition("aoi", "aoi_revision", "nvarchar");
@@ -37,10 +36,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi", "source_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi", "aoi_id");
-            await AssertForeignKey("aoi", "instance_id", "target_instance", "instance_id");
-            await AssertUniqueIndex("aoi", "instance_id", "aoi_name");
             await AssertIndex("aoi", "aoi_name", "record_hash");
-            await AssertIndex("aoi", "source_hash", "instance_id");
         }
     }
 
@@ -54,7 +50,6 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertTableExists("aoi_parameter");
 
             await AssertColumnDefinition("aoi_parameter", "parameter_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi_parameter", "instance_id", "int");
             await AssertColumnDefinition("aoi_parameter", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "nvarchar");
             await AssertColumnDefinition("aoi_parameter", "parameter_description", "nvarchar");
@@ -72,7 +67,6 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi_parameter", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
-            await AssertForeignKey("aoi_parameter", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("aoi_parameter", "aoi_id", "aoi", "aoi_id");
             await AssertUniqueIndex("aoi_parameter", "aoi_id", "parameter_name");
             await AssertIndex("aoi_parameter", "parameter_name", "record_hash");
@@ -89,7 +83,6 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertTableExists("aoi_rung");
 
             await AssertColumnDefinition("aoi_rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi_rung", "instance_id", "int");
             await AssertColumnDefinition("aoi_rung", "aoi_id", "uniqueidentifier");
             await AssertColumnDefinition("aoi_rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("aoi_rung", "rung_number", "int");
@@ -98,7 +91,6 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi_rung", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi_rung", "rung_id");
-            await AssertForeignKey("aoi_rung", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("aoi_rung", "aoi_id", "aoi", "aoi_id");
             await AssertUniqueIndex("aoi_rung", "aoi_id", "routine_name", "rung_number");
             await AssertIndex("aoi_rung", "record_hash", "aoi_id");

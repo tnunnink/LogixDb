@@ -12,7 +12,6 @@ public class TargetTests
         var sourceData = new byte[] { 1, 2, 3, 4, 5 };
         var target = new Target
         {
-            InstanceId = 1,
             TargetType = "Controller",
             TargetName = "TestController",
             IsPartial = false,
@@ -22,8 +21,7 @@ public class TargetTests
             SourceHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(sourceData)),
             SourceData = sourceData
         };
-
-        target.InstanceId.Should().Be(1);
+        
         target.TargetType.Should().Be("Controller");
         target.TargetName.Should().Be("TestController");
         target.IsPartial.Should().BeFalse();

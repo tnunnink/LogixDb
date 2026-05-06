@@ -17,13 +17,6 @@ internal static class SqliteScript
     public static string PostTarget => Get(nameof(PostTarget));
 
     /// <summary>
-    /// Represents a SQL script used to restore a target in the database.
-    /// This property contains the SQL command that creates a record for a restored version
-    /// of a target and associates related metadata, such as the restoration timestamp and user information.
-    /// </summary>
-    public static string PostInstance => Get(nameof(PostInstance));
-
-    /// <summary>
     /// Represents a SQL script used to insert metadata associated with a target version into the database.
     /// This property contains the SQL command that adds key-value pairs of additional information
     /// about a target version to the appropriate database table.
@@ -60,18 +53,11 @@ internal static class SqliteScript
     public static string DeleteTarget => Get(nameof(DeleteTarget));
 
     /// <summary>
-    /// Represents a SQL script used to delete all instances of a target from the database.
-    /// This property contains the SQL command that removes all version instances
-    /// associated with a specific target, effectively clearing its historical data.
+    /// Represents a SQL script used to delete a specific version of a target from the database.
+    /// This property contains the SQL command to remove the version entry
+    /// while ensuring that the specified target remains unaffected.
     /// </summary>
-    public static string DeleteTargetInstances => Get(nameof(DeleteTargetInstances));
-
-    /// <summary>
-    /// Represents the SQL script used to delete a specific version instance of a target from the database.
-    /// This property contains the command that facilitates the removal of a versioned instance
-    /// associated with a given target, based on specified criteria.
-    /// </summary>
-    public static string DeleteVersionInstance => Get(nameof(DeleteVersionInstance));
+    public static string DeleteVersion => Get(nameof(DeleteVersion));
 
     /// <summary>
     /// Represents the SQL script used to delete multiple versions of a target

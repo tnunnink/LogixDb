@@ -20,7 +20,7 @@ internal class TaskTransformer : IDbTransformer
 
         foreach (var task in source.Tasks)
         {
-            var record = new TaskRecord(target.InstanceId, task);
+            var record = new TaskRecord(task);
             task.Metadata.Add("id", record.TaskId);
             records.Add(record);
         }

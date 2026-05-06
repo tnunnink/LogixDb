@@ -22,7 +22,7 @@ internal class RoutineTransformer : IDbTransformer
         foreach (var routine in source.Programs.SelectMany(p => p.Routines))
         {
             var programId = routine.Program?.Metadata.Get<Guid>("id");
-            var record = new RoutineRecord(target.InstanceId, programId, routine);
+            var record = new RoutineRecord(programId, routine);
             routine.Metadata.Add("id", record.RoutineId);
             records.Add(record);
         }

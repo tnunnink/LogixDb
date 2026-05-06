@@ -26,7 +26,7 @@ public partial class PruneCommand : DbCommand
         try
         {
             await console.Ansi().Status().StartAsync($"Pruning instances for '{Target}'...",
-                _ => manager.PruneTarget(Target, token)
+                _ => manager.DeleteVersion(Target, 1, token)
             );
 
             console.Ansi().MarkupLine($"[green]✓[/] Target instances for '{Target}' pruned successfully");

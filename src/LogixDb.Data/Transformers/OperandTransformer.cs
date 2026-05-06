@@ -18,20 +18,18 @@ public class OperandTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var instanceId = target.InstanceId;
         var records = new List<AoiOperandRecord>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
             byte index = 0;
-            records.Add(new AoiOperandRecord(instanceId, aoi.Name, index, aoi.Name, aoi.Name, aoi.Description, true));
+            records.Add(new AoiOperandRecord(aoi.Name, index, aoi.Name, aoi.Name, aoi.Description, true));
 
             foreach (var parameter in aoi.Parameters.Where(p => p.Required is true))
             {
                 index++;
 
                 var record = new AoiOperandRecord(
-                    instanceId,
                     aoi.Name,
                     index,
                     parameter.Name,

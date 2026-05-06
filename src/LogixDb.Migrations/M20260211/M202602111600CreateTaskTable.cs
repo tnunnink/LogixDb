@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -29,16 +28,11 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("task")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("task_name").Ascending()
-            .WithOptions().Unique();
-
-        Create.Index().OnTable("task")
             .OnColumn("task_name").Ascending()
             .OnColumn("record_hash").Ascending();
         
         Create.Index().OnTable("task")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("task_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

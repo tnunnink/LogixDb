@@ -19,14 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateVersionMapTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateVersionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateTargetInstanceTable.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" afterDir="false" />
@@ -47,6 +39,10 @@
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,15 +263,7 @@
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
       <workItem from="1776867316310" duration="67484000" />
-      <workItem from="1777948455998" duration="13637000" />
-    </task>
-    <task id="LOCAL-00157" summary="Update dependencies (CliFx to v3.0.0, L5Sharp to v6.0.3, Microsoft.NET.Test.Sdk to v18.4.0, Spectre.Console to v0.55.0), refactor CLI commands to use `CommandDescriptor`, refine XML comments, and modify `.idea` workspace configuration.">
-      <option name="closed" value="true" />
-      <created>1775828183189</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1775828183189</updated>
+      <workItem from="1777948455998" duration="14696000" />
     </task>
     <task id="LOCAL-00158" summary="Refactor CLI commands: replace `init` properties with `set` for improved mutability.">
       <option name="closed" value="true" />
@@ -661,7 +649,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777948623390</updated>
     </task>
-    <option name="localTasksCounter" value="206" />
+    <task id="LOCAL-00206" summary="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings.">
+      <option name="closed" value="true" />
+      <created>1778030778218</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1778030778218</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +683,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replaced snapshot with target for documentation and variable names" />
     <MESSAGE value="Replace `WithInstanceRelation`, `WithParentRelation`, and `WithVersionRelation` with a unified `WithRelation` method and update migration scripts to enhance consistency and enforce cascade rules for foreign key relations." />
     <MESSAGE value="Refactor transaction handling in `SqlServerManager` and `SqliteManager`, improve `Target.Compile` logic, and add comprehensive unit tests for `Target`." />
     <MESSAGE value="Update migration scripts to use generic `WithRelation&lt;T&gt;` method for foreign key definitions, enhancing type specificity and consistency across tables." />
@@ -712,7 +707,8 @@
     <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
     <MESSAGE value="Update dependencies across projects; bump test frameworks and core package versions to improve stability and compatibility. Adjust `TagTransformer` logic for tighter type validation." />
     <MESSAGE value="Bump project versions to 0.10.5 in Service and CLI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.10.5 in Service and CLI." />
+    <MESSAGE value="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

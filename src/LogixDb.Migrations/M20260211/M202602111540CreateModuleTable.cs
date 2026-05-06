@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -34,20 +33,14 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("module")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("module_name").Ascending()
-            .WithOptions().Unique();
-
-        Create.Index().OnTable("module")
-            .OnColumn("parent_id").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("parent_id").Ascending();
 
         Create.Index().OnTable("module")
             .OnColumn("module_name").Ascending()
             .OnColumn("record_hash").Ascending();
 
         Create.Index().OnTable("module")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("module_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

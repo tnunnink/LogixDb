@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -31,7 +30,7 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
             .OnColumn("record_hash").Ascending();
         
         Create.Index().OnTable("routine")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("program_id").Ascending();
+            .OnColumn("routine_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -22,16 +21,11 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("data_type")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("type_name").Ascending()
-            .WithOptions().Unique();
-
-        Create.Index().OnTable("data_type")
             .OnColumn("type_name").Ascending()
             .OnColumn("record_hash").Ascending();
 
         Create.Index().OnTable("data_type")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("type_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

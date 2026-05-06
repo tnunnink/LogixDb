@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -22,11 +21,8 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
             .WithColumn("operand_description").AsString(2000).Nullable()
             .WithColumn("is_destructive").AsBoolean().NotNullable();
 
-        Create.Index()
-            .OnTable("operand")
-            .OnColumn("instance_id").Ascending()
+        Create.Index().OnTable("operand")
             .OnColumn("instruction_key").Ascending()
-            .OnColumn("operand_index").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("operand_index").Ascending();
     }
 }

@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -37,16 +36,11 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("aoi")
-            .OnColumn("instance_id").Ascending()
             .OnColumn("aoi_name").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("record_hash").Ascending();
 
         Create.Index().OnTable("aoi")
             .OnColumn("aoi_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-        
-        Create.Index().OnTable("aoi")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("source_hash").Ascending();
     }
 }

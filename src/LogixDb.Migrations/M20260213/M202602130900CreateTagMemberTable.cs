@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -25,10 +24,6 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .OnColumn("tag_id").Ascending()
             .OnColumn("tag_name").Ascending()
             .WithOptions().Unique();
-        
-        Create.Index().OnTable("tag_member")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("tag_name").Ascending();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("parent_id").Ascending()

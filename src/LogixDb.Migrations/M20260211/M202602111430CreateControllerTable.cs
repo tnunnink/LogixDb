@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -48,12 +47,6 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithColumn("changed_to_detect").AsString().Nullable()
             .WithColumn("trusted_slots").AsString(64).Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable();
-
-        Create.Index()
-            .OnTable("controller")
-            .OnColumn("controller_name").Ascending()
-            .OnColumn("instance_id").Ascending()
-            .WithOptions().Unique();
 
         Create.Index().OnTable("controller")
             .OnColumn("controller_name").Ascending()

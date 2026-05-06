@@ -1,4 +1,3 @@
-using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -28,20 +27,15 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("program")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("program_name").Ascending()
-            .WithOptions().Unique();
-
-        Create.Index().OnTable("program")
             .OnColumn("folder_id").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("program_id").Ascending();
 
         Create.Index().OnTable("program")
             .OnColumn("program_name").Ascending()
             .OnColumn("record_hash").Ascending();
 
         Create.Index().OnTable("program")
-            .OnColumn("source_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("program_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

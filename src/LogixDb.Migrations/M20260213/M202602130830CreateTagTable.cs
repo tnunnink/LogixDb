@@ -1,5 +1,4 @@
-﻿using System.Data;
-using FluentMigrator;
+﻿using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -28,21 +27,17 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("source_hash").AsString(32).NotNullable();
 
         Create.Index().OnTable("tag")
-            .OnColumn("instance_id").Ascending()
-            .OnColumn("program_id").Ascending()
-            .OnColumn("tag_name").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("tag_name").Ascending();
+
+        Create.Index().OnTable("tag")
+            .OnColumn("data_type").Ascending();
 
         Create.Index().OnTable("tag")
             .OnColumn("tag_name").Ascending()
-            .OnColumn("instance_id").Ascending();
-
+            .OnColumn("record_hash").Ascending();
+        
         Create.Index().OnTable("tag")
-            .OnColumn("data_type").Ascending()
-            .OnColumn("instance_id").Ascending();
-
-        Create.Index().OnTable("tag")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("instance_id").Ascending();
+            .OnColumn("tag_name").Ascending()
+            .OnColumn("source_hash").Ascending();
     }
 }

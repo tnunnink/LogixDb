@@ -14,7 +14,6 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
     {
         Create.Table("instruction")
             .WithPrimaryKey("instruction_id")
-            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithRelation<Guid>("rung_id", "rung").NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()

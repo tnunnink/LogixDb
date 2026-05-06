@@ -19,8 +19,8 @@ internal class TagMemberMap : TableMap<TagMemberRecord>
     [
         ColumnMap<TagMemberRecord>.For(r => r.MemberId, "member_id"),
         ColumnMap<TagMemberRecord>.For(r => r.InstanceId, "instance_id", hashable: false),
-        ColumnMap<TagMemberRecord>.For(r => r.TagId, "tag_id"),
-        ColumnMap<TagMemberRecord>.For(r => r.ParentId, "parent_id"),
+        ColumnMap<TagMemberRecord>.For(r => r.TagId, "tag_id", hashable: false),
+        ColumnMap<TagMemberRecord>.For(r => r.ParentId, "parent_id", hashable: false),
         ColumnMap<TagMemberRecord>.For(r => r.Tag.TagName.LocalPath, "tag_name"),
         ColumnMap<TagMemberRecord>.For(r => r.Tag.TagName.Element, "member_name"),
         ColumnMap<TagMemberRecord>.For(r => r.Tag.GetDataTypeName(), "data_type"),

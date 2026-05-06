@@ -14,7 +14,6 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
     {
         Create.Table("tag_comment")
             .WithPrimaryKey("comment_id")
-            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithRelation<Guid>("member_id", "tag_member").NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("tag_comment").AsString(int.MaxValue).NotNullable()

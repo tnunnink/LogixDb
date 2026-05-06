@@ -14,7 +14,6 @@ public class M202602131400CreateTagAliasTable : AutoReversingMigration
     {
         Create.Table("tag_alias")
             .WithPrimaryKey("alias_id")
-            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithRelation<Guid>("tag_id", "tag").NotNullable()
             .WithColumn("alias_for").AsString(256).NotNullable();
 

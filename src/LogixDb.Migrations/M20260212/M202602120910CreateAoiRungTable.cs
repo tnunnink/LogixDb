@@ -14,7 +14,6 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
     {
         Create.Table("aoi_rung")
             .WithPrimaryKey("rung_id")
-            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithRelation<Guid>("aoi_id", "aoi").NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()

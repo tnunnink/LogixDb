@@ -20,7 +20,11 @@ internal class SqlServerWriter(SqlConnection connection, SqlTransaction transact
     {
         foreach (var table in tables)
         {
+            //todo updating process to support merging from temp tables and merging
+            //create temporary table.
+            //write to temp table
             await WriteTableAsync(table, token);
+            //execute merge script for this table.
         }
     }
 

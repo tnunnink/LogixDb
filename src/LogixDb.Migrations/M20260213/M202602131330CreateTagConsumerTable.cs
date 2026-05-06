@@ -14,7 +14,6 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
     {
         Create.Table("tag_consumer")
             .WithPrimaryKey("consumer_id")
-            .WithRelation<int>("instance_id", "target_instance").OnDelete(Rule.Cascade).NotNullable()
             .WithRelation<Guid>("tag_id", "tag").NotNullable()
             .WithColumn("producer").AsString().NotNullable()
             .WithColumn("remote_tag").AsString().NotNullable()

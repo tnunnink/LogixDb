@@ -19,8 +19,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateVersionMapTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateVersionTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateTargetInstanceTable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131400CreateTagAliasTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131400CreateTagAliasTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +99,9 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagAliasMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/OperandTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateVersionMapTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -241,22 +267,7 @@
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
       <workItem from="1776867316310" duration="67484000" />
-    </task>
-    <task id="LOCAL-00155" summary="Update README to include selective migration options, FTAC filter enhancements, and updated database schema details.">
-      <option name="closed" value="true" />
-      <created>1775751266822</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1775751266822</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Bump version to 0.8.1 across projects; increase bulk copy timeout for large datasets; refine XML doc comments and update workspace configuration.">
-      <option name="closed" value="true" />
-      <created>1775755275516</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1775755275516</updated>
+      <workItem from="1777948455998" duration="13637000" />
     </task>
     <task id="LOCAL-00157" summary="Update dependencies (CliFx to v3.0.0, L5Sharp to v6.0.3, Microsoft.NET.Test.Sdk to v18.4.0, Spectre.Console to v0.55.0), refactor CLI commands to use `CommandDescriptor`, refine XML comments, and modify `.idea` workspace configuration.">
       <option name="closed" value="true" />
@@ -634,7 +645,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777050336470</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="Update dependencies across projects; bump test frameworks and core package versions to improve stability and compatibility. Adjust `TagTransformer` logic for tighter type validation.">
+      <option name="closed" value="true" />
+      <created>1777948584453</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1777948584453</updated>
+    </task>
+    <task id="LOCAL-00205" summary="Bump project versions to 0.10.5 in Service and CLI.">
+      <option name="closed" value="true" />
+      <created>1777948623390</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1777948623390</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,8 +687,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Introduce `snapshot_instance` table to track restored snapshots, update SQL logic for snapshot handling, and refine migration scripts for consistency." />
-    <MESSAGE value="Performed major refactor of Snapshot.cs to Target.cs and updated core database tables to support version history and instance expantion. Updated CLI. Updated abstractions, migrations, tests, and moved static SQL code to scripts." />
     <MESSAGE value="Replaced snapshot with target for documentation and variable names" />
     <MESSAGE value="Replace `WithInstanceRelation`, `WithParentRelation`, and `WithVersionRelation` with a unified `WithRelation` method and update migration scripts to enhance consistency and enforce cascade rules for foreign key relations." />
     <MESSAGE value="Refactor transaction handling in `SqlServerManager` and `SqliteManager`, improve `Target.Compile` logic, and add comprehensive unit tests for `Target`." />
@@ -685,7 +710,9 @@
     <MESSAGE value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
     <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
     <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
+    <MESSAGE value="Update dependencies across projects; bump test frameworks and core package versions to improve stability and compatibility. Adjust `TagTransformer` logic for tighter type validation." />
+    <MESSAGE value="Bump project versions to 0.10.5 in Service and CLI." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.10.5 in Service and CLI." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

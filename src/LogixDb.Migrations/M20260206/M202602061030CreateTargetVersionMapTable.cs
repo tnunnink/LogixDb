@@ -13,7 +13,7 @@ public class M202602061030CreateTargetVersionMapTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("target_version_map")
-            .WithRelation<Guid>("version_id", "target_version").OnDelete(Rule.Cascade)
+            .WithRelation<int>("version_id", "target_version").OnDelete(Rule.Cascade)
             .WithColumn("component_id").AsGuid().NotNullable()
             .WithColumn("component_type").AsString().NotNullable();
 

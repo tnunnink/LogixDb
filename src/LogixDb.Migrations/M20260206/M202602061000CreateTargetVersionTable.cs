@@ -13,7 +13,7 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("target_version")
-            .WithPrimaryKey("version_id")
+            .WithColumn("version_id").AsInt32().NotNullable().PrimaryKey().Identity()
             .WithRelation<Guid>("target_id", "target").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("version_number").AsInt32().NotNullable()
             .WithColumn("target_type").AsString(128).NotNullable()

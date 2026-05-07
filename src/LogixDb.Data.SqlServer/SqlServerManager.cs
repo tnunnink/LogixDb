@@ -76,22 +76,18 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     }
 
     /// <inheritdoc />
-    public async Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
+    public async Task<Target> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
         await using var connection = await OpenConnection(token);
 
-        if (version > 0)
-        {
-            return await connection.QuerySingleOrDefaultAsync<Target>(
-                SqlServerScript.GetTargetByVersion,
-                new { TargetKey = targetKey, VersionNumber = version }
-            );
-        }
+        var script = version > 0 ? SqlServerScript.GetTargetByVersion : SqlServerScript.GetTargetByLatest;
+        var parameters = new { TargetKey = targetKey, VersionNumber = version };
+        var result = await connection.QuerySingleOrDefaultAsync<Target>(script, parameters);
 
-        return await connection.QuerySingleOrDefaultAsync<Target>(
-            SqlServerScript.GetTargetByLatest,
-            new { TargetKey = targetKey }
-        );
+        if (result is null)
+            throw new InvalidOperationException($"Target '{targetKey}' version {version} not found in the database.");
+
+        return result;
     }
 
     /// <inheritdoc />
@@ -139,6 +135,11 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
             new { TargetKey = targetKey, BeforeDate = beforeDate },
             token
         );
+    }
+
+    public Task PruneTarget(string tagetKey, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>

@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>latest</LangVersion>
         <UserSecretsId>dotnet-LogixDb.Service-c38521d1-70d6-4011-b625-345937d1a284</UserSecretsId>
-        <Version>0.10.5</Version>
+        <Version>0.11.0</Version>
         <Authors>Timothy Nunnink</Authors>
         <Description>Logix Ingestion and FTAC Monitoring Windows Service.</Description>
     </PropertyGroup>
@@ -14,8 +14,8 @@
     <ItemGroup>
         <PackageReference Include="CliWrap" Version="3.10.1"/>
         <PackageReference Include="LogixConverter.LogixSdk" Version="0.2.2"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.7" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.7"/>
     </ItemGroup>
 
     <ItemGroup>

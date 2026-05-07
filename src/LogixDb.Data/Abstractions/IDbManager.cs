@@ -55,7 +55,7 @@ public interface IDbManager
     /// <param name="version">The version number of the Target to retrieve.</param>
     /// <param name="token">A cancellation token to cancel the operation, if needed.</param>
     /// <returns>A task representing the asynchronous operation, with a result of the requested Target.</returns>
-    Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default);
+    Task<Target> GetTarget(string targetKey, int version = 0, CancellationToken token = default);
 
     /// <summary>
     /// Adds a Target to the database by performing both a post and a restore operation.
@@ -67,6 +67,15 @@ public interface IDbManager
     Task ImportTarget(Target target, CancellationToken token = default);
 
     /// <summary>
+    /// Permanently removes the target and its entire Target history, including all archive records
+    /// and expanded instances.
+    /// </summary>
+    /// <param name="targetKey">The target key identifying the target and its Targets to purge.</param>
+    /// <param name="token">A cancellation token to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task DeleteTarget(string targetKey, CancellationToken token = default);
+
+    /// <summary>
     /// Removes all expanded Target instances for the specified target, effectively "contracting" all versions
     /// back to their archived state.
     /// </summary>
@@ -75,15 +84,6 @@ public interface IDbManager
     /// <param name="token">A cancellation token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     Task DeleteVersion(string targetKey, int versionNumber, CancellationToken token = default);
-
-    /// <summary>
-    /// Permanently removes the target and its entire Target history, including all archive records
-    /// and expanded instances.
-    /// </summary>
-    /// <param name="targetKey">The target key identifying the target and its Targets to purge.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task DeleteTarget(string targetKey, CancellationToken token = default);
 
     /// <summary>
     /// Permanently removes all versions of the specified Target in the database that were created before the given version.
@@ -102,4 +102,12 @@ public interface IDbManager
     /// <param name="token">A cancellation token to cancel the operation if necessary.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task DeleteVersions(string targetKey, DateTime beforeDate, CancellationToken token = default);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tagetKey"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    Task PruneTarget(string tagetKey, CancellationToken token = default);
 }

@@ -1,0 +1,26 @@
+INSERT INTO data_type_member (member_id,
+                              type_id,
+                              member_name,
+                              member_description,
+                              data_type,
+                              dimensions,
+                              radix,
+                              external_access,
+                              is_hidden,
+                              target_name,
+                              bit_number,
+                              record_hash)
+SELECT member_id,
+       type_id,
+       member_name,
+       member_description,
+       data_type,
+       dimensions,
+       radix,
+       external_access,
+       is_hidden,
+       target_name,
+       bit_number,
+       record_hash
+FROM temp_data_type_member t
+WHERE type_id = t.type_id;

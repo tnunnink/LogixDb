@@ -28,26 +28,26 @@ public class M20260206Tests : SqliteTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("version");
+            await AssertTableExists("target_version");
 
-            await AssertColumnDefinition("version", "version_id", "uniqueidentifier");
-            await AssertColumnDefinition("version", "target_id", "uniqueidentifier");
-            await AssertColumnDefinition("version", "version_number", "integer");
-            await AssertColumnDefinition("version", "target_type", "text");
-            await AssertColumnDefinition("version", "target_name", "text");
-            await AssertColumnDefinition("version", "is_partial", "integer");
-            await AssertColumnDefinition("version", "schema_revision", "text");
-            await AssertColumnDefinition("version", "software_revision", "text");
-            await AssertColumnDefinition("version", "export_date", "datetime");
-            await AssertColumnDefinition("version", "export_options", "text");
-            await AssertColumnDefinition("version", "import_date", "datetime");
-            await AssertColumnDefinition("version", "import_user", "text");
-            await AssertColumnDefinition("version", "import_machine", "text");
-            await AssertColumnDefinition("version", "source_hash", "text");
-            await AssertColumnDefinition("version", "source_data", "blob");
+            await AssertColumnDefinition("target_version", "version_id", "integer");
+            await AssertColumnDefinition("target_version", "target_id", "uniqueidentifier");
+            await AssertColumnDefinition("target_version", "version_number", "integer");
+            await AssertColumnDefinition("target_version", "target_type", "text");
+            await AssertColumnDefinition("target_version", "target_name", "text");
+            await AssertColumnDefinition("target_version", "is_partial", "integer");
+            await AssertColumnDefinition("target_version", "schema_revision", "text");
+            await AssertColumnDefinition("target_version", "software_revision", "text");
+            await AssertColumnDefinition("target_version", "export_date", "datetime");
+            await AssertColumnDefinition("target_version", "export_options", "text");
+            await AssertColumnDefinition("target_version", "import_date", "datetime");
+            await AssertColumnDefinition("target_version", "import_user", "text");
+            await AssertColumnDefinition("target_version", "import_machine", "text");
+            await AssertColumnDefinition("target_version", "source_hash", "text");
+            await AssertColumnDefinition("target_version", "source_data", "blob");
 
-            await AssertPrimaryKey("version", "version_id");
-            await AssertForeignKey("version", "target_id", "target", "target_id");
+            await AssertPrimaryKey("target_version", "version_id");
+            await AssertForeignKey("target_version", "target_id", "target", "target_id");
         }
     }
 
@@ -58,15 +58,15 @@ public class M20260206Tests : SqliteTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("version_map");
+            await AssertTableExists("target_version_map");
 
-            await AssertColumnDefinition("version_map", "version_id", "uniqueidentifier");
-            await AssertColumnDefinition("version_map", "component_id", "uniqueidentifier");
-            await AssertColumnDefinition("version_map", "component_type", "text");
+            await AssertColumnDefinition("target_version_map", "version_id", "integer");
+            await AssertColumnDefinition("target_version_map", "component_id", "uniqueidentifier");
+            await AssertColumnDefinition("target_version_map", "component_type", "text");
 
-            await AssertForeignKey("version_map", "version_id", "version", "version_id");
-            await AssertUniqueIndex("version_map", "version_id", "component_id", "component_type");
-            await AssertIndex("version_map", "component_id", "component_type");
+            await AssertForeignKey("target_version_map", "version_id", "target_version", "version_id");
+            await AssertUniqueIndex("target_version_map", "version_id", "component_id", "component_type");
+            await AssertIndex("target_version_map", "component_id", "component_type");
         }
     }
 
@@ -80,12 +80,12 @@ public class M20260206Tests : SqliteTestFixture
             await AssertTableExists("target_info");
 
             await AssertColumnDefinition("target_info", "property_id", "uniqueidentifier");
-            await AssertColumnDefinition("target_info", "version_id", "uniqueidentifier");
+            await AssertColumnDefinition("target_info", "version_id", "integer");
             await AssertColumnDefinition("target_info", "property_name", "text");
             await AssertColumnDefinition("target_info", "property_value", "text");
 
             await AssertPrimaryKey("target_info", "property_id");
-            await AssertForeignKey("target_info", "version_id", "version", "version_id");
+            await AssertForeignKey("target_info", "version_id", "target_version", "version_id");
             await AssertUniqueIndex("target_info", "version_id", "property_name");
         }
     }

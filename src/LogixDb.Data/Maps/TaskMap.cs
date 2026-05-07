@@ -16,7 +16,7 @@ internal class TaskMap : TableMap<TaskRecord>
     protected override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
     [
         ColumnMap<TaskRecord>.For(r => r.TaskId, "task_id", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name", hashable: false),
+        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name"),
         ColumnMap<TaskRecord>.For(r => r.Task.Description, "task_description"),
         ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
         ColumnMap<TaskRecord>.For(r => r.Task.Priority, "priority"),

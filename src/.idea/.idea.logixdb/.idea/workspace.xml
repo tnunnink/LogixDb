@@ -19,30 +19,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataType.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataTypeMember.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeProgram.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRoutine.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTask.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MigrateModule.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ElementHasher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ElementHasherTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostTarget.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostTarget.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TaskMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131400CreateTagAliasTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131400CreateTagAliasTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbImportTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbImportTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPruneTargetTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260206Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260308Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260308Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbImportTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbImportTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbMigrateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbPruneTargetTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +95,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/ff/ef72fe56/Controller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb4b860ad274bc3f8c7c0fb32f03875bbb0b45fa99f710d430d12922eed4/AnsiConsoleExtensions.Progress.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db398197bcf0ab46a130924adda9d23eb9504867e1a1a0869eaf405db5c647/SqlMapper.Async.cs" root0="FORCE_HIGHLIGHTING" />
@@ -97,7 +113,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/OperandTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateVersionMapTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -126,59 +142,61 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Debug&quot;,
-    &quot;023f2559-4d27-4bd0-b75c-e1f573990a1d.executor&quot;: &quot;Debug&quot;,
-    &quot;04139c1b-5b64-4aed-b537-1f9c61cac291.executor&quot;: &quot;Debug&quot;,
-    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
-    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
-    &quot;34c483ea-991b-4a3f-a7ce-9d756930abc5.executor&quot;: &quot;Debug&quot;,
-    &quot;35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor&quot;: &quot;Debug&quot;,
-    &quot;41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor&quot;: &quot;Debug&quot;,
-    &quot;487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor&quot;: &quot;Debug&quot;,
-    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
-    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
-    &quot;7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor&quot;: &quot;Debug&quot;,
-    &quot;8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor&quot;: &quot;Debug&quot;,
-    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
-    &quot;bab2bab0-9cea-416e-aaea-975b3296228d.executor&quot;: &quot;Debug&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.junie&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
+    "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
+    "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
+    "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
+    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
+    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
+    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
+    "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
+    "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
+    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
+    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
+    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
+    "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
+    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
+    "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
+    "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.junie",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;SQLite&quot;,
-      &quot;TSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "SQLite",
+      "TSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.100696936" />
@@ -263,39 +281,7 @@
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
       <workItem from="1776867316310" duration="67484000" />
-      <workItem from="1777948455998" duration="14696000" />
-    </task>
-    <task id="LOCAL-00158" summary="Refactor CLI commands: replace `init` properties with `set` for improved mutability.">
-      <option name="closed" value="true" />
-      <created>1775828244228</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1775828244228</updated>
-    </task>
-    <task id="LOCAL-00159" summary="Bump version to 0.8.2 across projects.">
-      <option name="closed" value="true" />
-      <created>1775828457791</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1775828457792</updated>
-    </task>
-    <task id="LOCAL-00160" summary="Refactor mapping classes to use `ToSqlFormat` for `dimensions` and `radix`, streamline tag program resolution in `TagTransformer`, and enhance extension methods for SQL compatibility.">
-      <option name="closed" value="true" />
-      <created>1775836647424</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1775836647425</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Bump version to 0.8.3 across projects.">
-      <option name="closed" value="true" />
-      <created>1775836665110</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1775836665110</updated>
+      <workItem from="1777948455998" duration="70236000" />
     </task>
     <task id="LOCAL-00162" summary="Bump L5Sharp to v6.0.4 across projects.">
       <option name="closed" value="true" />
@@ -657,7 +643,39 @@
       <option name="project" value="LOCAL" />
       <updated>1778030778218</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="Remove redundant `using System.Data` directives and refactor migration index definitions for improved consistency and streamlined schema design.">
+      <option name="closed" value="true" />
+      <created>1778031838240</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1778031838240</updated>
+    </task>
+    <task id="LOCAL-00208" summary="Remove `ArchiveCommand`, `PostCommand`, `RestoreCommand`, and related tests and SQL scripts to simplify CLI functionality. Refactor database schema migrations and remove unused entity references for streamlined design.">
+      <option name="closed" value="true" />
+      <created>1778034899125</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1778034899125</updated>
+    </task>
+    <task id="LOCAL-00209" summary="Refactor migrations: update column types, modify key definitions, and add `tag_value` table for enhanced schema consistency.">
+      <option name="closed" value="true" />
+      <created>1778072236037</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1778072236037</updated>
+    </task>
+    <task id="LOCAL-00210" summary="Fix migration attribute timestamp in `M202602130930CreateTagValueTable` to ensure proper ordering.">
+      <option name="closed" value="true" />
+      <created>1778072521003</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1778072521003</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,10 +701,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `WithInstanceRelation`, `WithParentRelation`, and `WithVersionRelation` with a unified `WithRelation` method and update migration scripts to enhance consistency and enforce cascade rules for foreign key relations." />
-    <MESSAGE value="Refactor transaction handling in `SqlServerManager` and `SqliteManager`, improve `Target.Compile` logic, and add comprehensive unit tests for `Target`." />
-    <MESSAGE value="Update migration scripts to use generic `WithRelation&lt;T&gt;` method for foreign key definitions, enhancing type specificity and consistency across tables." />
-    <MESSAGE value="Refactor SQL scripts for improved readability and consistency, standardizing formatting and simplifying complex queries where applicable." />
     <MESSAGE value="Update `GetTargetByLatest.sql` to rename aliases for clarity and consistency in SQL query" />
     <MESSAGE value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
     <MESSAGE value="Remove unused dependencies and obsolete methods, refactor test assertions for clarity, and improve naming consistency in SourceIngestionService and related tests." />
@@ -708,7 +722,11 @@
     <MESSAGE value="Update dependencies across projects; bump test frameworks and core package versions to improve stability and compatibility. Adjust `TagTransformer` logic for tighter type validation." />
     <MESSAGE value="Bump project versions to 0.10.5 in Service and CLI." />
     <MESSAGE value="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings." />
+    <MESSAGE value="Remove redundant `using System.Data` directives and refactor migration index definitions for improved consistency and streamlined schema design." />
+    <MESSAGE value="Remove `ArchiveCommand`, `PostCommand`, `RestoreCommand`, and related tests and SQL scripts to simplify CLI functionality. Refactor database schema migrations and remove unused entity references for streamlined design." />
+    <MESSAGE value="Refactor migrations: update column types, modify key definitions, and add `tag_value` table for enhanced schema consistency." />
+    <MESSAGE value="Fix migration attribute timestamp in `M202602130930CreateTagValueTable` to ensure proper ordering." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix migration attribute timestamp in `M202602130930CreateTagValueTable` to ensure proper ordering." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -730,26 +748,26 @@
           <line>77</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\SqlDbImportTargetTests.cs" containingFunctionPresentation="Method 'ImportTarget_ExistingTarget_ShouldPrunePreviousContentTwice'">
             <startOffsets>
-              <option value="2408" />
+              <option value="2400" />
             </startOffsets>
             <endOffsets>
-              <option value="2445" />
+              <option value="2437" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/RestoreCommand.cs</url>
-          <line>25</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\RestoreCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
+          <url>file://$PROJECT_DIR$/LogixDb.Data/ElementHasher.cs</url>
+          <line>50</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data\ElementHasher.cs" containingFunctionPresentation="Method 'HashController'">
             <startOffsets>
-              <option value="899" />
+              <option value="2764" />
             </startOffsets>
             <endOffsets>
-              <option value="937" />
+              <option value="2802" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

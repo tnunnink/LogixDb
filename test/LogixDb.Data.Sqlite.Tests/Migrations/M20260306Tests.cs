@@ -13,7 +13,6 @@ public class M20260306Tests : SqliteTestFixture
             await AssertTableExists("instruction");
 
             await AssertColumnDefinition("instruction", "instruction_id", "uniqueidentifier");
-            await AssertColumnDefinition("instruction", "instance_id", "integer");
             await AssertColumnDefinition("instruction", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "instruction_index", "integer");
             await AssertColumnDefinition("instruction", "instruction_key", "text");
@@ -23,7 +22,6 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("instruction", "record_hash", "text");
 
             await AssertPrimaryKey("instruction", "instruction_id");
-            await AssertForeignKey("instruction", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("instruction", "rung_id", "rung", "rung_id");
             await AssertUniqueIndex("instruction", "rung_id", "instruction_index");
             await AssertIndex("instruction", "record_hash", "rung_id");
@@ -40,14 +38,12 @@ public class M20260306Tests : SqliteTestFixture
             await AssertTableExists("argument");
 
             await AssertColumnDefinition("argument", "argument_id", "uniqueidentifier");
-            await AssertColumnDefinition("argument", "instance_id", "integer");
             await AssertColumnDefinition("argument", "instruction_id", "uniqueidentifier");
             await AssertColumnDefinition("argument", "argument_index", "integer");
             await AssertColumnDefinition("argument", "argument_type", "text");
             await AssertColumnDefinition("argument", "argument_text", "text");
 
             await AssertPrimaryKey("argument", "argument_id");
-            await AssertForeignKey("argument", "instance_id", "target_instance", "instance_id");
             await AssertForeignKey("argument", "instruction_id", "instruction", "instruction_id");
             await AssertIndex("argument", "instruction_id", "argument_index");
         }

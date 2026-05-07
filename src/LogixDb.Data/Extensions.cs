@@ -1,6 +1,7 @@
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml.Linq;
 using L5Sharp.Core;
 
 namespace LogixDb.Data;
@@ -73,24 +74,60 @@ internal static class Extensions
     extension(ILogixElement element)
     {
         /// <summary>
-        /// Serializes and compresses the Logix element into a byte array using GZip compression.
-        /// The element is first serialized to XML format, then compressed to reduce storage size.
+        /// Computes a standardized hash representation of the Logix element.
+        /// The element is scrubbed to remove sensitive or unnecessary data, serialized into XML format,
+        /// and then hashed using MD5, with the resulting hash returned as a lowercase hexadecimal string.
         /// </summary>
-        /// <returns></returns>
-        internal byte[] Compress()
+        /// <returns>A lowercase hexadecimal string representing the hash of the scrubbed and serialized Logix element.</returns>
+        public string Hash()
         {
-            return element.Serialize().ToString().Compress();
+            return element.ScrubData().Serialize().ToString(SaveOptions.DisableFormatting).Hash().ToHexString();
         }
 
         /// <summary>
-        /// Computes the hash of a serialized Logix element and returns its lowercase hexadecimal string representation.
-        /// The Logix element is serialized to XML format before hashing using MD5 and
-        /// converting the result to a hexadecimal string.
+        /// Removes or anonymizes sensitive and non-essential data from a Logix element to standardize
+        /// it for comparison or hashing purposes. This includes clearing or removing specific attributes and elements,
+        /// such as values, formats, and communication-related data.
         /// </summary>
-        /// <returns>A string representing the MD5 hash of the serialized Logix element in lowercase hexadecimal format.</returns>
-        internal string Hash()
+        /// <returns>The scrubbed Logix element with sensitive or unnecessary data removed.</returns>
+        private ILogixElement ScrubData()
         {
-            return element.Serialize().ToString().Hash().ToHexString();
+            foreach (var d in element.Serialize().DescendantsAndSelf())
+            {
+                switch (d.Name.LocalName)
+                {
+                    // Remove 'Value' attributes which contain the actual data for Atomic tags/members
+                    case L5XName.DataValue or L5XName.DataValueMember or L5XName.Element:
+                        d.Attributes(L5XName.Value).Remove();
+                        break;
+                    case L5XName.Data:
+                    {
+                        var format = d.Attribute(L5XName.Format)?.Value;
+
+                        // If it's a L5K/String format, scrub the element's value/text.
+                        if (format == DataFormat.L5K || format == DataFormat.String)
+                        {
+                            d.RemoveNodes();
+                        }
+                        // For special formats (Alarms/Message parameters), clear child attributes/values but keep structure
+                        else if (format != DataFormat.Decorated)
+                        {
+                            d.Elements()
+                                .SelectMany(x => x.Attributes())
+                                .ToList()
+                                .ForEach(a => a.SetValue(string.Empty));
+                        }
+
+                        break;
+                    }
+                    // Remove all module communication elements. These contain IO tags and other Hex data not stored in the database.
+                    case L5XName.Communications:
+                        d.Remove();
+                        break;
+                }
+            }
+
+            return element;
         }
 
         /// <summary>
@@ -149,15 +186,14 @@ internal static class Extensions
     /// <returns>A SQL-compatible string representation of the Dimensions object, or null if the object is not empty.</returns>
     internal static string? ToSqlFormat(this Dimensions? dimensions)
     {
-        return dimensions?.IsEmpty is true ? dimensions.ToIndex() : null;
+        return dimensions?.IsEmpty is false ? dimensions.ToIndex() : null;
     }
 
     /// <summary>
-    /// Converts the specified dimensions object into its SQL-compatible string format.
-    /// If the dimensions object is null, returns null.
+    /// Converts a <see cref="Radix"/> object to its SQL-compatible string representation if applicable.
     /// </summary>
-    /// <param name="dimensions">The dimensions object to convert.</param>
-    /// <returns>A SQL-compatible string representation of the dimensions, or null if the input is null.</returns>
+    /// <param name="radix">The <see cref="Radix"/> object to convert. Can be null.</param>
+    /// <returns>The SQL-compatible string representation of the <paramref name="radix"/> name, or null if the input is null or represents no value.</returns>
     internal static string? ToSqlFormat(this Radix? radix)
     {
         return radix is not null && radix != Radix.Null ? radix.Name : null;

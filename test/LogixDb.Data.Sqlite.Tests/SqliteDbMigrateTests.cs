@@ -28,7 +28,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Included Tables
@@ -64,7 +64,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Included Tables
@@ -100,7 +100,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Excluded Tables

@@ -55,7 +55,7 @@ public static class SqlServerTestContainer
             Password: "LogixDb!Test123"
         );
 
-        Database = new SqlServerManager(connection, new FakeLogger());
+        Database = new SqlServerManager(connection);
     }
 
     /// <summary>

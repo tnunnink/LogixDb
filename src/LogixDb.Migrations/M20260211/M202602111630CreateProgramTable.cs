@@ -25,6 +25,12 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("has_test_edits").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(32).NotNullable()
             .WithColumn("source_hash").AsString(32).NotNullable();
+        
+        Create.Index().OnTable("program")
+            .OnColumn("task_id").Ascending()
+            .OnColumn("folder_id").Ascending()
+            .OnColumn("source_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("program")
             .OnColumn("folder_id").Ascending()

@@ -47,7 +47,6 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag_member", "tag_name", "nvarchar");
             await AssertColumnDefinition("tag_member", "member_name", "nvarchar");
             await AssertColumnDefinition("tag_member", "data_type", "nvarchar");
-            await AssertColumnDefinition("tag_member", "tag_value", "nvarchar");
 
             await AssertPrimaryKey("tag_member", "member_id");
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
@@ -56,6 +55,24 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertIndex("tag_member", "parent_id", "member_name");
             await AssertIndex("tag_member", "tag_name", "tag_id");
             await AssertIndex("tag_member", "data_type", "tag_id");
+        }
+    }
+    
+    [Test]
+    public async Task MigrateUp_ToM202602130930_CreatesTagValueTableWithExpectedColumns()
+    {
+        await Database.Migrate(202602130930);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("tag_value");
+
+            await AssertColumnDefinition("tag_value", "version_id", "int");
+            await AssertColumnDefinition("tag_value", "member_id", "uniqueidentifier");
+            await AssertColumnDefinition("tag_value", "tag_value", "nvarchar");
+
+            await AssertForeignKey("tag_value", "version_id", "target_version", "version_id");
+            await AssertForeignKey("tag_value", "member_id", "tag_member", "member_id");
         }
     }
 

@@ -2,8 +2,7 @@ INSERT INTO target (target_id, target_key)
 VALUES (@TargetId, @TargetKey)
 ON CONFLICT(target_key) DO NOTHING;
 
-INSERT INTO version (version_id,
-                            target_id,
+INSERT INTO target_version (target_id,
                             version_number,
                             target_type,
                             target_name,
@@ -17,10 +16,9 @@ INSERT INTO version (version_id,
                             import_machine,
                             source_hash,
                             source_data)
-VALUES (@VersionId,
-        (SELECT target_id FROM target WHERE target_key = @TargetKey),
+VALUES ((SELECT target_id FROM target WHERE target_key = @TargetKey),
         (SELECT IFNULL(MAX(version_number), 0) + 1
-         FROM version
+         FROM target_version
          WHERE target_id = (SELECT target_id FROM target WHERE target_key = @TargetKey)),
         @TargetType,
         @TargetName,

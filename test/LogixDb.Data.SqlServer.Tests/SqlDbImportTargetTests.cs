@@ -22,7 +22,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
 
         await Database.ImportTarget(target);
 
-        Assert.That(target.InstanceId, Is.GreaterThan(0));
+        Assert.That(target.VersionId, Is.GreaterThan(0));
     }
 
     [Test]
@@ -35,7 +35,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         stopwatch.Stop();
 
         Console.WriteLine(stopwatch.ElapsedMilliseconds);
-        Assert.That(target.InstanceId, Is.GreaterThan(0));
+        Assert.That(target.VersionId, Is.GreaterThan(0));
     }
 
 
@@ -53,18 +53,18 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
 
-        var targets = result.OrderBy(s => s.InstanceId).ToArray();
+        var targets = result.OrderBy(s => s.VersionId).ToArray();
 
         using (Assert.EnterMultipleScope())
         {
             // Previous target instance id should now be zero since it was deleted
-            Assert.That(targets[0].InstanceId, Is.Zero);
-            Assert.That(targets[1].InstanceId, Is.EqualTo(target2.InstanceId));
+            Assert.That(targets[0].VersionId, Is.Zero);
+            Assert.That(targets[1].VersionId, Is.EqualTo(target2.VersionId));
 
             // Previous should have NO content (pruned)
-            await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
+            await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
             // Latest should HAVE content
-            await AssertRecordExists("controller", "instance_id", target2.InstanceId);
+            await AssertRecordExists("controller", "instance_id", target2.VersionId);
         }
     }
 
@@ -81,9 +81,9 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         Assert.That(result, Has.Length.EqualTo(2));
 
         // Previous should have NO content (pruned)
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
         // Latest should HAVE content
-        await AssertRecordExists("controller", "instance_id", target2.InstanceId);
+        await AssertRecordExists("controller", "instance_id", target2.VersionId);
     }
 
     [Test]
@@ -101,9 +101,9 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
 
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
-        await AssertRecordDoesNotExist("controller", "instance_id", target2.InstanceId);
-        await AssertRecordExists("controller", "instance_id", target3.InstanceId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target2.VersionId);
+        await AssertRecordExists("controller", "instance_id", target3.VersionId);
     }
 
     [Test]
@@ -122,11 +122,11 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         Assert.That(result, Has.Length.EqualTo(3));
 
         // Target 1: target1 (pruned), target3 (active)
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
-        await AssertRecordExists("controller", "instance_id", target3.InstanceId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
+        await AssertRecordExists("controller", "instance_id", target3.VersionId);
 
         // Target 2: target2 (active)
-        await AssertRecordExists("controller", "instance_id", target2.InstanceId);
+        await AssertRecordExists("controller", "instance_id", target2.VersionId);
     }
 
     [Test]
@@ -148,12 +148,12 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         Assert.That(result, Has.Length.EqualTo(4));
 
         // Target 1: target 1, 2, 4. 1 and 2 should be pruned.
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.InstanceId);
-        await AssertRecordDoesNotExist("controller", "instance_id", target2.InstanceId);
-        await AssertRecordExists("controller", "instance_id", target4.InstanceId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
+        await AssertRecordDoesNotExist("controller", "instance_id", target2.VersionId);
+        await AssertRecordExists("controller", "instance_id", target4.VersionId);
 
         // Target 2: target 3. Active.
-        await AssertRecordExists("controller", "instance_id", target3.InstanceId);
+        await AssertRecordExists("controller", "instance_id", target3.VersionId);
     }
 
     [Test]

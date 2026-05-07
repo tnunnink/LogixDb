@@ -25,7 +25,7 @@ public abstract class SqliteTestFixture
     /// </summary>
     protected SqliteTestFixture()
     {
-        Database = new SqliteManager(new DbConnectionInfo(DbProvider.Sqlite, TempDb), new FakeLogger());
+        Database = new SqliteManager(new DbConnectionInfo(DbProvider.Sqlite, TempDb));
     }
 
     /// <summary>

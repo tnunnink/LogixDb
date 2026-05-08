@@ -12,24 +12,24 @@ namespace LogixDb.Data.Transformers;
 /// </summary>
 public class OperandTransformer : IDbTransformer
 {
-    private readonly AoiOperandMap _map = new();
+    private readonly OperandMap _map = new();
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var records = new List<AoiOperandRecord>();
+        var records = new List<OperandRecord>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
             byte index = 0;
-            records.Add(new AoiOperandRecord(aoi.Name, index, aoi.Name, aoi.Name, aoi.Description, true));
+            records.Add(new OperandRecord(aoi.Name, index, aoi.Name, aoi.Name, aoi.Description, true));
 
             foreach (var parameter in aoi.Parameters.Where(p => p.Required is true))
             {
                 index++;
 
-                var record = new AoiOperandRecord(
+                var record = new OperandRecord(
                     aoi.Name,
                     index,
                     parameter.Name,

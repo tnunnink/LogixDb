@@ -1,6 +1,7 @@
 using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Extensions;
 using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;

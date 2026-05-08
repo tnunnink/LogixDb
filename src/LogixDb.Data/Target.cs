@@ -1,6 +1,7 @@
 using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Extensions;
 using LogixDb.Data.Transformers;
 
 namespace LogixDb.Data;
@@ -91,7 +92,7 @@ public sealed class Target
             SoftwareRevision = source.Content.SoftwareRevision,
             ExportDate = source.Content.ExportDate,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
-            SourceHash = source.Content.Serialize().ToString().Hash().ToHexString(),
+            SourceHash = source.Content.Serialize().ToString().Hash(),
             SourceData = source.Content.Serialize().ToString().Compress(),
             _l5X = source
         };

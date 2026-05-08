@@ -1,4 +1,5 @@
 using L5Sharp.Core;
+using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -28,7 +29,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_visible"),
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_required"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "is_constant"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Hash(), "record_hash", false)
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Hash(), "record_hash")
     ];
 }
 

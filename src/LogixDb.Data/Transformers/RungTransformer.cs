@@ -1,6 +1,7 @@
 using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Extensions;
 using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
@@ -48,11 +49,19 @@ internal class RungTransformer : IDbTransformer
         for (short index = 0; index < instructions.Length; index++)
         {
             var instruction = instructions[index];
-            var instructionRecord = new InstructionRecord(rungHash, index, instruction);
-            //todo how are we hashing this - it is not a LogixElement.
-            var instructionHash = instruction.ToString().Hash().ToHexString();
+
+            var instructionRecord = new InstructionRecord(
+                rungHash,
+                index,
+                instruction.ToString(),
+                instruction.Key,
+                instruction.IsConditional,
+                instruction.IsNative
+            );
+
             instructionRecords.Add(instructionRecord);
 
+            var instructionHash = instructionRecord.Hash(["RungId"]);
             var arguments = instruction.Arguments.ToArray();
 
             for (byte arg = 0; arg < arguments.Length; arg++)
@@ -62,13 +71,20 @@ internal class RungTransformer : IDbTransformer
 
                 if (argument.Type == ArgumentType.Expression)
                 {
-                    argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(instructionHash, argumentIndex, new Argument(t))
-                    ));
+                    var nestedArgs = argument.Tags
+                        .Select(t => new Argument(t))
+                        .Select(a => new ArgumentRecord(instructionHash, argumentIndex, a.Type, a.ToString()));
+
+                    argumentRecords.AddRange(nestedArgs);
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(instructionHash, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(
+                    instructionHash,
+                    argumentIndex,
+                    argument.Type,
+                    argument.ToString()
+                ));
             }
         }
     }

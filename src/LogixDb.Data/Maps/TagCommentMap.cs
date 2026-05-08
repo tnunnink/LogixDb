@@ -1,3 +1,5 @@
+using LogixDb.Data.Extensions;
+
 namespace LogixDb.Data.Maps;
 
 /// <summary>
@@ -16,7 +18,7 @@ internal class TagCommentMap : TableMap<TagCommentRecord>
         ColumnMap<TagCommentRecord>.For(r => r.MemberId, "member_id"),
         ColumnMap<TagCommentRecord>.For(r => r.TagName, "tag_name"),
         ColumnMap<TagCommentRecord>.For(r => r.TagComment, "tag_comment"),
-        ColumnMap<TagCommentRecord>.For(ComputeHash, "record_hash")
+        ColumnMap<TagCommentRecord>.For(r => r.Hash(["MemberId"]), "record_hash")
     ];
 }
 

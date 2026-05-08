@@ -1,4 +1,5 @@
 using L5Sharp.Core;
+using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -22,9 +23,9 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
     [
         ColumnMap<ArgumentRecord>.For(r => r.InstructionId, "instruction_id"),
         ColumnMap<ArgumentRecord>.For(r => r.Index, "argument_index"),
-        ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
-        ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text"),
-        ColumnMap<ArgumentRecord>.For(ComputeHash, "record_hash")
+        ColumnMap<ArgumentRecord>.For(r => r.Type, "argument_type"),
+        ColumnMap<ArgumentRecord>.For(r => r.Text, "argument_text"),
+        ColumnMap<ArgumentRecord>.For(r => r.Hash(["InstructionId"]), "record_hash")
     ];
 }
 
@@ -36,4 +37,9 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 /// from the database, including their relationship to a parent instruction,
 /// as well as their position and content.
 /// </remarks>
-internal record ArgumentRecord(string? InstructionId, byte Index, Argument Argument);
+internal record ArgumentRecord(
+    string? InstructionId,
+    byte Index,
+    string Type,
+    string Text
+);

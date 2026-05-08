@@ -1,4 +1,5 @@
 using L5Sharp.Core;
+using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -23,11 +24,11 @@ internal class InstructionMap : TableMap<InstructionRecord>
     [
         ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsConditional, "is_conditional"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsNative, "is_native"),
-        ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash")
+        ColumnMap<InstructionRecord>.For(x => x.Text, "instruction_text"),
+        ColumnMap<InstructionRecord>.For(x => x.Key, "instruction_key"),
+        ColumnMap<InstructionRecord>.For(x => x.IsConditional, "is_conditional"),
+        ColumnMap<InstructionRecord>.For(x => x.IsNative, "is_native"),
+        ColumnMap<InstructionRecord>.For(x => x.Hash(["RungId"]), "record_hash")
     ];
 }
 
@@ -35,4 +36,11 @@ internal class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-internal record InstructionRecord(string? RungId, short Index, Instruction Instruction);
+internal record InstructionRecord(
+    string? RungId,
+    short Index,
+    string Text,
+    string Key,
+    bool IsConditional,
+    bool IsNative
+);

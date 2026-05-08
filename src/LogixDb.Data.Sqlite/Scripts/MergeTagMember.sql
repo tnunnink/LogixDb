@@ -14,4 +14,4 @@ SELECT (SELECT tag_id FROM tag WHERE record_hash = t.tag_id),
        data_type,
        record_hash
 FROM temp_tag_member t
-ON CONFLICT (tag_id, parent_id, tag_name) DO NOTHING;
+ON CONFLICT (tag_id, parent_id, record_hash) DO NOTHING;

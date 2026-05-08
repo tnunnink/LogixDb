@@ -9,85 +9,35 @@ namespace LogixDb.Data.Sqlite;
 /// </summary>
 internal static class SqliteScript
 {
-    /// <summary>
-    /// Represents a SQL script used to insert a new target into the database.
-    /// This property contains the SQL command to ensure the creation of a target entry
-    /// and associates a new version with the target in the database.
-    /// </summary>
     public static string PostTarget => Get(nameof(PostTarget));
-
-    /// <summary>
-    /// Represents a SQL script used to insert metadata associated with a target version into the database.
-    /// This property contains the SQL command that adds key-value pairs of additional information
-    /// about a target version to the appropriate database table.
-    /// </summary>
     public static string PostInfo => Get(nameof(PostInfo));
-
-    /// <summary>
-    /// Represents a SQL query script used to retrieve a list of targets from the database.
-    /// This property contains the SQL command to fetch all targets or filter them
-    /// based on specific criteria, such as the target key.
-    /// </summary>
     public static string ListTargets => Get(nameof(ListTargets));
-
-    /// <summary>
-    /// Represents a SQL script used to retrieve a specific target by its version number
-    /// from the SQLite database. This property provides the SQL command necessary
-    /// for querying a target based on the provided target key and version for precise data retrieval.
-    /// </summary>
     public static string GetTargetByVersion => Get(nameof(GetTargetByVersion));
-
-    /// <summary>
-    /// Represents the SQL query script used to retrieve the latest version of a target
-    /// associated with a specific key from the database. This query ensures that
-    /// the most recent target version is fetched while providing an efficient way
-    /// to filter by the target key.
-    /// </summary>
     public static string GetTargetByLatest => Get(nameof(GetTargetByLatest));
-
-    /// <summary>
-    /// Represents a SQL script used to delete an existing target from the database.
-    /// This property provides the SQL command necessary to remove a target entry,
-    /// including any related data or associations that must also be cleaned up.
-    /// </summary>
     public static string DeleteTarget => Get(nameof(DeleteTarget));
-
-    /// <summary>
-    /// Represents a SQL script used to delete a specific version of a target from the database.
-    /// This property contains the SQL command to remove the version entry
-    /// while ensuring that the specified target remains unaffected.
-    /// </summary>
     public static string DeleteVersion => Get(nameof(DeleteVersion));
-
-    /// <summary>
-    /// Represents the SQL script used to delete multiple versions of a target
-    /// identified by a specific version number. The command removes all
-    /// associated data linked to the specified version from the database.
-    /// </summary>
     public static string DeleteVersionsByNumber => Get(nameof(DeleteVersionsByNumber));
-
-    /// <summary>
-    /// Represents a SQL script used to delete version entries from the database
-    /// with a creation date earlier than a specified date.
-    /// This property provides the SQL command for purging older version records
-    /// to maintain database cleanliness and manage data retention policies.
-    /// </summary>
     public static string DeleteVersionsBeforeDate => Get(nameof(DeleteVersionsBeforeDate));
-
-    /// <summary>
-    /// Represents a SQL script used to retrieve the list of component-related database tables.
-    /// This property contains the SQL command to query and return a collection of table names
-    /// associated with components stored in the database.
-    /// </summary>
     public static string GetComponentTables => Get(nameof(GetComponentTables));
-
-    /// <summary>
-    /// Represents the SQL script used for handling controller merge operations in the database.
-    /// This property provides the SQL command required to merge specific controller-related
-    /// data into the SQLite database, ensuring proper synchronization and integration of the
-    /// data during the process.
-    /// </summary>
+    public static string MergeAoi => Get(nameof(MergeAoi));
+    public static string MergeAoiParameter => Get(nameof(MergeAoiParameter));
+    public static string MergeAoiRung => Get(nameof(MergeAoiRung));
+    public static string MergeArgument => Get(nameof(MergeArgument));
     public static string MergeController => Get(nameof(MergeController));
+    public static string MergeDataType => Get(nameof(MergeDataType));
+    public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));
+    public static string MergeInstruction => Get(nameof(MergeInstruction));
+    public static string MergeModule => Get(nameof(MergeModule));
+    public static string MergeOperand => Get(nameof(MergeOperand));
+    public static string MergeProgram => Get(nameof(MergeProgram));
+    public static string MergeRoutine => Get(nameof(MergeRoutine));
+    public static string MergeRung => Get(nameof(MergeRung));
+    public static string MergeTag => Get(nameof(MergeTag));
+    public static string MergeTagComment => Get(nameof(MergeTagComment));
+    public static string MergeTagConsumer => Get(nameof(MergeTagConsumer));
+    public static string MergeTagMember => Get(nameof(MergeTagMember));
+    public static string MergeTagProducer => Get(nameof(MergeTagProducer));
+    public static string MergeTask => Get(nameof(MergeTask));
 
     /// <summary>
     /// Retrieves the content of an embedded SQL script resource by its name.

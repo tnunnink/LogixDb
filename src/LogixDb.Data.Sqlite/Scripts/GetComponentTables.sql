@@ -1,5 +1,3 @@
-SELECT name
-FROM sqlite_master
-WHERE type = 'table'
-  AND sql LIKE '%instance_id%'
-  AND name not in ('target_instance')
+SELECT component_name
+FROM component c
+         JOIN sqlite_master m ON m.name = c.component_name;

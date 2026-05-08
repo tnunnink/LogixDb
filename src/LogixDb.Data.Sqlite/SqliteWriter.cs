@@ -22,25 +22,24 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
     private static readonly Dictionary<string, string> MergeScripts = new()
     {
         { "controller", SqliteScript.MergeController },
-        { "data_type", SqliteScript.MergeController },
-        { "data_type_member", SqliteScript.MergeController },
-        { "aoi", SqliteScript.MergeController },
-        { "aoi_parameter", SqliteScript.MergeController },
-        { "aoi_rung", SqliteScript.MergeController },
-        { "module", SqliteScript.MergeController },
-        { "task", SqliteScript.MergeController },
-        { "program", SqliteScript.MergeController },
-        { "routine", SqliteScript.MergeController },
-        { "rung", SqliteScript.MergeController },
-        { "instruction", SqliteScript.MergeController },
-        { "argument", SqliteScript.MergeController },
-        { "operand", SqliteScript.MergeController },
-        { "tag", SqliteScript.MergeController },
-        { "tag_member", SqliteScript.MergeController },
-        { "tag_comment", SqliteScript.MergeController },
-        { "tag_value", SqliteScript.MergeController },
-        { "tag_producer", SqliteScript.MergeController },
-        { "tag_consumer", SqliteScript.MergeController }
+        { "data_type", SqliteScript.MergeDataType },
+        { "data_type_member", SqliteScript.MergeDataTypeMember },
+        { "aoi", SqliteScript.MergeAoi },
+        { "aoi_parameter", SqliteScript.MergeAoiParameter },
+        { "aoi_rung", SqliteScript.MergeAoiRung },
+        { "module", SqliteScript.MergeModule },
+        { "task", SqliteScript.MergeTask },
+        { "program", SqliteScript.MergeProgram },
+        { "routine", SqliteScript.MergeRoutine },
+        { "rung", SqliteScript.MergeRung },
+        { "instruction", SqliteScript.MergeInstruction },
+        { "argument", SqliteScript.MergeArgument },
+        { "operand", SqliteScript.MergeOperand },
+        { "tag", SqliteScript.MergeTag },
+        { "tag_member", SqliteScript.MergeTagMember },
+        { "tag_comment", SqliteScript.MergeTagComment },
+        { "tag_producer", SqliteScript.MergeTagProducer },
+        { "tag_consumer", SqliteScript.MergeTagConsumer }
     };
 
     /// <summary>

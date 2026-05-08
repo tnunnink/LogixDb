@@ -12,7 +12,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("controller");
 
-            await AssertColumnDefinition("controller", "controller_id", "uniqueidentifier");
+            await AssertColumnDefinition("controller", "controller_id", "integer");
             await AssertColumnDefinition("controller", "controller_name", "text");
             await AssertColumnDefinition("controller", "catalog_number", "text");
             await AssertColumnDefinition("controller", "revision", "text");
@@ -48,7 +48,8 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("controller", "record_hash", "text");
 
             await AssertPrimaryKey("controller", "controller_id");
-            await AssertIndex("controller", "controller_name", "record_hash");
+            await AssertUniqueIndex("controller", "record_hash");
+            await AssertIndex("controller", "controller_name");
         }
     }
 
@@ -61,16 +62,16 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("data_type");
 
-            await AssertColumnDefinition("data_type", "type_id", "uniqueidentifier");
+            await AssertColumnDefinition("data_type", "type_id", "integer");
             await AssertColumnDefinition("data_type", "type_name", "text");
             await AssertColumnDefinition("data_type", "type_class", "text");
             await AssertColumnDefinition("data_type", "type_family", "text");
             await AssertColumnDefinition("data_type", "type_description", "text");
             await AssertColumnDefinition("data_type", "record_hash", "text");
-            await AssertColumnDefinition("data_type", "source_hash", "text");
 
             await AssertPrimaryKey("data_type", "type_id");
-            await AssertIndex("data_type", "type_name", "record_hash");
+            await AssertUniqueIndex("data_type", "record_hash");
+            await AssertIndex("data_type", "type_name");
         }
     }
 
@@ -83,8 +84,8 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("data_type_member");
 
-            await AssertColumnDefinition("data_type_member", "member_id", "uniqueidentifier");
-            await AssertColumnDefinition("data_type_member", "type_id", "uniqueidentifier");
+            await AssertColumnDefinition("data_type_member", "member_id", "integer");
+            await AssertColumnDefinition("data_type_member", "type_id", "integer");
             await AssertColumnDefinition("data_type_member", "member_name", "text");
             await AssertColumnDefinition("data_type_member", "data_type", "text");
             await AssertColumnDefinition("data_type_member", "dimensions", "text");
@@ -98,8 +99,9 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("data_type_member", "member_id");
             await AssertForeignKey("data_type_member", "type_id", "data_type", "type_id");
+            await AssertUniqueIndex("data_type_member", "type_id", "record_hash");
             await AssertUniqueIndex("data_type_member", "type_id", "member_name");
-            await AssertIndex("data_type_member", "member_name", "record_hash");
+            await AssertIndex("data_type_member", "member_name");
         }
     }
 
@@ -112,7 +114,7 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("task");
 
-            await AssertColumnDefinition("task", "task_id", "uniqueidentifier");
+            await AssertColumnDefinition("task", "task_id", "integer");
             await AssertColumnDefinition("task", "task_name", "text");
             await AssertColumnDefinition("task", "task_type", "text");
             await AssertColumnDefinition("task", "task_description", "text");
@@ -125,10 +127,10 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("task", "event_tag", "text");
             await AssertColumnDefinition("task", "enable_timeout", "integer");
             await AssertColumnDefinition("task", "record_hash", "text");
-            await AssertColumnDefinition("task", "source_hash", "text");
 
             await AssertPrimaryKey("task", "task_id");
-            await AssertIndex("task", "task_name", "record_hash");
+            await AssertUniqueIndex("task", "record_hash");
+            await AssertIndex("task", "task_name");
         }
     }
 
@@ -141,9 +143,9 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("program");
 
-            await AssertColumnDefinition("program", "program_id", "uniqueidentifier");
-            await AssertColumnDefinition("program", "task_id", "uniqueidentifier");
-            await AssertColumnDefinition("program", "folder_id", "uniqueidentifier");
+            await AssertColumnDefinition("program", "program_id", "integer");
+            await AssertColumnDefinition("program", "task_id", "integer");
+            await AssertColumnDefinition("program", "folder_id", "integer");
             await AssertColumnDefinition("program", "program_name", "text");
             await AssertColumnDefinition("program", "program_type", "text");
             await AssertColumnDefinition("program", "program_description", "text");
@@ -153,12 +155,13 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("program", "is_folder", "integer");
             await AssertColumnDefinition("program", "has_test_edits", "integer");
             await AssertColumnDefinition("program", "record_hash", "text");
-            await AssertColumnDefinition("program", "source_hash", "text");
 
             await AssertPrimaryKey("program", "program_id");
             await AssertForeignKey("program", "task_id", "task", "task_id");
             await AssertForeignKey("program", "folder_id", "program", "program_id");
-            await AssertIndex("program", "program_name", "record_hash");
+            await AssertUniqueIndex("program", "task_id", "folder_id", "record_hash");
+            await AssertIndex("program", "folder_id", "program_id");
+            await AssertIndex("program", "program_name");
         }
     }
 
@@ -171,19 +174,18 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("routine");
 
-            await AssertColumnDefinition("routine", "routine_id", "uniqueidentifier");
-            await AssertColumnDefinition("routine", "program_id", "uniqueidentifier");
+            await AssertColumnDefinition("routine", "routine_id", "integer");
+            await AssertColumnDefinition("routine", "program_id", "integer");
             await AssertColumnDefinition("routine", "routine_name", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
             await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
-            await AssertColumnDefinition("routine", "source_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertForeignKey("routine", "program_id", "program", "program_id");
+            await AssertUniqueIndex("routine", "program_id", "record_hash");
             await AssertUniqueIndex("routine", "program_id", "routine_name");
-            await AssertIndex("routine", "routine_name", "record_hash");
-            await AssertIndex("routine", "routine_name", "source_hash");
+            await AssertIndex("routine", "routine_name");
         }
     }
 
@@ -196,8 +198,8 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "routine_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung", "rung_id", "integer");
+            await AssertColumnDefinition("rung", "routine_id", "integer");
             await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "rung_text", "text");
             await AssertColumnDefinition("rung", "rung_comment", "text");
@@ -205,7 +207,8 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertForeignKey("rung", "routine_id", "routine", "routine_id");
-            await AssertIndex("rung", "record_hash", "routine_id");
+            await AssertUniqueIndex("rung", "routine_id", "record_hash");
+            await AssertUniqueIndex("rung", "routine_id", "rung_number");
         }
     }
 
@@ -218,8 +221,8 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("module");
 
-            await AssertColumnDefinition("module", "module_id", "uniqueidentifier");
-            await AssertColumnDefinition("module", "parent_id", "uniqueidentifier");
+            await AssertColumnDefinition("module", "module_id", "integer");
+            await AssertColumnDefinition("module", "parent_id", "integer");
             await AssertColumnDefinition("module", "module_name", "text");
             await AssertColumnDefinition("module", "catalog_number", "text");
             await AssertColumnDefinition("module", "revision", "text");
@@ -236,11 +239,11 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("module", "ip_address", "text");
             await AssertColumnDefinition("module", "slot_number", "integer");
             await AssertColumnDefinition("module", "record_hash", "text");
-            await AssertColumnDefinition("module", "source_hash", "text");
 
             await AssertPrimaryKey("module", "module_id");
             await AssertForeignKey("module", "parent_id", "module", "module_id");
-            await AssertIndex("module", "module_name", "record_hash");
+            await AssertUniqueIndex("module", "parent_id", "record_hash");
+            await AssertIndex("module", "module_name");
         }
     }
 }

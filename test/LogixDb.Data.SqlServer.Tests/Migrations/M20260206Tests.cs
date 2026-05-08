@@ -12,7 +12,7 @@ public class M20260206Tests : SqlServerTestFixture
         {
             await AssertTableExists("target");
 
-            await AssertColumnDefinition("target", "target_id", "uniqueidentifier");
+            await AssertColumnDefinition("target", "target_id", "int");
             await AssertColumnDefinition("target", "target_key", "nvarchar");
             await AssertColumnDefinition("target", "created_on", "datetime");
 
@@ -31,7 +31,7 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertTableExists("target_version");
 
             await AssertColumnDefinition("target_version", "version_id", "int");
-            await AssertColumnDefinition("target_version", "target_id", "uniqueidentifier");
+            await AssertColumnDefinition("target_version", "target_id", "int");
             await AssertColumnDefinition("target_version", "version_number", "int");
             await AssertColumnDefinition("target_version", "target_type", "nvarchar");
             await AssertColumnDefinition("target_version", "target_name", "nvarchar");
@@ -61,12 +61,12 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertTableExists("target_version_map");
 
             await AssertColumnDefinition("target_version_map", "version_id", "int");
-            await AssertColumnDefinition("target_version_map", "component_id", "uniqueidentifier");
-            await AssertColumnDefinition("target_version_map", "component_type", "nvarchar");
+            await AssertColumnDefinition("target_version_map", "record_id", "bigint");
+            await AssertColumnDefinition("target_version_map", "component_id", "tinyint");
 
             await AssertForeignKey("target_version_map", "version_id", "target_version", "version_id");
-            await AssertUniqueIndex("target_version_map", "version_id", "component_id", "component_type");
-            await AssertIndex("target_version_map", "component_id", "component_type");
+            await AssertUniqueIndex("target_version_map", "version_id", "record_id", "component_id");
+            await AssertIndex("target_version_map", "record_id", "component_id");
         }
     }
 
@@ -79,7 +79,7 @@ public class M20260206Tests : SqlServerTestFixture
         {
             await AssertTableExists("target_info");
 
-            await AssertColumnDefinition("target_info", "property_id", "uniqueidentifier");
+            await AssertColumnDefinition("target_info", "property_id", "int");
             await AssertColumnDefinition("target_info", "version_id", "int");
             await AssertColumnDefinition("target_info", "property_name", "nvarchar");
             await AssertColumnDefinition("target_info", "property_value", "nvarchar");

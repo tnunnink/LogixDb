@@ -12,7 +12,7 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("aoi");
 
-            await AssertColumnDefinition("aoi", "aoi_id", "uniqueidentifier");
+            await AssertColumnDefinition("aoi", "aoi_id", "integer");
             await AssertColumnDefinition("aoi", "aoi_name", "text");
             await AssertColumnDefinition("aoi", "aoi_description", "text");
             await AssertColumnDefinition("aoi", "aoi_revision", "text");
@@ -33,10 +33,10 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "text");
             await AssertColumnDefinition("aoi", "record_hash", "text");
-            await AssertColumnDefinition("aoi", "source_hash", "text");
 
             await AssertPrimaryKey("aoi", "aoi_id");
-            await AssertIndex("aoi", "aoi_name", "record_hash");
+            await AssertUniqueIndex("aoi", "record_hash");
+            await AssertIndex("aoi", "aoi_name");
         }
     }
 
@@ -49,8 +49,8 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("aoi_parameter");
 
-            await AssertColumnDefinition("aoi_parameter", "parameter_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi_parameter", "aoi_id", "uniqueidentifier");
+            await AssertColumnDefinition("aoi_parameter", "parameter_id", "integer");
+            await AssertColumnDefinition("aoi_parameter", "aoi_id", "integer");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "text");
             await AssertColumnDefinition("aoi_parameter", "parameter_description", "text");
             await AssertColumnDefinition("aoi_parameter", "data_type", "text");
@@ -68,8 +68,9 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
             await AssertForeignKey("aoi_parameter", "aoi_id", "aoi", "aoi_id");
+            await AssertUniqueIndex("aoi_parameter", "aoi_id", "record_hash");
             await AssertUniqueIndex("aoi_parameter", "aoi_id", "parameter_name");
-            await AssertIndex("aoi_parameter", "parameter_name", "record_hash");
+            await AssertIndex("aoi_parameter", "parameter_name");
         }
     }
 
@@ -82,8 +83,8 @@ public class M20260212Tests : SqliteTestFixture
         {
             await AssertTableExists("aoi_rung");
 
-            await AssertColumnDefinition("aoi_rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("aoi_rung", "aoi_id", "uniqueidentifier");
+            await AssertColumnDefinition("aoi_rung", "rung_id", "integer");
+            await AssertColumnDefinition("aoi_rung", "aoi_id", "integer");
             await AssertColumnDefinition("aoi_rung", "routine_name", "text");
             await AssertColumnDefinition("aoi_rung", "rung_number", "integer");
             await AssertColumnDefinition("aoi_rung", "rung_text", "text");
@@ -92,8 +93,8 @@ public class M20260212Tests : SqliteTestFixture
 
             await AssertPrimaryKey("aoi_rung", "rung_id");
             await AssertForeignKey("aoi_rung", "aoi_id", "aoi", "aoi_id");
+            await AssertUniqueIndex("aoi_rung", "aoi_id", "record_hash");
             await AssertUniqueIndex("aoi_rung", "aoi_id", "routine_name", "rung_number");
-            await AssertIndex("aoi_rung", "record_hash", "aoi_id");
         }
     }
 }

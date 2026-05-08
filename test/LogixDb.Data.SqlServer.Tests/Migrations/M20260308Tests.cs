@@ -13,8 +13,8 @@ public class M20260308Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("operand");
-            
-            await AssertColumnDefinition("operand", "operand_id", "uniqueidentifier");
+
+            await AssertColumnDefinition("operand", "operand_id", "bigint");
             await AssertColumnDefinition("operand", "instruction_key", "nvarchar");
             await AssertColumnDefinition("operand", "operand_index", "tinyint");
             await AssertColumnDefinition("operand", "operand_name", "nvarchar");
@@ -22,9 +22,10 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertColumnDefinition("operand", "operand_format", "nvarchar");
             await AssertColumnDefinition("operand", "operand_description", "nvarchar");
             await AssertColumnDefinition("operand", "is_destructive", "bit");
+            await AssertColumnDefinition("operand", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertIndex("operand", "instruction_key", "operand_index");
+            await AssertUniqueIndex("operand", "instruction_key", "operand_index", "record_hash");
         }
     }
 

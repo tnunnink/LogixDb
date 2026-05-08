@@ -7,46 +7,33 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="AddOnInstruction"/> class.
 /// </summary>
-internal class AoiMap : TableMap<AoiRecord>
+internal class AoiMap : TableMap<AddOnInstruction>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<AoiRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<AddOnInstruction>> Columns =>
     [
-        ColumnMap<AoiRecord>.For(r => r.AoiId, "aoi_id", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Name, "aoi_name", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Description, "aoi_description"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Revision?.ToString(), "aoi_revision"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.RevisionExtension, "aoi_revision_extension"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.RevisionNote, "aoi_revision_note"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Vendor, "aoi_vendor"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.AdditionalHelpText, "aoi_help_text"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedDate, "created_date"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.CreatedBy, "created_by"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedDate, "edited_date"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.EditedBy, "edited_by"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.SoftwareRevision?.ToString(), "software_revision"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePreScan, "execute_pre_scan"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecutePostScan, "execute_post_scan"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.ExecuteEnableInFalse, "execute_enable_in_false"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.IsEncrypted, "is_encrypted"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureID, "signature_id"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.SignatureTimestamp, "signature_timestamp"),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Class?.Name, "component_class"),
-        ColumnMap<AoiRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<AoiRecord>.For(r => r.Aoi.Hash(), "source_hash", hashable: false)
+        ColumnMap<AddOnInstruction>.For(r => r.Name, "aoi_name"),
+        ColumnMap<AddOnInstruction>.For(r => r.Description, "aoi_description"),
+        ColumnMap<AddOnInstruction>.For(r => r.Revision?.ToString(), "aoi_revision"),
+        ColumnMap<AddOnInstruction>.For(r => r.RevisionExtension, "aoi_revision_extension"),
+        ColumnMap<AddOnInstruction>.For(r => r.RevisionNote, "aoi_revision_note"),
+        ColumnMap<AddOnInstruction>.For(r => r.Vendor, "aoi_vendor"),
+        ColumnMap<AddOnInstruction>.For(r => r.AdditionalHelpText, "aoi_help_text"),
+        ColumnMap<AddOnInstruction>.For(r => r.CreatedDate, "created_date"),
+        ColumnMap<AddOnInstruction>.For(r => r.CreatedBy, "created_by"),
+        ColumnMap<AddOnInstruction>.For(r => r.EditedDate, "edited_date"),
+        ColumnMap<AddOnInstruction>.For(r => r.EditedBy, "edited_by"),
+        ColumnMap<AddOnInstruction>.For(r => r.SoftwareRevision?.ToString(), "software_revision"),
+        ColumnMap<AddOnInstruction>.For(r => r.ExecutePreScan, "execute_pre_scan"),
+        ColumnMap<AddOnInstruction>.For(r => r.ExecutePostScan, "execute_post_scan"),
+        ColumnMap<AddOnInstruction>.For(r => r.ExecuteEnableInFalse, "execute_enable_in_false"),
+        ColumnMap<AddOnInstruction>.For(r => r.IsEncrypted, "is_encrypted"),
+        ColumnMap<AddOnInstruction>.For(r => r.SignatureID, "signature_id"),
+        ColumnMap<AddOnInstruction>.For(r => r.SignatureTimestamp, "signature_timestamp"),
+        ColumnMap<AddOnInstruction>.For(r => r.Class?.Name, "component_class"),
+        ColumnMap<AddOnInstruction>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for an AOI entity.
-/// This record contains metadata and configuration for a specific Logix AOI,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-/// <param name="Aoi">The Logix AOI entity containing its configuration.</param>
-internal record AoiRecord(AddOnInstruction Aoi)
-{
-    public Guid AoiId { get; } = Guid.NewGuid();
 }

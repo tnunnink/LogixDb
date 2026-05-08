@@ -7,36 +7,24 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Program"/> class.
 /// </summary>
-internal class ProgramMap : TableMap<ProgramRecord>
+internal class ProgramMap : TableMap<Program>
 {
     /// <inheritdoc />
     protected override string TableName => "program";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<ProgramRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<Program>> Columns =>
     [
-        ColumnMap<ProgramRecord>.For(r => r.ProgramId, "program_id", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.TaskId, "task_id", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.FolderId, "folder_id", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Name, "program_name", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Description, "program_description"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Type.Name, "program_type"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.MainRoutineName, "main_routine"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.FaultRoutineName, "fault_routine"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Disabled, "is_disabled"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.UseAsFolder, "is_folder"),
-        ColumnMap<ProgramRecord>.For(r => r.Program.TestEdits, "has_test_edits"),
-        ColumnMap<ProgramRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<ProgramRecord>.For(r => r.Program.Hash(), "source_hash", hashable: false)
+        ColumnMap<Program>.For(r => r.Task?.Hash(), "task_id"),
+        ColumnMap<Program>.For(r => r.Parent?.Hash(), "folder_id"),
+        ColumnMap<Program>.For(r => r.Name, "program_name"),
+        ColumnMap<Program>.For(r => r.Description, "program_description"),
+        ColumnMap<Program>.For(r => r.Type.Name, "program_type"),
+        ColumnMap<Program>.For(r => r.MainRoutineName, "main_routine"),
+        ColumnMap<Program>.For(r => r.FaultRoutineName, "fault_routine"),
+        ColumnMap<Program>.For(r => r.Disabled, "is_disabled"),
+        ColumnMap<Program>.For(r => r.UseAsFolder, "is_folder"),
+        ColumnMap<Program>.For(r => r.TestEdits, "has_test_edits"),
+        ColumnMap<Program>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for a program entity.
-/// This record contains the metadata for a specific Logix program,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record ProgramRecord(Guid? TaskId, Guid? FolderId, Program Program)
-{
-    public Guid ProgramId { get; } = Guid.NewGuid();
 }

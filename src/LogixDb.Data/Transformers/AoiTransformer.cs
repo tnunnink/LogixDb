@@ -20,30 +20,24 @@ internal class AoiTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var aoiRecords = new List<AoiRecord>();
-        var parameterRecords = new List<AoiParameterRecord>();
+        var aoiRecords = new List<AddOnInstruction>();
+        var parameterRecords = new List<Parameter>();
         var localTagRecords = new List<AoiLocalTagRecord>();
         var rungRecords = new List<AoiRungRecord>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            var aoiRecord = new AoiRecord(aoi);
-            aoiRecords.Add(aoiRecord);
-
-            parameterRecords.AddRange(aoi.Parameters.Select(p =>
-                new AoiParameterRecord(aoiRecord.AoiId, p))
-            );
+            var aoiHash = aoi.Hash();
+            aoiRecords.Add(aoi);
+            parameterRecords.AddRange(aoi.Parameters);
 
             // Only attempt to process local tags and logic/rungs if the AOI is not encrypted. 
             if (!aoi.IsEncrypted)
             {
-                localTagRecords.AddRange(aoi.LocalTags.Select(t =>
-                    new AoiLocalTagRecord(aoiRecord.AoiId, t))
-                );
+                localTagRecords.AddRange(aoi.LocalTags.Select(t => new AoiLocalTagRecord(aoiHash, t)));
 
-                rungRecords.AddRange(aoi.Routines.Where(r => r.Type == RoutineType.RLL).SelectMany(r =>
-                    r.Rungs.Select(rung => new AoiRungRecord(aoiRecord.AoiId, r.Name, rung)))
-                );
+                var rungs = aoi.Routines.Where(r => r.Type == RoutineType.RLL).SelectMany(r => r.Rungs);
+                rungRecords.AddRange(rungs.Select(r => new AoiRungRecord(aoiHash, r)));
             }
         }
 

@@ -7,31 +7,18 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="DataType"/> class.
 /// </summary>
-internal class DataTypeMap : TableMap<DataTypeRecord>
+internal class DataTypeMap : TableMap<DataType>
 {
     /// <inheritdoc />
     protected override string TableName => "data_type";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<DataTypeRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<DataType>> Columns =>
     [
-        ColumnMap<DataTypeRecord>.For(r => r.TypeId, "type_id", hashable: false),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Name, "type_name", hashable: false),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Description, "type_description"),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Class.Name, "type_class"),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Family.Name, "type_family"),
-        ColumnMap<DataTypeRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<DataTypeRecord>.For(r => r.DataType.Hash(), "source_hash", hashable: false)
+        ColumnMap<DataType>.For(r => r.Name, "type_name"),
+        ColumnMap<DataType>.For(r => r.Description, "type_description"),
+        ColumnMap<DataType>.For(r => r.Class.Name, "type_class"),
+        ColumnMap<DataType>.For(r => r.Family.Name, "type_family"),
+        ColumnMap<DataType>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for a data type entity.
-/// This record contains the metadata for a specific Logix data type,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-/// <param name="DataType">The Logix data type entity.</param>
-internal record DataTypeRecord(DataType DataType)
-{
-    public Guid TypeId { get; } = Guid.NewGuid();
 }

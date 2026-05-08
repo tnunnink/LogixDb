@@ -20,21 +20,20 @@ public static class ElementHasher
     /// <param name="element">The Logix element to hash. The processing and hashing strategy vary depending on the element type.</param>
     /// <returns>A lowercase hexadecimal string representing the hash of the processed Logix element.</returns>
     /// <exception cref="NotSupportedException">Thrown if the hashing method does not support the provided element type.</exception>
-    public static string Hash(ILogixElement element)
+    public static string? Hash(ILogixElement? element)
     {
         return element switch
         {
+            null => null,
             Controller controller => HashController(controller),
             DataType dataType => HashDataType(dataType),
-            DataTypeMember member => HashElement(member.Serialize()),
             Module module => HashModule(module),
             Task task => HashTask(task),
             Program program => HashProgram(program),
             Routine routine => HashRoutine(routine),
             Rung rung => HashElement(rung.Serialize()),
             Tag tag => HashElement(ScrubData(tag.Serialize())),
-            _ => throw new NotSupportedException(
-                $"Hashing is not supported for element type '{element.GetType().Name}'.")
+            _ => HashElement(element.Serialize())
         };
     }
 

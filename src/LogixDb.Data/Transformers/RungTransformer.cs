@@ -19,7 +19,7 @@ internal class RungTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var rungRecords = new List<RungRecord>();
+        var rungRecords = new List<Rung>();
         var instructionRecords = new List<InstructionRecord>();
         var argumentRecords = new List<ArgumentRecord>();
 
@@ -29,10 +29,9 @@ internal class RungTransformer : IDbTransformer
 
         foreach (var rung in rungs)
         {
-            var routineId = rung.Routine?.Metadata.Get<Guid>("id");
-            var rungRecord = new RungRecord(routineId, rung);
-            rungRecords.Add(rungRecord);
-            ProcessRung(rungRecord.RungId, rung, instructionRecords, argumentRecords);
+            var rungHash = rung.Hash();
+            rungRecords.Add(rung);
+            ProcessRung(rungHash, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -40,7 +39,7 @@ internal class RungTransformer : IDbTransformer
         yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    private static void ProcessRung(Guid rungId, Rung rung,
+    private static void ProcessRung(string? rungHash, Rung rung,
         List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
@@ -49,8 +48,9 @@ internal class RungTransformer : IDbTransformer
         for (short index = 0; index < instructions.Length; index++)
         {
             var instruction = instructions[index];
-            var instructionRecord = new InstructionRecord(rungId, index, instruction);
-            var instructionId = instructionRecord.InstructionId;
+            var instructionRecord = new InstructionRecord(rungHash, index, instruction);
+            //todo how are we hashing this - it is not a LogixElement.
+            var instructionHash = instruction.ToString().Hash().ToHexString();
             instructionRecords.Add(instructionRecord);
 
             var arguments = instruction.Arguments.ToArray();
@@ -63,12 +63,12 @@ internal class RungTransformer : IDbTransformer
                 if (argument.Type == ArgumentType.Expression)
                 {
                     argumentRecords.AddRange(argument.Tags.Select(t =>
-                        new ArgumentRecord(instructionId, argumentIndex, new Argument(t))
+                        new ArgumentRecord(instructionHash, argumentIndex, new Argument(t))
                     ));
                     continue;
                 }
 
-                argumentRecords.Add(new ArgumentRecord(instructionId, argumentIndex, argument));
+                argumentRecords.Add(new ArgumentRecord(instructionHash, argumentIndex, argument));
             }
         }
     }

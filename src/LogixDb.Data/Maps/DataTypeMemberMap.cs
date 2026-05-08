@@ -7,35 +7,24 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="DataTypeMember"/> class.
 /// </summary>
-internal class DataTypeMemberMap : TableMap<DataTypeMemberRecord>
+internal class DataTypeMemberMap : TableMap<DataTypeMember>
 {
     /// <inheritdoc />
     protected override string TableName => "data_type_member";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<DataTypeMemberRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<DataTypeMember>> Columns =>
     [
-        ColumnMap<DataTypeMemberRecord>.For(r => r.MemberId, "member_id", hashable: false),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.TypeId, "type_id", hashable: false),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Name, "member_name", hashable: false),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Description, "member_description"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.DataType, "data_type"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Dimension.ToSqlFormat(), "dimensions"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.ExternalAccess?.Name, "external_access"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Hidden, "is_hidden"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.Target, "target_name"),
-        ColumnMap<DataTypeMemberRecord>.For(r => r.Member.GetBitNumber(), "bit_number"),
-        ColumnMap<DataTypeMemberRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<DataTypeMember>.For(r => r.Parent?.Hash(), "type_id"),
+        ColumnMap<DataTypeMember>.For(r => r.Name, "member_name"),
+        ColumnMap<DataTypeMember>.For(r => r.Description, "member_description"),
+        ColumnMap<DataTypeMember>.For(r => r.DataType, "data_type"),
+        ColumnMap<DataTypeMember>.For(r => r.Dimension.ToSqlFormat(), "dimensions"),
+        ColumnMap<DataTypeMember>.For(r => r.Radix.ToSqlFormat(), "radix"),
+        ColumnMap<DataTypeMember>.For(r => r.ExternalAccess?.Name, "external_access"),
+        ColumnMap<DataTypeMember>.For(r => r.Hidden, "is_hidden"),
+        ColumnMap<DataTypeMember>.For(r => r.Target, "target_name"),
+        ColumnMap<DataTypeMember>.For(r => r.GetBitNumber(), "bit_number"),
+        ColumnMap<DataTypeMember>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for a data type member entity.
-/// This record contains the metadata for a specific member of a Logix data type,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record DataTypeMemberRecord(Guid TypeId, DataTypeMember Member)
-{
-    public Guid MemberId { get; } = Guid.NewGuid();
 }

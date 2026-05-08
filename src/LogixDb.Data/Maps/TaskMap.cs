@@ -7,37 +7,25 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Task"/> class.
 /// </summary>
-internal class TaskMap : TableMap<TaskRecord>
+internal class TaskMap : TableMap<Task>
 {
     /// <inheritdoc />
     protected override string TableName => "task";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<TaskRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<Task>> Columns =>
     [
-        ColumnMap<TaskRecord>.For(r => r.TaskId, "task_id", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Name, "task_name"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Description, "task_description"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Type.Name, "task_type"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Priority, "priority"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Rate, "scan_rate"),
-        ColumnMap<TaskRecord>.For(r => r.Task.Watchdog, "watchdog"),
-        ColumnMap<TaskRecord>.For(r => r.Task.InhibitTask, "is_inhibited"),
-        ColumnMap<TaskRecord>.For(r => r.Task.DisableUpdateOutputs, "disable_outputs"),
-        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTrigger?.Name, "event_trigger"),
-        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EventTag?.LocalPath, "event_tag"),
-        ColumnMap<TaskRecord>.For(r => r.Task.EventInfo?.EnableTimeout, "enable_timeout"),
-        ColumnMap<TaskRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<TaskRecord>.For(r => r.Task.Hash(), "source_hash", hashable: false)
+        ColumnMap<Task>.For(r => r.Name, "task_name"),
+        ColumnMap<Task>.For(r => r.Description, "task_description"),
+        ColumnMap<Task>.For(r => r.Type.Name, "task_type"),
+        ColumnMap<Task>.For(r => r.Priority, "priority"),
+        ColumnMap<Task>.For(r => r.Rate, "scan_rate"),
+        ColumnMap<Task>.For(r => r.Watchdog, "watchdog"),
+        ColumnMap<Task>.For(r => r.InhibitTask, "is_inhibited"),
+        ColumnMap<Task>.For(r => r.DisableUpdateOutputs, "disable_outputs"),
+        ColumnMap<Task>.For(r => r.EventInfo?.EventTrigger?.Name, "event_trigger"),
+        ColumnMap<Task>.For(r => r.EventInfo?.EventTag?.LocalPath, "event_tag"),
+        ColumnMap<Task>.For(r => r.EventInfo?.EnableTimeout, "enable_timeout"),
+        ColumnMap<Task>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for a task entity.
-/// This record contains properties for the task's associated metadata and configuration settings
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record TaskRecord(Task Task)
-{
-    public Guid TaskId { get; } = Guid.NewGuid();
 }

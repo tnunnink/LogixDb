@@ -22,97 +22,85 @@ internal class TagTransformer : IDbTransformer
 {
     private readonly TagMap _tagMap = new();
     private readonly TagMemberMap _memberMap = new();
+    private readonly TagValueMap _valueMap = new();
     private readonly TagCommentMap _commentMap = new();
     private readonly TagProducerMap _producerMap = new();
     private readonly TagConsumerMap _consumerMap = new();
-    private readonly TagAliasMap _aliasMap = new();
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var tagRecords = new List<TagRecord>();
-        var memberRecords = new List<TagMemberRecord>();
+        var tagRecords = new List<Tag>();
+        var memberRecords = new List<Tag>();
+        var valueRecords = new List<TagValueRecord>();
         var commentRecords = new List<TagCommentRecord>();
         var producerRecords = new List<TagProduceInfoRecord>();
         var consumerRecords = new List<TagConsumeInfoRecord>();
-        var aliasRecords = new List<TagAliasRecord>();
-        var memberLookup = new Dictionary<TagName, TagMemberRecord>();
 
         var tags = source.Query<Tag>();
 
         foreach (var tag in tags)
         {
-            var tagRecord = new TagRecord(tag.Program?.Metadata.Get<Guid>("id"), tag);
-            tagRecords.Add(tagRecord);
+            tagRecords.Add(tag);
+            var tagHash = tag.Hash();
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(tagRecord.TagId, tag.ProduceInfo));
+                producerRecords.Add(new TagProduceInfoRecord(tagHash, tag.ProduceInfo));
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(tagRecord.TagId, tag.ConsumeInfo));
-
-            if (TagType.Alias.Equals(tag.TagType) && tag.AliasFor is not null)
-                aliasRecords.Add(new TagAliasRecord(tagRecord.TagId, tag.AliasFor.LocalPath));
+                consumerRecords.Add(new TagConsumeInfoRecord(tagHash, tag.ConsumeInfo));
 
             foreach (var member in tag.Members())
             {
-                //Get parent id using the lookup
-                var parentName = member.Parent?.TagName ?? TagName.Empty;
-                Guid? parentId = memberLookup.TryGetValue(parentName, out var match) ? match.MemberId : null;
+                var memberHash = member.Hash();
+                memberRecords.Add(member);
+                commentRecords.AddRange(GetTagComments(memberHash, member));
 
-                //Generate member record and comment records and add to collections.
-                var memberRecord = new TagMemberRecord(tagRecord.TagId, parentId, member);
-
-                if (!memberLookup.TryAdd(member.TagName, memberRecord))
-                    throw new InvalidOperationException(
-                        $"Duplicate member TagName encountered: '{member.TagName}'. Each member must have a unique TagName within the tag.");
-
-                memberRecords.Add(memberRecord);
-                commentRecords.AddRange(GetTagComments(memberRecord));
+                if (member.Value.IsAtomic())
+                {
+                    valueRecords.Add(new TagValueRecord(target.VersionId, memberHash, tag.Value.ToSqlFormat()));
+                }
             }
         }
 
         yield return _tagMap.GenerateTable(tagRecords);
         yield return _memberMap.GenerateTable(memberRecords);
+        yield return _valueMap.GenerateTable(valueRecords);
         yield return _commentMap.GenerateTable(commentRecords);
         yield return _producerMap.GenerateTable(producerRecords);
         yield return _consumerMap.GenerateTable(consumerRecords);
-        yield return _aliasMap.GenerateTable(aliasRecords);
     }
 
     /// <summary>
-    /// Extracts comments from a provided tag member record and generates a collection of tag comment records.
+    /// Generates a collection of tag comment records for the specified member ID and tag.
     /// </summary>
-    /// <param name="record">The tag member record containing tag metadata and associated details.</param>
-    /// <returns>A collection of tag comment records generated from the provided tag member record.</returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(TagMemberRecord record)
+    /// <param name="memberId">The unique identifier of the member to associate the comments with.</param>
+    /// <param name="tag">The tag from which comments and descriptions will be extracted.</param>
+    /// <returns>A collection of <see cref="TagCommentRecord"/> containing the associated comments and descriptions.</returns>
+    private static IEnumerable<TagCommentRecord> GetTagComments(string? memberId, Tag? tag)
     {
-        if (record.Tag.Description is not null)
+        if (tag?.Description is not null)
         {
-            yield return new TagCommentRecord(
-                record.MemberId,
-                record.Tag.TagName.LocalPath,
-                record.Tag.Description
-            );
+            yield return new TagCommentRecord(memberId, tag.TagName.LocalPath, tag.Description);
         }
 
-        if (record.Tag.Comments is null)
+        if (tag?.Comments is null)
             yield break;
 
         // The following code is for bit-level comments only.
         // All based tags are covered by the code above using L5Sharp internal logic.
-        foreach (var comment in record.Tag.Comments)
+        foreach (var comment in tag.Comments)
         {
-            if (comment.Operand.Contains(record.Tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
+            if (comment.Operand.Contains(tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
             {
-                var tagName = TagName.Combine(record.Tag.TagName.Base, comment.Operand);
+                var tagName = TagName.Combine(tag.TagName.Base, comment.Operand);
 
-                var tagComment = !string.IsNullOrWhiteSpace(record.Tag.Description)
-                    ? string.Concat(record.Tag.Description, " ", comment.Value).Trim()
+                var tagComment = !string.IsNullOrWhiteSpace(tag.Description)
+                    ? string.Concat(tag.Description, " ", comment.Value).Trim()
                     : comment.Value;
 
-                yield return new TagCommentRecord(record.MemberId, tagName, tagComment);
+                yield return new TagCommentRecord(memberId, tagName, tagComment);
             }
         }
     }

@@ -7,30 +7,18 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Rung"/> class.
 /// </summary>
-internal class RungMap : TableMap<RungRecord>
+internal class RungMap : TableMap<Rung>
 {
     /// <inheritdoc />
     protected override string TableName => "rung";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<RungRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
-        ColumnMap<RungRecord>.For(r => r.RungId, "rung_id", hashable: false),
-        ColumnMap<RungRecord>.For(r => r.RoutineId, "routine_id", hashable: false),
-        ColumnMap<RungRecord>.For(r => r.Rung.Number, "rung_number"),
-        ColumnMap<RungRecord>.For(r => r.Rung.Comment, "rung_comment"),
-        ColumnMap<RungRecord>.For(r => r.Rung.Text, "rung_text"),
-        ColumnMap<RungRecord>.For(ComputeHash, "record_hash", hashable: false),
-        /*ColumnMap<RungRecord>.For(r => r.Rung.Text.Hash(), "code_hash", hashable: false)*/
+        ColumnMap<Rung>.For(r => r.Routine?.Hash(), "routine_id"),
+        ColumnMap<Rung>.For(r => r.Number, "rung_number"),
+        ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),
+        ColumnMap<Rung>.For(r => r.Text, "rung_text"),
+        ColumnMap<Rung>.For(r => r.Hash(), "record_hash"),
     ];
-}
-
-/// <summary>
-/// Represents a database record for a rung entity.
-/// This record contains the metadata and code for a specific Logix rung,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record RungRecord(Guid? RoutineId, Rung Rung)
-{
-    public Guid RungId { get; } = Guid.NewGuid();
 }

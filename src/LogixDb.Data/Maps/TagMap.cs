@@ -2,41 +2,25 @@ using L5Sharp.Core;
 
 namespace LogixDb.Data.Maps;
 
-/// <summary>
-/// Represents a mapping configuration for the "tag" table within the database.
-/// This class defines the schema of the table, including the table name and the columns
-/// that map to the properties of the <see cref="Tag"/> class.
-/// </summary>
-internal class TagMap : TableMap<TagRecord>
+internal class TagMap : TableMap<Tag>
 {
     /// <inheritdoc />
     protected override string TableName => "tag";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<TagRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<Tag>> Columns =>
     [
-        ColumnMap<TagRecord>.For(r => r.TagId, "tag_id", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.ProgramId, "program_id", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Name, "tag_name", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.DataType, "data_type"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Dimensions.ToSqlFormat(), "dimensions"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<TagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
-        ColumnMap<TagRecord>.For(r => r.Tag.OpcUAAccess?.Name ?? Access.None, "opcua_access"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Constant ?? false, "is_constant"),
-        ColumnMap<TagRecord>.For(r => r.Tag.TagType?.Name ?? TagType.Base, "tag_type"),
-        ColumnMap<TagRecord>.For(r => r.Tag.Usage?.Name ?? TagUsage.Normal, "tag_usage"),
-        ColumnMap<TagRecord>.For(ComputeHash, "record_hash", hashable: false),
-        ColumnMap<TagRecord>.For(r => r.Tag.Hash(), "source_hash", hashable: false)
+        ColumnMap<Tag>.For(r => r.Program?.Hash(), "program_id"),
+        ColumnMap<Tag>.For(r => r.Name, "tag_name"),
+        ColumnMap<Tag>.For(r => r.DataType, "data_type"),
+        ColumnMap<Tag>.For(r => r.Dimensions.ToSqlFormat(), "dimensions"),
+        ColumnMap<Tag>.For(r => r.Radix.ToSqlFormat(), "radix"),
+        ColumnMap<Tag>.For(r => r.ExternalAccess?.Name, "external_access"),
+        ColumnMap<Tag>.For(r => r.OpcUAAccess?.Name ?? Access.None, "opcua_access"),
+        ColumnMap<Tag>.For(r => r.Constant ?? false, "is_constant"),
+        ColumnMap<Tag>.For(r => r.TagType?.Name ?? TagType.Base, "tag_type"),
+        ColumnMap<Tag>.For(r => r.Usage?.Name ?? TagUsage.Normal, "tag_usage"),
+        ColumnMap<Tag>.For(r => r.AliasFor?.LocalPath, "alias_for"),
+        ColumnMap<Tag>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for a tag entity.
-/// This record contains the metadata and configuration for a specific Logix tag,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record TagRecord(Guid? ProgramId, Tag Tag)
-{
-    public Guid TagId { get; } = Guid.NewGuid();
 }

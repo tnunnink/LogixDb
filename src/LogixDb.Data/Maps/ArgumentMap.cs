@@ -20,11 +20,11 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
-        ColumnMap<ArgumentRecord>.For(r => r.ArgumentId, "argument_id"),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionId, "instruction_id"),
         ColumnMap<ArgumentRecord>.For(r => r.Index, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.Argument.Type, "argument_type"),
-        ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text")
+        ColumnMap<ArgumentRecord>.For(r => r.Argument.ToString(), "argument_text"),
+        ColumnMap<ArgumentRecord>.For(ComputeHash, "record_hash")
     ];
 }
 
@@ -36,7 +36,4 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 /// from the database, including their relationship to a parent instruction,
 /// as well as their position and content.
 /// </remarks>
-internal record ArgumentRecord(Guid InstructionId, byte Index, Argument Argument)
-{
-    public Guid ArgumentId { get; } = Guid.NewGuid();
-}
+internal record ArgumentRecord(string? InstructionId, byte Index, Argument Argument);

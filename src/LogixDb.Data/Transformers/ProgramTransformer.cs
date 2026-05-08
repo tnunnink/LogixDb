@@ -12,41 +12,35 @@ namespace LogixDb.Data.Transformers;
 internal class ProgramTransformer : IDbTransformer
 {
     private readonly ProgramMap _map = new();
-    private readonly Dictionary<string, ProgramRecord> _records = [];
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        _records.Clear();
-        var source = target.GetSource();
-        source.Programs.ToList().ForEach(p => GetOrAddRecord(p));
-        yield return _map.GenerateTable(_records.Values);
+        var programs = target.GetSource().Programs
+            .Select(p => new { Depth = GetProgramDepth(p), Program = p })
+            .OrderBy(x => x.Depth)
+            .Select(x => x.Program)
+            .ToList();
+
+        yield return _map.GenerateTable(programs);
     }
 
     /// <summary>
-    /// Retrieves an existing <see cref="ProgramRecord"/> from the cache if it exists or adds a new one to the cache
-    /// after constructing it using the specified Target ID and program details.
+    /// Calculates the depth of a given program in the hierarchy by traversing its parent relationships.
     /// </summary>
-    /// <param name="program">The program for which the record needs to be retrieved or created.</param>
-    /// <returns>A <see cref="ProgramRecord"/> that represents the program along with its relationships and metadata.</returns>
-    private ProgramRecord GetOrAddRecord(Program program)
+    /// <param name="program">The program whose depth in the hierarchy is to be calculated.</param>
+    /// <returns>The depth of the program, where a root program has a depth of 0.</returns>
+    private static int GetProgramDepth(Program program)
     {
-        // If already added, return the cached instance.
-        if (_records.TryGetValue(program.Name, out var existing))
-            return existing;
+        var current = program;
+        var depth = 0;
 
-        // This assumes all tasks have been processed first.
-        var taskId = program.Task?.Metadata.Get<Guid>("id");
-        // Recursively get/add parent programs as needed.
-        var parent = program.Parent is not null ? GetOrAddRecord(program.Parent) : null;
+        while (current.Parent is not null)
+        {
+            depth++;
+            current = current.Parent;
+        }
 
-        // Use these relationships to build the program record.
-        var record = new ProgramRecord(taskId, parent?.ProgramId, program);
-        // Seed the program id we generated so that other transformers can reference this instance.
-        program.Metadata.Add("id", record.ProgramId);
-
-        // Cache and return the program record for reference and import.
-        _records.Add(program.Name, record);
-        return record;
+        return depth;
     }
 }

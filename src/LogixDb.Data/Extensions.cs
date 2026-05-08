@@ -1,7 +1,6 @@
 using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
-using System.Xml.Linq;
 using L5Sharp.Core;
 
 namespace LogixDb.Data;
@@ -74,60 +73,15 @@ internal static class Extensions
     extension(ILogixElement element)
     {
         /// <summary>
-        /// Computes a standardized hash representation of the Logix element.
-        /// The element is scrubbed to remove sensitive or unnecessary data, serialized into XML format,
-        /// and then hashed using MD5, with the resulting hash returned as a lowercase hexadecimal string.
+        /// Generates a hash value for a given Logix element. The hash is computed using a type-specific strategy,
+        /// allowing for consistent identification and comparisons of Logix elements.
         /// </summary>
-        /// <returns>A lowercase hexadecimal string representing the hash of the scrubbed and serialized Logix element.</returns>
-        public string Hash()
+        /// <returns>
+        /// A string representing the computed hash value for the element, or null if the element type is unsupported.
+        /// </returns>
+        public string? Hash()
         {
-            return element.ScrubData().Serialize().ToString(SaveOptions.DisableFormatting).Hash().ToHexString();
-        }
-
-        /// <summary>
-        /// Removes or anonymizes sensitive and non-essential data from a Logix element to standardize
-        /// it for comparison or hashing purposes. This includes clearing or removing specific attributes and elements,
-        /// such as values, formats, and communication-related data.
-        /// </summary>
-        /// <returns>The scrubbed Logix element with sensitive or unnecessary data removed.</returns>
-        private ILogixElement ScrubData()
-        {
-            foreach (var d in element.Serialize().DescendantsAndSelf())
-            {
-                switch (d.Name.LocalName)
-                {
-                    // Remove 'Value' attributes which contain the actual data for Atomic tags/members
-                    case L5XName.DataValue or L5XName.DataValueMember or L5XName.Element:
-                        d.Attributes(L5XName.Value).Remove();
-                        break;
-                    case L5XName.Data:
-                    {
-                        var format = d.Attribute(L5XName.Format)?.Value;
-
-                        // If it's a L5K/String format, scrub the element's value/text.
-                        if (format == DataFormat.L5K || format == DataFormat.String)
-                        {
-                            d.RemoveNodes();
-                        }
-                        // For special formats (Alarms/Message parameters), clear child attributes/values but keep structure
-                        else if (format != DataFormat.Decorated)
-                        {
-                            d.Elements()
-                                .SelectMany(x => x.Attributes())
-                                .ToList()
-                                .ForEach(a => a.SetValue(string.Empty));
-                        }
-
-                        break;
-                    }
-                    // Remove all module communication elements. These contain IO tags and other Hex data not stored in the database.
-                    case L5XName.Communications:
-                        d.Remove();
-                        break;
-                }
-            }
-
-            return element;
+            return ElementHasher.Hash(element);
         }
 
         /// <summary>
@@ -151,6 +105,16 @@ internal static class Extensions
     }
 
     /// <summary>
+    /// Retrieves the bit number associated with a given <c>DataTypeMember</c>, if available.
+    /// </summary>
+    /// <param name="member">The <c>DataTypeMember</c> from which the bit number is to be obtained.</param>
+    /// <returns>The bit number as a byte if it is not null; otherwise, null.</returns>
+    internal static byte? GetBitNumber(this DataTypeMember member)
+    {
+        return member.BitNumber is not null ? (byte)member.BitNumber : null;
+    }
+
+    /// <summary>
     /// Extracts the string representation of the value from the provided Logix data element.
     /// Only atomic data types (such as DINT, REAL, BOOL) are supported for value extraction.
     /// </summary>
@@ -159,23 +123,13 @@ internal static class Extensions
     /// A string representation of the atomic data value if the data is atomic; otherwise, null
     /// for complex or structured data types.
     /// </returns>
-    internal static string? GetDataValue(this LogixData data)
+    internal static string? ToSqlFormat(this LogixData data)
     {
         return data switch
         {
             AtomicData atomic => atomic.ToString(),
             _ => null
         };
-    }
-
-    /// <summary>
-    /// Retrieves the bit number associated with a given <c>DataTypeMember</c>, if available.
-    /// </summary>
-    /// <param name="member">The <c>DataTypeMember</c> from which the bit number is to be obtained.</param>
-    /// <returns>The bit number as a byte if it is not null; otherwise, null.</returns>
-    internal static byte? GetBitNumber(this DataTypeMember member)
-    {
-        return member.BitNumber is not null ? (byte)member.BitNumber : null;
     }
 
     /// <summary>

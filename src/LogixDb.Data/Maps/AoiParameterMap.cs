@@ -7,39 +7,28 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Parameter"/> class.
 /// </summary>
-internal class AoiParameterMap : TableMap<AoiParameterRecord>
+internal class AoiParameterMap : TableMap<Parameter>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<AoiParameterRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<Parameter>> Columns =>
     [
-        ColumnMap<AoiParameterRecord>.For(r => r.ParameterId, "parameter_id"),
-        ColumnMap<AoiParameterRecord>.For(r => r.AoiId, "aoi_id"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Name, "parameter_name", hashable: false),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Description, "parameter_description"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.DataType, "data_type"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Dimension.ToSqlFormat(), "dimensions"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Default?.GetDataValue(), "default_value"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.ExternalAccess?.Name, "external_access"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Usage.Name, "tag_usage"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.TagType?.Name, "tag_type"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Visible, "is_visible"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Required, "is_required"),
-        ColumnMap<AoiParameterRecord>.For(r => r.Parameter.Constant, "is_constant"),
-        ColumnMap<AoiParameterRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<Parameter>.For(r => r.Parent?.Hash(), "aoi_id"),
+        ColumnMap<Parameter>.For(r => r.Name, "parameter_name"),
+        ColumnMap<Parameter>.For(r => r.Description, "parameter_description"),
+        ColumnMap<Parameter>.For(r => r.DataType, "data_type"),
+        ColumnMap<Parameter>.For(r => r.Dimension.ToSqlFormat(), "dimensions"),
+        ColumnMap<Parameter>.For(r => r.Radix.ToSqlFormat(), "radix"),
+        ColumnMap<Parameter>.For(r => r.Default?.ToSqlFormat(), "default_value"),
+        ColumnMap<Parameter>.For(r => r.ExternalAccess?.Name, "external_access"),
+        ColumnMap<Parameter>.For(r => r.Usage.Name, "tag_usage"),
+        ColumnMap<Parameter>.For(r => r.TagType?.Name, "tag_type"),
+        ColumnMap<Parameter>.For(r => r.AliasFor?.LocalPath, "tag_alias"),
+        ColumnMap<Parameter>.For(r => r.Visible, "is_visible"),
+        ColumnMap<Parameter>.For(r => r.Required, "is_required"),
+        ColumnMap<Parameter>.For(r => r.Constant, "is_constant"),
+        ColumnMap<Parameter>.For(r => r.Hash(), "record_hash")
     ];
-}
-
-/// <summary>
-/// Represents a database record for an AOI parameter entity.
-/// This record contains the metadata and configuration for a specific AOI parameter,
-/// as well as the unique identifier linking it to a specific database target.
-/// </summary>
-internal record AoiParameterRecord(Guid? AoiId, Parameter Parameter)
-{
-    public Guid ParameterId { get; } = Guid.NewGuid();
 }

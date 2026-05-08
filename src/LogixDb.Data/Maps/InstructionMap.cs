@@ -21,14 +21,13 @@ internal class InstructionMap : TableMap<InstructionRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
-        ColumnMap<InstructionRecord>.For(r => r.InstructionId, "instruction_id", hashable: false),
-        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id", hashable: false),
+        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Instruction.ToString(), "instruction_text"),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key", hashable: false),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsConditional, "is_conditional", hashable: false),
-        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsNative, "is_native", hashable: false),
-        ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash", hashable: false)
+        ColumnMap<InstructionRecord>.For(x => x.Instruction.Key, "instruction_key"),
+        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsConditional, "is_conditional"),
+        ColumnMap<InstructionRecord>.For(x => x.Instruction.IsNative, "is_native"),
+        ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash")
     ];
 }
 
@@ -36,7 +35,4 @@ internal class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-internal record InstructionRecord(Guid RungId, short Index, Instruction Instruction)
-{
-    public Guid InstructionId { get; } = Guid.NewGuid();
-}
+internal record InstructionRecord(string? RungId, short Index, Instruction Instruction);

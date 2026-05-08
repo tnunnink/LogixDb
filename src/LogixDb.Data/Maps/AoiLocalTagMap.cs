@@ -14,14 +14,13 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
-        ColumnMap<AoiLocalTagRecord>.For(r => r.ParameterId, "parameter_id"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.AoiId, "aoi_id"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name", hashable: false),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "parameter_description"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.DataType, "data_type"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Dimensions.ToSqlFormat(), "dimensions"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.GetDataValue(), "default_value"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.ToSqlFormat(), "default_value"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.TagType?.Name, "tag_type"),
@@ -29,7 +28,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_visible"),
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_required"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "is_constant"),
-        ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash", false)
+        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Hash(), "record_hash", false)
     ];
 }
 
@@ -42,7 +41,4 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 /// the name of the associated AOI, and the tag details.
 /// This record is used in mapping operations for transferring data between the program and the database storage.
 /// </remarks>
-internal record AoiLocalTagRecord(Guid? AoiId, LocalTag Tag)
-{
-    public Guid ParameterId { get; } = Guid.NewGuid();
-}
+internal record AoiLocalTagRecord(string? AoiId, LocalTag Tag);

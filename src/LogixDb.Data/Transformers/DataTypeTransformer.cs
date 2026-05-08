@@ -24,19 +24,7 @@ internal class DataTypeTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        var dataTypeRecords = new List<DataTypeRecord>();
-        var memberRecords = new List<DataTypeMemberRecord>();
-
-        foreach (var dataType in source.DataTypes.Where(d => d.Class == DataTypeClass.User))
-        {
-            var type = new DataTypeRecord(dataType);
-            var members = dataType.Members.Select(m => new DataTypeMemberRecord(type.TypeId, m));
-
-            dataTypeRecords.Add(type);
-            memberRecords.AddRange(members);
-        }
-
-        yield return _typeMap.GenerateTable(dataTypeRecords);
-        yield return _memberMap.GenerateTable(memberRecords);
+        yield return _typeMap.GenerateTable(source.DataTypes);
+        yield return _memberMap.GenerateTable(source.DataTypes.SelectMany(d => d.Members));
     }
 }

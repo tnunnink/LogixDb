@@ -8,8 +8,34 @@ namespace LogixDb.Data.SqlServer;
 /// Implements a writer for persisting <see cref="DataTable"/> objects to a SQL Server database
 /// using an established <see cref="SqlConnection"/> and optional <see cref="SqlTransaction"/>.
 /// </summary>
-internal class SqlServerWriter(SqlConnection connection, SqlTransaction transaction) : IDbWriter
+internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTransaction transaction) : IDbWriter
 {
+    /// <summary>
+    /// A dictionary mapping table names to corresponding SQL Server merge scripts.
+    /// </summary>
+    private static readonly Dictionary<string, string> MergeScripts = new()
+    {
+        { "controller", SqlServerScript.MergeController },
+        { "data_type", SqlServerScript.MergeDataType },
+        { "data_type_member", SqlServerScript.MergeDataTypeMember },
+        { "aoi", SqlServerScript.MergeAoi },
+        { "aoi_parameter", SqlServerScript.MergeAoiParameter },
+        { "aoi_rung", SqlServerScript.MergeAoiRung },
+        { "module", SqlServerScript.MergeModule },
+        { "task", SqlServerScript.MergeTask },
+        { "program", SqlServerScript.MergeProgram },
+        { "routine", SqlServerScript.MergeRoutine },
+        { "rung", SqlServerScript.MergeRung },
+        { "instruction", SqlServerScript.MergeInstruction },
+        { "argument", SqlServerScript.MergeArgument },
+        { "operand", SqlServerScript.MergeOperand },
+        { "tag", SqlServerScript.MergeTag },
+        { "tag_member", SqlServerScript.MergeTagMember },
+        { "tag_comment", SqlServerScript.MergeTagComment },
+        { "tag_producer", SqlServerScript.MergeTagProducer },
+        { "tag_consumer", SqlServerScript.MergeTagConsumer }
+    };
+
     /// <summary>
     /// Writes the specified collection of <see cref="DataTable"/> objects to the SQL Server database asynchronously.
     /// </summary>
@@ -20,12 +46,22 @@ internal class SqlServerWriter(SqlConnection connection, SqlTransaction transact
     {
         foreach (var table in tables)
         {
-            //todo updating process to support merging from temp tables and merging
-            //create temporary table.
-            //write to temp table
+            await CreateTempTableAsync(table, token);
             await WriteTableAsync(table, token);
-            //execute merge script for this table.
+            await ExecuteMergeAsync(table, token);
         }
+    }
+
+    /// <summary>
+    /// Creates a local temporary table in the SQL Server database corresponding to the structure of the given <see cref="DataTable"/> asynchronously.
+    /// </summary>
+    private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
+    {
+        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => $"[{c.ColumnName}] {GetSqlType(c)}"));
+        var sql = $"CREATE TABLE #temp_{table.TableName} ({columns});";
+
+        await using var command = new SqlCommand(sql, connection, transaction);
+        await command.ExecuteNonQueryAsync(token);
     }
 
     /// <summary>
@@ -43,7 +79,7 @@ internal class SqlServerWriter(SqlConnection connection, SqlTransaction transact
             transaction
         );
 
-        bulkCopy.DestinationTableName = $"dbo.{table.TableName}";
+        bulkCopy.DestinationTableName = $"#temp_{table.TableName}";
         bulkCopy.BulkCopyTimeout = 0;
         bulkCopy.BatchSize = 10000;
 
@@ -51,5 +87,32 @@ internal class SqlServerWriter(SqlConnection connection, SqlTransaction transact
         table.Columns.Cast<DataColumn>().ToList().ForEach(c => bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName));
 
         await bulkCopy.WriteToServerAsync(table, token);
+    }
+
+    /// <summary>
+    /// Executes the merge script for the specified <see cref="DataTable"/> in the context of a SQL Server database.
+    /// </summary>
+    private async Task ExecuteMergeAsync(DataTable table, CancellationToken token)
+    {
+        var script = MergeScripts[table.TableName];
+
+        await using var command = new SqlCommand(script, connection, transaction);
+        command.Parameters.AddWithValue("@VersionId", versionId);
+        command.CommandTimeout = 0;
+        await command.ExecuteNonQueryAsync(token);
+    }
+
+    private static string GetSqlType(DataColumn column)
+    {
+        if (column.DataType == typeof(string)) return "NVARCHAR(MAX)";
+        if (column.DataType == typeof(int)) return "INT";
+        if (column.DataType == typeof(long)) return "BIGINT";
+        if (column.DataType == typeof(bool)) return "BIT";
+        if (column.DataType == typeof(DateTime)) return "DATETIME2";
+        if (column.DataType == typeof(Guid)) return "UNIQUEIDENTIFIER";
+        if (column.DataType == typeof(byte[])) return "VARBINARY(MAX)";
+        if (column.DataType == typeof(float)) return "REAL";
+        if (column.DataType == typeof(double)) return "FLOAT";
+        return "NVARCHAR(MAX)";
     }
 }

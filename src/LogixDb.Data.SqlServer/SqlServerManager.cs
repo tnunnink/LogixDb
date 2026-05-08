@@ -230,7 +230,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
             var dataTables = target.Compile(tableNames.ToArray()).ToList();
 
             // 3. Perform a bulk write of all compiled data to the database.
-            var writer = new SqlServerWriter(connection, (SqlTransaction)transaction);
+            var writer = new SqlServerWriter(target.VersionId, connection, (SqlTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
 
             await transaction.CommitAsync(token);

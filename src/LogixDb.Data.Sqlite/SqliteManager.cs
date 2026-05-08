@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Diagnostics.CodeAnalysis;
 using Dapper;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
@@ -18,11 +17,10 @@ namespace LogixDb.Data.Sqlite;
 /// work with SQLite databases. It facilitates operations like running database migrations,
 /// connecting to the database, and managing the database file lifecycle.
 /// </remarks>
-[SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging")]
 public sealed class SqliteManager : IDbManager
 {
     /// <summary>
-    /// Stores the connection information required to configure and interact with a SQLite database.
+    /// Stores the connection information required to configure and interact with an SQLite database.
     /// This includes details such as the database provider, source file, and optional parameters
     /// like user credentials, encryption settings, and connection port.
     /// </summary>
@@ -125,7 +123,7 @@ public sealed class SqliteManager : IDbManager
     {
         return ExecuteSqliteScriptAsync(
             SqliteScript.DeleteVersion,
-            new { TargetKey = targetKey },
+            new { TargetKey = targetKey, VersionNumber = versionNumber },
             token
         );
     }
@@ -148,12 +146,6 @@ public sealed class SqliteManager : IDbManager
             new { TargetKey = targetKey, BeforeDate = beforeDate },
             token
         );
-    }
-
-    /// <inheritdoc />
-    public Task PruneTarget(string tagetKey, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
     }
 
     /// <summary>

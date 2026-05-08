@@ -37,10 +37,10 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableExists("program");
         await AssertTableExists("tag");
         await AssertTableExists("tag_member");
+        await AssertTableExists("tag_value");
         await AssertTableExists("tag_comment");
         await AssertTableExists("tag_producer");
         await AssertTableExists("tag_consumer");
-        await AssertTableExists("tag_alias");
 
         // Excluded Tables
         await AssertTableDoesNotExists("data_type");
@@ -89,7 +89,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("tag_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
-        await AssertTableDoesNotExists("tag_alias");
+        await AssertTableDoesNotExists("tag_value");
     }
 
     [Test]
@@ -123,6 +123,6 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("tag_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
-        await AssertTableDoesNotExists("tag_alias");
+        await AssertTableDoesNotExists("tag_value");
     }
 }

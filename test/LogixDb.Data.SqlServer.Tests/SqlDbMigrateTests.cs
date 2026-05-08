@@ -33,7 +33,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Included Tables
@@ -42,10 +42,10 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableExists("program");
         await AssertTableExists("tag");
         await AssertTableExists("tag_member");
+        await AssertTableExists("tag_value");
         await AssertTableExists("tag_comment");
         await AssertTableExists("tag_producer");
         await AssertTableExists("tag_consumer");
-        await AssertTableExists("tag_alias");
 
         // Excluded Tables
         await AssertTableDoesNotExists("data_type");
@@ -69,7 +69,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Included Tables
@@ -94,7 +94,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableDoesNotExists("tag_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
-        await AssertTableDoesNotExists("tag_alias");
+        await AssertTableDoesNotExists("tag_value");
     }
 
     [Test]
@@ -105,7 +105,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         // Required Tables
         await AssertTableExists("target");
         await AssertTableExists("target_version");
-        await AssertTableExists("target_instance");
+        await AssertTableExists("target_version_map");
         await AssertTableExists("target_info");
 
         // Excluded Tables
@@ -128,6 +128,6 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableDoesNotExists("tag_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
-        await AssertTableDoesNotExists("tag_alias");
+        await AssertTableDoesNotExists("tag_value");
     }
 }

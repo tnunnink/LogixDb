@@ -12,8 +12,8 @@ public class M202602130830CreateTagTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag")
-            .WithPrimaryKey("tag_id")
-            .WithRelation<Guid>("program_id", "program").Nullable()
+            .WithPrimaryKey<long>("tag_id")
+            .WithRelation<long>("program_id", "program").Nullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("dimensions").AsString(32).Nullable()
@@ -23,21 +23,18 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("is_constant").AsBoolean().Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("alias_for").AsString(256).NotNullable()
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("tag")
+            .OnColumn("program_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("tag")
             .OnColumn("tag_name").Ascending();
 
         Create.Index().OnTable("tag")
             .OnColumn("data_type").Ascending();
-
-        Create.Index().OnTable("tag")
-            .OnColumn("tag_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-        
-        Create.Index().OnTable("tag")
-            .OnColumn("tag_name").Ascending()
-            .OnColumn("source_hash").Ascending();
     }
 }

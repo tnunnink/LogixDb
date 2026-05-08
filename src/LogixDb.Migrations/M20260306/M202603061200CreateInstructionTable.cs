@@ -12,22 +12,23 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("instruction")
-            .WithPrimaryKey("instruction_id")
-            .WithRelation<Guid>("rung_id", "rung").NotNullable()
+            .WithPrimaryKey<long>("instruction_id")
+            .WithRelation<long>("rung_id", "rung").NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("is_conditional").AsBoolean().NotNullable()
             .WithColumn("is_native").AsBoolean().NotNullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("instruction")
+            .OnColumn("rung_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("instruction")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .WithOptions().Unique();
-
-        Create.Index().OnTable("instruction")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("rung_id").Ascending();
     }
 }

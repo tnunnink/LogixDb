@@ -12,7 +12,7 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("controller")
-            .WithPrimaryKey("controller_id")
+            .WithPrimaryKey<long>("controller_id")
             .WithColumn("controller_name").AsString(256).NotNullable()
             .WithColumn("controller_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(256).Nullable()
@@ -46,10 +46,13 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithColumn("permission_set").AsString().Nullable()
             .WithColumn("changed_to_detect").AsString().Nullable()
             .WithColumn("trusted_slots").AsString(64).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("controller")
-            .OnColumn("controller_name").Ascending()
-            .OnColumn("record_hash").Ascending();
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
+
+        Create.Index().OnTable("controller")
+            .OnColumn("controller_name").Ascending();
     }
 }

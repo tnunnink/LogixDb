@@ -12,17 +12,20 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("operand")
-            .WithPrimaryKey("operand_id")
+            .WithPrimaryKey<long>("operand_id")
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
             .WithColumn("operand_name").AsString(128).NotNullable()
             .WithColumn("operand_type").AsString(128).Nullable()
             .WithColumn("operand_format").AsString(32).Nullable()
             .WithColumn("operand_description").AsString(2000).Nullable()
-            .WithColumn("is_destructive").AsBoolean().NotNullable();
+            .WithColumn("is_destructive").AsBoolean().NotNullable()
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("operand")
             .OnColumn("instruction_key").Ascending()
-            .OnColumn("operand_index").Ascending();
+            .OnColumn("operand_index").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
     }
 }

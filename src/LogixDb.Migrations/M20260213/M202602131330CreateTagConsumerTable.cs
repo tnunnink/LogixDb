@@ -12,21 +12,18 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_consumer")
-            .WithPrimaryKey("consumer_id")
-            .WithRelation<Guid>("tag_id", "tag").NotNullable()
+            .WithPrimaryKey<long>("consumer_id")
+            .WithRelation<long>("tag_id", "tag").NotNullable()
             .WithColumn("producer").AsString().NotNullable()
             .WithColumn("remote_tag").AsString().NotNullable()
             .WithColumn("remote_instance").AsInt32().NotNullable()
             .WithColumn("rpi").AsDouble().NotNullable()
             .WithColumn("unicast").AsBoolean().NotNullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("tag_consumer")
             .OnColumn("tag_id").Ascending()
+            .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
-
-        Create.Index().OnTable("tag_consumer")
-            .OnColumn("tag_id").Ascending()
-            .OnColumn("record_hash").Ascending();
     }
 }

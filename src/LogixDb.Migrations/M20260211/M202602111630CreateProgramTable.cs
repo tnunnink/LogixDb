@@ -12,9 +12,9 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("program")
-            .WithPrimaryKey("program_id")
-            .WithRelation<Guid>("task_id", "task").Nullable()
-            .WithRelation<Guid>("folder_id", "program", "program_id").Nullable()
+            .WithPrimaryKey<long>("program_id")
+            .WithRelation<long>("task_id", "task").Nullable()
+            .WithRelation<long>("folder_id", "program", "program_id").Nullable()
             .WithColumn("program_name").AsString(256).NotNullable()
             .WithColumn("program_description").AsString(512).Nullable()
             .WithColumn("program_type").AsString(32).Nullable()
@@ -23,13 +23,12 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("is_disabled").AsBoolean().Nullable()
             .WithColumn("is_folder").AsBoolean().Nullable()
             .WithColumn("has_test_edits").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
-        
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
         Create.Index().OnTable("program")
             .OnColumn("task_id").Ascending()
             .OnColumn("folder_id").Ascending()
-            .OnColumn("source_hash").Ascending()
+            .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("program")
@@ -37,11 +36,6 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .OnColumn("program_id").Ascending();
 
         Create.Index().OnTable("program")
-            .OnColumn("program_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-
-        Create.Index().OnTable("program")
-            .OnColumn("program_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("program_name").Ascending();
     }
 }

@@ -12,8 +12,8 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("data_type_member")
-            .WithPrimaryKey("member_id")
-            .WithRelation<Guid>("type_id", "data_type").NotNullable()
+            .WithPrimaryKey<long>("member_id")
+            .WithRelation<long>("type_id", "data_type").NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
             .WithColumn("data_type").AsString(256).Nullable()
@@ -23,15 +23,19 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("is_hidden").AsBoolean().Nullable()
             .WithColumn("target_name").AsString(64).Nullable()
             .WithColumn("bit_number").AsByte().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("data_type_member")
+            .OnColumn("type_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("data_type_member")
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
-
+        
         Create.Index().OnTable("data_type_member")
-            .OnColumn("member_name").Ascending()
-            .OnColumn("record_hash").Ascending();
+            .OnColumn("member_name").Ascending();
     }
 }

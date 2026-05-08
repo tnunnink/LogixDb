@@ -12,20 +12,21 @@ public class M202602111945CreateRungTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("rung")
-            .WithPrimaryKey("rung_id")
-            .WithRelation<Guid>("routine_id", "routine").NotNullable()
+            .WithPrimaryKey<long>("rung_id")
+            .WithRelation<long>("routine_id", "routine").NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("rung")
+            .OnColumn("routine_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("rung")
             .OnColumn("routine_id").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
-
-        Create.Index().OnTable("rung")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("routine_id").Ascending();
     }
 }

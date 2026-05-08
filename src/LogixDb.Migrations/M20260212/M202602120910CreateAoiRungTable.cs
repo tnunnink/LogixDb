@@ -12,22 +12,23 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi_rung")
-            .WithPrimaryKey("rung_id")
-            .WithRelation<Guid>("aoi_id", "aoi").NotNullable()
+            .WithPrimaryKey<long>("rung_id")
+            .WithRelation<long>("aoi_id", "aoi").NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("aoi_rung")
+            .OnColumn("aoi_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("aoi_rung")
             .OnColumn("aoi_id").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
-
-        Create.Index().OnTable("aoi_rung")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("aoi_id").Ascending();
     }
 }

@@ -12,30 +12,24 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("routine")
-            .WithPrimaryKey("routine_id")
-            .WithRelation<Guid>("program_id", "program").NotNullable()
+            .WithPrimaryKey<long>("routine_id")
+            .WithRelation<long>("program_id", "program").NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("routine_type").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("routine")
+            .OnColumn("program_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("routine")
             .OnColumn("program_id").Ascending()
             .OnColumn("routine_name").Ascending()
             .WithOptions().Unique();
-        
-        Create.Index().OnTable("routine")
-            .OnColumn("program_id").Ascending()
-            .OnColumn("source_hash").Ascending()
-            .WithOptions().Unique();
 
         Create.Index().OnTable("routine")
-            .OnColumn("routine_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-        
-        Create.Index().OnTable("routine")
-            .OnColumn("routine_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("routine_name").Ascending();
     }
 }

@@ -7,58 +7,61 @@ namespace LogixDb.Migrations;
 /// </summary>
 public static class FluentMigrationExtensions
 {
-    /// <summary>
-    /// Adds a primary key column to the table with auto-increment functionality.
-    /// </summary>
     /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
-    /// <param name="name">The name of the column to be added as the primary key.</param>
-    /// <returns>Returns the fluent migration builder after adding the primary key column.</returns>
-    public static ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryKey(
-        this ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax,
-        string name
-    )
+    extension(ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax)
     {
-        return syntax.WithColumn(name).AsGuid().NotNullable().PrimaryKey();
-    }
-    
-    /// <summary>
-    /// Adds a column to the table that establishes a foreign key relationship with another table.
-    /// The column type is determined based on the specified generic type parameter.
-    /// Supported types are <see cref="Guid"/> and <see cref="int"/>.
-    /// </summary>
-    /// <param name="syntax">The fluent migration builder used to define the table schema.</param>
-    /// <param name="columnName">The name of the column to be added as the foreign key.</param>
-    /// <param name="primaryTable">The name of the primary table that the foreign key references.</param>
-    /// <param name="primaryColumn">The name of the primary column in the referenced table.
-    /// Defaults to the name of the foreign key column if not specified.</param>
-    /// <typeparam name="T">The data type of the foreign key column, which must be either <see cref="Guid"/> or <see cref="int"/>.</typeparam>
-    /// <returns>Returns the fluent migration builder after adding the column with the foreign key relationship.</returns>
-    /// <exception cref="NotSupportedException">Thrown when the specified generic type parameter is not <see cref="Guid"/> or <see cref="int"/>.</exception>
-    public static ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax WithRelation<T>(
-        this ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax,
-        string columnName,
-        string primaryTable,
-        string? primaryColumn = null
-    ) where T : struct
-    {
-        if (typeof(T) == typeof(Guid))
+        /// <summary>
+        /// Adds a primary key column to the table with auto-increment functionality.
+        /// </summary>
+        /// <param name="name">The name of the column to be added as the primary key.</param>
+        /// <returns>Returns the fluent migration builder after adding the primary key column.</returns>
+        public ICreateTableColumnOptionOrWithColumnSyntax WithPrimaryKey<T>(string name) where T : struct
         {
-            return syntax
-                .WithColumn(columnName)
-                .AsGuid()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName);
+            var type = typeof(T);
+
+            return type switch
+            {
+                _ when type == typeof(byte) => syntax.WithColumn(name).AsByte().NotNullable().PrimaryKey().Identity(),
+                _ when type == typeof(int) => syntax.WithColumn(name).AsInt32().NotNullable().PrimaryKey().Identity(),
+                _ when type == typeof(long) => syntax.WithColumn(name).AsInt64().NotNullable().PrimaryKey().Identity(),
+                _ => throw new NotSupportedException($"Type {typeof(T).Name} is not supported primary key columns")
+            };
         }
 
-        if (typeof(T) == typeof(int))
+        /// <summary>
+        /// Adds a column to the table that establishes a foreign key relationship with another table.
+        /// The column type is determined based on the specified generic type parameter.
+        /// Supported types are <see cref="Guid"/> and <see cref="int"/>.
+        /// </summary>
+        /// <param name="columnName">The name of the column to be added as the foreign key.</param>
+        /// <param name="primaryTable">The name of the primary table that the foreign key references.</param>
+        /// <param name="primaryColumn">The name of the primary column in the referenced table.
+        /// Defaults to the name of the foreign key column if not specified.</param>
+        /// <typeparam name="T">The data type of the foreign key column, which must be either <see cref="Guid"/> or <see cref="int"/>.</typeparam>
+        /// <returns>Returns the fluent migration builder after adding the column with the foreign key relationship.</returns>
+        /// <exception cref="NotSupportedException">Thrown when the specified generic type parameter is not <see cref="Guid"/> or <see cref="int"/>.</exception>
+        public ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax WithRelation<T>(
+            string columnName, string primaryTable, string? primaryColumn = null
+        ) where T : struct
         {
-            return syntax
-                .WithColumn(columnName)
-                .AsInt32()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName);
-        }
+            if (typeof(T) == typeof(int))
+            {
+                return syntax
+                    .WithColumn(columnName)
+                    .AsInt32()
+                    .ForeignKey(primaryTable, primaryColumn ?? columnName);
+            }
 
-        throw new NotSupportedException(
-            $"Type {typeof(T).Name} is not supported for foreign key relations. Only Guid and int are supported.");
+            if (typeof(T) == typeof(long))
+            {
+                return syntax
+                    .WithColumn(columnName)
+                    .AsInt64()
+                    .ForeignKey(primaryTable, primaryColumn ?? columnName);
+            }
+
+            throw new NotSupportedException($"Type {typeof(T).Name} is not supported for foreign key relations.");
+        }
     }
 
     /// <summary>
@@ -76,19 +79,9 @@ public static class FluentMigrationExtensions
     /// <exception cref="NotSupportedException">Thrown when the specified generic type parameter is not <see cref="Guid"/> or <see cref="int"/>.</exception>
     public static ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax WithRelation<T>(
         this ICreateTableColumnOptionOrWithColumnSyntax syntax,
-        string columnName,
-        string primaryTable,
-        string? primaryColumn = null
+        string columnName, string primaryTable, string? primaryColumn = null
     ) where T : struct
     {
-        if (typeof(T) == typeof(Guid))
-        {
-            return syntax
-                .WithColumn(columnName)
-                .AsGuid()
-                .ForeignKey(primaryTable, primaryColumn ?? columnName);
-        }
-
         if (typeof(T) == typeof(int))
         {
             return syntax
@@ -97,7 +90,14 @@ public static class FluentMigrationExtensions
                 .ForeignKey(primaryTable, primaryColumn ?? columnName);
         }
 
-        throw new NotSupportedException(
-            $"Type {typeof(T).Name} is not supported for foreign key relations. Only Guid and int are supported.");
+        if (typeof(T) == typeof(long))
+        {
+            return syntax
+                .WithColumn(columnName)
+                .AsInt64()
+                .ForeignKey(primaryTable, primaryColumn ?? columnName);
+        }
+
+        throw new NotSupportedException($"Type {typeof(T).Name} is not supported for foreign key relations.");
     }
 }

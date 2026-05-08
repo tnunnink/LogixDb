@@ -12,11 +12,16 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_comment")
-            .WithPrimaryKey("comment_id")
-            .WithRelation<Guid>("member_id", "tag_member").NotNullable()
+            .WithPrimaryKey<long>("comment_id")
+            .WithRelation<long>("member_id", "tag_member").NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("tag_comment").AsString(int.MaxValue).NotNullable()
-            .WithColumn("record_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
+
+        Create.Index().OnTable("tag_comment")
+            .OnColumn("member_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("tag_comment")
             .OnColumn("member_id").Ascending()
@@ -26,9 +31,5 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
         Create.Index().OnTable("tag_comment")
             .OnColumn("tag_name").Ascending()
             .OnColumn("member_id").Ascending();
-
-        Create.Index().OnTable("tag_comment")
-            .OnColumn("record_hash").Ascending()
-            .OnColumn("tag_name").Ascending();
     }
 }

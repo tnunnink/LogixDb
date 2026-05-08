@@ -12,7 +12,7 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi")
-            .WithPrimaryKey("aoi_id")
+            .WithPrimaryKey<long>("aoi_id")
             .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("aoi_description").AsString(512).Nullable()
             .WithColumn("aoi_revision").AsString(16).Nullable()
@@ -32,15 +32,13 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
             .WithColumn("signature_id").AsString(32).Nullable()
             .WithColumn("signature_timestamp").AsDateTime().Nullable()
             .WithColumn("component_class").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("aoi")
-            .OnColumn("aoi_name").Ascending()
-            .OnColumn("record_hash").Ascending();
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("aoi")
-            .OnColumn("aoi_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("aoi_name").Ascending();
     }
 }

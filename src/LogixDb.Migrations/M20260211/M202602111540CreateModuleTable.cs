@@ -12,8 +12,8 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("module")
-            .WithPrimaryKey("module_id")
-            .WithRelation<Guid>("parent_id", "module", "module_id").Nullable()
+            .WithPrimaryKey<long>("module_id")
+            .WithRelation<long>("parent_id", "module", "module_id").Nullable()
             .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(64).Nullable()
@@ -29,18 +29,14 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("is_safety_enabled").AsBoolean().Nullable()
             .WithColumn("ip_address").AsString(32).Nullable()
             .WithColumn("slot_number").AsByte().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("module")
-            .OnColumn("parent_id").Ascending();
+            .OnColumn("parent_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("module")
-            .OnColumn("module_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-
-        Create.Index().OnTable("module")
-            .OnColumn("module_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("module_name").Ascending();
     }
 }

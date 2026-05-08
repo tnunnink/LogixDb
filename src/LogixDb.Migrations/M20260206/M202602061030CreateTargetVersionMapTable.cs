@@ -14,17 +14,17 @@ public class M202602061030CreateTargetVersionMapTable : AutoReversingMigration
     {
         Create.Table("target_version_map")
             .WithRelation<int>("version_id", "target_version").OnDelete(Rule.Cascade)
-            .WithColumn("component_id").AsGuid().NotNullable()
-            .WithColumn("component_type").AsString().NotNullable();
+            .WithColumn("record_id").AsInt64().NotNullable()
+            .WithColumn("component_id").AsByte().NotNullable();
 
         Create.Index().OnTable("target_version_map")
             .OnColumn("version_id").Ascending()
+            .OnColumn("record_id").Ascending()
             .OnColumn("component_id").Ascending()
-            .OnColumn("component_type").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("target_version_map")
-            .OnColumn("component_id").Ascending()
-            .OnColumn("component_type").Ascending();
+            .OnColumn("record_id").Ascending()
+            .OnColumn("component_id").Ascending();
     }
 }

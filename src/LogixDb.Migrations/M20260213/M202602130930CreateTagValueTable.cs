@@ -14,7 +14,7 @@ public class M202602130930CreateTagValueTable : AutoReversingMigration
     {
         Create.Table("tag_value")
             .WithRelation<int>("version_id", "target_version").OnDelete(Rule.SetNull).Nullable()
-            .WithRelation<Guid>("member_id", "tag_member").OnDelete(Rule.Cascade)
+            .WithRelation<long>("member_id", "tag_member").OnDelete(Rule.Cascade)
             .WithColumn("tag_value").AsString(256).Nullable();
     }
 }

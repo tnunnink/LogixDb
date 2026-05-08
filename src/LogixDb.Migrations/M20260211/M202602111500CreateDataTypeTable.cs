@@ -12,20 +12,18 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("data_type")
-            .WithPrimaryKey("type_id")
+            .WithPrimaryKey<long>("type_id")
             .WithColumn("type_name").AsString(256).NotNullable()
             .WithColumn("type_description").AsString(512).Nullable()
             .WithColumn("type_class").AsString(32).Nullable()
             .WithColumn("type_family").AsString(32).Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("data_type")
-            .OnColumn("type_name").Ascending()
-            .OnColumn("record_hash").Ascending();
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("data_type")
-            .OnColumn("type_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("type_name").Ascending();
     }
 }

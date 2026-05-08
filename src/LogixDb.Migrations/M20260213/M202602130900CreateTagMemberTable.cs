@@ -12,12 +12,19 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_member")
-            .WithPrimaryKey("member_id")
-            .WithRelation<Guid>("tag_id", "tag").NotNullable()
-            .WithRelation<Guid>("parent_id", "tag_member", "member_id").Nullable()
+            .WithPrimaryKey<long>("member_id")
+            .WithRelation<long>("tag_id", "tag").NotNullable()
+            .WithRelation<long>("parent_id", "tag_member", "member_id").Nullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("member_name").AsString(128).NotNullable()
-            .WithColumn("data_type").AsString(128).Nullable();
+            .WithColumn("data_type").AsString(128).NotNullable()
+            .WithColumn("record_hash").AsString(64).NotNullable();
+        
+        Create.Index().OnTable("tag_member")
+            .OnColumn("tag_id").Ascending()
+            .OnColumn("parent_id").Ascending()
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("tag_id").Ascending()

@@ -12,7 +12,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("task")
-            .WithPrimaryKey("task_id")
+            .WithPrimaryKey<long>("task_id")
             .WithColumn("task_name").AsString(256).NotNullable()
             .WithColumn("task_description").AsString(512).Nullable()
             .WithColumn("task_type").AsString(32).Nullable()
@@ -24,15 +24,13 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("event_trigger").AsString(32).Nullable()
             .WithColumn("event_tag").AsString(128).Nullable()
             .WithColumn("enable_timeout").AsBoolean().Nullable()
-            .WithColumn("record_hash").AsString(32).NotNullable()
-            .WithColumn("source_hash").AsString(32).NotNullable();
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("task")
-            .OnColumn("task_name").Ascending()
-            .OnColumn("record_hash").Ascending();
-        
+            .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
+
         Create.Index().OnTable("task")
-            .OnColumn("task_name").Ascending()
-            .OnColumn("source_hash").Ascending();
+            .OnColumn("task_name").Ascending();
     }
 }

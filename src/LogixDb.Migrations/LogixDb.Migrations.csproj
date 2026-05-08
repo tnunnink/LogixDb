@@ -17,4 +17,14 @@
       <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="operands.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\operands.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

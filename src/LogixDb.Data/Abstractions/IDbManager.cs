@@ -102,12 +102,4 @@ public interface IDbManager
     /// <param name="token">A cancellation token to cancel the operation if necessary.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task DeleteVersions(string targetKey, DateTime beforeDate, CancellationToken token = default);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="tagetKey"></param>
-    /// <param name="token"></param>
-    /// <returns></returns>
-    Task PruneTarget(string tagetKey, CancellationToken token = default);
 }

@@ -17,7 +17,7 @@ internal class ProgramTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var programs = target.GetSource().Programs
-            .Select(p => new { Depth = GetProgramDepth(p), Program = p })
+            .Select(p => new { Depth = GetDepth(p), Program = p })
             .OrderBy(x => x.Depth)
             .Select(x => x.Program)
             .ToList();
@@ -30,7 +30,7 @@ internal class ProgramTransformer : IDbTransformer
     /// </summary>
     /// <param name="program">The program whose depth in the hierarchy is to be calculated.</param>
     /// <returns>The depth of the program, where a root program has a depth of 0.</returns>
-    private static int GetProgramDepth(Program program)
+    private static int GetDepth(Program program)
     {
         var current = program;
         var depth = 0;

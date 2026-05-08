@@ -19,13 +19,13 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
             .WithColumn("operand_type").AsString(128).Nullable()
             .WithColumn("operand_format").AsString(32).Nullable()
             .WithColumn("operand_description").AsString(2000).Nullable()
-            .WithColumn("is_destructive").AsBoolean().NotNullable()
-            .WithColumn("record_hash").AsString(64).NotNullable();
+            .WithColumn("is_destructive").AsBoolean().NotNullable();
+            //.WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("operand")
             .OnColumn("instruction_key").Ascending()
             .OnColumn("operand_index").Ascending()
-            .OnColumn("record_hash").Ascending()
+            //.OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
     }
 }

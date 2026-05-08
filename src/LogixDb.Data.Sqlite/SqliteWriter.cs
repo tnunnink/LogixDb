@@ -9,8 +9,40 @@ namespace LogixDb.Data.Sqlite;
 /// to an SQLite database using a specified connection and transaction. This class is
 /// designed to handle bulk inserts into the database while maintaining transactional integrity.
 /// </summary>
-internal class SqliteWriter(SqliteConnection connection, SqliteTransaction transaction) : IDbWriter
+internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTransaction transaction) : IDbWriter
 {
+    /// <summary>
+    /// A dictionary mapping table names to corresponding SQLite merge scripts.
+    /// The keys represent the names of database tables, and the values are
+    /// the SQL merge scripts that will be executed during data processing.
+    /// This dictionary is used to dynamically retrieve and apply merge scripts
+    /// for tables during database write operations, ensuring efficient and
+    /// consistent data updates.
+    /// </summary>
+    private static readonly Dictionary<string, string> MergeScripts = new()
+    {
+        { "controller", SqliteScript.MergeController },
+        { "data_type", SqliteScript.MergeController },
+        { "data_type_member", SqliteScript.MergeController },
+        { "aoi", SqliteScript.MergeController },
+        { "aoi_parameter", SqliteScript.MergeController },
+        { "aoi_rung", SqliteScript.MergeController },
+        { "module", SqliteScript.MergeController },
+        { "task", SqliteScript.MergeController },
+        { "program", SqliteScript.MergeController },
+        { "routine", SqliteScript.MergeController },
+        { "rung", SqliteScript.MergeController },
+        { "instruction", SqliteScript.MergeController },
+        { "argument", SqliteScript.MergeController },
+        { "operand", SqliteScript.MergeController },
+        { "tag", SqliteScript.MergeController },
+        { "tag_member", SqliteScript.MergeController },
+        { "tag_comment", SqliteScript.MergeController },
+        { "tag_value", SqliteScript.MergeController },
+        { "tag_producer", SqliteScript.MergeController },
+        { "tag_consumer", SqliteScript.MergeController }
+    };
+
     /// <summary>
     /// Writes a collection of <see cref="DataTable"/> objects to a database asynchronously while allowing cancellation of the operation.
     /// </summary>
@@ -21,8 +53,26 @@ internal class SqliteWriter(SqliteConnection connection, SqliteTransaction trans
     {
         foreach (var table in tables)
         {
+            await CreateTempTableAsync(table, token);
             await WriteTableAsync(table, token);
+            await ExecuteMergeAsync(table, token);
         }
+    }
+
+    /// <summary>
+    /// Creates a temporary table in the database corresponding to the structure of the given <see cref="DataTable"/> asynchronously.
+    /// This operation is performed within the specified connection and transaction.
+    /// </summary>
+    /// <param name="table">The <see cref="DataTable"/> whose structure will be used to define the temporary table.</param>
+    /// <param name="token">The <see cref="CancellationToken"/> used to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation of creating the temporary table.</returns>
+    private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
+    {
+        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
+        var sql = $"CREATE TEMP TABLE temp_{table.TableName} ({columns});";
+
+        await using var command = new SqliteCommand(sql, connection, transaction);
+        await command.ExecuteNonQueryAsync(token);
     }
 
     /// <summary>
@@ -33,7 +83,11 @@ internal class SqliteWriter(SqliteConnection connection, SqliteTransaction trans
     /// <returns>A <see cref="Task"/> that represents the asynchronous write operation.</returns>
     private async Task WriteTableAsync(DataTable table, CancellationToken token)
     {
-        await using var command = new SqliteCommand(BuildInsertStatement(table), connection, transaction);
+        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
+        var parameters = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => $"@{c.ColumnName}"));
+        var sql = $"INSERT INTO temp_{table.TableName} ({columns}) VALUES ({parameters});";
+
+        await using var command = new SqliteCommand(sql, connection, transaction);
 
         foreach (DataColumn column in table.Columns)
             command.Parameters.Add($"@{column.ColumnName}", column.DataType.ToSqliteType());
@@ -53,18 +107,17 @@ internal class SqliteWriter(SqliteConnection connection, SqliteTransaction trans
     }
 
     /// <summary>
-    /// Builds an SQL INSERT statement for the specified <see cref="DataTable"/>.
+    /// Executes the merge script for the specified <see cref="DataTable"/> in the context of an SQLite database.
     /// </summary>
-    /// <param name="table">The <see cref="DataTable"/> containing the schema and data to construct the INSERT statement.</param>
-    /// <returns>A <see cref="string"/> representing the SQL INSERT statement for the specified table.</returns>
-    private static string BuildInsertStatement(DataTable table)
+    /// <param name="table">The <see cref="DataTable"/> containing the data to be merged into the database.</param>
+    /// <param name="token">The <see cref="CancellationToken"/> used to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous execution of the merge script.</returns>
+    private async Task ExecuteMergeAsync(DataTable table, CancellationToken token)
     {
-        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
-        var parameters = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => $"@{c.ColumnName}"));
+        var script = MergeScripts[table.TableName];
 
-        return $"""
-                INSERT INTO {table.TableName} ({columns})
-                VALUES ({parameters});
-                """;
+        await using var command = new SqliteCommand(script, connection, transaction);
+        command.Parameters.AddWithValue("@VersionId", versionId);
+        await command.ExecuteNonQueryAsync(token);
     }
 }

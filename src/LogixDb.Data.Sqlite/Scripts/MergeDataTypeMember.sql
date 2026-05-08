@@ -1,5 +1,4 @@
-INSERT INTO data_type_member (member_id,
-                              type_id,
+INSERT INTO data_type_member (type_id,
                               member_name,
                               member_description,
                               data_type,
@@ -10,8 +9,7 @@ INSERT INTO data_type_member (member_id,
                               target_name,
                               bit_number,
                               record_hash)
-SELECT member_id,
-       type_id,
+SELECT (SELECT type_id FROM data_type WHERE record_hash = t.type_id),
        member_name,
        member_description,
        data_type,
@@ -23,4 +21,4 @@ SELECT member_id,
        bit_number,
        record_hash
 FROM temp_data_type_member t
-WHERE type_id = t.type_id;
+ON CONFLICT (type_id, record_hash) DO NOTHING; 

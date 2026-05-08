@@ -150,6 +150,7 @@ public sealed class SqliteManager : IDbManager
         );
     }
 
+    /// <inheritdoc />
     public Task PruneTarget(string tagetKey, CancellationToken token = default)
     {
         throw new NotImplementedException();
@@ -230,7 +231,7 @@ public sealed class SqliteManager : IDbManager
             var dataTables = target.Compile(tableNames.ToArray()).ToList();
 
             // 3. Perform a bulk write of all compiled data to the database.
-            var writer = new SqliteWriter(connection, (SqliteTransaction)transaction);
+            var writer = new SqliteWriter(target.VersionId, connection, (SqliteTransaction)transaction);
             await writer.WriteAsync(dataTables, token);
 
             await transaction.CommitAsync(token);

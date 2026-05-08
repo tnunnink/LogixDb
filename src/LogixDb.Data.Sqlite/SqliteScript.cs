@@ -82,6 +82,14 @@ internal static class SqliteScript
     public static string GetComponentTables => Get(nameof(GetComponentTables));
 
     /// <summary>
+    /// Represents the SQL script used for handling controller merge operations in the database.
+    /// This property provides the SQL command required to merge specific controller-related
+    /// data into the SQLite database, ensuring proper synchronization and integration of the
+    /// data during the process.
+    /// </summary>
+    public static string MergeController => Get(nameof(MergeController));
+
+    /// <summary>
     /// Retrieves the content of an embedded SQL script resource by its name.
     /// </summary>
     /// <param name="scriptName">The name of the SQL script to retrieve, excluding file extension.</param>

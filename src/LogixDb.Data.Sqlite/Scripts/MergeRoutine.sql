@@ -1,22 +1,21 @@
-INSERT INTO routine (routine_id,
-                     program_id,
+INSERT INTO routine (program_id,
                      routine_name,
                      routine_description,
                      routine_type,
-                     record_hash,
-                     source_hash)
-SELECT routine_id,
-       (SELECT program_id
-        from program
-        WHERE source_hash = (SELECT source_hash FROM temp_program WHERE program_id = t.program_id)),
+                     record_hash)
+SELECT (SELECT program_id from program WHERE record_hash = t.program_id),
        routine_name,
        routine_description,
        routine_type,
-       record_hash,
-       source_hash
+       record_hash
 FROM temp_routine t
-ON CONFLICT (program_id, source_hash) DO NOTHING;
+ON CONFLICT (program_id, record_hash) DO NOTHING;
 
-INSERT INTO target_version_map (version_id, component_id, component_type)
-SELECT @VersionId, routine_id, 'routine'
-FROM temp_routine;
+INSERT INTO target_version_map (version_id, record_id, component_id)
+SELECT @VersionId,
+       (SELECT routine_id
+        FROM routine
+        WHERE record_hash = t.record_hash
+          AND program_id = (SELECT program_id FROM program WHERE record_hash = t.program_id)),
+       (SELECT component_id FROM component WHERE component_name = 'routine')
+FROM temp_routine t;

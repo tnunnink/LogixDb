@@ -10,8 +10,7 @@ INSERT INTO task (task_id,
                   event_trigger,
                   event_tag,
                   enable_timeout,
-                  record_hash,
-                  source_hash)
+                  record_hash)
 SELECT task_id,
        task_name,
        task_description,
@@ -24,11 +23,12 @@ SELECT task_id,
        event_trigger,
        event_tag,
        enable_timeout,
-       record_hash,
-       source_hash
+       record_hash
 FROM temp_task
-ON CONFLICT (source_hash) DO NOTHING;
+ON CONFLICT (record_hash) DO NOTHING;
 
-INSERT INTO target_version_map (version_id, component_id, component_type)
-SELECT @VersionId, (SELECT task_id FROM task WHERE source_hash = t.source_hash), 'task'
+INSERT INTO target_version_map (version_id, record_id, component_id)
+SELECT @VersionId,
+       (SELECT task_id FROM task WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM component WHERE component_name = 'task')
 FROM temp_task t;

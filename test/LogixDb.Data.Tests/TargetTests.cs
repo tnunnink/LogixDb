@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using FluentAssertions;
 using LogixDb.Testing;
 
@@ -10,6 +11,7 @@ public class TargetTests
     public void Target_CanBeCreated_WithRequiredFields()
     {
         var sourceData = new byte[] { 1, 2, 3, 4, 5 };
+
         var target = new Target
         {
             TargetType = "Controller",
@@ -21,7 +23,7 @@ public class TargetTests
             SourceHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(sourceData)),
             SourceData = sourceData
         };
-        
+
         target.TargetType.Should().Be("Controller");
         target.TargetName.Should().Be("TestController");
         target.IsPartial.Should().BeFalse();
@@ -30,7 +32,7 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_CreateFromFakeSource_ShouldHaveExpectedFields()
+    public void Create_FromFakeSource_ShouldHaveExpectedFields()
     {
         var source = TestSource.LocalTest();
 
@@ -46,7 +48,18 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_GetSource_ShouldReturnParsedL5X()
+    public void Create_WithTargetKey_ShouldUseProvidedKey()
+    {
+        var source = TestSource.LocalTest();
+        const string customKey = "custom://mykey";
+
+        var target = Target.Create(source, customKey);
+
+        target.TargetKey.Should().Be(customKey);
+    }
+
+    [Test]
+    public void GetSource_WhenCalled_ShouldReturnParsedL5X()
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source);
@@ -58,7 +71,7 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_ToString_ShouldReturnTargetKey()
+    public void ToString_WhenCalled_ShouldReturnTargetKey()
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source);
@@ -67,7 +80,7 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_Compile_ShouldReturnExpectedTables()
+    public void Compile_ExplicitValidTables_ShouldReturnExpectedTables()
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source);
@@ -87,7 +100,7 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_Compile_WithEmptyList_ShouldReturnNoTables()
+    public void Compile_WithEmptyList_ShouldReturnNoTables()
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source);
@@ -99,7 +112,7 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
+    public void Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source);
@@ -112,13 +125,24 @@ public class TargetTests
     }
 
     [Test]
-    public void Target_Create_WithTargetKey_ShouldUseProvidedKey()
+    public void Compile_AllTablesAgainstLocalTests_ShouldBePerformant()
     {
-        var source = TestSource.LocalTest();
-        const string customKey = "custom://mykey";
+        var source = TestSource.LocalExample();
+        var target = Target.Create(source);
+        var tableNames = new List<string>
+        {
+            "controller", "data_type", "data_type_member", "aoi", "aoi_parameter", "aoi_rung", "module", "task",
+            "program", "routine", "rung", "instruction", "argument", "operand", "tag", "tag_member", "tag_comment",
+            "tag_value", "tag_producer", "tag_consumer", "task"
+        };
 
-        var target = Target.Create(source, customKey);
+        var stopwatch = Stopwatch.StartNew();
+        var tables = target.Compile(tableNames).ToList();
+        stopwatch.Stop();
 
-        target.TargetKey.Should().Be(customKey);
+
+        tables.Should().NotBeEmpty();
+        stopwatch.Elapsed.Should().BeLessThan(TimeSpan.FromSeconds(3));
+        Console.Write(stopwatch.ElapsedMilliseconds);
     }
 }

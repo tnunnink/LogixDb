@@ -84,8 +84,7 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("data_type_member");
 
-            await AssertColumnDefinition("data_type_member", "member_id", "bigint");
-            await AssertColumnDefinition("data_type_member", "type_id", "bigint");
+            await AssertColumnDefinition("data_type_member", "type_name", "nvarchar");
             await AssertColumnDefinition("data_type_member", "member_name", "nvarchar");
             await AssertColumnDefinition("data_type_member", "data_type", "nvarchar");
             await AssertColumnDefinition("data_type_member", "dimensions", "nvarchar");
@@ -98,9 +97,8 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type_member", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("data_type_member", "member_id");
-            await AssertForeignKey("data_type_member", "type_id", "data_type", "type_id");
-            await AssertUniqueIndex("data_type_member", "type_id", "record_hash");
-            await AssertUniqueIndex("data_type_member", "type_id", "member_name");
+            await AssertUniqueIndex("data_type_member", "record_hash");
+            await AssertUniqueIndex("data_type_member", "type_name", "member_name");
             await AssertIndex("data_type_member", "member_name");
         }
     }
@@ -143,12 +141,11 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("program");
 
-            await AssertColumnDefinition("program", "program_id", "bigint");
-            await AssertColumnDefinition("program", "task_id", "bigint");
-            await AssertColumnDefinition("program", "folder_id", "bigint");
             await AssertColumnDefinition("program", "program_name", "nvarchar");
-            await AssertColumnDefinition("program", "program_type", "nvarchar");
+            await AssertColumnDefinition("program", "task_name", "nvarchar");
+            await AssertColumnDefinition("program", "folder_name", "nvarchar");
             await AssertColumnDefinition("program", "program_description", "nvarchar");
+            await AssertColumnDefinition("program", "program_type", "nvarchar");
             await AssertColumnDefinition("program", "main_routine", "nvarchar");
             await AssertColumnDefinition("program", "fault_routine", "nvarchar");
             await AssertColumnDefinition("program", "is_disabled", "bit");
@@ -157,11 +154,10 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("program", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("program", "program_id");
-            await AssertForeignKey("program", "task_id", "task", "task_id");
-            await AssertForeignKey("program", "folder_id", "program", "program_id");
-            await AssertUniqueIndex("program", "task_id", "folder_id", "record_hash");
-            await AssertIndex("program", "folder_id", "program_id");
+            await AssertUniqueIndex("program", "record_hash");
             await AssertIndex("program", "program_name");
+            await AssertIndex("program", "folder_name");
+            await AssertIndex("program", "task_name");
         }
     }
 
@@ -174,17 +170,15 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("routine");
 
-            await AssertColumnDefinition("routine", "routine_id", "bigint");
-            await AssertColumnDefinition("routine", "program_id", "bigint");
+            await AssertColumnDefinition("routine", "program_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
-            await AssertColumnDefinition("routine", "routine_type", "nvarchar");
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
+            await AssertColumnDefinition("routine", "routine_type", "nvarchar");
             await AssertColumnDefinition("routine", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("routine", "routine_id");
-            await AssertForeignKey("routine", "program_id", "program", "program_id");
-            await AssertUniqueIndex("routine", "program_id", "record_hash");
-            await AssertUniqueIndex("routine", "program_id", "routine_name");
+            await AssertUniqueIndex("routine", "record_hash");
+            await AssertUniqueIndex("routine", "program_name", "routine_name");
             await AssertIndex("routine", "routine_name");
         }
     }
@@ -199,16 +193,20 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertTableExists("rung");
 
             await AssertColumnDefinition("rung", "rung_id", "bigint");
-            await AssertColumnDefinition("rung", "routine_id", "bigint");
+            await AssertColumnDefinition("rung", "rung_key", "uniqueidentifier");
+            await AssertColumnDefinition("rung", "program_name", "nvarchar");
+            await AssertColumnDefinition("rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "rung_text", "nvarchar");
             await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
+            await AssertColumnDefinition("rung", "code_hash", "nvarchar");
             await AssertColumnDefinition("rung", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("rung", "rung_id");
-            await AssertForeignKey("rung", "routine_id", "routine", "routine_id");
-            await AssertUniqueIndex("rung", "routine_id", "record_hash");
-            await AssertUniqueIndex("rung", "routine_id", "rung_number");
+            await AssertUniqueIndex("rung", "record_hash");
+            await AssertUniqueIndex("rung", "program_name", "routine_name", "rung_number");
+            await AssertIndex("rung", "rung_key");
+            await AssertIndex("rung", "code_hash");
         }
     }
     [Test]
@@ -221,7 +219,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertTableExists("module");
 
             await AssertColumnDefinition("module", "module_id", "bigint");
-            await AssertColumnDefinition("module", "parent_id", "bigint");
             await AssertColumnDefinition("module", "module_name", "nvarchar");
             await AssertColumnDefinition("module", "catalog_number", "nvarchar");
             await AssertColumnDefinition("module", "revision", "nvarchar");
@@ -240,9 +237,9 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("module", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("module", "module_id");
-            await AssertForeignKey("module", "parent_id", "module", "module_id");
-            await AssertUniqueIndex("module", "parent_id", "record_hash");
+            await AssertUniqueIndex("module", "record_hash");
             await AssertIndex("module", "module_name");
+            await AssertIndex("module", "parent_name");
         }
     }
 }

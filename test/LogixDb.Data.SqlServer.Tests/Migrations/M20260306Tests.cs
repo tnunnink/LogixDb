@@ -12,8 +12,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("instruction");
 
-            await AssertColumnDefinition("instruction", "instruction_id", "bigint");
-            await AssertColumnDefinition("instruction", "rung_id", "bigint");
+            await AssertColumnDefinition("instruction", "rung_key", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "instruction_index", "smallint");
             await AssertColumnDefinition("instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("instruction", "instruction_text", "nvarchar");
@@ -21,10 +20,10 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("instruction", "is_native", "bit");
             await AssertColumnDefinition("instruction", "record_hash", "nvarchar");
 
-            await AssertPrimaryKey("instruction", "instruction_id");
-            await AssertForeignKey("instruction", "rung_id", "rung", "rung_id");
-            await AssertUniqueIndex("instruction", "rung_id", "record_hash");
-            await AssertUniqueIndex("instruction", "rung_id", "instruction_index");
+            await AssertForeignKey("instruction", "rung_key", "rung", "rung_key");
+            await AssertUniqueIndex("instruction", "rung_key", "instruction_index");
+            await AssertIndex("instruction", "instruction_key");
+            await AssertIndex("instruction", "record_hash");
         }
     }
 
@@ -37,17 +36,15 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("argument");
 
-            await AssertColumnDefinition("argument", "argument_id", "bigint");
-            await AssertColumnDefinition("argument", "instruction_id", "bigint");
+            await AssertColumnDefinition("argument", "rung_key", "uniqueidentifier");
+            await AssertColumnDefinition("argument", "instruction_index", "smallint");
             await AssertColumnDefinition("argument", "argument_index", "tinyint");
             await AssertColumnDefinition("argument", "argument_type", "nvarchar");
             await AssertColumnDefinition("argument", "argument_text", "nvarchar");
-            await AssertColumnDefinition("argument", "record_hash", "nvarchar");
 
-            await AssertPrimaryKey("argument", "argument_id");
-            await AssertForeignKey("argument", "instruction_id", "instruction", "instruction_id");
-            await AssertUniqueIndex("argument", "instruction_id", "record_hash");
-            await AssertIndex("argument", "instruction_id", "argument_index");
+            await AssertForeignKey("argument", "rung_key", "rung", "rung_key");
+            await AssertIndex("argument", "rung_key", "instruction_index", "argument_index");
+            await AssertIndex("argument", "argument_text");
         }
     }
 }

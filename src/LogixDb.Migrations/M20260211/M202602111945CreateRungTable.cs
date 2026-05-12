@@ -25,16 +25,17 @@ public class M202602111945CreateRungTable : AutoReversingMigration
         Create.Index().OnTable("rung")
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
+        
+        // This is required for SQL Server to make FK relationship to non PK column
+        Create.UniqueConstraint().OnTable("rung")
+            .Column("rung_key");
 
         Create.Index().OnTable("rung")
             .OnColumn("program_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
-        
-        Create.Index().OnTable("rung")
-            .OnColumn("rung_key").Ascending();
-        
+
         Create.Index().OnTable("rung")
             .OnColumn("code_hash").Ascending();
     }

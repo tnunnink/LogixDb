@@ -15,8 +15,6 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
         Create.Table("argument")
             .WithRelation<Guid>("rung_key", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
-            /*.WithPrimaryKey<long>("argument_id")
-            .WithRelation<long>("instruction_id", "instruction").NotNullable()*/
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(256).NotNullable();

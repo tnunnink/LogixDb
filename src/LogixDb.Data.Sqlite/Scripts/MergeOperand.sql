@@ -1,4 +1,4 @@
-INSERT INTO operand (instruction_key,
+INSERT OR IGNORE INTO operand (instruction_key,
                      operand_index,
                      operand_name,
                      operand_type,
@@ -14,5 +14,4 @@ SELECT t.instruction_key,
        t.operand_description,
        t.is_destructive,
        t.record_hash
-FROM temp_operand t
-ON CONFLICT (instruction_key, operand_index, record_hash) DO NOTHING;
+FROM temp_operand t;

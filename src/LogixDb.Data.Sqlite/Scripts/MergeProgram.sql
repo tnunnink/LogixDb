@@ -1,4 +1,4 @@
-INSERT INTO program (task_id,
+INSERT OR IGNORE INTO program (task_id,
                      folder_id,
                      program_name,
                      program_description,
@@ -20,8 +20,7 @@ SELECT (SELECT task_id FROM task WHERE record_hash = t.task_id),
        t.is_folder,
        t.has_test_edits,
        t.record_hash
-FROM temp_program t
-ON CONFLICT (task_id, folder_id, record_hash) DO NOTHING;
+FROM temp_program t;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

@@ -1,4 +1,4 @@
-INSERT INTO instruction (rung_id,
+INSERT OR IGNORE INTO instruction (rung_id,
                          instruction_index,
                          instruction_text,
                          instruction_key,
@@ -12,5 +12,4 @@ SELECT (SELECT rung_id FROM rung WHERE record_hash = t.rung_id),
        t.is_conditional,
        t.is_native,
        t.record_hash
-FROM temp_instruction t
-ON CONFLICT (rung_id, record_hash) DO NOTHING;
+FROM temp_instruction t;

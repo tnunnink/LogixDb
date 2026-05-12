@@ -1,4 +1,4 @@
-INSERT INTO routine (program_id,
+INSERT OR IGNORE INTO routine (program_id,
                      routine_name,
                      routine_description,
                      routine_type,
@@ -8,8 +8,7 @@ SELECT (SELECT program_id from program WHERE record_hash = t.program_id),
        routine_description,
        routine_type,
        record_hash
-FROM temp_routine t
-ON CONFLICT (program_id, record_hash) DO NOTHING;
+FROM temp_routine t;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

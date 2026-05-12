@@ -1,4 +1,4 @@
-INSERT INTO aoi (aoi_name,
+INSERT OR IGNORE INTO aoi (aoi_name,
                  aoi_description,
                  aoi_revision,
                  aoi_revision_extension,
@@ -38,8 +38,7 @@ SELECT t.aoi_name,
        t.signature_timestamp,
        t.component_class,
        t.record_hash
-FROM temp_aoi t
-ON CONFLICT (record_hash) DO NOTHING;
+FROM temp_aoi t;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

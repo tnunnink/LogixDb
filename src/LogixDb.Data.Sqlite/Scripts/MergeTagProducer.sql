@@ -1,4 +1,4 @@
-INSERT INTO tag_producer (tag_id,
+INSERT OR IGNORE INTO tag_producer (tag_id,
                           produce_count,
                           send_event_trigger,
                           unicast_permitted,
@@ -14,5 +14,4 @@ SELECT (SELECT tag_id FROM tag WHERE record_hash = t.tag_id),
        t.minimum_rpi,
        t.default_rpi,
        t.record_hash
-FROM temp_tag_producer t
-ON CONFLICT (tag_id, record_hash) DO NOTHING;
+FROM temp_tag_producer t;

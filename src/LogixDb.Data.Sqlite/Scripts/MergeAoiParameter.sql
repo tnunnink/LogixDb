@@ -1,4 +1,4 @@
-INSERT INTO aoi_parameter (aoi_id,
+INSERT OR IGNORE INTO aoi_parameter (aoi_id,
                            parameter_name,
                            parameter_description,
                            data_type,
@@ -28,5 +28,4 @@ SELECT (SELECT aoi_id FROM aoi WHERE record_hash = t.aoi_id),
        t.is_required,
        t.is_constant,
        t.record_hash
-FROM temp_aoi_parameter t
-ON CONFLICT (aoi_id, record_hash) DO NOTHING;
+FROM temp_aoi_parameter t;

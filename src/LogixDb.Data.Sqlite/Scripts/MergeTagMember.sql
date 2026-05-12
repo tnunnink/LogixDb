@@ -1,4 +1,4 @@
-INSERT INTO tag_member (tag_id,
+INSERT OR IGNORE INTO tag_member (tag_id,
                         parent_id,
                         tag_name,
                         member_name,
@@ -13,5 +13,4 @@ SELECT (SELECT tag_id FROM tag WHERE record_hash = t.tag_id),
        member_name,
        data_type,
        record_hash
-FROM temp_tag_member t
-ON CONFLICT (tag_id, parent_id, record_hash) DO NOTHING;
+FROM temp_tag_member t;

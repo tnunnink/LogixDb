@@ -1,4 +1,4 @@
-INSERT INTO tag_consumer (tag_id,
+INSERT OR IGNORE INTO tag_consumer (tag_id,
                           producer,
                           remote_tag,
                           remote_instance,
@@ -12,5 +12,4 @@ SELECT (SELECT tag_id FROM tag WHERE record_hash = t.tag_id),
        t.rpi,
        t.unicast,
        t.record_hash
-FROM temp_tag_consumer t
-ON CONFLICT (tag_id, record_hash) DO NOTHING;
+FROM temp_tag_consumer t;

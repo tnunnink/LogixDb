@@ -1,4 +1,4 @@
-INSERT INTO data_type (type_name,
+INSERT OR IGNORE INTO data_type (type_name,
                        type_description,
                        type_class,
                        type_family,
@@ -8,8 +8,7 @@ SELECT type_name,
        type_class,
        type_family,
        record_hash
-FROM temp_data_type
-ON CONFLICT (record_hash) DO NOTHING;
+FROM temp_data_type;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

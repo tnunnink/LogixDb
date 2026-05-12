@@ -1,4 +1,4 @@
-INSERT INTO aoi_rung (aoi_id,
+INSERT OR IGNORE INTO aoi_rung (aoi_id,
                       routine_name,
                       rung_number,
                       rung_text,
@@ -10,5 +10,4 @@ SELECT (SELECT aoi_id FROM aoi WHERE record_hash = t.aoi_id),
        t.rung_text,
        t.rung_comment,
        t.record_hash
-FROM temp_aoi_rung t
-ON CONFLICT (aoi_id, record_hash) DO NOTHING;
+FROM temp_aoi_rung t;

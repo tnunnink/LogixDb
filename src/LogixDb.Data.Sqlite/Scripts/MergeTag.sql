@@ -1,4 +1,4 @@
-INSERT INTO tag (program_id,
+INSERT OR IGNORE INTO tag (program_id,
                  tag_name,
                  data_type,
                  dimensions,
@@ -22,8 +22,7 @@ SELECT (SELECT program_id FROM program WHERE record_hash = t.program_id),
        t.tag_type,
        t.alias_for,
        t.record_hash
-FROM temp_tag t
-ON CONFLICT (program_id, record_hash) DO NOTHING;
+FROM temp_tag t;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

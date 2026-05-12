@@ -1,4 +1,4 @@
-INSERT INTO task (task_id,
+INSERT OR IGNORE INTO task (task_id,
                   task_name,
                   task_description,
                   task_type,
@@ -24,8 +24,7 @@ SELECT task_id,
        event_tag,
        enable_timeout,
        record_hash
-FROM temp_task
-ON CONFLICT (record_hash) DO NOTHING;
+FROM temp_task;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,

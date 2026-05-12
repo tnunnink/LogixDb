@@ -67,9 +67,7 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation of creating the temporary table.</returns>
     private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
     {
-        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
-        var sql = $"CREATE TEMP TABLE temp_{table.TableName} ({columns});";
-
+        var sql = $"CREATE TEMP TABLE temp_{table.TableName} AS SELECT * FROM {table.TableName} WHERE 0;";
         await using var command = new SqliteCommand(sql, connection, transaction);
         await command.ExecuteNonQueryAsync(token);
     }
@@ -113,7 +111,8 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
     /// <returns>A <see cref="Task"/> that represents the asynchronous execution of the merge script.</returns>
     private async Task ExecuteMergeAsync(DataTable table, CancellationToken token)
     {
-        var script = MergeScripts[table.TableName];
+        if (!MergeScripts.TryGetValue(table.TableName, out var script))
+            return;
 
         await using var command = new SqliteCommand(script, connection, transaction);
         command.Parameters.AddWithValue("@VersionId", versionId);

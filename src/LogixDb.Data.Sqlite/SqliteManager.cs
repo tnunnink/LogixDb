@@ -178,8 +178,15 @@ public sealed class SqliteManager : IDbManager
 
         try
         {
+            // Insert target key if not already.
             await connection.ExecuteAsync(SqliteScript.PostTarget, target, transaction);
 
+            // Inserts a new version for the specified target key (handles getting target id in script)
+            // and returns the inserted version id. This is needed in some spots, and is an indicator that the
+            // version was posted. 
+            target.VersionId = await connection.ExecuteAsync(SqliteScript.PostVersion, target, transaction);
+
+            // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqliteScript.PostInfo,
                 target.Info.Select(p => new
                 {

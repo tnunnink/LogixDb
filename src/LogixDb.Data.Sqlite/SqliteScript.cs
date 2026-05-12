@@ -10,6 +10,7 @@ namespace LogixDb.Data.Sqlite;
 internal static class SqliteScript
 {
     public static string PostTarget => Get(nameof(PostTarget));
+    public static string PostVersion => Get(nameof(PostVersion));
     public static string PostInfo => Get(nameof(PostInfo));
     public static string ListTargets => Get(nameof(ListTargets));
     public static string GetTargetByVersion => Get(nameof(GetTargetByVersion));

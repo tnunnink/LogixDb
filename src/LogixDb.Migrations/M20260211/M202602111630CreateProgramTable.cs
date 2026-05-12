@@ -13,9 +13,9 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
     {
         Create.Table("program")
             .WithPrimaryKey<long>("program_id")
-            .WithRelation<long>("task_id", "task").Nullable()
-            .WithRelation<long>("folder_id", "program", "program_id").Nullable()
             .WithColumn("program_name").AsString(256).NotNullable()
+            .WithColumn("task_name").AsString(256).NotNullable()
+            .WithColumn("folder_name").AsString(256).NotNullable()
             .WithColumn("program_description").AsString(512).Nullable()
             .WithColumn("program_type").AsString(32).Nullable()
             .WithColumn("main_routine").AsString(64).Nullable()
@@ -26,16 +26,16 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("program")
-            .OnColumn("task_id").Ascending()
-            .OnColumn("folder_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("program")
-            .OnColumn("folder_id").Ascending()
-            .OnColumn("program_id").Ascending();
+            .OnColumn("program_name").Ascending();
 
         Create.Index().OnTable("program")
-            .OnColumn("program_name").Ascending();
+            .OnColumn("folder_name").Ascending();
+
+        Create.Index().OnTable("program")
+            .OnColumn("task_name").Ascending();
     }
 }

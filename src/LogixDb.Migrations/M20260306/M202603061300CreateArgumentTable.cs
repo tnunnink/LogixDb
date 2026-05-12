@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,20 +13,17 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("argument")
-            .WithPrimaryKey<long>("argument_id")
-            .WithRelation<long>("instruction_id", "instruction").NotNullable()
+            .WithRelation<Guid>("rung_key", "rung").OnDelete(Rule.Cascade).NotNullable()
+            .WithColumn("instruction_index").AsInt16().NotNullable()
+            /*.WithPrimaryKey<long>("argument_id")
+            .WithRelation<long>("instruction_id", "instruction").NotNullable()*/
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
-            .WithColumn("argument_text").AsString(256).NotNullable()
-            .WithColumn("record_hash").AsString(64).NotNullable();
-        
-        Create.Index().OnTable("argument")
-            .OnColumn("instruction_id").Ascending()
-            .OnColumn("record_hash").Ascending()
-            .WithOptions().Unique();
+            .WithColumn("argument_text").AsString(256).NotNullable();
 
         Create.Index().OnTable("argument")
-            .OnColumn("instruction_id").Ascending()
+            .OnColumn("rung_key").Ascending()
+            .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending();
 
         Create.Index().OnTable("argument")

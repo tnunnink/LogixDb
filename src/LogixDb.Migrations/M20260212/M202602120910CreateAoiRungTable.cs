@@ -13,7 +13,7 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
     {
         Create.Table("aoi_rung")
             .WithPrimaryKey<long>("rung_id")
-            .WithRelation<long>("aoi_id", "aoi").NotNullable()
+            .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("routine_name").AsString(128).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).NotNullable()
@@ -21,12 +21,11 @@ public class M202602120910CreateAoiRungTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("aoi_rung")
-            .OnColumn("aoi_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("aoi_rung")
-            .OnColumn("aoi_id").Ascending()
+            .OnColumn("aoi_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();

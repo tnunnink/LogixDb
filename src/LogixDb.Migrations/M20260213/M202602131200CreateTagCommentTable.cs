@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,8 +13,7 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_comment")
-            .WithPrimaryKey<long>("comment_id")
-            .WithRelation<long>("member_id", "tag_member").NotNullable()
+            .WithRelation<long>("member_id", "tag_member").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("tag_comment").AsString(int.MaxValue).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
@@ -29,7 +29,6 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_comment")
-            .OnColumn("tag_name").Ascending()
-            .OnColumn("member_id").Ascending();
+            .OnColumn("tag_name").Ascending();
     }
 }

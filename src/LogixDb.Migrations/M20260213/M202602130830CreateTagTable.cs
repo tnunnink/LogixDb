@@ -13,7 +13,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
     {
         Create.Table("tag")
             .WithPrimaryKey<long>("tag_id")
-            .WithRelation<long>("program_id", "program").Nullable()
+            .WithColumn("program_name").AsString(256).Nullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("data_type").AsString(128).Nullable()
             .WithColumn("dimensions").AsString(32).Nullable()
@@ -27,8 +27,12 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("tag")
-            .OnColumn("program_id").Ascending()
             .OnColumn("record_hash").Ascending()
+            .WithOptions().Unique();
+
+        Create.Index().OnTable("tag")
+            .OnColumn("program_name").Ascending()
+            .OnColumn("tag_name").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag")

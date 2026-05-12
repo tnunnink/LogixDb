@@ -13,7 +13,6 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
     {
         Create.Table("module")
             .WithPrimaryKey<long>("module_id")
-            .WithRelation<long>("parent_id", "module", "module_id").Nullable()
             .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
             .WithColumn("catalog_number").AsString(64).Nullable()
@@ -32,11 +31,13 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("module")
-            .OnColumn("parent_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("module")
             .OnColumn("module_name").Ascending();
+
+        Create.Index().OnTable("module")
+            .OnColumn("parent_name").Ascending();
     }
 }

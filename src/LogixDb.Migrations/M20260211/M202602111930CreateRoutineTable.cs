@@ -13,19 +13,18 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
     {
         Create.Table("routine")
             .WithPrimaryKey<long>("routine_id")
-            .WithRelation<long>("program_id", "program").NotNullable()
+            .WithColumn("program_name").AsString(256).NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("routine_description").AsString(512).Nullable()
             .WithColumn("routine_type").AsString(32).Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("routine")
-            .OnColumn("program_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("routine")
-            .OnColumn("program_id").Ascending()
+            .OnColumn("program_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .WithOptions().Unique();
 

@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,8 +13,7 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_producer")
-            .WithPrimaryKey<long>("producer_id")
-            .WithRelation<long>("tag_id", "tag").NotNullable()
+            .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("produce_count").AsInt32().NotNullable()
             .WithColumn("send_event_trigger").AsBoolean().NotNullable()
             .WithColumn("unicast_permitted").AsBoolean().NotNullable()
@@ -21,10 +21,5 @@ public class M202602131300CreateTagProducerTable : AutoReversingMigration
             .WithColumn("minimum_rpi").AsDouble().NotNullable()
             .WithColumn("default_rpi").AsDouble().NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
-
-        Create.Index().OnTable("tag_producer")
-            .OnColumn("tag_id").Ascending()
-            .OnColumn("record_hash").Ascending()
-            .WithOptions().Unique();
     }
 }

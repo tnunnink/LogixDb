@@ -63,6 +63,14 @@ public static class FluentMigrationExtensions
                     .AsInt64()
                     .ForeignKey(primaryTable, primaryColumn ?? columnName);
             }
+            
+            if (typeof(T) == typeof(Guid))
+            {
+                return syntax
+                    .WithColumn(columnName)
+                    .AsGuid()
+                    .ForeignKey(primaryTable, primaryColumn ?? columnName);
+            }
 
             throw new NotSupportedException($"Type {typeof(T).Name} is not supported for foreign key relations.");
         }
@@ -99,6 +107,14 @@ public static class FluentMigrationExtensions
             return syntax
                 .WithColumn(columnName)
                 .AsInt64()
+                .ForeignKey(primaryTable, primaryColumn ?? columnName);
+        }
+        
+        if (typeof(T) == typeof(Guid))
+        {
+            return syntax
+                .WithColumn(columnName)
+                .AsGuid()
                 .ForeignKey(primaryTable, primaryColumn ?? columnName);
         }
 

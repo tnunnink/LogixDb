@@ -1,7 +1,6 @@
 using System.Data;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
-using LogixDb.Data.Extensions;
 using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
@@ -30,9 +29,12 @@ internal class RungTransformer : IDbTransformer
 
         foreach (var rung in rungs)
         {
-            var rungHash = rung.Hash();
+            // This is for instruction and argument tables to form relational reference.
+            var rungKey = Guid.CreateVersion7();
+            rung.Metadata.Add("key", rungKey);
+
             rungRecords.Add(rung);
-            ProcessRung(rungHash, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungKey, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -40,47 +42,49 @@ internal class RungTransformer : IDbTransformer
         yield return _argumentMap.GenerateTable(argumentRecords);
     }
 
-    private static void ProcessRung(string? rungHash, Rung rung,
+    private static void ProcessRung(Guid? rungKey, Rung rung,
         List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords)
     {
         var instructions = rung.Instructions().ToArray();
 
-        for (short index = 0; index < instructions.Length; index++)
+        for (short i = 0; i < instructions.Length; i++)
         {
-            var instruction = instructions[index];
+            var instruction = instructions[i];
 
-            var instructionRecord = new InstructionRecord(
-                rungHash,
-                index,
+            instructionRecords.Add(new InstructionRecord(
+                rungKey,
+                i,
                 instruction.ToString(),
                 instruction.Key,
                 instruction.IsConditional,
                 instruction.IsNative
-            );
+            ));
 
-            instructionRecords.Add(instructionRecord);
-
-            var instructionHash = instructionRecord.Hash(["RungId"]);
             var arguments = instruction.Arguments.ToArray();
-
-            for (byte arg = 0; arg < arguments.Length; arg++)
+            for (byte a = 0; a < arguments.Length; a++)
             {
-                var argumentIndex = arg;
+                var instructionIndex = i;
+                var argumentIndex = a;
                 var argument = arguments[argumentIndex];
 
                 if (argument.Type == ArgumentType.Expression)
                 {
-                    var nestedArgs = argument.Tags
-                        .Select(t => new Argument(t))
-                        .Select(a => new ArgumentRecord(instructionHash, argumentIndex, a.Type, a.ToString()));
-
-                    argumentRecords.AddRange(nestedArgs);
+                    //todo I feel like this needs some review to determine if we are capturing what we want.
+                    var nestedArgs = argument.Tags.Select(t => new Argument(t));
+                    argumentRecords.AddRange(nestedArgs.Select(x => new ArgumentRecord(
+                        rungKey,
+                        instructionIndex,
+                        argumentIndex,
+                        x.Type,
+                        x.ToString())
+                    ));
                     continue;
                 }
 
                 argumentRecords.Add(new ArgumentRecord(
-                    instructionHash,
+                    rungKey,
+                    instructionIndex,
                     argumentIndex,
                     argument.Type,
                     argument.ToString()

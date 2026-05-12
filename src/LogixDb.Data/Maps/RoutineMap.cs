@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,10 +15,10 @@ internal class RoutineMap : TableMap<Routine>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Routine>> Columns =>
     [
-        ColumnMap<Routine>.For(r => r.Program?.Hash(), "program_id"),
+        ColumnMap<Routine>.For(r => r.Program?.Name, "program_name"),
         ColumnMap<Routine>.For(r => r.Name, "routine_name"),
-        ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
         ColumnMap<Routine>.For(r => r.Description, "routine_description"),
-        ColumnMap<Routine>.For(r => r.Hash(), "record_hash"),
+        ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
+        ColumnMap<Routine>.For(ComputeHash, "record_hash")
     ];
 }

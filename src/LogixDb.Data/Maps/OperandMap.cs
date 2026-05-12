@@ -1,5 +1,3 @@
-using LogixDb.Data.Extensions;
-
 namespace LogixDb.Data.Maps;
 
 internal class OperandMap : TableMap<OperandRecord>
@@ -16,7 +14,7 @@ internal class OperandMap : TableMap<OperandRecord>
         ColumnMap<OperandRecord>.For(r => r.Type, "operand_type"),
         ColumnMap<OperandRecord>.For(r => r.Description, "operand_description"),
         ColumnMap<OperandRecord>.For(r => r.Destructive, "is_destructive"),
-        ColumnMap<OperandRecord>.For(r => r.Hash(), "record_hash")
+        ColumnMap<OperandRecord>.For(ComputeHash, "record_hash")
     ];
 }
 

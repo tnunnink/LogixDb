@@ -16,13 +16,13 @@ internal class AoiRungMap : TableMap<AoiRungRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
     [
-        ColumnMap<AoiRungRecord>.For(r => r.AoiId, "aoi_id"),
+        ColumnMap<AoiRungRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiRungRecord>.For(r => r.Rung.Routine?.Name, "routine_name"),
         ColumnMap<AoiRungRecord>.For(r => r.Rung.Number, "rung_number"),
         ColumnMap<AoiRungRecord>.For(r => r.Rung.Comment, "rung_comment"),
         ColumnMap<AoiRungRecord>.For(r => r.Rung.Text, "rung_text"),
-        ColumnMap<AoiRungRecord>.For(r => r.Rung.Hash(), "record_hash")
+        ColumnMap<AoiRungRecord>.For(ComputeHash, "record_hash")
     ];
 }
 
-internal record AoiRungRecord(string? AoiId, Rung Rung);
+internal record AoiRungRecord(string? AoiName, Rung Rung);

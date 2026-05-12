@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -49,6 +48,6 @@ internal class ControllerMap : TableMap<Controller>
         ColumnMap<Controller>.For(r => r.Security?.PermissionSet, "permission_set"),
         ColumnMap<Controller>.For(r => r.Security?.ChangesToDetect, "changed_to_detect"),
         ColumnMap<Controller>.For(r => r.Security?.TrustedSlots, "trusted_slots"),
-        ColumnMap<Controller>.For(r => r.Hash(), "record_hash")
+        ColumnMap<Controller>.For(ComputeHash, "record_hash")
     ];
 }

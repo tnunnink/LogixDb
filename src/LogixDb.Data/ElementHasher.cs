@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+/*using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
 using L5Sharp.Core;
@@ -13,180 +13,165 @@ namespace LogixDb.Data;
 public static class ElementHasher
 {
     /// <summary>
-    /// Computes a hash for the given Logix element based on its type, applying a specific hashing strategy tailored to
-    /// the element type. The method serializes the element, optionally processes it, and generates a hash as a lowercase
-    /// hexadecimal string. If the element type is not supported, an exception is thrown.
+    /// Represents a collection of controller-specific elements used for hashing purposes.
+    /// This set includes key metadata fields that are relevant to controllers in a Logix system,
+    /// such as description, redundancy information, security settings, and safety information.
     /// </summary>
-    /// <param name="element">The Logix element to hash. The processing and hashing strategy vary depending on the element type.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed Logix element.</returns>
-    /// <exception cref="NotSupportedException">Thrown if the hashing method does not support the provided element type.</exception>
-    public static string? Hash(ILogixElement? element)
+    private static readonly HashSet<string> ControllerElements =
+    [
+        L5XName.Description, L5XName.RedundancyInfo, L5XName.Security, L5XName.SafetyInfo
+    ];
+
+    /// <summary>
+    /// Represents a set of module-specific elements used for hashing and comparison purposes.
+    /// This collection includes critical metadata fields pertinent to Logix modules, such as
+    /// descriptive information, electronic key settings, and port configurations.
+    /// </summary>
+    private static readonly HashSet<string> ModuleElements =
+    [
+        L5XName.Description, L5XName.EKey, L5XName.Ports
+    ];
+
+    /// <summary>
+    /// Represents a collection of task-specific elements used for hashing purposes.
+    /// This set includes metadata fields relevant to tasks within a Logix system,
+    /// such as description and event-related information.
+    /// </summary>
+    private static readonly HashSet<string> TaskElements =
+    [
+        L5XName.Description, L5XName.EventInfo
+    ];
+
+    /// <summary>
+    /// Generates a hash for a given Logix element by processing its serialized representation. The method dynamically determines
+    /// the specific type of the element and applies a type-specific hashing approach. If the hash has been computed previously
+    /// and cached in the element's metadata, the cached value is returned.
+    /// </summary>
+    /// <param name="element">The Logix element to be hashed. This can be any element that implements the <see cref="ILogixElement"/> interface.</param>
+    /// <returns>A lowercase hexadecimal string representing the hash of the element, or null if the input element is null.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if a hash cannot be computed for the provided element type.</exception>
+    public static string? Hash(this ILogixElement? element)
     {
-        return element switch
+        if (element is null) return null;
+
+        if (element.Metadata.TryGetValue("hash", out var cached) && cached is string hex)
+            return hex;
+
+        var hash = element switch
         {
-            null => null,
-            Controller controller => HashController(controller),
-            DataType dataType => HashDataType(dataType),
-            Module module => HashModule(module),
-            Task task => HashTask(task),
-            Program program => HashProgram(program),
-            Routine routine => HashRoutine(routine),
-            Rung rung => HashElement(rung.Serialize()),
-            Tag tag => HashElement(ScrubData(tag.Serialize())),
-            _ => HashElement(element.Serialize())
+            Controller controller => ShallowHash(controller, ControllerElements),
+            DataType dataType => ShallowHash(dataType, [L5XName.Description]),
+            AddOnInstruction aoi => ShallowHash(aoi, [L5XName.Description]),
+            Module module => ShallowHash(module, ModuleElements),
+            Task task => ShallowHash(task, TaskElements),
+            Program program => ShallowHash(program, [L5XName.Description]),
+            Routine routine => ShallowHash(routine, [L5XName.Description]),
+            Tag tag => ShallowHash(tag),
+            LogixData data => ShallowHash(ScrubDataValues(data)),
+            _ => DeepHash(element)
         };
+
+        element.Metadata.Add("hash", hash);
+        return hash;
     }
 
     /// <summary>
-    /// Generates a hash for a given Logix controller element by processing its XML representation.
-    /// Non-essential details, such as description, redundancy information, security, and safety information,
-    /// are removed from the XML before hashing to ensure only the core attributes of the controller are considered.
+    /// Computes a shallow hash for a given Logix element by cloning and serializing its structure, excluding specified
+    /// sub-elements based on a provided set of inclusion criteria. This method is designed to generate a lightweight hash
+    /// where only selected parts of the element are included in the computation.
     /// </summary>
-    /// <param name="element">The controller element to be hashed. This should be a Logix Controller that can be serialized into an XML representation.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed XML representation of the controller.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the controller element is null.</exception>
-    private static string HashController(Controller element)
+    /// <param name="element">
+    /// The Logix element for which to compute the shallow hash. The element must implement
+    /// the <see cref="ILogixElement"/> interface.
+    /// </param>
+    /// <param name="include">
+    /// An optional set of element names to include in the hash computation. Any sub-elements whose names are not in this set
+    /// will be excluded from the serialized representation of the element.
+    /// </param>
+    /// <returns>A lowercase hexadecimal string representing the shallow hash of the specified element.</returns>
+    private static string ShallowHash(ILogixElement element, HashSet<string>? include = null)
     {
-        var xml = element.Clone().Serialize();
+        var xml = element.Serialize();
 
-        xml.Elements().Where(e => e.Name.LocalName
-            is not L5XName.Description
-            and not L5XName.RedundancyInfo
-            and not L5XName.Security
-            and not L5XName.SafetyInfo
-        ).Remove();
-
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Generates a hash for the provided Logix <see cref="DataType"/> instance by cloning and filtering its serialized XML representation.
-    /// The method removes all elements except the description and processes the remaining XML to produce a consistent hash value.
-    /// </summary>
-    /// <param name="element">The <see cref="DataType"/> instance to hash. The hash is based on a scrubbed version of its serialized representation.</param>
-    /// <returns>A lowercase hexadecimal string representing the SHA256 hash of the processed <see cref="DataType"/>.</returns>
-    private static string HashDataType(DataType element)
-    {
-        var xml = element.Clone().Serialize();
-        xml.Elements().Where(e => e.Name.LocalName is not L5XName.Description).Remove();
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Generates a hash for a given Logix module. This process retains only specific sub-elements
-    /// such as Description, EKey, and Ports while removing others, thereby producing a consistent
-    /// and manageable XML representation for hashing. The resulting standardized XML is then hashed
-    /// into a lowercase hexadecimal string.
-    /// </summary>
-    /// <param name="element">The Logix module to hash. Only certain sub-elements of the module, such as Description, EKey, and Ports, are included in the hashing process.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed Logix module's XML representation.</returns>
-    private static string HashModule(Module element)
-    {
-        var xml = element.Clone().Serialize();
-
-        // For a module the only sub elements we pull are description, EKey, and Ports.
-        // Tag data is handled by tag imports
-        xml.Elements().Where(e => e.Name.LocalName
-                is not L5XName.Description
-                and not L5XName.EKey
-                and not L5XName.Ports)
-            .Remove();
-
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Computes a hash for the specified Logix task element, applying a hashing strategy that focuses only on
-    /// specific sub-elements such as description and event information. The method filters the task's XML
-    /// representation to retain only the relevant parts before creating the hash.
-    /// </summary>
-    /// <param name="element">The Logix task element to be hashed. Only its description and event-related
-    /// sub-elements are considered for the hash computation.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed task element.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if the provided task element is null.</exception>
-    private static string HashTask(Task element)
-    {
-        var xml = element.Clone().Serialize();
-
-        // For a task the only sub elements we pull are description and event info
-        xml.Elements()
-            .Where(e => e.Name.LocalName is not L5XName.Description and not L5XName.EventInfo)
-            .Remove();
-
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Generates a hash for the given Logix Program element by serializing it into an XML format,
-    /// removing specific elements such as descriptions, and then computing the hash. This method
-    /// ensures that only relevant data contributes to the hash value, providing a consistent and
-    /// reliable program hash.
-    /// </summary>
-    /// <param name="element">The Program element for which the hash will be generated.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed Program element.</returns>
-    private static string HashProgram(Program element)
-    {
-        var xml = element.Clone().Serialize();
-        xml.Elements().Where(e => e.Name.LocalName is not L5XName.Description).Remove();
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Computes a hash for the provided Logix routine by cloning and serializing the routine, removing all non-essential
-    /// elements such as descriptions, and then applying a specialized hashing strategy. This ensures that only fundamental
-    /// structure and data contribute to the hash, making it consistent and reliable for comparison or storage.
-    /// </summary>
-    /// <param name="element">The Logix routine to hash.</param>
-    /// <returns>A lowercase hexadecimal string representing the hash of the processed Logix routine.</returns>
-    private static string HashRoutine(Routine element)
-    {
-        var xml = element.Clone().Serialize();
-        xml.Elements().Where(e => e.Name.LocalName is not L5XName.Description).Remove();
-        return HashElement(xml);
-    }
-
-    /// <summary>
-    /// Processes and removes sensitive or unnecessary data from the provided Logix element,
-    /// modifying its structure and attributes according to predefined rules.
-    /// </summary>
-    /// <param name="element">The Logix element to be scrubbed of sensitive or irrelevant data.</param>
-    /// <returns>The modified Logix element after applying the data scrubbing logic.</returns>
-    private static XElement ScrubData(XElement element)
-    {
-        var clone = new XElement(element);
-
-        foreach (var descendant in clone.DescendantsAndSelf())
+        // If we don't want any children, create a new XElement with just the root's attributes.
+        if (include is null || include.Count == 0)
         {
-            switch (descendant.Name.LocalName)
+            var root = new XElement(xml.Name, xml.Attributes());
+            return ComputeHash(root);
+        }
+
+        // Otherwise, clone and filter children
+        var clone = new XElement(xml);
+        clone.Elements().Where(e => !include.Contains(e.Name.LocalName)).Remove();
+        return ComputeHash(clone);
+    }
+
+    /// <summary>
+    /// Generates a deep hash for a given Logix element by processing its serialized representation and excluding specified child elements.
+    /// This method ensures that the resulting hash reflects the structure and data of the element except for the excluded parts,
+    /// making it suitable for deep comparisons and versioning.
+    /// </summary>
+    /// <param name="element">The Logix element for which the deep hash will be computed. This can be any element that implements the <see cref="ILogixElement"/> interface.</param>
+    /// <param name="exclude">A collection of child elements to exclude from the hash computation. If null or empty, all child elements will be included in the hash.</param>
+    /// <returns>A lowercase hexadecimal string representing the computed hash of the element, considering any exclusions. Returns null if the input element is null.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if the provided element is null.</exception>
+    private static string DeepHash(ILogixElement element, HashSet<string>? exclude = null)
+    {
+        var xml = element.Serialize();
+
+        // If we want all children, just return the complete hash of the provided element.
+        if (exclude is null || exclude.Count == 0)
+        {
+            return ComputeHash(xml);
+        }
+
+        // Otherwise, clone and filter children
+        var clone = new XElement(xml);
+        clone.Elements().Where(e => exclude.Contains(e.Name.LocalName)).Remove();
+        return ComputeHash(clone);
+    }
+
+    /// <summary>
+    /// Removes sensitive or unnecessary data value attributes from a given <see cref="LogixData"/> object.
+    /// This method creates a sanitized clone of the input data, preserving its structure while clearing
+    /// or modifying specific values based on the type and format of the data.
+    /// </summary>
+    /// <param name="data">The <see cref="LogixData"/> instance to be scrubbed, typically containing serialized design data.</param>
+    /// <returns>A sanitized <see cref="LogixData"/> instance with sensitive or unnecessary value attributes removed.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the input data contains an unsupported format or cannot be serialized/deserialized.</exception>
+    private static LogixData ScrubDataValues(LogixData data)
+    {
+        var clone = new XElement(data.Serialize());
+
+        switch (clone.Name.LocalName)
+        {
+            // Remove 'Value' attributes which contain the actual data for Atomic tags/members
+            case L5XName.DataValue or L5XName.DataValueMember or L5XName.Element:
+                clone.Attributes(L5XName.Value).Remove();
+                break;
+            case L5XName.Data:
             {
-                // Remove 'Value' attributes which contain the actual data for Atomic tags/members
-                case L5XName.DataValue or L5XName.DataValueMember or L5XName.Element:
-                    descendant.Attributes(L5XName.Value).Remove();
-                    break;
-                case L5XName.Data:
+                var format = clone.Attribute(L5XName.Format)?.Value;
+
+                // If it's a L5K/String format, scrub the element's value/text.
+                if (format == DataFormat.L5K || format == DataFormat.String)
                 {
-                    var format = descendant.Attribute(L5XName.Format)?.Value;
-
-                    // If it's a L5K/String format, scrub the element's value/text.
-                    if (format == DataFormat.L5K || format == DataFormat.String)
-                    {
-                        descendant.RemoveNodes();
-                    }
-                    // For special formats (e.g., Alarms/Message parameters), clear child attributes but keep structure
-                    else if (format != DataFormat.Decorated)
-                    {
-                        descendant.Elements()
-                            .SelectMany(x => x.Attributes())
-                            .ToList()
-                            .ForEach(a => a.SetValue(string.Empty));
-                    }
-
-                    break;
+                    clone.RemoveNodes();
                 }
+                // For special formats (e.g., Alarms/Message parameters), clear child attributes but keep structure
+                else if (format != DataFormat.Decorated)
+                {
+                    clone.Elements()
+                        .SelectMany(x => x.Attributes())
+                        .ToList()
+                        .ForEach(a => a.SetValue(string.Empty));
+                }
+
+                break;
             }
         }
 
-        return clone;
+        return clone.Deserialize<LogixData>();
     }
 
     /// <summary>
@@ -196,11 +181,11 @@ public static class ElementHasher
     /// </summary>
     /// <param name="element">The XML element to be hashed. This should represent a scrubbed and serialized Logix element.</param>
     /// <returns>A lowercase hexadecimal string representing the SHA256 hash of the input XML element.</returns>
-    private static string HashElement(XElement element)
+    private static string ComputeHash(XElement element)
     {
         var text = element.ToString(SaveOptions.DisableFormatting);
         var bytes = Encoding.Unicode.GetBytes(text);
         var hash = SHA256.HashData(bytes);
         return Convert.ToHexStringLower(hash);
     }
-}
+}*/

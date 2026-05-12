@@ -15,6 +15,7 @@ internal class RoutineTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        yield return _map.GenerateTable(target.GetSource().Programs.SelectMany(p => p.Routines));
+        var routines = target.GetSource().Programs.SelectMany(p => p.Routines).ToList();
+        yield return _map.GenerateTable(routines);
     }
 }

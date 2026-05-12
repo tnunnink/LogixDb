@@ -15,7 +15,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
     [
-        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiId, "aoi_id"),
+        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiName, "aoi_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "parameter_description"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.DataType, "data_type"),
@@ -29,7 +29,7 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_visible"),
         ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_required"),
         ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "is_constant"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Hash(), "record_hash")
+        ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash"),
     ];
 }
 
@@ -42,4 +42,4 @@ internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
 /// the name of the associated AOI, and the tag details.
 /// This record is used in mapping operations for transferring data between the program and the database storage.
 /// </remarks>
-internal record AoiLocalTagRecord(string? AoiId, LocalTag Tag);
+internal record AoiLocalTagRecord(string? AoiName, LocalTag Tag);

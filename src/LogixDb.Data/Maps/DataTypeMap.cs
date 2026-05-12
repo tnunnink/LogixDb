@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -20,6 +19,6 @@ internal class DataTypeMap : TableMap<DataType>
         ColumnMap<DataType>.For(r => r.Description, "type_description"),
         ColumnMap<DataType>.For(r => r.Class.Name, "type_class"),
         ColumnMap<DataType>.For(r => r.Family.Name, "type_family"),
-        ColumnMap<DataType>.For(r => r.Hash(), "record_hash")
+        ColumnMap<DataType>.For(ComputeHash, "record_hash")
     ];
 }

@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,9 +15,9 @@ internal class ProgramMap : TableMap<Program>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Program>> Columns =>
     [
-        ColumnMap<Program>.For(r => r.Task?.Hash(), "task_id"),
-        ColumnMap<Program>.For(r => r.Parent?.Hash(), "folder_id"),
         ColumnMap<Program>.For(r => r.Name, "program_name"),
+        ColumnMap<Program>.For(r => r.Task?.Name, "task_name"),
+        ColumnMap<Program>.For(r => r.Parent?.Name, "folder_name"),
         ColumnMap<Program>.For(r => r.Description, "program_description"),
         ColumnMap<Program>.For(r => r.Type.Name, "program_type"),
         ColumnMap<Program>.For(r => r.MainRoutineName, "main_routine"),
@@ -26,6 +25,6 @@ internal class ProgramMap : TableMap<Program>
         ColumnMap<Program>.For(r => r.Disabled, "is_disabled"),
         ColumnMap<Program>.For(r => r.UseAsFolder, "is_folder"),
         ColumnMap<Program>.For(r => r.TestEdits, "has_test_edits"),
-        ColumnMap<Program>.For(r => r.Hash(), "record_hash")
+        ColumnMap<Program>.For(ComputeHash, "record_hash")
     ];
 }

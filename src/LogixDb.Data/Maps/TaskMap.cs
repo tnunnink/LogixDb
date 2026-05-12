@@ -1,4 +1,3 @@
-using LogixDb.Data.Extensions;
 using Task = L5Sharp.Core.Task;
 
 namespace LogixDb.Data.Maps;
@@ -27,6 +26,6 @@ internal class TaskMap : TableMap<Task>
         ColumnMap<Task>.For(r => r.EventInfo?.EventTrigger?.Name, "event_trigger"),
         ColumnMap<Task>.For(r => r.EventInfo?.EventTag?.LocalPath, "event_tag"),
         ColumnMap<Task>.For(r => r.EventInfo?.EnableTimeout, "enable_timeout"),
-        ColumnMap<Task>.For(r => r.Hash(), "record_hash")
+        ColumnMap<Task>.For(ComputeHash, "record_hash")
     ];
 }

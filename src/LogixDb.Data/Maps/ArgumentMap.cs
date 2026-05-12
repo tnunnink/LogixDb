@@ -1,6 +1,3 @@
-using L5Sharp.Core;
-using LogixDb.Data.Extensions;
-
 namespace LogixDb.Data.Maps;
 
 /// <summary>
@@ -21,11 +18,11 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
-        ColumnMap<ArgumentRecord>.For(r => r.InstructionId, "instruction_id"),
-        ColumnMap<ArgumentRecord>.For(r => r.Index, "argument_index"),
-        ColumnMap<ArgumentRecord>.For(r => r.Type, "argument_type"),
-        ColumnMap<ArgumentRecord>.For(r => r.Text, "argument_text"),
-        ColumnMap<ArgumentRecord>.For(r => r.Hash(["InstructionId"]), "record_hash")
+        ColumnMap<ArgumentRecord>.For(r => r.RungKey, "rung_key"),
+        ColumnMap<ArgumentRecord>.For(r => r.InstructionIndex, "instruction_index"),
+        ColumnMap<ArgumentRecord>.For(r => r.ArgumentIndex, "argument_index"),
+        ColumnMap<ArgumentRecord>.For(r => r.ArgumentType, "argument_type"),
+        ColumnMap<ArgumentRecord>.For(r => r.ArgumentText, "argument_text")
     ];
 }
 
@@ -38,8 +35,9 @@ internal class ArgumentMap : TableMap<ArgumentRecord>
 /// as well as their position and content.
 /// </remarks>
 internal record ArgumentRecord(
-    string? InstructionId,
-    byte Index,
-    string Type,
-    string Text
+    Guid? RungKey,
+    int InstructionIndex,
+    byte ArgumentIndex,
+    string ArgumentType,
+    string ArgumentText
 );

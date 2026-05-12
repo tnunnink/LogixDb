@@ -6,19 +6,6 @@ using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
 
-/// <summary>
-/// Represents a transformer that processes a data Target and maps its contents
-/// into database-compatible table structures. Specifically designed to handle
-/// the processing and structuring of tag-related information within a given Target.
-/// </summary>
-/// <remarks>
-/// The <see cref="TagTransformer"/> extracts the tag-related data from
-/// a provided <see cref="Target"/> and converts it into multiple collections of
-/// records, each corresponding to different table structures such as tags,
-/// comments, produce information, consume information, and aliases.
-/// The transformation process yields the resulting data as a sequence of
-/// <see cref="DataTable"/> objects, which can then be persisted to a database.
-/// </remarks>
 internal class TagTransformer : IDbTransformer
 {
     private readonly TagMap _tagMap = new();
@@ -36,31 +23,44 @@ internal class TagTransformer : IDbTransformer
         var memberRecords = new List<Tag>();
         var valueRecords = new List<TagValueRecord>();
         var commentRecords = new List<TagCommentRecord>();
-        var producerRecords = new List<TagProduceInfoRecord>();
-        var consumerRecords = new List<TagConsumeInfoRecord>();
+        var producerRecords = new List<ProduceInfo>();
+        var consumerRecords = new List<ConsumeInfo>();
 
         var tags = source.Query<Tag>();
 
         foreach (var tag in tags)
         {
+            var tagHash = string.Empty; //todo compute hash hash here.
+            tag.Metadata.Add("tag_hash", tagHash);
+
             tagRecords.Add(tag);
-            var tagHash = tag.Hash();
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
-                producerRecords.Add(new TagProduceInfoRecord(tagHash, tag.ProduceInfo));
+            {
+                tag.ProduceInfo.Metadata.Add("tag_hash", tagHash);
+                producerRecords.Add(tag.ProduceInfo);
+            }
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
-                consumerRecords.Add(new TagConsumeInfoRecord(tagHash, tag.ConsumeInfo));
+            {
+                tag.ConsumeInfo.Metadata.Add("tag_hash", tagHash);
+                consumerRecords.Add(tag.ConsumeInfo);
+            }
 
             foreach (var member in tag.Members())
             {
-                var memberHash = member.Hash();
+                member.Metadata.Add("tag_hash", tagHash);
                 memberRecords.Add(member);
-                commentRecords.AddRange(GetTagComments(memberHash, member));
+                /*commentRecords.AddRange(GetTagComments(tagHash, member));*/
 
                 if (member.Value.IsAtomic())
                 {
-                    valueRecords.Add(new TagValueRecord(target.VersionId, memberHash, tag.Value.ToSqlFormat()));
+                    valueRecords.Add(new TagValueRecord(
+                        target.VersionId,
+                        tagHash,
+                        member.TagName.LocalPath,
+                        tag.Value.ToSqlFormat())
+                    );
                 }
             }
         }
@@ -73,18 +73,21 @@ internal class TagTransformer : IDbTransformer
         yield return _consumerMap.GenerateTable(consumerRecords);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Generates a collection of tag comment records for the specified member ID and tag.
     /// </summary>
     /// <param name="memberId">The unique identifier of the member to associate the comments with.</param>
     /// <param name="tag">The tag from which comments and descriptions will be extracted.</param>
     /// <returns>A collection of <see cref="TagCommentRecord"/> containing the associated comments and descriptions.</returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(string? memberId, Tag? tag)
+    private static IEnumerable<TagCommentRecord> GetTagComments(Guid? memberId, Tag? tag)
     {
-        if (tag?.Description is not null)
-        {
-            yield return new TagCommentRecord(memberId, tag.TagName.LocalPath, tag.Description);
-        }
+        if (tag is null) yield break;
+        if (tag.Parent is not null) yield break;
+
+        var description = tag.Description;
+        if (string.IsNullOrEmpty(description)) yield break;
+
+        yield return new TagCommentRecord(memberId, tag.TagName.LocalPath, description);
 
         if (tag?.Comments is null)
             yield break;
@@ -104,5 +107,5 @@ internal class TagTransformer : IDbTransformer
                 yield return new TagCommentRecord(memberId, tagName, tagComment);
             }
         }
-    }
+    }*/
 }

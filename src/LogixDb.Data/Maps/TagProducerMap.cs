@@ -1,42 +1,22 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
-/// <summary>
-/// Represents a mapping configuration for the "tag_producer" table, defining how the
-/// fields in the <see cref="TagProduceInfoRecord"/> are associated with the columns in the database table.
-/// This class is responsible for specifying column mappings, their characteristics, and the table name.
-/// </summary>
-/// <remarks>
-/// This class inherits from <see cref="TableMap{T}"/>, and provides the implementation specific to
-/// the structure of <see cref="TagProduceInfoRecord"/>. Each property in the record is mapped to a database column,
-/// including metadata regarding its hash and data transformation if applicable.
-/// </remarks>
-internal class TagProducerMap : TableMap<TagProduceInfoRecord>
+internal class TagProducerMap : TableMap<ProduceInfo>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_producer";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<TagProduceInfoRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ProduceInfo>> Columns =>
     [
-        ColumnMap<TagProduceInfoRecord>.For(r => r.TagId, "tag_id"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProduceCount, "produce_count"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.ProgrammaticallySendEventTrigger, "send_event_trigger"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.UnicastPermitted, "unicast_permitted"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.MaximumRPI, "maximum_rpi"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.MinimumRPI, "minimum_rpi"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.DefaultRPI, "default_rpi"),
-        ColumnMap<TagProduceInfoRecord>.For(r => r.ProduceInfo.Hash(), "record_hash")
+        ColumnMap<ProduceInfo>.For(r => r.Metadata.Get<string>("tag_hash"), "tag_hash"),
+        ColumnMap<ProduceInfo>.For(r => r.ProduceCount, "produce_count"),
+        ColumnMap<ProduceInfo>.For(r => r.ProgrammaticallySendEventTrigger, "send_event_trigger"),
+        ColumnMap<ProduceInfo>.For(r => r.UnicastPermitted, "unicast_permitted"),
+        ColumnMap<ProduceInfo>.For(r => r.MaximumRPI, "maximum_rpi"),
+        ColumnMap<ProduceInfo>.For(r => r.MinimumRPI, "minimum_rpi"),
+        ColumnMap<ProduceInfo>.For(r => r.DefaultRPI, "default_rpi"),
+        ColumnMap<ProduceInfo>.For(ComputeHash, "record_hash")
     ];
 }
-
-/// <summary>
-/// Represents a record containing produce information associated with a tag.
-/// This record includes details such as the instance identifier, tag identifier,
-/// and produce-related metadata encapsulated in the <see cref="ProduceInfo"/> object.
-/// </summary>
-/// <param name="TagId">The unique identifier for the tag associated with the produce information.</param>
-/// <param name="ProduceInfo">An object containing detailed information about produce-related settings and data.</param>
-internal record TagProduceInfoRecord(string? TagId, ProduceInfo ProduceInfo);

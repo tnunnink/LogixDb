@@ -16,7 +16,7 @@ internal class DataTypeMemberMap : TableMap<DataTypeMember>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<DataTypeMember>> Columns =>
     [
-        ColumnMap<DataTypeMember>.For(r => r.Parent?.Hash(), "type_id"),
+        ColumnMap<DataTypeMember>.For(r => r.Parent?.Name, "type_name"),
         ColumnMap<DataTypeMember>.For(r => r.Name, "member_name"),
         ColumnMap<DataTypeMember>.For(r => r.Description, "member_description"),
         ColumnMap<DataTypeMember>.For(r => r.DataType, "data_type"),
@@ -26,6 +26,6 @@ internal class DataTypeMemberMap : TableMap<DataTypeMember>
         ColumnMap<DataTypeMember>.For(r => r.Hidden, "is_hidden"),
         ColumnMap<DataTypeMember>.For(r => r.Target, "target_name"),
         ColumnMap<DataTypeMember>.For(r => r.GetBitNumber(), "bit_number"),
-        ColumnMap<DataTypeMember>.For(r => r.Hash(), "record_hash")
+        ColumnMap<DataTypeMember>.For(ComputeHash, "record_hash")
     ];
 }

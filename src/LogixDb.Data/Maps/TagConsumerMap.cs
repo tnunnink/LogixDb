@@ -1,24 +1,21 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
-internal class TagConsumerMap : TableMap<TagConsumeInfoRecord>
+internal class TagConsumerMap : TableMap<ConsumeInfo>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_consumer";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<TagConsumeInfoRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ConsumeInfo>> Columns =>
     [
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.TagId, "tag_id"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Producer, "producer"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteTag, "remote_tag"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RemoteInstance, "remote_instance"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.RPI, "rpi"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Unicast, "unicast"),
-        ColumnMap<TagConsumeInfoRecord>.For(r => r.ConsumeInfo.Hash(), "record_hash")
+        ColumnMap<ConsumeInfo>.For(r => r.Metadata.Get<string>("tag_hash"), "tag_hash"),
+        ColumnMap<ConsumeInfo>.For(r => r.Producer, "producer"),
+        ColumnMap<ConsumeInfo>.For(r => r.RemoteTag, "remote_tag"),
+        ColumnMap<ConsumeInfo>.For(r => r.RemoteInstance, "remote_instance"),
+        ColumnMap<ConsumeInfo>.For(r => r.RPI, "rpi"),
+        ColumnMap<ConsumeInfo>.For(r => r.Unicast, "unicast"),
+        ColumnMap<ConsumeInfo>.For(ComputeHash, "record_hash")
     ];
 }
-
-internal record TagConsumeInfoRecord(string? TagId, ConsumeInfo ConsumeInfo);

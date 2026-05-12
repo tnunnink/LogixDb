@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -16,7 +15,6 @@ internal class ModuleMap : TableMap<Module>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Module>> Columns =>
     [
-        ColumnMap<Module>.For(r => r.Parent?.Hash(), "parent_id"),
         ColumnMap<Module>.For(r => r.Name, "module_name"),
         ColumnMap<Module>.For(r => r.Description, "module_description"),
         ColumnMap<Module>.For(r => r.CatalogNumber, "catalog_number"),
@@ -32,6 +30,6 @@ internal class ModuleMap : TableMap<Module>
         ColumnMap<Module>.For(r => r.SafetyEnabled, "is_safety_enabled"),
         ColumnMap<Module>.For(r => r.IP?.ToString(), "ip_address"),
         ColumnMap<Module>.For(r => r.Slot, "slot_number"),
-        ColumnMap<Module>.For(r => r.Hash(), "record_hash")
+        ColumnMap<Module>.For(ComputeHash, "record_hash")
     ];
 }

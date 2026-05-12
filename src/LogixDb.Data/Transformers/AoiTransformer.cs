@@ -28,17 +28,16 @@ internal class AoiTransformer : IDbTransformer
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            var aoiHash = aoi.Hash();
             aoiRecords.Add(aoi);
             parameterRecords.AddRange(aoi.Parameters);
 
             // Only attempt to process local tags and logic/rungs if the AOI is not encrypted. 
             if (!aoi.IsEncrypted)
             {
-                localTagRecords.AddRange(aoi.LocalTags.Select(t => new AoiLocalTagRecord(aoiHash, t)));
+                localTagRecords.AddRange(aoi.LocalTags.Select(t => new AoiLocalTagRecord(aoi.Name, t)));
 
                 var rungs = aoi.Routines.Where(r => r.Type == RoutineType.RLL).SelectMany(r => r.Rungs);
-                rungRecords.AddRange(rungs.Select(r => new AoiRungRecord(aoiHash, r)));
+                rungRecords.AddRange(rungs.Select(r => new AoiRungRecord(aoi.Name, r)));
             }
         }
 

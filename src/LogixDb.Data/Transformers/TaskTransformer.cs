@@ -15,6 +15,7 @@ internal class TaskTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        yield return _map.GenerateTable(target.GetSource().Tasks);
+        var tasks = target.GetSource().Tasks.ToList();
+        yield return _map.GenerateTable(tasks);
     }
 }

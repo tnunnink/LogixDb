@@ -16,10 +16,13 @@ internal class RungMap : TableMap<Rung>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
-        ColumnMap<Rung>.For(r => r.Routine?.Hash(), "routine_id"),
+        ColumnMap<Rung>.For(r => r.Metadata.Get<Guid>("key"), "rung_key"),
+        ColumnMap<Rung>.For(r => r.Program?.Name, "program_name"),
+        ColumnMap<Rung>.For(r => r.Routine?.Name, "routine_name"),
         ColumnMap<Rung>.For(r => r.Number, "rung_number"),
-        ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),
         ColumnMap<Rung>.For(r => r.Text, "rung_text"),
-        ColumnMap<Rung>.For(r => r.Hash(), "record_hash"),
+        ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),
+        ColumnMap<Rung>.For(r => r.Text.Hash(), "code_hash"),
+        ColumnMap<Rung>.For(ComputeHash, "record_hash")
     ];
 }

@@ -9,9 +9,10 @@ internal class TagValueMap : TableMap<TagValueRecord>
     protected override IReadOnlyList<ColumnMap<TagValueRecord>> Columns =>
     [
         ColumnMap<TagValueRecord>.For(r => r.VersionId, "version_id"),
-        ColumnMap<TagValueRecord>.For(r => r.MemberId, "member_id"),
+        ColumnMap<TagValueRecord>.For(r => r.TagHash, "tag_hash"),
+        ColumnMap<TagValueRecord>.For(r => r.TagName, "tag_name"),
         ColumnMap<TagValueRecord>.For(r => r.Value, "tag_value")
     ];
 }
 
-internal record TagValueRecord(int VersionId, string? MemberId, string? Value);
+internal record TagValueRecord(int VersionId, string TagHash, string TagName, string? Value);

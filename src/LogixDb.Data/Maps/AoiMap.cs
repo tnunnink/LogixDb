@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -35,6 +34,7 @@ internal class AoiMap : TableMap<AddOnInstruction>
         ColumnMap<AddOnInstruction>.For(r => r.SignatureID, "signature_id"),
         ColumnMap<AddOnInstruction>.For(r => r.SignatureTimestamp, "signature_timestamp"),
         ColumnMap<AddOnInstruction>.For(r => r.Class?.Name, "component_class"),
-        ColumnMap<AddOnInstruction>.For(r => r.Hash(), "record_hash")
+        ColumnMap<AddOnInstruction>.For(ComputeHash, "record_hash")
+        
     ];
 }

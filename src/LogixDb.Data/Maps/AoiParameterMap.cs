@@ -16,7 +16,7 @@ internal class AoiParameterMap : TableMap<Parameter>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Parameter>> Columns =>
     [
-        ColumnMap<Parameter>.For(r => r.Parent?.Hash(), "aoi_id"),
+        ColumnMap<Parameter>.For(r => r.Parent?.Name, "aoi_name"),
         ColumnMap<Parameter>.For(r => r.Name, "parameter_name"),
         ColumnMap<Parameter>.For(r => r.Description, "parameter_description"),
         ColumnMap<Parameter>.For(r => r.DataType, "data_type"),
@@ -30,6 +30,7 @@ internal class AoiParameterMap : TableMap<Parameter>
         ColumnMap<Parameter>.For(r => r.Visible, "is_visible"),
         ColumnMap<Parameter>.For(r => r.Required, "is_required"),
         ColumnMap<Parameter>.For(r => r.Constant, "is_constant"),
-        ColumnMap<Parameter>.For(r => r.Hash(), "record_hash")
+        ColumnMap<Parameter>.For(ComputeHash, "record_hash")
+        
     ];
 }

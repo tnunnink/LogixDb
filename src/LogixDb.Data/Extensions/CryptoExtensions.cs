@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using L5Sharp.Core;
 
 namespace LogixDb.Data.Extensions;
 
@@ -34,25 +33,15 @@ public static class CryptoExtensions
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="element"></param>
-    /// <returns></returns>
-    public static string? Hash(this ILogixElement element)
-    {
-        return ElementHasher.Hash(element);
-    }
-
-    /// <summary>
     /// Computes an SHA-256 hash of an object's properties, ordered by property name, and returns the hash as a
     /// lowercase hex string. The hash is based on the serialized representation of property names and their values.
     /// </summary>
     /// <param name="record">The object whose properties will be hashed. All public instance properties are used in the hash computation.</param>
     /// <param name="ignore">An optional set of property names to exclude from the hash computation. If null or empty, all properties are included.</param>
     /// <returns>A lowercase hexadecimal string representing the SHA-256 hash of the object's properties.</returns>
-    public static string Hash(this object record, HashSet<string>? ignore = null)
+    public static string Hash<T>(this T record, HashSet<string>? ignore = null) where T : class
     {
-        var properties = Mappings.GetOrAdd(record.GetType(), GeneratePropertyMapping);
+        var properties = Mappings.GetOrAdd(typeof(T), GeneratePropertyMapping);
 
         var builder = new StringBuilder();
 
@@ -64,22 +53,29 @@ public static class CryptoExtensions
         }
 
         return builder.ToString().Hash();
+    }
 
-        static string SerializeField(string name, object? value)
+    /// <summary>
+    /// Serializes a field name and its value into a string format using specific delimiters.
+    /// This format is used for hashing and preserving data consistency.
+    /// </summary>
+    /// <param name="name">The name of the field being serialized.</param>
+    /// <param name="value">The value of the field to serialize. This can be a primitive type, string, or object.</param>
+    /// <returns>A serialized string representation of the field name and value, delimited by special characters.</returns>
+    private static string SerializeField(string name, object? value)
+    {
+        return '\u001E' + name + '\u001F' + FormatValue(value);
+
+        static string FormatValue(object? value)
         {
-            return '\u001E' + name + '\u001F' + FormatValue(value);
-
-            static string FormatValue(object? value)
+            return value switch
             {
-                return value switch
-                {
-                    null or DBNull => "\u2400",
-                    byte[] b => Convert.ToHexStringLower(b),
-                    string s => s.Replace("\r\n", "\n"),
-                    IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
-                    _ => value.ToString() ?? string.Empty
-                };
-            }
+                null or DBNull => "\u2400",
+                byte[] b => Convert.ToHexStringLower(b),
+                string s => s.Replace("\r\n", "\n"),
+                IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),
+                _ => value.ToString() ?? string.Empty
+            };
         }
     }
 

@@ -8,7 +8,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on routines.
 /// </summary>
-internal class RoutineTransformer : IDbTransformer
+public class RoutineTransformer : IDbTransformer
 {
     private readonly RoutineMap _map = new();
 

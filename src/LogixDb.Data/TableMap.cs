@@ -1,6 +1,7 @@
 using System.Data;
 using System.Globalization;
 using System.Text;
+using L5Sharp.Core;
 using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data;
@@ -11,8 +12,13 @@ namespace LogixDb.Data;
 /// including the table name and column mappings.
 /// </summary>
 /// <typeparam name="T">The type of Logix element this table map represents must implement ILogixElement.</typeparam>
-internal abstract class TableMap<T> where T : class
+public abstract class TableMap<T> where T : class
 {
+    /// <summary>
+    /// Represents the constant identifier used to store and retrieve the computed hash value associated with a record.
+    /// </summary>
+    private const string RecordHash = "record_hash";
+
     /// <summary>
     /// Stores a collection of column mappings that are involved in calculating the hash of a record.
     /// Each column in this list typically has the `IsHashable` property set to true and is used as part of
@@ -83,18 +89,32 @@ internal abstract class TableMap<T> where T : class
     /// A string representing the cryptographic hash of the record's hashable fields.
     /// The hash is computed based on the serialized values of the hashable columns.
     /// </returns>
-    protected string ComputeHash(T record)
+    public string ComputeHash(T record)
     {
+        // If the record is a Logix element and already has a computed hash, use it.
+        if (record is ILogixElement { Metadata: var meta } && meta.TryGetValue(RecordHash, out var cached))
+        {
+            return (string)cached;
+        }
+
         var columns = _hashColumns ??= GetHashableColumns();
         var hashBuilder = new StringBuilder();
 
         foreach (var column in columns)
         {
-            var value = column.Getter(record) ?? DBNull.Value;
+            var value = column.Getter(record);
             hashBuilder.Append(SerializeField(column.Name, value));
         }
 
-        return hashBuilder.ToString().Hash();
+        var hash = hashBuilder.ToString().HashText();
+
+        // Cache it for later child-linking or multiple table maps
+        if (record is ILogixElement element)
+        {
+            element.Metadata[RecordHash] = hash;
+        }
+
+        return hash;
     }
 
     /// <summary>
@@ -108,7 +128,7 @@ internal abstract class TableMap<T> where T : class
     private List<ColumnMap<T>> GetHashableColumns()
     {
         return Columns
-            .Where(c => c.Type != typeof(Guid) && c.Type != typeof(Guid?))
+            .Where(c => c.Type != typeof(Guid) && c.Type != typeof(Guid?) && c.Name != RecordHash)
             .OrderBy(c => c.Name, StringComparer.Ordinal)
             .ToList();
     }

@@ -3,7 +3,7 @@ using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
-internal class TagMap : TableMap<Tag>
+public class TagMap : TableMap<Tag>
 {
     /// <inheritdoc />
     protected override string TableName => "tag";
@@ -22,6 +22,7 @@ internal class TagMap : TableMap<Tag>
         ColumnMap<Tag>.For(r => r.Usage?.Name ?? TagUsage.Normal, "tag_usage"),
         ColumnMap<Tag>.For(r => r.TagType?.Name ?? TagType.Base, "tag_type"),
         ColumnMap<Tag>.For(r => r.AliasFor?.LocalPath, "alias_for"),
-        ColumnMap<Tag>.For(ComputeHash, "record_hash")
+        ColumnMap<Tag>.For(r => r.HashElement(), "content_hash"),
+        ColumnMap<Tag>.RecordHash(this)
     ];
 }

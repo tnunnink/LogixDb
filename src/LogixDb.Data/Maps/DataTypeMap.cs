@@ -1,4 +1,5 @@
 using L5Sharp.Core;
+using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -7,7 +8,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="DataType"/> class.
 /// </summary>
-internal class DataTypeMap : TableMap<DataType>
+public class DataTypeMap : TableMap<DataType>
 {
     /// <inheritdoc />
     protected override string TableName => "data_type";
@@ -19,6 +20,7 @@ internal class DataTypeMap : TableMap<DataType>
         ColumnMap<DataType>.For(r => r.Description, "type_description"),
         ColumnMap<DataType>.For(r => r.Class.Name, "type_class"),
         ColumnMap<DataType>.For(r => r.Family.Name, "type_family"),
-        ColumnMap<DataType>.For(ComputeHash, "record_hash")
+        ColumnMap<DataType>.For(r => r.HashElement(), "content_hash"),
+        ColumnMap<DataType>.RecordHash(this)
     ];
 }

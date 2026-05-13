@@ -10,7 +10,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on programs.
 /// </summary>
-internal class ProgramTransformer : IDbTransformer
+public class ProgramTransformer : IDbTransformer
 {
     private readonly ProgramMap _map = new();
 

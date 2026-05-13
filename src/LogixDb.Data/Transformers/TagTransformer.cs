@@ -6,7 +6,7 @@ using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
 
-internal class TagTransformer : IDbTransformer
+public class TagTransformer : IDbTransformer
 {
     private readonly TagMap _tagMap = new();
     private readonly TagMemberMap _memberMap = new();
@@ -30,26 +30,27 @@ internal class TagTransformer : IDbTransformer
 
         foreach (var tag in tags)
         {
-            var tagHash = string.Empty; //todo compute hash hash here.
-            tag.Metadata.Add("tag_hash", tagHash);
+            // This forces the hash for the parent to be computed and cached so we can pass to child records.
+            var tagHash = _tagMap.ComputeHash(tag);
 
             tagRecords.Add(tag);
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
             {
+                // If this record could access parent we wouldn't need this
                 tag.ProduceInfo.Metadata.Add("tag_hash", tagHash);
                 producerRecords.Add(tag.ProduceInfo);
             }
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
             {
+                // If this record could access parent we wouldn't need this
                 tag.ConsumeInfo.Metadata.Add("tag_hash", tagHash);
                 consumerRecords.Add(tag.ConsumeInfo);
             }
 
             foreach (var member in tag.Members())
             {
-                member.Metadata.Add("tag_hash", tagHash);
                 memberRecords.Add(member);
                 /*commentRecords.AddRange(GetTagComments(tagHash, member));*/
 

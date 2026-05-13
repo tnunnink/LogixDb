@@ -8,7 +8,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on tasks.
 /// </summary>
-internal class TaskTransformer : IDbTransformer
+public class TaskTransformer : IDbTransformer
 {
     private readonly TaskMap _map = new();
 

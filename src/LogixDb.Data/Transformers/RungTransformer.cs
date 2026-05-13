@@ -9,7 +9,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on rungs and their instructions and arguments.
 /// </summary>
-internal class RungTransformer : IDbTransformer
+public class RungTransformer : IDbTransformer
 {
     private readonly RungMap _rungMap = new();
     private readonly InstructionMap _instructionMap = new();
@@ -30,11 +30,11 @@ internal class RungTransformer : IDbTransformer
         foreach (var rung in rungs)
         {
             // This is for instruction and argument tables to form relational reference.
-            var rungKey = Guid.CreateVersion7();
-            rung.Metadata.Add("key", rungKey);
+            var rungId = Guid.CreateVersion7();
+            rung.Metadata.Add("rung_id", rungId);
 
             rungRecords.Add(rung);
-            ProcessRung(rungKey, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungId, rung, instructionRecords, argumentRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);

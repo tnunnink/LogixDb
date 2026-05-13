@@ -15,7 +15,7 @@ namespace LogixDb.Data.Transformers;
 /// The transformation process involves creating records for the data types and their
 /// associated members, which are subsequently mapped into tables.
 /// </remarks>
-internal class DataTypeTransformer : IDbTransformer
+public class DataTypeTransformer : IDbTransformer
 {
     private readonly DataTypeMap _typeMap = new();
     private readonly DataTypeMemberMap _memberMap = new();

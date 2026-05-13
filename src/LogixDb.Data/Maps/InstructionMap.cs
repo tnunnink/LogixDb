@@ -13,7 +13,7 @@ namespace LogixDb.Data.Maps;
 /// functionality provided by the <see cref="TableMap{T}"/> base class.
 /// </remarks>
 /// <seealso cref="TableMap{T}"/>
-internal class InstructionMap : TableMap<InstructionRecord>
+public class InstructionMap : TableMap<InstructionRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "instruction";
@@ -27,7 +27,7 @@ internal class InstructionMap : TableMap<InstructionRecord>
         ColumnMap<InstructionRecord>.For(x => x.Key, "instruction_key"),
         ColumnMap<InstructionRecord>.For(x => x.IsConditional, "is_conditional"),
         ColumnMap<InstructionRecord>.For(x => x.IsNative, "is_native"),
-        ColumnMap<InstructionRecord>.For(ComputeHash, "record_hash")
+        ColumnMap<InstructionRecord>.RecordHash(this)
     ];
 }
 
@@ -35,7 +35,7 @@ internal class InstructionMap : TableMap<InstructionRecord>
 /// Represents a record containing detailed information about an instruction as stored in the Logix system.
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
-internal record InstructionRecord(
+public record InstructionRecord(
     Guid? RungKey,
     short Index,
     string Text,

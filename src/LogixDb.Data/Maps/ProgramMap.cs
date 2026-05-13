@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Program"/> class.
 /// </summary>
-internal class ProgramMap : TableMap<Program>
+public class ProgramMap : TableMap<Program>
 {
     /// <inheritdoc />
     protected override string TableName => "program";
@@ -25,6 +25,6 @@ internal class ProgramMap : TableMap<Program>
         ColumnMap<Program>.For(r => r.Disabled, "is_disabled"),
         ColumnMap<Program>.For(r => r.UseAsFolder, "is_folder"),
         ColumnMap<Program>.For(r => r.TestEdits, "has_test_edits"),
-        ColumnMap<Program>.For(ComputeHash, "record_hash")
+        ColumnMap<Program>.RecordHash(this)
     ];
 }

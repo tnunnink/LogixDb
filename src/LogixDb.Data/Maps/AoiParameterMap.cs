@@ -8,7 +8,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Parameter"/> class.
 /// </summary>
-internal class AoiParameterMap : TableMap<Parameter>
+public class AoiParameterMap : TableMap<Parameter>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_parameter";
@@ -16,7 +16,7 @@ internal class AoiParameterMap : TableMap<Parameter>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Parameter>> Columns =>
     [
-        ColumnMap<Parameter>.For(r => r.Parent?.Name, "aoi_name"),
+        ColumnMap<Parameter>.For(r => r.Parent?.Metadata.Get<string>("record_hash"), "aoi_hash"),
         ColumnMap<Parameter>.For(r => r.Name, "parameter_name"),
         ColumnMap<Parameter>.For(r => r.Description, "parameter_description"),
         ColumnMap<Parameter>.For(r => r.DataType, "data_type"),
@@ -30,7 +30,7 @@ internal class AoiParameterMap : TableMap<Parameter>
         ColumnMap<Parameter>.For(r => r.Visible, "is_visible"),
         ColumnMap<Parameter>.For(r => r.Required, "is_required"),
         ColumnMap<Parameter>.For(r => r.Constant, "is_constant"),
-        ColumnMap<Parameter>.For(ComputeHash, "record_hash")
+        ColumnMap<Parameter>.RecordHash(this)
         
     ];
 }

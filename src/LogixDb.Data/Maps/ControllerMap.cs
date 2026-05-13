@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Controller"/> class.
 /// </summary>
-internal class ControllerMap : TableMap<Controller>
+public class ControllerMap : TableMap<Controller>
 {
     /// <inheritdoc />
     protected override string TableName => "controller";

@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Module"/> class.
 /// </summary>
-internal class ModuleMap : TableMap<Module>
+public class ModuleMap : TableMap<Module>
 {
     /// <inheritdoc />
     protected override string TableName => "module";
@@ -30,6 +30,6 @@ internal class ModuleMap : TableMap<Module>
         ColumnMap<Module>.For(r => r.SafetyEnabled, "is_safety_enabled"),
         ColumnMap<Module>.For(r => r.IP?.ToString(), "ip_address"),
         ColumnMap<Module>.For(r => r.Slot, "slot_number"),
-        ColumnMap<Module>.For(ComputeHash, "record_hash")
+        ColumnMap<Module>.RecordHash(this)
     ];
 }

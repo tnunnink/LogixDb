@@ -1,6 +1,6 @@
 namespace LogixDb.Data.Maps;
 
-internal class TagCommentMap : TableMap<TagCommentRecord>
+public class TagCommentMap : TableMap<TagCommentRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_comment";
@@ -12,8 +12,8 @@ internal class TagCommentMap : TableMap<TagCommentRecord>
         ColumnMap<TagCommentRecord>.For(r => r.TagName, "member_tag"),
         ColumnMap<TagCommentRecord>.For(r => r.TagName, "tag_name"),
         ColumnMap<TagCommentRecord>.For(r => r.TagComment, "tag_comment"),
-        ColumnMap<TagCommentRecord>.For(ComputeHash, "record_hash")
+        ColumnMap<TagCommentRecord>.RecordHash(this)
     ];
 }
 
-internal record TagCommentRecord(string? TagHash, string TagName, string TagComment);
+public record TagCommentRecord(string? TagHash, string TagName, string TagComment);

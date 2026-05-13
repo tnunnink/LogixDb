@@ -1,6 +1,6 @@
 namespace LogixDb.Data.Maps;
 
-internal class TagValueMap : TableMap<TagValueRecord>
+public class TagValueMap : TableMap<TagValueRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_value";
@@ -15,4 +15,4 @@ internal class TagValueMap : TableMap<TagValueRecord>
     ];
 }
 
-internal record TagValueRecord(int VersionId, string TagHash, string TagName, string? Value);
+public record TagValueRecord(int VersionId, string TagHash, string TagName, string? Value);

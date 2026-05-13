@@ -8,7 +8,7 @@ namespace LogixDb.Data;
 /// and map it to a specific database column with the appropriate type and constraints.
 /// </summary>
 /// <typeparam name="T">The type of Logix element being mapped, which must implement <see cref="ILogixElement"/>.</typeparam>
-internal sealed record ColumnMap<T> where T : class
+public sealed record ColumnMap<T> where T : class
 {
     /// <summary>
     /// Gets or sets the name of the database column to which a property of <typeparamref name="T"/> is mapped.
@@ -261,6 +261,22 @@ internal sealed record ColumnMap<T> where T : class
             Name = name,
             Type = typeof(DateTime),
             Getter = x => getter(x)
+        };
+    }
+
+    /// <summary>
+    /// Creates a new column map for storing a record hash value, specifically configured to map
+    /// the computed hash value of a Logix element to a database column named "record_hash".
+    /// </summary>
+    /// <param name="map">The table map containing configuration and logic for hash computation of the Logix element.</param>
+    /// <returns>A new instance of <see cref="ColumnMap{T}"/> configured for mapping the record's computed hash to the "record_hash" database column.</returns>
+    public static ColumnMap<T> RecordHash(TableMap<T> map)
+    {
+        return new ColumnMap<T>
+        {
+            Name = "record_hash",
+            Type = typeof(string),
+            Getter = map.ComputeHash
         };
     }
 }

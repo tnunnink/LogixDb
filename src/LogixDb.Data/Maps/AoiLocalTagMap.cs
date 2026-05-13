@@ -7,39 +7,28 @@ namespace LogixDb.Data.Maps;
 /// Represents a mapping configuration for LocalTag objects to the "aoi_parameter" database table.
 /// This class defines how specific properties of LocalTag elements are mapped to corresponding table columns.
 /// </summary>
-internal class AoiLocalTagMap : TableMap<AoiLocalTagRecord>
+public class AoiLocalTagMap : TableMap<LocalTag>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<AoiLocalTagRecord>> Columns =>
+    protected override IReadOnlyList<ColumnMap<LocalTag>> Columns =>
     [
-        ColumnMap<AoiLocalTagRecord>.For(r => r.AoiName, "aoi_name"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Name, "parameter_name"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Description, "parameter_description"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.DataType, "data_type"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Dimensions.ToSqlFormat(), "dimensions"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Value.ToSqlFormat(), "default_value"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.ExternalAccess?.Name, "external_access"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Usage?.Name, "tag_usage"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.TagType?.Name, "tag_type"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_visible"),
-        ColumnMap<AoiLocalTagRecord>.For(_ => false, "is_required"),
-        ColumnMap<AoiLocalTagRecord>.For(r => r.Tag.Constant, "is_constant"),
-        ColumnMap<AoiLocalTagRecord>.For(ComputeHash, "record_hash"),
+        ColumnMap<LocalTag>.For(r => r.Metadata.Get<string>("aoi_hash"), "aoi_hash"),
+        ColumnMap<LocalTag>.For(r => r.Name, "parameter_name"),
+        ColumnMap<LocalTag>.For(r => r.Description, "parameter_description"),
+        ColumnMap<LocalTag>.For(r => r.DataType, "data_type"),
+        ColumnMap<LocalTag>.For(r => r.Dimensions.ToSqlFormat(), "dimensions"),
+        ColumnMap<LocalTag>.For(r => r.Radix.ToSqlFormat(), "radix"),
+        ColumnMap<LocalTag>.For(r => r.Value.ToSqlFormat(), "default_value"),
+        ColumnMap<LocalTag>.For(r => r.ExternalAccess?.Name, "external_access"),
+        ColumnMap<LocalTag>.For(r => r.Usage?.Name, "tag_usage"),
+        ColumnMap<LocalTag>.For(r => r.TagType?.Name, "tag_type"),
+        ColumnMap<LocalTag>.For(r => r.AliasFor?.LocalPath, "tag_alias"),
+        ColumnMap<LocalTag>.For(_ => false, "is_visible"),
+        ColumnMap<LocalTag>.For(_ => false, "is_required"),
+        ColumnMap<LocalTag>.For(r => r.Constant, "is_constant"),
+        ColumnMap<LocalTag>.RecordHash(this)
     ];
 }
-
-/// <summary>
-/// Represents a record for an AOI (Add-On Instruction) local tag that is mapped to the "aoi_parameter" database table.
-/// This record contains relevant information for uniquely identifying and associating an AOI tag with its attributes.
-/// </summary>
-/// <remarks>
-/// The <see cref="AoiLocalTagRecord"/> serves as a structural definition that encapsulates properties such as 
-/// the name of the associated AOI, and the tag details.
-/// This record is used in mapping operations for transferring data between the program and the database storage.
-/// </remarks>
-internal record AoiLocalTagRecord(string? AoiName, LocalTag Tag);

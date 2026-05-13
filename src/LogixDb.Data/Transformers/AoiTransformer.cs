@@ -10,7 +10,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on Add-On Instructions (AOI).
 /// </summary>
-internal class AoiTransformer : IDbTransformer
+public class AoiTransformer : IDbTransformer
 {
     private readonly AoiMap _aoiMap = new();
     private readonly AoiParameterMap _parameterMap = new();
@@ -23,18 +23,24 @@ internal class AoiTransformer : IDbTransformer
         var source = target.GetSource();
         var aoiRecords = new List<AddOnInstruction>();
         var parameterRecords = new List<Parameter>();
-        var localTagRecords = new List<AoiLocalTagRecord>();
+        var localTagRecords = new List<LocalTag>();
         var rungRecords = new List<AoiRungRecord>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
+            var aoiHash = _aoiMap.ComputeHash(aoi);
             aoiRecords.Add(aoi);
             parameterRecords.AddRange(aoi.Parameters);
 
             // Only attempt to process local tags and logic/rungs if the AOI is not encrypted. 
             if (!aoi.IsEncrypted)
             {
-                localTagRecords.AddRange(aoi.LocalTags.Select(t => new AoiLocalTagRecord(aoi.Name, t)));
+                localTagRecords.AddRange(aoi.LocalTags.Select(t =>
+                {
+                    //Link
+                    t.Metadata["aoi_hash"] = aoi.Name;
+                    return t;
+                }));
 
                 var rungs = aoi.Routines.Where(r => r.Type == RoutineType.RLL).SelectMany(r => r.Rungs);
                 rungRecords.AddRange(rungs.Select(r => new AoiRungRecord(aoi.Name, r)));

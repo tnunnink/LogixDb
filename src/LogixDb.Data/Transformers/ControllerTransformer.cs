@@ -8,7 +8,7 @@ namespace LogixDb.Data.Transformers;
 /// Provides functionality to transform a <see cref="Target"/> object into a collection of
 /// <see cref="DataTable"/> instances focused on the controller.
 /// </summary>
-internal class ControllerTransformer : IDbTransformer
+public class ControllerTransformer : IDbTransformer
 {
     private readonly ControllerMap _map = new();
 

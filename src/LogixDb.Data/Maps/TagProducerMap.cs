@@ -2,7 +2,7 @@ using L5Sharp.Core;
 
 namespace LogixDb.Data.Maps;
 
-internal class TagProducerMap : TableMap<ProduceInfo>
+public class TagProducerMap : TableMap<ProduceInfo>
 {
     /// <inheritdoc />
     protected override string TableName => "tag_producer";
@@ -17,6 +17,7 @@ internal class TagProducerMap : TableMap<ProduceInfo>
         ColumnMap<ProduceInfo>.For(r => r.MaximumRPI, "maximum_rpi"),
         ColumnMap<ProduceInfo>.For(r => r.MinimumRPI, "minimum_rpi"),
         ColumnMap<ProduceInfo>.For(r => r.DefaultRPI, "default_rpi"),
-        ColumnMap<ProduceInfo>.For(ComputeHash, "record_hash")
+        ColumnMap<ProduceInfo>.RecordHash(this)
     ];
 }
+

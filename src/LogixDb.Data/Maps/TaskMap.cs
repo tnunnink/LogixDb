@@ -7,7 +7,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Task"/> class.
 /// </summary>
-internal class TaskMap : TableMap<Task>
+public class TaskMap : TableMap<Task>
 {
     /// <inheritdoc />
     protected override string TableName => "task";
@@ -26,6 +26,6 @@ internal class TaskMap : TableMap<Task>
         ColumnMap<Task>.For(r => r.EventInfo?.EventTrigger?.Name, "event_trigger"),
         ColumnMap<Task>.For(r => r.EventInfo?.EventTag?.LocalPath, "event_tag"),
         ColumnMap<Task>.For(r => r.EventInfo?.EnableTimeout, "enable_timeout"),
-        ColumnMap<Task>.For(ComputeHash, "record_hash")
+        ColumnMap<Task>.RecordHash(this)
     ];
 }

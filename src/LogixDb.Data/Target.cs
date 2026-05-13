@@ -91,7 +91,7 @@ public sealed class Target
             SoftwareRevision = source.Content.SoftwareRevision,
             ExportDate = source.Content.ExportDate,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
-            SourceHash = source.Content.Serialize().ToString().Hash(),
+            SourceHash = source.Content.Serialize().ToString().HashText(),
             SourceData = source.Content.Serialize().ToString().Compress(),
             _l5X = source
         };
@@ -114,9 +114,6 @@ public sealed class Target
     /// <returns>An enumerable collection of DataTable objects that match the specified table names.</returns>
     public IEnumerable<DataTable> Compile(ICollection<string> tableNames)
     {
-        // This refreshes the in memory instance with new unique ids.
-        SeedElementIds();
-
         // Filter transformers based on provided table options.
         var transformers = _transformers.Where(kvp => tableNames.Contains(kvp.Key)).Select(kvp => kvp.Value);
 
@@ -128,27 +125,6 @@ public sealed class Target
             foreach (var table in tables)
                 if (tableNames.Contains(table.TableName))
                     yield return table;
-        }
-    }
-
-    /// <summary>
-    /// Populates each XML element within the parsed L5X source data with a unique identifier annotation.
-    /// This is done by decompressing the stored source data, parsing it into L5X content, and traversing
-    /// all elements and their descendants to assign a GUID-based "id" annotation.
-    /// </summary>
-    /// <remarks>
-    /// The method ensures that all XML elements in the L5X source are uniquely identifiable by adding a
-    /// dictionary annotation containing an "id" key with a GUID as its value. This is useful for linking
-    /// elements to other data structures or maintaining element uniqueness during data processing.
-    /// </remarks>
-    private void SeedElementIds()
-    {
-        _l5X = L5X.Parse(SourceData.Decompress());
-        var elements = _l5X.Content.Serialize().DescendantsAndSelf();
-
-        foreach (var element in elements)
-        {
-            element.AddAnnotation(new Dictionary<string, object> { { "id", Guid.CreateVersion7() } });
         }
     }
 

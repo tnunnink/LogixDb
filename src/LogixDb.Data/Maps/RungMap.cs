@@ -8,7 +8,7 @@ namespace LogixDb.Data.Maps;
 /// This class defines the schema of the table, including the table name and the columns
 /// that map to the properties of the <see cref="Rung"/> class.
 /// </summary>
-internal class RungMap : TableMap<Rung>
+public class RungMap : TableMap<Rung>
 {
     /// <inheritdoc />
     protected override string TableName => "rung";
@@ -16,13 +16,12 @@ internal class RungMap : TableMap<Rung>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
-        ColumnMap<Rung>.For(r => r.Metadata.Get<Guid>("key"), "rung_key"),
-        ColumnMap<Rung>.For(r => r.Program?.Name, "program_name"),
-        ColumnMap<Rung>.For(r => r.Routine?.Name, "routine_name"),
+        ColumnMap<Rung>.For(r => r.Metadata.Get<Guid>("rung_id"), "rung_id"),
+        ColumnMap<Rung>.For(r => r.Routine?.Metadata.Get<string>("record_hash"), "routine_hash"),
         ColumnMap<Rung>.For(r => r.Number, "rung_number"),
         ColumnMap<Rung>.For(r => r.Text, "rung_text"),
         ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),
-        ColumnMap<Rung>.For(r => r.Text.Hash(), "code_hash"),
-        ColumnMap<Rung>.For(ComputeHash, "record_hash")
+        ColumnMap<Rung>.For(r => r.Text.HashText(), "code_hash"),
+        ColumnMap<Rung>.RecordHash(this)
     ];
 }

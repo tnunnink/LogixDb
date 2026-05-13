@@ -3,7 +3,6 @@ using System.Text.Json;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
-using LogixDb.Data.Extensions;
 using LogixDb.Data.Maps;
 
 // ReSharper disable StringLiteralTypo
@@ -15,6 +14,8 @@ namespace LogixDb.Migrations.M20260308;
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]
 public class M202603082130SeedNativeOperands : AutoReversingMigration
 {
+    private static readonly OperandMap Map = new();
+    
     public override void Up()
     {
         var operands = LoadResource("operands.json");
@@ -33,7 +34,7 @@ public class M202603082130SeedNativeOperands : AutoReversingMigration
                 operand_type = record.Type,
                 operand_description = record.Description,
                 is_destructive = record.Destructive,
-                record_hash = record.Hash()
+                record_hash = Map.ComputeHash(record)
             });
         }
     }

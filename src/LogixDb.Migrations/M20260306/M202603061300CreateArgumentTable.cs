@@ -13,14 +13,14 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("argument")
-            .WithRelation<Guid>("rung_key", "rung").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<Guid>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
             .WithColumn("argument_text").AsString(256).NotNullable();
 
         Create.Index().OnTable("argument")
-            .OnColumn("rung_key").Ascending()
+            .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending();
 

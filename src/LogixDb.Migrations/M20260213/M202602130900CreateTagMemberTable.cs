@@ -26,7 +26,8 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_member")
-            .OnColumn("tag_name").Ascending();
+            .OnColumn("tag_name").Ascending()
+            .OnColumn("tag_id").Ascending();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("parent_name").Ascending()

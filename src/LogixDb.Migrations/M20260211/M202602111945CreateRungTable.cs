@@ -1,3 +1,4 @@
+using System.Data;
 using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
@@ -12,10 +13,8 @@ public class M202602111945CreateRungTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("rung")
-            .WithPrimaryKey<long>("rung_id")
-            .WithColumn("rung_key").AsGuid().NotNullable()
-            .WithColumn("program_name").AsString().NotNullable()
-            .WithColumn("routine_name").AsString().NotNullable()
+            .WithPrimaryKey<Guid>("rung_id")
+            .WithRelation<long>("routine_id", "routine").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
@@ -25,14 +24,9 @@ public class M202602111945CreateRungTable : AutoReversingMigration
         Create.Index().OnTable("rung")
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
-        
-        // This is required for SQL Server to make FK relationship to non PK column
-        Create.UniqueConstraint().OnTable("rung")
-            .Column("rung_key");
 
         Create.Index().OnTable("rung")
-            .OnColumn("program_name").Ascending()
-            .OnColumn("routine_name").Ascending()
+            .OnColumn("routine_id").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
 

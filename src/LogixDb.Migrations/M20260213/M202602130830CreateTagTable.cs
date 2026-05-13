@@ -24,6 +24,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
             .WithColumn("alias_for").AsString(256).NotNullable()
+            .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("tag")

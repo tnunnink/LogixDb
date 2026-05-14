@@ -1,8 +1,8 @@
-INSERT OR IGNORE INTO tag_comment (member_id,
-                         tag_name,
-                         tag_comment,
-                         record_hash)
-SELECT (SELECT member_id FROM tag_member WHERE record_hash = t.member_id),
+INSERT OR IGNORE INTO tag_comment (tag_id,
+                                   tag_name,
+                                   tag_comment,
+                                   record_hash)
+SELECT (SELECT tag_id FROM tag WHERE record_hash = t.tag_hash),
        t.tag_name,
        t.tag_comment,
        t.record_hash

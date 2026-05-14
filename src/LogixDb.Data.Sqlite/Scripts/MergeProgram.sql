@@ -1,17 +1,17 @@
-INSERT OR IGNORE INTO program (task_id,
-                     folder_id,
-                     program_name,
-                     program_description,
-                     program_type,
-                     main_routine,
-                     fault_routine,
-                     is_disabled,
-                     is_folder,
-                     has_test_edits,
-                     record_hash)
-SELECT (SELECT task_id FROM task WHERE record_hash = t.task_id),
-       (SELECT program_id FROM program WHERE record_hash = t.folder_id),
-       t.program_name,
+INSERT OR IGNORE INTO program (program_name,
+                               task_name,
+                               folder_name,
+                               program_description,
+                               program_type,
+                               main_routine,
+                               fault_routine,
+                               is_disabled,
+                               is_folder,
+                               has_test_edits,
+                               record_hash)
+SELECT t.program_name,
+       t.task_name,
+       t.folder_name,
        t.program_description,
        t.program_type,
        t.main_routine,
@@ -24,10 +24,6 @@ FROM temp_program t;
 
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT program_id
-        FROM program
-        WHERE record_hash = t.record_hash
-          AND task_id = (SELECT task_id FROM task WHERE record_hash = t.task_id)
-          AND folder_id = (SELECT program_id FROM program WHERE record_hash = t.folder_id)),
+       (SELECT program_id FROM program WHERE record_hash = t.record_hash),
        (SELECT component_id FROM component WHERE component_name = 'program')
 FROM temp_program t;

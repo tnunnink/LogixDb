@@ -1,12 +1,14 @@
 INSERT OR IGNORE INTO data_type (type_name,
-                       type_description,
-                       type_class,
-                       type_family,
-                       record_hash)
+                                 type_description,
+                                 type_class,
+                                 type_family,
+                                 content_hash,
+                                 record_hash)
 SELECT type_name,
        type_description,
        type_class,
        type_family,
+       content_hash,
        record_hash
 FROM temp_data_type;
 

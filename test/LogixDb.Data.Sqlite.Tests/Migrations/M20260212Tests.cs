@@ -32,6 +32,7 @@ public class M20260212Tests : SqliteTestFixture
             await AssertColumnDefinition("aoi", "signature_id", "text");
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "text");
+            await AssertColumnDefinition("aoi", "content_hash", "text");
             await AssertColumnDefinition("aoi", "record_hash", "text");
 
             await AssertPrimaryKey("aoi", "aoi_id");

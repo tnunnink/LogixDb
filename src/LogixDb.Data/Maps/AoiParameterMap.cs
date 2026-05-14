@@ -3,34 +3,85 @@ using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
-/// <summary>
-/// Represents a mapping configuration for the "aoi_parameter" table within the database.
-/// This class defines the schema of the table, including the table name and the columns
-/// that map to the properties of the <see cref="Parameter"/> class.
-/// </summary>
-public class AoiParameterMap : TableMap<Parameter>
+public class AoiParameterMap : TableMap<ParameterRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "aoi_parameter";
 
     /// <inheritdoc />
-    protected override IReadOnlyList<ColumnMap<Parameter>> Columns =>
+    protected override IReadOnlyList<ColumnMap<ParameterRecord>> Columns =>
     [
-        ColumnMap<Parameter>.For(r => r.Parent?.Metadata.Get<string>("record_hash"), "aoi_hash"),
-        ColumnMap<Parameter>.For(r => r.Name, "parameter_name"),
-        ColumnMap<Parameter>.For(r => r.Description, "parameter_description"),
-        ColumnMap<Parameter>.For(r => r.DataType, "data_type"),
-        ColumnMap<Parameter>.For(r => r.Dimension.ToSqlFormat(), "dimensions"),
-        ColumnMap<Parameter>.For(r => r.Radix.ToSqlFormat(), "radix"),
-        ColumnMap<Parameter>.For(r => r.Default?.ToSqlFormat(), "default_value"),
-        ColumnMap<Parameter>.For(r => r.ExternalAccess?.Name, "external_access"),
-        ColumnMap<Parameter>.For(r => r.Usage.Name, "tag_usage"),
-        ColumnMap<Parameter>.For(r => r.TagType?.Name, "tag_type"),
-        ColumnMap<Parameter>.For(r => r.AliasFor?.LocalPath, "tag_alias"),
-        ColumnMap<Parameter>.For(r => r.Visible, "is_visible"),
-        ColumnMap<Parameter>.For(r => r.Required, "is_required"),
-        ColumnMap<Parameter>.For(r => r.Constant, "is_constant"),
-        ColumnMap<Parameter>.RecordHash(this)
-        
+        ColumnMap<ParameterRecord>.For(r => r.AoiHash, "aoi_hash"),
+        ColumnMap<ParameterRecord>.For(r => r.Name, "parameter_name"),
+        ColumnMap<ParameterRecord>.For(r => r.Description, "parameter_description"),
+        ColumnMap<ParameterRecord>.For(r => r.DataType, "data_type"),
+        ColumnMap<ParameterRecord>.For(r => r.Dimensions, "dimensions"),
+        ColumnMap<ParameterRecord>.For(r => r.Radix, "radix"),
+        ColumnMap<ParameterRecord>.For(r => r.Default, "default_value"),
+        ColumnMap<ParameterRecord>.For(r => r.ExternalAccess, "external_access"),
+        ColumnMap<ParameterRecord>.For(r => r.Usage, "tag_usage"),
+        ColumnMap<ParameterRecord>.For(r => r.TagType, "tag_type"),
+        ColumnMap<ParameterRecord>.For(r => r.AliasFor, "tag_alias"),
+        ColumnMap<ParameterRecord>.For(r => r.Visible, "is_visible"),
+        ColumnMap<ParameterRecord>.For(r => r.Required, "is_required"),
+        ColumnMap<ParameterRecord>.For(r => r.Constant, "is_constant"),
+        ColumnMap<ParameterRecord>.RecordHash(this)
     ];
+}
+
+public record ParameterRecord(
+    string? AoiHash,
+    string Name,
+    string? Description,
+    string? DataType,
+    string? Dimensions,
+    string? Radix,
+    string? Default,
+    string? ExternalAccess,
+    string? Usage,
+    string? TagType,
+    string? AliasFor,
+    bool Visible,
+    bool Required,
+    bool Constant)
+{
+    public static ParameterRecord FromParameter(Parameter parameter, string aoiHash)
+    {
+        return new ParameterRecord(
+            aoiHash,
+            parameter.Name,
+            parameter.Description,
+            parameter.DataType,
+            parameter.Dimension.ToSqlFormat(),
+            parameter.Radix.ToSqlFormat(),
+            parameter.Default?.ToSqlFormat(),
+            parameter.ExternalAccess?.Name,
+            parameter.Usage.Name,
+            parameter.TagType?.Name,
+            parameter.AliasFor?.LocalPath,
+            parameter.Visible is true,
+            parameter.Required is true,
+            parameter.Constant is true
+        );
+    }
+
+    public static ParameterRecord FromLocalTag(LocalTag tag, string aoiHash)
+    {
+        return new ParameterRecord(
+            aoiHash,
+            tag.Name,
+            tag.Description,
+            tag.DataType,
+            tag.Dimensions.ToSqlFormat(),
+            tag.Radix.ToSqlFormat(),
+            tag.Value.ToSqlFormat(),
+            tag.ExternalAccess?.Name,
+            tag.Usage?.Name,
+            tag.TagType?.Name,
+            tag.AliasFor?.LocalPath,
+            false,
+            false,
+            tag.Constant is true
+        );
+    }
 }

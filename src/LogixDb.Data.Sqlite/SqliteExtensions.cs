@@ -1,5 +1,4 @@
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Logging;
 
 namespace LogixDb.Data.Sqlite;
 
@@ -52,14 +51,9 @@ internal static class SqliteExtensions
         if (type == typeof(float) || type == typeof(double) || type == typeof(decimal))
             return SqliteType.Real;
 
-        if (type == typeof(string) || type == typeof(DateTime) || type == typeof(DateTimeOffset) ||
-            type == typeof(TimeSpan) || type == typeof(Guid))
-            return SqliteType.Text;
-
         if (type == typeof(byte[]))
             return SqliteType.Blob;
 
-        throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported type for SQLite conversion.");
+        return SqliteType.Text;
     }
-
 }

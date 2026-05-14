@@ -67,7 +67,8 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation of creating the temporary table.</returns>
     private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
     {
-        var sql = $"CREATE TEMP TABLE temp_{table.TableName} AS SELECT * FROM {table.TableName} WHERE 0;";
+        var columns = table.Columns.Cast<DataColumn>().Select(c => $"[{c.ColumnName}] {c.DataType.ToSqliteType()}");
+        var sql = $"CREATE TEMP TABLE temp_{table.TableName} ({string.Join(", ", columns)});";
         await using var command = new SqliteCommand(sql, connection, transaction);
         await command.ExecuteNonQueryAsync(token);
     }

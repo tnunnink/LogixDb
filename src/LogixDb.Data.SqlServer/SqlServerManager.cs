@@ -111,7 +111,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     public Task DeleteVersion(string targetKey, int versionNumber, CancellationToken token = default)
     {
         return ExecuteSqlScriptAsync(
-            SqlServerScript.DeleteTargetInstances,
+            SqlServerScript.DeleteVersion,
             new { TargetKey = targetKey },
             token
         );
@@ -135,11 +135,6 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
             new { TargetKey = targetKey, BeforeDate = beforeDate },
             token
         );
-    }
-
-    public Task PruneTarget(string tagetKey, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -220,7 +215,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
         {
             // 1. Get the table names from the schema to determine which component to import
             var tableNames = await connection.QueryAsync<string>(
-                SqlServerScript.GetComponentTables,
+                SqlServerScript.GetTableNames,
                 transaction: transaction
             );
 

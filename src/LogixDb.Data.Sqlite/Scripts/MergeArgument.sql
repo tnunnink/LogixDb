@@ -1,11 +1,12 @@
-INSERT OR IGNORE INTO argument (instruction_id,
-                      argument_index,
-                      argument_type,
-                      argument_text,
-                      record_hash)
-SELECT (SELECT instruction_id FROM instruction WHERE record_hash = t.instruction_id),
+INSERT OR IGNORE INTO argument (rung_id,
+                                instruction_index,
+                                argument_index,
+                                argument_type,
+                                argument_text)
+SELECT t.rung_id,
+       t.instruction_index,
        t.argument_index,
        t.argument_type,
-       t.argument_text,
-       t.record_hash
-FROM temp_argument t;
+       t.argument_text
+FROM temp_argument t
+         INNER JOIN rung r ON r.rung_id = t.rung_id;

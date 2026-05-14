@@ -17,7 +17,7 @@ public class M20260308Tests : SqliteTestFixture
             await AssertColumnDefinition("operand", "operand_index", "integer");
             await AssertColumnDefinition("operand", "operand_name", "text");
             await AssertColumnDefinition("operand", "operand_type", "text");
-            await AssertColumnDefinition("operand", "operand_format", "text");
+            /*await AssertColumnDefinition("operand", "operand_format", "text");*/
             await AssertColumnDefinition("operand", "operand_description", "text");
             await AssertColumnDefinition("operand", "is_destructive", "integer");
             await AssertColumnDefinition("operand", "record_hash", "text");

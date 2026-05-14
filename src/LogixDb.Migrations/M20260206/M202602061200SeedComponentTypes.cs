@@ -19,7 +19,6 @@ public class M202602061200SeedComponentTypes : AutoReversingMigration
             .Row(new { component_name = "tag" })
             .Row(new { component_name = "task" })
             .Row(new { component_name = "program" })
-            .Row(new { component_name = "routine" })
-            .Row(new { component_name = "rung" });
+            .Row(new { component_name = "routine" });
     }
 }

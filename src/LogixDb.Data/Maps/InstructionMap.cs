@@ -21,7 +21,7 @@ public class InstructionMap : TableMap<InstructionRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
-        ColumnMap<InstructionRecord>.For(r => r.RungKey, "rung_id"),
+        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Text, "instruction_text"),
         ColumnMap<InstructionRecord>.For(x => x.Key, "instruction_key"),
@@ -36,7 +36,7 @@ public class InstructionMap : TableMap<InstructionRecord>
 /// Encapsulates data specific to an individual instruction, including metadata and structural identifiers.
 /// </summary>
 public record InstructionRecord(
-    Guid? RungKey,
+    Guid? RungId,
     short Index,
     string Text,
     string Key,

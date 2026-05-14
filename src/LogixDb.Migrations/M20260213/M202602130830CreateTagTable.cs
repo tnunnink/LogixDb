@@ -23,7 +23,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("is_constant").AsBoolean().Nullable()
             .WithColumn("tag_usage").AsString(32).Nullable()
             .WithColumn("tag_type").AsString(32).Nullable()
-            .WithColumn("alias_for").AsString(256).NotNullable()
+            .WithColumn("alias_for").AsString(256).Nullable()
             .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 

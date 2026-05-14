@@ -9,35 +9,36 @@ namespace LogixDb.Data.SqlServer;
 /// </summary>
 internal static class SqlServerScript
 {
-    public static string PostTarget => Get(nameof(PostTarget));
-    public static string PostInfo => Get(nameof(PostInfo));
-    public static string ListTargets => Get(nameof(ListTargets));
-    public static string GetTargetByVersion => Get(nameof(GetTargetByVersion));
-    public static string GetTargetByLatest => Get(nameof(GetTargetByLatest));
     public static string DeleteTarget => Get(nameof(DeleteTarget));
-    public static string DeleteTargetInstances => Get(nameof(DeleteTargetInstances));
-    public static string DeleteVersionsByNumber => Get(nameof(DeleteVersionsByNumber));
+    public static string DeleteVersion => Get(nameof(DeleteVersion));
     public static string DeleteVersionsBeforeDate => Get(nameof(DeleteVersionsBeforeDate));
-    public static string GetComponentTables => Get(nameof(GetComponentTables));
-    public static string MergeController => Get(nameof(MergeController));
-    public static string MergeDataType => Get(nameof(MergeDataType));
-    public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));
+    public static string DeleteVersionsByNumber => Get(nameof(DeleteVersionsByNumber));
+    public static string GetTableNames => Get(nameof(GetTableNames));
+    public static string GetTargetByLatest => Get(nameof(GetTargetByLatest));
+    public static string GetTargetByVersion => Get(nameof(GetTargetByVersion));
+    public static string ListTargets => Get(nameof(ListTargets));
     public static string MergeAoi => Get(nameof(MergeAoi));
     public static string MergeAoiParameter => Get(nameof(MergeAoiParameter));
     public static string MergeAoiRung => Get(nameof(MergeAoiRung));
+    public static string MergeArgument => Get(nameof(MergeArgument));
+    public static string MergeController => Get(nameof(MergeController));
+    public static string MergeDataType => Get(nameof(MergeDataType));
+    public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));
+    public static string MergeInstruction => Get(nameof(MergeInstruction));
     public static string MergeModule => Get(nameof(MergeModule));
-    public static string MergeTask => Get(nameof(MergeTask));
+    public static string MergeOperand => Get(nameof(MergeOperand));
     public static string MergeProgram => Get(nameof(MergeProgram));
     public static string MergeRoutine => Get(nameof(MergeRoutine));
     public static string MergeRung => Get(nameof(MergeRung));
-    public static string MergeInstruction => Get(nameof(MergeInstruction));
-    public static string MergeArgument => Get(nameof(MergeArgument));
-    public static string MergeOperand => Get(nameof(MergeOperand));
     public static string MergeTag => Get(nameof(MergeTag));
-    public static string MergeTagMember => Get(nameof(MergeTagMember));
     public static string MergeTagComment => Get(nameof(MergeTagComment));
-    public static string MergeTagProducer => Get(nameof(MergeTagProducer));
     public static string MergeTagConsumer => Get(nameof(MergeTagConsumer));
+    public static string MergeTagMember => Get(nameof(MergeTagMember));
+    public static string MergeTagProducer => Get(nameof(MergeTagProducer));
+    public static string MergeTask => Get(nameof(MergeTask));
+    public static string PostInfo => Get(nameof(PostInfo));
+    public static string PostTarget => Get(nameof(PostTarget));
+    public static string PostVersion => Get(nameof(PostVersion));
 
     /// <summary>
     /// Retrieves the content of an embedded SQL script resource by its name.

@@ -32,6 +32,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi", "signature_id", "nvarchar");
             await AssertColumnDefinition("aoi", "signature_timestamp", "datetime");
             await AssertColumnDefinition("aoi", "component_class", "nvarchar");
+            await AssertColumnDefinition("aoi", "content_hash", "nvarchar");
             await AssertColumnDefinition("aoi", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi", "aoi_id");

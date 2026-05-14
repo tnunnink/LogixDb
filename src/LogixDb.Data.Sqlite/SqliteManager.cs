@@ -181,9 +181,8 @@ public sealed class SqliteManager : IDbManager
             // Insert target key if not already.
             await connection.ExecuteAsync(SqliteScript.PostTarget, target, transaction);
 
-            // Inserts a new version for the specified target key (handles getting target id in script)
-            // and returns the inserted version id. This is needed in some spots, and is an indicator that the
-            // version was posted. 
+            // Inserts a new version for the target key (handles getting target id in scripts) and returns the inserted version id.
+            // This is needed in some spots, and is an indicator that the version was posted. 
             target.VersionId = await connection.ExecuteAsync(SqliteScript.PostVersion, target, transaction);
 
             // Inserts all the configured metadata for the version.
@@ -220,7 +219,7 @@ public sealed class SqliteManager : IDbManager
         {
             // 1. Get the table names from the schema to determine which component to import
             var tableNames = await connection.QueryAsync<string>(
-                SqliteScript.GetComponentTables,
+                SqliteScript.GetTableNames,
                 transaction: transaction
             );
 

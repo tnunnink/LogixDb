@@ -9,7 +9,6 @@ public class TagCommentMap : TableMap<TagCommentRecord>
     protected override IReadOnlyList<ColumnMap<TagCommentRecord>> Columns =>
     [
         ColumnMap<TagCommentRecord>.For(r => r.TagHash, "tag_hash"),
-        ColumnMap<TagCommentRecord>.For(r => r.TagName, "member_tag"),
         ColumnMap<TagCommentRecord>.For(r => r.TagName, "tag_name"),
         ColumnMap<TagCommentRecord>.For(r => r.TagComment, "tag_comment"),
         ColumnMap<TagCommentRecord>.RecordHash(this)

@@ -32,19 +32,18 @@ public class TagTransformer : IDbTransformer
         {
             // This forces the hash for the parent to be computed and cached so we can pass to child records.
             var tagHash = _tagMap.ComputeHash(tag);
-
             tagRecords.Add(tag);
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
             {
-                // If this record could access parent we wouldn't need this
+                // If this record could access parent, we wouldn't need this.
                 tag.ProduceInfo.Metadata.Add("tag_hash", tagHash);
                 producerRecords.Add(tag.ProduceInfo);
             }
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
             {
-                // If this record could access parent we wouldn't need this
+                // If this record could access parent, we wouldn't need this.
                 tag.ConsumeInfo.Metadata.Add("tag_hash", tagHash);
                 consumerRecords.Add(tag.ConsumeInfo);
             }
@@ -52,7 +51,6 @@ public class TagTransformer : IDbTransformer
             foreach (var member in tag.Members())
             {
                 memberRecords.Add(member);
-                /*commentRecords.AddRange(GetTagComments(tagHash, member));*/
 
                 if (member.Value.IsAtomic())
                 {
@@ -64,6 +62,11 @@ public class TagTransformer : IDbTransformer
                     );
                 }
             }
+
+            // For now, I'm going to just insert whatever comment override exists for a tag and see if we can
+            // emulate the pass-through documentation from SQL instead of code.
+            var comments = tag.Comments?.Select(c => new TagCommentRecord(tagHash, c.Operand, c.Value)) ?? [];
+            commentRecords.AddRange(comments);
         }
 
         yield return _tagMap.GenerateTable(tagRecords);

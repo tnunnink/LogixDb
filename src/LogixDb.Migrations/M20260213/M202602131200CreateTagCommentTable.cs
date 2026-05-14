@@ -13,18 +13,18 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_comment")
-            .WithRelation<long>("member_id", "tag_member").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("tag_comment").AsString(int.MaxValue).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("tag_comment")
-            .OnColumn("member_id").Ascending()
+            .OnColumn("tag_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_comment")
-            .OnColumn("member_id").Ascending()
+            .OnColumn("tag_id").Ascending()
             .OnColumn("tag_name").Ascending()
             .WithOptions().Unique();
 

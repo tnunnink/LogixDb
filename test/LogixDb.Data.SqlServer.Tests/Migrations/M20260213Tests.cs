@@ -88,14 +88,14 @@ public class M20260213Tests : SqlServerTestFixture
         {
             await AssertTableExists("tag_comment");
 
-            await AssertColumnDefinition("tag_comment", "member_id", "bigint");
+            await AssertColumnDefinition("tag_comment", "tag_id", "bigint");
             await AssertColumnDefinition("tag_comment", "tag_name", "nvarchar");
             await AssertColumnDefinition("tag_comment", "tag_comment", "nvarchar");
             await AssertColumnDefinition("tag_comment", "record_hash", "nvarchar");
 
-            await AssertForeignKey("tag_comment", "member_id", "tag_member", "member_id");
-            await AssertUniqueIndex("tag_comment", "member_id", "record_hash");
-            await AssertUniqueIndex("tag_comment", "member_id", "tag_name");
+            await AssertForeignKey("tag_comment", "tag_id", "tag", "tag_id");
+            await AssertUniqueIndex("tag_comment", "tag_id", "record_hash");
+            await AssertUniqueIndex("tag_comment", "tag_id", "tag_name");
             await AssertIndex("tag_comment", "tag_name");
         }
     }

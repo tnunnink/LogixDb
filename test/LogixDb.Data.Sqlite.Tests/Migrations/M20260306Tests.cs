@@ -12,7 +12,7 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("instruction");
 
-            await AssertColumnDefinition("instruction", "rung_key", "uniqueidentifier");
+            await AssertColumnDefinition("instruction", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("instruction", "instruction_index", "integer");
             await AssertColumnDefinition("instruction", "instruction_key", "text");
             await AssertColumnDefinition("instruction", "instruction_text", "text");
@@ -20,8 +20,8 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("instruction", "is_native", "integer");
             await AssertColumnDefinition("instruction", "record_hash", "text");
 
-            await AssertForeignKey("instruction", "rung_key", "rung", "rung_key");
-            await AssertUniqueIndex("instruction", "rung_key", "instruction_index");
+            await AssertForeignKey("instruction", "rung_id", "rung", "rung_id");
+            await AssertUniqueIndex("instruction", "rung_id", "instruction_index");
             await AssertIndex("instruction", "instruction_key");
             await AssertIndex("instruction", "record_hash");
         }
@@ -36,14 +36,14 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("argument");
 
-            await AssertColumnDefinition("argument", "rung_key", "uniqueidentifier");
+            await AssertColumnDefinition("argument", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("argument", "instruction_index", "integer");
             await AssertColumnDefinition("argument", "argument_index", "integer");
             await AssertColumnDefinition("argument", "argument_type", "text");
             await AssertColumnDefinition("argument", "argument_text", "text");
 
-            await AssertForeignKey("argument", "rung_key", "rung", "rung_key");
-            await AssertIndex("argument", "rung_key", "instruction_index", "argument_index");
+            await AssertForeignKey("argument", "rung_id", "rung", "rung_id");
+            await AssertIndex("argument", "rung_id", "instruction_index", "argument_index");
             await AssertIndex("argument", "argument_text");
         }
     }

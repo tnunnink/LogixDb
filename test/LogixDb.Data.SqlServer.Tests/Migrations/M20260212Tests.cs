@@ -50,7 +50,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertTableExists("aoi_parameter");
 
             await AssertColumnDefinition("aoi_parameter", "parameter_id", "bigint");
-            await AssertColumnDefinition("aoi_parameter", "aoi_name", "nvarchar");
+            await AssertColumnDefinition("aoi_parameter", "aoi_id", "bigint");
             await AssertColumnDefinition("aoi_parameter", "parameter_name", "nvarchar");
             await AssertColumnDefinition("aoi_parameter", "parameter_description", "nvarchar");
             await AssertColumnDefinition("aoi_parameter", "data_type", "nvarchar");
@@ -67,8 +67,8 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi_parameter", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi_parameter", "parameter_id");
-            await AssertUniqueIndex("aoi_parameter", "record_hash");
-            await AssertUniqueIndex("aoi_parameter", "aoi_name", "parameter_name");
+            await AssertUniqueIndex("aoi_parameter", "aoi_id", "record_hash");
+            await AssertUniqueIndex("aoi_parameter", "aoi_id", "parameter_name");
             await AssertIndex("aoi_parameter", "parameter_name");
         }
     }
@@ -83,7 +83,7 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertTableExists("aoi_rung");
 
             await AssertColumnDefinition("aoi_rung", "rung_id", "bigint");
-            await AssertColumnDefinition("aoi_rung", "aoi_name", "nvarchar");
+            await AssertColumnDefinition("aoi_rung", "aoi_id", "bigint");
             await AssertColumnDefinition("aoi_rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("aoi_rung", "rung_number", "int");
             await AssertColumnDefinition("aoi_rung", "rung_text", "nvarchar");
@@ -91,8 +91,8 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertColumnDefinition("aoi_rung", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("aoi_rung", "rung_id");
-            await AssertUniqueIndex("aoi_rung", "record_hash");
-            await AssertUniqueIndex("aoi_rung", "aoi_name", "routine_name", "rung_number");
+            await AssertUniqueIndex("aoi_rung", "aoi_id", "record_hash");
+            await AssertUniqueIndex("aoi_rung", "aoi_id", "routine_name", "rung_number");
         }
     }
 }

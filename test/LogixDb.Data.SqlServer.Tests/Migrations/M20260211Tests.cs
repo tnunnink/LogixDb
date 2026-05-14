@@ -84,7 +84,8 @@ public class M20260211Tests : SqlServerTestFixture
         {
             await AssertTableExists("data_type_member");
 
-            await AssertColumnDefinition("data_type_member", "type_name", "nvarchar");
+            await AssertColumnDefinition("data_type_member", "member_id", "bigint");
+            await AssertColumnDefinition("data_type_member", "type_id", "bigint");
             await AssertColumnDefinition("data_type_member", "member_name", "nvarchar");
             await AssertColumnDefinition("data_type_member", "data_type", "nvarchar");
             await AssertColumnDefinition("data_type_member", "dimensions", "nvarchar");
@@ -97,8 +98,8 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type_member", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("data_type_member", "member_id");
-            await AssertUniqueIndex("data_type_member", "record_hash");
-            await AssertUniqueIndex("data_type_member", "type_name", "member_name");
+            await AssertUniqueIndex("data_type_member", "type_id", "record_hash");
+            await AssertUniqueIndex("data_type_member", "type_id", "member_name");
             await AssertIndex("data_type_member", "member_name");
         }
     }
@@ -140,7 +141,8 @@ public class M20260211Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("program");
-
+            
+            await AssertColumnDefinition("program", "program_id", "bigint");
             await AssertColumnDefinition("program", "program_name", "nvarchar");
             await AssertColumnDefinition("program", "task_name", "nvarchar");
             await AssertColumnDefinition("program", "folder_name", "nvarchar");
@@ -169,11 +171,13 @@ public class M20260211Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("routine");
-
+            
+            await AssertColumnDefinition("routine", "routine_id", "bigint");
             await AssertColumnDefinition("routine", "program_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
             await AssertColumnDefinition("routine", "routine_type", "nvarchar");
+            await AssertColumnDefinition("routine", "content_hash", "nvarchar");
             await AssertColumnDefinition("routine", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("routine", "routine_id");
@@ -191,21 +195,18 @@ public class M20260211Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung");
-
-            await AssertColumnDefinition("rung", "rung_id", "bigint");
-            await AssertColumnDefinition("rung", "rung_key", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "program_name", "nvarchar");
-            await AssertColumnDefinition("rung", "routine_name", "nvarchar");
+            
+            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung", "routine_id", "bigint");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "rung_text", "nvarchar");
             await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
             await AssertColumnDefinition("rung", "code_hash", "nvarchar");
             await AssertColumnDefinition("rung", "record_hash", "nvarchar");
-
+            
             await AssertPrimaryKey("rung", "rung_id");
             await AssertUniqueIndex("rung", "record_hash");
-            await AssertUniqueIndex("rung", "program_name", "routine_name", "rung_number");
-            await AssertIndex("rung", "rung_key");
+            await AssertUniqueIndex("rung", "routine_id", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }

@@ -28,6 +28,7 @@ public static class FluentMigrationExtensions
                 _ when type == typeof(byte) => syntax.WithColumn(name).AsByte().NotNullable().PrimaryKey().Identity(),
                 _ when type == typeof(int) => syntax.WithColumn(name).AsInt32().NotNullable().PrimaryKey().Identity(),
                 _ when type == typeof(long) => syntax.WithColumn(name).AsInt64().NotNullable().PrimaryKey().Identity(),
+                _ when type == typeof(Guid) => syntax.WithColumn(name).AsGuid().NotNullable().PrimaryKey(),
                 _ => throw new NotSupportedException($"Type {typeof(T).Name} is not supported primary key columns")
             };
         }

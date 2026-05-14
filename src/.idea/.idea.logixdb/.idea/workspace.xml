@@ -19,35 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061130CreateComponentTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061200SeedComponentTypes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ArgumentMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602060900CreateTargetTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602060900CreateTargetTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateTargetVersionMapTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061030CreateTargetVersionMapTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111430CreateControllerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111500CreateDataTypeTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111530CreateDataTypeMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111540CreateModuleTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111600CreateTaskTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111630CreateProgramTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111945CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120830CreateAoiTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120900CreateAoiParameterTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260212/M202602120910CreateAoiRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131300CreateTagProducerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131330CreateTagConsumerTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131400CreateTagAliasTable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateArgumentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260308/M202603082100CreateOperandTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260211Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260212Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260213Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +41,15 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1" />
+    <option name="cachedIndexableFilesCount" value="2" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSON File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -85,10 +75,19 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/06/c2fafa08/LogixSerializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/58/84991d6d/LogixElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/6d/f882e9a1/TagName.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/80/06c003af/LogixMetadata.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/a9/3af6da57/Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/ff/ef72fe56/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/228bff957d5b9f32cfbedd8bf82a5d3e862ec3e051593a67913b95ae288287/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3bad7d76da568b26665cde7c6a9f8b320a5dac8cd60d2440eacb376c17e0ee/XmlDsigC14NTransform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3cca26e6dd627c1a7919bec86cb05b6d975a30287456f7daa8773a92451a/List.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb4b860ad274bc3f8c7c0fb32f03875bbb0b45fa99f710d430d12922eed4/AnsiConsoleExtensions.Progress.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6f79e18ad35c4aede2e2c24988c23a228cc40237d78ed6f493e27cf86e7b89c/ICreateIndexOptionsSyntax.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c737b259bdbafc66dd6bf6dbdf56414a7658cb2a8f0b479637eda81be8fdf/DataColumnCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db398197bcf0ab46a130924adda9d23eb9504867e1a1a0869eaf405db5c647/SqlMapper.Async.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
@@ -99,16 +98,21 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteGuidHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/InstructionMap.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagAliasMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/TableMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Target.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/OperandTransformer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061200SeedComponentTypes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -139,14 +143,19 @@
     ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
     "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
     "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
+    "126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor": "Debug",
     "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
     "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
     "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
     "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
+    "3e588a23-4139-418a-942c-482934391d2a.executor": "Debug",
     "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
+    "42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor": "Debug",
     "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
+    "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
     "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
     "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
     "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
@@ -158,13 +167,17 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "XThreadsFramesViewSplitterKey": "0.46005267",
     "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
     "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
     "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
+    "bb8142bb-e865-42cd-926e-68b469a1002e.executor": "Debug",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "db27ef2f-246d-4f4e-871d-3c60d305b332.executor": "Debug",
     "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
+    "e57754cd-b12b-44f4-b8a2-711d0f71850e.executor": "Debug",
     "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -175,7 +188,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.junie",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -273,207 +286,10 @@
       <workItem from="1776450670100" duration="69654000" />
       <workItem from="1776864333991" duration="2906000" />
       <workItem from="1776867316310" duration="67484000" />
-      <workItem from="1777948455998" duration="79358000" />
-    </task>
-    <task id="LOCAL-00163" summary="Remove unused `source_data` column mappings and associated migration definitions across all mapping classes and database schema files.">
-      <option name="closed" value="true" />
-      <created>1775841156285</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1775841156285</updated>
-    </task>
-    <task id="LOCAL-00164" summary="Remove `ImportOption` feature and associated uses across projects, update snapshot handling logic, and clean up related classes and tests.">
-      <option name="closed" value="true" />
-      <created>1775899968858</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1775899968858</updated>
-    </task>
-    <task id="LOCAL-00165" summary="Update `ILogixDb` interface to include `ArchiveSnapshot` and `AppendSnapshot` methods, modify snapshot handling in `ImportCommand`, and update corresponding tests.">
-      <option name="closed" value="true" />
-      <created>1775902328162</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1775902328162</updated>
-    </task>
-    <task id="LOCAL-00166" summary="Refactor snapshot handling: replace `AddSnapshot` with `ArchiveSnapshot` and `AppendSnapshot`, update related tests and logic. Remove unused `DeleteSnapshotContent`. Add `AssertRecordDoesNotExist` helper in test fixtures.">
-      <option name="closed" value="true" />
-      <created>1775902428398</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1775902428398</updated>
-    </task>
-    <task id="LOCAL-00167" summary="Replace `AddSnapshot` with `ArchiveSnapshot` in tests, update assertions to reflect updated snapshot handling logic.">
-      <option name="closed" value="true" />
-      <created>1775902498852</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1775902498852</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Refactor snapshot handling: standardize table filtering and ordering logic in `PruneLatestSnapshot`, rename methods for clarity, and update associated tests.">
-      <option name="closed" value="true" />
-      <created>1775905929297</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1775905929297</updated>
-    </task>
-    <task id="LOCAL-00169" summary="Streamline `GetTableNames` constant by removing unused filtering logic and simplify SQL query. Update corresponding references and tests.">
-      <option name="closed" value="true" />
-      <created>1775920942919</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1775920942919</updated>
-    </task>
-    <task id="LOCAL-00170" summary="Replace `ArchiveSnapshot` and `AppendSnapshot` with unified `AddSnapshot` method across projects, update related tests, and improve snapshot handling logic.">
-      <option name="closed" value="true" />
-      <created>1775936793993</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1775936793993</updated>
-    </task>
-    <task id="LOCAL-00171" summary="Update `PruneSnapshotsAsync` to use `GetAllAsync` instead of `GetAsync` in both SQLite and SQL Server implementations for consistent snapshot retrieval.">
-      <option name="closed" value="true" />
-      <created>1775937072529</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1775937072529</updated>
-    </task>
-    <task id="LOCAL-00172" summary="Add new `SyncCommand` to sync PLC tag data into the database and create a new snapshot.">
-      <option name="closed" value="true" />
-      <created>1775990806016</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1775990806016</updated>
-    </task>
-    <task id="LOCAL-00173" summary="Bump project versions to 0.9.0 for LogixDb.Service and LogixDb.Cli.">
-      <option name="closed" value="true" />
-      <created>1775990900357</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1775990900357</updated>
-    </task>
-    <task id="LOCAL-00174" summary="Update README to refine configuration instructions, expand setting descriptions, and improve example clarity.">
-      <option name="closed" value="true" />
-      <created>1775991547298</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1775991547298</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Bump project versions to 0.9.1, update `L5Sharp` dependency to v6.0.5, and refactor database configuration methods for clarity and consistency. Updated SqlServerDb.cs and SqlServerDbWriter.cs to prevent log growth as much as possible">
-      <option name="closed" value="true" />
-      <created>1776110349592</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1776110349592</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Refactor delete and get snapshot methods to use version-based logic, update SQL queries for consistency, and revise related tests to reflect changes.">
-      <option name="closed" value="true" />
-      <created>1776286425325</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1776286425325</updated>
-    </task>
-    <task id="LOCAL-00177" summary="Refactor migration scripts to replace `WithRequiredRelation` and `WithOptionalRelation` with unified `WithParentRelation`. Add snapshot-related updates for consistency across tables and schema mapping. Bump CLI version to 0.10.0.">
-      <option name="closed" value="true" />
-      <created>1776611686375</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1776611686376</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Add `snapshot_id` column and relevant foreign key constraints to migration tests for improved schema consistency and validation.">
-      <option name="closed" value="true" />
-      <created>1776612267132</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1776612267132</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Introduce `snapshot_instance` table to track restored snapshots, update SQL logic for snapshot handling, and refine migration scripts for consistency.">
-      <option name="closed" value="true" />
-      <created>1776696382279</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1776696382279</updated>
-    </task>
-    <task id="LOCAL-00180" summary="Performed major refactor of Snapshot.cs to Target.cs and updated core database tables to support version history and instance expantion. Updated CLI. Updated abstractions, migrations, tests, and moved static SQL code to scripts.">
-      <option name="closed" value="true" />
-      <created>1776890380099</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1776890380099</updated>
-    </task>
-    <task id="LOCAL-00181" summary="Replaced snapshot with target for documentation and variable names">
-      <option name="closed" value="true" />
-      <created>1776894788239</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1776894788239</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Replace `WithInstanceRelation`, `WithParentRelation`, and `WithVersionRelation` with a unified `WithRelation` method and update migration scripts to enhance consistency and enforce cascade rules for foreign key relations.">
-      <option name="closed" value="true" />
-      <created>1776949848880</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1776949848880</updated>
-    </task>
-    <task id="LOCAL-00183" summary="Refactor transaction handling in `SqlServerManager` and `SqliteManager`, improve `Target.Compile` logic, and add comprehensive unit tests for `Target`.">
-      <option name="closed" value="true" />
-      <created>1776949860522</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1776949860522</updated>
-    </task>
-    <task id="LOCAL-00184" summary="Update migration scripts to use generic `WithRelation&lt;T&gt;` method for foreign key definitions, enhancing type specificity and consistency across tables.">
-      <option name="closed" value="true" />
-      <created>1776950235770</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1776950235770</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Refactor SQL scripts for improved readability and consistency, standardizing formatting and simplifying complex queries where applicable.">
-      <option name="closed" value="true" />
-      <created>1776950858220</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1776950858220</updated>
-    </task>
-    <task id="LOCAL-00186" summary="Update `GetTargetByLatest.sql` to rename aliases for clarity and consistency in SQL query">
-      <option name="closed" value="true" />
-      <created>1776951269743</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1776951269743</updated>
-    </task>
-    <task id="LOCAL-00187" summary="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring.">
-      <option name="closed" value="true" />
-      <created>1776951273232</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1776951273232</updated>
+      <workItem from="1777948455998" duration="95695000" />
+      <workItem from="1778253042008" duration="23000" />
+      <workItem from="1778253087919" duration="90056000" />
+      <workItem from="1778668025552" duration="25030000" />
     </task>
     <task id="LOCAL-00188" summary="Remove unused dependencies and obsolete methods, refactor test assertions for clarity, and improve naming consistency in SourceIngestionService and related tests.">
       <option name="closed" value="true" />
@@ -667,7 +483,207 @@
       <option name="project" value="LOCAL" />
       <updated>1778184286107</updated>
     </task>
-    <option name="localTasksCounter" value="212" />
+    <task id="LOCAL-00212" summary="Refactor migrations: standardize key types, enhance column definitions, and update indexes for improved schema consistency. Remove unused `tag_alias` migration.">
+      <option name="closed" value="true" />
+      <created>1778207690563</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1778207690563</updated>
+    </task>
+    <task id="LOCAL-00213" summary="Refactor entity mappings: standardize key types, update column definitions, remove unused entities, and streamline hashing logic. Remove `TagAliasMap` and related references for improved schema consistency.">
+      <option name="closed" value="true" />
+      <created>1778247123266</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1778247123266</updated>
+    </task>
+    <task id="LOCAL-00214" summary="Add merge scripts and refactor `SqliteWriter` to support dynamic data handling and version mapping.">
+      <option name="closed" value="true" />
+      <created>1778252628807</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1778252628807</updated>
+    </task>
+    <task id="LOCAL-00215" summary="Add depth-based sorting to `ModuleTransformer` and `ProgramTransformer`; update migrations to standardize component types, add &quot;rung&quot;, and remove redundant `operand_id` usage.">
+      <option name="closed" value="true" />
+      <created>1778252641938</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1778252641938</updated>
+    </task>
+    <task id="LOCAL-00216" summary="Add merge scripts for components (`aoi`, `controller`, `operand`, etc.), refactor `SqliteWriter` to align with new scripts, and update `GetComponentTables` query for improved schema consistency.">
+      <option name="closed" value="true" />
+      <created>1778255062254</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1778255062254</updated>
+    </task>
+    <task id="LOCAL-00217" summary="Split `Extensions` into dedicated extension files: `CryptoExtensions`, `CompressionExtensions`, and `FormattingExtensions`. Refactor usages to match the new structure and streamline hashing logic.">
+      <option name="closed" value="true" />
+      <created>1778266747730</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1778266747730</updated>
+    </task>
+    <task id="LOCAL-00218" summary="Add operands resource file and update `FluentMigrationExtensions` with dependencies for JSON handling">
+      <option name="closed" value="true" />
+      <created>1778266759654</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1778266759654</updated>
+    </task>
+    <task id="LOCAL-00219" summary="Add merge scripts for all components, refactor `SqlServerWriter` for temp table usage and version-based merges, and update `SqlServerScript` with merge definitions.">
+      <option name="closed" value="true" />
+      <created>1778267457798</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267457798</updated>
+    </task>
+    <task id="LOCAL-00220" summary="Standardize operand JSON resource keys and property names to align with naming conventions.">
+      <option name="closed" value="true" />
+      <created>1778267463577</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267463577</updated>
+    </task>
+    <task id="LOCAL-00221" summary="Refactor migrations to standardize key types, update column definitions, enhance indexes, and remove deprecated entities for schema consistency.">
+      <option name="closed" value="true" />
+      <created>1778267759564</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267759564</updated>
+    </task>
+    <task id="LOCAL-00222" summary="Update SQLite test database file in `LogixDb.Data.Sqlite.Tests`">
+      <option name="closed" value="true" />
+      <created>1778267764603</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267764603</updated>
+    </task>
+    <task id="LOCAL-00223" summary="Remove unused `SuppressMessage` attribute, fix SQLite casing in comments, update `DeleteVersion` to accept `VersionNumber`, and remove unused `PruneTarget` method.">
+      <option name="closed" value="true" />
+      <created>1778267771302</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267771302</updated>
+    </task>
+    <task id="LOCAL-00224" summary="Remove unused `PruneTarget` method from `IDbManager`.">
+      <option name="closed" value="true" />
+      <created>1778267775446</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267775446</updated>
+    </task>
+    <task id="LOCAL-00225" summary="Update migration tests to reflect schema changes: replace `target_instance` with `target_version_map`, add `tag_value`, and remove `tag_alias`.">
+      <option name="closed" value="true" />
+      <created>1778267932188</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1778267932188</updated>
+    </task>
+    <task id="LOCAL-00226" summary="Refactor migrations: replace foreign key columns with descriptive names, update column definitions, standardize key types, enhance indexes, and improve schema consistency.">
+      <option name="closed" value="true" />
+      <created>1778613240402</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1778613240402</updated>
+    </task>
+    <task id="LOCAL-00227" summary="Refactor LogixDb schema mappings and hashing: replace foreign key columns with descriptive names, adopt `ComputeHash` for consistency, remove `ElementHasher`, and manage IDs explicitly.">
+      <option name="closed" value="true" />
+      <created>1778617182203</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1778617182203</updated>
+    </task>
+    <task id="LOCAL-00228" summary="Use `INSERT OR IGNORE` in merge scripts to simplify conflict handling, add `PostVersion` script, refactor temp table creation, and improve merge logic with safer checks.">
+      <option name="closed" value="true" />
+      <created>1778617313987</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1778617313987</updated>
+    </task>
+    <task id="LOCAL-00229" summary="Make `parent_name` and `parent_port` columns in the `module` table not nullable; remove commented-out primary key and foreign key definitions from the `argument` table creation script.">
+      <option name="closed" value="true" />
+      <created>1778617336305</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1778617336305</updated>
+    </task>
+    <task id="LOCAL-00230" summary="Update `TargetTests`: rename tests for consistency, add test for custom target key, and enhance performance validation with timing checks.">
+      <option name="closed" value="true" />
+      <created>1778617355634</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1778617355634</updated>
+    </task>
+    <task id="LOCAL-00231" summary="Remove unused `SourceId` attribute from `Test.L5X` export configuration.">
+      <option name="closed" value="true" />
+      <created>1778617361684</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1778617361684</updated>
+    </task>
+    <task id="LOCAL-00232" summary="Add unique constraint on `rung_key` in `rung` table to support FK relationships on non-PK columns.">
+      <option name="closed" value="true" />
+      <created>1778619430801</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1778619430801</updated>
+    </task>
+    <task id="LOCAL-00233" summary="Update migration tests: replace foreign key columns with descriptive names, adjust indexes, and align with schema updates.">
+      <option name="closed" value="true" />
+      <created>1778619443424</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1778619443424</updated>
+    </task>
+    <task id="LOCAL-00234" summary="Update SQLite test database in `LogixDb.Data.Sqlite.Tests`.">
+      <option name="closed" value="true" />
+      <created>1778619451228</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1778619451228</updated>
+    </task>
+    <task id="LOCAL-00235" summary="Refactor LogixDb.Data schema mappings: replace `Hash` with `HashText`, adopt `HashElement` for XML hashing, remove unused methods (e.g., `SeedElementIds`), and make table maps publicly accessible. Add metadata-driven caching for record hashes.">
+      <option name="closed" value="true" />
+      <created>1778707558632</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1778707558632</updated>
+    </task>
+    <task id="LOCAL-00236" summary="Update schema and migration scripts: rename columns in `MergeDataTypeMember.sql` for consistency, add `content_hash` column to `tag` table, and enhance indexes in `tag_member` table.">
+      <option name="closed" value="true" />
+      <created>1778707571669</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1778707571669</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,32 +709,32 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update workspace configuration to remove stale changes and add task `LOCAL-00185` tracking SQL script refactoring." />
-    <MESSAGE value="Remove unused dependencies and obsolete methods, refactor test assertions for clarity, and improve naming consistency in SourceIngestionService and related tests." />
-    <MESSAGE value="Remove `MigrationRequiredException` as it is no longer used." />
-    <MESSAGE value="Remove `DatabaseProvider` and `IDbProvider` as they are no longer used." />
-    <MESSAGE value="Simplify and clarify CLI command descriptions; add required attributes for better validation consistency." />
-    <MESSAGE value="Refactor database managers to handle missing targets explicitly; streamline SQL script execution; add comprehensive CLI command tests." />
-    <MESSAGE value="Refactor `SqlServerManager` and `SqliteManager` to use explicit dependencies, improve logging, streamline SQL script handling, and add comprehensive CLI command tests." />
-    <MESSAGE value="Update README with refined command descriptions, improved schema documentation, and clarified usage examples." />
-    <MESSAGE value="Add new test classes for SQL Server and SQLite to validate `RestoreTarget` functionality; update existing tests to ensure proper exception handling for non-existent targets." />
-    <MESSAGE value="Replace `GetDatabaseSizeInBytes` helper with `GetDatabaseSize` in tests for consistency; standardize size outputs in MB; update related test assertions and console logs." />
-    <MESSAGE value="Update dependencies across projects and switch to `UploadAsync` in `SyncCommand` for consistency." />
-    <MESSAGE value="Bump project versions to 0.10.1 in Service and CLI." />
-    <MESSAGE value="Fix incorrect dependency injection for `SqlServerManager` and `SqliteManager` in `Extensions.cs`." />
-    <MESSAGE value="Bump project versions to 0.10.2 in Service and CLI." />
-    <MESSAGE value="Add `AddLogixDbTests` to validate service registration for SQLite and SQL Server managers" />
-    <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to extract `CompileTargetDataAsync`, improving readability and error handling; bump project versions to 0.10.3." />
-    <MESSAGE value="Refactor `RestoreTargetVersionAsync` in SQL Server and SQLite managers to improve data table compilation and bulk writing; fix typos in SQL scripts; bump project versions to 0.10.4." />
-    <MESSAGE value="Update dependencies across projects; bump test frameworks and core package versions to improve stability and compatibility. Adjust `TagTransformer` logic for tighter type validation." />
-    <MESSAGE value="Bump project versions to 0.10.5 in Service and CLI." />
-    <MESSAGE value="Remove `target_instance` table and references; replace with `version_map` table for improved version relationship handling. Refactor migration scripts, update schemas, and adjust related SQL and mappings." />
-    <MESSAGE value="Remove redundant `using System.Data` directives and refactor migration index definitions for improved consistency and streamlined schema design." />
-    <MESSAGE value="Remove `ArchiveCommand`, `PostCommand`, `RestoreCommand`, and related tests and SQL scripts to simplify CLI functionality. Refactor database schema migrations and remove unused entity references for streamlined design." />
-    <MESSAGE value="Refactor migrations: update column types, modify key definitions, and add `tag_value` table for enhanced schema consistency." />
-    <MESSAGE value="Fix migration attribute timestamp in `M202602130930CreateTagValueTable` to ensure proper ordering." />
-    <MESSAGE value="Delete `SqlDbPruneTargetTests` and `SqliteDbPruneTargetTests`; add SQL scripts for merging data types, members, and routines; refactor `Target` to update `VersionId` type to `int`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete `SqlDbPruneTargetTests` and `SqliteDbPruneTargetTests`; add SQL scripts for merging data types, members, and routines; refactor `Target` to update `VersionId` type to `int`." />
+    <MESSAGE value="Refactor migrations: standardize key types, enhance column definitions, and update indexes for improved schema consistency. Remove unused `tag_alias` migration." />
+    <MESSAGE value="Refactor entity mappings: standardize key types, update column definitions, remove unused entities, and streamline hashing logic. Remove `TagAliasMap` and related references for improved schema consistency." />
+    <MESSAGE value="Add merge scripts and refactor `SqliteWriter` to support dynamic data handling and version mapping." />
+    <MESSAGE value="Add depth-based sorting to `ModuleTransformer` and `ProgramTransformer`; update migrations to standardize component types, add &quot;rung&quot;, and remove redundant `operand_id` usage." />
+    <MESSAGE value="Add merge scripts for components (`aoi`, `controller`, `operand`, etc.), refactor `SqliteWriter` to align with new scripts, and update `GetComponentTables` query for improved schema consistency." />
+    <MESSAGE value="Split `Extensions` into dedicated extension files: `CryptoExtensions`, `CompressionExtensions`, and `FormattingExtensions`. Refactor usages to match the new structure and streamline hashing logic." />
+    <MESSAGE value="Add operands resource file and update `FluentMigrationExtensions` with dependencies for JSON handling" />
+    <MESSAGE value="Add merge scripts for all components, refactor `SqlServerWriter` for temp table usage and version-based merges, and update `SqlServerScript` with merge definitions." />
+    <MESSAGE value="Standardize operand JSON resource keys and property names to align with naming conventions." />
+    <MESSAGE value="Refactor migrations to standardize key types, update column definitions, enhance indexes, and remove deprecated entities for schema consistency." />
+    <MESSAGE value="Update SQLite test database file in `LogixDb.Data.Sqlite.Tests`" />
+    <MESSAGE value="Remove unused `SuppressMessage` attribute, fix SQLite casing in comments, update `DeleteVersion` to accept `VersionNumber`, and remove unused `PruneTarget` method." />
+    <MESSAGE value="Remove unused `PruneTarget` method from `IDbManager`." />
+    <MESSAGE value="Update migration tests to reflect schema changes: replace `target_instance` with `target_version_map`, add `tag_value`, and remove `tag_alias`." />
+    <MESSAGE value="Refactor migrations: replace foreign key columns with descriptive names, update column definitions, standardize key types, enhance indexes, and improve schema consistency." />
+    <MESSAGE value="Refactor LogixDb schema mappings and hashing: replace foreign key columns with descriptive names, adopt `ComputeHash` for consistency, remove `ElementHasher`, and manage IDs explicitly." />
+    <MESSAGE value="Use `INSERT OR IGNORE` in merge scripts to simplify conflict handling, add `PostVersion` script, refactor temp table creation, and improve merge logic with safer checks." />
+    <MESSAGE value="Make `parent_name` and `parent_port` columns in the `module` table not nullable; remove commented-out primary key and foreign key definitions from the `argument` table creation script." />
+    <MESSAGE value="Update `TargetTests`: rename tests for consistency, add test for custom target key, and enhance performance validation with timing checks." />
+    <MESSAGE value="Remove unused `SourceId` attribute from `Test.L5X` export configuration." />
+    <MESSAGE value="Add unique constraint on `rung_key` in `rung` table to support FK relationships on non-PK columns." />
+    <MESSAGE value="Update migration tests: replace foreign key columns with descriptive names, adjust indexes, and align with schema updates." />
+    <MESSAGE value="Update SQLite test database in `LogixDb.Data.Sqlite.Tests`." />
+    <MESSAGE value="Refactor LogixDb.Data schema mappings: replace `Hash` with `HashText`, adopt `HashElement` for XML hashing, remove unused methods (e.g., `SeedElementIds`), and make table maps publicly accessible. Add metadata-driven caching for record hashes." />
+    <MESSAGE value="Update schema and migration scripts: rename columns in `MergeDataTypeMember.sql` for consistency, add `content_hash` column to `tag` table, and enhance indexes in `tag_member` table." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update schema and migration scripts: rename columns in `MergeDataTypeMember.sql` for consistency, add `content_hash` column to `tag` table, and enhance indexes in `tag_member` table." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -749,20 +765,51 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data/ElementHasher.cs</url>
-          <line>50</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data\ElementHasher.cs" containingFunctionPresentation="Method 'HashController'">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbImportTargetTests.cs</url>
+          <line>24</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.Sqlite.Tests\SqliteDbImportTargetTests.cs" containingFunctionPresentation="Method 'ImportTarget_LocalTestSource_ShouldReturnValidId'">
             <startOffsets>
-              <option value="2764" />
+              <option value="536" />
             </startOffsets>
             <endOffsets>
-              <option value="2802" />
+              <option value="585" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Migrations/FluentMigrationExtensions.cs</url>
+          <line>69</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Migrations\FluentMigrationExtensions.cs" containingFunctionPresentation="Method 'WithRelation'">
+            <startOffsets>
+              <option value="3606" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3769" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs</url>
+          <line>145</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.Tests\TargetTests.cs" containingFunctionPresentation="Method 'Compile_AllTablesAgainstLocalTests_ShouldBePerformant'">
+            <startOffsets>
+              <option value="4729" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4774" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="RiderUnitTests">
+        <watch expression="new System.Linq.SystemCore_EnumerableDebugView(new System.Collections.Generic.ICollectionDebugView&lt;System.Data.DataTable&gt;(tables).Items[2].Rows).Items[0]" custom="1" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

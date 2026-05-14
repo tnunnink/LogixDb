@@ -24,6 +24,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "tag_usage", "nvarchar");
             await AssertColumnDefinition("tag", "tag_type", "nvarchar");
             await AssertColumnDefinition("tag", "alias_for", "nvarchar");
+            await AssertColumnDefinition("tag", "content_hash", "nvarchar");
             await AssertColumnDefinition("tag", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("tag", "tag_id");
@@ -54,7 +55,8 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_member", "tag_id", "tag_name");
             await AssertIndex("tag_member", "tag_name");
-            await AssertIndex("tag_member", "parent_name", "member_name");
+            await AssertIndex("tag_member", "parent_name", "tag_id");
+            await AssertIndex("tag_member", "member_name", "tag_id");
             await AssertIndex("tag_member", "data_type", "tag_id");
         }
     }

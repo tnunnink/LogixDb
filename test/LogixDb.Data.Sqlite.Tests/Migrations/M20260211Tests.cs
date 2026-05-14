@@ -85,7 +85,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertTableExists("data_type_member");
 
             await AssertColumnDefinition("data_type_member", "member_id", "integer");
-            await AssertColumnDefinition("data_type_member", "type_name", "text");
+            await AssertColumnDefinition("data_type_member", "type_id", "integer");
             await AssertColumnDefinition("data_type_member", "member_name", "text");
             await AssertColumnDefinition("data_type_member", "member_description", "text");
             await AssertColumnDefinition("data_type_member", "data_type", "text");
@@ -98,8 +98,8 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("data_type_member", "record_hash", "text");
 
             await AssertPrimaryKey("data_type_member", "member_id");
-            await AssertUniqueIndex("data_type_member", "record_hash");
-            await AssertUniqueIndex("data_type_member", "type_name", "member_name");
+            await AssertUniqueIndex("data_type_member", "type_id", "record_hash");
+            await AssertUniqueIndex("data_type_member", "type_id", "member_name");
             await AssertIndex("data_type_member", "member_name");
         }
     }
@@ -177,6 +177,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("routine", "routine_name", "text");
             await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
+            await AssertColumnDefinition("routine", "content_hash", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");
@@ -195,10 +196,8 @@ public class M20260211Tests : SqliteTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "integer");
-            await AssertColumnDefinition("rung", "rung_key", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "program_name", "text");
-            await AssertColumnDefinition("rung", "routine_name", "text");
+            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung", "routine_id", "integer");
             await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "rung_text", "text");
             await AssertColumnDefinition("rung", "rung_comment", "text");
@@ -207,8 +206,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertUniqueIndex("rung", "record_hash");
-            await AssertUniqueIndex("rung", "program_name", "routine_name", "rung_number");
-            await AssertIndex("rung", "rung_key");
+            await AssertUniqueIndex("rung", "routine_id", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }

@@ -18,7 +18,7 @@ public class ArgumentMap : TableMap<ArgumentRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
-        ColumnMap<ArgumentRecord>.For(r => r.RungKey, "rung_key"),
+        ColumnMap<ArgumentRecord>.For(r => r.RungKey, "rung_id"),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionIndex, "instruction_index"),
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentIndex, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentType, "argument_type"),

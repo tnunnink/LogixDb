@@ -9,12 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="L5Sharp" Version="6.0.7" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="System.Security.Cryptography.Xml">
-        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\10.0.8\System.Security.Cryptography.Xml.dll</HintPath>
-      </Reference>
+      <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.8" />
     </ItemGroup>
 
 </Project>

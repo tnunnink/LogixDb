@@ -5,16 +5,6 @@ using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
 
-/// <summary>
-/// Provides functionality to transform a <see cref="Target"/> object into a collection of
-/// <see cref="DataTable"/> instances focused on user-defined data types and their members.
-/// </summary>
-/// <remarks>
-/// The <c>DataTypeTransformer</c> identifies user-defined data types within a given
-/// Target and converts them into a tabular structure suitable for database persistence.
-/// The transformation process involves creating records for the data types and their
-/// associated members, which are subsequently mapped into tables.
-/// </remarks>
 public class DataTypeTransformer : IDbTransformer
 {
     private readonly DataTypeMap _typeMap = new();
@@ -24,7 +14,35 @@ public class DataTypeTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource();
-        yield return _typeMap.GenerateTable(source.DataTypes);
-        yield return _memberMap.GenerateTable(source.DataTypes.SelectMany(d => d.Members));
+        var types = new List<DataType>();
+        var members = new List<DataTypeMember>();
+
+        foreach (var dataType in source.DataTypes)
+        {
+            // Predefined will be seeded with each database upon migration.
+            if (dataType.Class == DataTypeClass.Predefined) continue;
+
+            types.Add(dataType);
+
+            var index = 0;
+            foreach (var member in dataType.Members)
+            {
+                // We will only want public, non-hidden members to show next valid index number.
+                if (member.Hidden)
+                {
+                    member.Metadata["member_index"] = index;
+                    index++;
+                }
+                else
+                {
+                    member.Metadata["member_index"] = -1;
+                }
+
+                members.Add(member);
+            }
+        }
+
+        yield return _typeMap.GenerateTable(types);
+        yield return _memberMap.GenerateTable(members);
     }
 }

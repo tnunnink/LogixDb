@@ -19,6 +19,7 @@ public class DataTypeMemberMap : TableMap<DataTypeMember>
         ColumnMap<DataTypeMember>.For(r => r.Parent?.Metadata.Get<string>("record_hash"), "type_hash"),
         ColumnMap<DataTypeMember>.For(r => r.Name, "member_name"),
         ColumnMap<DataTypeMember>.For(r => r.Description, "member_description"),
+        ColumnMap<DataTypeMember>.For(r => r.Metadata.Get<int>("member_index"), "member_index"),
         ColumnMap<DataTypeMember>.For(r => r.DataType, "data_type"),
         ColumnMap<DataTypeMember>.For(r => r.Dimension.ToSqlFormat(), "dimensions"),
         ColumnMap<DataTypeMember>.For(r => r.Radix.ToSqlFormat(), "radix"),

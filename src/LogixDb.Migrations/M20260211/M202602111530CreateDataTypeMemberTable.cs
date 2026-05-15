@@ -17,6 +17,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .WithRelation<long>("type_id", "data_type").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
+            .WithColumn("member_index").AsInt32().NotNullable()
             .WithColumn("data_type").AsString(256).Nullable()
             .WithColumn("dimensions").AsString(32).Nullable()
             .WithColumn("radix").AsString(32).Nullable()
@@ -35,7 +36,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
-        
+
         Create.Index().OnTable("data_type_member")
             .OnColumn("member_name").Ascending();
     }

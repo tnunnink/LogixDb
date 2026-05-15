@@ -31,11 +31,6 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
 
         Create.Index()
             .OnTable("target_version")
-            .OnColumn("target_type").Ascending()
-            .OnColumn("target_name").Ascending();
-
-        Create.Index()
-            .OnTable("target_version")
             .OnColumn("target_id").Ascending()
             .OnColumn("version_number").Ascending()
             .WithOptions().Unique();

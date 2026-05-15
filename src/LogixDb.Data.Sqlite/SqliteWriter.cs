@@ -27,6 +27,7 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
         { "aoi", SqliteScript.MergeAoi },
         { "aoi_parameter", SqliteScript.MergeAoiParameter },
         { "aoi_rung", SqliteScript.MergeAoiRung },
+        { "operand", SqliteScript.MergeOperand },
         { "module", SqliteScript.MergeModule },
         { "task", SqliteScript.MergeTask },
         { "program", SqliteScript.MergeProgram },
@@ -34,12 +35,12 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
         { "rung", SqliteScript.MergeRung },
         { "instruction", SqliteScript.MergeInstruction },
         { "argument", SqliteScript.MergeArgument },
-        { "operand", SqliteScript.MergeOperand },
         { "tag", SqliteScript.MergeTag },
         { "tag_member", SqliteScript.MergeTagMember },
         { "tag_comment", SqliteScript.MergeTagComment },
         { "tag_producer", SqliteScript.MergeTagProducer },
-        { "tag_consumer", SqliteScript.MergeTagConsumer }
+        { "tag_consumer", SqliteScript.MergeTagConsumer },
+        { "tag_value", SqliteScript.MergeTagValue }
     };
 
     /// <summary>

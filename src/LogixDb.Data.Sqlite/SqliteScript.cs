@@ -35,6 +35,7 @@ internal static class SqliteScript
     public static string MergeTagConsumer => Get(nameof(MergeTagConsumer));
     public static string MergeTagMember => Get(nameof(MergeTagMember));
     public static string MergeTagProducer => Get(nameof(MergeTagProducer));
+    public static string MergeTagValue => Get(nameof(MergeTagValue));
     public static string MergeTask => Get(nameof(MergeTask));
     public static string PostInfo => Get(nameof(PostInfo));
     public static string PostTarget => Get(nameof(PostTarget));

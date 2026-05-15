@@ -174,11 +174,14 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
 
         try
         {
-            // Post a target version to the database.
-            // This only ensures target entry and adds a new version to the target_version table.
-            // This does not "instantiate" the target to relation tables.
+            // Insert target key if not already.
             await connection.ExecuteAsync(SqlServerScript.PostTarget, target, transaction);
 
+            // Inserts a new version for the target key (handles getting target id in scripts) and returns the inserted version id.
+            // This is needed in some spots, and is an indicator that the version was posted. 
+            target.VersionId = await connection.ExecuteScalarAsync<int>(SqlServerScript.PostVersion, target, transaction);
+
+            // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqlServerScript.PostInfo,
                 target.Info.Select(p => new
                 {

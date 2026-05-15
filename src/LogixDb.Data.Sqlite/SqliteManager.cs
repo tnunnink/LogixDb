@@ -183,7 +183,7 @@ public sealed class SqliteManager : IDbManager
 
             // Inserts a new version for the target key (handles getting target id in scripts) and returns the inserted version id.
             // This is needed in some spots, and is an indicator that the version was posted. 
-            target.VersionId = await connection.ExecuteAsync(SqliteScript.PostVersion, target, transaction);
+            target.VersionId = await connection.ExecuteScalarAsync<int>(SqliteScript.PostVersion, target, transaction);
 
             // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqliteScript.PostInfo,

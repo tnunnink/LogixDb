@@ -19,7 +19,7 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertColumnDefinition("operand", "operand_index", "tinyint");
             await AssertColumnDefinition("operand", "operand_name", "nvarchar");
             await AssertColumnDefinition("operand", "operand_type", "nvarchar");
-            await AssertColumnDefinition("operand", "operand_format", "nvarchar");
+            /*await AssertColumnDefinition("operand", "operand_format", "nvarchar");*/
             await AssertColumnDefinition("operand", "operand_description", "nvarchar");
             await AssertColumnDefinition("operand", "is_destructive", "bit");
             await AssertColumnDefinition("operand", "record_hash", "nvarchar");

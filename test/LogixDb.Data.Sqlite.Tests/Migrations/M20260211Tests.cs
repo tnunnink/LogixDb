@@ -88,6 +88,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("data_type_member", "type_id", "integer");
             await AssertColumnDefinition("data_type_member", "member_name", "text");
             await AssertColumnDefinition("data_type_member", "member_description", "text");
+            await AssertColumnDefinition("data_type_member", "member_index", "integer");
             await AssertColumnDefinition("data_type_member", "data_type", "text");
             await AssertColumnDefinition("data_type_member", "dimensions", "text");
             await AssertColumnDefinition("data_type_member", "radix", "text");

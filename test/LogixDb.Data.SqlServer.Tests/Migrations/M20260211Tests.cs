@@ -87,11 +87,12 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("data_type_member", "member_id", "bigint");
             await AssertColumnDefinition("data_type_member", "type_id", "bigint");
             await AssertColumnDefinition("data_type_member", "member_name", "nvarchar");
+            await AssertColumnDefinition("data_type_member", "member_description", "nvarchar");
+            await AssertColumnDefinition("data_type_member", "member_index", "int");
             await AssertColumnDefinition("data_type_member", "data_type", "nvarchar");
             await AssertColumnDefinition("data_type_member", "dimensions", "nvarchar");
             await AssertColumnDefinition("data_type_member", "radix", "nvarchar");
             await AssertColumnDefinition("data_type_member", "external_access", "nvarchar");
-            await AssertColumnDefinition("data_type_member", "member_description", "nvarchar");
             await AssertColumnDefinition("data_type_member", "is_hidden", "bit");
             await AssertColumnDefinition("data_type_member", "target_name", "nvarchar");
             await AssertColumnDefinition("data_type_member", "bit_number", "tinyint");

@@ -1,8 +1,7 @@
 INSERT INTO tag_value (version_id, member_id, tag_value)
-SELECT version_id,
-       (SELECT member_id
-        FROM tag_member
-        WHERE tag_id = (SELECT tag_id FROM tag where record_hash = t.tag_hash)
-          AND member_name = t.tag_name),
-       tag_value
-FROM temp_tag_value t;
+SELECT t.version_id,
+       tm.member_id,
+       t.tag_value
+FROM temp_tag_value t
+         JOIN tag tg ON tg.record_hash = t.tag_hash
+         JOIN tag_member tm ON tm.tag_id = tg.tag_id AND tm.tag_name = t.tag_name;

@@ -28,7 +28,7 @@ public class DataTypeTransformer : IDbTransformer
             foreach (var member in dataType.Members)
             {
                 // We will only want public, non-hidden members to show next valid index number.
-                if (member.Hidden)
+                if (!member.Hidden)
                 {
                     member.Metadata["member_index"] = index;
                     index++;

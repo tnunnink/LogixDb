@@ -52,21 +52,24 @@ public class TagTransformer : IDbTransformer
             {
                 memberRecords.Add(member);
 
-                if (member.Value.IsAtomic())
+                if (member.Value is AtomicData atomic)
                 {
                     valueRecords.Add(new TagValueRecord(
                         target.VersionId,
                         tagHash,
                         member.TagName.LocalPath,
-                        tag.Value.ToSqlFormat())
+                        atomic.ToSqlFormat())
                     );
                 }
             }
 
             // For now, I'm going to just insert whatever comment override exists for a tag and see if we can
-            // emulate the pass-through documentation from SQL instead of code.
-            var comments = tag.Comments?.Select(c => new TagCommentRecord(tagHash, c.Operand, c.Value)) ?? [];
-            commentRecords.AddRange(comments);
+            // emulate the pass-through documentation from SQL queries instead of code.
+            commentRecords.AddRange(tag.Comments?.Select(c => new TagCommentRecord(
+                tagHash,
+                string.Join(tag.Name, c.Operand),
+                c.Value
+            )) ?? []);
         }
 
         yield return _tagMap.GenerateTable(tagRecords);
@@ -76,40 +79,4 @@ public class TagTransformer : IDbTransformer
         yield return _producerMap.GenerateTable(producerRecords);
         yield return _consumerMap.GenerateTable(consumerRecords);
     }
-
-    /*/// <summary>
-    /// Generates a collection of tag comment records for the specified member ID and tag.
-    /// </summary>
-    /// <param name="memberId">The unique identifier of the member to associate the comments with.</param>
-    /// <param name="tag">The tag from which comments and descriptions will be extracted.</param>
-    /// <returns>A collection of <see cref="TagCommentRecord"/> containing the associated comments and descriptions.</returns>
-    private static IEnumerable<TagCommentRecord> GetTagComments(Guid? memberId, Tag? tag)
-    {
-        if (tag is null) yield break;
-        if (tag.Parent is not null) yield break;
-
-        var description = tag.Description;
-        if (string.IsNullOrEmpty(description)) yield break;
-
-        yield return new TagCommentRecord(memberId, tag.TagName.LocalPath, description);
-
-        if (tag?.Comments is null)
-            yield break;
-
-        // The following code is for bit-level comments only.
-        // All based tags are covered by the code above using L5Sharp internal logic.
-        foreach (var comment in tag.Comments)
-        {
-            if (comment.Operand.Contains(tag.TagName.Operand) && comment.Operand.Element.All(char.IsDigit))
-            {
-                var tagName = TagName.Combine(tag.TagName.Base, comment.Operand);
-
-                var tagComment = !string.IsNullOrWhiteSpace(tag.Description)
-                    ? string.Concat(tag.Description, " ", comment.Value).Trim()
-                    : comment.Value;
-
-                yield return new TagCommentRecord(memberId, tagName, tagComment);
-            }
-        }
-    }*/
 }

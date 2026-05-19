@@ -21,6 +21,7 @@ internal static class SqliteScript
     public static string MergeAoiParameter => Get(nameof(MergeAoiParameter));
     public static string MergeAoiRung => Get(nameof(MergeAoiRung));
     public static string MergeArgument => Get(nameof(MergeArgument));
+    public static string MergeCodeReference => Get(nameof(MergeCodeReference));
     public static string MergeController => Get(nameof(MergeController));
     public static string MergeDataType => Get(nameof(MergeDataType));
     public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));

@@ -35,6 +35,7 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
         { "rung", SqliteScript.MergeRung },
         { "instruction", SqliteScript.MergeInstruction },
         { "argument", SqliteScript.MergeArgument },
+        { "code_reference", SqliteScript.MergeCodeReference },
         { "tag", SqliteScript.MergeTag },
         { "tag_member", SqliteScript.MergeTagMember },
         { "tag_comment", SqliteScript.MergeTagComment },

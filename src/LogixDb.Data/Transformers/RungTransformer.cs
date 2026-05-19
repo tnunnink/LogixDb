@@ -5,15 +5,12 @@ using LogixDb.Data.Maps;
 
 namespace LogixDb.Data.Transformers;
 
-/// <summary>
-/// Provides functionality to transform a <see cref="Target"/> object into a collection of
-/// <see cref="DataTable"/> instances focused on rungs and their instructions and arguments.
-/// </summary>
 public class RungTransformer : IDbTransformer
 {
     private readonly RungMap _rungMap = new();
     private readonly InstructionMap _instructionMap = new();
     private readonly ArgumentMap _argumentMap = new();
+    private readonly ReferenceMap _referenceMap = new();
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
@@ -22,6 +19,7 @@ public class RungTransformer : IDbTransformer
         var rungRecords = new List<Rung>();
         var instructionRecords = new List<InstructionRecord>();
         var argumentRecords = new List<ArgumentRecord>();
+        var referenceRecords = new List<ReferenceRecord>();
 
         var rungs = source.Programs
             .SelectMany(p => p.Routines.Where(r => r.Type == RoutineType.RLL))
@@ -34,17 +32,19 @@ public class RungTransformer : IDbTransformer
             rung.Metadata.Add("rung_id", rungId);
 
             rungRecords.Add(rung);
-            ProcessRung(rungId, rung, instructionRecords, argumentRecords);
+            ProcessRung(rungId, rung, instructionRecords, argumentRecords, referenceRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
         yield return _instructionMap.GenerateTable(instructionRecords);
         yield return _argumentMap.GenerateTable(argumentRecords);
+        yield return _referenceMap.GenerateTable(referenceRecords);
     }
 
-    private static void ProcessRung(Guid? rungKey, Rung rung,
+    private static void ProcessRung(Guid rungId, Rung rung,
         List<InstructionRecord> instructionRecords,
-        List<ArgumentRecord> argumentRecords)
+        List<ArgumentRecord> argumentRecords,
+        List<ReferenceRecord> referenceRecords)
     {
         var instructions = rung.Instructions().ToArray();
 
@@ -53,7 +53,7 @@ public class RungTransformer : IDbTransformer
             var instruction = instructions[i];
 
             instructionRecords.Add(new InstructionRecord(
-                rungKey,
+                rungId,
                 i,
                 instruction.ToString(),
                 instruction.Key,
@@ -61,34 +61,18 @@ public class RungTransformer : IDbTransformer
                 instruction.IsNative
             ));
 
-            var arguments = instruction.Arguments.ToArray();
+            var arguments = instruction.Arguments;
+
             for (byte a = 0; a < arguments.Length; a++)
             {
-                var instructionIndex = i;
-                var argumentIndex = a;
-                var argument = arguments[argumentIndex];
+                var argument = arguments[a];
+                argumentRecords.Add(new ArgumentRecord(rungId, i, a, argument.Type, argument.ToString()));
 
-                if (argument.Type == ArgumentType.Expression)
+                foreach (var tagName in argument.Tags)
                 {
-                    //todo I feel like this needs some review to determine if we are capturing what we want.
-                    var nestedArgs = argument.Tags.Select(t => new Argument(t));
-                    argumentRecords.AddRange(nestedArgs.Select(x => new ArgumentRecord(
-                        rungKey,
-                        instructionIndex,
-                        argumentIndex,
-                        x.Type,
-                        x.ToString())
-                    ));
-                    continue;
+                    var reference = new ReferenceRecord(rungId, i, a, tagName);
+                    referenceRecords.Add(reference);
                 }
-
-                argumentRecords.Add(new ArgumentRecord(
-                    rungKey,
-                    instructionIndex,
-                    argumentIndex,
-                    argument.Type,
-                    argument.ToString()
-                ));
             }
         }
     }

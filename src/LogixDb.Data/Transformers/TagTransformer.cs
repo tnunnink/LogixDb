@@ -63,13 +63,20 @@ public class TagTransformer : IDbTransformer
                 }
             }
 
+            if (tag.Parent is null && !string.IsNullOrWhiteSpace(tag.Description))
+            {
+                commentRecords.Add(new TagCommentRecord(tagHash, tag.Name, tag.Description));
+            }
+
             // For now, I'm going to just insert whatever comment override exists for a tag and see if we can
             // emulate the pass-through documentation from SQL queries instead of code.
-            commentRecords.AddRange(tag.Comments?.Select(c => new TagCommentRecord(
+            var comments = tag.Comments?.Select(c => new TagCommentRecord(
                 tagHash,
-                string.Join(tag.Name, c.Operand),
+                string.Concat(tag.Name, c.Operand),
                 c.Value
-            )) ?? []);
+            )) ?? [];
+
+            commentRecords.AddRange(comments);
         }
 
         yield return _tagMap.GenerateTable(tagRecords);

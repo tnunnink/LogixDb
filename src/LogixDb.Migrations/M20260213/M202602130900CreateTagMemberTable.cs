@@ -16,8 +16,8 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .WithPrimaryKey<long>("member_id")
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
-            .WithColumn("parent_name").AsString(128).NotNullable()
-            .WithColumn("member_name").AsString(128).NotNullable()
+            .WithColumn("parent_name").AsString(128).Nullable()
+            .WithColumn("member_name").AsString(128).Nullable()
             .WithColumn("data_type").AsString(128).NotNullable();
 
         Create.Index().OnTable("tag_member")

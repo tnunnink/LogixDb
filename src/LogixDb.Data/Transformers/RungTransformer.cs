@@ -61,18 +61,19 @@ public class RungTransformer : IDbTransformer
                 instruction.IsNative
             ));
 
-            var arguments = instruction.Arguments;
+            var arguments = instruction.Arguments.ToArray();
 
             for (byte a = 0; a < arguments.Length; a++)
             {
                 var argument = arguments[a];
                 argumentRecords.Add(new ArgumentRecord(rungId, i, a, argument.Type, argument.ToString()));
 
-                foreach (var tagName in argument.Tags)
+                //todo
+                /*foreach (var tagName in argument.Tags)
                 {
                     var reference = new ReferenceRecord(rungId, i, a, tagName);
                     referenceRecords.Add(reference);
-                }
+                }*/
             }
         }
     }

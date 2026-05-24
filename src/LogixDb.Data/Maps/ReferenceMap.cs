@@ -11,7 +11,7 @@ public class ReferenceMap : TableMap<ReferenceRecord>
         ColumnMap<ReferenceRecord>.For(r => r.RungId, "rung_id"),
         ColumnMap<ReferenceRecord>.For(r => r.InstructionIndex, "instruction_index"),
         ColumnMap<ReferenceRecord>.For(r => r.ArgumentIndex, "argument_index"),
-        ColumnMap<ReferenceRecord>.For(r => r.TagName, "reference_name")
+        ColumnMap<ReferenceRecord>.For(r => r.ReferenceName, "reference_name")
     ];
 }
 
@@ -19,5 +19,5 @@ public record ReferenceRecord(
     Guid RungId,
     int InstructionIndex,
     byte ArgumentIndex,
-    string TagName
+    string ReferenceName
 );

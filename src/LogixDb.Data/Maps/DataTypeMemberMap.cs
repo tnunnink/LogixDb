@@ -16,7 +16,7 @@ public class DataTypeMemberMap : TableMap<DataTypeMember>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<DataTypeMember>> Columns =>
     [
-        ColumnMap<DataTypeMember>.For(r => r.Parent?.Metadata.Get<string>("record_hash"), "type_hash"),
+        ColumnMap<DataTypeMember>.For(r => r.Parent?.Metadata.Get<string>("record_hash"), "type_hash", hashable: false),
         ColumnMap<DataTypeMember>.For(r => r.Name, "member_name"),
         ColumnMap<DataTypeMember>.For(r => r.Description, "member_description"),
         ColumnMap<DataTypeMember>.For(r => r.Metadata.Get<int>("member_index"), "member_index"),

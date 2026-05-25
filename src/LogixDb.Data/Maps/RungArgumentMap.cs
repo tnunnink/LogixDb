@@ -1,6 +1,6 @@
 namespace LogixDb.Data.Maps;
 
-public class ArgumentMap : TableMap<ArgumentRecord>
+public class RungArgumentMap : TableMap<ArgumentRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "rung_argument";

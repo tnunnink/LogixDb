@@ -1,4 +1,4 @@
-INSERT OR IGNORE INTO instruction (rung_id,
+INSERT OR IGNORE INTO rung_instruction (rung_id,
                                    instruction_index,
                                    instruction_text,
                                    instruction_key,
@@ -12,7 +12,7 @@ SELECT t.rung_id,
        t.is_conditional,
        t.is_native,
        t.record_hash
-FROM temp_instruction t
+FROM temp_rung_instruction t
          INNER JOIN rung r ON r.rung_id = t.rung_id;
 
 

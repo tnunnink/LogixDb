@@ -1,6 +1,6 @@
 namespace LogixDb.Data.Maps;
 
-public class InstructionMap : TableMap<InstructionRecord>
+public class RungInstructionMap : TableMap<InstructionRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "rung_instruction";

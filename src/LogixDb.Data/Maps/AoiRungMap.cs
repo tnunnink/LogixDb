@@ -1,5 +1,4 @@
 using L5Sharp.Core;
-using LogixDb.Data.Extensions;
 
 namespace LogixDb.Data.Maps;
 
@@ -11,7 +10,7 @@ public class AoiRungMap : TableMap<AoiRungRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<AoiRungRecord>> Columns =>
     [
-        ColumnMap<AoiRungRecord>.For(r => r.AoiHash, "aoi_hash"),
+        ColumnMap<AoiRungRecord>.For(r => r.AoiHash, "aoi_hash", hashable: false),
         ColumnMap<AoiRungRecord>.For(r => r.RoutineName, "routine_name"),
         ColumnMap<AoiRungRecord>.For(r => r.Number, "rung_number"),
         ColumnMap<AoiRungRecord>.For(r => r.Comment, "rung_comment"),

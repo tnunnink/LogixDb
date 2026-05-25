@@ -8,9 +8,9 @@ namespace LogixDb.Data.Transformers;
 public class RungTransformer : IDbTransformer
 {
     private readonly RungMap _rungMap = new();
-    private readonly InstructionMap _instructionMap = new();
-    private readonly ArgumentMap _argumentMap = new();
-    private readonly ReferenceMap _referenceMap = new();
+    private readonly RungInstructionMap _instructionMap = new();
+    private readonly RungArgumentMap _argumentMap = new();
+    private readonly RungReferenceMap _referenceMap = new();
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
@@ -27,7 +27,7 @@ public class RungTransformer : IDbTransformer
 
         foreach (var rung in rungs)
         {
-            // This is for instruction and argument tables to form relational reference.
+            // This is for child tables to form relational reference.
             var rungId = Guid.CreateVersion7();
             rung.Metadata.Add("rung_id", rungId);
 
@@ -69,13 +69,15 @@ public class RungTransformer : IDbTransformer
                 argumentRecords.Add(new ArgumentRecord(rungId, i, a, argument.Type, argument.ToString()));
 
                 foreach (var reference in GetReferences(argument))
-                {
                     referenceRecords.Add(new ReferenceRecord(rungId, i, a, reference));
-                }
             }
         }
     }
 
+    /// <summary>
+    /// This is a simple helper to get "reference" tag names from the argument. For most cases this just returns the tag
+    /// name if this is a reference argument. For expressions, we want to extract all nested tag names for reference lookup.
+    /// </summary>
     private static IEnumerable<TagName> GetReferences(Argument argument)
     {
         if (argument.IsReference)

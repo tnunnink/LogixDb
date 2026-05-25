@@ -1,6 +1,6 @@
 namespace LogixDb.Data.Maps;
 
-public class ReferenceMap : TableMap<ReferenceRecord>
+public class RungReferenceMap : TableMap<ReferenceRecord>
 {
     /// <inheritdoc />
     protected override string TableName => "code_reference";

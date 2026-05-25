@@ -17,7 +17,7 @@ public class RungMap : TableMap<Rung>
     protected override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
         ColumnMap<Rung>.For(r => r.Metadata.Get<Guid>("rung_id"), "rung_id"),
-        ColumnMap<Rung>.For(r => r.Routine?.Metadata.Get<string>("record_hash"), "routine_hash"),
+        ColumnMap<Rung>.For(r => r.Routine?.Metadata.Get<string>("record_hash"), "routine_hash", hashable: false),
         ColumnMap<Rung>.For(r => r.Number, "rung_number"),
         ColumnMap<Rung>.For(r => r.Text, "rung_text"),
         ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),

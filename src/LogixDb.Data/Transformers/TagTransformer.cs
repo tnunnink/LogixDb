@@ -35,18 +35,10 @@ public class TagTransformer : IDbTransformer
             tagRecords.Add(tag);
 
             if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
-            {
-                // If this record could access parent, we wouldn't need this.
-                tag.ProduceInfo.Metadata.Add("tag_hash", tagHash);
                 producerRecords.Add(tag.ProduceInfo);
-            }
 
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
-            {
-                // If this record could access parent, we wouldn't need this.
-                tag.ConsumeInfo.Metadata.Add("tag_hash", tagHash);
                 consumerRecords.Add(tag.ConsumeInfo);
-            }
 
             foreach (var member in tag.Members())
             {
@@ -64,12 +56,11 @@ public class TagTransformer : IDbTransformer
             }
 
             if (tag.Parent is null && !string.IsNullOrWhiteSpace(tag.Description))
-            {
                 commentRecords.Add(new TagCommentRecord(tagHash, tag.Name, tag.Description));
-            }
 
             // For now, I'm going to just insert whatever comment override exists for a tag and see if we can
             // emulate the pass-through documentation from SQL queries instead of code.
+            // This would be more space-efficient and reduce processing time if we can keep this approach.
             var comments = tag.Comments?.Select(c => new TagCommentRecord(
                 tagHash,
                 string.Concat(tag.Name, c.Operand),

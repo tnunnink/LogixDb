@@ -127,10 +127,7 @@ public abstract class TableMap<T> where T : class
     /// </returns>
     private List<ColumnMap<T>> GetHashableColumns()
     {
-        return Columns
-            .Where(c => c.Type != typeof(Guid) && c.Type != typeof(Guid?) && c.Name != RecordHash)
-            .OrderBy(c => c.Name, StringComparer.Ordinal)
-            .ToList();
+        return Columns.Where(c => c.Hashable).OrderBy(c => c.Name, StringComparer.Ordinal).ToList();
     }
 
     /// <summary>

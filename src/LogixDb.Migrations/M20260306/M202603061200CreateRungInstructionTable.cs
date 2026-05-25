@@ -12,7 +12,7 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("instruction")
+        Create.Table("rung_instruction")
             .WithRelation<Guid>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("instruction_text").AsString(int.MaxValue).NotNullable()
@@ -21,15 +21,15 @@ public class M202603061200CreateInstructionTable : AutoReversingMigration
             .WithColumn("is_native").AsBoolean().NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("instruction")
+        Create.Index().OnTable("rung_instruction")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("instruction")
+        Create.Index().OnTable("rung_instruction")
             .OnColumn("instruction_key").Ascending();
         
-        Create.Index().OnTable("instruction")
+        Create.Index().OnTable("rung_instruction")
             .OnColumn("record_hash").Ascending();
     }
 }

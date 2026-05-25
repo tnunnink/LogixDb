@@ -132,7 +132,7 @@ public class TargetTests
         var tableNames = new List<string>
         {
             "controller", "data_type", "data_type_member", "aoi", "aoi_parameter", "aoi_rung", "module", "task",
-            "program", "routine", "rung", "instruction", "argument", "operand", "tag", "tag_member", "tag_comment",
+            "program", "routine", "rung", "rung_instruction", "rung_argument", "operand", "tag", "tag_member", "tag_comment",
             "tag_value", "tag_producer", "tag_consumer", "task"
         };
 

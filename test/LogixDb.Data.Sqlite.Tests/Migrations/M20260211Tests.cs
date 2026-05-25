@@ -187,31 +187,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertIndex("routine", "routine_name");
         }
     }
-
-    [Test]
-    public async Task MigrateUp_ToM202602111945_CreatesRungTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602111945);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("rung");
-
-            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "routine_id", "integer");
-            await AssertColumnDefinition("rung", "rung_number", "integer");
-            await AssertColumnDefinition("rung", "rung_text", "text");
-            await AssertColumnDefinition("rung", "rung_comment", "text");
-            await AssertColumnDefinition("rung", "code_hash", "text");
-            await AssertColumnDefinition("rung", "record_hash", "text");
-
-            await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "record_hash");
-            await AssertUniqueIndex("rung", "routine_id", "rung_number");
-            await AssertIndex("rung", "code_hash");
-        }
-    }
-
+    
     [Test]
     public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
     {

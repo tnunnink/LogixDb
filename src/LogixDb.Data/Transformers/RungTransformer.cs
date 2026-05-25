@@ -68,13 +68,22 @@ public class RungTransformer : IDbTransformer
                 var argument = arguments[a];
                 argumentRecords.Add(new ArgumentRecord(rungId, i, a, argument.Type, argument.ToString()));
 
-                //todo
-                /*foreach (var tagName in argument.Tags)
+                foreach (var reference in GetReferences(argument))
                 {
-                    var reference = new ReferenceRecord(rungId, i, a, tagName);
-                    referenceRecords.Add(reference);
-                }*/
+                    referenceRecords.Add(new ReferenceRecord(rungId, i, a, reference));
+                }
             }
         }
+    }
+
+    private static IEnumerable<TagName> GetReferences(Argument argument)
+    {
+        if (argument.IsReference)
+            return [argument.ToTagName()];
+
+        if (argument.IsExpression)
+            return TagName.Parse(argument.ToNeutralText());
+
+        return [];
     }
 }

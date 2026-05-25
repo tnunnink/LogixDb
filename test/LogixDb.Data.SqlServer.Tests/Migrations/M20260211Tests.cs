@@ -142,7 +142,7 @@ public class M20260211Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("program");
-            
+
             await AssertColumnDefinition("program", "program_id", "bigint");
             await AssertColumnDefinition("program", "program_name", "nvarchar");
             await AssertColumnDefinition("program", "task_name", "nvarchar");
@@ -172,7 +172,7 @@ public class M20260211Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("routine");
-            
+
             await AssertColumnDefinition("routine", "routine_id", "bigint");
             await AssertColumnDefinition("routine", "program_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
@@ -188,29 +188,6 @@ public class M20260211Tests : SqlServerTestFixture
         }
     }
 
-    [Test]
-    public async Task MigrateUp_ToM202602111945_CreatesRungTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602111945);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("rung");
-            
-            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "routine_id", "bigint");
-            await AssertColumnDefinition("rung", "rung_number", "int");
-            await AssertColumnDefinition("rung", "rung_text", "nvarchar");
-            await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
-            await AssertColumnDefinition("rung", "code_hash", "nvarchar");
-            await AssertColumnDefinition("rung", "record_hash", "nvarchar");
-            
-            await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "record_hash");
-            await AssertUniqueIndex("rung", "routine_id", "rung_number");
-            await AssertIndex("rung", "code_hash");
-        }
-    }
     [Test]
     public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
     {

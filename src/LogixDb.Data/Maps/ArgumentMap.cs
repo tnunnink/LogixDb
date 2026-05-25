@@ -3,7 +3,7 @@ namespace LogixDb.Data.Maps;
 public class ArgumentMap : TableMap<ArgumentRecord>
 {
     /// <inheritdoc />
-    protected override string TableName => "argument";
+    protected override string TableName => "rung_argument";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>

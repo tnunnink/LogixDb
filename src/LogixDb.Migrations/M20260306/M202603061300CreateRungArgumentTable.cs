@@ -6,27 +6,26 @@ using LogixDb.Data;
 namespace LogixDb.Migrations.M20260306;
 
 [UsedImplicitly]
-[Migration(202603061400, "Creates code_reference table with indexes for reference name lookups")]
+[Migration(202603061300, "Creates argument table with corresponding indexes and foreign key relationships")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202603061400CreateCodeReferenceTable : AutoReversingMigration
+public class M202603061300CreateArgumentTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("code_reference")
+        Create.Table("rung_argument")
             .WithRelation<Guid>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
-            .WithColumn("reference_name").AsString(256).NotNullable();
+            .WithColumn("argument_type").AsString(32).NotNullable()
+            .WithColumn("argument_text").AsString(256).NotNullable()
+            .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("code_reference")
+        Create.Index().OnTable("rung_argument")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending();
 
-        Create.Index().OnTable("code_reference")
-            .OnColumn("reference_name").Ascending()
-            .OnColumn("rung_id").Ascending()
-            .OnColumn("instruction_index").Ascending()
-            .OnColumn("argument_index").Ascending();
+        Create.Index().OnTable("rung_argument")
+            .OnColumn("argument_text").Ascending();
     }
 }

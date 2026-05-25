@@ -3,12 +3,12 @@ using FluentMigrator;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
-namespace LogixDb.Migrations.M20260211;
+namespace LogixDb.Migrations.M20260306;
 
 [UsedImplicitly]
-[Migration(202602111945, "Creates rung table with corresponding indexes and keys")]
+[Migration(202603061100, "Creates rung table with corresponding indexes and keys")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202602111945CreateRungTable : AutoReversingMigration
+public class M202603061100CreateRungTable : AutoReversingMigration
 {
     public override void Up()
     {

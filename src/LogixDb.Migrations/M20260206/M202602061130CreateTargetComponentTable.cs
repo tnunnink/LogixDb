@@ -11,7 +11,7 @@ public class M202602061130CreateComponentTypeTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("component")
+        Create.Table("target_component")
             .WithPrimaryKey<byte>("component_id")
             .WithColumn("component_name").AsString(64).NotNullable();
     }

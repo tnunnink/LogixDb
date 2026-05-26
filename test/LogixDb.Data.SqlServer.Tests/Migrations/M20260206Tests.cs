@@ -79,7 +79,7 @@ public class M20260206Tests : SqlServerTestFixture
         {
             await AssertTableExists("target_info");
 
-            await AssertColumnDefinition("target_info", "property_id", "int");
+            await AssertColumnDefinition("target_info", "property_id", "uniqueidentifier");
             await AssertColumnDefinition("target_info", "version_id", "int");
             await AssertColumnDefinition("target_info", "property_name", "nvarchar");
             await AssertColumnDefinition("target_info", "property_value", "nvarchar");

@@ -14,6 +14,22 @@ LogixDb was built to make PLC code analysis and data extraction developer-friend
 structured SQL schema, it enables developers and controls engineers to leverage the power of SQL to write custom
 queries, views, and procedures for project analysis, validation, and documentation.
 
+## Core Concepts
+
+LogixDb uses a **Content-Addressable Deduplication** model to efficiently store PLC project data. Instead of storing a
+full copy of every project version, it deduplicates components (Tags, Rungs, Programs, etc.) globally across the entire
+database.
+
+* **Targets**: Represents a unique PLC (e.g., `PLC://Main_Controller`) 
+  * These could be partial exports as well (e.g., Programs, UDTs, etc.).
+* **Versions**: Every time a project is imported, a new version is created. This version acts as a snapshot in time.
+* **Deduplication**: When a new version is imported, LogixDb hashes each component. If an identical component already
+  exists in the database, the new version simply points to the existing record.
+* **Manifest (`target_version_map`)**: A lean table that maps each project version to its constituent components. This
+  allows for rapid reconstruction of any historical version.
+* **Forward-Only**: The database is designed for continuous ingestion and long-term history. Metadata can be pruned, but
+  the core deduplicated entity data remains for cross-reference.
+
 ## Overview
 
 LogixDb currently offers a few tools for users to work with.
@@ -33,21 +49,6 @@ and performing database maintenance. See the table below for a complete list of 
 | **`prune`**   | Removes metadata for a target that is no longer needed.                                                                                |
 | **`purge`**   | Permanently deletes a target and its entire history.                                                                                   |
 | **`drop`**    | Drops the entire database schema and all associated data.                                                                              |
-
-### Core Concepts
-
-LogixDb uses a **Content-Addressable Deduplication** model to efficiently store PLC project data. Instead of storing a
-full copy of every project version, it deduplicates components (Tags, Rungs, Programs, etc.) globally across the entire
-database.
-
-* **Targets**: Represents a unique PLC (e.g., `PLC://Main_Controller`).
-* **Versions**: Every time a project is imported, a new version is created. This version acts as a snapshot in time.
-* **Deduplication**: When a new version is imported, LogixDb hashes each component. If an identical component already
-  exists in the database, the new version simply points to the existing record.
-* **Manifest (`target_version_map`)**: A lean table that maps each project version to its constituent components. This
-  allows for rapid reconstruction of any historical version.
-* **Forward-Only**: The database is designed for continuous ingestion and long-term history. Metadata can be pruned, but
-  the core deduplicated entity data remains for cross-reference.
 
 #### Example Usage
 

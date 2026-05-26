@@ -79,7 +79,7 @@ public class M20260206Tests : SqliteTestFixture
         {
             await AssertTableExists("target_info");
 
-            await AssertColumnDefinition("target_info", "property_id", "integer");
+            await AssertColumnDefinition("target_info", "property_id", "uniqueidentifier");
             await AssertColumnDefinition("target_info", "version_id", "integer");
             await AssertColumnDefinition("target_info", "property_name", "text");
             await AssertColumnDefinition("target_info", "property_value", "text");

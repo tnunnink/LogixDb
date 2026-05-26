@@ -1,6 +1,6 @@
 INSERT OR IGNORE INTO rung_reference (rung_id,
-                                     instruction_index,
-                                     argument_index,
+                                      instruction_index,
+                                      argument_index,
                                       reference_name)
 SELECT t.rung_id,
        t.instruction_index,

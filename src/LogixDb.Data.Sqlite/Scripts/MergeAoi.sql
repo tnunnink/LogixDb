@@ -45,5 +45,5 @@ FROM temp_aoi t;
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT aoi_id FROM aoi WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM component WHERE component_name = 'aoi')
+       (SELECT component_id FROM target_component WHERE component_name = 'aoi')
 FROM temp_aoi t;

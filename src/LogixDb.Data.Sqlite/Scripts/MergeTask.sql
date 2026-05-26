@@ -27,5 +27,5 @@ FROM temp_task;
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT task_id FROM task WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM component WHERE component_name = 'task')
+       (SELECT component_id FROM target_component WHERE component_name = 'task')
 FROM temp_task t;

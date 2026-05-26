@@ -48,6 +48,6 @@ public class ControllerMap : TableMap<Controller>
         ColumnMap<Controller>.For(r => r.Security?.PermissionSet, "permission_set"),
         ColumnMap<Controller>.For(r => r.Security?.ChangesToDetect, "changed_to_detect"),
         ColumnMap<Controller>.For(r => r.Security?.TrustedSlots, "trusted_slots"),
-        ColumnMap<Controller>.For(ComputeHash, "record_hash")
+        ColumnMap<Controller>.RecordHash(this)
     ];
 }

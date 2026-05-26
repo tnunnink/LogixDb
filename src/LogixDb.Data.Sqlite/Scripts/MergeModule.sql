@@ -35,5 +35,5 @@ FROM temp_module t;
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT module_id FROM module WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM component WHERE component_name = 'module')
+       (SELECT component_id FROM target_component WHERE component_name = 'module')
 FROM temp_module t;

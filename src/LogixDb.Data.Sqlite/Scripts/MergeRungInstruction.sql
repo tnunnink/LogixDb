@@ -1,10 +1,10 @@
 INSERT OR IGNORE INTO rung_instruction (rung_id,
-                                   instruction_index,
-                                   instruction_text,
-                                   instruction_key,
-                                   is_conditional,
-                                   is_native,
-                                   record_hash)
+                                        instruction_index,
+                                        instruction_text,
+                                        instruction_key,
+                                        is_conditional,
+                                        is_native,
+                                        record_hash)
 SELECT t.rung_id,
        t.instruction_index,
        t.instruction_text,

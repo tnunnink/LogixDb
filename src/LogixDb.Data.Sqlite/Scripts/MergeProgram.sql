@@ -25,5 +25,5 @@ FROM temp_program t;
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT program_id FROM program WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM component WHERE component_name = 'program')
+       (SELECT component_id FROM target_component WHERE component_name = 'program')
 FROM temp_program t;

@@ -15,5 +15,5 @@ FROM temp_routine t;
 INSERT INTO target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT routine_id FROM routine WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM component WHERE component_name = 'routine')
+       (SELECT component_id FROM target_component WHERE component_name = 'routine')
 FROM temp_routine t;

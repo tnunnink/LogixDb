@@ -26,27 +26,23 @@ and performing database maintenance. See the table below for a complete list of 
 | Command | Description |
 | :--- | :--- |
 | **`migrate`** | Runs database migrations to ensure the schema is up to date. Supports selective table creation via `--components`. |
-| **`post`** | Uploads an L5X/ACD file into the `target_version` table as a compressed blob. This archives the version without expanding relational data. |
-| **`restore`** | Expands a previously **posted** version into relational entity tables (Tags, Programs, etc.), creating a searchable **instance**. |
-| **`import`** | A convenience command that performs a **post** followed immediately by a **restore**. This is the standard way to ingest and parse a project. |
-| **`archive`** | The inverse of restore. It removes the expanded relational data for a specific version while keeping the compressed L5X blob in the `target_version` table. |
-| **`sync`** | Connects to an online PLC to upload live tag values and creates a new archived version in the database. |
+| **`import`** | Ingests an L5X or ACD file into the database. This command automatically deduplicates components and updates the `target_version_map`. |
+| **`sync`** | Connects to an online PLC to upload live tag values and creates a new version in the database. |
 | **`list`** | Lists all registered targets and their available versions. |
 | **`export`** | Exports a specific version or target back to an L5X file. |
-| **`prune`** | Deletes all expanded relational "instances" for a target, keeping only the version history (the compressed blobs). |
-| **`purge`** | Permanently deletes a target and its entire history, including all versions and instances. |
+| **`prune`** | Removes metadata for a target that is no longer needed. |
+| **`purge`** | Permanently deletes a target and its entire history. |
 | **`drop`** | Drops the entire database schema and all associated data. |
 
 ### Core Concepts
 
-LogixDb separates the **storage** of project files from the **analysis** of their relational data. This architecture allows for efficient historical tracking while minimizing database growth.
+LogixDb uses a **Content-Addressable Deduplication** model to efficiently store PLC project data. Instead of storing a full copy of every project version, it deduplicates components (Tags, Rungs, Programs, etc.) globally across the entire database.
 
-*   **Post**: Saves the raw L5X/ACD file and metadata into the `target_version` table. No relational data (tags, rungs, etc.) is created at this stage.
-*   **Restore**: Parses a **posted** version into relational tables (Tags, Programs, etc.), creating a searchable **instance**.
-*   **Import**: Performs both **Post** and **Restore** in one step.
-*   **Archive**: Wipes the relational data for a specific version to save space but retains the original file in `target_version` for future restoration.
-*   **Prune**: A bulk archive operation that removes all relational "instances" for a target, effectively moving the history into "cold storage."
-*   **Purge**: Deletes all traces of a target, including its metadata and all archived versions.
+*   **Targets**: Represents a unique PLC (e.g., `PLC://Main_Controller`).
+*   **Versions**: Every time a project is imported, a new version is created. This version acts as a snapshot in time.
+*   **Deduplication**: When a new version is imported, LogixDb hashes each component. If an identical component already exists in the database, the new version simply points to the existing record.
+*   **Manifest (`target_version_map`)**: A lean table that maps each project version to its constituent components. This allows for rapid reconstruction of any historical version.
+*   **Forward-Only**: The database is designed for continuous ingestion and long-term history. Metadata can be pruned, but the core deduplicated entity data remains for cross-reference.
 
 #### Example Usage
 
@@ -106,12 +102,6 @@ logixdb list -c "LogixDb@localhost" -t "PLC://Main_Controller"
 
 ```powershell
 logixdb export -c "LogixDb@localhost" -t "PLC://Main_Controller" -v 1 -o "C:\Exports\Backup_v1.L5X"
-```
-
-**Prune instances for a target**:
-
-```powershell
-logixdb prune -c "LogixDb@localhost" -t "PLC://Main_Controller"
 ```
 
 ### Ingestion API Endpoint
@@ -362,22 +352,22 @@ The LogixDb schema is designed to support multiple versions of multiple PLC targ
 ```mermaid
 erDiagram
     target ||--o{ target_version : "has many"
-    target_version ||--o{ target_instance : "restored as"
-    target_instance ||--o{ controller : "1:1"
-    target_instance ||--o{ tag : contains
-    target_instance ||--o{ program : contains
-    target_instance ||--o{ task : contains
-    target_instance ||--o{ aoi : contains
-    target_instance ||--o{ data_type : contains
-    target_instance ||--o{ module : contains
+    target_version ||--o{ target_version_map : "manifest"
+    target_version_map }o--|| controller : "links"
+    target_version_map }o--|| tag : "links"
+    target_version_map }o--|| program : "links"
+    target_version_map }o--|| task : "links"
+    target_version_map }o--|| aoi : "links"
+    target_version_map }o--|| data_type : "links"
+    target_version_map }o--|| module : "links"
 ```
 
 #### Primary Tables
 
 *   **`target`**: Defines the identity of a PLC (e.g., `PLC://Line1_Main`). It acts as the root for all versions.
-*   **`target_version`**: Stores the historical records for a target. Each record contains the compressed L5X `source_data`, metadata (software revision, export date), and a unique `version_number`.
-*   **`target_instance`**: Represents an "active" or "restored" version. When a version is restored, a record is created here to link the version to its relational entities.
-*   **Relational Entities**: Tables like `tag`, `program`, `rung`, and `aoi` store the actual Logix components. Every entity record is linked to a specific `instance_id`, allowing multiple versions of the same project to coexist in the database if needed.
+*   **`target_version`**: Stores historical records for a target. Each record contains the compressed L5X `source_data`, metadata (software revision, export date), and a unique `version_id`.
+*   **`target_version_map`**: The primary manifest table. It maps each `version_id` to the physical `record_id` of the deduplicated entities (Tags, Programs, etc.) that belong to that version.
+*   **Relational Entities**: Tables like `tag`, `program`, `rung`, and `aoi` store deduplicated Logix components. Components are shared across versions if their content (hash) is identical.
 
 ### Primary Tables Detailed List
 
@@ -385,8 +375,10 @@ erDiagram
 |---------------------|------------------------------------------------------------------------------------------------|
 | `target`            | Stores unique target keys for identifying different PLC projects.                              |
 | `target_version`    | Links an import to a target. Stores the raw source file and import metadata.                   |
-| `target_instance`   | Junction table representing a hydrated version of a project.                                   |
+| `target_version_map`| Primary manifest table mapping versions to deduplicated component records.                      |
 | `target_property`   | Key-value metadata for targets (e.g., custom headers from the Ingestion API).                |
+| `target_info`       | User-defined information or comments associated with a specific target version.              |
+| `target_component`  | Lookup table for component type IDs (tag, program, etc.) used in the manifest.               |
 | `controller`        | Global controller settings (name, processor type, revision, etc.).                             |
 | `data_type`         | User-defined and system-defined data type definitions.                                         |
 | `data_type_member`  | Individual members of a data type, including their name, data type, and dimensions.            |
@@ -396,28 +388,30 @@ erDiagram
 | `module`            | IO configuration and module properties (catalog number, slot, IP address).                     |
 | `tag`               | All controller and program scope tags, including names, types, and descriptions.               |
 | `tag_member`        | Hierarchical tag structure for UDTs and Arrays.                                                |
+| `tag_value`         | Snapshot of live or offline tag values associated with a specific version.                   |
 | `tag_comment`       | Individual member-level comments and descriptions.                                             |
-| `tag_alias`         | Mapping for alias tags to their base tags.                                                     |
 | `tag_producer`      | Configuration for produced tags (e.g., max consumers).                                         |
 | `tag_consumer`      | Configuration for consumed tags (e.g., remote producer, connection details).                   |
 | `task`              | Task metadata and execution settings (name, type, priority, rate, watchdog).                   |
 | `program`           | Program-level metadata (type, main routine, fault routine, parent folder).                     |
 | `routine`           | Routine metadata (name, type, container).                                                      |
 | `rung`              | Individual rungs of ladder logic, including the original L5X code and rung comments.           |
-| `instruction`       | Granular instruction data extracted from rungs (name, text, mnemonic key).                     |
-| `argument`          | Individual instruction arguments and operands (tag name, constant value, index).               |
+| `rung_instruction`  | Granular instruction data extracted from rungs (name, text, mnemonic key).                     |
+| `rung_argument`     | Individual instruction arguments and operands (tag name, constant value, index).               |
+| `rung_reference`    | Cross-reference mapping between logic rungs and the tags they use.                             |
 | `operand`           | Metadata for native Logix instructions (parameter names, types, and descriptions).             |
 
 ### Relationships
 
-Most entity tables include an `instance_id` column that serves as a foreign key to the `target_instance` table. This allows you to
-query all components of a specific project instance using a single ID. For example, to find all tags for a specific
-instance:
+Global deduplication is achieved by mapping project versions to component records using the `target_version_map` table. Instead of using a transient `instance_id`, queries join through the manifest to resolve the state of a project at any point in its history. This mapping allows the database to store each unique component once while associating it with many versions of many targets.
+
+To find all tags for a specific version:
 
 ```sql
-SELECT *
-FROM tag
-WHERE instance_id = 42;
+SELECT t.*
+FROM tag t
+JOIN target_version_map m ON t.tag_id = m.record_id
+WHERE m.version_id = 42 AND m.component_id = 5; -- 5 = 'tag' component
 ```
 
 ### Entity Comparison & Hashing
@@ -428,10 +422,8 @@ and full reconstruction of original Logix elements across different targets.
 #### Record Hash (`record_hash`)
 
 Every entity record in the database includes a `record_hash`. This hash is an **MD5 hash** with **UTF-16 Unicode
-encoded** string representation of the **hashable fields** of the database record itself (excluding internal IDs like
-`instance_id` or `primary_key`).
-- **Purpose**: Primarily used for **diffing** and identifying if a record's data has changed between project instances at a
-  granular level. It allows the system to quickly detect modifications without comparing every column individually.
+encoded** string representation of the **hashable fields** of the database record itself (excluding internal IDs).
+- **Purpose**: Primarily used for **deduplication** and identifying if a record's data has changed between project imports.
 - **Calculation**: It is a deterministic MD5 hash of the serialized column names and values for all columns marked
   as `IsHashable` in the `TableMap`.
 
@@ -450,41 +442,42 @@ file.
 
 The `record_hash` and `source_hash` columns enable high-performance diffing between different versions of your project.
 
-#### Find changed tags between two instances
+#### Find changed tags between two versions
 
 ```sql
--- Compare instance A and instance B
-DECLARE @instanceA INT = 1;
-DECLARE @instanceB INT = 2;
+-- Compare version A and version B
+DECLARE @versionA INT = 1;
+DECLARE @versionB INT = 2;
 
 SELECT COALESCE(a.tag_name, b.tag_name) AS TagName,
        CASE
-           WHEN a.record_hash IS NULL THEN 'Added'
-           WHEN b.record_hash IS NULL THEN 'Removed'
+           WHEN a.tag_id IS NULL THEN 'Added'
+           WHEN b.tag_id IS NULL THEN 'Removed'
            WHEN a.record_hash <> b.record_hash THEN 'Modified'
            ELSE 'Unchanged'
            END                  AS ChangeStatus
-FROM (SELECT * FROM tag WHERE instance_id = @instanceA) a
-         FULL OUTER JOIN (SELECT * FROM tag WHERE instance_id = @instanceB) b ON a.tag_name = b.tag_name
+FROM (SELECT t.* FROM tag t JOIN target_version_map m ON t.tag_id = m.record_id WHERE m.version_id = @versionA AND m.component_id = 5) a
+         FULL OUTER JOIN (SELECT t.* FROM tag t JOIN target_version_map m ON t.tag_id = m.record_id WHERE m.version_id = @versionB AND m.component_id = 5) b ON a.tag_name = b.tag_name
 WHERE ISNULL(a.record_hash, '') <> ISNULL(b.record_hash, '');
 ```
 
-#### Identify source-identical logic across different project versions
+#### Identify shared components across different project versions
 
 ```sql
--- Find routines that have identical L5X source content across different instances
-SELECT routine_name, source_hash, COUNT(*) as Occurrences
-FROM routine
-GROUP BY routine_name, source_hash
-HAVING COUNT(*) > 1;
+-- Find routines that are identical and shared across multiple project versions
+SELECT r.routine_name, r.source_hash, COUNT(m.version_id) as VersionCount
+FROM routine r
+JOIN target_version_map m ON r.routine_id = m.record_id
+WHERE m.component_id = 8 -- 8 = 'routine' component
+GROUP BY r.routine_name, r.source_hash
+HAVING COUNT(m.version_id) > 1;
 ```
 
 ### Troubleshooting & FAQ
 
 | Issue | Probable Cause | Remedy |
 | :--- | :--- | :--- |
-| **Entity tables (tags, etc.) are empty** | The version was **posted** but not **restored**. | Run `logixdb restore -t <target_key> -v <version>` to expand the data. |
-| **Database size is growing too fast** | Too many versions are currently expanded (restored). | Use `logixdb prune -t <target_key>` to archive older instances while keeping their history. |
+| **Database size is growing too fast** | Too many unique components across versions. | Consider pruning old versions if their history is no longer needed. |
 | **FTAC Polling returns 0 assets** | Filter is too restrictive or permissions issue. | Check `FtacFilters` and ensure the service account has `SELECT` on the AC database. |
 | **ACD Conversion Fails** | Studio 5000 version mismatch or licensing. | Ensure the correct version of Studio 5000 is installed and licensed on the service machine. |
 | **Migration Errors** | Database file is locked or user lacks schema permissions. | Stop the service before running manual migrations; ensure the user has `db_owner` or equivalent. |

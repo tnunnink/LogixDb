@@ -11,7 +11,7 @@ public class M20260306Tests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung");
-            
+
             await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
             await AssertColumnDefinition("rung", "routine_id", "bigint");
             await AssertColumnDefinition("rung", "rung_number", "int");
@@ -19,14 +19,14 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
             await AssertColumnDefinition("rung", "code_hash", "nvarchar");
             await AssertColumnDefinition("rung", "record_hash", "nvarchar");
-            
+
             await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "record_hash");
+            await AssertUniqueIndex("rung", "routine_id", "record_hash");
             await AssertUniqueIndex("rung", "routine_id", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }
-    
+
     [Test]
     public async Task MigrateUp_ToM202603061200_CreatesInstructionTableWithExpectedColumns()
     {
@@ -68,7 +68,6 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertForeignKey("rung_argument", "rung_id", "rung", "rung_id");
             await AssertIndex("rung_argument", "rung_id", "instruction_index", "argument_index");
-            await AssertIndex("rung_argument", "argument_text");
         }
     }
 

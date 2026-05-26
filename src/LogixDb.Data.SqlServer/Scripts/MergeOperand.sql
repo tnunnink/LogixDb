@@ -8,7 +8,6 @@ WHEN NOT MATCHED THEN
             operand_index,
             operand_name,
             operand_type,
-            operand_format,
             operand_description,
             is_destructive,
             record_hash)
@@ -16,7 +15,6 @@ WHEN NOT MATCHED THEN
             source.operand_index,
             source.operand_name,
             source.operand_type,
-            source.operand_format,
             source.operand_description,
             source.is_destructive,
             source.record_hash);

@@ -22,6 +22,7 @@ public class M202603061100CreateRungTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("rung")
+            .OnColumn("routine_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 

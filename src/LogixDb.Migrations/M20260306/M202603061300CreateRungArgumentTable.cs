@@ -17,15 +17,12 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("argument_type").AsString(32).NotNullable()
-            .WithColumn("argument_text").AsString(256).NotNullable()
+            .WithColumn("argument_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("rung_argument")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending();
-
-        Create.Index().OnTable("rung_argument")
-            .OnColumn("argument_text").Ascending();
     }
 }

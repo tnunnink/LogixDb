@@ -183,7 +183,7 @@ public class M20260211Tests : SqliteTestFixture
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertUniqueIndex("routine", "record_hash");
-            await AssertUniqueIndex("routine", "program_name", "routine_name");
+            await AssertIndex("routine", "program_name", "routine_name");
             await AssertIndex("routine", "routine_name");
         }
     }

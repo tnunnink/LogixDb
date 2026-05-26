@@ -26,8 +26,7 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
 
         Create.Index().OnTable("routine")
             .OnColumn("program_name").Ascending()
-            .OnColumn("routine_name").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("routine_name").Ascending();
 
         Create.Index().OnTable("routine")
             .OnColumn("routine_name").Ascending();

@@ -19,11 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,61 +121,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.1873204941299E-310" />
-      <entry key="S2" value="3.3009731441357244E-78" />
-      <entry key="S5" value="1.0173181584062071E-31" />
-      <entry key="S10" value="3.189542535322481E-16" />
-      <entry key="S30" value="6.836903231303822E-6" />
-      <entry key="S60" value="0.0027573481684204323" />
-      <entry key="M2" value="0.08306356598149155" />
-      <entry key="M5" value="1.647115823035067" />
-      <entry key="M10" value="6.934846067434259" />
-      <entry key="M15" value="13.859143536536516" />
-      <entry key="M30" value="47.6662067095228" />
-      <entry key="H1" value="133.25903886993072" />
-      <entry key="H2" value="259.24895203133843" />
-      <entry key="H4" value="378.6595610326229" />
-      <entry key="D1" value="659.0541605614943" />
-      <entry key="W1" value="978.1515842653791" />
+      <entry key="MS100" value="1.00000000000002" />
+      <entry key="MS500" value="1.0018198055259895" />
+      <entry key="S2" value="1.2069445042302387" />
+      <entry key="S5" value="1.6354928288604873" />
+      <entry key="S10" value="2.5520371538545055" />
+      <entry key="S30" value="5.755396398372915" />
+      <entry key="S60" value="7.796131311407795" />
+      <entry key="M2" value="9.21491885871348" />
+      <entry key="M5" value="10.410373969542846" />
+      <entry key="M10" value="12.867269319548855" />
+      <entry key="M15" value="17.297285304029177" />
+      <entry key="M30" value="43.661684613505805" />
+      <entry key="H1" value="121.46582615853873" />
+      <entry key="H2" value="247.07608868794168" />
+      <entry key="H4" value="372.34913454630305" />
+      <entry key="D1" value="664.9365522590303" />
+      <entry key="W1" value="988.0630912344365" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000016187194" />
-      <entry key="S5" value="1.0003045570243931" />
-      <entry key="S10" value="1.017451562233597" />
-      <entry key="S30" value="1.2593992296795207" />
-      <entry key="S60" value="1.5147249272645409" />
-      <entry key="M2" value="1.84358905609944" />
-      <entry key="M5" value="3.7247148094997433" />
-      <entry key="M10" value="8.194356855506424" />
-      <entry key="M15" value="12.018401478421987" />
-      <entry key="M30" value="19.76920975500682" />
-      <entry key="H1" value="28.013487546073133" />
-      <entry key="H2" value="35.33657230490511" />
-      <entry key="H4" value="40.78252514991239" />
-      <entry key="D1" value="78.80038958522526" />
-      <entry key="W1" value="161.31923318505807" />
+      <entry key="MS100" value="6.5362506399713945E-77" />
+      <entry key="MS500" value="5.81699404068706E-16" />
+      <entry key="S2" value="2.0655686252408974E-4" />
+      <entry key="S5" value="0.06460950514918028" />
+      <entry key="S10" value="0.5207358356872837" />
+      <entry key="S30" value="2.295943809838615" />
+      <entry key="S60" value="3.37688243624347" />
+      <entry key="M2" value="4.112283708536567" />
+      <entry key="M5" value="5.01497662946795" />
+      <entry key="M10" value="7.474578739402355" />
+      <entry key="M15" value="10.558567299854543" />
+      <entry key="M30" value="18.535568849286463" />
+      <entry key="H1" value="28.203026333464525" />
+      <entry key="H2" value="37.166095852669045" />
+      <entry key="H4" value="43.91170445724133" />
+      <entry key="D1" value="83.18745597696356" />
+      <entry key="W1" value="166.1395852599341" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.04123462221165295" />
-      <entry key="MS500" value="0.5285090202806901" />
-      <entry key="S2" value="0.8526348929682216" />
-      <entry key="S5" value="0.9384914123653767" />
-      <entry key="S10" value="0.9850564331932322" />
-      <entry key="S30" value="1.2437129031148777" />
-      <entry key="S60" value="1.5070525779062933" />
-      <entry key="M2" value="1.9194334547022467" />
-      <entry key="M5" value="5.363332138109307" />
-      <entry key="M10" value="15.118698796657283" />
-      <entry key="M15" value="25.867062112049428" />
-      <entry key="M30" value="67.42609665101787" />
-      <entry key="H1" value="161.26477194517093" />
-      <entry key="H2" value="294.57984693256617" />
-      <entry key="H4" value="419.4384875304475" />
-      <entry key="D1" value="737.8531519463821" />
-      <entry key="W1" value="1139.4703567575673" />
+      <entry key="MS100" value="0.16608572676206546" />
+      <entry key="MS500" value="0.6994258386170851" />
+      <entry key="S2" value="1.0961951413602313" />
+      <entry key="S5" value="1.6210657165209772" />
+      <entry key="S10" value="2.9591333572448106" />
+      <entry key="S30" value="7.907868470747779" />
+      <entry key="S60" value="11.066412398439875" />
+      <entry key="M2" value="13.261710577463477" />
+      <entry key="M5" value="15.394759026054347" />
+      <entry key="M10" value="20.322941968427866" />
+      <entry key="M15" value="27.840420329030756" />
+      <entry key="M30" value="62.185531797489" />
+      <entry key="H1" value="149.65974682270854" />
+      <entry key="H2" value="284.2356722959145" />
+      <entry key="H4" value="416.2567327250565" />
+      <entry key="D1" value="748.1225087248188" />
+      <entry key="W1" value="1154.2022002867677" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -360,47 +357,7 @@
       <workItem from="1778785377982" duration="4000" />
       <workItem from="1778785401025" duration="20644000" />
       <workItem from="1779215730876" duration="7115000" />
-      <workItem from="1779466137407" duration="33141000" />
-    </task>
-    <task id="LOCAL-00212" summary="Refactor migrations: standardize key types, enhance column definitions, and update indexes for improved schema consistency. Remove unused `tag_alias` migration.">
-      <option name="closed" value="true" />
-      <created>1778207690563</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1778207690563</updated>
-    </task>
-    <task id="LOCAL-00213" summary="Refactor entity mappings: standardize key types, update column definitions, remove unused entities, and streamline hashing logic. Remove `TagAliasMap` and related references for improved schema consistency.">
-      <option name="closed" value="true" />
-      <created>1778247123266</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1778247123266</updated>
-    </task>
-    <task id="LOCAL-00214" summary="Add merge scripts and refactor `SqliteWriter` to support dynamic data handling and version mapping.">
-      <option name="closed" value="true" />
-      <created>1778252628807</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
-      <option name="project" value="LOCAL" />
-      <updated>1778252628807</updated>
-    </task>
-    <task id="LOCAL-00215" summary="Add depth-based sorting to `ModuleTransformer` and `ProgramTransformer`; update migrations to standardize component types, add &quot;rung&quot;, and remove redundant `operand_id` usage.">
-      <option name="closed" value="true" />
-      <created>1778252641938</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1778252641938</updated>
-    </task>
-    <task id="LOCAL-00216" summary="Add merge scripts for components (`aoi`, `controller`, `operand`, etc.), refactor `SqliteWriter` to align with new scripts, and update `GetComponentTables` query for improved schema consistency.">
-      <option name="closed" value="true" />
-      <created>1778255062254</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1778255062254</updated>
+      <workItem from="1779466137407" duration="34643000" />
     </task>
     <task id="LOCAL-00217" summary="Split `Extensions` into dedicated extension files: `CryptoExtensions`, `CompressionExtensions`, and `FormattingExtensions`. Refactor usages to match the new structure and streamline hashing logic.">
       <option name="closed" value="true" />
@@ -754,7 +711,47 @@
       <option name="project" value="LOCAL" />
       <updated>1779814269686</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="Update schema and logic: switch `property_id` to `Guid` in migrations and `SqliteManager`, replace `Guid.NewGuid()` with `Guid.CreateVersion7()`.">
+      <option name="closed" value="true" />
+      <created>1779815180717</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1779815180717</updated>
+    </task>
+    <task id="LOCAL-00263" summary="Add tests for `ImportTarget` with metadata to verify population of `target_info` table in SQL Server and SQLite managers.">
+      <option name="closed" value="true" />
+      <created>1779815228053</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1779815228053</updated>
+    </task>
+    <task id="LOCAL-00264" summary="Update README: refine command descriptions, replace transient instance model with deduplication-based version mapping, and align examples with updated schema.">
+      <option name="closed" value="true" />
+      <created>1779815820524</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1779815820524</updated>
+    </task>
+    <task id="LOCAL-00265" summary="Update README: improve table formatting, adjust descriptions for readability, and refine deduplication model overview.">
+      <option name="closed" value="true" />
+      <created>1779816404117</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1779816404117</updated>
+    </task>
+    <task id="LOCAL-00266" summary="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations.">
+      <option name="closed" value="true" />
+      <created>1779816663803</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1779816663803</updated>
+    </task>
+    <option name="localTasksCounter" value="267" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -782,11 +779,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor migrations, tests, and schema mappings: rename columns and indexes for consistency, add `content_hash` column to `tag` and `routine` tables, and align foreign keys across SQLite and SQL Server tests." />
-    <MESSAGE value="Rename `member_id` to `tag_id` in `tag_comment` table, update migrations, tests, and schema mappings for consistency. Add support for tag comments in `TagTransformer`." />
-    <MESSAGE value="Drop unused mappings, migrations, and scripts; update schema and ensure consistency across `content_hash` column additions, foreign keys, and column renames." />
-    <MESSAGE value="Add `member_index` column to `data_type_member` table; remove redundant index from `target_version` table in migrations." />
-    <MESSAGE value="Refactor `DataTypeTransformer` to filter predefined types, index members, and map metadata; add `member_index` column in `DataTypeMemberMap`; update package reference for `System.Security.Cryptography.Xml`." />
     <MESSAGE value="Update target posting logic in `SqlServerManager` and `SqliteManager` to retrieve `VersionId` using `ExecuteScalarAsync`; add `MergeTagValue` support for SQLite schema, scripts, and mappings." />
     <MESSAGE value="Add `member_index` column to `data_type_member` table in SQLite and SQL Server migration tests; comment out `operand_format` assertion in `M20260308Tests`." />
     <MESSAGE value="Comment out assertions and related scope in `SqliteDbImportTargetTests` to simplify test logic." />
@@ -807,7 +799,12 @@
     <MESSAGE value="Rename truncate-related tests and scripts to delete-related for clarity, refine test assertions, and update migration/merge scripts for schema consistency and indexing improvements." />
     <MESSAGE value="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes." />
     <MESSAGE value="Unify `ErrorCodes` constants and replace `FileNotFound` and `TargetNotFound` with `NotFound` across commands, tests, and database managers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Unify `ErrorCodes` constants and replace `FileNotFound` and `TargetNotFound` with `NotFound` across commands, tests, and database managers." />
+    <MESSAGE value="Update schema and logic: switch `property_id` to `Guid` in migrations and `SqliteManager`, replace `Guid.NewGuid()` with `Guid.CreateVersion7()`." />
+    <MESSAGE value="Add tests for `ImportTarget` with metadata to verify population of `target_info` table in SQL Server and SQLite managers." />
+    <MESSAGE value="Update README: refine command descriptions, replace transient instance model with deduplication-based version mapping, and align examples with updated schema." />
+    <MESSAGE value="Update README: improve table formatting, adjust descriptions for readability, and refine deduplication model overview." />
+    <MESSAGE value="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

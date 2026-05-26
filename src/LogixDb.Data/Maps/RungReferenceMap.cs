@@ -3,7 +3,7 @@ namespace LogixDb.Data.Maps;
 public class RungReferenceMap : TableMap<ReferenceRecord>
 {
     /// <inheritdoc />
-    protected override string TableName => "code_reference";
+    protected override string TableName => "rung_reference";
 
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ReferenceRecord>> Columns =>

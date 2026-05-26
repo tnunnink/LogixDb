@@ -419,6 +419,30 @@ erDiagram
     target_version_map }o--|| aoi : "links"
     target_version_map }o--|| data_type : "links"
     target_version_map }o--|| module : "links"
+    target_version_map }o--|| routine : "links"
+
+    %% Component Details
+    tag ||--o{ tag_member : "has"
+    tag ||--o{ tag_value : "has"
+    tag ||--o{ tag_comment : "has"
+    tag ||--o{ tag_producer : "config"
+    tag ||--o{ tag_consumer : "config"
+    
+    data_type ||--o{ data_type_member : "has"
+    
+    aoi ||--o{ aoi_parameter : "has"
+    aoi ||--o{ aoi_rung : "logic"
+    
+    routine ||--o{ rung : "contains"
+    rung ||--o{ rung_instruction : "has"
+    rung ||--o{ rung_argument : "has"
+    rung ||--o{ rung_reference : "uses"
+    
+    rung_instruction }o--|| operand : "metadata"
+
+    %% Metadata
+    target_version ||--o{ target_info : "metadata"
+    target ||--o{ target_property : "properties"
 ```
 
 #### Primary Tables

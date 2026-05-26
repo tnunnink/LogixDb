@@ -3,7 +3,6 @@ using LogixDb.Cli.Commands;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Testing;
-using NUnit.Framework.Legacy;
 
 namespace LogixDb.Cli.Tests.Commands;
 
@@ -29,7 +28,7 @@ public class ExportCommandTests : TestDbFixture
             "-o", "output.l5x"
         ]);
 
-        Assert.That(exitCode, Is.EqualTo(ErrorCodes.TargetNotFound));
+        Assert.That(exitCode, Is.EqualTo(ErrorCodes.NotFound));
     }
 
     [Test]

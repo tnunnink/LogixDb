@@ -19,7 +19,7 @@ public partial class ExportCommand : DbCommand
     [Required]
     [CommandOption("target", 't', Description = "Target key to export")]
     public string TargetKey { get; set; } = string.Empty;
-
+    
     [CommandOption("version", 'v', Description = "Version number of the target to export (0 for latest)")]
     public int Version { get; set; }
 
@@ -34,7 +34,7 @@ public partial class ExportCommand : DbCommand
             {
                 throw new CommandException(
                     $"Target '{TargetKey}' with version {Version} not found.",
-                    ErrorCodes.TargetNotFound
+                    ErrorCodes.NotFound
                 );
             }
 

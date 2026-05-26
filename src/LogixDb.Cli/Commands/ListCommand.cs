@@ -65,9 +65,9 @@ public partial class ListCommand : DbCommand
         {
             table.AddRow(
                 target.TargetKey,
+                target.VersionNumber.ToString(),
                 target.TargetType,
                 target.TargetName,
-                target.VersionNumber.ToString(),
                 target.SoftwareRevision ?? "N/A",
                 target.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 target.ImportUser,

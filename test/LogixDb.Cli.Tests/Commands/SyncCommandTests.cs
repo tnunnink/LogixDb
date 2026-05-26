@@ -25,6 +25,6 @@ public class SyncCommandTests : TestDbFixture
             "-t", "Controller://Fake"
         ]);
 
-        Assert.That(exitCode, Is.EqualTo(ErrorCodes.FileNotFound));
+        Assert.That(exitCode, Is.EqualTo(ErrorCodes.NotFound));
     }
 }

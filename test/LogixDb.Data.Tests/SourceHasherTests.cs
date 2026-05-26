@@ -9,6 +9,7 @@ namespace LogixDb.Data.Tests;
 public class SourceHasherTests
 {
     [Test]
+    [Explicit("This is just for local proof of concept")]
     public void IterationTime()
     {
         var content = L5X.Load(@"C:\Users\tnunn\Documents\Rockwell\Example.L5X");

@@ -20,22 +20,22 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/DropCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/PruneCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeRung.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateRungInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateRungInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateRungArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateRungArgumentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061400CreateRungReferenceTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061400CreateRungReferenceTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbDeleteTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbDeleteTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbGetTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbGetTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTruncateTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbDeleteVersionsTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbDeleteTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbDeleteTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbTruncateTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbDeleteVersionsTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SourceHasherTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SourceHasherTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,61 +136,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.000000000369237" />
-      <entry key="S2" value="1.008759001585411" />
-      <entry key="S5" value="1.286523405702703" />
-      <entry key="S10" value="1.937605318335683" />
-      <entry key="S30" value="3.7133478117620116" />
-      <entry key="S60" value="5.973228491549129" />
-      <entry key="M2" value="8.84787015234497" />
-      <entry key="M5" value="11.97376938948389" />
-      <entry key="M10" value="15.831094243472013" />
-      <entry key="M15" value="25.50807314452756" />
-      <entry key="M30" value="74.4704236042253" />
-      <entry key="H1" value="171.4913190918142" />
-      <entry key="H2" value="291.53850423860683" />
-      <entry key="H4" value="394.71775537895746" />
-      <entry key="D1" value="647.7442448969533" />
-      <entry key="W1" value="958.4115792596511" />
+      <entry key="MS100" value="2.6937957650471648E-5" />
+      <entry key="MS500" value="0.12191943269353339" />
+      <entry key="S2" value="0.5928794365102671" />
+      <entry key="S5" value="0.9348402412041664" />
+      <entry key="S10" value="1.3993857668570546" />
+      <entry key="S30" value="2.404179440244004" />
+      <entry key="S60" value="3.3312303627581246" />
+      <entry key="M2" value="4.866815391683887" />
+      <entry key="M5" value="10.02674131946919" />
+      <entry key="M10" value="17.443027773089646" />
+      <entry key="M15" value="25.774327386485748" />
+      <entry key="M30" value="65.49415270561914" />
+      <entry key="H1" value="156.49482866081206" />
+      <entry key="H2" value="280.8680330257368" />
+      <entry key="H4" value="393.8400241559506" />
+      <entry key="D1" value="662.6683514464411" />
+      <entry key="W1" value="978.1271795249387" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.1038981859888443E-75" />
-      <entry key="S2" value="1.8227720204268781E-19" />
-      <entry key="S5" value="3.204291697043287E-8" />
-      <entry key="S10" value="1.9325815246388087E-4" />
-      <entry key="S30" value="0.09507247388085481" />
-      <entry key="S60" value="0.5157035546746546" />
-      <entry key="M2" value="1.237472605263675" />
-      <entry key="M5" value="2.3573899064759094" />
-      <entry key="M10" value="3.6981749675565965" />
-      <entry key="M15" value="4.968486730171927" />
-      <entry key="M30" value="8.304449279988132" />
-      <entry key="H1" value="12.579384788464486" />
-      <entry key="H2" value="16.68188609064604" />
-      <entry key="H4" value="19.859479324193725" />
-      <entry key="D1" value="55.913756511673185" />
-      <entry key="W1" value="137.66938233809708" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.000000035498208" />
+      <entry key="S10" value="1.0002102616293245" />
+      <entry key="S30" value="1.1311905749643956" />
+      <entry key="S60" value="1.9191451646721094" />
+      <entry key="M2" value="4.047130522479993" />
+      <entry key="M5" value="9.255737907604777" />
+      <entry key="M10" value="14.083482624239833" />
+      <entry key="M15" value="17.034459106525052" />
+      <entry key="M30" value="22.57872205625926" />
+      <entry key="H1" value="28.629165466238074" />
+      <entry key="H2" value="34.185717045164175" />
+      <entry key="H4" value="38.40973609032156" />
+      <entry key="D1" value="75.33315008190438" />
+      <entry key="W1" value="157.4774502317256" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9330329915368074" />
-      <entry key="MS500" value="0.9862327048544587" />
-      <entry key="S2" value="1.0052527978282746" />
-      <entry key="S5" value="1.2845441988661064" />
-      <entry key="S10" value="1.936136174731207" />
-      <entry key="S30" value="3.8059071576447816" />
-      <entry key="S60" value="6.484161073984472" />
-      <entry key="M2" value="10.0799850846682" />
-      <entry key="M5" value="14.327073200651181" />
-      <entry key="M10" value="19.525741063880428" />
-      <entry key="M15" value="30.47281311459526" />
-      <entry key="M30" value="82.7701053517947" />
-      <entry key="H1" value="184.0657032324027" />
-      <entry key="H2" value="308.21643536793295" />
-      <entry key="H4" value="414.5746752217473" />
-      <entry key="D1" value="703.6568063674273" />
-      <entry key="W1" value="1096.08053192832" />
+      <entry key="MS100" value="2.563372712626801E-4" />
+      <entry key="MS500" value="0.22710953054195426" />
+      <entry key="S2" value="1.097752836280617" />
+      <entry key="S5" value="1.6657683492485975" />
+      <entry key="S10" value="2.211330301091935" />
+      <entry key="S30" value="3.433576649932465" />
+      <entry key="S60" value="5.184900587247891" />
+      <entry key="M2" value="8.869232049928451" />
+      <entry key="M5" value="19.252763835807418" />
+      <entry key="M10" value="31.506048238286326" />
+      <entry key="M15" value="42.792697436593" />
+      <entry key="M30" value="88.0616220585857" />
+      <entry key="H1" value="185.1156261564094" />
+      <entry key="H2" value="315.0479570493789" />
+      <entry key="H4" value="432.2461931301648" />
+      <entry key="D1" value="738.0001238004921" />
+      <entry key="W1" value="1135.6041729125095" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -229,6 +229,7 @@
     "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
     "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
     "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
+    "7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor": "Debug",
     "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
     "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
     "95485339-4be7-43cb-b8d7-c8ef07c63aee.executor": "Debug",
@@ -370,23 +371,7 @@
       <workItem from="1778785377982" duration="4000" />
       <workItem from="1778785401025" duration="20644000" />
       <workItem from="1779215730876" duration="7115000" />
-      <workItem from="1779466137407" duration="31111000" />
-    </task>
-    <task id="LOCAL-00209" summary="Refactor migrations: update column types, modify key definitions, and add `tag_value` table for enhanced schema consistency.">
-      <option name="closed" value="true" />
-      <created>1778072236037</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
-      <option name="project" value="LOCAL" />
-      <updated>1778072236037</updated>
-    </task>
-    <task id="LOCAL-00210" summary="Fix migration attribute timestamp in `M202602130930CreateTagValueTable` to ensure proper ordering.">
-      <option name="closed" value="true" />
-      <created>1778072521003</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1778072521003</updated>
+      <workItem from="1779466137407" duration="32229000" />
     </task>
     <task id="LOCAL-00211" summary="Delete `SqlDbPruneTargetTests` and `SqliteDbPruneTargetTests`; add SQL scripts for merging data types, members, and routines; refactor `Target` to update `VersionId` type to `int`.">
       <option name="closed" value="true" />
@@ -764,7 +749,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779808589049</updated>
     </task>
-    <option name="localTasksCounter" value="259" />
+    <task id="LOCAL-00259" summary="Rename truncate-related tests and scripts to delete-related for clarity, refine test assertions, and update migration/merge scripts for schema consistency and indexing improvements.">
+      <option name="closed" value="true" />
+      <created>1779813150380</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1779813150381</updated>
+    </task>
+    <task id="LOCAL-00260" summary="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes.">
+      <option name="closed" value="true" />
+      <created>1779813305598</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1779813305599</updated>
+    </task>
+    <option name="localTasksCounter" value="261" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -792,8 +793,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update SQLite test database in `LogixDb.Data.Sqlite.Tests`." />
-    <MESSAGE value="Refactor LogixDb.Data schema mappings: replace `Hash` with `HashText`, adopt `HashElement` for XML hashing, remove unused methods (e.g., `SeedElementIds`), and make table maps publicly accessible. Add metadata-driven caching for record hashes." />
     <MESSAGE value="Update schema and migration scripts: rename columns in `MergeDataTypeMember.sql` for consistency, add `content_hash` column to `tag` table, and enhance indexes in `tag_member` table." />
     <MESSAGE value="Refactor migrations, tests, and schema mappings: rename columns and indexes for consistency, add `content_hash` column to `tag` and `routine` tables, and align foreign keys across SQLite and SQL Server tests." />
     <MESSAGE value="Rename `member_id` to `tag_id` in `tag_comment` table, update migrations, tests, and schema mappings for consistency. Add support for tag comments in `TagTransformer`." />
@@ -817,7 +816,9 @@
     <MESSAGE value="Refactor `SqlServerWriter` to use `Type.ToSqlServerType()` extension, simplify bulk copy options, improve merge script handling, and add test coverage for `rung_reference` table." />
     <MESSAGE value="Split `PostTarget.sql` into `PostTarget.sql` and `PostVersion.sql`, refactor related scripts and logic in `SqlServerManager`, update tests for `ImportTarget`, expand `source_hash` column, and modify `MergeDataType.sql` for new `content_hash`." />
     <MESSAGE value="Update merge scripts and migrations to refine schema consistency&#10;&#10;- Adjusted `MergeRung.sql`, `MergeOperand.sql`, and other merge scripts to enhance hash matching logic and expand column usage.&#10;- Updated migrations to include indexing improvements and column definition refinements.&#10;- Removed redundant indexes and unused columns in related tables and scripts.&#10;- Revised and expanded test assertions to reflect schema changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update merge scripts and migrations to refine schema consistency&#10;&#10;- Adjusted `MergeRung.sql`, `MergeOperand.sql`, and other merge scripts to enhance hash matching logic and expand column usage.&#10;- Updated migrations to include indexing improvements and column definition refinements.&#10;- Removed redundant indexes and unused columns in related tables and scripts.&#10;- Revised and expanded test assertions to reflect schema changes." />
+    <MESSAGE value="Rename truncate-related tests and scripts to delete-related for clarity, refine test assertions, and update migration/merge scripts for schema consistency and indexing improvements." />
+    <MESSAGE value="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -834,6 +835,45 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs</url>
+          <line>40</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\ExportCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
+            <startOffsets>
+              <option value="1326" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1358" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs</url>
+          <line>44</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\ExportCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
+            <startOffsets>
+              <option value="1447" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1448" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs</url>
+          <line>48</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Cli\Commands\ExportCommand.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
+            <startOffsets>
+              <option value="1514" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1515" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

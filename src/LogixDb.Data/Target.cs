@@ -91,7 +91,7 @@ public sealed class Target
             SoftwareRevision = source.Content.SoftwareRevision,
             ExportDate = source.Content.ExportDate,
             ExportOptions = string.Join(",", source.Content.ExportOptions),
-            SourceHash = source.Content.Serialize().ToString().HashText(),
+            SourceHash = source.Content.HashElement(),
             SourceData = source.Content.Serialize().ToString().Compress(),
             _l5X = source
         };

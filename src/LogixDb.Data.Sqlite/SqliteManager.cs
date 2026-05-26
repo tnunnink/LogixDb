@@ -87,18 +87,13 @@ public sealed class SqliteManager : IDbManager
     }
 
     /// <inheritdoc />
-    public async Task<Target> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
+    public async Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default)
     {
         await using var connection = await OpenConnection(token);
 
         var script = version > 0 ? SqliteScript.GetTargetByVersion : SqliteScript.GetTargetByLatest;
         var parameters = new { TargetKey = targetKey, VersionNumber = version };
-        var result = await connection.QuerySingleOrDefaultAsync<Target>(script, parameters);
-
-        if (result is null)
-            throw new InvalidOperationException($"Target '{targetKey}' version {version} not found in the database.");
-
-        return result;
+        return await connection.QuerySingleOrDefaultAsync<Target>(script, parameters);
     }
 
     /// <inheritdoc />

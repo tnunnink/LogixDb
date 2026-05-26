@@ -31,7 +31,7 @@ public partial class ImportCommand : DbCommand
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         if (!File.Exists(SourcePath))
-            throw new CommandException($"File not found: {SourcePath}", ErrorCodes.FileNotFound);
+            throw new CommandException($"File not found: {SourcePath}", ErrorCodes.NotFound);
 
         if (StringComparer.OrdinalIgnoreCase.Equals(Path.GetExtension(SourcePath), ".acd"))
         {

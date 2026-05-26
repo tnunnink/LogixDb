@@ -32,7 +32,7 @@ public partial class SyncCommand : DbCommand
         var target = await manager.GetTarget(TargetKey, token: token);
 
         if (target is null)
-            throw new CommandException($"No target found for target key: {TargetKey}", ErrorCodes.FileNotFound);
+            throw new CommandException($"No target found for target key: {TargetKey}", ErrorCodes.NotFound);
 
         var source = target.GetSource();
         var ipAddress = IpAddress ?? ParseIpAddress(source);

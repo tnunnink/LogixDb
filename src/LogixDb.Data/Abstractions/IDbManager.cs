@@ -55,7 +55,7 @@ public interface IDbManager
     /// <param name="version">The version number of the Target to retrieve.</param>
     /// <param name="token">A cancellation token to cancel the operation, if needed.</param>
     /// <returns>A task representing the asynchronous operation, with a result of the requested Target.</returns>
-    Task<Target> GetTarget(string targetKey, int version = 0, CancellationToken token = default);
+    Task<Target?> GetTarget(string targetKey, int version = 0, CancellationToken token = default);
 
     /// <summary>
     /// Adds a Target to the database by performing both a post and a restore operation.

@@ -27,12 +27,8 @@ public static class ErrorCodes
     public const int FormatError = 4;
 
     /// <summary>
-    /// Indicates the specified file or project path was not found.
+    /// Represents an error code indicating that the specified target, resource, or entity
+    /// was not found during the execution of a command.
     /// </summary>
-    public const int FileNotFound = 5;
-
-    /// <summary>
-    /// Indicates that the specified target resource, item, or entity was not found during command execution.
-    /// </summary>
-    public const int TargetNotFound = 6;
+    public const int NotFound = 6;
 }

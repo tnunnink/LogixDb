@@ -27,7 +27,7 @@ public class ImportCommandTests : TestDbFixture
             "-s", "Fake.L5X"
         ]);
 
-        Assert.That(exitCode, Is.EqualTo(ErrorCodes.FileNotFound));
+        Assert.That(exitCode, Is.EqualTo(ErrorCodes.NotFound));
     }
 
     [Test]

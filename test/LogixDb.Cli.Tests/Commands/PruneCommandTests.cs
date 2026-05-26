@@ -1,6 +1,8 @@
 using CliFx.Infrastructure;
 using LogixDb.Cli.Commands;
 using LogixDb.Cli.Common;
+using LogixDb.Data;
+using LogixDb.Testing;
 
 namespace LogixDb.Cli.Tests.Commands;
 
@@ -22,7 +24,8 @@ public class PruneCommandTests : TestDbFixture
         var exitCode = await app.RunAsync([
             "prune",
             "-c", DbConnection,
-            "-t", "Controller://Fake"
+            "-t", "Controller://Fake",
+            "-v", "1"
         ]);
 
         Assert.That(exitCode, Is.Zero);
@@ -30,15 +33,22 @@ public class PruneCommandTests : TestDbFixture
     [Test]
     public async Task Prune_ValidTarget_ShouldReturnZero()
     {
+        var target = Target.Create(TestSource.LocalTest());
+        await Database.ImportTarget(target);
+
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, PruneCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "prune",
             "-c", DbConnection,
-            "-t", "Controller://Test"
+            "-t", "controller://TestController",
+            "-v", "1"
         ]);
 
         Assert.That(exitCode, Is.Zero);
+        
+        var results = (await Database.ListTargets()).ToArray();
+        Assert.That(results, Is.Empty);
     }
 }

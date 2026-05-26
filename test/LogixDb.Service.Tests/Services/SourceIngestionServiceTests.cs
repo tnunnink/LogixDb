@@ -5,9 +5,11 @@ using LogixDb.Data;
 using LogixDb.Data.Sqlite;
 using LogixDb.Service.Common;
 using LogixDb.Service.Workers;
+using LogixDb.Testing;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Service.Tests.Services;
 
@@ -54,16 +56,15 @@ public class SourceIngestionServiceTests
     }
 
     [Test]
-    public async System.Threading.Tasks.Task ExecuteAsync_ValidSource_ShouldProcessAndAddToDb()
+    public async Task ExecuteAsync_ValidSource_ShouldProcessAndAddToDb()
     {
         // Arrange
         var sourceId = Guid.NewGuid();
         const string fileName = "test.L5X";
         var filePath = Path.Combine(_testDropPath, $"{sourceId:N}.L5X");
 
-        // Create a dummy L5X file
-        var l5X = L5X.Parse(
-            "<RSLogix5000Content TargetName=\"TestController\" TargetType=\"Controller\" SchemaRevision=\"1.0\"></RSLogix5000Content>");
+        // Put test source in the test drop path
+        var l5X = TestSource.LocalTest();
         l5X.Save(filePath);
 
         var source = new SourceInfo
@@ -88,7 +89,7 @@ public class SourceIngestionServiceTests
         await _channel.Writer.WriteAsync(source, cts.Token);
 
         // Wait a bit for processing
-        await System.Threading.Tasks.Task.Delay(1000, cts.Token);
+        await Task.Delay(2000, cts.Token);
 
         // Assert
         var targets = (await _dbManager.ListTargets(token: cts.Token)).ToList();

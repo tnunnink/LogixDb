@@ -105,7 +105,7 @@ public sealed class SqliteManager : IDbManager
     public async Task ImportTarget(Target target, CancellationToken token = default)
     {
         await PostTargetVersionAsync(target, token);
-        await RestoreTargetVersionAsync(target, token);
+        await MergeTargetDataAsync(target, token);
     }
 
     /// <inheritdoc />
@@ -210,7 +210,7 @@ public sealed class SqliteManager : IDbManager
     /// Restores a specific version of the target by creating a new entry in the database and populating
     /// associated tables with the target's data.
     /// </summary>
-    private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
+    private async Task MergeTargetDataAsync(Target target, CancellationToken token)
     {
         await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);

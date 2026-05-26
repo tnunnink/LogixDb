@@ -1,5 +1,4 @@
 using System.Data;
-using System.Diagnostics.CodeAnalysis;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
 using LogixDb.Data.Abstractions;
@@ -15,7 +14,6 @@ namespace LogixDb.Data.SqlServer;
 /// Provides functionality for database creation, migration, Target management,
 /// and dropping operations.
 /// </summary>
-[SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging")]
 public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManager
 {
     /// <inheritdoc />
@@ -68,11 +66,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     public async Task<IEnumerable<Target>> ListTargets(string? targetKey = null, CancellationToken token = default)
     {
         await using var connection = await OpenConnection(token);
-
-        return await connection.QueryAsync<Target>(
-            SqlServerScript.ListTargets,
-            new { TargetKey = targetKey }
-        );
+        return await connection.QueryAsync<Target>(SqlServerScript.ListTargets, new { TargetKey = targetKey });
     }
 
     /// <inheritdoc />
@@ -94,7 +88,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     public async Task ImportTarget(Target target, CancellationToken token = default)
     {
         await PostTargetVersionAsync(target, token);
-        await RestoreTargetVersionAsync(target, token);
+        await MergeTargetDataAsync(target, token);
     }
 
     /// <inheritdoc />
@@ -112,7 +106,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     {
         return ExecuteSqlScriptAsync(
             SqlServerScript.DeleteVersion,
-            new { TargetKey = targetKey },
+            new { TargetKey = targetKey, VersionNumber = versionNumber },
             token
         );
     }
@@ -179,7 +173,8 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
 
             // Inserts a new version for the target key (handles getting target id in scripts) and returns the inserted version id.
             // This is needed in some spots, and is an indicator that the version was posted. 
-            target.VersionId = await connection.ExecuteScalarAsync<int>(SqlServerScript.PostVersion, target, transaction);
+            target.VersionId =
+                await connection.ExecuteScalarAsync<int>(SqlServerScript.PostVersion, target, transaction);
 
             // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqlServerScript.PostInfo,
@@ -209,7 +204,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     /// <param name="target">The target object containing information about the version to restore.</param>
     /// <param name="token">A cancellation token to observe while the operation is performed.</param>
     /// <returns>A task that represents the asynchronous restoration operation.</returns>
-    private async Task RestoreTargetVersionAsync(Target target, CancellationToken token)
+    private async Task MergeTargetDataAsync(Target target, CancellationToken token)
     {
         await using var connection = await OpenConnection(token);
         await using var transaction = await connection.BeginTransactionAsync(token);

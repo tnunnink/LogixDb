@@ -57,23 +57,23 @@ jobs:
           -o artifacts/service/win-x64
 
       - name: Prepare Combined Release
-          shell: pwsh
-          run: |
-            # Create a staging directory for the combined release
-            New-Item -Path artifacts/combined -ItemType Directory -Force
-            
-            # Copy CLI binaries (using Force to ensure clean copy)
-            Copy-Item -Path artifacts/cli/win-x64/* -Destination artifacts/combined -Recurse -Force
-            
-            # Copy Service binaries and merge contents
-            # Adding -Force allows it to overwrite common files like those in the Resources folder
-            Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Force -Exclude "appsettings.Development.json"
-            
-            # Copy the Setup script
-            Copy-Item -Path scripts/Setup.ps1 -Destination artifacts/combined -Force
-            
-            # Copy appsettings.json
-            Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json -Force
+        shell: pwsh
+        run: |
+          # Create a staging directory for the combined release
+          New-Item -Path artifacts/combined -ItemType Directory -Force
+          
+          # Copy CLI binaries (using Force to ensure clean copy)
+          Copy-Item -Path artifacts/cli/win-x64/* -Destination artifacts/combined -Recurse -Force
+          
+          # Copy Service binaries and merge contents
+          # Adding -Force allows it to overwrite common files like those in the Resources folder
+          Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Force -Exclude "appsettings.Development.json"
+          
+          # Copy the Setup script
+          Copy-Item -Path scripts/Setup.ps1 -Destination artifacts/combined -Force
+          
+          # Copy appsettings.json
+          Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json -Force
 
       - name: Zip Combined Release
         shell: pwsh

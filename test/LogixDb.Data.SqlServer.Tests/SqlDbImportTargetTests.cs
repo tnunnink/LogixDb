@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Dapper;
 using L5Sharp.Core;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
@@ -26,156 +25,10 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
     }
 
     [Test]
-    public async Task ImportTarget_LocalExampleSource_ShouldReturnValidId()
-    {
-        var target = Target.Create(TestSource.LocalExample());
-
-        var stopwatch = Stopwatch.StartNew();
-        await Database.ImportTarget(target);
-        stopwatch.Stop();
-
-        Console.WriteLine(stopwatch.ElapsedMilliseconds);
-        Assert.That(target.VersionId, Is.GreaterThan(0));
-    }
-
-
-    [Test]
-    public async Task ImportTarget_ExistingInstances_ShouldPrunePreviousContent()
-    {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
-
-        await Task.Delay(1000); // Ensure different timestamps
-
-        var target2 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target2);
-
-        var result = (await Database.ListTargets()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(2));
-
-        var targets = result.OrderBy(s => s.VersionId).ToArray();
-
-        using (Assert.EnterMultipleScope())
-        {
-            // Previous target instance id should now be zero since it was deleted
-            Assert.That(targets[0].VersionId, Is.Zero);
-            Assert.That(targets[1].VersionId, Is.EqualTo(target2.VersionId));
-
-            // Previous should have NO content (pruned)
-            await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
-            // Latest should HAVE content
-            await AssertRecordExists("controller", "instance_id", target2.VersionId);
-        }
-    }
-
-    [Test]
-    public async Task ImportTarget_ExistingTarget_ShouldPrunePreviousContentTwice()
-    {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
-
-        var target2 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target2);
-
-        var result = (await Database.ListTargets()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(2));
-
-        // Previous should have NO content (pruned)
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
-        // Latest should HAVE content
-        await AssertRecordExists("controller", "instance_id", target2.VersionId);
-    }
-
-    [Test]
-    public async Task ImportTarget_MultipleExistingTargets_ShouldPruneAllPreviousTargetsContent()
-    {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
-
-        var target2 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target2);
-
-        var target3 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target3);
-
-        var result = (await Database.ListTargets()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(3));
-
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
-        await AssertRecordDoesNotExist("controller", "instance_id", target2.VersionId);
-        await AssertRecordExists("controller", "instance_id", target3.VersionId);
-    }
-
-    [Test]
-    public async Task ImportTarget_DifferentTargets_ShouldOnlyAffectSameTarget()
-    {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
-
-        var target2 = Target.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.ImportTarget(target2);
-
-        var target3 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target3);
-
-        var result = (await Database.ListTargets()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(3));
-
-        // Target 1: target1 (pruned), target3 (active)
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
-        await AssertRecordExists("controller", "instance_id", target3.VersionId);
-
-        // Target 2: target2 (active)
-        await AssertRecordExists("controller", "instance_id", target2.VersionId);
-    }
-
-    [Test]
-    public async Task ImportTarget_MultipleTargetsDifferentTargets_ShouldOnlyAffectSameTarget()
-    {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
-
-        var target2 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target2);
-
-        var target3 = Target.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.ImportTarget(target3);
-
-        var target4 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target4);
-
-        var result = (await Database.ListTargets()).ToArray();
-        Assert.That(result, Has.Length.EqualTo(4));
-
-        // Target 1: target 1, 2, 4. 1 and 2 should be pruned.
-        await AssertRecordDoesNotExist("controller", "instance_id", target1.VersionId);
-        await AssertRecordDoesNotExist("controller", "instance_id", target2.VersionId);
-        await AssertRecordExists("controller", "instance_id", target4.VersionId);
-
-        // Target 2: target 3. Active.
-        await AssertRecordExists("controller", "instance_id", target3.VersionId);
-    }
-
-    [Test]
-    public async Task ImportTarget_LocalTestTarget_ShouldSetImportDate()
-    {
-        var target = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target);
-
-        using var connection = (Microsoft.Data.SqlClient.SqlConnection)await Database.Connect();
-        var importDate = await connection.QuerySingleAsync<DateTime>(
-            "SELECT import_date FROM target_version WHERE version_id = @id",
-            new { id = target.VersionId }
-        );
-
-        Assert.That(importDate, Is.GreaterThan(DateTime.MinValue));
-        Assert.That(importDate, Is.LessThanOrEqualTo(DateTime.UtcNow));
-    }
-
-    [Test]
     public async Task ImportTarget_ValidSource_ShouldPopulateTargetTable()
     {
         var target = Target.Create(TestSource.LocalTest());
+
         await Database.ImportTarget(target);
 
         await AssertRecordExists("target", "target_key", target.TargetKey);
@@ -194,6 +47,58 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
     }
 
     [Test]
+    public async Task ImportTarget_SameTargetTwice_ShouldHaveTwoVersions()
+    {
+        var target1 = Target.Create(TestSource.LocalTest());
+        await Database.ImportTarget(target1);
+
+        var target2 = Target.Create(TestSource.LocalTest());
+        await Database.ImportTarget(target2);
+
+        var result = (await Database.ListTargets()).ToArray();
+        Assert.That(result, Has.Length.EqualTo(2));
+    }
+
+    [Test]
+    public async Task ImportTarget_OverrideTargetKey_ShouldHaveTwoTargetsEntries()
+    {
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "MyCustomKey"));
+
+        var result = (await Database.ListTargets()).ToArray();
+        Assert.That(result, Has.Length.EqualTo(2));
+
+        await AssertRecordExists("target", "target_key", "controller://TestController");
+        await AssertRecordExists("target", "target_key", "MyCustomKey");
+    }
+
+    [Test]
+    public async Task ImportTarget_MultipleSameTarget_ShouldContainSingleControllerRecord()
+    {
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+
+        var result = (await Database.ListTargets()).ToArray();
+        Assert.That(result, Has.Length.EqualTo(3));
+
+        await AssertRecordCount("controller", 1);
+    }
+
+    [Test]
+    public async Task ImportTarget_MultipleSameTargetDifferentKey_ShouldContainSingleControllerRecord()
+    {
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "First"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "Second"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "Third"));
+
+        var result = (await Database.ListTargets()).ToArray();
+        Assert.That(result, Has.Length.EqualTo(3));
+
+        await AssertRecordCount("controller", 1);
+    }
+
+    [Test]
     public async Task ImportTarget_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
     {
         var target = Target.Create(TestSource.Custom(c =>
@@ -204,5 +109,18 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         await Database.ImportTarget(target);
 
         await AssertRecordExists("data_type", "type_name", "TestType");
+    }
+
+    [Test]
+    public async Task ImportTarget_LocalExampleSource_ShouldReturnValidId()
+    {
+        var target = Target.Create(TestSource.LocalExample());
+
+        var stopwatch = Stopwatch.StartNew();
+        await Database.ImportTarget(target);
+        stopwatch.Stop();
+
+        Console.WriteLine(stopwatch.ElapsedMilliseconds);
+        Assert.That(target.VersionId, Is.GreaterThan(0));
     }
 }

@@ -6,11 +6,13 @@ WHEN NOT MATCHED THEN
             type_description,
             type_class,
             type_family,
+            content_hash,
             record_hash)
     VALUES (source.type_name,
             source.type_description,
             source.type_class,
             source.type_family,
+            source.content_hash,
             source.record_hash);
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)

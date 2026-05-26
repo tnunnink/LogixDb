@@ -26,7 +26,7 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
             .WithColumn("import_machine").AsString(64).NotNullable()
             .WithColumn("export_date").AsDateTime().Nullable()
             .WithColumn("export_options").AsString(256).Nullable()
-            .WithColumn("source_hash").AsString(32).NotNullable()
+            .WithColumn("source_hash").AsString(64).NotNullable()
             .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index()

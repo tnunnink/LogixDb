@@ -21,19 +21,21 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
         { "aoi", SqlServerScript.MergeAoi },
         { "aoi_parameter", SqlServerScript.MergeAoiParameter },
         { "aoi_rung", SqlServerScript.MergeAoiRung },
+        { "operand", SqlServerScript.MergeOperand },
         { "module", SqlServerScript.MergeModule },
         { "task", SqlServerScript.MergeTask },
         { "program", SqlServerScript.MergeProgram },
         { "routine", SqlServerScript.MergeRoutine },
         { "rung", SqlServerScript.MergeRung },
-        { "rung_instruction", SqlServerScript.MergeInstruction },
-        { "rung_argument", SqlServerScript.MergeArgument },
-        { "operand", SqlServerScript.MergeOperand },
+        { "rung_instruction", SqlServerScript.MergeRungInstruction },
+        { "rung_argument", SqlServerScript.MergeRungArgument },
+        { "rung_reference", SqlServerScript.MergeRungReference },
         { "tag", SqlServerScript.MergeTag },
         { "tag_member", SqlServerScript.MergeTagMember },
         { "tag_comment", SqlServerScript.MergeTagComment },
         { "tag_producer", SqlServerScript.MergeTagProducer },
-        { "tag_consumer", SqlServerScript.MergeTagConsumer }
+        { "tag_consumer", SqlServerScript.MergeTagConsumer },
+        { "tag_value", SqlServerScript.MergeTagValue }
     };
 
     /// <summary>

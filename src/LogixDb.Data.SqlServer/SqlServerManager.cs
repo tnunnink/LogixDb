@@ -147,7 +147,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     private async Task ExecuteSqlScriptAsync(string scriptName, object parameters, CancellationToken token)
     {
         await using var connection = await OpenConnection(token);
-        await using var transaction = (SqlTransaction)await connection.BeginTransactionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {
@@ -170,7 +170,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     private async Task PostTargetVersionAsync(Target target, CancellationToken token)
     {
         await using var connection = await OpenConnection(token);
-        await using var transaction = (SqlTransaction)await connection.BeginTransactionAsync(token);
+        await using var transaction = await connection.BeginTransactionAsync(token);
 
         try
         {

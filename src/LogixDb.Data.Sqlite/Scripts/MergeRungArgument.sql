@@ -1,9 +1,9 @@
-INSERT OR IGNORE INTO rung_argument (rung_id,
-                                     instruction_index,
-                                     argument_index,
-                                     argument_type,
-                                     argument_text,
-                                     record_hash)
+INSERT INTO rung_argument (rung_id,
+                           instruction_index,
+                           argument_index,
+                           argument_type,
+                           argument_text,
+                           record_hash)
 SELECT t.rung_id,
        t.instruction_index,
        t.argument_index,

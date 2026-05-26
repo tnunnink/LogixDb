@@ -1,9 +1,8 @@
 MERGE INTO dbo.tag AS target
 USING #temp_tag AS source
-ON target.program_id = (SELECT program_id FROM dbo.program WHERE record_hash = source.program_id)
-    AND target.record_hash = source.record_hash
+ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
-    INSERT (program_id,
+    INSERT (program_name,
             tag_name,
             data_type,
             dimensions,
@@ -14,8 +13,9 @@ WHEN NOT MATCHED THEN
             tag_usage,
             tag_type,
             alias_for,
+            content_hash,
             record_hash)
-    VALUES ((SELECT program_id FROM dbo.program WHERE record_hash = source.program_id),
+    VALUES (source.program_name,
             source.tag_name,
             source.data_type,
             source.dimensions,
@@ -26,13 +26,11 @@ WHEN NOT MATCHED THEN
             source.tag_usage,
             source.tag_type,
             source.alias_for,
+            source.content_hash,
             source.record_hash);
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT tag_id
-        FROM dbo.tag
-        WHERE record_hash = t.record_hash
-          AND program_id = (SELECT program_id FROM dbo.program WHERE record_hash = t.program_id)),
-       (SELECT component_id FROM dbo.component WHERE component_name = 'tag')
+       (SELECT tag_id FROM dbo.tag WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'tag')
 FROM #temp_tag t;

@@ -74,5 +74,5 @@ WHEN NOT MATCHED THEN
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT controller_id FROM dbo.controller WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.component WHERE component_name = 'controller')
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'controller')
 FROM #temp_controller t;

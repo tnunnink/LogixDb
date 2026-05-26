@@ -21,6 +21,7 @@ WHEN NOT MATCHED THEN
             signature_id,
             signature_timestamp,
             component_class,
+            content_hash,
             record_hash)
     VALUES (source.aoi_name,
             source.aoi_description,
@@ -41,10 +42,11 @@ WHEN NOT MATCHED THEN
             source.signature_id,
             source.signature_timestamp,
             source.component_class,
+            source.content_hash,
             source.record_hash);
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
        (SELECT aoi_id FROM dbo.aoi WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.component WHERE component_name = 'aoi')
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'aoi')
 FROM #temp_aoi t;

@@ -1,10 +1,8 @@
 MERGE INTO dbo.module AS target
 USING #temp_module AS source
-ON target.parent_id = (SELECT module_id FROM dbo.module WHERE record_hash = source.parent_id)
-    AND target.record_hash = source.record_hash
+ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
-    INSERT (parent_id,
-            module_name,
+    INSERT (module_name,
             module_description,
             catalog_number,
             revision,
@@ -20,8 +18,7 @@ WHEN NOT MATCHED THEN
             ip_address,
             slot_number,
             record_hash)
-    VALUES ((SELECT module_id FROM dbo.module WHERE record_hash = source.parent_id),
-            source.module_name,
+    VALUES (source.module_name,
             source.module_description,
             source.catalog_number,
             source.revision,
@@ -40,9 +37,6 @@ WHEN NOT MATCHED THEN
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT module_id
-        FROM dbo.module
-        WHERE record_hash = t.record_hash
-          AND parent_id = (SELECT module_id FROM dbo.module WHERE record_hash = t.parent_id)),
-       (SELECT component_id FROM dbo.component WHERE component_name = 'module')
+       (SELECT module_id FROM dbo.module WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'module')
 FROM #temp_module t;

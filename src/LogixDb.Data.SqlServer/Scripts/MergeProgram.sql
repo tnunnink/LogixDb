@@ -1,11 +1,9 @@
 MERGE INTO dbo.program AS target
 USING #temp_program AS source
-ON target.task_id = (SELECT task_id FROM dbo.task WHERE record_hash = source.task_id)
-    AND target.folder_id = (SELECT program_id FROM dbo.program WHERE record_hash = source.folder_id)
-    AND target.record_hash = source.record_hash
+ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
-    INSERT (task_id,
-            folder_id,
+    INSERT (task_name,
+            folder_name,
             program_name,
             program_description,
             program_type,
@@ -15,8 +13,8 @@ WHEN NOT MATCHED THEN
             is_folder,
             has_test_edits,
             record_hash)
-    VALUES ((SELECT task_id FROM dbo.task WHERE record_hash = source.task_id),
-            (SELECT program_id FROM dbo.program WHERE record_hash = source.folder_id),
+    VALUES (source.task_name,
+            source.folder_name,
             source.program_name,
             source.program_description,
             source.program_type,
@@ -29,10 +27,6 @@ WHEN NOT MATCHED THEN
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT program_id
-        FROM dbo.program
-        WHERE record_hash = t.record_hash
-          AND task_id = (SELECT task_id FROM dbo.task WHERE record_hash = t.task_id)
-          AND folder_id = (SELECT program_id FROM dbo.program WHERE record_hash = t.folder_id)),
-       (SELECT component_id FROM dbo.component WHERE component_name = 'program')
+       (SELECT program_id FROM dbo.program WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'program')
 FROM #temp_program t;

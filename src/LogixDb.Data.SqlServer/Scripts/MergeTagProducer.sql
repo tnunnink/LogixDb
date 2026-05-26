@@ -1,7 +1,6 @@
 MERGE INTO dbo.tag_producer AS target
 USING #temp_tag_producer AS source
-ON target.tag_id = (SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_id)
-    AND target.record_hash = source.record_hash
+ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT (tag_id,
             produce_count,
@@ -11,7 +10,7 @@ WHEN NOT MATCHED THEN
             minimum_rpi,
             default_rpi,
             record_hash)
-    VALUES ((SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_id),
+    VALUES ((SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_hash),
             source.produce_count,
             source.send_event_trigger,
             source.unicast_permitted,

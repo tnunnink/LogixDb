@@ -184,7 +184,7 @@ public sealed class SqliteManager : IDbManager
             await connection.ExecuteAsync(SqliteScript.PostInfo,
                 target.Info.Select(p => new
                 {
-                    property_id = Guid.NewGuid(),
+                    property_id = Guid.CreateVersion7(),
                     version_id = target.VersionId,
                     property_name = p.Key,
                     property_value = p.Value

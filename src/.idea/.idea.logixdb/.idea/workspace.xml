@@ -20,21 +20,9 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ExportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/SyncCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Common/ErrorCodes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SourceHasherTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/SourceHasherTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061100CreateTargetInfoTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,61 +124,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.6937957650471648E-5" />
-      <entry key="MS500" value="0.12191943269353339" />
-      <entry key="S2" value="0.5928794365102671" />
-      <entry key="S5" value="0.9348402412041664" />
-      <entry key="S10" value="1.3993857668570546" />
-      <entry key="S30" value="2.404179440244004" />
-      <entry key="S60" value="3.3312303627581246" />
-      <entry key="M2" value="4.866815391683887" />
-      <entry key="M5" value="10.02674131946919" />
-      <entry key="M10" value="17.443027773089646" />
-      <entry key="M15" value="25.774327386485748" />
-      <entry key="M30" value="65.49415270561914" />
-      <entry key="H1" value="156.49482866081206" />
-      <entry key="H2" value="280.8680330257368" />
-      <entry key="H4" value="393.8400241559506" />
-      <entry key="D1" value="662.6683514464411" />
-      <entry key="W1" value="978.1271795249387" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.1873204941299E-310" />
+      <entry key="S2" value="3.3009731441357244E-78" />
+      <entry key="S5" value="1.0173181584062071E-31" />
+      <entry key="S10" value="3.189542535322481E-16" />
+      <entry key="S30" value="6.836903231303822E-6" />
+      <entry key="S60" value="0.0027573481684204323" />
+      <entry key="M2" value="0.08306356598149155" />
+      <entry key="M5" value="1.647115823035067" />
+      <entry key="M10" value="6.934846067434259" />
+      <entry key="M15" value="13.859143536536516" />
+      <entry key="M30" value="47.6662067095228" />
+      <entry key="H1" value="133.25903886993072" />
+      <entry key="H2" value="259.24895203133843" />
+      <entry key="H4" value="378.6595610326229" />
+      <entry key="D1" value="659.0541605614943" />
+      <entry key="W1" value="978.1515842653791" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.000000035498208" />
-      <entry key="S10" value="1.0002102616293245" />
-      <entry key="S30" value="1.1311905749643956" />
-      <entry key="S60" value="1.9191451646721094" />
-      <entry key="M2" value="4.047130522479993" />
-      <entry key="M5" value="9.255737907604777" />
-      <entry key="M10" value="14.083482624239833" />
-      <entry key="M15" value="17.034459106525052" />
-      <entry key="M30" value="22.57872205625926" />
-      <entry key="H1" value="28.629165466238074" />
-      <entry key="H2" value="34.185717045164175" />
-      <entry key="H4" value="38.40973609032156" />
-      <entry key="D1" value="75.33315008190438" />
-      <entry key="W1" value="157.4774502317256" />
+      <entry key="S2" value="1.0000000016187194" />
+      <entry key="S5" value="1.0003045570243931" />
+      <entry key="S10" value="1.017451562233597" />
+      <entry key="S30" value="1.2593992296795207" />
+      <entry key="S60" value="1.5147249272645409" />
+      <entry key="M2" value="1.84358905609944" />
+      <entry key="M5" value="3.7247148094997433" />
+      <entry key="M10" value="8.194356855506424" />
+      <entry key="M15" value="12.018401478421987" />
+      <entry key="M30" value="19.76920975500682" />
+      <entry key="H1" value="28.013487546073133" />
+      <entry key="H2" value="35.33657230490511" />
+      <entry key="H4" value="40.78252514991239" />
+      <entry key="D1" value="78.80038958522526" />
+      <entry key="W1" value="161.31923318505807" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.563372712626801E-4" />
-      <entry key="MS500" value="0.22710953054195426" />
-      <entry key="S2" value="1.097752836280617" />
-      <entry key="S5" value="1.6657683492485975" />
-      <entry key="S10" value="2.211330301091935" />
-      <entry key="S30" value="3.433576649932465" />
-      <entry key="S60" value="5.184900587247891" />
-      <entry key="M2" value="8.869232049928451" />
-      <entry key="M5" value="19.252763835807418" />
-      <entry key="M10" value="31.506048238286326" />
-      <entry key="M15" value="42.792697436593" />
-      <entry key="M30" value="88.0616220585857" />
-      <entry key="H1" value="185.1156261564094" />
-      <entry key="H2" value="315.0479570493789" />
-      <entry key="H4" value="432.2461931301648" />
-      <entry key="D1" value="738.0001238004921" />
-      <entry key="W1" value="1135.6041729125095" />
+      <entry key="MS100" value="0.04123462221165295" />
+      <entry key="MS500" value="0.5285090202806901" />
+      <entry key="S2" value="0.8526348929682216" />
+      <entry key="S5" value="0.9384914123653767" />
+      <entry key="S10" value="0.9850564331932322" />
+      <entry key="S30" value="1.2437129031148777" />
+      <entry key="S60" value="1.5070525779062933" />
+      <entry key="M2" value="1.9194334547022467" />
+      <entry key="M5" value="5.363332138109307" />
+      <entry key="M10" value="15.118698796657283" />
+      <entry key="M15" value="25.867062112049428" />
+      <entry key="M30" value="67.42609665101787" />
+      <entry key="H1" value="161.26477194517093" />
+      <entry key="H2" value="294.57984693256617" />
+      <entry key="H4" value="419.4384875304475" />
+      <entry key="D1" value="737.8531519463821" />
+      <entry key="W1" value="1139.4703567575673" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -227,6 +215,7 @@
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
     "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
     "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
+    "695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor": "Debug",
     "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
     "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
     "7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor": "Debug",
@@ -371,15 +360,7 @@
       <workItem from="1778785377982" duration="4000" />
       <workItem from="1778785401025" duration="20644000" />
       <workItem from="1779215730876" duration="7115000" />
-      <workItem from="1779466137407" duration="32229000" />
-    </task>
-    <task id="LOCAL-00211" summary="Delete `SqlDbPruneTargetTests` and `SqliteDbPruneTargetTests`; add SQL scripts for merging data types, members, and routines; refactor `Target` to update `VersionId` type to `int`.">
-      <option name="closed" value="true" />
-      <created>1778184286107</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1778184286107</updated>
+      <workItem from="1779466137407" duration="33141000" />
     </task>
     <task id="LOCAL-00212" summary="Refactor migrations: standardize key types, enhance column definitions, and update indexes for improved schema consistency. Remove unused `tag_alias` migration.">
       <option name="closed" value="true" />
@@ -765,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779813305599</updated>
     </task>
-    <option name="localTasksCounter" value="261" />
+    <task id="LOCAL-00261" summary="Unify `ErrorCodes` constants and replace `FileNotFound` and `TargetNotFound` with `NotFound` across commands, tests, and database managers.">
+      <option name="closed" value="true" />
+      <created>1779814269686</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1779814269686</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -793,7 +782,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update schema and migration scripts: rename columns in `MergeDataTypeMember.sql` for consistency, add `content_hash` column to `tag` table, and enhance indexes in `tag_member` table." />
     <MESSAGE value="Refactor migrations, tests, and schema mappings: rename columns and indexes for consistency, add `content_hash` column to `tag` and `routine` tables, and align foreign keys across SQLite and SQL Server tests." />
     <MESSAGE value="Rename `member_id` to `tag_id` in `tag_comment` table, update migrations, tests, and schema mappings for consistency. Add support for tag comments in `TagTransformer`." />
     <MESSAGE value="Drop unused mappings, migrations, and scripts; update schema and ensure consistency across `content_hash` column additions, foreign keys, and column renames." />
@@ -818,7 +806,8 @@
     <MESSAGE value="Update merge scripts and migrations to refine schema consistency&#10;&#10;- Adjusted `MergeRung.sql`, `MergeOperand.sql`, and other merge scripts to enhance hash matching logic and expand column usage.&#10;- Updated migrations to include indexing improvements and column definition refinements.&#10;- Removed redundant indexes and unused columns in related tables and scripts.&#10;- Revised and expanded test assertions to reflect schema changes." />
     <MESSAGE value="Rename truncate-related tests and scripts to delete-related for clarity, refine test assertions, and update migration/merge scripts for schema consistency and indexing improvements." />
     <MESSAGE value="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `DeleteVersion.sql` script, corresponding tests for SQL Server and SQLite, and update `.idea` configuration to reflect changes." />
+    <MESSAGE value="Unify `ErrorCodes` constants and replace `FileNotFound` and `TargetNotFound` with `NotFound` across commands, tests, and database managers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Unify `ErrorCodes` constants and replace `FileNotFound` and `TargetNotFound` with `NotFound` across commands, tests, and database managers." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

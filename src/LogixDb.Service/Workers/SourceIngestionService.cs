@@ -66,8 +66,7 @@ public class SourceIngestionService(
                 if (logger.IsEnabled(LogLevel.Information))
                     logger.LogInformation("Processing {FileName}...", source.FileName);
 
-                // Create a temp L5X file for processing, either converting it from ACD or just copying it,
-                // depending on the file type.
+                // Create a temp L5X file for processing, either converting it from ACD or just copying it, depending on the file type.
                 var tempFile = await ConvertOrCopy(source, stoppingToken);
 
                 // Load the L5X file, create a target and add it to the database.

@@ -1,5 +1,4 @@
 using System.Threading.Channels;
-using L5Sharp.Core;
 using LogixConverter.Abstractions;
 using LogixDb.Data;
 using LogixDb.Data.Sqlite;
@@ -94,6 +93,7 @@ public class SourceIngestionServiceTests
         // Assert
         var targets = (await _dbManager.ListTargets(token: cts.Token)).ToList();
         Assert.That(targets, Has.Count.EqualTo(1));
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That(targets.First().TargetName, Is.EqualTo("TestController"));

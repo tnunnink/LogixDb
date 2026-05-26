@@ -12,90 +12,90 @@ jobs:
       contents: write
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '10.0.x'
-        
-    - name: Restore dependencies
-      run: dotnet restore src/LogixDb.sln
-      
-    - name: Build
-      run: dotnet build src/LogixDb.sln --configuration Release --no-restore
-      
-    - name: Test
-      run: dotnet test src/LogixDb.sln --configuration Release --no-build --verbosity normal
-      
-    - name: Pack
-      run: dotnet pack src/LogixDb.Cli/LogixDb.Cli.csproj --configuration Release --no-build --output ./artifacts
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Publish CLI
-      run: >
-        dotnet publish src/LogixDb.Cli/LogixDb.Cli.csproj
-        -c Release
-        -r win-x64
-        --self-contained true
-        /p:PublishSingleFile=true
-        /p:IncludeNativeLibrariesForSelfExtract=true
-        /p:DebugType=None
-        /p:DebugSymbols=false
-        -o artifacts/cli/win-x64
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
 
-    - name: Publish Service
-      run: >
-        dotnet publish src/LogixDb.Service/LogixDb.Service.csproj
-        -c Release
-        -r win-x64
-        --self-contained true
-        /p:PublishSingleFile=true
-        /p:IncludeNativeLibrariesForSelfExtract=true
-        /p:DebugType=None
-        /p:DebugSymbols=false
-        -o artifacts/service/win-x64
+      - name: Restore dependencies
+        run: dotnet restore src/LogixDb.sln
 
-    - name: Prepare Combined Release
-      shell: pwsh
-      run: |
-        # Create a staging directory for the combined release
-        New-Item -Path artifacts/combined -ItemType Directory
-        
-        # Copy CLI binaries
-        Copy-Item -Path artifacts/cli/win-x64/* -Destination artifacts/combined -Recurse
-        
-        # Copy Service binaries (merging into the same folder)
-        # Note: Common DLLs will be overwritten, ensuring consistency
-        Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Exclude "appsettings.Development.json"
-        
-        # Copy the Setup script from the scripts folder
-        Copy-Item -Path scripts/Setup.ps1 -Destination artifacts/combined
-        
-        # Copy appsettings.json
-        Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json
+      - name: Build
+        run: dotnet build src/LogixDb.sln --configuration Release --no-restore
 
-    - name: Zip Combined Release
-      shell: pwsh
-      run: |
-        # Package everything into a single ZIP for the user
-        Compress-Archive -Path artifacts/combined/* -DestinationPath artifacts/logixdb-win-x64.zip
-      
-    - name: Extract version from tag
-      id: get_version
-      shell: bash
-      run: |
-        version="${{ github.ref_name }}"
-        version="${version#v}"
-        echo "version=$version" >> $GITHUB_OUTPUT
-        
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        name: Release ${{ steps.get_version.outputs.version }}
-        files: | 
-          ./artifacts/*.nupkg
-          ./artifacts/logixdb-win-x64.zip
-        generate_release_notes: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test
+        run: dotnet test src/LogixDb.sln --configuration Release --no-build --verbosity normal
+
+      - name: Pack
+        run: dotnet pack src/LogixDb.Cli/LogixDb.Cli.csproj --configuration Release --no-build --output ./artifacts
+
+      - name: Publish CLI
+        run: >
+          dotnet publish src/LogixDb.Cli/LogixDb.Cli.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          /p:PublishSingleFile=true
+          /p:IncludeNativeLibrariesForSelfExtract=true
+          /p:DebugType=None
+          /p:DebugSymbols=false
+          -o artifacts/cli/win-x64
+
+      - name: Publish Service
+        run: >
+          dotnet publish src/LogixDb.Service/LogixDb.Service.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          /p:PublishSingleFile=true
+          /p:IncludeNativeLibrariesForSelfExtract=true
+          /p:DebugType=None
+          /p:DebugSymbols=false
+          -o artifacts/service/win-x64
+
+      - name: Prepare Combined Release
+          shell: pwsh
+          run: |
+            # Create a staging directory for the combined release
+            New-Item -Path artifacts/combined -ItemType Directory -Force
+            
+            # Copy CLI binaries (using Force to ensure clean copy)
+            Copy-Item -Path artifacts/cli/win-x64/* -Destination artifacts/combined -Recurse -Force
+            
+            # Copy Service binaries and merge contents
+            # Adding -Force allows it to overwrite common files like those in the Resources folder
+            Copy-Item -Path artifacts/service/win-x64/* -Destination artifacts/combined -Recurse -Force -Exclude "appsettings.Development.json"
+            
+            # Copy the Setup script
+            Copy-Item -Path scripts/Setup.ps1 -Destination artifacts/combined -Force
+            
+            # Copy appsettings.json
+            Copy-Item -Path src/LogixDb.Service/appsettings.json -Destination artifacts/combined/appsettings.json -Force
+
+      - name: Zip Combined Release
+        shell: pwsh
+        run: |
+          # Package everything into a single ZIP for the user
+          Compress-Archive -Path artifacts/combined/* -DestinationPath artifacts/logixdb-win-x64.zip
+
+      - name: Extract version from tag
+        id: get_version
+        shell: bash
+        run: |
+          version="${{ github.ref_name }}"
+          version="${version#v}"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ steps.get_version.outputs.version }}
+          files: |
+            ./artifacts/*.nupkg
+            ./artifacts/logixdb-win-x64.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

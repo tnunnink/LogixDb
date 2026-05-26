@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 namespace LogixDb.Data.SqlServer;
 
 /// <summary>
-/// Provides a collection of utility methods designed to extend the functionality of SQL Server connectivity.
+/// Provides extension methods for working with SQL Server database types in the LogixDb context.
 /// </summary>
 public static class SqlServerExtensions
 {
@@ -45,5 +45,24 @@ public static class SqlServerExtensions
         }
 
         return builder.ToString();
+    }
+
+    /// <summary>
+    /// Converts a .NET <see cref="Type"/> to its corresponding SQL Server type representation as a string.
+    /// </summary>
+    /// <param name="type">The .NET type to be converted to an equivalent SQL Server type.</param>
+    /// <returns>The corresponding SQL Server type string for the provided <paramref name="type"/>.</returns>
+    public static string ToSqlServerType(this Type type)
+    {
+        if (type == typeof(string)) return "NVARCHAR(MAX)";
+        if (type == typeof(int)) return "INT";
+        if (type == typeof(long)) return "BIGINT";
+        if (type == typeof(bool)) return "BIT";
+        if (type == typeof(DateTime)) return "DATETIME2";
+        if (type == typeof(Guid)) return "UNIQUEIDENTIFIER";
+        if (type == typeof(byte[])) return "VARBINARY(MAX)";
+        if (type == typeof(float)) return "REAL";
+        if (type == typeof(double)) return "FLOAT";
+        return "NVARCHAR(MAX)";
     }
 }

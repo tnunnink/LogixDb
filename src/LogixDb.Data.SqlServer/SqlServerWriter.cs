@@ -59,9 +59,8 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
     /// </summary>
     private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
     {
-        var columns = string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => $"[{c.ColumnName}] {GetSqlType(c)}"));
-        var sql = $"CREATE TABLE #temp_{table.TableName} ({columns});";
-
+        var columns = table.Columns.Cast<DataColumn>().Select(c => $"[{c.ColumnName}] {c.DataType.ToSqlServerType()}");
+        var sql = $"CREATE TABLE #temp_{table.TableName} ({string.Join(", ", columns)});";
         await using var command = new SqlCommand(sql, connection, transaction);
         await command.ExecuteNonQueryAsync(token);
     }
@@ -75,12 +74,7 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
     private async Task WriteTableAsync(DataTable table, CancellationToken token)
     {
         // Set up a bulk copy instance to insert records for max performance.
-        using var bulkCopy = new SqlBulkCopy(
-            connection,
-            SqlBulkCopyOptions.KeepIdentity | SqlBulkCopyOptions.TableLock,
-            transaction
-        );
-
+        using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.TableLock, transaction);
         bulkCopy.DestinationTableName = $"#temp_{table.TableName}";
         bulkCopy.BulkCopyTimeout = 0;
         bulkCopy.BatchSize = 10000;
@@ -96,25 +90,12 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
     /// </summary>
     private async Task ExecuteMergeAsync(DataTable table, CancellationToken token)
     {
-        var script = MergeScripts[table.TableName];
+        if (!MergeScripts.TryGetValue(table.TableName, out var script))
+            return;
 
         await using var command = new SqlCommand(script, connection, transaction);
         command.Parameters.AddWithValue("@VersionId", versionId);
         command.CommandTimeout = 0;
         await command.ExecuteNonQueryAsync(token);
-    }
-
-    private static string GetSqlType(DataColumn column)
-    {
-        if (column.DataType == typeof(string)) return "NVARCHAR(MAX)";
-        if (column.DataType == typeof(int)) return "INT";
-        if (column.DataType == typeof(long)) return "BIGINT";
-        if (column.DataType == typeof(bool)) return "BIT";
-        if (column.DataType == typeof(DateTime)) return "DATETIME2";
-        if (column.DataType == typeof(Guid)) return "UNIQUEIDENTIFIER";
-        if (column.DataType == typeof(byte[])) return "VARBINARY(MAX)";
-        if (column.DataType == typeof(float)) return "REAL";
-        if (column.DataType == typeof(double)) return "FLOAT";
-        return "NVARCHAR(MAX)";
     }
 }

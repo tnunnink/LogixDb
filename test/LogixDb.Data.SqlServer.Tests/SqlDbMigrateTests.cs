@@ -55,6 +55,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableDoesNotExists("rung");
         await AssertTableDoesNotExists("rung_instruction");
         await AssertTableDoesNotExists("rung_argument");
+        await AssertTableDoesNotExists("rung_reference");
         await AssertTableDoesNotExists("aoi");
         await AssertTableDoesNotExists("aoi_parameter");
         await AssertTableDoesNotExists("aoi_rung");
@@ -79,6 +80,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableExists("rung");
         await AssertTableExists("rung_instruction");
         await AssertTableExists("rung_argument");
+        await AssertTableExists("rung_reference");
         await AssertTableExists("operand");
 
         // Excluded Tables
@@ -115,6 +117,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
         await AssertTableDoesNotExists("rung");
         await AssertTableDoesNotExists("rung_instruction");
         await AssertTableDoesNotExists("rung_argument");
+        await AssertTableDoesNotExists("rung_reference");
         await AssertTableDoesNotExists("operand");
         await AssertTableDoesNotExists("controller");
         await AssertTableDoesNotExists("data_type");

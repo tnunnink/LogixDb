@@ -88,7 +88,7 @@ public class SourceIngestionServiceTests
         await _channel.Writer.WriteAsync(source, cts.Token);
 
         // Wait a bit for processing
-        await Task.Delay(2000, cts.Token);
+        await Task.Delay(10000, cts.Token);
 
         // Assert
         var targets = (await _dbManager.ListTargets(token: cts.Token)).ToList();

@@ -8,21 +8,6 @@ using LogixDb.Data.Abstractions;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command for exporting targets to L5X files in the LogixDb CLI.
-/// </summary>
-/// <remarks>
-/// The <see cref="ExportCommand"/> class provides functionality to export a specific target
-/// to an L5X file by specifying either a target key (to export the latest instance for that target)
-/// or a target ID (to export a specific target).
-/// This command inherits from <see cref="DbCommand"/>, allowing database connection configuration.
-/// </remarks>
-/// <example>
-/// This command supports the following options:
-/// - Target: Exports the latest instance for the specified target key.
-/// - TargetId: Exports a target with a specific ID.
-/// - OutputPath: Specifies the output file path for the exported L5X file.
-/// </example>
 [PublicAPI]
 [Command("export", Description = "Export a target version to an L5X file")]
 public partial class ExportCommand : DbCommand

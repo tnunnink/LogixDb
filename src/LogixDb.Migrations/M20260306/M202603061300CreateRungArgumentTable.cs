@@ -8,7 +8,7 @@ namespace LogixDb.Migrations.M20260306;
 [UsedImplicitly]
 [Migration(202603061300, "Creates argument table with corresponding indexes and foreign key relationships")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202603061300CreateArgumentTable : AutoReversingMigration
+public class M202603061300CreateRungArgumentTable : AutoReversingMigration
 {
     public override void Up()
     {
@@ -23,6 +23,7 @@ public class M202603061300CreateArgumentTable : AutoReversingMigration
         Create.Index().OnTable("rung_argument")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
-            .OnColumn("argument_index").Ascending();
+            .OnColumn("argument_index").Ascending()
+            .WithOptions().Unique();
     }
 }

@@ -76,8 +76,8 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.VersionId, Is.Not.Empty);
-            Assert.That(result.TargetKey, Is.EqualTo(target1.TargetKey));
+            Assert.That(result.VersionId, Is.EqualTo(target2.VersionId));
+            Assert.That(result.TargetKey, Is.EqualTo(target2.TargetKey));
             Assert.That(result.VersionNumber, Is.EqualTo(2));
         }
     }

@@ -3,7 +3,7 @@ using LogixDb.Testing;
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlDbTruncateTargetTests : SqlServerTestFixture
+public class SqlDbDeleteVersionsTests : SqlServerTestFixture
 {
     [SetUp]
     protected async Task Setup()

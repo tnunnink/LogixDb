@@ -67,7 +67,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("rung_argument", "argument_text", "nvarchar");
 
             await AssertForeignKey("rung_argument", "rung_id", "rung", "rung_id");
-            await AssertIndex("rung_argument", "rung_id", "instruction_index", "argument_index");
+            await AssertUniqueIndex("rung_argument", "rung_id", "instruction_index", "argument_index");
         }
     }
 

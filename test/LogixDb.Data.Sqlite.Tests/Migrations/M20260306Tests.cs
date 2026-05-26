@@ -21,13 +21,13 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("rung", "record_hash", "text");
 
             await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "record_hash");
+            await AssertUniqueIndex("rung", "routine_id", "record_hash");
             await AssertUniqueIndex("rung", "routine_id", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }
 
-    
+
     [Test]
     public async Task MigrateUp_ToM202603061200_CreatesInstructionTableWithExpectedColumns()
     {
@@ -68,8 +68,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("rung_argument", "argument_text", "text");
 
             await AssertForeignKey("rung_argument", "rung_id", "rung", "rung_id");
-            await AssertIndex("rung_argument", "rung_id", "instruction_index", "argument_index");
-            await AssertIndex("rung_argument", "argument_text");
+            await AssertUniqueIndex("rung_argument", "rung_id", "instruction_index", "argument_index");
         }
     }
 

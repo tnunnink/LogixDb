@@ -12,22 +12,29 @@ public class SqliteDbDeleteTargetTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task DeleteTarget_ByTargetKey_ShouldRemoveAllVersions()
+    public async Task DeleteTarget_SingleTarget_ShouldHaveNoTarget()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target1);
+        var target = Target.Create(TestSource.LocalTest());
+        await Database.ImportTarget(target);
 
-        var target2 = Target.Create(TestSource.LocalTest());
-        await Database.ImportTarget(target2);
+        await Database.DeleteTarget(target.TargetKey);
 
-        var target3 = Target.Create(TestSource.LocalTest(), "Controller://CustomTarget");
-        await Database.ImportTarget(target3);
+        var result = (await Database.ListTargets()).ToArray();
+        Assert.That(result, Is.Empty);
+    }
 
-        await Database.DeleteTarget(target1.TargetKey);
+    [Test]
+    public async Task DeleteTarget_MultipleTargetDifferentKey_ShouldRemoveOnlyApplicableTargets()
+    {
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
+
+        await Database.DeleteTarget("CustomTarget");
 
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
-        Assert.That(result[0].TargetKey, Is.EqualTo(target3.TargetKey));
+        Assert.That(result[0].TargetKey, Is.EqualTo("controller://TestController"));
     }
 
     [Test]

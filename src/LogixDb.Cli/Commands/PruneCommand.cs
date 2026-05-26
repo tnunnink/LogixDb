@@ -10,23 +10,36 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 [PublicAPI]
-[Command("prune", Description = "Deletes all instance data for a specified target (retains version history)")]
+[Command("prune", Description = "Removes a specific version of a target while preserving other versions")]
 public partial class PruneCommand : DbCommand
 {
     [Required]
     [CommandOption("target", 't', Description = "Target key to prune (format: targettype://targetname)")]
     public string Target { get; set; } = string.Empty;
 
+    [Required]
+    [CommandOption("version", 'v', Description = "Version number to prune")]
+    public int Version { get; set; }
+
     /// <inheritdoc />
     protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
     {
         if (string.IsNullOrWhiteSpace(Target))
-            throw new CommandException("Target key must be specified. Use --target option.", ErrorCodes.UsageError);
+            throw new CommandException(
+                "Target key must be specified. Use --target option.",
+                ErrorCodes.UsageError
+            );
+
+        if (Version <= 0)
+            throw new CommandException(
+                "Version number must be greater than 0. Use --version option.",
+                ErrorCodes.UsageError
+            );
 
         try
         {
             await console.Ansi().Status().StartAsync($"Pruning instances for '{Target}'...",
-                _ => manager.DeleteVersion(Target, 1, token)
+                _ => manager.DeleteVersion(Target, Version, token)
             );
 
             console.Ansi().MarkupLine($"[green]✓[/] Target instances for '{Target}' pruned successfully");

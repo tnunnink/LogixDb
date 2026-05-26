@@ -8,14 +8,6 @@ using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
 
-/// <summary>
-/// Represents a command-line interface (CLI) command that drops the entire database.
-/// This command permanently deletes all tables and data within the database.
-/// </summary>
-/// <remarks>
-/// Users are prompted for confirmation before the operation is executed to prevent
-/// unintended data loss. The operation is irreversible once initiated.
-/// </remarks>
 [PublicAPI]
 [Command("drop", Description = "Drops the entire database, permanently deleting all tables and data")]
 public partial class DropCommand : DbCommand

@@ -8,7 +8,7 @@ namespace LogixDb.Migrations.M20260306;
 [UsedImplicitly]
 [Migration(202603061400, "Creates rung_reference table with indexes for reference name lookups")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202603061400CreateCodeReferenceTable : AutoReversingMigration
+public class M202603061400CreateRungReferenceTable : AutoReversingMigration
 {
     public override void Up()
     {

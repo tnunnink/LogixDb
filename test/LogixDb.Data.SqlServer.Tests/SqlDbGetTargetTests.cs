@@ -27,7 +27,7 @@ public class SqlDbGetTargetTests : SqlServerTestFixture
             Assert.That(result.TargetKey, Is.EqualTo(target.TargetKey));
         }
     }
-    
+
     [Test]
     public async Task GetTarget_LatestVersionAndContainsMultipleTarget_ShouldReturnLatest()
     {
@@ -71,13 +71,13 @@ public class SqlDbGetTargetTests : SqlServerTestFixture
         var target2 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target2);
 
-        var result = await Database.GetTarget(target1.TargetKey, 2);
-        
+        var result = await Database.GetTarget(target2.TargetKey, 2);
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.VersionId, Is.Not.Empty);
-            Assert.That(result.TargetKey, Is.EqualTo(target1.TargetKey));
+            Assert.That(result.VersionId, Is.EqualTo(target2.VersionId));
+            Assert.That(result.TargetKey, Is.EqualTo(target2.TargetKey));
             Assert.That(result.VersionNumber, Is.EqualTo(2));
         }
     }

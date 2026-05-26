@@ -3,7 +3,7 @@ using LogixDb.Testing;
 namespace LogixDb.Data.Sqlite.Tests;
 
 [TestFixture]
-public class SqliteDbTruncateTargetTests : SqliteTestFixture
+public class SqliteDbDeleteVersionsTests : SqliteTestFixture
 {
     [SetUp]
     protected async Task Setup()
@@ -12,7 +12,7 @@ public class SqliteDbTruncateTargetTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task TruncateTarget_ByVersion_ShouldRemovePreviousVersions()
+    public async Task DeleteVersions_ByVersion_ShouldRemovePreviousVersions()
     {
         var target1 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target1);
@@ -28,7 +28,7 @@ public class SqliteDbTruncateTargetTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task TruncateTarget_ByDate_ShouldRemoveOlderVersions()
+    public async Task DeleteVersions_ByDate_ShouldRemoveOlderVersions()
     {
         var target1 = Target.Create(TestSource.LocalTest());
         await Database.ImportTarget(target1);
@@ -48,9 +48,10 @@ public class SqliteDbTruncateTargetTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task TruncateTarget_NonExistentKey_ShouldNotThrow()
+    public Task DeleteVersions_NonExistentKey_ShouldNotThrow()
     {
         Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", 1));
         Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", DateTime.Now));
+        return Task.CompletedTask;
     }
 }

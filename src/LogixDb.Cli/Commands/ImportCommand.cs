@@ -14,9 +14,7 @@ using Spectre.Console;
 namespace LogixDb.Cli.Commands;
 
 [PublicAPI]
-[Command("import",
-    Description =
-        "Imports an L5X file by posting to target version table and parsing/inserting new instance data (Post + Restore)")]
+[Command("import", Description = "Imports an L5X or ACD file into the database as a new target or version")]
 public partial class ImportCommand : DbCommand
 {
     [Required]

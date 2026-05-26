@@ -123,4 +123,16 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         Console.WriteLine(stopwatch.ElapsedMilliseconds);
         Assert.That(target.VersionId, Is.GreaterThan(0));
     }
+
+    [Test]
+    public async Task ImportTarget_WithMetadata_ShouldPopulateTargetInfoTable()
+    {
+        var target = Target.Create(TestSource.LocalTest());
+        target.Info.Add("TestKey", "TestValue");
+
+        await Database.ImportTarget(target);
+
+        await AssertRecordExists("target_info", "property_name", "TestKey");
+        await AssertRecordExists("target_info", "property_value", "TestValue");
+    }
 }

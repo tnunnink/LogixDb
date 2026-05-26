@@ -19,8 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,61 +121,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.00000000000002" />
-      <entry key="MS500" value="1.0018198055259895" />
-      <entry key="S2" value="1.2069445042302387" />
-      <entry key="S5" value="1.6354928288604873" />
-      <entry key="S10" value="2.5520371538545055" />
-      <entry key="S30" value="5.755396398372915" />
-      <entry key="S60" value="7.796131311407795" />
-      <entry key="M2" value="9.21491885871348" />
-      <entry key="M5" value="10.410373969542846" />
-      <entry key="M10" value="12.867269319548855" />
-      <entry key="M15" value="17.297285304029177" />
-      <entry key="M30" value="43.661684613505805" />
-      <entry key="H1" value="121.46582615853873" />
-      <entry key="H2" value="247.07608868794168" />
-      <entry key="H4" value="372.34913454630305" />
-      <entry key="D1" value="664.9365522590303" />
-      <entry key="W1" value="988.0630912344365" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0000005540640462" />
+      <entry key="M10" value="1.0039274312709658" />
+      <entry key="M15" value="1.084002447355552" />
+      <entry key="M30" value="3.736654379683798" />
+      <entry key="H1" value="29.25824348548799" />
+      <entry key="H2" value="119.54668439851969" />
+      <entry key="H4" value="262.08347784914946" />
+      <entry key="D1" value="640.87070105997" />
+      <entry key="W1" value="999.2989783013929" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="6.5362506399713945E-77" />
-      <entry key="MS500" value="5.81699404068706E-16" />
-      <entry key="S2" value="2.0655686252408974E-4" />
-      <entry key="S5" value="0.06460950514918028" />
-      <entry key="S10" value="0.5207358356872837" />
-      <entry key="S30" value="2.295943809838615" />
-      <entry key="S60" value="3.37688243624347" />
-      <entry key="M2" value="4.112283708536567" />
-      <entry key="M5" value="5.01497662946795" />
-      <entry key="M10" value="7.474578739402355" />
-      <entry key="M15" value="10.558567299854543" />
-      <entry key="M30" value="18.535568849286463" />
-      <entry key="H1" value="28.203026333464525" />
-      <entry key="H2" value="37.166095852669045" />
-      <entry key="H4" value="43.91170445724133" />
-      <entry key="D1" value="83.18745597696356" />
-      <entry key="W1" value="166.1395852599341" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="3.0995182182460627E-257" />
+      <entry key="S30" value="8.964378065983425E-86" />
+      <entry key="S60" value="6.672604681818112E-43" />
+      <entry key="M2" value="1.8279857105962394E-21" />
+      <entry key="M5" value="1.443526644309879E-8" />
+      <entry key="M10" value="4.010187387022148E-4" />
+      <entry key="M15" value="0.015019551213729117" />
+      <entry key="M30" value="0.699088085772218" />
+      <entry key="H1" value="5.47720131582715" />
+      <entry key="H2" value="16.378662657634585" />
+      <entry key="H4" value="29.150502295884866" />
+      <entry key="D1" value="77.69662142698593" />
+      <entry key="W1" value="164.52677775758596" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.16608572676206546" />
-      <entry key="MS500" value="0.6994258386170851" />
-      <entry key="S2" value="1.0961951413602313" />
-      <entry key="S5" value="1.6210657165209772" />
-      <entry key="S10" value="2.9591333572448106" />
-      <entry key="S30" value="7.907868470747779" />
-      <entry key="S60" value="11.066412398439875" />
-      <entry key="M2" value="13.261710577463477" />
-      <entry key="M5" value="15.394759026054347" />
-      <entry key="M10" value="20.322941968427866" />
-      <entry key="M15" value="27.840420329030756" />
-      <entry key="M30" value="62.185531797489" />
-      <entry key="H1" value="149.65974682270854" />
-      <entry key="H2" value="284.2356722959145" />
-      <entry key="H4" value="416.2567327250565" />
-      <entry key="D1" value="748.1225087248188" />
-      <entry key="W1" value="1154.2022002867677" />
+      <entry key="MS100" value="0.8950250709279725" />
+      <entry key="MS500" value="0.9780634734473393" />
+      <entry key="S2" value="0.9944701686732144" />
+      <entry key="S5" value="0.9977843871238888" />
+      <entry key="S10" value="0.9988915792636801" />
+      <entry key="S30" value="0.9996303898263773" />
+      <entry key="S60" value="0.999815177833572" />
+      <entry key="M2" value="0.9999075846464872" />
+      <entry key="M5" value="0.9999636012367406" />
+      <entry key="M10" value="1.0043089266589018" />
+      <entry key="M15" value="1.0989874146620653" />
+      <entry key="M30" value="4.435291375608106" />
+      <entry key="H1" value="34.733667274860395" />
+      <entry key="H2" value="135.92246936610937" />
+      <entry key="H4" value="291.2312489312562" />
+      <entry key="D1" value="718.5659208041463" />
+      <entry key="W1" value="1163.825284302459" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -357,71 +357,7 @@
       <workItem from="1778785377982" duration="4000" />
       <workItem from="1778785401025" duration="20644000" />
       <workItem from="1779215730876" duration="7115000" />
-      <workItem from="1779466137407" duration="34643000" />
-    </task>
-    <task id="LOCAL-00217" summary="Split `Extensions` into dedicated extension files: `CryptoExtensions`, `CompressionExtensions`, and `FormattingExtensions`. Refactor usages to match the new structure and streamline hashing logic.">
-      <option name="closed" value="true" />
-      <created>1778266747730</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1778266747730</updated>
-    </task>
-    <task id="LOCAL-00218" summary="Add operands resource file and update `FluentMigrationExtensions` with dependencies for JSON handling">
-      <option name="closed" value="true" />
-      <created>1778266759654</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
-      <option name="project" value="LOCAL" />
-      <updated>1778266759654</updated>
-    </task>
-    <task id="LOCAL-00219" summary="Add merge scripts for all components, refactor `SqlServerWriter` for temp table usage and version-based merges, and update `SqlServerScript` with merge definitions.">
-      <option name="closed" value="true" />
-      <created>1778267457798</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267457798</updated>
-    </task>
-    <task id="LOCAL-00220" summary="Standardize operand JSON resource keys and property names to align with naming conventions.">
-      <option name="closed" value="true" />
-      <created>1778267463577</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267463577</updated>
-    </task>
-    <task id="LOCAL-00221" summary="Refactor migrations to standardize key types, update column definitions, enhance indexes, and remove deprecated entities for schema consistency.">
-      <option name="closed" value="true" />
-      <created>1778267759564</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267759564</updated>
-    </task>
-    <task id="LOCAL-00222" summary="Update SQLite test database file in `LogixDb.Data.Sqlite.Tests`">
-      <option name="closed" value="true" />
-      <created>1778267764603</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267764603</updated>
-    </task>
-    <task id="LOCAL-00223" summary="Remove unused `SuppressMessage` attribute, fix SQLite casing in comments, update `DeleteVersion` to accept `VersionNumber`, and remove unused `PruneTarget` method.">
-      <option name="closed" value="true" />
-      <created>1778267771302</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267771302</updated>
-    </task>
-    <task id="LOCAL-00224" summary="Remove unused `PruneTarget` method from `IDbManager`.">
-      <option name="closed" value="true" />
-      <created>1778267775446</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1778267775446</updated>
+      <workItem from="1779466137407" duration="41260000" />
     </task>
     <task id="LOCAL-00225" summary="Update migration tests to reflect schema changes: replace `target_instance` with `target_version_map`, add `tag_value`, and remove `tag_alias`.">
       <option name="closed" value="true" />
@@ -751,7 +687,71 @@
       <option name="project" value="LOCAL" />
       <updated>1779816663803</updated>
     </task>
-    <option name="localTasksCounter" value="267" />
+    <task id="LOCAL-00267" summary="Update README: expand component relationship diagrams with additional links and metadata details.">
+      <option name="closed" value="true" />
+      <created>1779816683421</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1779816683421</updated>
+    </task>
+    <task id="LOCAL-00268" summary="Update `.idea` workspace: adjust change tracking details, refine task summaries, and update task counters.">
+      <option name="closed" value="true" />
+      <created>1779816688658</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1779816688658</updated>
+    </task>
+    <task id="LOCAL-00269" summary="Update README: restructure &quot;Core Concepts&quot; section for clarity, remove duplicate content, and enhance descriptions for deduplication and version mapping; update tests to switch `property_id` to `uniqueidentifier` type in migrations.">
+      <option name="closed" value="true" />
+      <created>1779817206399</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1779817206399</updated>
+    </task>
+    <task id="LOCAL-00270" summary="Increase delay in `SourceIngestionServiceTests` to improve test stability.">
+      <option name="closed" value="true" />
+      <created>1779820108697</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1779820108697</updated>
+    </task>
+    <task id="LOCAL-00271" summary="Refactor `release.yml`: improve consistency with indentation, add forced overwrites in PowerShell commands, and streamline steps.">
+      <option name="closed" value="true" />
+      <created>1779821827727</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1779821827727</updated>
+    </task>
+    <task id="LOCAL-00272" summary="Refactor `release.yml`: fix indentation in `Prepare Combined Release` step for consistency.">
+      <option name="closed" value="true" />
+      <created>1779822170136</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1779822170136</updated>
+    </task>
+    <task id="LOCAL-00273" summary="Update migration: remove unique constraint from `program_name` and `routine_name` composite index in `routine` table">
+      <option name="closed" value="true" />
+      <created>1779824481054</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1779824481054</updated>
+    </task>
+    <task id="LOCAL-00274" summary="Bump version to 0.11.1 in `LogixDb.Service` and `LogixDb.Cli` project files.">
+      <option name="closed" value="true" />
+      <created>1779824511189</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1779824511189</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -779,14 +779,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update target posting logic in `SqlServerManager` and `SqliteManager` to retrieve `VersionId` using `ExecuteScalarAsync`; add `MergeTagValue` support for SQLite schema, scripts, and mappings." />
-    <MESSAGE value="Add `member_index` column to `data_type_member` table in SQLite and SQL Server migration tests; comment out `operand_format` assertion in `M20260308Tests`." />
-    <MESSAGE value="Comment out assertions and related scope in `SqliteDbImportTargetTests` to simplify test logic." />
-    <MESSAGE value="Add `member_index` column to `data_type_member` table; update `MergeDataTypeMember` and `MergeTagValue` scripts, transformers, and migrations to reflect schema changes; enhance tagging logic and indexing for performance." />
-    <MESSAGE value="Make `parent_name` and `member_name` columns nullable in `tag_member` table; update `TagTransformer` to handle null parent tags and optimize comment processing." />
-    <MESSAGE value="Add `MergeCodeReference` script, `ReferenceMap` mapping, and `ReferenceRecord` definition; update SQLite writer to support `code_reference` table integration." />
-    <MESSAGE value="Remove `ElementHasher` utility and its related functionality, update reference mappings (`TagMemberMap`, `ReferenceMap`) for consistency, and upgrade package dependencies across projects." />
-    <MESSAGE value="Rename `argument` and `instruction` tables to `rung_argument` and `rung_instruction` for consistency in schema and mapping; update tests, scripts, and references accordingly." />
     <MESSAGE value="Rename `reference` and `argument` tables to `rung_reference` and `rung_argument` for schema consistency; update mappings, scripts, and tests accordingly." />
     <MESSAGE value="Update `component` references to `target_component` across merge scripts, adjust mappings in `SqliteWriter`, refine test assertions, and upgrade `L5Sharp` package to version `7.1.0`." />
     <MESSAGE value="Rename `code_reference` table to `rung_reference` in `RungReferenceMap` for schema consistency." />
@@ -804,7 +796,15 @@
     <MESSAGE value="Update README: refine command descriptions, replace transient instance model with deduplication-based version mapping, and align examples with updated schema." />
     <MESSAGE value="Update README: improve table formatting, adjust descriptions for readability, and refine deduplication model overview." />
     <MESSAGE value="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations." />
+    <MESSAGE value="Update README: expand component relationship diagrams with additional links and metadata details." />
+    <MESSAGE value="Update `.idea` workspace: adjust change tracking details, refine task summaries, and update task counters." />
+    <MESSAGE value="Update README: restructure &quot;Core Concepts&quot; section for clarity, remove duplicate content, and enhance descriptions for deduplication and version mapping; update tests to switch `property_id` to `uniqueidentifier` type in migrations." />
+    <MESSAGE value="Increase delay in `SourceIngestionServiceTests` to improve test stability." />
+    <MESSAGE value="Refactor `release.yml`: improve consistency with indentation, add forced overwrites in PowerShell commands, and streamline steps." />
+    <MESSAGE value="Refactor `release.yml`: fix indentation in `Prepare Combined Release` step for consistency." />
+    <MESSAGE value="Update migration: remove unique constraint from `program_name` and `routine_name` composite index in `routine` table" />
+    <MESSAGE value="Bump version to 0.11.1 in `LogixDb.Service` and `LogixDb.Cli` project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.11.1 in `LogixDb.Service` and `LogixDb.Cli` project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

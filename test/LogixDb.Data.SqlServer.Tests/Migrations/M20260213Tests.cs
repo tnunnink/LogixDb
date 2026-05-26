@@ -29,7 +29,7 @@ public class M20260213Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("tag", "tag_id");
             await AssertUniqueIndex("tag", "record_hash");
-            await AssertUniqueIndex("tag", "program_name", "tag_name");
+            await AssertIndex("tag", "program_name", "tag_name");
             await AssertIndex("tag", "tag_name");
             await AssertIndex("tag", "data_type");
         }

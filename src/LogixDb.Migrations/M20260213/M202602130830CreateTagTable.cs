@@ -33,8 +33,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
 
         Create.Index().OnTable("tag")
             .OnColumn("program_name").Ascending()
-            .OnColumn("tag_name").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("tag_name").Ascending();
 
         Create.Index().OnTable("tag")
             .OnColumn("tag_name").Ascending();

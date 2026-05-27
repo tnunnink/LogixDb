@@ -73,27 +73,4 @@ public class M20260212Tests : SqlServerTestFixture
             await AssertIndex("aoi_parameter", "parameter_name");
         }
     }
-
-    [Test]
-    public async Task MigrateUp_ToM202602120910_CreatesAoiRungTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602120910);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("aoi_rung");
-
-            await AssertColumnDefinition("aoi_rung", "rung_id", "bigint");
-            await AssertColumnDefinition("aoi_rung", "aoi_id", "bigint");
-            await AssertColumnDefinition("aoi_rung", "routine_name", "nvarchar");
-            await AssertColumnDefinition("aoi_rung", "rung_number", "int");
-            await AssertColumnDefinition("aoi_rung", "rung_text", "nvarchar");
-            await AssertColumnDefinition("aoi_rung", "rung_comment", "nvarchar");
-            await AssertColumnDefinition("aoi_rung", "record_hash", "nvarchar");
-
-            await AssertPrimaryKey("aoi_rung", "rung_id");
-            await AssertUniqueIndex("aoi_rung", "aoi_id", "record_hash");
-            await AssertUniqueIndex("aoi_rung", "aoi_id", "routine_name", "rung_number");
-        }
-    }
 }

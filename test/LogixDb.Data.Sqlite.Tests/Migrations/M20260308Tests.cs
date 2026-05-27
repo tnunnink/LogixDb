@@ -23,7 +23,8 @@ public class M20260308Tests : SqliteTestFixture
             await AssertColumnDefinition("operand", "record_hash", "text");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertUniqueIndex("operand", "instruction_key", "operand_index", "record_hash");
+            await AssertUniqueIndex("operand", "record_hash");
+            await AssertIndex("operand", "instruction_key", "operand_index");
         }
     }
 

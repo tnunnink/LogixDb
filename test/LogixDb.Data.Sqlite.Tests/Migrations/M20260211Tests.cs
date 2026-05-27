@@ -106,6 +106,40 @@ public class M20260211Tests : SqliteTestFixture
     }
 
     [Test]
+    public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
+    {
+        await Database.Migrate(202602111540);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("module");
+
+            await AssertColumnDefinition("module", "module_id", "integer");
+            await AssertColumnDefinition("module", "module_name", "text");
+            await AssertColumnDefinition("module", "module_description", "text");
+            await AssertColumnDefinition("module", "catalog_number", "text");
+            await AssertColumnDefinition("module", "revision", "text");
+            await AssertColumnDefinition("module", "vendor_id", "integer");
+            await AssertColumnDefinition("module", "product_id", "integer");
+            await AssertColumnDefinition("module", "product_code", "integer");
+            await AssertColumnDefinition("module", "parent_name", "text");
+            await AssertColumnDefinition("module", "parent_port", "integer");
+            await AssertColumnDefinition("module", "electronic_keying", "text");
+            await AssertColumnDefinition("module", "is_inhibited", "integer");
+            await AssertColumnDefinition("module", "is_major_fault_enabled", "integer");
+            await AssertColumnDefinition("module", "is_safety_enabled", "integer");
+            await AssertColumnDefinition("module", "ip_address", "text");
+            await AssertColumnDefinition("module", "slot_number", "integer");
+            await AssertColumnDefinition("module", "record_hash", "text");
+
+            await AssertPrimaryKey("module", "module_id");
+            await AssertUniqueIndex("module", "record_hash");
+            await AssertIndex("module", "module_name");
+            await AssertIndex("module", "parent_name");
+        }
+    }
+
+    [Test]
     public async Task MigrateUp_ToM202602111600_CreatesTaskTableWithExpectedColumns()
     {
         await Database.Migrate(202602111600);
@@ -174,51 +208,18 @@ public class M20260211Tests : SqliteTestFixture
             await AssertTableExists("routine");
 
             await AssertColumnDefinition("routine", "routine_id", "integer");
-            await AssertColumnDefinition("routine", "program_name", "text");
+            await AssertColumnDefinition("routine", "container_name", "text");
             await AssertColumnDefinition("routine", "routine_name", "text");
             await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
+            await AssertColumnDefinition("routine", "is_definition", "integer");
             await AssertColumnDefinition("routine", "content_hash", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertUniqueIndex("routine", "record_hash");
-            await AssertIndex("routine", "program_name", "routine_name");
+            await AssertIndex("routine", "container_name", "routine_name");
             await AssertIndex("routine", "routine_name");
-        }
-    }
-    
-    [Test]
-    public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602111540);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("module");
-
-            await AssertColumnDefinition("module", "module_id", "integer");
-            await AssertColumnDefinition("module", "module_name", "text");
-            await AssertColumnDefinition("module", "module_description", "text");
-            await AssertColumnDefinition("module", "catalog_number", "text");
-            await AssertColumnDefinition("module", "revision", "text");
-            await AssertColumnDefinition("module", "vendor_id", "integer");
-            await AssertColumnDefinition("module", "product_id", "integer");
-            await AssertColumnDefinition("module", "product_code", "integer");
-            await AssertColumnDefinition("module", "parent_name", "text");
-            await AssertColumnDefinition("module", "parent_port", "integer");
-            await AssertColumnDefinition("module", "electronic_keying", "text");
-            await AssertColumnDefinition("module", "is_inhibited", "integer");
-            await AssertColumnDefinition("module", "is_major_fault_enabled", "integer");
-            await AssertColumnDefinition("module", "is_safety_enabled", "integer");
-            await AssertColumnDefinition("module", "ip_address", "text");
-            await AssertColumnDefinition("module", "slot_number", "integer");
-            await AssertColumnDefinition("module", "record_hash", "text");
-
-            await AssertPrimaryKey("module", "module_id");
-            await AssertUniqueIndex("module", "record_hash");
-            await AssertIndex("module", "module_name");
-            await AssertIndex("module", "parent_name");
         }
     }
 }

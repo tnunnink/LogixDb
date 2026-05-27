@@ -25,7 +25,8 @@ public class M20260308Tests : SqlServerTestFixture
             await AssertColumnDefinition("operand", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("operand", "operand_id");
-            await AssertUniqueIndex("operand", "instruction_key", "operand_index", "record_hash");
+            await AssertUniqueIndex("operand", "record_hash");
+            await AssertIndex("operand", "instruction_key", "operand_index");
         }
     }
 

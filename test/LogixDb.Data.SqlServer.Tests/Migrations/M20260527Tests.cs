@@ -33,10 +33,8 @@ public class M20260527Tests : SqlServerTestFixture
             await AssertFunctionExists("GetVersionedArguments");
             await AssertFunctionExists("GetVersionedReferences");
             await AssertFunctionExists("GetVersionedTagMembers");
-            await AssertFunctionExists("GetVersionedTagValues");
             await AssertFunctionExists("GetVersionedTagComments");
             await AssertFunctionExists("GetVersionedAoiParameters");
-            await AssertFunctionExists("GetVersionedAoiRungs");
             await AssertFunctionExists("GetVersionedDataTypeMembers");
             await AssertFunctionExists("GetVersionedOperands");
         }

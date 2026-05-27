@@ -106,6 +106,40 @@ public class M20260211Tests : SqlServerTestFixture
     }
 
     [Test]
+    public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
+    {
+        await Database.Migrate(202602111540);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("module");
+
+            await AssertColumnDefinition("module", "module_id", "bigint");
+            await AssertColumnDefinition("module", "module_name", "nvarchar");
+            await AssertColumnDefinition("module", "catalog_number", "nvarchar");
+            await AssertColumnDefinition("module", "revision", "nvarchar");
+            await AssertColumnDefinition("module", "module_description", "nvarchar");
+            await AssertColumnDefinition("module", "vendor_id", "int");
+            await AssertColumnDefinition("module", "product_id", "int");
+            await AssertColumnDefinition("module", "product_code", "smallint");
+            await AssertColumnDefinition("module", "parent_name", "nvarchar");
+            await AssertColumnDefinition("module", "parent_port", "tinyint");
+            await AssertColumnDefinition("module", "electronic_keying", "nvarchar");
+            await AssertColumnDefinition("module", "is_inhibited", "bit");
+            await AssertColumnDefinition("module", "is_major_fault_enabled", "bit");
+            await AssertColumnDefinition("module", "is_safety_enabled", "bit");
+            await AssertColumnDefinition("module", "ip_address", "nvarchar");
+            await AssertColumnDefinition("module", "slot_number", "tinyint");
+            await AssertColumnDefinition("module", "record_hash", "nvarchar");
+
+            await AssertPrimaryKey("module", "module_id");
+            await AssertUniqueIndex("module", "record_hash");
+            await AssertIndex("module", "module_name");
+            await AssertIndex("module", "parent_name");
+        }
+    }
+
+    [Test]
     public async Task MigrateUp_ToM202602111600_CreatesTaskTableWithExpectedColumns()
     {
         await Database.Migrate(202602111600);
@@ -174,51 +208,18 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertTableExists("routine");
 
             await AssertColumnDefinition("routine", "routine_id", "bigint");
-            await AssertColumnDefinition("routine", "program_name", "nvarchar");
+            await AssertColumnDefinition("routine", "container_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_name", "nvarchar");
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
             await AssertColumnDefinition("routine", "routine_type", "nvarchar");
+            await AssertColumnDefinition("routine", "is_definition", "bit");
             await AssertColumnDefinition("routine", "content_hash", "nvarchar");
             await AssertColumnDefinition("routine", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("routine", "routine_id");
             await AssertUniqueIndex("routine", "record_hash");
-            await AssertIndex("routine", "program_name", "routine_name");
+            await AssertIndex("routine", "container_name", "routine_name");
             await AssertIndex("routine", "routine_name");
-        }
-    }
-
-    [Test]
-    public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
-    {
-        await Database.Migrate(202602111540);
-
-        using (Assert.EnterMultipleScope())
-        {
-            await AssertTableExists("module");
-
-            await AssertColumnDefinition("module", "module_id", "bigint");
-            await AssertColumnDefinition("module", "module_name", "nvarchar");
-            await AssertColumnDefinition("module", "catalog_number", "nvarchar");
-            await AssertColumnDefinition("module", "revision", "nvarchar");
-            await AssertColumnDefinition("module", "module_description", "nvarchar");
-            await AssertColumnDefinition("module", "vendor_id", "int");
-            await AssertColumnDefinition("module", "product_id", "int");
-            await AssertColumnDefinition("module", "product_code", "smallint");
-            await AssertColumnDefinition("module", "parent_name", "nvarchar");
-            await AssertColumnDefinition("module", "parent_port", "tinyint");
-            await AssertColumnDefinition("module", "electronic_keying", "nvarchar");
-            await AssertColumnDefinition("module", "is_inhibited", "bit");
-            await AssertColumnDefinition("module", "is_major_fault_enabled", "bit");
-            await AssertColumnDefinition("module", "is_safety_enabled", "bit");
-            await AssertColumnDefinition("module", "ip_address", "nvarchar");
-            await AssertColumnDefinition("module", "slot_number", "tinyint");
-            await AssertColumnDefinition("module", "record_hash", "nvarchar");
-
-            await AssertPrimaryKey("module", "module_id");
-            await AssertUniqueIndex("module", "record_hash");
-            await AssertIndex("module", "module_name");
-            await AssertIndex("module", "parent_name");
         }
     }
 }

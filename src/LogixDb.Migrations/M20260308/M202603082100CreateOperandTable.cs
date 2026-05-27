@@ -23,9 +23,11 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("operand")
-            .OnColumn("instruction_key").Ascending()
-            .OnColumn("operand_index").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
+
+        Create.Index().OnTable("operand")
+            .OnColumn("instruction_key").Ascending()
+            .OnColumn("operand_index").Ascending();
     }
 }

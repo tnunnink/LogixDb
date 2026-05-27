@@ -4,6 +4,7 @@ INSERT OR IGNORE INTO operand (instruction_key,
                                operand_type,
                                operand_description,
                                is_destructive,
+                               is_native,
                                record_hash)
 SELECT t.instruction_key,
        t.operand_index,
@@ -11,6 +12,7 @@ SELECT t.instruction_key,
        t.operand_type,
        t.operand_description,
        t.is_destructive,
+       t.is_native,
        t.record_hash
 FROM temp_operand t;
 

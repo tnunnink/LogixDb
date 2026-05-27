@@ -5,7 +5,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ABL",
@@ -13,7 +14,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ABL",
@@ -21,7 +23,8 @@
     "Name": "character_count",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ABS",
@@ -29,7 +32,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ABS",
@@ -37,7 +41,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ACB",
@@ -45,7 +50,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACB",
@@ -53,7 +59,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ACB",
@@ -61,7 +68,8 @@
     "Name": "character_count",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACL",
@@ -69,7 +77,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACL",
@@ -77,7 +86,8 @@
     "Name": "clear_serial_port_read",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACL",
@@ -85,7 +95,8 @@
     "Name": "clear_serial_port_write",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACS",
@@ -93,7 +104,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACS",
@@ -101,7 +113,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ACOS",
@@ -109,7 +122,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ACOS",
@@ -117,7 +131,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ADD",
@@ -125,7 +140,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ADD",
@@ -133,7 +149,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ADD",
@@ -141,7 +158,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AHL",
@@ -149,7 +167,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AHL",
@@ -157,7 +176,8 @@
     "Name": "ANDMask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AHL",
@@ -165,7 +185,8 @@
     "Name": "ORMask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AHL",
@@ -173,7 +194,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AHL",
@@ -181,7 +203,8 @@
     "Name": "channel_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMA",
@@ -189,7 +212,8 @@
     "Name": "alma_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ALMA",
@@ -197,7 +221,8 @@
     "Name": "in",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMA",
@@ -205,7 +230,8 @@
     "Name": "program_acknowledge_all",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMA",
@@ -213,7 +239,8 @@
     "Name": "program_disable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMA",
@@ -221,7 +248,8 @@
     "Name": "program_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMD",
@@ -229,7 +257,8 @@
     "Name": "almd_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ALMD",
@@ -237,7 +266,8 @@
     "Name": "program_acknowledge",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMD",
@@ -245,7 +275,8 @@
     "Name": "program_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMD",
@@ -253,7 +284,8 @@
     "Name": "program_disable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ALMD",
@@ -261,7 +293,8 @@
     "Name": "program_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AND",
@@ -269,7 +302,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AND",
@@ -277,7 +311,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AND",
@@ -285,7 +320,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ARD",
@@ -293,7 +329,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ARD",
@@ -301,7 +338,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ARD",
@@ -309,7 +347,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ARD",
@@ -317,7 +356,8 @@
     "Name": "string_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ARD",
@@ -325,7 +365,8 @@
     "Name": "characters_read",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ARL",
@@ -333,7 +374,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ARL",
@@ -341,7 +383,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ARL",
@@ -349,7 +392,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ARL",
@@ -357,7 +401,8 @@
     "Name": "string_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ARL",
@@ -365,7 +410,8 @@
     "Name": "characters_read",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ASN",
@@ -373,7 +419,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ASN",
@@ -381,7 +428,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ASIN",
@@ -389,7 +437,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ASIN",
@@ -397,7 +446,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ATN",
@@ -405,7 +455,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ATN",
@@ -413,7 +464,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ATAN",
@@ -421,7 +473,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ATAN",
@@ -429,7 +482,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -437,7 +491,8 @@
     "Name": "avc_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -445,7 +500,8 @@
     "Name": "feedback_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -453,7 +509,8 @@
     "Name": "feedback_reation_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -461,7 +518,8 @@
     "Name": "delay_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -469,7 +527,8 @@
     "Name": "delay_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -477,7 +536,8 @@
     "Name": "output_follows_actuate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -485,7 +545,8 @@
     "Name": "actuate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -493,7 +554,8 @@
     "Name": "delay_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -501,7 +563,8 @@
     "Name": "feedback_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -509,7 +572,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -517,7 +581,8 @@
     "Name": "output_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVC",
@@ -525,7 +590,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -533,7 +599,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -541,7 +608,8 @@
     "Name": "dim_to_vary",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -549,7 +617,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -557,7 +626,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -565,7 +635,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AVE",
@@ -573,7 +644,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWA",
@@ -581,7 +653,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWA",
@@ -589,7 +662,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWA",
@@ -597,7 +671,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AWA",
@@ -605,7 +680,8 @@
     "Name": "string_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWA",
@@ -613,7 +689,8 @@
     "Name": "characters_sent",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWT",
@@ -621,7 +698,8 @@
     "Name": "channel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWT",
@@ -629,7 +707,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWT",
@@ -637,7 +716,8 @@
     "Name": "serial_port_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "AWT",
@@ -645,7 +725,8 @@
     "Name": "string_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "AWT",
@@ -653,7 +734,8 @@
     "Name": "characters_sent",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSL",
@@ -661,7 +743,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSL",
@@ -669,7 +752,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "BSL",
@@ -677,7 +761,8 @@
     "Name": "source_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSL",
@@ -685,7 +770,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSR",
@@ -693,7 +779,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSR",
@@ -701,7 +788,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "BSR",
@@ -709,7 +797,8 @@
     "Name": "source_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BSR",
@@ -717,7 +806,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BTD",
@@ -725,7 +815,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BTD",
@@ -733,7 +824,8 @@
     "Name": "source_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BTD",
@@ -741,7 +833,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "BTD",
@@ -749,7 +842,8 @@
     "Name": "destination_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "BTD",
@@ -757,7 +851,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -765,7 +860,8 @@
     "Name": "cbcm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -773,7 +869,8 @@
     "Name": "ack_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -781,7 +878,8 @@
     "Name": "mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -789,7 +887,8 @@
     "Name": "takeover_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -797,7 +896,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -805,7 +905,8 @@
     "Name": "safety_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -813,7 +914,8 @@
     "Name": "standard_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -821,7 +923,8 @@
     "Name": "arm_continuous",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -829,7 +932,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -837,7 +941,8 @@
     "Name": "stop_at_top",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -845,7 +950,8 @@
     "Name": "press_in_motion",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -853,7 +959,8 @@
     "Name": "motion_monitor_fault",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -861,7 +968,8 @@
     "Name": "slide_zone",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBCM",
@@ -869,7 +977,8 @@
     "Name": "safety_enable_ack",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -877,7 +986,8 @@
     "Name": "cbim_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -885,7 +995,8 @@
     "Name": "ack_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -893,7 +1004,8 @@
     "Name": "inch_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -901,7 +1013,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -909,7 +1022,8 @@
     "Name": "safety_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -917,7 +1031,8 @@
     "Name": "standard_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -925,7 +1040,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -933,7 +1049,8 @@
     "Name": "press_in_motion",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -941,7 +1058,8 @@
     "Name": "motion_monitor_fault",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -949,7 +1067,8 @@
     "Name": "slide_zone",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBIM",
@@ -957,7 +1076,8 @@
     "Name": "safety_enable_ack",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -965,7 +1085,8 @@
     "Name": "cbssm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -973,7 +1094,8 @@
     "Name": "ack_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -981,7 +1103,8 @@
     "Name": "takeover_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -989,7 +1112,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -997,7 +1121,8 @@
     "Name": "safety_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1005,7 +1130,8 @@
     "Name": "standard_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1013,7 +1139,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1021,7 +1148,8 @@
     "Name": "press_in_motion",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1029,7 +1157,8 @@
     "Name": "motion_monitor_fault",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1037,7 +1166,8 @@
     "Name": "slide_zone",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CBSSM",
@@ -1045,7 +1175,8 @@
     "Name": "saefty_enable_ack",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CLR",
@@ -1053,7 +1184,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CMP",
@@ -1061,7 +1193,8 @@
     "Name": "expression",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CONCAT",
@@ -1069,7 +1202,8 @@
     "Name": "sourceA",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CONCAT",
@@ -1077,7 +1211,8 @@
     "Name": "sourceB",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CONCAT",
@@ -1085,7 +1220,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "COP",
@@ -1093,7 +1229,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "COP",
@@ -1101,7 +1238,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "COP",
@@ -1109,7 +1247,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "COS",
@@ -1117,7 +1256,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "COS",
@@ -1125,7 +1265,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1133,7 +1274,8 @@
     "Name": "cpm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1141,7 +1283,8 @@
     "Name": "cam_profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1149,7 +1292,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1157,7 +1301,8 @@
     "Name": "brake_cam",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1165,7 +1310,8 @@
     "Name": "takeover_cam",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1173,7 +1319,8 @@
     "Name": "dynamic_cam",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1181,7 +1328,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1189,7 +1337,8 @@
     "Name": "reverse",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1197,7 +1346,8 @@
     "Name": "press_motion_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPM",
@@ -1205,7 +1355,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPS",
@@ -1213,7 +1364,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPS",
@@ -1221,7 +1373,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CPS",
@@ -1229,7 +1382,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CPT",
@@ -1237,7 +1391,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CPT",
@@ -1245,7 +1400,8 @@
     "Name": "expression",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1253,7 +1409,8 @@
     "Name": "crout_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1261,7 +1418,8 @@
     "Name": "feedback_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1269,7 +1427,8 @@
     "Name": "feedback_reaction_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1277,7 +1436,8 @@
     "Name": "actuate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1285,7 +1445,8 @@
     "Name": "feedback_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1293,7 +1454,8 @@
     "Name": "feedback_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1301,7 +1463,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1309,7 +1472,8 @@
     "Name": "output_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CROUT",
@@ -1317,7 +1481,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1325,7 +1490,8 @@
     "Name": "csm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1333,7 +1499,8 @@
     "Name": "mechanical_delay_timer",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1341,7 +1508,8 @@
     "Name": "max_pulse_period",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1349,7 +1517,8 @@
     "Name": "motion_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1357,7 +1526,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1365,7 +1535,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1373,7 +1544,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CSM",
@@ -1381,7 +1553,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTD",
@@ -1389,7 +1562,8 @@
     "Name": "counter",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTD",
@@ -1397,7 +1571,8 @@
     "Name": "preset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTD",
@@ -1405,7 +1580,8 @@
     "Name": "accum",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTU",
@@ -1413,7 +1589,8 @@
     "Name": "counter",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTU",
@@ -1421,7 +1598,8 @@
     "Name": "preset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "CTU",
@@ -1429,7 +1607,8 @@
     "Name": "accum",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1437,7 +1616,8 @@
     "Name": "dcm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1445,7 +1625,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1453,7 +1634,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1461,7 +1643,8 @@
     "Name": "descrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1469,7 +1652,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1477,7 +1661,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1485,7 +1670,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCM",
@@ -1493,7 +1679,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1501,7 +1688,8 @@
     "Name": "dcs_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1509,7 +1697,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1517,7 +1706,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1525,7 +1715,8 @@
     "Name": "discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1533,7 +1724,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1541,7 +1733,8 @@
     "Name": "cold_start_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1549,7 +1742,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1557,7 +1751,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1565,7 +1760,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCS",
@@ -1573,7 +1769,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1581,7 +1778,8 @@
     "Name": "dcsrt_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1589,7 +1787,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1597,7 +1796,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1605,7 +1805,8 @@
     "Name": "discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1613,7 +1814,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1621,7 +1823,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1629,7 +1832,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1637,7 +1841,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSRT",
@@ -1645,7 +1850,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1653,7 +1859,8 @@
     "Name": "dcst_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1661,7 +1868,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1669,7 +1877,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1677,7 +1886,8 @@
     "Name": "discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1685,7 +1895,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1693,7 +1904,8 @@
     "Name": "cold_start_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1701,7 +1913,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1709,7 +1922,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1717,7 +1931,8 @@
     "Name": "test_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1725,7 +1940,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCST",
@@ -1733,7 +1949,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1741,7 +1958,8 @@
     "Name": "dcstm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1749,7 +1967,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1757,7 +1976,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1765,7 +1985,8 @@
     "Name": "discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1773,7 +1994,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1781,7 +2003,8 @@
     "Name": "cold_start_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1789,7 +2012,8 @@
     "Name": "test_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1797,7 +2021,8 @@
     "Name": "test_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1805,7 +2030,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1813,7 +2039,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1821,7 +2048,8 @@
     "Name": "test_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1829,7 +2057,8 @@
     "Name": "mute",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1837,7 +2066,8 @@
     "Name": "muting_lamp_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1845,7 +2075,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTM",
@@ -1853,7 +2084,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1861,7 +2093,8 @@
     "Name": "dcstl_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1869,7 +2102,8 @@
     "Name": "safety_function",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1877,7 +2111,8 @@
     "Name": "input_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1885,7 +2120,8 @@
     "Name": "discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1893,7 +2129,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1901,7 +2138,8 @@
     "Name": "cold_start_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1909,7 +2147,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1917,7 +2156,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1925,7 +2165,8 @@
     "Name": "test_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1933,7 +2174,8 @@
     "Name": "unlock_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1941,7 +2183,8 @@
     "Name": "lock_feedback",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1949,7 +2192,8 @@
     "Name": "hazard_stopped",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1957,7 +2201,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DCSTL",
@@ -1965,7 +2210,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -1973,7 +2219,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -1981,7 +2228,8 @@
     "Name": "reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -1989,7 +2237,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -1997,7 +2246,8 @@
     "Name": "cmp_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -2005,7 +2255,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -2013,7 +2264,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -2021,7 +2273,8 @@
     "Name": "result_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -2029,7 +2282,8 @@
     "Name": "result_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DDT",
@@ -2037,7 +2291,8 @@
     "Name": "result_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DEG",
@@ -2045,7 +2300,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DEG",
@@ -2053,7 +2309,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DELETE",
@@ -2061,7 +2318,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DELETE",
@@ -2069,7 +2327,8 @@
     "Name": "quantity",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DELETE",
@@ -2077,7 +2336,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DELETE",
@@ -2085,7 +2345,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2093,7 +2354,8 @@
     "Name": "din_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2101,7 +2363,8 @@
     "Name": "reset_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2109,7 +2372,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2117,7 +2381,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2125,7 +2390,8 @@
     "Name": "circuit_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIN",
@@ -2133,7 +2399,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIV",
@@ -2141,7 +2408,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIV",
@@ -2149,7 +2417,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DIV",
@@ -2157,7 +2426,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DTOS",
@@ -2165,7 +2435,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DTOS",
@@ -2173,7 +2444,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "DTR",
@@ -2181,7 +2453,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DTR",
@@ -2189,7 +2462,8 @@
     "Name": "mask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "DTR",
@@ -2197,7 +2471,8 @@
     "Name": "reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2205,7 +2480,8 @@
     "Name": "enpen_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2213,7 +2489,8 @@
     "Name": "reset_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2221,7 +2498,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2229,7 +2507,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2237,7 +2516,8 @@
     "Name": "circuit_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ENPEN",
@@ -2245,7 +2525,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EOT",
@@ -2253,7 +2534,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2261,7 +2543,8 @@
     "Name": "epms_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2269,7 +2552,8 @@
     "Name": "input_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2277,7 +2561,8 @@
     "Name": "input_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2285,7 +2570,8 @@
     "Name": "input_3",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2293,7 +2579,8 @@
     "Name": "input_4",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2301,7 +2588,8 @@
     "Name": "input_5",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2309,7 +2597,8 @@
     "Name": "input_6",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2317,7 +2606,8 @@
     "Name": "input_7",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2325,7 +2615,8 @@
     "Name": "input_8",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2333,7 +2624,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2341,7 +2633,8 @@
     "Name": "lck",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EPMS",
@@ -2349,7 +2642,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EQU",
@@ -2357,7 +2651,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EQU",
@@ -2365,7 +2660,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EQ",
@@ -2373,7 +2669,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EQ",
@@ -2381,7 +2678,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2389,7 +2687,8 @@
     "Name": "estop_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2397,7 +2696,8 @@
     "Name": "reset_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2405,7 +2705,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2413,7 +2714,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2421,7 +2723,8 @@
     "Name": "circuit_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ESTOP",
@@ -2429,7 +2732,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EVENT",
@@ -2437,7 +2741,8 @@
     "Name": "task",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2445,7 +2750,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2453,7 +2759,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2461,7 +2768,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2469,7 +2777,8 @@
     "Name": "mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2477,7 +2786,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FAL",
@@ -2485,7 +2795,8 @@
     "Name": "expression",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2493,7 +2804,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2501,7 +2813,8 @@
     "Name": "reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2509,7 +2822,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2517,7 +2831,8 @@
     "Name": "cmp_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2525,7 +2840,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2533,7 +2849,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2541,7 +2858,8 @@
     "Name": "result_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2549,7 +2867,8 @@
     "Name": "result_length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FBC",
@@ -2557,7 +2876,8 @@
     "Name": "result_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFL",
@@ -2565,7 +2885,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFL",
@@ -2573,7 +2894,8 @@
     "Name": "FIFO",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFL",
@@ -2581,7 +2903,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FFL",
@@ -2589,7 +2912,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFL",
@@ -2597,7 +2921,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFU",
@@ -2605,7 +2930,8 @@
     "Name": "FIFO",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFU",
@@ -2613,7 +2939,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FFU",
@@ -2621,7 +2948,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FFU",
@@ -2629,7 +2957,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FFU",
@@ -2637,7 +2966,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FIND",
@@ -2645,7 +2975,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FIND",
@@ -2653,7 +2984,8 @@
     "Name": "search",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FIND",
@@ -2661,7 +2993,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FIND",
@@ -2669,7 +3002,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FLL",
@@ -2677,7 +3011,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FLL",
@@ -2685,7 +3020,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FLL",
@@ -2693,7 +3029,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FOR",
@@ -2701,7 +3038,8 @@
     "Name": "routine_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FOR",
@@ -2709,7 +3047,8 @@
     "Name": "index",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FOR",
@@ -2717,7 +3056,8 @@
     "Name": "initial_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FOR",
@@ -2725,7 +3065,8 @@
     "Name": "terminal_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FOR",
@@ -2733,7 +3074,8 @@
     "Name": "step_size",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2741,7 +3083,8 @@
     "Name": "fpms_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2749,7 +3092,8 @@
     "Name": "input_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2757,7 +3101,8 @@
     "Name": "input_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2765,7 +3110,8 @@
     "Name": "input_3",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2773,7 +3119,8 @@
     "Name": "input_4",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2781,7 +3128,8 @@
     "Name": "input_5",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FPMS",
@@ -2789,7 +3137,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FRD",
@@ -2797,7 +3146,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FRD",
@@ -2805,7 +3155,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2813,7 +3164,8 @@
     "Name": "fsbm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2821,7 +3173,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2829,7 +3182,8 @@
     "Name": "S1_S2_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2837,7 +3191,8 @@
     "Name": "S2_LC_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2845,7 +3200,8 @@
     "Name": "LC_S3_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2853,7 +3209,8 @@
     "Name": "S3_S4_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2861,7 +3218,8 @@
     "Name": "maximum_mute_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2869,7 +3227,8 @@
     "Name": "maximum_override_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2877,7 +3236,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2885,7 +3245,8 @@
     "Name": "light_curtain",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2893,7 +3254,8 @@
     "Name": "sensor_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2901,7 +3263,8 @@
     "Name": "sensor_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2909,7 +3272,8 @@
     "Name": "sensor_3",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2917,7 +3281,8 @@
     "Name": "sensor_4",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2925,7 +3290,8 @@
     "Name": "enable_mute",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2933,7 +3299,8 @@
     "Name": "override",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2941,7 +3308,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2949,7 +3317,8 @@
     "Name": "muting_lamp_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSBM",
@@ -2957,7 +3326,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSC",
@@ -2965,7 +3335,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "FSC",
@@ -2973,7 +3344,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSC",
@@ -2981,7 +3353,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSC",
@@ -2989,7 +3362,8 @@
     "Name": "mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "FSC",
@@ -2997,7 +3371,8 @@
     "Name": "expression",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GEQ",
@@ -3005,7 +3380,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GEQ",
@@ -3013,7 +3389,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GE",
@@ -3021,7 +3398,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GE",
@@ -3029,7 +3407,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GRT",
@@ -3037,7 +3416,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GRT",
@@ -3045,7 +3425,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GT",
@@ -3053,7 +3434,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GT",
@@ -3061,7 +3443,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GSV",
@@ -3069,7 +3452,8 @@
     "Name": "class_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GSV",
@@ -3077,7 +3461,8 @@
     "Name": "instance_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GSV",
@@ -3085,7 +3470,8 @@
     "Name": "attribute_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "GSV",
@@ -3093,7 +3479,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "INSERT",
@@ -3101,7 +3488,8 @@
     "Name": "sourceA",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "INSERT",
@@ -3109,7 +3497,8 @@
     "Name": "sourceB",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "INSERT",
@@ -3117,7 +3506,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "INSERT",
@@ -3125,7 +3515,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "IOT",
@@ -3133,7 +3524,8 @@
     "Name": "output_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "JMP",
@@ -3141,7 +3533,8 @@
     "Name": "label_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JSR",
@@ -3149,7 +3542,8 @@
     "Name": "routine_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JSR",
@@ -3157,7 +3551,8 @@
     "Name": "number_of_inputs",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JSR",
@@ -3165,7 +3560,8 @@
     "Name": "parameters",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JXR",
@@ -3173,7 +3569,8 @@
     "Name": "external_routine_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JXR",
@@ -3181,7 +3578,8 @@
     "Name": "external_routine_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "JXR",
@@ -3189,7 +3587,8 @@
     "Name": "parameter",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "JXR",
@@ -3197,7 +3596,8 @@
     "Name": "return_parameter",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LBL",
@@ -3205,7 +3605,8 @@
     "Name": "label_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3213,7 +3614,8 @@
     "Name": "lc_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3221,7 +3623,8 @@
     "Name": "reset_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3229,7 +3632,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3237,7 +3641,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3245,7 +3650,8 @@
     "Name": "input_filter_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3253,7 +3659,8 @@
     "Name": "mute_light_curtain",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3261,7 +3668,8 @@
     "Name": "circuit_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LC",
@@ -3269,7 +3677,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LEQ",
@@ -3277,7 +3686,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LEQ",
@@ -3285,7 +3695,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LE",
@@ -3293,7 +3704,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LE",
@@ -3301,7 +3713,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LES",
@@ -3309,7 +3722,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LES",
@@ -3317,7 +3731,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LT",
@@ -3325,7 +3740,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LT",
@@ -3333,7 +3749,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFL",
@@ -3341,7 +3758,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFL",
@@ -3349,7 +3767,8 @@
     "Name": "LIFO",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFL",
@@ -3357,7 +3776,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LFL",
@@ -3365,7 +3785,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFL",
@@ -3373,7 +3794,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFU",
@@ -3381,7 +3803,8 @@
     "Name": "LIFO",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFU",
@@ -3389,7 +3812,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LFU",
@@ -3397,7 +3821,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LFU",
@@ -3405,7 +3830,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LFU",
@@ -3413,7 +3839,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIM",
@@ -3421,7 +3848,8 @@
     "Name": "low_limit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIM",
@@ -3429,7 +3857,8 @@
     "Name": "test",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIM",
@@ -3437,7 +3866,8 @@
     "Name": "high_limit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIMIT",
@@ -3445,7 +3875,8 @@
     "Name": "low_limit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIMIT",
@@ -3453,7 +3884,8 @@
     "Name": "test",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LIMIT",
@@ -3461,7 +3893,8 @@
     "Name": "high_limit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LN",
@@ -3469,7 +3902,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LN",
@@ -3477,7 +3911,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LOG",
@@ -3485,7 +3920,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LOG",
@@ -3493,7 +3929,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "LOWER",
@@ -3501,7 +3938,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "LOWER",
@@ -3509,7 +3947,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAAT",
@@ -3517,7 +3956,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAAT",
@@ -3525,7 +3965,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAFR",
@@ -3533,7 +3974,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAFR",
@@ -3541,7 +3983,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3549,7 +3992,8 @@
     "Name": "slave_axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3557,7 +4001,8 @@
     "Name": "master_axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3565,7 +4010,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3573,7 +4019,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3581,7 +4028,8 @@
     "Name": "ratio",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3589,7 +4037,8 @@
     "Name": "slave_counts",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3597,7 +4046,8 @@
     "Name": "master_counts",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3605,7 +4055,8 @@
     "Name": "master_reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3613,7 +4064,8 @@
     "Name": "ratio_format",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3621,7 +4073,8 @@
     "Name": "clutch",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3629,7 +4082,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAG",
@@ -3637,7 +4091,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAH",
@@ -3645,7 +4100,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAH",
@@ -3653,7 +4109,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAHD",
@@ -3661,7 +4118,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAHD",
@@ -3669,7 +4127,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAHD",
@@ -3677,7 +4136,8 @@
     "Name": "diagnostic_test",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAHD",
@@ -3685,7 +4145,8 @@
     "Name": "observed_direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3693,7 +4154,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3701,7 +4163,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3709,7 +4172,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3717,7 +4181,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3725,7 +4190,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3733,7 +4199,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3741,7 +4208,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3749,7 +4217,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3757,7 +4226,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3765,7 +4235,8 @@
     "Name": "profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3773,7 +4244,8 @@
     "Name": "merge",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAJ",
@@ -3781,7 +4253,8 @@
     "Name": "merge_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3789,7 +4262,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3797,7 +4271,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3805,7 +4280,8 @@
     "Name": "move_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3813,7 +4289,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3821,7 +4298,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3829,7 +4307,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3837,7 +4316,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3845,7 +4325,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3853,7 +4334,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3861,7 +4343,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3869,7 +4352,8 @@
     "Name": "profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3877,7 +4361,8 @@
     "Name": "merge",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAM",
@@ -3885,7 +4370,8 @@
     "Name": "merge_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3893,7 +4379,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3901,7 +4388,8 @@
     "Name": "execution_target",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3909,7 +4397,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3917,7 +4406,8 @@
     "Name": "output",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3925,7 +4415,8 @@
     "Name": "input",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3933,7 +4424,8 @@
     "Name": "output_cam",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3941,7 +4433,8 @@
     "Name": "cam_start_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3949,7 +4442,8 @@
     "Name": "cam_end_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3957,7 +4451,8 @@
     "Name": "output_compensation",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3965,7 +4460,8 @@
     "Name": "execution_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3973,7 +4469,8 @@
     "Name": "execution_schedule",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3981,7 +4478,8 @@
     "Name": "axis_arm_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3989,7 +4487,8 @@
     "Name": "cam_arm_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAOC",
@@ -3997,7 +4496,8 @@
     "Name": "reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4005,7 +4505,8 @@
     "Name": "slave_axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4013,7 +4514,8 @@
     "Name": "master_axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4021,7 +4523,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4029,7 +4532,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4037,7 +4541,8 @@
     "Name": "cam_profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4045,7 +4550,8 @@
     "Name": "slave_scaling",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4053,7 +4559,8 @@
     "Name": "master_scaling",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4061,7 +4568,8 @@
     "Name": "execution_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4069,7 +4577,8 @@
     "Name": "execution_schedule",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4077,7 +4586,8 @@
     "Name": "master_lock_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4085,7 +4595,8 @@
     "Name": "cam_lock_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4093,7 +4604,8 @@
     "Name": "master_reference",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAPC",
@@ -4101,7 +4613,8 @@
     "Name": "master_direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4109,7 +4622,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4117,7 +4631,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4125,7 +4640,8 @@
     "Name": "trigger_condition",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4133,7 +4649,8 @@
     "Name": "windowed_registration",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4141,7 +4658,8 @@
     "Name": "minimum_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAR",
@@ -4149,7 +4667,8 @@
     "Name": "maximum_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4157,7 +4676,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4165,7 +4685,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4173,7 +4694,8 @@
     "Name": "stop_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4181,7 +4703,8 @@
     "Name": "change_decel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4189,7 +4712,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAS",
@@ -4197,7 +4721,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MASD",
@@ -4205,7 +4730,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MASD",
@@ -4213,7 +4739,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MASR",
@@ -4221,7 +4748,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MASR",
@@ -4229,7 +4757,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4237,7 +4766,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4245,7 +4775,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4253,7 +4784,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4261,7 +4793,8 @@
     "Name": "cam_profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4269,7 +4802,8 @@
     "Name": "distance_scaling",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4277,7 +4811,8 @@
     "Name": "time_scaling",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4285,7 +4820,8 @@
     "Name": "execution_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MATC",
@@ -4293,7 +4829,8 @@
     "Name": "execution_schedule",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAW",
@@ -4301,7 +4838,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAW",
@@ -4309,7 +4847,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MAW",
@@ -4317,7 +4856,8 @@
     "Name": "trigger_condition",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MAW",
@@ -4325,7 +4865,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4333,7 +4874,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4341,7 +4883,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4349,7 +4892,8 @@
     "Name": "motion_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4357,7 +4901,8 @@
     "Name": "change_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4365,7 +4910,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4373,7 +4919,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4381,7 +4928,8 @@
     "Name": "change_accel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4389,7 +4937,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4397,7 +4946,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4405,7 +4955,8 @@
     "Name": "change_decel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4413,7 +4964,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4421,7 +4973,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCD",
@@ -4429,7 +4982,8 @@
     "Name": "scope",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4437,7 +4991,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4445,7 +5000,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4453,7 +5009,8 @@
     "Name": "move_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4461,7 +5018,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4469,7 +5027,8 @@
     "Name": "circle_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4477,7 +5036,8 @@
     "Name": "radius",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4485,7 +5045,8 @@
     "Name": "direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4493,7 +5054,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4501,7 +5063,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4509,7 +5072,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4517,7 +5081,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4525,7 +5090,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4533,7 +5099,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4541,7 +5108,8 @@
     "Name": "profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4549,7 +5117,8 @@
     "Name": "termination_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4557,7 +5126,8 @@
     "Name": "merge",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCM",
@@ -4565,7 +5135,8 @@
     "Name": "merge_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4573,7 +5144,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4581,7 +5153,8 @@
     "Name": "cam",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4589,7 +5162,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4597,7 +5171,8 @@
     "Name": "start_slope",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4605,7 +5180,8 @@
     "Name": "end_slope",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCCP",
@@ -4613,7 +5189,8 @@
     "Name": "cam_profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4621,7 +5198,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4629,7 +5207,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4637,7 +5216,8 @@
     "Name": "move_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4645,7 +5225,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4653,7 +5234,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4661,7 +5243,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4669,7 +5252,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4677,7 +5261,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4685,7 +5270,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4693,7 +5279,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4701,7 +5288,8 @@
     "Name": "profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4709,7 +5297,8 @@
     "Name": "termination_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4717,7 +5306,8 @@
     "Name": "merge",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCLM",
@@ -4725,7 +5315,8 @@
     "Name": "merge_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4733,7 +5324,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4741,7 +5333,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4749,7 +5342,8 @@
     "Name": "motion_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4757,7 +5351,8 @@
     "Name": "change_speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4765,7 +5360,8 @@
     "Name": "speed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4773,7 +5369,8 @@
     "Name": "change_accel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4781,7 +5378,8 @@
     "Name": "accel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4789,7 +5387,8 @@
     "Name": "change_decel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4797,7 +5396,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4805,7 +5405,8 @@
     "Name": "speed_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4813,7 +5414,8 @@
     "Name": "accel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCD",
@@ -4821,7 +5423,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4829,7 +5432,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4837,7 +5441,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4845,7 +5450,8 @@
     "Name": "stop_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4853,7 +5459,8 @@
     "Name": "change_decel",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4861,7 +5468,8 @@
     "Name": "decel_rate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCS",
@@ -4869,7 +5477,8 @@
     "Name": "decel_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSD",
@@ -4877,7 +5486,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSD",
@@ -4885,7 +5495,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCSR",
@@ -4893,7 +5504,8 @@
     "Name": "coordinate_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSR",
@@ -4901,7 +5513,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4909,7 +5522,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4917,7 +5531,8 @@
     "Name": "cam_profile",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4925,7 +5540,8 @@
     "Name": "master_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4933,7 +5549,8 @@
     "Name": "slave_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4941,7 +5558,8 @@
     "Name": "slope_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCSV",
@@ -4949,7 +5567,8 @@
     "Name": "slope_derivative",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCT",
@@ -4957,7 +5576,8 @@
     "Name": "source_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCT",
@@ -4965,7 +5585,8 @@
     "Name": "target_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCT",
@@ -4973,7 +5594,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCT",
@@ -4981,7 +5603,8 @@
     "Name": "orientation",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCT",
@@ -4989,7 +5612,8 @@
     "Name": "translation",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -4997,7 +5621,8 @@
     "Name": "source_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5005,7 +5630,8 @@
     "Name": "target_system",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5013,7 +5639,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5021,7 +5648,8 @@
     "Name": "orientation",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5029,7 +5657,8 @@
     "Name": "translation",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5037,7 +5666,8 @@
     "Name": "transform_direction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5045,7 +5675,8 @@
     "Name": "reference_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MCTP",
@@ -5053,7 +5684,8 @@
     "Name": "transform_position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDF",
@@ -5061,7 +5693,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDF",
@@ -5069,7 +5702,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MDO",
@@ -5077,7 +5711,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDO",
@@ -5085,7 +5720,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MDO",
@@ -5093,7 +5729,8 @@
     "Name": "drive_output",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDO",
@@ -5101,7 +5738,8 @@
     "Name": "drive_units",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDOC",
@@ -5109,7 +5747,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDOC",
@@ -5117,7 +5756,8 @@
     "Name": "execution_target",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDOC",
@@ -5125,7 +5765,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MDOC",
@@ -5133,7 +5774,8 @@
     "Name": "disarm_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDR",
@@ -5141,7 +5783,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDR",
@@ -5149,7 +5792,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MDW",
@@ -5157,7 +5801,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MDW",
@@ -5165,7 +5810,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MEQ",
@@ -5173,7 +5819,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MEQ",
@@ -5181,7 +5828,8 @@
     "Name": "mask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MEQ",
@@ -5189,7 +5837,8 @@
     "Name": "compare",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGS",
@@ -5197,7 +5846,8 @@
     "Name": "group",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGS",
@@ -5205,7 +5855,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MGS",
@@ -5213,7 +5864,8 @@
     "Name": "stop_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGSD",
@@ -5221,7 +5873,8 @@
     "Name": "group",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGSD",
@@ -5229,7 +5882,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MGSP",
@@ -5237,7 +5891,8 @@
     "Name": "group",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGSP",
@@ -5245,7 +5900,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MGSR",
@@ -5253,7 +5909,8 @@
     "Name": "group",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MGSR",
@@ -5261,7 +5918,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MID",
@@ -5269,7 +5927,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MID",
@@ -5277,7 +5936,8 @@
     "Name": "quantity",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MID",
@@ -5285,7 +5945,8 @@
     "Name": "start",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MID",
@@ -5293,7 +5954,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5301,7 +5963,8 @@
     "Name": "mmvc_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5309,7 +5972,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5317,7 +5981,8 @@
     "Name": "keyswitch",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5325,7 +5990,8 @@
     "Name": "bottom",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5333,7 +5999,8 @@
     "Name": "flywheel_stopped",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5341,7 +6008,8 @@
     "Name": "safety_enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5349,7 +6017,8 @@
     "Name": "actuate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5357,7 +6026,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5365,7 +6035,8 @@
     "Name": "output_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MMVC",
@@ -5373,7 +6044,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MOD",
@@ -5381,7 +6053,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MOD",
@@ -5389,7 +6062,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MOD",
@@ -5397,7 +6071,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MOV",
@@ -5405,7 +6080,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MOV",
@@ -5413,7 +6089,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MOVE",
@@ -5421,7 +6098,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MOVE",
@@ -5429,7 +6107,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MRAT",
@@ -5437,7 +6116,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRAT",
@@ -5445,7 +6125,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MRHD",
@@ -5453,7 +6134,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRHD",
@@ -5461,7 +6143,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MRHD",
@@ -5469,7 +6152,8 @@
     "Name": "diagnostic_test",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRP",
@@ -5477,7 +6161,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRP",
@@ -5485,7 +6170,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MRP",
@@ -5493,7 +6179,8 @@
     "Name": "type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRP",
@@ -5501,7 +6188,8 @@
     "Name": "position_select",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MRP",
@@ -5509,7 +6197,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MSF",
@@ -5517,7 +6206,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MSF",
@@ -5525,7 +6215,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MSG",
@@ -5533,7 +6224,8 @@
     "Name": "message_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MSO",
@@ -5541,7 +6233,8 @@
     "Name": "axis",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MSO",
@@ -5549,7 +6242,8 @@
     "Name": "motion_control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MUL",
@@ -5557,7 +6251,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MUL",
@@ -5565,7 +6260,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MUL",
@@ -5573,7 +6269,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5581,7 +6278,8 @@
     "Name": "mvc_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5589,7 +6287,8 @@
     "Name": "feedback_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5597,7 +6296,8 @@
     "Name": "feedback_reaction_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5605,7 +6305,8 @@
     "Name": "actuate",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5613,7 +6314,8 @@
     "Name": "feedback_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5621,7 +6323,8 @@
     "Name": "feedback_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5629,7 +6332,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5637,7 +6341,8 @@
     "Name": "output_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVC",
@@ -5645,7 +6350,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVM",
@@ -5653,7 +6359,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVM",
@@ -5661,7 +6368,8 @@
     "Name": "mask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "MVM",
@@ -5669,7 +6377,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "NEG",
@@ -5677,7 +6386,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NEG",
@@ -5685,7 +6395,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "NEQ",
@@ -5693,7 +6404,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NEQ",
@@ -5701,7 +6413,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NE",
@@ -5709,7 +6422,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NE",
@@ -5717,7 +6431,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NOT",
@@ -5725,7 +6440,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "NOT",
@@ -5733,7 +6449,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ONS",
@@ -5741,7 +6458,8 @@
     "Name": "storage_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OR",
@@ -5749,7 +6467,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "OR",
@@ -5757,7 +6476,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "OR",
@@ -5765,7 +6485,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OSF",
@@ -5773,7 +6494,8 @@
     "Name": "storage_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OSF",
@@ -5781,7 +6503,8 @@
     "Name": "output_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OSR",
@@ -5789,7 +6512,8 @@
     "Name": "storage_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OSR",
@@ -5797,7 +6521,8 @@
     "Name": "output_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OTE",
@@ -5805,7 +6530,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OTL",
@@ -5813,7 +6539,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "OTU",
@@ -5821,7 +6548,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "PATT",
@@ -5829,7 +6557,8 @@
     "Name": "phase_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PATT",
@@ -5837,7 +6566,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PCLF",
@@ -5845,7 +6575,8 @@
     "Name": "phase_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PCMD",
@@ -5853,7 +6584,8 @@
     "Name": "phase_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PCMD",
@@ -5861,7 +6593,8 @@
     "Name": "command",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PCMD",
@@ -5869,7 +6602,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PDET",
@@ -5877,7 +6611,8 @@
     "Name": "phase_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PFL",
@@ -5885,7 +6620,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5893,7 +6629,8 @@
     "Name": "PID",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5901,7 +6638,8 @@
     "Name": "process_variable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5909,7 +6647,8 @@
     "Name": "tieback",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5917,7 +6656,8 @@
     "Name": "control_variable",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5925,7 +6665,8 @@
     "Name": "pid_master_loop",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5933,7 +6674,8 @@
     "Name": "inhold_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PID",
@@ -5941,7 +6683,8 @@
     "Name": "inhold_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "POVR",
@@ -5949,7 +6692,8 @@
     "Name": "phase_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "POVR",
@@ -5957,7 +6701,8 @@
     "Name": "command",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "POVR",
@@ -5965,7 +6710,8 @@
     "Name": "result",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PXRQ",
@@ -5973,7 +6719,8 @@
     "Name": "phase_instruction",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PXRQ",
@@ -5981,7 +6728,8 @@
     "Name": "external_request",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "PXRQ",
@@ -5989,7 +6737,8 @@
     "Name": "data_value",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RAD",
@@ -5997,7 +6746,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RAD",
@@ -6005,7 +6755,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "RES",
@@ -6013,7 +6764,8 @@
     "Name": "structure",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RET",
@@ -6021,7 +6773,8 @@
     "Name": "outputs",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6029,7 +6782,8 @@
     "Name": "rin_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6037,7 +6791,8 @@
     "Name": "reset_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6045,7 +6800,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6053,7 +6809,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6061,7 +6818,8 @@
     "Name": "circuit_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RIN",
@@ -6069,7 +6827,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6077,7 +6836,8 @@
     "Name": "rout_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6085,7 +6845,8 @@
     "Name": "feedback_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6093,7 +6854,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6101,7 +6863,8 @@
     "Name": "feedback_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6109,7 +6872,8 @@
     "Name": "feedback_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "ROUT",
@@ -6117,7 +6881,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RTO",
@@ -6125,7 +6890,8 @@
     "Name": "timer",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RTO",
@@ -6133,7 +6899,8 @@
     "Name": "preset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RTO",
@@ -6141,7 +6908,8 @@
     "Name": "accum",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RTOS",
@@ -6149,7 +6917,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "RTOS",
@@ -6157,7 +6926,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SBR",
@@ -6165,7 +6935,8 @@
     "Name": "inputs",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SFP",
@@ -6173,7 +6944,8 @@
     "Name": "SFC_routine_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SFP",
@@ -6181,7 +6953,8 @@
     "Name": "target_state",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SFR",
@@ -6189,7 +6962,8 @@
     "Name": "SFC_routine_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SFR",
@@ -6197,7 +6971,8 @@
     "Name": "step_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SIN",
@@ -6205,7 +6980,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SIN",
@@ -6213,7 +6989,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SIZE",
@@ -6221,7 +6998,8 @@
     "Name": "souce",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SIZE",
@@ -6229,7 +7007,8 @@
     "Name": "dimension_to_vary",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SIZE",
@@ -6237,7 +7016,8 @@
     "Name": "size",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6245,7 +7025,8 @@
     "Name": "smat_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6253,7 +7034,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6261,7 +7043,8 @@
     "Name": "short_circuit_detect_delay_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6269,7 +7052,8 @@
     "Name": "channel_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6277,7 +7061,8 @@
     "Name": "channel_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6285,7 +7070,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SMAT",
@@ -6293,7 +7079,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6301,7 +7088,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6309,7 +7097,8 @@
     "Name": "mask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6317,7 +7106,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6325,7 +7115,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6333,7 +7124,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQI",
@@ -6341,7 +7133,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQL",
@@ -6349,7 +7142,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQL",
@@ -6357,7 +7151,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQL",
@@ -6365,7 +7160,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SQL",
@@ -6373,7 +7169,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQL",
@@ -6381,7 +7178,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6389,7 +7187,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6397,7 +7196,8 @@
     "Name": "mask",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6405,7 +7205,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6413,7 +7214,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6421,7 +7223,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQO",
@@ -6429,7 +7232,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQR",
@@ -6437,7 +7241,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQR",
@@ -6445,7 +7250,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SQRT",
@@ -6453,7 +7259,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SQRT",
@@ -6461,7 +7268,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SRT",
@@ -6469,7 +7277,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SRT",
@@ -6477,7 +7286,8 @@
     "Name": "dim_to_vary",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SRT",
@@ -6485,7 +7295,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SRT",
@@ -6493,7 +7304,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SRT",
@@ -6501,7 +7313,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SSV",
@@ -6509,7 +7322,8 @@
     "Name": "class_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SSV",
@@ -6517,7 +7331,8 @@
     "Name": "instance_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SSV",
@@ -6525,7 +7340,8 @@
     "Name": "attribute_name",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SSV",
@@ -6533,7 +7349,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6541,7 +7358,8 @@
     "Name": "array",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6549,7 +7367,8 @@
     "Name": "dim_to_vary",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6557,7 +7376,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6565,7 +7385,8 @@
     "Name": "control",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6573,7 +7394,8 @@
     "Name": "length",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STD",
@@ -6581,7 +7403,8 @@
     "Name": "position",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STOD",
@@ -6589,7 +7412,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STOD",
@@ -6597,7 +7421,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "STOR",
@@ -6605,7 +7430,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "STOR",
@@ -6613,7 +7439,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SUB",
@@ -6621,7 +7448,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SUB",
@@ -6629,7 +7457,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SUB",
@@ -6637,7 +7466,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "SWPB",
@@ -6645,7 +7475,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SWPB",
@@ -6653,7 +7484,8 @@
     "Name": "order_mode",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "SWPB",
@@ -6661,7 +7493,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TAN",
@@ -6669,7 +7502,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TAN",
@@ -6677,7 +7511,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6685,7 +7520,8 @@
     "Name": "thrs_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6693,7 +7529,8 @@
     "Name": "active_pin_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6701,7 +7538,8 @@
     "Name": "active_pin",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6709,7 +7547,8 @@
     "Name": "right_button_normally_open",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6717,7 +7556,8 @@
     "Name": "right_button_normally_closed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6725,7 +7565,8 @@
     "Name": "left_button_normally_open",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6733,7 +7574,8 @@
     "Name": "left_button_normally_closed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRS",
@@ -6741,7 +7583,8 @@
     "Name": "fault_reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6749,7 +7592,8 @@
     "Name": "thrse_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6757,7 +7601,8 @@
     "Name": "discprepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6765,7 +7610,8 @@
     "Name": "enable",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6773,7 +7619,8 @@
     "Name": "disconnected",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6781,7 +7628,8 @@
     "Name": "right_button_normally_open",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6789,7 +7637,8 @@
     "Name": "right_button_normally_closed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6797,7 +7646,8 @@
     "Name": "left_button_normally_open",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6805,7 +7655,8 @@
     "Name": "left_button_normally_closed",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6813,7 +7664,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "THRSE",
@@ -6821,7 +7673,8 @@
     "Name": "resest",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TOD",
@@ -6829,7 +7682,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TOD",
@@ -6837,7 +7691,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TOF",
@@ -6845,7 +7700,8 @@
     "Name": "timer",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TOF",
@@ -6853,7 +7709,8 @@
     "Name": "preset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TOF",
@@ -6861,7 +7718,8 @@
     "Name": "accum",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TON",
@@ -6869,7 +7727,8 @@
     "Name": "timer",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TON",
@@ -6877,7 +7736,8 @@
     "Name": "preset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TON",
@@ -6885,7 +7745,8 @@
     "Name": "accum",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TRN",
@@ -6893,7 +7754,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TRN",
@@ -6901,7 +7763,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TRUNC",
@@ -6909,7 +7772,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TRUNC",
@@ -6917,7 +7781,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6925,7 +7790,8 @@
     "Name": "tsam_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6933,7 +7799,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6941,7 +7808,8 @@
     "Name": "S1_S2_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6949,7 +7817,8 @@
     "Name": "S2_LC_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6957,7 +7826,8 @@
     "Name": "maximum_mute_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6965,7 +7835,8 @@
     "Name": "maximum_override_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6973,7 +7844,8 @@
     "Name": "light_curtain",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6981,7 +7853,8 @@
     "Name": "sensor_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6989,7 +7862,8 @@
     "Name": "sensor_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -6997,7 +7871,8 @@
     "Name": "enable_mute",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -7005,7 +7880,8 @@
     "Name": "override",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -7013,7 +7889,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -7021,7 +7898,8 @@
     "Name": "muting_lamp_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSAM",
@@ -7029,7 +7907,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7037,7 +7916,8 @@
     "Name": "tssm_tag",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7045,7 +7925,8 @@
     "Name": "restart_type",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7053,7 +7934,8 @@
     "Name": "S1_S2_discrepancy_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7061,7 +7943,8 @@
     "Name": "S1_S2_LC_minimum_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7069,7 +7952,8 @@
     "Name": "S1_S2_LC_maximum_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7077,7 +7961,8 @@
     "Name": "maximum_mute_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7085,7 +7970,8 @@
     "Name": "maximum_override_time",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7093,7 +7979,8 @@
     "Name": "light_curtain",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7101,7 +7988,8 @@
     "Name": "sensor_1",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7109,7 +7997,8 @@
     "Name": "sensor_2",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7117,7 +8006,8 @@
     "Name": "enable_mute",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7125,7 +8015,8 @@
     "Name": "override",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7133,7 +8024,8 @@
     "Name": "input_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7141,7 +8033,8 @@
     "Name": "muting_lamp_status",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "TSSM",
@@ -7149,7 +8042,8 @@
     "Name": "reset",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "UPPER",
@@ -7157,7 +8051,8 @@
     "Name": "source",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "UPPER",
@@ -7165,7 +8060,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "XIC",
@@ -7173,7 +8069,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XIO",
@@ -7181,7 +8078,8 @@
     "Name": "data_bit",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XOR",
@@ -7189,7 +8087,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XOR",
@@ -7197,7 +8096,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XOR",
@@ -7205,7 +8105,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "XPY",
@@ -7213,7 +8114,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XPY",
@@ -7221,7 +8123,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "XPY",
@@ -7229,7 +8132,8 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   },
   {
     "Key": "EXPT",
@@ -7237,7 +8141,8 @@
     "Name": "source_A",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EXPT",
@@ -7245,7 +8150,8 @@
     "Name": "source_B",
     "Type": null,
     "Description": null,
-    "Destructive": false
+    "Destructive": false,
+    "Native": true
   },
   {
     "Key": "EXPT",
@@ -7253,6 +8159,7 @@
     "Name": "destination",
     "Type": null,
     "Description": null,
-    "Destructive": true
+    "Destructive": true,
+    "Native": true
   }
 ]

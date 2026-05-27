@@ -8,6 +8,7 @@ WHEN NOT MATCHED THEN
             operand_type,
             operand_description,
             is_destructive,
+            is_native,
             record_hash)
     VALUES (source.instruction_key,
             source.operand_index,
@@ -15,6 +16,7 @@ WHEN NOT MATCHED THEN
             source.operand_type,
             source.operand_description,
             source.is_destructive,
+            source.is_native,
             source.record_hash);
 
 INSERT INTO dbo.target_version_map (version_id, record_id, component_id)

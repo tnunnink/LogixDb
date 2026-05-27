@@ -20,6 +20,7 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
             /*.WithColumn("operand_format").AsString(32).Nullable()*/
             .WithColumn("operand_description").AsString(2000).Nullable()
             .WithColumn("is_destructive").AsBoolean().NotNullable()
+            .WithColumn("is_native").AsBoolean().NotNullable().WithDefaultValue(false)
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("operand")

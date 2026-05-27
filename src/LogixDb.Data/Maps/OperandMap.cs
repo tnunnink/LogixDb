@@ -14,6 +14,7 @@ public class OperandMap : TableMap<OperandRecord>
         ColumnMap<OperandRecord>.For(r => r.Type, "operand_type"),
         ColumnMap<OperandRecord>.For(r => r.Description, "operand_description"),
         ColumnMap<OperandRecord>.For(r => r.Destructive, "is_destructive"),
+        ColumnMap<OperandRecord>.For(r => r.Native, "is_native"),
         ColumnMap<OperandRecord>.RecordHash(this)
     ];
 }
@@ -24,5 +25,6 @@ public record OperandRecord(
     string Name,
     string Type,
     string? Description,
-    bool Destructive
+    bool Destructive,
+    bool Native = false
 );

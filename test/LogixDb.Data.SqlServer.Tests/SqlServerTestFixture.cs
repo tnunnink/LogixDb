@@ -166,6 +166,30 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
+    /// Verifies the existence of a specific function in the database by querying the
+    /// INFORMATION_SCHEMA.ROUTINES view. If the function does not exist, an exception is thrown.
+    /// </summary>
+    /// <param name="functionName">The name of the function to check for existence in the database.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified function does not exist in the database.</exception>
+    protected static async Task AssertFunctionExists(string functionName)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1
+            FROM INFORMATION_SCHEMA.ROUTINES
+            WHERE ROUTINE_NAME = @functionName AND ROUTINE_TYPE = 'FUNCTION'
+            """,
+            new { functionName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"Function '{functionName}' was not found in the database.");
+    }
+
+    /// <summary>
     /// Verifies the existence and data type for the specified column in a given table within the database.
     /// Throws an assertion exception if the column does not exist or its data type does not match the expected type.
     /// </summary>

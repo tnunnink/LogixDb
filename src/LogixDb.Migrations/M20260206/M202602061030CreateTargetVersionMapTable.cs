@@ -24,6 +24,10 @@ public class M202602061030CreateTargetVersionMapTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("target_version_map")
+            .OnColumn("version_id").Ascending()
+            .OnColumn("component_id").Ascending();
+        
+        Create.Index().OnTable("target_version_map")
             .OnColumn("record_id").Ascending()
             .OnColumn("component_id").Ascending();
     }

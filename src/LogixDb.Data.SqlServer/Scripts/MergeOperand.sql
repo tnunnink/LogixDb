@@ -1,8 +1,6 @@
 MERGE INTO dbo.operand AS target
 USING #temp_operand AS source
-ON target.instruction_key = source.instruction_key
-    AND target.operand_index = source.operand_index
-    AND target.record_hash = source.record_hash
+ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT (instruction_key,
             operand_index,
@@ -18,3 +16,9 @@ WHEN NOT MATCHED THEN
             source.operand_description,
             source.is_destructive,
             source.record_hash);
+
+INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
+SELECT @VersionId,
+       (SELECT operand_id FROM dbo.operand WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM dbo.target_component WHERE component_name = 'operand')
+FROM #temp_operand t;

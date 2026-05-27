@@ -13,3 +13,9 @@ SELECT t.instruction_key,
        t.is_destructive,
        t.record_hash
 FROM temp_operand t;
+
+INSERT INTO target_version_map (version_id, record_id, component_id)
+SELECT @VersionId,
+       (SELECT operand_id FROM operand WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM target_component WHERE component_name = 'operand')
+FROM temp_operand t;

@@ -1,4 +1,5 @@
 using System.Data;
+using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
 
@@ -15,7 +16,8 @@ public class RoutineTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var routines = target.GetSource().Programs.SelectMany(p => p.Routines).ToList();
+        // Should get all program and AOI rnug logic.
+        var routines = target.GetSource().Query<Routine>().ToList();
         yield return _map.GenerateTable(routines);
     }
 }

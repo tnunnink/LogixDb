@@ -16,10 +16,11 @@ public class RoutineMap : TableMap<Routine>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Routine>> Columns =>
     [
-        ColumnMap<Routine>.For(r => r.Program?.Name, "program_name"),
+        ColumnMap<Routine>.For(r => r.Reference.Scope.Container, "container_name"),
         ColumnMap<Routine>.For(r => r.Name, "routine_name"),
         ColumnMap<Routine>.For(r => r.Description, "routine_description"),
         ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
+        ColumnMap<Routine>.For(r => r.Reference.Scope.IsAoi, "is_definition"),
         ColumnMap<Routine>.For(r => r.HashElement(), "content_hash"),
         ColumnMap<Routine>.RecordHash(this)
     ];

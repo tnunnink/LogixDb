@@ -23,15 +23,6 @@ public class M202605271011CreateGetVersionedTagChildren : Migration
                     """);
 
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedTagValues (@VersionId INT)
-                    RETURNS TABLE AS RETURN (
-                        SELECT tv.* 
-                        FROM dbo.tag_value tv
-                        WHERE tv.version_id = @VersionId
-                    );
-                    """);
-
-        Execute.Sql("""
                     CREATE OR ALTER FUNCTION dbo.GetVersionedTagComments (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT tc.* 
@@ -47,7 +38,6 @@ public class M202605271011CreateGetVersionedTagChildren : Migration
     public override void Down()
     {
         Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTagMembers;");
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTagValues;");
         Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTagComments;");
     }
 }

@@ -21,9 +21,8 @@ public class RungTransformer : IDbTransformer
         var argumentRecords = new List<ArgumentRecord>();
         var referenceRecords = new List<ReferenceRecord>();
 
-        var rungs = source.Programs
-            .SelectMany(p => p.Routines.Where(r => r.Type == RoutineType.RLL))
-            .SelectMany(r => r.Rungs);
+        // Should get all program and AOI rnug logic.
+        var rungs = source.Query<Routine>().Where(r => r.Type == RoutineType.RLL).SelectMany(r => r.Rungs);
 
         foreach (var rung in rungs)
         {

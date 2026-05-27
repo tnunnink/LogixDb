@@ -26,9 +26,9 @@ public class M202605271011CreateGetVersionedTagChildren : Migration
         Execute.Sql("""
                     CREATE OR ALTER FUNCTION dbo.GetVersionedTagComments (@VersionId INT)
                     RETURNS TABLE AS RETURN (
-                        SELECT tc.* 
-                        FROM dbo.tag_comment tc
-                        JOIN dbo.tag t ON tc.tag_id = t.tag_id
+                        SELECT c.* 
+                        FROM dbo.tag_comment c
+                        JOIN dbo.tag t ON c.tag_id = t.tag_id
                         JOIN dbo.target_version_map tvm ON t.tag_id = tvm.record_id
                         JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 

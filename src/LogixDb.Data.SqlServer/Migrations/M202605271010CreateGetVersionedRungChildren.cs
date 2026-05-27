@@ -18,8 +18,9 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
                         JOIN dbo.rung r ON ri.rung_id = r.rung_id
                         JOIN dbo.routine ro ON r.routine_id = ro.routine_id
                         JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'routine')
+                          AND tc.component_name = 'routine'
                     );
                     """);
 
@@ -31,8 +32,9 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
                         JOIN dbo.rung r ON ra.rung_id = r.rung_id
                         JOIN dbo.routine ro ON r.routine_id = ro.routine_id
                         JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'routine')
+                          AND tc.component_name = 'routine'
                     );
                     """);
 
@@ -44,8 +46,9 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
                         JOIN dbo.rung r ON rr.rung_id = r.rung_id
                         JOIN dbo.routine ro ON r.routine_id = ro.routine_id
                         JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'routine')
+                          AND tc.component_name = 'routine'
                     );
                     """);
     }

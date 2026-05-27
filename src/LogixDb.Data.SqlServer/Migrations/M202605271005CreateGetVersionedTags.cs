@@ -16,8 +16,9 @@ public class M202605271005CreateGetVersionedTags : Migration
                         SELECT t.* 
                         FROM dbo.tag t
                         JOIN dbo.target_version_map tvm ON t.tag_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'tag')
+                          AND tc.component_name = 'tag'
                     );
                     """);
     }

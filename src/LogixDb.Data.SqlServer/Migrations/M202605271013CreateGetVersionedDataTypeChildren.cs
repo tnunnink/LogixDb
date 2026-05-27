@@ -17,8 +17,9 @@ public class M202605271013CreateGetVersionedDataTypeChildren : Migration
                         FROM dbo.data_type_member dtm
                         JOIN dbo.data_type dt ON dtm.type_id = dt.type_id
                         JOIN dbo.target_version_map tvm ON dt.type_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'data_type')
+                          AND tc.component_name = 'data_type'
                     );
                     """);
     }

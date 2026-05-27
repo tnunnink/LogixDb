@@ -66,6 +66,7 @@ public class M20260206Tests : SqlServerTestFixture
 
             await AssertForeignKey("target_version_map", "version_id", "target_version", "version_id");
             await AssertUniqueIndex("target_version_map", "version_id", "record_id", "component_id");
+            await AssertIndex("target_version_map", "version_id", "component_id");
             await AssertIndex("target_version_map", "record_id", "component_id");
         }
     }

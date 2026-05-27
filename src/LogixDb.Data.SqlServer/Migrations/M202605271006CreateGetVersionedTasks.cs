@@ -16,8 +16,9 @@ public class M202605271006CreateGetVersionedTasks : Migration
                         SELECT t.* 
                         FROM dbo.task t
                         JOIN dbo.target_version_map tvm ON t.task_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'task')
+                          AND tc.component_name = 'task'
                     );
                     """);
     }

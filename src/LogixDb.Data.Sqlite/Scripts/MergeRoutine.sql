@@ -1,13 +1,15 @@
-INSERT OR IGNORE INTO routine (program_name,
+INSERT OR IGNORE INTO routine (container_name,
                                routine_name,
                                routine_description,
                                routine_type,
+                               is_definition,
                                content_hash,
                                record_hash)
-SELECT program_name,
+SELECT container_name,
        routine_name,
        routine_description,
        routine_type,
+       is_definition,
        content_hash,
        record_hash
 FROM temp_routine t;

@@ -2,16 +2,18 @@ MERGE INTO dbo.routine AS target
 USING #temp_routine AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
-    INSERT (program_name,
+    INSERT (container_name,
             routine_name,
             routine_description,
             routine_type,
+            is_definition,
             content_hash,
             record_hash)
-    VALUES (source.program_name,
+    VALUES (source.container_name,
             source.routine_name,
             source.routine_description,
             source.routine_type,
+            source.is_definition,
             source.content_hash,
             source.record_hash);
 

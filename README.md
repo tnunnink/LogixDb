@@ -20,8 +20,8 @@ LogixDb uses a **Content-Addressable Deduplication** model to efficiently store 
 full copy of every project version, it deduplicates components (Tags, Rungs, Programs, etc.) globally across the entire
 database.
 
-* **Targets**: Represents a unique PLC (e.g., `PLC://Main_Controller`) 
-  * These could be partial exports as well (e.g., Programs, UDTs, etc.).
+* **Targets**: Represents a unique PLC (e.g., `PLC://Main_Controller`)
+    * These could be partial exports as well (e.g., Programs, UDTs, etc.).
 * **Versions**: Every time a project is imported, a new version is created. This version acts as a snapshot in time.
 * **Deduplication**: When a new version is imported, LogixDb hashes each component. If an identical component already
   exists in the database, the new version simply points to the existing record.
@@ -364,48 +364,48 @@ by their content.
 
 ### SQL Schema Architecture
 
-The schema is built around a hybrid deduplication model designed to balance storage efficiency with relational 
+The schema is built around a hybrid deduplication model designed to balance storage efficiency with relational
 performance.
 
 #### 1. Tag Architecture (The "Config Hash" Model)
 
-The tag structure is the most complex due to its hierarchical nature and split metadata. We use a deterministic 
+The tag structure is the most complex due to its hierarchical nature and split metadata. We use a deterministic
 `record_hash` (Config Hash) to represent the immutable state of a tag.
 
-*   **`tag` Table (Parent)**: This is the root deduplicated record. If two versions of a project (or two different 
-    projects) have identical tag definitions, they share the same `tag_id`. The `record_hash` captures the entire 
-    immutable state including members and properties.
-*   **`tag_member`**: Stores the flattened structural definition. These are linked to the parent `tag_id`.
-*   **`tag_comment`**: Stores only explicit overrides at the member level. Pass-through documentation is derived 
-    at query time.
-*   **`tag_value`**: This table is volatile and version-specific. It is tied to both `version_id` and `tag_id`, 
-    ensuring that even if the structure is shared, the data snapshots remain unique to each project capture.
+* **`tag` Table (Parent)**: This is the root deduplicated record. If two versions of a project (or two different
+  projects) have identical tag definitions, they share the same `tag_id`. The `record_hash` captures the entire
+  immutable state including members and properties.
+* **`tag_member`**: Stores the flattened structural definition. These are linked to the parent `tag_id`.
+* **`tag_comment`**: Stores only explicit overrides at the member level. Pass-through documentation is derived
+  at query time.
+* **`tag_value`**: This table is volatile and version-specific. It is tied to both `version_id` and `tag_id`,
+  ensuring that even if the structure is shared, the data snapshots remain unique to each project capture.
 
 #### 2. Logic Architecture (The "Positional Handle" Model)
 
 Logic components (Rungs, Instructions, Arguments) lack natural names and rely on positional identity within a routine.
 
-*   **`rung` Table**: 
-    *   Uses a **`rung_id` (Guid)** as a stable relational handle. 
-    *   Linked to a parent **`routine`** via `routine_id`.
-    *   Deduplicated via `record_hash` which combines content (logic text) and position (`rung_number`).
-    *   Since a rung is physically owned by a routine, any change to a rung results in a new `record_hash` for the 
-        parent routine, triggering deduplication at the routine level.
-*   **`rung_instruction` & `rung_argument`**: Linked to the parent rung via the `rung_id`. Granular instructions 
-    include their own hashes for fast logic searching and change detection.
+* **`rung` Table**:
+    * Uses a **`rung_id` (Guid)** as a stable relational handle.
+    * Linked to a parent **`routine`** via `routine_id`.
+    * Deduplicated via `record_hash` which combines content (logic text) and position (`rung_number`).
+    * Since a rung is physically owned by a routine, any change to a rung results in a new `record_hash` for the
+      parent routine, triggering deduplication at the routine level.
+* **`rung_instruction` & `rung_argument`**: Linked to the parent rung via the `rung_id`. Granular instructions
+  include their own hashes for fast logic searching and change detection.
 
 #### 3. High-Level Components
 
-Tables like `controller`, `module`, `program`, `routine`, and `task` act as organizational containers. They are 
-deduplicated at the root level, allowing the database to share entire program or routine metadata records across 
+Tables like `controller`, `module`, `program`, `routine`, and `task` act as organizational containers. They are
+deduplicated at the root level, allowing the database to share entire program or routine metadata records across
 thousands of versions if they remain unchanged.
 
 #### 4. Natural Keys & Stable Links
 
-*   **Non-Ripple Effect**: By using names (`program_name`, `tag_name`) for top-level relationships instead of shifting 
-    GUIDs, we ensure that changes in one part of the project don't force a re-import or hash change of related entities.
-*   **Performance**: Physical relationships use `long` (bigint) IDs for primary and foreign keys, ensuring the 
-    fastest possible joins and minimal index sizes compared to GUID-based relational models.
+* **Non-Ripple Effect**: By using names (`program_name`, `tag_name`) for top-level relationships instead of shifting
+  GUIDs, we ensure that changes in one part of the project don't force a re-import or hash change of related entities.
+* **Performance**: Physical relationships use `long` (bigint) IDs for primary and foreign keys, ensuring the
+  fastest possible joins and minimal index sizes compared to GUID-based relational models.
 
 #### Core ER Diagram
 
@@ -432,7 +432,6 @@ erDiagram
     data_type ||--o{ data_type_member : "has"
     
     aoi ||--o{ aoi_parameter : "has"
-    aoi ||--o{ aoi_rung : "logic"
     
     routine ||--o{ rung : "contains"
     rung ||--o{ rung_instruction : "has"
@@ -471,7 +470,6 @@ erDiagram
 | `data_type_member`   | Individual members of a data type, including their name, data type, and dimensions.            |
 | `aoi`                | Add-On Instruction definitions, including revision and creation metadata.                      |
 | `aoi_parameter`      | Parameters and local tags for AOIs, including usage (Input, Output, InOut) and default values. |
-| `aoi_rung`           | Rungs of ladder logic specifically defined within an AOI's logic routines.                     |
 | `module`             | IO configuration and module properties (catalog number, slot, IP address).                     |
 | `tag`                | All controller and program scope tags, including names, types, and descriptions.               |
 | `tag_member`         | Hierarchical tag structure for UDTs and Arrays.                                                |

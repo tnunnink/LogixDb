@@ -20,7 +20,6 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
         { "data_type_member", SqlServerScript.MergeDataTypeMember },
         { "aoi", SqlServerScript.MergeAoi },
         { "aoi_parameter", SqlServerScript.MergeAoiParameter },
-        { "aoi_rung", SqlServerScript.MergeAoiRung },
         { "operand", SqlServerScript.MergeOperand },
         { "module", SqlServerScript.MergeModule },
         { "task", SqlServerScript.MergeTask },

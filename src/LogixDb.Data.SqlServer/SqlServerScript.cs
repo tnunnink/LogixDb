@@ -19,7 +19,6 @@ internal static class SqlServerScript
     public static string ListTargets => Get(nameof(ListTargets));
     public static string MergeAoi => Get(nameof(MergeAoi));
     public static string MergeAoiParameter => Get(nameof(MergeAoiParameter));
-    public static string MergeAoiRung => Get(nameof(MergeAoiRung));
     public static string MergeController => Get(nameof(MergeController));
     public static string MergeDataType => Get(nameof(MergeDataType));
     public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));

@@ -34,6 +34,7 @@ public class M202603082130SeedNativeOperands : AutoReversingMigration
                 operand_type = record.Type,
                 operand_description = record.Description,
                 is_destructive = record.Destructive,
+                is_native = record.Native,
                 record_hash = Map.ComputeHash(record)
             });
         }

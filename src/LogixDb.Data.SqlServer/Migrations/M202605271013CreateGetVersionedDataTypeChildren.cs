@@ -1,0 +1,30 @@
+using FluentMigrator;
+using JetBrains.Annotations;
+
+namespace LogixDb.Data.SqlServer.Migrations;
+
+[UsedImplicitly]
+[Migration(202605271013, "Create versioned helper function for data type members")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+public class M202605271013CreateGetVersionedDataTypeChildren : Migration
+{
+    public override void Up()
+    {
+        Execute.Sql("""
+                    CREATE OR ALTER FUNCTION dbo.GetVersionedDataTypeMembers (@VersionId INT)
+                    RETURNS TABLE AS RETURN (
+                        SELECT dtm.* 
+                        FROM dbo.data_type_member dtm
+                        JOIN dbo.data_type dt ON dtm.type_id = dt.type_id
+                        JOIN dbo.target_version_map tvm ON dt.type_id = tvm.record_id
+                        WHERE tvm.version_id = @VersionId 
+                          AND tvm.component_id = (SELECT component_id FROM dbo.target_component WHERE component_name = 'data_type')
+                    );
+                    """);
+    }
+
+    public override void Down()
+    {
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedDataTypeMembers;");
+    }
+}

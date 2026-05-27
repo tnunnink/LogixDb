@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202605271013, "Create versioned helper function for data type members")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
 public class M202605271013CreateGetVersionedDataTypeChildren : Migration
 {
     public override void Up()

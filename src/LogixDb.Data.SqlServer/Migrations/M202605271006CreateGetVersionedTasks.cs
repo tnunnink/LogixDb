@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202605271006, "Create versioned helper function for task")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Tag, MigrationTag.Logic)]
 public class M202605271006CreateGetVersionedTasks : Migration
 {
     public override void Up()

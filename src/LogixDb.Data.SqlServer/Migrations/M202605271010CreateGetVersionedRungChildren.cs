@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202605271010, "Create versioned helper functions for rung instructions, arguments and references")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
 public class M202605271010CreateGetVersionedRungChildren : Migration
 {
     public override void Up()

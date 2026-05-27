@@ -8,9 +8,7 @@ public class SqlDbTargetSpaceTests : SqlServerTestFixture
     [SetUp]
     public async Task Setup()
     {
-        // Migrate with None to ensure only the target/version tables exist.
-        // This prevents "shredding" data into relational tables during import.
-        await Database.Migrate(ComponentOptions.None);
+        await Database.Migrate();
     }
 
     [Test]

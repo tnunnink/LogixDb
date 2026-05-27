@@ -8,9 +8,7 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
     [SetUp]
     public async Task Setup()
     {
-        // Migrate with None to ensure only the target/version tables exist.
-        // This prevents "shredding" data into relational tables during import.
-        await Database.Migrate(ComponentOptions.None);
+        await Database.Migrate();
     }
 
     [Test]
@@ -21,21 +19,21 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
         Console.WriteLine($"Initial Database Size (Schema Only): {initialSize:F2} MB");
 
         // 2. Import Multiple Targets
-        const int iterations = 10;
+        const int iterations = 5;
         var previousSize = initialSize;
 
         for (var i = 1; i <= iterations; i++)
         {
             // Use LocalExample() for a more realistic L5X file size
             var target = Target.Create(TestSource.LocalExample());
-            
-            await Database.ImportTarget(target);
 
+            await Database.ImportTarget(target);
+            
             var currentSize = await GetDatabaseSize();
             var delta = currentSize - previousSize;
-            
+
             Console.WriteLine($"Import {i} completed: Total Size = {currentSize:F2} MB (+{delta:F2} MB)");
-            
+
             previousSize = currentSize;
         }
 

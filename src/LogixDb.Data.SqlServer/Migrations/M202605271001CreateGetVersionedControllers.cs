@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202605271001, "Create versioned helper function for controller")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Controller)]
 public class M202605271001CreateGetVersionedControllers : Migration
 {
     public override void Up()

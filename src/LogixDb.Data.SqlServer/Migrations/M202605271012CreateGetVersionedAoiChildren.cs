@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
 [Migration(202605271012, "Create versioned helper functions for AOI parameters and rungs")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Required)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Aoi)]
 public class M202605271012CreateGetVersionedAoiChildren : Migration
 {
     public override void Up()

@@ -53,7 +53,6 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("rung_reference");
         await AssertTableDoesNotExists("aoi");
         await AssertTableDoesNotExists("aoi_parameter");
-        await AssertTableDoesNotExists("aoi_rung");
         await AssertTableDoesNotExists("operand");
     }
 
@@ -85,7 +84,6 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("module");
         await AssertTableDoesNotExists("aoi");
         await AssertTableDoesNotExists("aoi_parameter");
-        await AssertTableDoesNotExists("aoi_rung");
         await AssertTableDoesNotExists("tag");
         await AssertTableDoesNotExists("tag_member");
         await AssertTableDoesNotExists("tag_comment");
@@ -120,7 +118,6 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("module");
         await AssertTableDoesNotExists("aoi");
         await AssertTableDoesNotExists("aoi_parameter");
-        await AssertTableDoesNotExists("aoi_rung");
         await AssertTableDoesNotExists("tag");
         await AssertTableDoesNotExists("tag_member");
         await AssertTableDoesNotExists("tag_comment");

@@ -131,9 +131,27 @@ public class TargetTests
         var target = Target.Create(source);
         var tableNames = new List<string>
         {
-            "controller", "data_type", "data_type_member", "aoi", "aoi_parameter", "aoi_rung", "module", "task",
-            "program", "routine", "rung", "rung_instruction", "rung_argument", "operand", "tag", "tag_member", "tag_comment",
-            "tag_value", "tag_producer", "tag_consumer", "task"
+            "controller",
+            "data_type",
+            "data_type_member",
+            "aoi",
+            "aoi_parameter",
+            "module",
+            "task",
+            "program",
+            "routine",
+            "rung",
+            "rung_instruction",
+            "rung_argument",
+            "rung_reference",
+            "operand",
+            "tag",
+            "tag_member",
+            "tag_comment",
+            "tag_value",
+            "tag_producer",
+            "tag_consumer",
+            "task"
         };
 
         var stopwatch = Stopwatch.StartNew();

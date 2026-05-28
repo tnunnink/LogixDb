@@ -1,5 +1,6 @@
 using System.Data;
 using FluentMigrator;
+using FluentMigrator.SqlServer;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -13,7 +14,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("data_type_member")
-            .WithPrimaryKey<long>("member_id")
+            .WithColumn("member_id").AsInt64().NotNullable().Identity()
             .WithRelation<long>("type_id", "data_type").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
             .WithColumn("member_description").AsString(512).Nullable()
@@ -26,6 +27,11 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
             .WithColumn("target_name").AsString(64).Nullable()
             .WithColumn("bit_number").AsByte().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
+        
+        Create.PrimaryKey()
+            .OnTable("data_type_member")
+            .Column("member_id")
+            .NonClustered();
 
         Create.Index().OnTable("data_type_member")
             .OnColumn("type_id").Ascending()
@@ -35,7 +41,8 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
         Create.Index().OnTable("data_type_member")
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
-            .WithOptions().Unique();
+            .WithOptions().Unique()
+            .WithOptions().Clustered();
 
         Create.Index().OnTable("data_type_member")
             .OnColumn("member_name").Ascending();

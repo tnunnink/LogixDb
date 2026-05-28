@@ -1,5 +1,6 @@
 using System.Data;
 using FluentMigrator;
+using FluentMigrator.SqlServer;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -13,17 +14,23 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("tag_member")
-            .WithPrimaryKey<long>("member_id")
+            .WithColumn("member_id").AsInt64().NotNullable().Identity()
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
             .WithColumn("parent_name").AsString(128).Nullable()
             .WithColumn("member_name").AsString(128).Nullable()
             .WithColumn("data_type").AsString(128).NotNullable();
 
+        Create.PrimaryKey()
+            .OnTable("tag_member")
+            .Column("member_id")
+            .NonClustered();
+
         Create.Index().OnTable("tag_member")
             .OnColumn("tag_id").Ascending()
             .OnColumn("tag_name").Ascending()
-            .WithOptions().Unique();
+            .WithOptions().Unique()
+            .WithOptions().Clustered();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("tag_name").Ascending();

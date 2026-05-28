@@ -21,7 +21,8 @@ public class M202603061400CreateRungReferenceTable : AutoReversingMigration
         Create.Index().OnTable("rung_reference")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
-            .OnColumn("argument_index").Ascending();
+            .OnColumn("argument_index").Ascending()
+            .WithOptions().Clustered();
 
         Create.Index().OnTable("rung_reference")
             .OnColumn("reference_name").Ascending()

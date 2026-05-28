@@ -14,5 +14,8 @@ public class M202602061130CreateComponentTypeTable : AutoReversingMigration
         Create.Table("target_component")
             .WithPrimaryKey<byte>("component_id")
             .WithColumn("component_name").AsString(64).NotNullable();
+
+        Create.Index().OnTable("target_component")
+            .OnColumn("component_name").Ascending();
     }
 }

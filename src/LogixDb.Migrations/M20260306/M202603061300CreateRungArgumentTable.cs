@@ -24,6 +24,7 @@ public class M202603061300CreateRungArgumentTable : AutoReversingMigration
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending()
-            .WithOptions().Unique();
+            .WithOptions().Unique()
+            .WithOptions().Clustered();
     }
 }

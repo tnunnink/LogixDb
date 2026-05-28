@@ -26,7 +26,8 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
         Create.Index().OnTable("tag_comment")
             .OnColumn("tag_id").Ascending()
             .OnColumn("tag_name").Ascending()
-            .WithOptions().Unique();
+            .WithOptions().Unique()
+            .WithOptions().Clustered();
 
         Create.Index().OnTable("tag_comment")
             .OnColumn("tag_name").Ascending();

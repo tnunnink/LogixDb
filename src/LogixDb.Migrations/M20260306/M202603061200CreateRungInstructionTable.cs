@@ -24,7 +24,8 @@ public class M202603061200CreateRungInstructionTable : AutoReversingMigration
         Create.Index().OnTable("rung_instruction")
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
-            .WithOptions().Unique();
+            .WithOptions().Unique()
+            .WithOptions().Clustered();
 
         Create.Index().OnTable("rung_instruction")
             .OnColumn("instruction_key").Ascending();

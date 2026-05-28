@@ -19,6 +19,7 @@ public class M202602130930CreateTagValueTable : AutoReversingMigration
 
         Create.Index().OnTable("tag_value")
             .OnColumn("version_id").Ascending()
-            .OnColumn("member_id").Ascending();
+            .OnColumn("member_id").Ascending()
+            .WithOptions().Clustered();
     }
 }

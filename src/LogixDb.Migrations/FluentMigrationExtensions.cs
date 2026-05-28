@@ -1,8 +1,4 @@
-using System.Reflection;
-using System.Text.Json;
 using FluentMigrator.Builders.Create.Table;
-using FluentMigrator.Builders.Insert;
-using LogixDb.Data.Maps;
 
 namespace LogixDb.Migrations;
 
@@ -64,7 +60,7 @@ public static class FluentMigrationExtensions
                     .AsInt64()
                     .ForeignKey(primaryTable, primaryColumn ?? columnName);
             }
-            
+
             if (typeof(T) == typeof(Guid))
             {
                 return syntax
@@ -110,7 +106,7 @@ public static class FluentMigrationExtensions
                 .AsInt64()
                 .ForeignKey(primaryTable, primaryColumn ?? columnName);
         }
-        
+
         if (typeof(T) == typeof(Guid))
         {
             return syntax

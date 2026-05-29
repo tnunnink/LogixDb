@@ -13,8 +13,7 @@ public class M202603061100CreateRungTable : AutoReversingMigration
 {
     public override void Up()
     {
-        IfDatabase(ProcessorIdConstants.SQLite)
-            .Create.Table("rung")
+        Create.Table("rung")
             .WithPrimaryKey<Guid>("rung_id")
             .WithRelation<long>("routine_id", "routine").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()

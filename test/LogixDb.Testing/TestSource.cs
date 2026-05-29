@@ -29,29 +29,19 @@ public static class TestSource
     /// Creates a new L5X instance populated with auto-generated fake data using the Bogus library.
     /// Generates test data types and optionally applies additional custom configuration.
     /// </summary>
+    /// <param name="count">The number of fake component instances (per type) to generate.</param>
     /// <param name="config">An optional action that applies additional configuration to the L5X instance.</param>
     /// <returns>An L5X instance populated with fake test data.</returns>
-    public static L5X Fake(Action<L5X>? config = null)
+    public static L5X Fake(int count = 10, Action<L5X>? config = null)
     {
         var content = L5X.New("Test", "1756-L83E", 33.1);
 
         content.DataTypes.AddRange(CreateFakeDataTypes(10));
-        //todo implement more fake component 
+        content.Tags.AddRange(CreateFakeTags(10));
+        content.Programs.AddRange(CreateFakePrograms(10));
 
-        // Apply optional config.
         config?.Invoke(content);
         return content;
-    }
-
-    /// <summary>
-    /// Loads an L5X instance from the specified file path.
-    /// Reads and parses the L5X XML content from the provided file path into a usable instance.
-    /// </summary>
-    /// <param name="filePath">The path of the file containing the L5X content to be loaded.</param>
-    /// <returns>An L5X instance loaded with content from the specified file.</returns>
-    public static L5X Load(string filePath)
-    {
-        return L5X.Load(filePath);
     }
 
     /// <summary>
@@ -100,6 +90,70 @@ public static class TestSource
                 Class = f.PickRandom(DataTypeClass.User, DataTypeClass.IO, DataTypeClass.Predefined),
                 Description = f.Lorem.Sentence()
             });
+
+        return faker.Generate(count);
+    }
+
+    /// <summary>
+    /// Generates a list of fake tags for testing purposes. Each tag is created with randomized properties,
+    /// including a name, value, external access settings, and a description.
+    /// </summary>
+    /// <param name="count">The number of fake tags to generate.</param>
+    /// <returns>A list of tags with randomized, auto-generated data.</returns>
+    private static List<Tag> CreateFakeTags(int count)
+    {
+        var faker = new Faker<Tag>().CustomInstantiator(f =>
+        {
+            // Randomly pick a strongly typed Logix value
+            var randomValue = f.PickRandom<LogixData>(
+                new DINT(f.Random.Int()),
+                new REAL(f.Random.Float()),
+                new BOOL(f.Random.Bool()),
+                new STRING(f.Lorem.Word()),
+                new TIMER
+                {
+                    PRE = f.Random.Int(),
+                    ACC = f.Random.Int(),
+                    DN = f.Random.Bool(),
+                    EN = f.Random.Bool(),
+                    TT = f.Random.Bool()
+                },
+                new COUNTER(),
+                new PID(),
+                new ALARM_ANALOG(),
+                new ALARM_DIGITAL()
+            );
+
+            return new Tag
+            {
+                Name = f.Random.AlphaNumeric(10),
+                Value = randomValue,
+                ExternalAccess = f.PickRandom(Access.ReadOnly, Access.ReadWrite, Access.None),
+                Description = f.Lorem.Sentence()
+            };
+        });
+
+        return faker.Generate(count);
+    }
+
+    /// <summary>
+    /// Generates a list of fake programs with randomized properties for testing purposes.
+    /// Each program includes attributes like name, main routine, fault routine, description, and tags.
+    /// </summary>
+    /// <param name="count">The number of fake programs to generate.</param>
+    /// <returns>A list of programs with randomized, auto-generated data.</returns>
+    private static List<Program> CreateFakePrograms(int count)
+    {
+        var faker = new Faker<Program>().CustomInstantiator(f => new Program
+        {
+            Name = f.Random.AlphaNumeric(10),
+            MainRoutineName = f.Random.AlphaNumeric(10),
+            FaultRoutineName = f.Random.AlphaNumeric(10),
+            Disabled = f.PickRandom<bool>(),
+            UseAsFolder = f.PickRandom<bool>(),
+            Description = f.Lorem.Sentence(),
+            Tags = new LogixContainer<Tag>(CreateFakeTags(count * 10))
+        });
 
         return faker.Generate(count);
     }

@@ -99,7 +99,7 @@ public class M20260206Tests : SqlServerTestFixture
         {
             await AssertTableExists("target_component");
 
-            await AssertColumnDefinition("target_component", "component_id", "int");
+            await AssertColumnDefinition("target_component", "component_id", "tinyint");
             await AssertColumnDefinition("target_component", "component_name", "nvarchar");
 
             await AssertPrimaryKey("target_component", "component_id");

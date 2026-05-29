@@ -36,9 +36,9 @@ public static class TestSource
     {
         var content = L5X.New("Test", "1756-L83E", 33.1);
 
-        content.DataTypes.AddRange(CreateFakeDataTypes(10));
-        content.Tags.AddRange(CreateFakeTags(10));
-        content.Programs.AddRange(CreateFakePrograms(10));
+        content.DataTypes.AddRange(CreateFakeDataTypes(count));
+        content.Tags.AddRange(CreateFakeTags(count));
+        content.Programs.AddRange(CreateFakePrograms(count));
 
         config?.Invoke(content);
         return content;
@@ -80,7 +80,7 @@ public static class TestSource
     /// </summary>
     /// <param name="count">The number of fake DataType instances to generate.</param>
     /// <returns>An enumerable collection of fake DataType instances.</returns>
-    private static List<DataType> CreateFakeDataTypes(int count)
+    public static List<DataType> CreateFakeDataTypes(int count)
     {
         var faker = new Faker<DataType>()
             .CustomInstantiator(f => new DataType
@@ -100,37 +100,21 @@ public static class TestSource
     /// </summary>
     /// <param name="count">The number of fake tags to generate.</param>
     /// <returns>A list of tags with randomized, auto-generated data.</returns>
-    private static List<Tag> CreateFakeTags(int count)
+    public static List<Tag> CreateFakeTags(int count)
     {
-        var faker = new Faker<Tag>().CustomInstantiator(f =>
+        var faker = new Faker<Tag>().CustomInstantiator(f => new Tag
         {
-            // Randomly pick a strongly typed Logix value
-            var randomValue = f.PickRandom<LogixData>(
-                new DINT(f.Random.Int()),
-                new REAL(f.Random.Float()),
-                new BOOL(f.Random.Bool()),
-                new STRING(f.Lorem.Word()),
-                new TIMER
-                {
-                    PRE = f.Random.Int(),
-                    ACC = f.Random.Int(),
-                    DN = f.Random.Bool(),
-                    EN = f.Random.Bool(),
-                    TT = f.Random.Bool()
-                },
-                new COUNTER(),
-                new PID(),
-                new ALARM_ANALOG(),
-                new ALARM_DIGITAL()
-            );
-
-            return new Tag
+            Name = f.Random.AlphaNumeric(10),
+            Value = new TIMER
             {
-                Name = f.Random.AlphaNumeric(10),
-                Value = randomValue,
-                ExternalAccess = f.PickRandom(Access.ReadOnly, Access.ReadWrite, Access.None),
-                Description = f.Lorem.Sentence()
-            };
+                PRE = f.Random.Int(),
+                ACC = f.Random.Int(),
+                DN = f.Random.Bool(),
+                EN = f.Random.Bool(),
+                TT = f.Random.Bool()
+            },
+            ExternalAccess = f.PickRandom(Access.ReadOnly, Access.ReadWrite, Access.None),
+            Description = f.Lorem.Sentence()
         });
 
         return faker.Generate(count);
@@ -142,17 +126,61 @@ public static class TestSource
     /// </summary>
     /// <param name="count">The number of fake programs to generate.</param>
     /// <returns>A list of programs with randomized, auto-generated data.</returns>
-    private static List<Program> CreateFakePrograms(int count)
+    public static List<Program> CreateFakePrograms(int count)
     {
         var faker = new Faker<Program>().CustomInstantiator(f => new Program
         {
             Name = f.Random.AlphaNumeric(10),
             MainRoutineName = f.Random.AlphaNumeric(10),
             FaultRoutineName = f.Random.AlphaNumeric(10),
-            Disabled = f.PickRandom<bool>(),
-            UseAsFolder = f.PickRandom<bool>(),
+            Disabled = f.Random.Bool(),
+            UseAsFolder = f.Random.Bool(),
             Description = f.Lorem.Sentence(),
-            Tags = new LogixContainer<Tag>(CreateFakeTags(count * 10))
+            Tags = new LogixContainer<Tag>(CreateFakeTags(100)),
+            Routines = new LogixContainer<Routine>(CreateFakeRoutines(50))
+        });
+
+        return faker.Generate(count);
+    }
+
+    /// <summary>
+    /// Generates a list of fake routines for testing purposes. Each routine is created with randomized properties,
+    /// including a name, type, and content (rungs).
+    /// </summary>
+    /// <param name="count">The number of fake routines to generate.</param>
+    /// <returns>A list of routines with randomized, auto-generated data.</returns>
+    public static List<Routine> CreateFakeRoutines(int count)
+    {
+        var faker = new Faker<Routine>().CustomInstantiator(f =>
+        {
+            var routine = new Routine
+            {
+                Name = f.Random.AlphaNumeric(10),
+                Description = f.Lorem.Sentence(),
+                Type = RoutineType.RLL
+            };
+
+            //routine.Rungs.AddRange(CreateFakeRungs(10));
+
+            return routine;
+        });
+
+        return faker.Generate(count);
+    }
+
+    /// <summary>
+    /// Generates a list of fake rungs for testing purposes. Each rung is created with randomized properties,
+    /// including text and comment.
+    /// </summary>
+    /// <param name="count">The number of fake rungs to generate.</param>
+    /// <returns>A list of rungs with randomized, auto-generated data.</returns>
+    public static List<Rung> CreateFakeRungs(int count)
+    {
+        var faker = new Faker<Rung>().CustomInstantiator(f => new Rung
+        {
+            Number = f.IndexFaker,
+            Text = $"XIC(Tag_{f.Random.Number(1, 100)})OTE(Tag_{f.Random.Number(101, 200)});",
+            Comment = f.Lorem.Sentence()
         });
 
         return faker.Generate(count);

@@ -65,8 +65,7 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertColumnDefinition("target_version_map", "component_id", "tinyint");
 
             await AssertForeignKey("target_version_map", "version_id", "target_version", "version_id");
-            await AssertUniqueIndex("target_version_map", "version_id", "record_id", "component_id");
-            await AssertIndex("target_version_map", "version_id", "component_id");
+            await AssertUniqueIndex("target_version_map", "version_id", "component_id", "record_id");
             await AssertIndex("target_version_map", "record_id", "component_id");
         }
     }
@@ -88,6 +87,23 @@ public class M20260206Tests : SqlServerTestFixture
             await AssertPrimaryKey("target_info", "property_id");
             await AssertForeignKey("target_info", "version_id", "target_version", "version_id");
             await AssertUniqueIndex("target_info", "version_id", "property_name");
+        }
+    }
+    
+    [Test]
+    public async Task MigrateUp_ToM202602061130_CreatesComponentTableWithExpectedColumns()
+    {
+        await Database.Migrate(202602061130);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("target_component");
+
+            await AssertColumnDefinition("target_component", "component_id", "int");
+            await AssertColumnDefinition("target_component", "component_name", "nvarchar");
+
+            await AssertPrimaryKey("target_component", "component_id");
+            await AssertUniqueIndex("target_component", "component_name");
         }
     }
 }

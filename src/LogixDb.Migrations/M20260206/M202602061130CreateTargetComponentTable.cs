@@ -16,6 +16,7 @@ public class M202602061130CreateComponentTypeTable : AutoReversingMigration
             .WithColumn("component_name").AsString(64).NotNullable();
 
         Create.Index().OnTable("target_component")
-            .OnColumn("component_name").Ascending();
+            .OnColumn("component_name").Ascending()
+            .WithOptions().Unique();
     }
 }

@@ -10,15 +10,15 @@ public class M20260527Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("GetVersionedControllers");
-            await AssertFunctionExists("GetVersionedDataTypes");
-            await AssertFunctionExists("GetVersionedAois");
-            await AssertFunctionExists("GetVersionedModules");
-            await AssertFunctionExists("GetVersionedTags");
-            await AssertFunctionExists("GetVersionedTasks");
-            await AssertFunctionExists("GetVersionedPrograms");
-            await AssertFunctionExists("GetVersionedRoutines");
-            await AssertFunctionExists("GetVersionedRungs");
+            await AssertFunctionExists("controllers_for");
+            await AssertFunctionExists("data_types_for");
+            await AssertFunctionExists("aois_for");
+            await AssertFunctionExists("modules_for");
+            await AssertFunctionExists("tags_for");
+            await AssertFunctionExists("tasks_for");
+            await AssertFunctionExists("programs_for");
+            await AssertFunctionExists("routines_for");
+            await AssertFunctionExists("rungs_for");
         }
     }
 
@@ -29,14 +29,14 @@ public class M20260527Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("GetVersionedInstructions");
-            await AssertFunctionExists("GetVersionedArguments");
-            await AssertFunctionExists("GetVersionedReferences");
-            await AssertFunctionExists("GetVersionedTagMembers");
-            await AssertFunctionExists("GetVersionedTagComments");
-            await AssertFunctionExists("GetVersionedAoiParameters");
-            await AssertFunctionExists("GetVersionedDataTypeMembers");
-            await AssertFunctionExists("GetVersionedOperands");
+            await AssertFunctionExists("instructions_for");
+            await AssertFunctionExists("arguments_for");
+            await AssertFunctionExists("references_for");
+            await AssertFunctionExists("tag_members_for");
+            await AssertFunctionExists("tag_comments_for");
+            await AssertFunctionExists("aoi_parameters_for");
+            await AssertFunctionExists("data_type_members_for");
+            await AssertFunctionExists("operands_for");
         }
     }
 }

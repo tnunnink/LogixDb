@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271010, "Create versioned helper functions for rung instructions, arguments and references")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202605271010CreateGetVersionedRungChildren : Migration
+public class M202605271010CreateRungChildrenFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedInstructions (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.instructions_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT ri.* 
                         FROM dbo.rung_instruction ri
@@ -25,7 +25,7 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
                     """);
 
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedArguments (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.arguments_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT ra.* 
                         FROM dbo.rung_argument ra
@@ -39,7 +39,7 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
                     """);
 
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedReferences (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.references_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT rr.* 
                         FROM dbo.rung_reference rr
@@ -55,8 +55,8 @@ public class M202605271010CreateGetVersionedRungChildren : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedInstructions;");
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedArguments;");
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedReferences;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.instructions_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.arguments_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.references_for;");
     }
 }

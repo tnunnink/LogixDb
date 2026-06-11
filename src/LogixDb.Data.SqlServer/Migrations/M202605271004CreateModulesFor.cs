@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271004, "Create versioned helper function for module")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Module)]
-public class M202605271004CreateGetVersionedModules : Migration
+public class M202605271004CreateModulesFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedModules (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.modules_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT m.* 
                         FROM dbo.module m
@@ -25,6 +25,6 @@ public class M202605271004CreateGetVersionedModules : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedModules;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.modules_for;");
     }
 }

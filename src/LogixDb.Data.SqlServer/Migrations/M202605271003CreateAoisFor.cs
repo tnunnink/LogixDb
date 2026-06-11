@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271003, "Create versioned helper function for aoi")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Aoi)]
-public class M202605271003CreateGetVersionedAois : Migration
+public class M202605271003CreateAoisFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedAois (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.aois_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT a.* 
                         FROM dbo.aoi a
@@ -25,6 +25,6 @@ public class M202605271003CreateGetVersionedAois : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedAois;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.aois_for;");
     }
 }

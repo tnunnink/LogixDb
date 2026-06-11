@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271006, "Create versioned helper function for task")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Tag, MigrationTag.Logic)]
-public class M202605271006CreateGetVersionedTasks : Migration
+public class M202605271006CreateTasksFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedTasks (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.tasks_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT t.* 
                         FROM dbo.task t
@@ -25,6 +25,6 @@ public class M202605271006CreateGetVersionedTasks : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTasks;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tasks_for;");
     }
 }

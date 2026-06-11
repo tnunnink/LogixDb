@@ -4,18 +4,17 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations;
 
 [UsedImplicitly]
-[Migration(202605271013, "Create versioned helper function for data type members")]
+[Migration(202605271002, "Create versioned helper function for data_type")]
 [Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
-public class M202605271013CreateGetVersionedDataTypeChildren : Migration
+public class M202605271002CreateDataTypesFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedDataTypeMembers (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.data_types_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
-                        SELECT dtm.* 
-                        FROM dbo.data_type_member dtm
-                        JOIN dbo.data_type dt ON dtm.type_id = dt.type_id
+                        SELECT dt.* 
+                        FROM dbo.data_type dt
                         JOIN dbo.target_version_map tvm ON dt.type_id = tvm.record_id
                         JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
@@ -26,6 +25,6 @@ public class M202605271013CreateGetVersionedDataTypeChildren : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedDataTypeMembers;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.data_types_for;");
     }
 }

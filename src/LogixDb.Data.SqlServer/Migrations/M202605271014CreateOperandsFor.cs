@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271014, "Create versioned helper function for operands")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic, MigrationTag.Aoi)]
-public class M202605271014CreateGetVersionedOperands : Migration
+public class M202605271014CreateOperandsFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedOperands (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.operands_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT o.* 
                         FROM dbo.operand o
@@ -25,6 +25,6 @@ public class M202605271014CreateGetVersionedOperands : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedOperands;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.operands_for;");
     }
 }

@@ -6,12 +6,12 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271011, "Create versioned helper functions for tag members, values and comments")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
-public class M202605271011CreateGetVersionedTagChildren : Migration
+public class M202605271011CreateTagChildrenFor : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedTagMembers (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.tag_members_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT tm.* 
                         FROM dbo.tag_member tm
@@ -24,7 +24,7 @@ public class M202605271011CreateGetVersionedTagChildren : Migration
                     """);
 
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.GetVersionedTagComments (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.tag_comments_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT c.* 
                         FROM dbo.tag_comment c
@@ -39,7 +39,7 @@ public class M202605271011CreateGetVersionedTagChildren : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTagMembers;");
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.GetVersionedTagComments;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tag_members_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tag_comments_for;");
     }
 }

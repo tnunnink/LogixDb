@@ -1,0 +1,65 @@
+﻿using FluentMigrator;
+using JetBrains.Annotations;
+
+namespace LogixDb.Data.SqlServer.Migrations;
+
+[UsedImplicitly]
+[Migration(202605271010, "Create versioned helper function for PLC logic hierarchy")]
+[Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
+public class M202605271010CreateLogixFor : Migration
+{
+    public override void Up()
+    {
+        Execute.Sql("""
+                    CREATE OR ALTER FUNCTION dbo.logic_for (@VersionId INT)
+                    RETURNS TABLE AS RETURN (
+                        SELECT 
+                            ro.routine_id,
+                            r.rung_id,
+                            ro.container_name,
+                            ro.routine_name,
+                            r.rung_number,
+                            ri.instruction_index,
+                            ri.instruction_key,
+                            ri.instruction_text,
+                            ra.argument_index,
+                            ra.argument_type,
+                            ra.argument_text,
+                            rr.reference_name,
+                            o.operand_name,
+                            o.operand_type,
+                            ri.is_conditional,
+                            ri.is_native,
+                            o.is_destructive
+                        FROM dbo.routine ro
+                        JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id AND tc.component_name = 'routine'
+                        JOIN dbo.rung r ON ro.routine_id = r.routine_id
+                        JOIN dbo.rung_instruction ri ON r.rung_id = ri.rung_id
+                        LEFT JOIN dbo.rung_argument ra ON ri.rung_id = ra.rung_id 
+                            AND ri.instruction_index = ra.instruction_index
+                        LEFT JOIN dbo.rung_reference rr ON ra.rung_id = rr.rung_id 
+                            AND ra.instruction_index = rr.instruction_index 
+                            AND ra.argument_index = rr.argument_index
+                        LEFT JOIN dbo.operand o ON ri.instruction_key = o.instruction_key 
+                            AND ra.argument_index = o.operand_index
+                            AND (
+                                o.is_native = 1
+                                OR EXISTS (
+                                    SELECT 1 FROM dbo.target_version_map tvmo 
+                                    JOIN dbo.target_component tco ON tvmo.component_id = tco.component_id
+                                    WHERE tvmo.record_id = o.operand_id 
+                                      AND tvmo.version_id = @VersionId
+                                      AND tco.component_name = 'operand'
+                                )
+                            )
+                        WHERE tvm.version_id = @VersionId
+                    );
+                    """);
+    }
+
+    public override void Down()
+    {
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.logic_for;");
+    }
+}

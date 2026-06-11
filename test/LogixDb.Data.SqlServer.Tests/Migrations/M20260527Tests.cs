@@ -1,4 +1,4 @@
-namespace LogixDb.Data.SqlServer.Tests.Migrations;
+﻿namespace LogixDb.Data.SqlServer.Tests.Migrations;
 
 [TestFixture]
 public class M20260527Tests : SqlServerTestFixture
@@ -29,9 +29,7 @@ public class M20260527Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("instructions_for");
-            await AssertFunctionExists("arguments_for");
-            await AssertFunctionExists("references_for");
+            await AssertFunctionExists("logic_for");
             await AssertFunctionExists("tag_members_for");
             await AssertFunctionExists("tag_comments_for");
             await AssertFunctionExists("aoi_parameters_for");

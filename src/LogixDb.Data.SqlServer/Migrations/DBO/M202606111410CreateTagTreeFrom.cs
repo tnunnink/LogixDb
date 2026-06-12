@@ -1,7 +1,7 @@
 ﻿using FluentMigrator;
 using JetBrains.Annotations;
 
-namespace LogixDb.Data.SqlServer.Migrations;
+namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
 [Migration(202606111410, "Create tag_tree_from recursive function for hierarchical tag exploration")]

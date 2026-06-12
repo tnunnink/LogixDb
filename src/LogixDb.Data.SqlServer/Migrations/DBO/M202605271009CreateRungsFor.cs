@@ -1,7 +1,7 @@
 using FluentMigrator;
 using JetBrains.Annotations;
 
-namespace LogixDb.Data.SqlServer.Migrations;
+namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
 [Migration(202605271009, "Create versioned helper function for rungs")]

@@ -51,7 +51,7 @@ internal static class SqlServerScript
     {
         var assembly = Assembly.GetExecutingAssembly();
         // The resource name usually follows the pattern: {ProjectNamespace}.{Folder}.{FileName}.sql
-        var resourceName = $"LogixDb.Data.SqlServer.Scripts.{scriptName}.sql";
+        var resourceName = $"LogixDb.Data.SqlServer.Scripts.DBO.{scriptName}.sql";
 
         using var stream = assembly.GetManifestResourceStream(resourceName);
 

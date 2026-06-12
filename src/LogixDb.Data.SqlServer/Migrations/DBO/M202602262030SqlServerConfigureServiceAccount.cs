@@ -1,10 +1,9 @@
 using FluentMigrator;
 using JetBrains.Annotations;
-using LogixDb.Migrations;
 
 // ReSharper disable StringLiteralTypo
 
-namespace LogixDb.Data.SqlServer.Migrations;
+namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
 [Migration(202602262030, @"Grants permissions to the NT SERVICE\LogixDb virtual account used by the windows service.")]

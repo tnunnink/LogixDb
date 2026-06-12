@@ -1,0 +1,21 @@
+using FluentMigrator;
+using JetBrains.Annotations;
+
+namespace LogixDb.Data.SqlServer.Migrations.QA;
+
+[UsedImplicitly]
+[Migration(202606121100, "Create QA list validations view")]
+[Tags(TagBehavior.RequireAny, MigrationTag.QA)]
+public class M202606121100CreateQaListValidationsView : Migration
+{
+    public override void Up()
+    {
+        Execute.EmbeddedScript("QA.QA.QA.QaListValidationsView.sql");
+    }
+
+    public override void Down()
+    {
+        Execute.Sql("DROP VIEW IF EXISTS [qa].[list_validations]");
+    }
+}
+

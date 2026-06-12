@@ -41,9 +41,14 @@ public enum ComponentOptions
     /// Includes all logic related tables during migration.
     /// </summary>
     Logic = 32,
+
+    /// <summary>
+    /// Includes all QA validation related tables and logic during migration.
+    /// </summary>
+    QA = 64,
     
     /// <summary>
     /// Include all component tables during migration.
     /// </summary>
-    All = Controller | DataType | Aoi | Module | Tag | Logic
+    All = Controller | DataType | Aoi | Module | Tag | Logic | QA
 }

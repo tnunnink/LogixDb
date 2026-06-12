@@ -48,7 +48,7 @@ public class M20260213Tests : SqliteTestFixture
             await AssertColumnDefinition("tag_member", "member_id", "integer");
             await AssertColumnDefinition("tag_member", "tag_id", "integer");
             await AssertColumnDefinition("tag_member", "member_path", "text");
-            await AssertColumnDefinition("tag_member", "parent_name", "text");
+            await AssertColumnDefinition("tag_member", "parent_path", "text");
             await AssertColumnDefinition("tag_member", "member_name", "text");
             await AssertColumnDefinition("tag_member", "data_type", "text");
 
@@ -56,7 +56,7 @@ public class M20260213Tests : SqliteTestFixture
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_member", "tag_id", "member_path");
             await AssertIndex("tag_member", "member_path");
-            await AssertIndex("tag_member", "parent_name", "tag_id");
+            await AssertIndex("tag_member", "parent_path", "tag_id");
             await AssertIndex("tag_member", "member_name", "tag_id");
             await AssertIndex("tag_member", "data_type", "tag_id");
         }

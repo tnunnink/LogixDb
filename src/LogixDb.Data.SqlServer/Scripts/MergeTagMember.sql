@@ -7,11 +7,11 @@ ON target.tag_id = (SELECT tag_id
 WHEN NOT MATCHED THEN
     INSERT (tag_id,
             member_path,
-            parent_name,
+            parent_path,
             member_name,
             data_type)
     VALUES ((SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_hash),
             source.member_path,
-            source.parent_name,
+            source.parent_path,
             source.member_name,
             source.data_type);

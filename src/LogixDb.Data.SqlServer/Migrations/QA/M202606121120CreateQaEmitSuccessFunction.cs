@@ -10,7 +10,7 @@ public class M202606121120CreateQaEmitSuccessFunction : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaEmitSuccessFunction.sql");
+        Execute.EmbeddedScript("QA.006_QaEmitSuccessFunction.sql");
     }
 
     public override void Down()

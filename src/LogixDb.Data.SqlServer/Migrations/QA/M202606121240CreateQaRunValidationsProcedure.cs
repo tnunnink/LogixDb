@@ -10,7 +10,7 @@ public class M202606121240CreateQaRunValidationsProcedure : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaRunValidationsProcedure.sql");
+        Execute.EmbeddedScript("QA.012_QaRunValidationsProcedure.sql");
     }
 
     public override void Down()

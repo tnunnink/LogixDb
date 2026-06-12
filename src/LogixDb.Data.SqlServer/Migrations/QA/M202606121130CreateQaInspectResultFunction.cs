@@ -10,7 +10,7 @@ public class M202606121130CreateQaInspectResultFunction : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaInspectResultFunction.sql");
+        Execute.EmbeddedScript("QA.007_QaInspectResultFunction.sql");
     }
 
     public override void Down()

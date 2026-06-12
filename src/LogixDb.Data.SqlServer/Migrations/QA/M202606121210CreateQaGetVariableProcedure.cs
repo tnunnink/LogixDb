@@ -10,7 +10,7 @@ public class M202606121210CreateQaGetVariableProcedure : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaGetVariableProcedure.sql");
+        Execute.EmbeddedScript("QA.009_QaGetVariableProcedure.sql");
     }
 
     public override void Down()

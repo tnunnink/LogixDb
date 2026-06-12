@@ -10,7 +10,7 @@ public class M202606120900CreateQaSchemaAndTypes : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaSchemaAndTypes.sql");
+        Execute.EmbeddedScript("QA.001_QaSchemaAndTypes.sql");
     }
 
     public override void Down()

@@ -10,7 +10,7 @@ public class M202606121100CreateQaListValidationsView : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaListValidationsView.sql");
+        Execute.EmbeddedScript("QA.004_QaListValidationsView.sql");
     }
 
     public override void Down()

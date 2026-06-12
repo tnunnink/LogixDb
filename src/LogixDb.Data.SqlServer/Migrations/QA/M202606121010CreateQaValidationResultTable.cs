@@ -10,7 +10,7 @@ public class M202606121010CreateQaValidationResultTable : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaValidationResultTable.sql");
+        Execute.EmbeddedScript("QA.003_QaValidationResultTable.sql");
     }
 
     public override void Down()

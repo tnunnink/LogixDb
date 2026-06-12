@@ -296,6 +296,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
                 .ScanIn(
                     typeof(MigrationTableMetaData).Assembly,
                     typeof(SqlServerManager).Assembly)
+                .ScanIn().For.EmbeddedResources()
                 .For.Migrations()
             );
 

@@ -99,29 +99,6 @@ public abstract class SqlServerTestFixture
         );
     }
 
-    /// <summary>
-    /// Verifies the existence of a specific table in the database by querying the
-    /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
-    /// </summary>
-    /// <param name="tableName">The name of the table to check for existence in the database.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
-    protected static async Task AssertTableExists(string tableName)
-    {
-        using var connection = await Database.Connect();
-
-        var result = await connection.QuerySingleOrDefaultAsync<int>(
-            """
-            SELECT 1
-            FROM INFORMATION_SCHEMA.TABLES
-            WHERE TABLE_NAME = @tableName
-            """,
-            new { tableName }
-        );
-
-        if (result < 1)
-            throw new AssertionException($"Table '{tableName}' was not found in the database.");
-    }
 
     /// <summary>
     /// Verifies that the specified table does not exist in the database by querying the
@@ -169,10 +146,11 @@ public abstract class SqlServerTestFixture
     /// Verifies the existence of a specific function in the database by querying the
     /// INFORMATION_SCHEMA.ROUTINES view. If the function does not exist, an exception is thrown.
     /// </summary>
+    /// <param name="schemaName">The schema where the function is located.</param>
     /// <param name="functionName">The name of the function to check for existence in the database.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     /// <exception cref="AssertionException">Thrown if the specified function does not exist in the database.</exception>
-    protected static async Task AssertFunctionExists(string functionName)
+    protected static async Task AssertFunctionExists(string schemaName, string functionName)
     {
         using var connection = await Database.Connect();
 
@@ -180,13 +158,163 @@ public abstract class SqlServerTestFixture
             """
             SELECT 1
             FROM INFORMATION_SCHEMA.ROUTINES
-            WHERE ROUTINE_NAME = @functionName AND ROUTINE_TYPE = 'FUNCTION'
+            WHERE ROUTINE_SCHEMA = @schemaName AND ROUTINE_NAME = @functionName AND ROUTINE_TYPE = 'FUNCTION'
             """,
-            new { functionName }
+            new { schemaName, functionName }
         );
 
         if (result < 1)
-            throw new AssertionException($"Function '{functionName}' was not found in the database.");
+            throw new AssertionException($"Function '{schemaName}.{functionName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific function in the database by querying the
+    /// INFORMATION_SCHEMA.ROUTINES view. If the function does not exist, an exception is thrown.
+    /// </summary>
+    /// <param name="functionName">The name of the function to check for existence in the database.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified function does not exist in the database.</exception>
+    protected static async Task AssertFunctionExists(string functionName)
+    {
+        await AssertFunctionExists("dbo", functionName);
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific table in the database by querying the
+    /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
+    /// </summary>
+    /// <param name="schemaName">The schema where the table is located.</param>
+    /// <param name="tableName">The name of the table to check for existence in the database.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
+    protected static async Task AssertTableExists(string schemaName, string tableName)
+    {
+        using var connection = await Database.Connect();
+
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_SCHEMA = @schemaName AND TABLE_NAME = @tableName
+            """,
+            new { schemaName, tableName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"Table '{schemaName}.{tableName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific table in the database by querying the
+    /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
+    /// </summary>
+    /// <param name="tableName">The name of the table to check for existence in the database.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
+    protected static async Task AssertTableExists(string tableName)
+    {
+        await AssertTableExists("dbo", tableName);
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific schema in the database.
+    /// </summary>
+    /// <param name="schemaName">The name of the schema to check for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected static async Task AssertSchemaExists(string schemaName)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            "SELECT 1 FROM sys.schemas WHERE name = @schemaName",
+            new { schemaName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"Schema '{schemaName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies that a specific schema does not exist in the database.
+    /// </summary>
+    /// <param name="schemaName">The name of the schema to check for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected static async Task AssertSchemaDoesNotExist(string schemaName)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            "SELECT 1 FROM sys.schemas WHERE name = @schemaName",
+            new { schemaName }
+        );
+
+        if (result == 1)
+            throw new AssertionException($"Schema '{schemaName}' was found in the database but should not exist.");
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific table-valued type in the database.
+    /// </summary>
+    /// <param name="schemaName">The schema where the type is located.</param>
+    /// <param name="typeName">The name of the type to check for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected static async Task AssertTypeExists(string schemaName, string typeName)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1 
+            FROM sys.table_types t
+            JOIN sys.schemas s ON t.schema_id = s.schema_id
+            WHERE s.name = @schemaName AND t.name = @typeName
+            """,
+            new { schemaName, typeName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"Table type '{schemaName}.{typeName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific view in the database.
+    /// </summary>
+    /// <param name="schemaName">The schema where the view is located.</param>
+    /// <param name="viewName">The name of the view to check for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected static async Task AssertViewExists(string schemaName, string viewName)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1
+            FROM INFORMATION_SCHEMA.VIEWS
+            WHERE TABLE_SCHEMA = @schemaName AND TABLE_NAME = @viewName
+            """,
+            new { schemaName, viewName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"View '{schemaName}.{viewName}' was not found in the database.");
+    }
+
+    /// <summary>
+    /// Verifies the existence of a specific stored procedure in the database.
+    /// </summary>
+    /// <param name="schemaName">The schema where the procedure is located.</param>
+    /// <param name="procedureName">The name of the procedure to check for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    protected static async Task AssertProcedureExists(string schemaName, string procedureName)
+    {
+        using var connection = await Database.Connect();
+        var result = await connection.QuerySingleOrDefaultAsync<int>(
+            """
+            SELECT 1
+            FROM INFORMATION_SCHEMA.ROUTINES
+            WHERE ROUTINE_SCHEMA = @schemaName AND ROUTINE_NAME = @procedureName AND ROUTINE_TYPE = 'PROCEDURE'
+            """,
+            new { schemaName, procedureName }
+        );
+
+        if (result < 1)
+            throw new AssertionException($"Procedure '{schemaName}.{procedureName}' was not found in the database.");
     }
 
     /// <summary>

@@ -10,7 +10,7 @@ public class M202606121220CreateQaGetVariableAsIntProcedure : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaGetVariableAsIntProcedure.sql");
+        Execute.EmbeddedScript("QA.010_QaGetVariableAsIntProcedure.sql");
     }
 
     public override void Down()

@@ -10,7 +10,7 @@ public class M202606121110CreateQaEmitFailureFunction : Migration
 {
     public override void Up()
     {
-        Execute.EmbeddedScript("QA.QA.QA.QaEmitFailureFunction.sql");
+        Execute.EmbeddedScript("QA.005_QaEmitFailureFunction.sql");
     }
 
     public override void Down()

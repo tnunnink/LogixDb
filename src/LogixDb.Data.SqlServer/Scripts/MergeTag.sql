@@ -4,6 +4,7 @@ ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT (program_name,
             tag_name,
+            tag_description,
             data_type,
             dimensions,
             radix,
@@ -17,6 +18,7 @@ WHEN NOT MATCHED THEN
             record_hash)
     VALUES (source.program_name,
             source.tag_name,
+            source.tag_description,
             source.data_type,
             source.dimensions,
             source.radix,

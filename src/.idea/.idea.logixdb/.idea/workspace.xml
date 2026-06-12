@@ -19,8 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbQaMigrationTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +70,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/90cc4081e7c64d13b0360e1e3edbe1341d0800/4a/47fff568/Connection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aa5f1386bcf7452cae3189004485a88e1d0600/19/cb43b191/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c5312ab6df534365b6e44dc5819713f31d0800/b2/e8448cb8/Parameter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/06/c2fafa08/LogixSerializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/32/fd77874f/LogixType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/58/84991d6d/LogixElement.cs" root0="SKIP_HIGHLIGHTING" />
@@ -126,61 +129,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000003008993" />
-      <entry key="MS500" value="1.0124647693720161" />
-      <entry key="S2" value="1.334134301657425" />
-      <entry key="S5" value="1.6450129360975936" />
-      <entry key="S10" value="1.803126973832652" />
-      <entry key="S30" value="1.9295263540218595" />
-      <entry key="S60" value="1.9653438909863845" />
-      <entry key="M2" value="2.0411817741500156" />
-      <entry key="M5" value="2.6845107214320745" />
-      <entry key="M10" value="3.641605437546829" />
-      <entry key="M15" value="4.241159509633042" />
-      <entry key="M30" value="5.259957851288642" />
-      <entry key="H1" value="6.233191286067828" />
-      <entry key="H2" value="8.749397711930174" />
-      <entry key="H4" value="30.95576213513659" />
-      <entry key="D1" value="529.1492976891709" />
-      <entry key="W1" value="1751.9554066275734" />
+      <entry key="MS100" value="1.601087207709098E-41" />
+      <entry key="MS500" value="6.987917921102146E-9" />
+      <entry key="S2" value="0.011927557482049626" />
+      <entry key="S5" value="0.30485480613168" />
+      <entry key="S10" value="1.2714979879231563" />
+      <entry key="S30" value="4.131545266670259" />
+      <entry key="S60" value="5.757790122065828" />
+      <entry key="M2" value="7.442411877887141" />
+      <entry key="M5" value="11.49505366009027" />
+      <entry key="M10" value="15.482210091982624" />
+      <entry key="M15" value="17.708011524230734" />
+      <entry key="M30" value="20.92400230315125" />
+      <entry key="H1" value="23.333619080940338" />
+      <entry key="H2" value="26.589104749540077" />
+      <entry key="H4" value="48.54591824291367" />
+      <entry key="D1" value="544.793587313647" />
+      <entry key="W1" value="1769.3787375519519" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="7.16962748611708E-97" />
-      <entry key="S5" value="5.262027501101298E-39" />
-      <entry key="S10" value="1.1242067551036372E-19" />
-      <entry key="S30" value="9.6477896028851E-7" />
-      <entry key="S60" value="0.001691018039155087" />
-      <entry key="M2" value="0.07111273211710015" />
-      <entry key="M5" value="0.6752854347151894" />
-      <entry key="M10" value="1.5522033345317203" />
-      <entry key="M15" value="2.2615531448982322" />
-      <entry key="M30" value="3.8125330271084303" />
-      <entry key="H1" value="5.374915160245407" />
-      <entry key="H2" value="7.864761458068833" />
-      <entry key="H4" value="21.808603282072685" />
-      <entry key="D1" value="199.4842751219976" />
-      <entry key="W1" value="496.7127113804966" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000304443700632" />
+      <entry key="S5" value="1.0424163682596035" />
+      <entry key="S10" value="1.620599013592872" />
+      <entry key="S30" value="5.12721649372787" />
+      <entry key="S60" value="7.734540587437544" />
+      <entry key="M2" value="9.905546886266677" />
+      <entry key="M5" value="13.078512245646987" />
+      <entry key="M10" value="15.838425754140232" />
+      <entry key="M15" value="17.489535090452357" />
+      <entry key="M30" value="20.319801075695427" />
+      <entry key="H1" value="22.837690945553803" />
+      <entry key="H2" value="25.89211282844818" />
+      <entry key="H4" value="39.7991585390313" />
+      <entry key="D1" value="217.20182388976176" />
+      <entry key="W1" value="515.2626106017088" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9592641196099325" />
-      <entry key="MS500" value="1.004044025126613" />
-      <entry key="S2" value="1.3311318867605342" />
-      <entry key="S5" value="1.6434665595976354" />
-      <entry key="S10" value="1.802265947289744" />
-      <entry key="S30" value="1.9292168377891343" />
-      <entry key="S60" value="1.9668205587521128" />
-      <entry key="M2" value="2.1110445788854895" />
-      <entry key="M5" value="3.355354083817852" />
-      <entry key="M10" value="5.1889876245877655" />
-      <entry key="M15" value="6.498367924042756" />
-      <entry key="M30" value="9.069317264995679" />
-      <entry key="H1" value="11.60607683565102" />
-      <entry key="H2" value="16.612669334873605" />
-      <entry key="H4" value="52.761928627193534" />
-      <entry key="D1" value="728.6291468732474" />
-      <entry key="W1" value="2248.6665376174697" />
+      <entry key="MS100" value="0.00312917920933446" />
+      <entry key="MS500" value="0.31556301230032385" />
+      <entry key="S2" value="0.760170572515897" />
+      <entry key="S5" value="1.2191981296646706" />
+      <entry key="S10" value="2.763965570705864" />
+      <entry key="S30" value="9.112727748119973" />
+      <entry key="S60" value="13.383010383394826" />
+      <entry key="M2" value="17.276476912745565" />
+      <entry key="M5" value="24.532094951856415" />
+      <entry key="M10" value="31.29349971241657" />
+      <entry key="M15" value="35.17687325815173" />
+      <entry key="M30" value="41.231404458676636" />
+      <entry key="H1" value="46.16427974052132" />
+      <entry key="H2" value="52.47712415619927" />
+      <entry key="H4" value="88.34135624259395" />
+      <entry key="D1" value="761.9907814398982" />
+      <entry key="W1" value="2284.6397360421342" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -198,77 +201,78 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Debug&quot;,
-    &quot;023f2559-4d27-4bd0-b75c-e1f573990a1d.executor&quot;: &quot;Debug&quot;,
-    &quot;04139c1b-5b64-4aed-b537-1f9c61cac291.executor&quot;: &quot;Debug&quot;,
-    &quot;126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor&quot;: &quot;Debug&quot;,
-    &quot;13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor&quot;: &quot;Debug&quot;,
-    &quot;2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor&quot;: &quot;Debug&quot;,
-    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
-    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
-    &quot;34c483ea-991b-4a3f-a7ce-9d756930abc5.executor&quot;: &quot;Debug&quot;,
-    &quot;35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor&quot;: &quot;Debug&quot;,
-    &quot;3e588a23-4139-418a-942c-482934391d2a.executor&quot;: &quot;Debug&quot;,
-    &quot;41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor&quot;: &quot;Debug&quot;,
-    &quot;42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor&quot;: &quot;Debug&quot;,
-    &quot;487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor&quot;: &quot;Debug&quot;,
-    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
-    &quot;5ae67152-70fa-4f70-b289-3643031b7f89.executor&quot;: &quot;Debug&quot;,
-    &quot;6100961a-9699-4645-983c-6fc6781b89c3.executor&quot;: &quot;Debug&quot;,
-    &quot;695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor&quot;: &quot;Debug&quot;,
-    &quot;6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor&quot;: &quot;Debug&quot;,
-    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
-    &quot;7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor&quot;: &quot;Debug&quot;,
-    &quot;7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor&quot;: &quot;Debug&quot;,
-    &quot;8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor&quot;: &quot;Debug&quot;,
-    &quot;95485339-4be7-43cb-b8d7-c8ef07c63aee.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;a2a32091-c5c7-4df8-847b-04a76b8394ed.executor&quot;: &quot;Debug&quot;,
-    &quot;b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor&quot;: &quot;Debug&quot;,
-    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
-    &quot;bab2bab0-9cea-416e-aaea-975b3296228d.executor&quot;: &quot;Debug&quot;,
-    &quot;bb8142bb-e865-42cd-926e-68b469a1002e.executor&quot;: &quot;Debug&quot;,
-    &quot;c9dae028-5c51-47ea-ab78-a1ae1448939b.executor&quot;: &quot;Debug&quot;,
-    &quot;ced1c75b-02a6-42f8-afbd-597075e6a718.executor&quot;: &quot;Debug&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;db27ef2f-246d-4f4e-871d-3c60d305b332.executor&quot;: &quot;Debug&quot;,
-    &quot;db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor&quot;: &quot;Debug&quot;,
-    &quot;e57754cd-b12b-44f4-b8a2-711d0f71850e.executor&quot;: &quot;Debug&quot;,
-    &quot;e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.SQL&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
+    "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
+    "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
+    "126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor": "Debug",
+    "13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor": "Debug",
+    "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
+    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
+    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
+    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
+    "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
+    "3e588a23-4139-418a-942c-482934391d2a.executor": "Debug",
+    "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
+    "42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor": "Debug",
+    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
+    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
+    "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
+    "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
+    "695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor": "Debug",
+    "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
+    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
+    "7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor": "Debug",
+    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
+    "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
+    "95485339-4be7-43cb-b8d7-c8ef07c63aee.executor": "Debug",
+    "9a039f25-f941-4a11-ae80-8ab4c0ac8a7d.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "a2a32091-c5c7-4df8-847b-04a76b8394ed.executor": "Debug",
+    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
+    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
+    "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
+    "bb8142bb-e865-42cd-926e-68b469a1002e.executor": "Debug",
+    "c9dae028-5c51-47ea-ab78-a1ae1448939b.executor": "Debug",
+    "ced1c75b-02a6-42f8-afbd-597075e6a718.executor": "Debug",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "db27ef2f-246d-4f4e-871d-3c60d305b332.executor": "Debug",
+    "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
+    "e57754cd-b12b-44f4-b8a2-711d0f71850e.executor": "Debug",
+    "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.SQL",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
-      &quot;TSQL&quot;,
-      &quot;SQLite&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "TSQL",
+      "SQLite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.100696936" />
@@ -365,15 +369,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="25454000" />
-    </task>
-    <task id="LOCAL-00286" summary="Update tests to add `rung_reference` and remove redundant `aoi_rung` assertions">
-      <option name="closed" value="true" />
-      <created>1779894267136</created>
-      <option name="number" value="00286" />
-      <option name="presentableId" value="LOCAL-00286" />
-      <option name="project" value="LOCAL" />
-      <updated>1779894267136</updated>
+      <workItem from="1781199999831" duration="26741000" />
     </task>
     <task id="LOCAL-00287" summary="Update `MergeRoutine.sql` scripts to replace `program_name` with `container_name` and add `is_definition` field in SQLite and SQL Server merge logic.">
       <option name="closed" value="true" />
@@ -759,7 +755,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781276881216</updated>
     </task>
-    <option name="localTasksCounter" value="335" />
+    <task id="LOCAL-00335" summary="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity.">
+      <option name="closed" value="true" />
+      <created>1781277118359</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1781277118359</updated>
+    </task>
+    <option name="localTasksCounter" value="336" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -787,7 +791,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `.idea` workspace configuration to reflect changes in migrations, performance tests, and schema mappings." />
     <MESSAGE value="Add SQLite and SQL Server-specific table creation and indexing logic for `rung`, `tag_member`, and `data_type_member` tables in migrations." />
     <MESSAGE value="Rnemaed all the version helper functions to different name that aligns more with the database table names for easy discovery." />
     <MESSAGE value="Bump version to 0.12.7 in project files for service and CLI applications." />
@@ -812,7 +815,8 @@
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.0 across projects." />
     <MESSAGE value="Remove all deprecated SQL scripts and their associated logic, including merge scripts (e.g., `MergeAoi`, `MergeController`) and helper functions, as part of cleanup." />
     <MESSAGE value="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup." />
+    <MESSAGE value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -867,6 +871,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs</url>
+          <line>94</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerWriter.cs" containingFunctionPresentation="Method 'ExecuteMergeAsync'">
+            <startOffsets>
+              <option value="4715" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4789" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

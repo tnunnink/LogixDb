@@ -43,7 +43,18 @@ public static class CryptoExtensions
         // This will recursively reset all data members to default values.
         // We need to do this to ensure the hash does not reflect data value changes.
         // We als rely on the fact that Target is scrubbing the L5K data when loaded/created.
-        if (clone is Tag tag) tag.Value.ClearData();
+        switch (clone)
+        {
+            case Tag tag:
+                tag.Value.ClearData();
+                break;
+            case Parameter parameter:
+                parameter.Default?.ClearData();
+                break;
+            case LogixData data:
+                data.ClearData();
+                break;
+        }
 
         // 2. Convert XElement to XmlDocument (C14N works on XmlDocument)
         var document = new XmlDocument();

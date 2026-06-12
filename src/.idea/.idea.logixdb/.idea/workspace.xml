@@ -18,7 +18,10 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606111410CreateTagTreeFrom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606111410CreateTagTreeFrom.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,61 +127,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="5.881190120602449E-46" />
-      <entry key="MS500" value="2.5969318468672406E-9" />
-      <entry key="S2" value="0.025541351606418794" />
-      <entry key="S5" value="1.0704477046570688" />
-      <entry key="S10" value="4.417693292532286" />
-      <entry key="S30" value="13.34806603587897" />
-      <entry key="S60" value="21.351427603338607" />
-      <entry key="M2" value="30.043399201071903" />
-      <entry key="M5" value="38.743911978948944" />
-      <entry key="M10" value="42.5680462375866" />
-      <entry key="M15" value="43.97390780462799" />
-      <entry key="M30" value="45.629039548829226" />
-      <entry key="H1" value="48.38196679854672" />
-      <entry key="H2" value="54.70855247023551" />
-      <entry key="H4" value="73.60234816063458" />
-      <entry key="D1" value="540.4025471711919" />
-      <entry key="W1" value="1791.5224471353717" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000117606350512" />
+      <entry key="S60" value="1.020041634224605" />
+      <entry key="M2" value="1.9204541819641776" />
+      <entry key="M5" value="10.60958675813618" />
+      <entry key="M10" value="22.199925707158712" />
+      <entry key="M15" value="28.62880762107908" />
+      <entry key="M30" value="37.168031127841246" />
+      <entry key="H1" value="44.07500031759009" />
+      <entry key="H2" value="52.62096382432752" />
+      <entry key="H4" value="72.49523739755942" />
+      <entry key="D1" value="538.7927722378779" />
+      <entry key="W1" value="1791.2839057968097" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.003962296583357" />
-      <entry key="MS500" value="1.4005843822297959" />
-      <entry key="S2" value="2.5643498413676733" />
-      <entry key="S5" value="3.976943109513679" />
-      <entry key="S10" value="5.303340336601758" />
-      <entry key="S30" value="8.687847281016051" />
-      <entry key="S60" value="13.502361342906207" />
-      <entry key="M2" value="19.498920629252197" />
-      <entry key="M5" value="25.82652591572878" />
-      <entry key="M10" value="28.669617309953654" />
-      <entry key="M15" value="29.722548009189378" />
-      <entry key="M30" value="31.005527645026472" />
-      <entry key="H1" value="33.5286399153131" />
-      <entry key="H2" value="39.5929728967684" />
-      <entry key="H4" value="53.82209998334367" />
-      <entry key="D1" value="228.7011019398203" />
-      <entry key="W1" value="540.0219877235224" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="3.838518841865727E-91" />
+      <entry key="S5" value="1.860475433153701E-36" />
+      <entry key="S10" value="3.627327588890326E-18" />
+      <entry key="S30" value="7.654637082105264E-6" />
+      <entry key="S60" value="0.012674065277052381" />
+      <entry key="M2" value="0.5973978815400623" />
+      <entry key="M5" value="6.405709407539825" />
+      <entry key="M10" value="14.278168972834393" />
+      <entry key="M15" value="18.674677824920398" />
+      <entry key="M30" value="24.57664899565552" />
+      <entry key="H1" value="29.85091906275826" />
+      <entry key="H2" value="37.358462787214435" />
+      <entry key="H4" value="52.28126427632656" />
+      <entry key="D1" value="227.59663193650854" />
+      <entry key="W1" value="539.64865187356" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.004877899309596239" />
-      <entry key="MS500" value="0.43534413350002277" />
-      <entry key="S2" value="1.82384311706523" />
-      <entry key="S5" value="4.41260094618679" />
-      <entry key="S10" value="9.202438219777589" />
-      <entry key="S30" value="21.70816036437515" />
-      <entry key="S60" value="34.60967292170607" />
-      <entry key="M2" value="49.37453310908265" />
-      <entry key="M5" value="64.48460582639522" />
-      <entry key="M10" value="71.19058763277849" />
-      <entry key="M15" value="73.66404763535661" />
-      <entry key="M30" value="76.61771842598877" />
-      <entry key="H1" value="81.9014428237935" />
-      <entry key="H2" value="94.29598667699872" />
-      <entry key="H4" value="127.42023959679568" />
-      <entry key="D1" value="769.0990954447809" />
-      <entry key="W1" value="2331.542793880205" />
+      <entry key="MS100" value="0.9201876506248751" />
+      <entry key="MS500" value="0.9835020740262483" />
+      <entry key="S2" value="0.9958497530944581" />
+      <entry key="S5" value="0.9983378297043665" />
+      <entry key="S10" value="0.999168569213607" />
+      <entry key="S30" value="0.999741906057966" />
+      <entry key="S60" value="1.032347938833415" />
+      <entry key="M2" value="2.512642188091285" />
+      <entry key="M5" value="16.993979657893252" />
+      <entry key="M10" value="36.45463586291922" />
+      <entry key="M15" value="47.28311414455984" />
+      <entry key="M30" value="61.73132026282139" />
+      <entry key="H1" value="73.91775835714911" />
+      <entry key="H2" value="89.97419935354954" />
+      <entry key="H4" value="124.77241303266993" />
+      <entry key="D1" value="766.3848724029801" />
+      <entry key="W1" value="2330.930917812393" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -364,15 +367,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="33370000" />
-    </task>
-    <task id="LOCAL-00291" summary="Add `is_native` field to operands, update related SQL scripts and tests.">
-      <option name="closed" value="true" />
-      <created>1779906343307</created>
-      <option name="number" value="00291" />
-      <option name="presentableId" value="LOCAL-00291" />
-      <option name="project" value="LOCAL" />
-      <updated>1779906343307</updated>
+      <workItem from="1781199999831" duration="35012000" />
     </task>
     <task id="LOCAL-00292" summary="Fix `is_native` column type in `M20260308Tests` from `integer` to `bit`.">
       <option name="closed" value="true" />
@@ -758,7 +753,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781290413444</updated>
     </task>
-    <option name="localTasksCounter" value="340" />
+    <task id="LOCAL-00340" summary="Bump project versions to 0.13.1 and update `.idea` workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1781290738422</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
+      <option name="project" value="LOCAL" />
+      <updated>1781290738422</updated>
+    </task>
+    <option name="localTasksCounter" value="341" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -786,7 +789,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity." />
     <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes." />
     <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments." />
     <MESSAGE value="Update tests: add `tag_description`, replace `tag_name` with `member_path`, and rename `tag_comment` to `tag_member_comment` across SQLite and SQL Server migration tests." />
@@ -811,7 +813,8 @@
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
     <MESSAGE value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
     <MESSAGE value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
+    <MESSAGE value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

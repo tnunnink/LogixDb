@@ -30,6 +30,7 @@ public class M202606111410CreateTagTreeFrom : Migration
                                 tt.member_distance + 1
                             FROM TagTree tt
                             JOIN dbo.tag_member tm ON tt.tag_id = tm.tag_id AND tt.member_path = tm.parent_path
+                            WHERE tm.member_name IS NOT NULL
                         )
                         SELECT * FROM TagTree
                     );

@@ -19,17 +19,17 @@ public class AoiTransformer : IDbTransformer
     {
         var source = target.GetSource();
         var instructions = new List<AddOnInstruction>();
-        var parameters = new List<ParameterRecord>();
+        var parameters = new List<Parameter>();
 
         foreach (var aoi in source.AddOnInstructions)
         {
-            var aoiHash = _aoiMap.ComputeHash(aoi);
             instructions.Add(aoi);
-            parameters.AddRange(aoi.Parameters.Select(p => ParameterRecord.FromParameter(p, aoiHash)));
+            parameters.AddRange(aoi.Parameters);
 
-            // Only attempt to process local tags if the AOI is not encrypted. 
+            // Only attempt to process local tags if the AOI is not encrypted.
+            // Routine data is handled by the routine transformer.
             if (!aoi.IsEncrypted)
-                parameters.AddRange(aoi.LocalTags.Select(t => ParameterRecord.FromLocalTag(t, aoiHash)));
+                parameters.AddRange(aoi.LocalTags);
         }
 
         yield return _aoiMap.GenerateTable(instructions);

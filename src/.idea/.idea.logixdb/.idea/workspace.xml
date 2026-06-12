@@ -19,27 +19,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +72,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/898a99b1d4d348c09fc9b65f48e111d61cee00/34/929e4a86/LogixIndex.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aa5f1386bcf7452cae3189004485a88e1d0600/19/cb43b191/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/06/c2fafa08/LogixSerializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/32/fd77874f/LogixType.cs" root0="SKIP_HIGHLIGHTING" />
@@ -143,61 +132,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.2118513734429224" />
-      <entry key="MS500" value="2.917889115072464" />
-      <entry key="S2" value="4.5663421957495505" />
-      <entry key="S5" value="5.607007879440437" />
-      <entry key="S10" value="6.195018587883474" />
-      <entry key="S30" value="6.710074948568341" />
-      <entry key="S60" value="7.001341237196514" />
-      <entry key="M2" value="8.004745046176641" />
-      <entry key="M5" value="12.914455229293326" />
-      <entry key="M10" value="21.54271040816403" />
-      <entry key="M15" value="29.376245884673416" />
-      <entry key="M30" value="49.7329753139556" />
-      <entry key="H1" value="78.57211941623828" />
-      <entry key="H2" value="116.2667078685174" />
-      <entry key="H4" value="188.01239584955914" />
-      <entry key="D1" value="734.5824171688498" />
-      <entry key="W1" value="1827.0575546361713" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="7.141034190322247E-244" />
+      <entry key="S5" value="8.076061393960934E-98" />
+      <entry key="S10" value="3.994543326821084E-49" />
+      <entry key="S30" value="1.1674741881206476E-16" />
+      <entry key="S60" value="1.5277914104459546E-8" />
+      <entry key="M2" value="1.7479474818140963E-4" />
+      <entry key="M5" value="0.04760196415656203" />
+      <entry key="M10" value="0.3085508081553971" />
+      <entry key="M15" value="0.5752998908098765" />
+      <entry key="M30" value="1.0726690837256807" />
+      <entry key="H1" value="1.4989631134043686" />
+      <entry key="H2" value="4.176688569141246" />
+      <entry key="H4" value="29.42018409014669" />
+      <entry key="D1" value="537.1910320103126" />
+      <entry key="W1" value="1752.5658999351656" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="8.170904840671564E-21" />
-      <entry key="MS500" value="1.0406015041314437E-4" />
-      <entry key="S2" value="0.1524719141086209" />
-      <entry key="S5" value="0.759665804471235" />
-      <entry key="S10" value="1.5118184577054836" />
-      <entry key="S30" value="2.782451656732614" />
-      <entry key="S60" value="3.487560280681737" />
-      <entry key="M2" value="4.679866368309284" />
-      <entry key="M5" value="9.712486823366746" />
-      <entry key="M10" value="18.46876525771356" />
-      <entry key="M15" value="25.811191253074394" />
-      <entry key="M30" value="43.08094909372132" />
-      <entry key="H1" value="65.80876817575447" />
-      <entry key="H2" value="89.77986322260594" />
-      <entry key="H4" value="117.12037924124091" />
-      <entry key="D1" value="268.62242253708007" />
-      <entry key="W1" value="509.9787706889166" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000000018" />
+      <entry key="S2" value="1.000338213435976" />
+      <entry key="S5" value="1.0759940577241671" />
+      <entry key="S10" value="1.4743348168438084" />
+      <entry key="S30" value="2.6198741816691413" />
+      <entry key="S60" value="3.2040606988112166" />
+      <entry key="M2" value="3.5713017069670205" />
+      <entry key="M5" value="3.820520945744752" />
+      <entry key="M10" value="3.9088713857485047" />
+      <entry key="M15" value="3.938934630561052" />
+      <entry key="M30" value="3.969317307539198" />
+      <entry key="H1" value="4.012533895741571" />
+      <entry key="H2" value="5.8669707423749395" />
+      <entry key="H4" value="21.118734651797148" />
+      <entry key="D1" value="200.75918943669046" />
+      <entry key="W1" value="494.5824738829467" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.5824073109397832" />
-      <entry key="MS500" value="2.5762590273353476" />
-      <entry key="S2" value="4.478448600197646" />
-      <entry key="S5" value="6.139484517691374" />
-      <entry key="S10" value="7.513032339051186" />
-      <entry key="S30" value="9.380262299658163" />
-      <entry key="S60" value="10.418928315442576" />
-      <entry key="M2" value="12.636730689584072" />
-      <entry key="M5" value="22.57856032404177" />
-      <entry key="M10" value="39.957465971433734" />
-      <entry key="M15" value="55.134566545912655" />
-      <entry key="M30" value="92.76941340699561" />
-      <entry key="H1" value="144.3481684836965" />
-      <entry key="H2" value="206.0247075033217" />
-      <entry key="H4" value="305.11807363485764" />
-      <entry key="D1" value="1003.1987525610017" />
-      <entry key="W1" value="2337.0346875279893" />
+      <entry key="MS100" value="7.50427334613287E-4" />
+      <entry key="MS500" value="0.23717107878511354" />
+      <entry key="S2" value="0.6980461365762327" />
+      <entry key="S5" value="0.9283001662289637" />
+      <entry key="S10" value="1.3623675308549577" />
+      <entry key="S30" value="2.548004488424246" />
+      <entry key="S60" value="3.159426466367376" />
+      <entry key="M2" value="3.546434124034237" />
+      <entry key="M5" value="3.857366246435104" />
+      <entry key="M10" value="4.211909750824734" />
+      <entry key="M15" value="4.510527636935456" />
+      <entry key="M30" value="5.040115851776842" />
+      <entry key="H1" value="5.5105435796072" />
+      <entry key="H2" value="10.04273906827349" />
+      <entry key="H4" value="50.5365616480808" />
+      <entry key="D1" value="737.9457520733349" />
+      <entry key="W1" value="2247.146797998357" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -382,39 +371,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="17996000" />
-    </task>
-    <task id="LOCAL-00277" summary="Add versioned helper functions for various database components, including tags, controllers, operands, data types, programs, tasks, routines, and AOIs.">
-      <option name="closed" value="true" />
-      <created>1779891988566</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1779891988566</updated>
-    </task>
-    <task id="LOCAL-00278" summary="Add version mapping for `operand` components in SQLite and SQL Server merge scripts; update user dictionary settings">
-      <option name="closed" value="true" />
-      <created>1779891999523</created>
-      <option name="number" value="00278" />
-      <option name="presentableId" value="LOCAL-00278" />
-      <option name="project" value="LOCAL" />
-      <updated>1779891999523</updated>
-    </task>
-    <task id="LOCAL-00279" summary="Update workspace configuration to reflect changes in migration files and merge scripts">
-      <option name="closed" value="true" />
-      <created>1779892002958</created>
-      <option name="number" value="00279" />
-      <option name="presentableId" value="LOCAL-00279" />
-      <option name="project" value="LOCAL" />
-      <updated>1779892002958</updated>
-    </task>
-    <task id="LOCAL-00280" summary="Add tests for verifying creation of versioned functions in SQL Server migrations and update `AssertFunctionExists` in test fixtures.">
-      <option name="closed" value="true" />
-      <created>1779892351539</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1779892351539</updated>
+      <workItem from="1781199999831" duration="22640000" />
     </task>
     <task id="LOCAL-00281" summary="Remove `aoi_rung` table migration and update `routine` table with `container_name` and `is_definition` columns.">
       <option name="closed" value="true" />
@@ -776,7 +733,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781231592257</updated>
     </task>
-    <option name="localTasksCounter" value="326" />
+    <task id="LOCAL-00326" summary="Bump package versions across projects, including `L5Sharp` to 7.2.0, `Microsoft.NET.Test.Sdk` to 18.6.0, `NUnit.Analyzers` to 4.14.0, and several others.">
+      <option name="closed" value="true" />
+      <created>1781233100985</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1781233100985</updated>
+    </task>
+    <task id="LOCAL-00327" summary="Refactor AOI and Parameter mappings: replace `ParameterRecord` with `Parameter`, update mapping logic, and clean up related code.">
+      <option name="closed" value="true" />
+      <created>1781233180877</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
+      <option name="project" value="LOCAL" />
+      <updated>1781233180877</updated>
+    </task>
+    <task id="LOCAL-00328" summary="Refactor `Parameter` formatting logic: replace `Dimension &gt; 0` check with `Dimensions?.IsEmpty is false` for improved null safety.">
+      <option name="closed" value="true" />
+      <created>1781233256061</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
+      <option name="project" value="LOCAL" />
+      <updated>1781233256061</updated>
+    </task>
+    <task id="LOCAL-00329" summary="Add `ModuleConnectionMap` for module connections, update `ModuleTransformer` to generate corresponding tables, and add migration tests for `module_connection`.">
+      <option name="closed" value="true" />
+      <created>1781233306137</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1781233306137</updated>
+    </task>
+    <option name="localTasksCounter" value="330" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -804,10 +793,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add database-specific table creation logic and index updates for `tag_member` and `data_type_member` tables." />
-    <MESSAGE value="Bump version to 0.12.4 in project files for service and CLI applications." />
-    <MESSAGE value="Add database-specific logic for `rung` table creation and indexing in migration" />
-    <MESSAGE value="Bump version to 0.12.5 in project files for service and CLI applications." />
     <MESSAGE value="Add fake tag and program generation logic to `TestSource.Fake` for improved test data creation" />
     <MESSAGE value="Update migrations to add unique indexes for `target_component` and `target_version_map` tables and enhance `TestSource` with public fake data generators and tests." />
     <MESSAGE value="Mark `ExecuteQuery_AfterLargeNumberOfFakeImports_ShouldBePerformant` test as explicit for ongoing work on high-load query stress testing." />
@@ -829,7 +814,11 @@
     <MESSAGE value="Remove deprecated versioned helper functions (`tag_members_for`, `tag_comments_for`, `aoi_parameters_for`, `data_type_members_for`, `operands_for`) and associated tests, rename `M202605271010CreateLogixFor` to `M202605271010CreateLogicFor`, and update `tag_tree_from` function parameters and logic." />
     <MESSAGE value="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
+    <MESSAGE value="Bump package versions across projects, including `L5Sharp` to 7.2.0, `Microsoft.NET.Test.Sdk` to 18.6.0, `NUnit.Analyzers` to 4.14.0, and several others." />
+    <MESSAGE value="Refactor AOI and Parameter mappings: replace `ParameterRecord` with `Parameter`, update mapping logic, and clean up related code." />
+    <MESSAGE value="Refactor `Parameter` formatting logic: replace `Dimension &gt; 0` check with `Dimensions?.IsEmpty is false` for improved null safety." />
+    <MESSAGE value="Add `ModuleConnectionMap` for module connections, update `ModuleTransformer` to generate corresponding tables, and add migration tests for `module_connection`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `ModuleConnectionMap` for module connections, update `ModuleTransformer` to generate corresponding tables, and add migration tests for `module_connection`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

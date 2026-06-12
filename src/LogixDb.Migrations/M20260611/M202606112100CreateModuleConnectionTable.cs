@@ -1,13 +1,14 @@
 using System.Data;
 using FluentMigrator;
+using JetBrains.Annotations;
 using LogixDb.Data;
 
 namespace LogixDb.Migrations.M20260611;
 
-
+[UsedImplicitly]
 [Migration(202606112100, "Creates module connection table")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Module)]
-public class M202606112100CreateModuleConnectionTable : AutoReversingMigration 
+public class M202606112100CreateModuleConnectionTable : AutoReversingMigration
 {
     public override void Up()
     {

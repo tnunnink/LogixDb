@@ -20,7 +20,7 @@ public static class TestSource
     /// <returns>A configured L5X instance ready for testing.</returns>
     public static L5X Custom(Action<L5X> config)
     {
-        var content = L5X.New("Test", "1756-L83E", 33.1);
+        var content = L5X.New("Test", "1756-L83E", "33.1");
         config.Invoke(content);
         return content;
     }
@@ -34,7 +34,7 @@ public static class TestSource
     /// <returns>An L5X instance populated with fake test data.</returns>
     public static L5X Fake(int count = 10, Action<L5X>? config = null)
     {
-        var content = L5X.New("Test", "1756-L83E", 33.1);
+        var content = L5X.New("Test", "1756-L83E", "33.1");
 
         content.DataTypes.AddRange(CreateFakeDataTypes(count));
         content.Tags.AddRange(CreateFakeTags(count));

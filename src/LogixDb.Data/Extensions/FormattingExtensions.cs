@@ -22,7 +22,7 @@ public static class FormattingExtensions
         return element switch
         {
             Tag t => t.Dimensions > 0 ? $"{t.DataType}{t.Dimensions.ToIndex()}" : t.DataType,
-            Parameter p => p.Dimension > 0 ? $"{p.DataType}{p.Dimension.ToIndex()}" : p.DataType,
+            Parameter p => p.Dimensions?.IsEmpty is false ? $"{p.DataType}{p.Dimensions.ToIndex()}" : p.DataType,
             _ => throw new InvalidOperationException(
                 $"Element type '{element.GetType().Name}' is not supported for data type name extraction.")
         };

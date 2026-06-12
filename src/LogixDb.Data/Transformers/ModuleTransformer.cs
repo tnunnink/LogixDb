@@ -11,16 +11,18 @@ namespace LogixDb.Data.Transformers;
 /// </summary>
 public class ModuleTransformer : IDbTransformer
 {
-    private readonly ModuleMap _map = new();
+    private readonly ModuleMap _moduleMap = new();
+    private readonly ModuleConnectionMap _connectionMap = new();
 
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        // Some module elements don't have a name (VFD peripherals) not sure if these are worth adding or not.
+        // todo Some module elements don't have a name (VFD peripherals) not sure if these are worth adding or not.
         var modules = target.GetSource().Modules
             .Where(x => !string.IsNullOrEmpty(x.Name))
             .ToList();
 
-        yield return _map.GenerateTable(modules);
+        yield return _moduleMap.GenerateTable(modules);
+        yield return _connectionMap.GenerateTable(modules.SelectMany(m => m.Connections).ToList());
     }
 }

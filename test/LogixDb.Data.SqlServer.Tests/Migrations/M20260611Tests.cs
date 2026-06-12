@@ -4,10 +4,37 @@
 public class M20260611Tests : SqlServerTestFixture
 {
     [Test]
-    public async Task MigrateUp_ToM202606111410_CreatesTagTreeFromFunction()
+    public async Task MigrateUp_ToM202606112100_CreatesModuleConnectionTableWithExpectedColumns()
     {
-        await Database.Migrate(202606111410);
+        await Database.Migrate(202606112100);
 
-        await AssertFunctionExists("tag_tree_from");
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("module_connection");
+
+            await AssertColumnDefinition("module_connection", "connection_id", "bigint");
+            await AssertColumnDefinition("module_connection", "module_id", "bigint");
+            await AssertColumnDefinition("module_connection", "connection_name", "nvarchar");
+            await AssertColumnDefinition("module_connection", "rpi", "int");
+            await AssertColumnDefinition("module_connection", "connection_type", "nvarchar");
+            await AssertColumnDefinition("module_connection", "connection_priority", "nvarchar");
+            await AssertColumnDefinition("module_connection", "transmission_type", "nvarchar");
+            await AssertColumnDefinition("module_connection", "production_trigger", "nvarchar");
+            await AssertColumnDefinition("module_connection", "output_redundant_owner", "bit");
+            await AssertColumnDefinition("module_connection", "unicast", "bit");
+            await AssertColumnDefinition("module_connection", "programatically_send_event_trigger", "bit");
+            await AssertColumnDefinition("module_connection", "event_id", "int");
+            await AssertColumnDefinition("module_connection", "input_tag", "nvarchar");
+            await AssertColumnDefinition("module_connection", "input_size", "int");
+            await AssertColumnDefinition("module_connection", "input_suffix", "nvarchar");
+            await AssertColumnDefinition("module_connection", "output_tag", "nvarchar");
+            await AssertColumnDefinition("module_connection", "output_size", "int");
+            await AssertColumnDefinition("module_connection", "output_suffix", "nvarchar");
+            await AssertColumnDefinition("module_connection", "connection_path", "nvarchar");
+            await AssertColumnDefinition("module_connection", "record_hash", "nvarchar");
+
+            await AssertPrimaryKey("module_connection", "connection_id");
+            await AssertUniqueIndex("module_connection", "module_id", "record_hash");
+        }
     }
 }

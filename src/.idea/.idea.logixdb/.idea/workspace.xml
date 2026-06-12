@@ -19,22 +19,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271011CreateTagChildrenFor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271011CreateTagChildrenFor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagComment.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagMember.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberCommentMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/LogixDb.Data.SqlServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/AoiParameterMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/AoiTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/LogixDb.Data.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/LogixDb.Testing.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +112,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteGuidHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -118,6 +124,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061200SeedComponentTypes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260524/M202605241400SeedNativeDataTypes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -136,61 +143,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000000156097" />
-      <entry key="S2" value="1.0026188226146233" />
-      <entry key="S5" value="1.1370005597050714" />
-      <entry key="S10" value="1.555873555730407" />
-      <entry key="S30" value="2.713678038125586" />
-      <entry key="S60" value="3.512013416135036" />
-      <entry key="M2" value="4.385081317825463" />
-      <entry key="M5" value="8.08524507491784" />
-      <entry key="M10" value="18.03311060196605" />
-      <entry key="M15" value="27.117238300861384" />
-      <entry key="M30" value="43.61681267811046" />
-      <entry key="H1" value="58.222872999036156" />
-      <entry key="H2" value="82.59763377076429" />
-      <entry key="H4" value="149.4770476457556" />
-      <entry key="D1" value="686.2318717773366" />
-      <entry key="W1" value="1761.1320682724665" />
+      <entry key="MS100" value="1.2118513734429224" />
+      <entry key="MS500" value="2.917889115072464" />
+      <entry key="S2" value="4.5663421957495505" />
+      <entry key="S5" value="5.607007879440437" />
+      <entry key="S10" value="6.195018587883474" />
+      <entry key="S30" value="6.710074948568341" />
+      <entry key="S60" value="7.001341237196514" />
+      <entry key="M2" value="8.004745046176641" />
+      <entry key="M5" value="12.914455229293326" />
+      <entry key="M10" value="21.54271040816403" />
+      <entry key="M15" value="29.376245884673416" />
+      <entry key="M30" value="49.7329753139556" />
+      <entry key="H1" value="78.57211941623828" />
+      <entry key="H2" value="116.2667078685174" />
+      <entry key="H4" value="188.01239584955914" />
+      <entry key="D1" value="734.5824171688498" />
+      <entry key="W1" value="1827.0575546361713" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="7.266856195726489E-204" />
-      <entry key="S2" value="1.6418619623069357E-51" />
-      <entry key="S5" value="4.854389913268388E-21" />
-      <entry key="S10" value="6.96753132252838E-11" />
-      <entry key="S30" value="4.3700923178293717E-4" />
-      <entry key="S60" value="0.029060313647299482" />
-      <entry key="M2" value="0.3287661981170346" />
-      <entry key="M5" value="3.3681175063694817" />
-      <entry key="M10" value="12.21630634299767" />
-      <entry key="M15" value="20.013740241415764" />
-      <entry key="M30" value="33.69376732808655" />
-      <entry key="H1" value="44.619239414223784" />
-      <entry key="H2" value="55.10668624412945" />
-      <entry key="H4" value="73.01459540569549" />
-      <entry key="D1" value="213.688571012351" />
-      <entry key="W1" value="448.6190928186945" />
+      <entry key="MS100" value="8.170904840671564E-21" />
+      <entry key="MS500" value="1.0406015041314437E-4" />
+      <entry key="S2" value="0.1524719141086209" />
+      <entry key="S5" value="0.759665804471235" />
+      <entry key="S10" value="1.5118184577054836" />
+      <entry key="S30" value="2.782451656732614" />
+      <entry key="S60" value="3.487560280681737" />
+      <entry key="M2" value="4.679866368309284" />
+      <entry key="M5" value="9.712486823366746" />
+      <entry key="M10" value="18.46876525771356" />
+      <entry key="M15" value="25.811191253074394" />
+      <entry key="M30" value="43.08094909372132" />
+      <entry key="H1" value="65.80876817575447" />
+      <entry key="H2" value="89.77986322260594" />
+      <entry key="H4" value="117.12037924124091" />
+      <entry key="D1" value="268.62242253708007" />
+      <entry key="W1" value="509.9787706889166" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9659363289248456" />
-      <entry key="MS500" value="0.9930924954525379" />
-      <entry key="S2" value="1.000882921019098" />
-      <entry key="S5" value="1.1362122384315143" />
-      <entry key="S10" value="1.555286677363159" />
-      <entry key="S30" value="2.7125327905532965" />
-      <entry key="S60" value="3.538704227904436" />
-      <entry key="M2" value="4.71055584499693" />
-      <entry key="M5" value="11.441971116946311" />
-      <entry key="M10" value="30.225852896537802" />
-      <entry key="M15" value="47.10420936049057" />
-      <entry key="M30" value="77.28726132573665" />
-      <entry key="H1" value="102.82632444182643" />
-      <entry key="H2" value="137.6937780325334" />
-      <entry key="H4" value="222.48343751996586" />
-      <entry key="D1" value="899.9156281254419" />
-      <entry key="W1" value="2209.7497259213555" />
+      <entry key="MS100" value="0.5824073109397832" />
+      <entry key="MS500" value="2.5762590273353476" />
+      <entry key="S2" value="4.478448600197646" />
+      <entry key="S5" value="6.139484517691374" />
+      <entry key="S10" value="7.513032339051186" />
+      <entry key="S30" value="9.380262299658163" />
+      <entry key="S60" value="10.418928315442576" />
+      <entry key="M2" value="12.636730689584072" />
+      <entry key="M5" value="22.57856032404177" />
+      <entry key="M10" value="39.957465971433734" />
+      <entry key="M15" value="55.134566545912655" />
+      <entry key="M30" value="92.76941340699561" />
+      <entry key="H1" value="144.3481684836965" />
+      <entry key="H2" value="206.0247075033217" />
+      <entry key="H4" value="305.11807363485764" />
+      <entry key="D1" value="1003.1987525610017" />
+      <entry key="W1" value="2337.0346875279893" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -375,95 +382,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="13555000" />
-    </task>
-    <task id="LOCAL-00266" summary="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations.">
-      <option name="closed" value="true" />
-      <created>1779816663803</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
-      <option name="project" value="LOCAL" />
-      <updated>1779816663803</updated>
-    </task>
-    <task id="LOCAL-00267" summary="Update README: expand component relationship diagrams with additional links and metadata details.">
-      <option name="closed" value="true" />
-      <created>1779816683421</created>
-      <option name="number" value="00267" />
-      <option name="presentableId" value="LOCAL-00267" />
-      <option name="project" value="LOCAL" />
-      <updated>1779816683421</updated>
-    </task>
-    <task id="LOCAL-00268" summary="Update `.idea` workspace: adjust change tracking details, refine task summaries, and update task counters.">
-      <option name="closed" value="true" />
-      <created>1779816688658</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1779816688658</updated>
-    </task>
-    <task id="LOCAL-00269" summary="Update README: restructure &quot;Core Concepts&quot; section for clarity, remove duplicate content, and enhance descriptions for deduplication and version mapping; update tests to switch `property_id` to `uniqueidentifier` type in migrations.">
-      <option name="closed" value="true" />
-      <created>1779817206399</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1779817206399</updated>
-    </task>
-    <task id="LOCAL-00270" summary="Increase delay in `SourceIngestionServiceTests` to improve test stability.">
-      <option name="closed" value="true" />
-      <created>1779820108697</created>
-      <option name="number" value="00270" />
-      <option name="presentableId" value="LOCAL-00270" />
-      <option name="project" value="LOCAL" />
-      <updated>1779820108697</updated>
-    </task>
-    <task id="LOCAL-00271" summary="Refactor `release.yml`: improve consistency with indentation, add forced overwrites in PowerShell commands, and streamline steps.">
-      <option name="closed" value="true" />
-      <created>1779821827727</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1779821827727</updated>
-    </task>
-    <task id="LOCAL-00272" summary="Refactor `release.yml`: fix indentation in `Prepare Combined Release` step for consistency.">
-      <option name="closed" value="true" />
-      <created>1779822170136</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1779822170136</updated>
-    </task>
-    <task id="LOCAL-00273" summary="Update migration: remove unique constraint from `program_name` and `routine_name` composite index in `routine` table">
-      <option name="closed" value="true" />
-      <created>1779824481054</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1779824481054</updated>
-    </task>
-    <task id="LOCAL-00274" summary="Bump version to 0.11.1 in `LogixDb.Service` and `LogixDb.Cli` project files.">
-      <option name="closed" value="true" />
-      <created>1779824511189</created>
-      <option name="number" value="00274" />
-      <option name="presentableId" value="LOCAL-00274" />
-      <option name="project" value="LOCAL" />
-      <updated>1779824511189</updated>
-    </task>
-    <task id="LOCAL-00275" summary="Remove unique constraint on `program_name` and `tag_name` composite index in `tag` table; bump version to 0.11.2 in `LogixDb.Service` and `LogixDb.Cli` project files.">
-      <option name="closed" value="true" />
-      <created>1779826049725</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1779826049725</updated>
-    </task>
-    <task id="LOCAL-00276" summary="Add `operand` to component types and adjust indexes in `operand` table migration">
-      <option name="closed" value="true" />
-      <created>1779891976094</created>
-      <option name="number" value="00276" />
-      <option name="presentableId" value="LOCAL-00276" />
-      <option name="project" value="LOCAL" />
-      <updated>1779891976094</updated>
+      <workItem from="1781199999831" duration="17996000" />
     </task>
     <task id="LOCAL-00277" summary="Add versioned helper functions for various database components, including tags, controllers, operands, data types, programs, tasks, routines, and AOIs.">
       <option name="closed" value="true" />
@@ -769,7 +688,95 @@
       <option name="project" value="LOCAL" />
       <updated>1781205073218</updated>
     </task>
-    <option name="localTasksCounter" value="315" />
+    <task id="LOCAL-00315" summary="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity.">
+      <option name="closed" value="true" />
+      <created>1781228656578</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
+      <option name="project" value="LOCAL" />
+      <updated>1781228656578</updated>
+    </task>
+    <task id="LOCAL-00316" summary="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes.">
+      <option name="closed" value="true" />
+      <created>1781229187510</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229187510</updated>
+    </task>
+    <task id="LOCAL-00317" summary="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments.">
+      <option name="closed" value="true" />
+      <created>1781229199749</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229199749</updated>
+    </task>
+    <task id="LOCAL-00318" summary="Update tests: add `tag_description`, replace `tag_name` with `member_path`, and rename `tag_comment` to `tag_member_comment` across SQLite and SQL Server migration tests.">
+      <option name="closed" value="true" />
+      <created>1781229204497</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229204497</updated>
+    </task>
+    <task id="LOCAL-00319" summary="Remove `last_modified_date` from merge scripts and update test assertions (`tag_name` to `member_path`).">
+      <option name="closed" value="true" />
+      <created>1781229350435</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229350435</updated>
+    </task>
+    <task id="LOCAL-00320" summary="Update tests: replace `tag_comment` with `tag_member_comment`, adjust assertions, and update unique index to use `member_path`.">
+      <option name="closed" value="true" />
+      <created>1781229432953</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229432953</updated>
+    </task>
+    <task id="LOCAL-00321" summary="Bump version to 0.13.0 in project files for service and CLI applications.">
+      <option name="closed" value="true" />
+      <created>1781229438792</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229438792</updated>
+    </task>
+    <task id="LOCAL-00322" summary="Update `TagMemberMap`: map `parent_name` to `MemberName` instead of `LocalPath`.">
+      <option name="closed" value="true" />
+      <created>1781229566811</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229566811</updated>
+    </task>
+    <task id="LOCAL-00323" summary="Remove deprecated versioned helper functions (`tag_members_for`, `tag_comments_for`, `aoi_parameters_for`, `data_type_members_for`, `operands_for`) and associated tests, rename `M202605271010CreateLogixFor` to `M202605271010CreateLogicFor`, and update `tag_tree_from` function parameters and logic.">
+      <option name="closed" value="true" />
+      <created>1781229977804</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
+      <option name="project" value="LOCAL" />
+      <updated>1781229977804</updated>
+    </task>
+    <task id="LOCAL-00324" summary="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity.">
+      <option name="closed" value="true" />
+      <created>1781231462601</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1781231462601</updated>
+    </task>
+    <task id="LOCAL-00325" summary="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly.">
+      <option name="closed" value="true" />
+      <created>1781231592257</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
+      <option name="project" value="LOCAL" />
+      <updated>1781231592257</updated>
+    </task>
+    <option name="localTasksCounter" value="326" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -797,17 +804,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Normalize EOF in `M20260527Tests.cs`." />
-    <MESSAGE value="Add `is_native` field to operands, update related SQL scripts and tests." />
-    <MESSAGE value="Fix `is_native` column type in `M20260308Tests` from `integer` to `bit`." />
-    <MESSAGE value="Bump version to 0.12.1 in project files for service and CLI applications." />
-    <MESSAGE value="Add `is_native` field to operand seeding logic in `M202603082130SeedNativeOperands`" />
-    <MESSAGE value="Bump version to 0.12.2 in project files for service and CLI applications." />
-    <MESSAGE value="Add composite index on `version_id` and `component_id` in `target_version_map` table" />
-    <MESSAGE value="Refactor component ID filtering to use `JOIN` with `target_component` for improved query clarity in migrations and tests." />
-    <MESSAGE value="Bump version to 0.12.3 in project files for service and CLI applications." />
-    <MESSAGE value="Fix table alias in `dbo.GetVersionedTagComments` migration for `tag_comment` table." />
-    <MESSAGE value="Add clustered indexes to various migration tables and update primary key definitions where applicable" />
     <MESSAGE value="Add database-specific table creation logic and index updates for `tag_member` and `data_type_member` tables." />
     <MESSAGE value="Bump version to 0.12.4 in project files for service and CLI applications." />
     <MESSAGE value="Add database-specific logic for `rung` table creation and indexing in migration" />
@@ -822,7 +818,18 @@
     <MESSAGE value="Rnemaed all the version helper functions to different name that aligns more with the database table names for easy discovery." />
     <MESSAGE value="Bump version to 0.12.7 in project files for service and CLI applications." />
     <MESSAGE value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
+    <MESSAGE value="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity." />
+    <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes." />
+    <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments." />
+    <MESSAGE value="Update tests: add `tag_description`, replace `tag_name` with `member_path`, and rename `tag_comment` to `tag_member_comment` across SQLite and SQL Server migration tests." />
+    <MESSAGE value="Remove `last_modified_date` from merge scripts and update test assertions (`tag_name` to `member_path`)." />
+    <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment`, adjust assertions, and update unique index to use `member_path`." />
+    <MESSAGE value="Bump version to 0.13.0 in project files for service and CLI applications." />
+    <MESSAGE value="Update `TagMemberMap`: map `parent_name` to `MemberName` instead of `LocalPath`." />
+    <MESSAGE value="Remove deprecated versioned helper functions (`tag_members_for`, `tag_comments_for`, `aoi_parameters_for`, `data_type_members_for`, `operands_for`) and associated tests, rename `M202605271010CreateLogixFor` to `M202605271010CreateLogicFor`, and update `tag_tree_from` function parameters and logic." />
+    <MESSAGE value="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity." />
+    <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -96,7 +96,7 @@ public class M20260213Tests : SqliteTestFixture
 
             await AssertForeignKey("tag_member_comment", "tag_id", "tag", "tag_id");
             await AssertUniqueIndex("tag_member_comment", "tag_id", "record_hash");
-            await AssertUniqueIndex("tag_member_comment", "tag_id", "tag_name");
+            await AssertUniqueIndex("tag_member_comment", "tag_id", "member_path");
             await AssertIndex("tag_member_comment", "member_path");
         }
     }

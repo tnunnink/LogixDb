@@ -1,4 +1,4 @@
-﻿namespace LogixDb.Data.SqlServer.Tests.Migrations;
+namespace LogixDb.Data.SqlServer.Tests.Migrations;
 
 [TestFixture]
 public class M20260213Tests : SqlServerTestFixture
@@ -15,6 +15,7 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertColumnDefinition("tag", "tag_id", "bigint");
             await AssertColumnDefinition("tag", "program_name", "nvarchar");
             await AssertColumnDefinition("tag", "tag_name", "nvarchar");
+            await AssertColumnDefinition("tag", "tag_description", "nvarchar");
             await AssertColumnDefinition("tag", "data_type", "nvarchar");
             await AssertColumnDefinition("tag", "dimensions", "nvarchar");
             await AssertColumnDefinition("tag", "radix", "nvarchar");
@@ -46,15 +47,15 @@ public class M20260213Tests : SqlServerTestFixture
 
             await AssertColumnDefinition("tag_member", "member_id", "bigint");
             await AssertColumnDefinition("tag_member", "tag_id", "bigint");
-            await AssertColumnDefinition("tag_member", "tag_name", "nvarchar");
+            await AssertColumnDefinition("tag_member", "member_path", "nvarchar");
             await AssertColumnDefinition("tag_member", "parent_name", "nvarchar");
             await AssertColumnDefinition("tag_member", "member_name", "nvarchar");
             await AssertColumnDefinition("tag_member", "data_type", "nvarchar");
 
             await AssertPrimaryKey("tag_member", "member_id");
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
-            await AssertUniqueIndex("tag_member", "tag_id", "tag_name");
-            await AssertIndex("tag_member", "tag_name");
+            await AssertUniqueIndex("tag_member", "tag_id", "member_path");
+            await AssertIndex("tag_member", "member_path");
             await AssertIndex("tag_member", "parent_name", "tag_id");
             await AssertIndex("tag_member", "member_name", "tag_id");
             await AssertIndex("tag_member", "data_type", "tag_id");
@@ -86,17 +87,17 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_comment");
+            await AssertTableExists("tag_member_comment");
 
-            await AssertColumnDefinition("tag_comment", "tag_id", "bigint");
-            await AssertColumnDefinition("tag_comment", "tag_name", "nvarchar");
-            await AssertColumnDefinition("tag_comment", "tag_comment", "nvarchar");
-            await AssertColumnDefinition("tag_comment", "record_hash", "nvarchar");
+            await AssertColumnDefinition("tag_member_comment", "tag_id", "bigint");
+            await AssertColumnDefinition("tag_member_comment", "member_path", "nvarchar");
+            await AssertColumnDefinition("tag_member_comment", "comment", "nvarchar");
+            await AssertColumnDefinition("tag_member_comment", "record_hash", "nvarchar");
 
-            await AssertForeignKey("tag_comment", "tag_id", "tag", "tag_id");
-            await AssertUniqueIndex("tag_comment", "tag_id", "record_hash");
-            await AssertUniqueIndex("tag_comment", "tag_id", "tag_name");
-            await AssertIndex("tag_comment", "tag_name");
+            await AssertForeignKey("tag_member_comment", "tag_id", "tag", "tag_id");
+            await AssertUniqueIndex("tag_member_comment", "tag_id", "record_hash");
+            await AssertUniqueIndex("tag_member_comment", "tag_id", "tag_name");
+            await AssertIndex("tag_member_comment", "member_path");
         }
     }
 

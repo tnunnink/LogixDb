@@ -1,4 +1,4 @@
-﻿namespace LogixDb.Data.Sqlite.Tests.Migrations;
+namespace LogixDb.Data.Sqlite.Tests.Migrations;
 
 [TestFixture]
 public class M20260213Tests : SqliteTestFixture
@@ -15,6 +15,7 @@ public class M20260213Tests : SqliteTestFixture
             await AssertColumnDefinition("tag", "tag_id", "integer");
             await AssertColumnDefinition("tag", "program_name", "text");
             await AssertColumnDefinition("tag", "tag_name", "text");
+            await AssertColumnDefinition("tag", "tag_description", "text");
             await AssertColumnDefinition("tag", "data_type", "text");
             await AssertColumnDefinition("tag", "dimensions", "text");
             await AssertColumnDefinition("tag", "radix", "text");
@@ -46,15 +47,15 @@ public class M20260213Tests : SqliteTestFixture
 
             await AssertColumnDefinition("tag_member", "member_id", "integer");
             await AssertColumnDefinition("tag_member", "tag_id", "integer");
-            await AssertColumnDefinition("tag_member", "tag_name", "text");
+            await AssertColumnDefinition("tag_member", "member_path", "text");
             await AssertColumnDefinition("tag_member", "parent_name", "text");
             await AssertColumnDefinition("tag_member", "member_name", "text");
             await AssertColumnDefinition("tag_member", "data_type", "text");
 
             await AssertPrimaryKey("tag_member", "member_id");
             await AssertForeignKey("tag_member", "tag_id", "tag", "tag_id");
-            await AssertUniqueIndex("tag_member", "tag_id", "tag_name");
-            await AssertIndex("tag_member", "tag_name");
+            await AssertUniqueIndex("tag_member", "tag_id", "member_path");
+            await AssertIndex("tag_member", "member_path");
             await AssertIndex("tag_member", "parent_name", "tag_id");
             await AssertIndex("tag_member", "member_name", "tag_id");
             await AssertIndex("tag_member", "data_type", "tag_id");
@@ -86,17 +87,17 @@ public class M20260213Tests : SqliteTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_comment");
+            await AssertTableExists("tag_member_comment");
 
-            await AssertColumnDefinition("tag_comment", "tag_id", "integer");
-            await AssertColumnDefinition("tag_comment", "tag_name", "text");
-            await AssertColumnDefinition("tag_comment", "tag_comment", "text");
-            await AssertColumnDefinition("tag_comment", "record_hash", "text");
+            await AssertColumnDefinition("tag_member_comment", "tag_id", "integer");
+            await AssertColumnDefinition("tag_member_comment", "member_path", "text");
+            await AssertColumnDefinition("tag_member_comment", "comment", "text");
+            await AssertColumnDefinition("tag_member_comment", "record_hash", "text");
 
-            await AssertForeignKey("tag_comment", "tag_id", "tag", "tag_id");
-            await AssertUniqueIndex("tag_comment", "tag_id", "record_hash");
-            await AssertUniqueIndex("tag_comment", "tag_id", "tag_name");
-            await AssertIndex("tag_comment", "tag_name");
+            await AssertForeignKey("tag_member_comment", "tag_id", "tag", "tag_id");
+            await AssertUniqueIndex("tag_member_comment", "tag_id", "record_hash");
+            await AssertUniqueIndex("tag_member_comment", "tag_id", "tag_name");
+            await AssertIndex("tag_member_comment", "member_path");
         }
     }
 

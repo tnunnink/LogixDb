@@ -18,7 +18,11 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -364,15 +368,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="27144000" />
-    </task>
-    <task id="LOCAL-00288" summary="Update migration tags for helper functions and refactor test setup to simplify database migration calls">
-      <option name="closed" value="true" />
-      <created>1779895058839</created>
-      <option name="number" value="00288" />
-      <option name="presentableId" value="LOCAL-00288" />
-      <option name="project" value="LOCAL" />
-      <updated>1779895058839</updated>
+      <workItem from="1781199999831" duration="27473000" />
     </task>
     <task id="LOCAL-00289" summary="Bump version to 0.12.0 in project files for service and CLI applications.">
       <option name="closed" value="true" />
@@ -758,7 +754,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781278649441</updated>
     </task>
-    <option name="localTasksCounter" value="337" />
+    <task id="LOCAL-00337" summary="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1781279017297</created>
+      <option name="number" value="00337" />
+      <option name="presentableId" value="LOCAL-00337" />
+      <option name="project" value="LOCAL" />
+      <updated>1781279017297</updated>
+    </task>
+    <option name="localTasksCounter" value="338" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -786,7 +790,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rnemaed all the version helper functions to different name that aligns more with the database table names for easy discovery." />
     <MESSAGE value="Bump version to 0.12.7 in project files for service and CLI applications." />
     <MESSAGE value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
     <MESSAGE value="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity." />
@@ -811,7 +814,8 @@
     <MESSAGE value="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup." />
     <MESSAGE value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
     <MESSAGE value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
+    <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

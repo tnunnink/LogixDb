@@ -52,7 +52,7 @@ public static class MigrationTag
     /// Marks migrations related to the QA validation engine.
     /// QA migrations include tables, types, and procedures for project content validation.
     /// </summary>
-    public const string QA = nameof(ComponentOptions.QA);
+    public const string QA = nameof(ComponentOptions.Qa);
 
     /// <summary>
     /// Retrieves a collection of migration tags based on the specified component options.
@@ -87,7 +87,7 @@ public static class MigrationTag
         if (options.HasFlag(ComponentOptions.Logic))
             tags.Add(Logic);
 
-        if (options.HasFlag(ComponentOptions.QA))
+        if (options.HasFlag(ComponentOptions.Qa))
             tags.Add(QA);
 
         return tags;

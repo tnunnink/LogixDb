@@ -37,8 +37,8 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableExists("program");
         await AssertTableExists("tag");
         await AssertTableExists("tag_member");
+        await AssertTableExists("tag_member_comment");
         await AssertTableExists("tag_value");
-        await AssertTableExists("tag_comment");
         await AssertTableExists("tag_producer");
         await AssertTableExists("tag_consumer");
 
@@ -86,7 +86,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("aoi_parameter");
         await AssertTableDoesNotExists("tag");
         await AssertTableDoesNotExists("tag_member");
-        await AssertTableDoesNotExists("tag_comment");
+        await AssertTableDoesNotExists("tag_member_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
         await AssertTableDoesNotExists("tag_value");
@@ -120,7 +120,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
         await AssertTableDoesNotExists("aoi_parameter");
         await AssertTableDoesNotExists("tag");
         await AssertTableDoesNotExists("tag_member");
-        await AssertTableDoesNotExists("tag_comment");
+        await AssertTableDoesNotExists("tag_member_comment");
         await AssertTableDoesNotExists("tag_producer");
         await AssertTableDoesNotExists("tag_consumer");
         await AssertTableDoesNotExists("tag_value");

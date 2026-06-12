@@ -39,6 +39,37 @@ public static class FormattingExtensions
     }
 
     /// <summary>
+    /// Retrieves the complete path of the parent tag for the specified tag.
+    /// If the tag is a root tag, null is returned. For child tags, the path or an empty string is returned
+    /// depending on the presence of a valid parent path.
+    /// </summary>
+    /// <param name="tag">The <c>Tag</c> instance for which the parent path is being retrieved.</param>
+    /// <returns>
+    /// A string representing the complete parent path if the tag has a parent;
+    /// otherwise, null for root tags.
+    /// </returns>
+    internal static string? ParentPath(this Tag tag)
+    {
+        // Only return null for the root tag.
+        // All children need to return the actual path or an empty string
+        // since the root tag member path will be empty.
+        if (tag.Parent is null) 
+            return null;
+
+        return tag.Parent.TagName.MemberPath ?? string.Empty;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
+    internal static string MemberOrBaseName(this Tag tag)
+    {
+        return tag.TagName.MemberName ?? tag.TagName.BaseName;
+    }
+
+    /// <summary>
     /// Extracts the string representation of the value from the provided Logix data element.
     /// Only atomic data types (such as DINT, REAL, BOOL) are supported for value extraction.
     /// </summary>

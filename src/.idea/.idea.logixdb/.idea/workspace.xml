@@ -19,9 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,61 +129,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.601087207709098E-41" />
-      <entry key="MS500" value="6.987917921102146E-9" />
-      <entry key="S2" value="0.011927557482049626" />
-      <entry key="S5" value="0.30485480613168" />
-      <entry key="S10" value="1.2714979879231563" />
-      <entry key="S30" value="4.131545266670259" />
-      <entry key="S60" value="5.757790122065828" />
-      <entry key="M2" value="7.442411877887141" />
-      <entry key="M5" value="11.49505366009027" />
-      <entry key="M10" value="15.482210091982624" />
-      <entry key="M15" value="17.708011524230734" />
-      <entry key="M30" value="20.92400230315125" />
-      <entry key="H1" value="23.333619080940338" />
-      <entry key="H2" value="26.589104749540077" />
-      <entry key="H4" value="48.54591824291367" />
-      <entry key="D1" value="544.793587313647" />
-      <entry key="W1" value="1769.3787375519519" />
+      <entry key="MS100" value="5.881190120602449E-46" />
+      <entry key="MS500" value="2.5969318468672406E-9" />
+      <entry key="S2" value="0.025541351606418794" />
+      <entry key="S5" value="1.0704477046570688" />
+      <entry key="S10" value="4.417693292532286" />
+      <entry key="S30" value="13.34806603587897" />
+      <entry key="S60" value="21.351427603338607" />
+      <entry key="M2" value="30.043399201071903" />
+      <entry key="M5" value="38.743911978948944" />
+      <entry key="M10" value="42.5680462375866" />
+      <entry key="M15" value="43.97390780462799" />
+      <entry key="M30" value="45.629039548829226" />
+      <entry key="H1" value="48.38196679854672" />
+      <entry key="H2" value="54.70855247023551" />
+      <entry key="H4" value="73.60234816063458" />
+      <entry key="D1" value="540.4025471711919" />
+      <entry key="W1" value="1791.5224471353717" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000304443700632" />
-      <entry key="S5" value="1.0424163682596035" />
-      <entry key="S10" value="1.620599013592872" />
-      <entry key="S30" value="5.12721649372787" />
-      <entry key="S60" value="7.734540587437544" />
-      <entry key="M2" value="9.905546886266677" />
-      <entry key="M5" value="13.078512245646987" />
-      <entry key="M10" value="15.838425754140232" />
-      <entry key="M15" value="17.489535090452357" />
-      <entry key="M30" value="20.319801075695427" />
-      <entry key="H1" value="22.837690945553803" />
-      <entry key="H2" value="25.89211282844818" />
-      <entry key="H4" value="39.7991585390313" />
-      <entry key="D1" value="217.20182388976176" />
-      <entry key="W1" value="515.2626106017088" />
+      <entry key="MS100" value="1.003962296583357" />
+      <entry key="MS500" value="1.4005843822297959" />
+      <entry key="S2" value="2.5643498413676733" />
+      <entry key="S5" value="3.976943109513679" />
+      <entry key="S10" value="5.303340336601758" />
+      <entry key="S30" value="8.687847281016051" />
+      <entry key="S60" value="13.502361342906207" />
+      <entry key="M2" value="19.498920629252197" />
+      <entry key="M5" value="25.82652591572878" />
+      <entry key="M10" value="28.669617309953654" />
+      <entry key="M15" value="29.722548009189378" />
+      <entry key="M30" value="31.005527645026472" />
+      <entry key="H1" value="33.5286399153131" />
+      <entry key="H2" value="39.5929728967684" />
+      <entry key="H4" value="53.82209998334367" />
+      <entry key="D1" value="228.7011019398203" />
+      <entry key="W1" value="540.0219877235224" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.00312917920933446" />
-      <entry key="MS500" value="0.31556301230032385" />
-      <entry key="S2" value="0.760170572515897" />
-      <entry key="S5" value="1.2191981296646706" />
-      <entry key="S10" value="2.763965570705864" />
-      <entry key="S30" value="9.112727748119973" />
-      <entry key="S60" value="13.383010383394826" />
-      <entry key="M2" value="17.276476912745565" />
-      <entry key="M5" value="24.532094951856415" />
-      <entry key="M10" value="31.29349971241657" />
-      <entry key="M15" value="35.17687325815173" />
-      <entry key="M30" value="41.231404458676636" />
-      <entry key="H1" value="46.16427974052132" />
-      <entry key="H2" value="52.47712415619927" />
-      <entry key="H4" value="88.34135624259395" />
-      <entry key="D1" value="761.9907814398982" />
-      <entry key="W1" value="2284.6397360421342" />
+      <entry key="MS100" value="0.004877899309596239" />
+      <entry key="MS500" value="0.43534413350002277" />
+      <entry key="S2" value="1.82384311706523" />
+      <entry key="S5" value="4.41260094618679" />
+      <entry key="S10" value="9.202438219777589" />
+      <entry key="S30" value="21.70816036437515" />
+      <entry key="S60" value="34.60967292170607" />
+      <entry key="M2" value="49.37453310908265" />
+      <entry key="M5" value="64.48460582639522" />
+      <entry key="M10" value="71.19058763277849" />
+      <entry key="M15" value="73.66404763535661" />
+      <entry key="M30" value="76.61771842598877" />
+      <entry key="H1" value="81.9014428237935" />
+      <entry key="H2" value="94.29598667699872" />
+      <entry key="H4" value="127.42023959679568" />
+      <entry key="D1" value="769.0990954447809" />
+      <entry key="W1" value="2331.542793880205" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -368,15 +369,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="27473000" />
-    </task>
-    <task id="LOCAL-00289" summary="Bump version to 0.12.0 in project files for service and CLI applications.">
-      <option name="closed" value="true" />
-      <created>1779895699839</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1779895699839</updated>
+      <workItem from="1781199999831" duration="33005000" />
     </task>
     <task id="LOCAL-00290" summary="Normalize EOF in `M20260527Tests.cs`.">
       <option name="closed" value="true" />
@@ -762,7 +755,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781279017297</updated>
     </task>
-    <option name="localTasksCounter" value="338" />
+    <task id="LOCAL-00338" summary="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency.">
+      <option name="closed" value="true" />
+      <created>1781279139006</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1781279139006</updated>
+    </task>
+    <option name="localTasksCounter" value="339" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -790,7 +791,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.12.7 in project files for service and CLI applications." />
     <MESSAGE value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
     <MESSAGE value="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity." />
     <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes." />
@@ -815,7 +815,8 @@
     <MESSAGE value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
     <MESSAGE value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
+    <MESSAGE value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

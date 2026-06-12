@@ -18,12 +18,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/FormattingExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
-    </list>
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -369,15 +364,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="33005000" />
-    </task>
-    <task id="LOCAL-00290" summary="Normalize EOF in `M20260527Tests.cs`.">
-      <option name="closed" value="true" />
-      <created>1779900735999</created>
-      <option name="number" value="00290" />
-      <option name="presentableId" value="LOCAL-00290" />
-      <option name="project" value="LOCAL" />
-      <updated>1779900735999</updated>
+      <workItem from="1781199999831" duration="33370000" />
     </task>
     <task id="LOCAL-00291" summary="Add `is_native` field to operands, update related SQL scripts and tests.">
       <option name="closed" value="true" />
@@ -763,7 +750,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781279139006</updated>
     </task>
-    <option name="localTasksCounter" value="339" />
+    <task id="LOCAL-00339" summary="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1781290413444</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1781290413444</updated>
+    </task>
+    <option name="localTasksCounter" value="340" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -791,7 +786,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
     <MESSAGE value="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity." />
     <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes." />
     <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments." />
@@ -816,7 +810,8 @@
     <MESSAGE value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
     <MESSAGE value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
+    <MESSAGE value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

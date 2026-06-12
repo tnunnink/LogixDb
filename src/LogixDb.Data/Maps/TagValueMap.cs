@@ -9,10 +9,11 @@ public class TagValueMap : TableMap<TagValueRecord>
     protected override IReadOnlyList<ColumnMap<TagValueRecord>> Columns =>
     [
         ColumnMap<TagValueRecord>.For(r => r.VersionId, "version_id"),
+        //Both tag hash and member path together will be used to resolve the correct member_id when inserted.
         ColumnMap<TagValueRecord>.For(r => r.TagHash, "tag_hash"),
-        ColumnMap<TagValueRecord>.For(r => r.TagName, "tag_name"),
+        ColumnMap<TagValueRecord>.For(r => r.MemberPath, "member_path"),
         ColumnMap<TagValueRecord>.For(r => r.Value, "tag_value")
     ];
 }
 
-public record TagValueRecord(int VersionId, string TagHash, string TagName, string? Value);
+public record TagValueRecord(int VersionId, string TagHash, string MemberPath, string? Value);

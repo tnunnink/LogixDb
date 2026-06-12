@@ -20,7 +20,6 @@ public class ControllerMap : TableMap<Controller>
         ColumnMap<Controller>.For(r => r.ProcessorType, "catalog_number"),
         ColumnMap<Controller>.For(r => r.Revision.ToString(), "revision"),
         ColumnMap<Controller>.For(r => r.ProjectCreationDate, "project_creation_date"),
-        ColumnMap<Controller>.For(r => r.LastModifiedDate, "last_modified_date"),
         ColumnMap<Controller>.For(r => r.CommPath, "communication_path"),
         ColumnMap<Controller>.For(r => r.SFCExecutionControl?.Name, "sfc_execution_control"),
         ColumnMap<Controller>.For(r => r.SFCRestartPosition?.Name, "sfc_restart_position"),

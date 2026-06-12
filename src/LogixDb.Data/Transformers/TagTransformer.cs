@@ -11,7 +11,7 @@ public class TagTransformer : IDbTransformer
     private readonly TagMap _tagMap = new();
     private readonly TagMemberMap _memberMap = new();
     private readonly TagValueMap _valueMap = new();
-    private readonly TagCommentMap _commentMap = new();
+    private readonly TagMemberCommentMap _memberCommentMap = new();
     private readonly TagProducerMap _producerMap = new();
     private readonly TagConsumerMap _consumerMap = new();
 
@@ -40,40 +40,44 @@ public class TagTransformer : IDbTransformer
             if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
                 consumerRecords.Add(tag.ConsumeInfo);
 
+            // We will store each member since we potentially won't have corresponding data type definitions to resolve against.
+            // Only store atomic member values as a slim table. This data will change with each version so we want to split
+            // it out from the tag definition/structure.
             foreach (var member in tag.Members())
             {
                 memberRecords.Add(member);
 
-                if (member.Value is AtomicData atomic)
+                if (member is { Value: AtomicData atomic, TagName.MemberPath: not null })
                 {
                     valueRecords.Add(new TagValueRecord(
                         target.VersionId,
                         tagHash,
-                        member.TagName.LocalPath,
+                        member.TagName.MemberPath,
                         atomic.ToSqlFormat())
                     );
                 }
             }
 
-            if (tag.Parent is null && !string.IsNullOrWhiteSpace(tag.Description))
-                commentRecords.Add(new TagCommentRecord(tagHash, tag.Name, tag.Description));
+            // We are only going to store tag comment overrides and not use L5Sharp to compute/resolve pass-through comments.
+            // This reduces space, but more importantly, if a data type description is changed, a hash of the tag element
+            // won't capture that change and would therefore invalidate our deduplication model.
+            foreach (var comment in tag.Comments ?? [])
+            {
+                if (comment.Operand.MemberPath is null)
+                    continue;
 
-            // For now, I'm going to just insert whatever comment override exists for a tag and see if we can
-            // emulate the pass-through documentation from SQL queries instead of code.
-            // This would be more space-efficient and reduce processing time if we can keep this approach.
-            var comments = tag.Comments?.Select(c => new TagCommentRecord(
-                tagHash,
-                string.Concat(tag.Name, c.Operand),
-                c.Value
-            )) ?? [];
-
-            commentRecords.AddRange(comments);
+                commentRecords.Add(new TagCommentRecord(
+                    tagHash,
+                    comment.Operand.MemberPath,
+                    comment.Value)
+                );
+            }
         }
 
         yield return _tagMap.GenerateTable(tagRecords);
         yield return _memberMap.GenerateTable(memberRecords);
         yield return _valueMap.GenerateTable(valueRecords);
-        yield return _commentMap.GenerateTable(commentRecords);
+        yield return _memberCommentMap.GenerateTable(commentRecords);
         yield return _producerMap.GenerateTable(producerRecords);
         yield return _consumerMap.GenerateTable(consumerRecords);
     }

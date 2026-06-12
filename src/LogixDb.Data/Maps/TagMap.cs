@@ -13,6 +13,7 @@ public class TagMap : TableMap<Tag>
     [
         ColumnMap<Tag>.For(r => r.Program?.Name, "program_name"),
         ColumnMap<Tag>.For(r => r.Name, "tag_name"),
+        ColumnMap<Tag>.For(r => r.Description, "tag_description"),
         ColumnMap<Tag>.For(r => r.DataType, "data_type"),
         ColumnMap<Tag>.For(r => r.Dimensions.ToSqlFormat(), "dimensions"),
         ColumnMap<Tag>.For(r => r.Radix.ToSqlFormat(), "radix"),

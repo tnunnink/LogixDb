@@ -22,19 +22,6 @@ public class M202605271011CreateTagChildrenFor : Migration
                           AND tc.component_name = 'tag'
                     );
                     """);
-
-        Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.tag_comments_for (@VersionId INT)
-                    RETURNS TABLE AS RETURN (
-                        SELECT c.* 
-                        FROM dbo.tag_comment c
-                        JOIN dbo.tag t ON c.tag_id = t.tag_id
-                        JOIN dbo.target_version_map tvm ON t.tag_id = tvm.record_id
-                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
-                        WHERE tvm.version_id = @VersionId 
-                          AND tc.component_name = 'tag'
-                    );
-                    """);
     }
 
     public override void Down()

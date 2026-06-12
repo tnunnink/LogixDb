@@ -1,4 +1,5 @@
 using System.Data;
+using System.Xml.Linq;
 using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Extensions;
@@ -43,8 +44,8 @@ public sealed class Target
     /// </summary>
     private L5X? _l5X;
 
-    public int VersionId { get; set; }
     public string TargetKey { get; init; } = string.Empty;
+    public int VersionId { get; set; }
     public int VersionNumber { get; init; }
     public string TargetType { get; init; } = string.Empty;
     public string TargetName { get; init; } = string.Empty;
@@ -93,7 +94,7 @@ public sealed class Target
             ExportOptions = string.Join(",", source.Content.ExportOptions),
             SourceHash = source.Content.HashElement(),
             SourceData = source.Content.Serialize().ToString().Compress(),
-            _l5X = source
+            _l5X = ScrubData(source)
         };
     }
 
@@ -134,4 +135,22 @@ public sealed class Target
     /// </summary>
     /// <returns>A string in the format "targettype://targetname".</returns>
     public override string ToString() => TargetKey;
+
+    /// <summary>
+    /// Cleans the given L5X source content by removing L5K-formatted data within tags.
+    /// This is just noise for the system and can cause duplication issues when hashing tag element structures.
+    /// </summary>
+    /// <param name="source">The source L5X data object that will be processed and scrubbed.</param>
+    /// <returns>A new instance of the L5X class with the scrubbed content, preserving all other information.</returns>
+    private static L5X ScrubData(L5X source)
+    {
+        var content = source.Content.Serialize();
+
+        content.DescendantsAndSelf(L5XName.Data)
+            .Where(e => e.Attribute(L5XName.Format)?.Value == DataFormat.L5K)
+            .Where(e => e.Parent?.Name.LocalName is L5XName.Tag)
+            .Remove();
+
+        return new L5X(new LogixContent(content));
+    }
 }

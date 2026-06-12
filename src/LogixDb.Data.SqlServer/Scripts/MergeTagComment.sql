@@ -1,4 +1,4 @@
-MERGE INTO dbo.tag_comment AS target
+﻿MERGE INTO dbo.tag_comment AS target
 USING #temp_tag_comment AS source
 ON target.tag_id = (SELECT tag_id
                     FROM dbo.tag

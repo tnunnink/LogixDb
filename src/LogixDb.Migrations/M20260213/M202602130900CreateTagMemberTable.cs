@@ -17,9 +17,9 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .Create.Table("tag_member")
             .WithPrimaryKey<long>("member_id")
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
-            .WithColumn("tag_name").AsString(256).NotNullable()
-            .WithColumn("parent_name").AsString(128).Nullable()
+            .WithColumn("member_path").AsString(256).NotNullable()
             .WithColumn("member_name").AsString(128).Nullable()
+            .WithColumn("parent_name").AsString(128).Nullable()
             .WithColumn("data_type").AsString(128).NotNullable();
 
         // SQL server supports creating clustered index on non PK columns which we want for performance.
@@ -28,9 +28,9 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .Create.Table("tag_member")
             .WithColumn("member_id").AsInt64().NotNullable().Identity()
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
-            .WithColumn("tag_name").AsString(256).NotNullable()
-            .WithColumn("parent_name").AsString(128).Nullable()
+            .WithColumn("member_path").AsString(256).NotNullable()
             .WithColumn("member_name").AsString(128).Nullable()
+            .WithColumn("parent_name").AsString(128).Nullable()
             .WithColumn("data_type").AsString(128).NotNullable();
 
         IfDatabase(ProcessorIdConstants.SqlServer)
@@ -43,7 +43,7 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .Create.Index()
             .OnTable("tag_member")
             .OnColumn("tag_id").Ascending()
-            .OnColumn("tag_name").Ascending()
+            .OnColumn("member_path").Ascending()
             .WithOptions().Unique()
             .WithOptions().Clustered();
 
@@ -51,11 +51,11 @@ public class M202602130900CreateTagMemberTable : AutoReversingMigration
             .Create.Index()
             .OnTable("tag_member")
             .OnColumn("tag_id").Ascending()
-            .OnColumn("tag_name").Ascending()
+            .OnColumn("member_path").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("tag_member")
-            .OnColumn("tag_name").Ascending();
+            .OnColumn("member_path").Ascending();
 
         Create.Index().OnTable("tag_member")
             .OnColumn("parent_name").Ascending()

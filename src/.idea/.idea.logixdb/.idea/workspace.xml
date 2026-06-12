@@ -19,9 +19,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271010CreateLogixFor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271010CreateRungChildrenFor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260527Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260527Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271011CreateTagChildrenFor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/M202605271011CreateTagChildrenFor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagComment.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/MergeTagMember.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Extensions/CryptoExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ControllerMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberCommentMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130830CreateTagTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130900CreateTagMemberTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602131200CreateTagCommentTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +107,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/MigrateCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteGuidHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagCommentMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -124,61 +136,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="6.413635336344417E-151" />
-      <entry key="MS500" value="9.149994914624136E-31" />
-      <entry key="S2" value="3.105528678052121E-8" />
-      <entry key="S5" value="0.0011936804061610407" />
-      <entry key="S10" value="0.05599122284460632" />
-      <entry key="S30" value="1.0231214634206751" />
-      <entry key="S60" value="2.7936912879573876" />
-      <entry key="M2" value="5.733447166589504" />
-      <entry key="M5" value="10.711441086615888" />
-      <entry key="M10" value="17.12006617890539" />
-      <entry key="M15" value="24.945003623779705" />
-      <entry key="M30" value="49.82894803743865" />
-      <entry key="H1" value="84.73267185925529" />
-      <entry key="H2" value="131.14901915029017" />
-      <entry key="H4" value="217.98247574633365" />
-      <entry key="D1" value="714.202027179734" />
-      <entry key="W1" value="1706.2415058234944" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000156097" />
+      <entry key="S2" value="1.0026188226146233" />
+      <entry key="S5" value="1.1370005597050714" />
+      <entry key="S10" value="1.555873555730407" />
+      <entry key="S30" value="2.713678038125586" />
+      <entry key="S60" value="3.512013416135036" />
+      <entry key="M2" value="4.385081317825463" />
+      <entry key="M5" value="8.08524507491784" />
+      <entry key="M10" value="18.03311060196605" />
+      <entry key="M15" value="27.117238300861384" />
+      <entry key="M30" value="43.61681267811046" />
+      <entry key="H1" value="58.222872999036156" />
+      <entry key="H2" value="82.59763377076429" />
+      <entry key="H4" value="149.4770476457556" />
+      <entry key="D1" value="686.2318717773366" />
+      <entry key="W1" value="1761.1320682724665" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0000000180878006" />
-      <entry key="M2" value="1.0002970715891706" />
-      <entry key="M5" value="1.103047069232871" />
-      <entry key="M10" value="1.8532045176911076" />
-      <entry key="M15" value="3.0721788669599412" />
-      <entry key="M30" value="7.508858820903558" />
-      <entry key="H1" value="14.458554573063283" />
-      <entry key="H2" value="24.375790040652408" />
-      <entry key="H4" value="43.924906826892155" />
-      <entry key="D1" value="177.04155772677368" />
-      <entry key="W1" value="389.55679080209853" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="7.266856195726489E-204" />
+      <entry key="S2" value="1.6418619623069357E-51" />
+      <entry key="S5" value="4.854389913268388E-21" />
+      <entry key="S10" value="6.96753132252838E-11" />
+      <entry key="S30" value="4.3700923178293717E-4" />
+      <entry key="S60" value="0.029060313647299482" />
+      <entry key="M2" value="0.3287661981170346" />
+      <entry key="M5" value="3.3681175063694817" />
+      <entry key="M10" value="12.21630634299767" />
+      <entry key="M15" value="20.013740241415764" />
+      <entry key="M30" value="33.69376732808655" />
+      <entry key="H1" value="44.619239414223784" />
+      <entry key="H2" value="55.10668624412945" />
+      <entry key="H4" value="73.01459540569549" />
+      <entry key="D1" value="213.688571012351" />
+      <entry key="W1" value="448.6190928186945" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.237743505603062E-4" />
-      <entry key="MS500" value="0.16539642998851503" />
-      <entry key="S2" value="0.6377222267974322" />
-      <entry key="S5" value="0.8365112346273147" />
-      <entry key="S10" value="0.9698819257658734" />
-      <entry key="S30" value="1.9922936409653171" />
-      <entry key="S60" value="3.775139125363332" />
-      <entry key="M2" value="6.721131048782949" />
-      <entry key="M5" value="11.806556939973083" />
-      <entry key="M10" value="18.96564266995598" />
-      <entry key="M15" value="28.008276346105315" />
-      <entry key="M30" value="57.32591027250677" />
-      <entry key="H1" value="99.17915639849453" />
-      <entry key="H2" value="155.51469585904974" />
-      <entry key="H4" value="261.8990677340692" />
-      <entry key="D1" value="891.2391358440244" />
-      <entry key="W1" value="2095.7969975643646" />
+      <entry key="MS100" value="0.9659363289248456" />
+      <entry key="MS500" value="0.9930924954525379" />
+      <entry key="S2" value="1.000882921019098" />
+      <entry key="S5" value="1.1362122384315143" />
+      <entry key="S10" value="1.555286677363159" />
+      <entry key="S30" value="2.7125327905532965" />
+      <entry key="S60" value="3.538704227904436" />
+      <entry key="M2" value="4.71055584499693" />
+      <entry key="M5" value="11.441971116946311" />
+      <entry key="M10" value="30.225852896537802" />
+      <entry key="M15" value="47.10420936049057" />
+      <entry key="M30" value="77.28726132573665" />
+      <entry key="H1" value="102.82632444182643" />
+      <entry key="H2" value="137.6937780325334" />
+      <entry key="H4" value="222.48343751996586" />
+      <entry key="D1" value="899.9156281254419" />
+      <entry key="W1" value="2209.7497259213555" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -363,15 +375,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="4643000" />
-    </task>
-    <task id="LOCAL-00265" summary="Update README: improve table formatting, adjust descriptions for readability, and refine deduplication model overview.">
-      <option name="closed" value="true" />
-      <created>1779816404117</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
-      <option name="project" value="LOCAL" />
-      <updated>1779816404117</updated>
+      <workItem from="1781199999831" duration="13555000" />
     </task>
     <task id="LOCAL-00266" summary="Update README: expand SQL schema architecture section with detailed descriptions of deduplication models, natural keys, and performance considerations.">
       <option name="closed" value="true" />
@@ -757,7 +761,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781201366688</updated>
     </task>
-    <option name="localTasksCounter" value="314" />
+    <task id="LOCAL-00314" summary="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes.">
+      <option name="closed" value="true" />
+      <created>1781205073218</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
+      <option name="project" value="LOCAL" />
+      <updated>1781205073218</updated>
+    </task>
+    <option name="localTasksCounter" value="315" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -785,7 +797,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump version to 0.12.0 in project files for service and CLI applications." />
     <MESSAGE value="Normalize EOF in `M20260527Tests.cs`." />
     <MESSAGE value="Add `is_native` field to operands, update related SQL scripts and tests." />
     <MESSAGE value="Fix `is_native` column type in `M20260308Tests` from `integer` to `bit`." />
@@ -810,7 +821,8 @@
     <MESSAGE value="Add SQLite and SQL Server-specific table creation and indexing logic for `rung`, `tag_member`, and `data_type_member` tables in migrations." />
     <MESSAGE value="Rnemaed all the version helper functions to different name that aligns more with the database table names for easy discovery." />
     <MESSAGE value="Bump version to 0.12.7 in project files for service and CLI applications." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.12.7 in project files for service and CLI applications." />
+    <MESSAGE value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

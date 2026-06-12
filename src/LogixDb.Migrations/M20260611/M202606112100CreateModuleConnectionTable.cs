@@ -16,7 +16,7 @@ public class M202606112100CreateModuleConnectionTable : AutoReversingMigration
             .WithPrimaryKey<long>("connection_id")
             .WithRelation<long>("module_id", "module").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("connection_name").AsString(256).NotNullable()
-            .WithColumn("rpi").AsInt32().NotNullable()
+            .WithColumn("rpi").AsInt32().Nullable()
             .WithColumn("connection_type").AsString(64).Nullable()
             .WithColumn("connection_priority").AsString(64).Nullable()
             .WithColumn("transmission_type").AsString(64).Nullable()

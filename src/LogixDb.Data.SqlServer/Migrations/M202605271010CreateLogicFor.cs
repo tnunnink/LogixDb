@@ -6,7 +6,7 @@ namespace LogixDb.Data.SqlServer.Migrations;
 [UsedImplicitly]
 [Migration(202605271010, "Create versioned helper function for PLC logic hierarchy")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202605271010CreateLogixFor : Migration
+public class M202605271010CreateLogicFor : Migration
 {
     public override void Up()
     {

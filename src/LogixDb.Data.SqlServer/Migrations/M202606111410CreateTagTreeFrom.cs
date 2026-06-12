@@ -11,7 +11,7 @@ public class M202606111410CreateTagTreeFrom : Migration
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.tag_tree_from (@RootMemberId BIGINT)
+                    CREATE OR ALTER FUNCTION dbo.tag_tree_from (@MemberId BIGINT)
                     RETURNS TABLE AS RETURN (
                         WITH TagTree AS (
                             -- Anchor: Start with the specific member provided
@@ -19,18 +19,17 @@ public class M202606111410CreateTagTreeFrom : Migration
                                 tm.*, 
                                 0 as [member_distance]
                             FROM dbo.tag_member tm
-                            WHERE tm.member_id = @RootMemberId
+                            WHERE tm.member_id = @MemberId
 
                             UNION ALL
 
                             -- Recursive Step: Join back to tag_member to find children
-                            -- We join on tag_id and tag_name/parent_name to stay in scope
+                            -- We join on tag_id and member_path/parent_name to stay in scope
                             SELECT 
                                 tm.*, 
                                 tt.member_distance + 1
                             FROM TagTree tt
-                            JOIN dbo.tag_member tm ON tt.tag_id = tm.tag_id 
-                                                   AND tt.tag_name = tm.parent_name
+                            JOIN dbo.tag_member tm ON tt.tag_id = tm.tag_id AND tt.member_path = tm.parent_name
                         )
                         SELECT * FROM TagTree
                     );

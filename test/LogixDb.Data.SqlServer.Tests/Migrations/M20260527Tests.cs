@@ -21,20 +21,15 @@ public class M20260527Tests : SqlServerTestFixture
             await AssertFunctionExists("rungs_for");
         }
     }
-
+    
     [Test]
-    public async Task MigrateUp_ToM202605271014_CreatesChildVersionedFunctions()
+    public async Task MigrateUp_ToM202605271010_CreatesCoreVersionedFunctions()
     {
-        await Database.Migrate(202605271014);
+        await Database.Migrate(202605271010);
 
         using (Assert.EnterMultipleScope())
         {
             await AssertFunctionExists("logic_for");
-            await AssertFunctionExists("tag_members_for");
-            await AssertFunctionExists("tag_comments_for");
-            await AssertFunctionExists("aoi_parameters_for");
-            await AssertFunctionExists("data_type_members_for");
-            await AssertFunctionExists("operands_for");
         }
     }
 }

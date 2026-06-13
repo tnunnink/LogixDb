@@ -15,13 +15,13 @@ public class RungTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
         var rungRecords = new List<Rung>();
         var instructionRecords = new List<InstructionRecord>();
         var argumentRecords = new List<ArgumentRecord>();
         var referenceRecords = new List<ReferenceRecord>();
 
-        // Should get all program and AOI rnug logic.
+        // Should get all program and AOI rung logic.
         var rungs = source.Query<Routine>().Where(r => r.Type == RoutineType.RLL).SelectMany(r => r.Rungs);
 
         foreach (var rung in rungs)

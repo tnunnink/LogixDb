@@ -1,5 +1,4 @@
 using System.Data;
-using L5Sharp.Core;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Maps;
 
@@ -17,10 +16,10 @@ public class ModuleTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
+        var source = target.GetSource(scrub: true);
+        
         // todo Some module elements don't have a name (VFD peripherals) not sure if these are worth adding or not.
-        var modules = target.GetSource().Modules
-            .Where(x => !string.IsNullOrEmpty(x.Name))
-            .ToList();
+        var modules = source.Modules.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
 
         yield return _moduleMap.GenerateTable(modules);
         yield return _connectionMap.GenerateTable(modules.SelectMany(m => m.Connections).ToList());

@@ -17,7 +17,8 @@ public class OperandTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
+        
         var records = new List<OperandRecord>();
 
         foreach (var aoi in source.AddOnInstructions)

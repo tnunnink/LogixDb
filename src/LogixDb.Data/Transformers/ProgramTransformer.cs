@@ -17,7 +17,8 @@ public class ProgramTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var programs = target.GetSource().Programs.ToList();
+        var source = target.GetSource(scrub: true);
+        var programs = source.Programs.ToList();
         yield return _map.GenerateTable(programs);
     }
 }

@@ -15,7 +15,8 @@ public class TaskTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var tasks = target.GetSource().Tasks.ToList();
+        var source = target.GetSource(scrub: true);
+        var tasks = source.Tasks.ToList();
         yield return _map.GenerateTable(tasks);
     }
 }

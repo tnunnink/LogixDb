@@ -42,7 +42,15 @@ public sealed class Target
     /// This field is lazily initialized when the source data is decompressed and parsed,
     /// and it serves as the in-memory representation of the XML data from the L5X file.
     /// </summary>
-    private L5X? _l5X;
+    private L5X? _pristine;
+
+    /// <summary>
+    /// A private nullable field containing a scrubbed instance of the <see cref="L5X"/> class.
+    /// The scrubbed instance represents a version of the target's data with sensitive or unnecessary
+    /// details removed for security or data sanitation purposes. This field is lazily populated during
+    /// retrieval when the scrubbed version of the source is requested.
+    /// </summary>
+    private L5X? _scrubbed;
 
     public string TargetKey { get; init; } = string.Empty;
     public int VersionId { get; set; }
@@ -94,7 +102,7 @@ public sealed class Target
             ExportOptions = string.Join(",", source.Content.ExportOptions),
             SourceHash = source.Content.HashElement(),
             SourceData = source.Content.Serialize().ToString().Compress(),
-            _l5X = ScrubData(source)
+            _pristine = source
         };
     }
 
@@ -104,7 +112,13 @@ public sealed class Target
     /// the stored source data.
     /// </summary>
     /// <returns>The parsed L5X instance representing the source data of the Target.</returns>
-    public L5X GetSource() => _l5X ??= L5X.Parse(SourceData.Decompress());
+    public L5X GetSource(bool scrub = false)
+    {
+        if (scrub)
+            return _scrubbed ??= ScrubData(L5X.Parse(SourceData.Decompress()));
+
+        return _pristine ??= L5X.Parse(SourceData.Decompress());
+    }
 
     /// <summary>
     /// Compiles the Target's data into a collection of DataTables filtered by the given table names.
@@ -146,9 +160,8 @@ public sealed class Target
     {
         var content = source.Content.Serialize();
 
-        content.DescendantsAndSelf(L5XName.Data)
+        content.Descendants(L5XName.Data)
             .Where(e => e.Attribute(L5XName.Format)?.Value == DataFormat.L5K)
-            .Where(e => e.Parent?.Name.LocalName is L5XName.Tag)
             .Remove();
 
         return new L5X(new LogixContent(content));

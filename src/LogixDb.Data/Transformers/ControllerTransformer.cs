@@ -15,7 +15,7 @@ public class ControllerTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
         yield return _map.GenerateTable([source.Controller]);
     }
 }

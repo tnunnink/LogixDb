@@ -17,7 +17,7 @@ public class AoiTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
         var instructions = new List<AddOnInstruction>();
         var parameters = new List<Parameter>();
 

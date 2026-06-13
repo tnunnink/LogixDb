@@ -10,6 +10,7 @@ public class ModuleConnectionMap : TableMap<Connection>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Connection>> Columns =>
     [
+        ColumnMap<Connection>.For(r => r.GetParent<Module>()?.Metadata.Get<string>("record_hash"), "module_hash", false),
         ColumnMap<Connection>.For(r => r.Name, "connection_name"),
         ColumnMap<Connection>.For(r => r.RPI, "rpi"),
         ColumnMap<Connection>.For(r => r.Type?.Name, "connection_type"),

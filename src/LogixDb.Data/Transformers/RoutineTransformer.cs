@@ -16,8 +16,8 @@ public class RoutineTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        // Should get all program and AOI rnug logic.
-        var routines = target.GetSource().Query<Routine>().ToList();
+        var source = target.GetSource(scrub: true);
+        var routines = source.Query<Routine>().ToList();
         yield return _map.GenerateTable(routines);
     }
 }

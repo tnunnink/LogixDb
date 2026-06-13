@@ -18,7 +18,7 @@ public class TagTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
         var tagRecords = new List<Tag>();
         var memberRecords = new List<Tag>();
         var valueRecords = new List<TagValueRecord>();

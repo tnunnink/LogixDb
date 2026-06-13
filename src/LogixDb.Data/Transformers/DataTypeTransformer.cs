@@ -13,7 +13,7 @@ public class DataTypeTransformer : IDbTransformer
     /// <inheritdoc />
     public IEnumerable<DataTable> Transform(Target target)
     {
-        var source = target.GetSource();
+        var source = target.GetSource(scrub: true);
         var types = new List<DataType>();
         var members = new List<DataTypeMember>();
 

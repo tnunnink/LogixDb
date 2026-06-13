@@ -29,7 +29,7 @@ BEGIN
         SET @variables_data = ISNULL(@variables_data, N'[]');
         SET @variables_hash = HASHBYTES(N'SHA2_256', @variables_data);
 
-        INSERT INTO [qa].validation_run (run_name, run_status, environment_data, environment_hash)
+        INSERT INTO [qa].validation_run (run_name, run_status, variables_data, variables_hash)
         VALUES (@run_name, N'Running', @variables_data, @variables_hash);
         SET @run_id = SCOPE_IDENTITY();
     END

@@ -1,7 +1,6 @@
-﻿CREATE PROCEDURE [qa].[run_validations]
-    @vars     qa.variables READONLY,
-    @vals     qa.validations READONLY,
-    @run_name sysname = NULL
+﻿CREATE PROCEDURE [qa].[run_validations] @vars qa.variables READONLY,
+                                        @vals qa.validations READONLY,
+                                        @run_name SYSNAME = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -9,47 +8,34 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM @vals)
         THROW 50000, 'No validations provided.', 1;
 
-    DECLARE @run_id bigint;
-    DECLARE @environment_data nvarchar(max);
-    DECLARE @environment_hash varbinary(32);
-    DECLARE @validation_name nvarchar(300);
-    DECLARE @sql nvarchar(max);
+    DECLARE @run_id BIGINT;
+    DECLARE @variables_data NVARCHAR(MAX);
+    DECLARE @variables_hash VARBINARY(32);
+    DECLARE @validation_name NVARCHAR(300);
+    DECLARE @sql NVARCHAR(MAX);
     DECLARE @outcome qa.outcome;
-    DECLARE @has_error bit = 0;
+    DECLARE @has_error BIT = 0;
 
     SELECT
-        @environment_data =
-        (
-            SELECT
-                variable_name,
-                variable_value
-            FROM @vars
-            ORDER BY variable_name
-            FOR JSON PATH
-        );
+        @variables_data =
+        (SELECT
+             variable_name,
+             variable_value
+         FROM @vars
+         ORDER BY variable_name
+         FOR JSON PATH);
 
-    SET @environment_data = ISNULL(@environment_data, N'[]');
-    SET @environment_hash = HASHBYTES(N'SHA2_256', @environment_data);
+    SET @variables_data = ISNULL(@variables_data, N'[]');
+    SET @variables_hash = HASHBYTES(N'SHA2_256', @variables_data);
 
-    INSERT INTO [qa].validation_run
-    (
-        run_name,
-        run_status,
-        environment_data,
-        environment_hash
-    )
-    VALUES
-        (
-            @run_name,
-            N'Running',
-            @environment_data,
-            @environment_hash
-        );
+    INSERT INTO [qa].validation_run(run_name, run_status, variables_data, variables_hash)
+    VALUES (@run_name, N'Running', @variables_data, @variables_hash);
 
     SET @run_id = SCOPE_IDENTITY();
 
     DECLARE validation_cursor CURSOR LOCAL FAST_FORWARD FOR
-        SELECT validation_name
+        SELECT
+            validation_name
         FROM @vals;
 
     OPEN validation_cursor;
@@ -72,14 +58,15 @@ BEGIN
 
             BEGIN TRY
 
-                SET @sql = N'EXEC [qa].[run_validation] @vars = @vars, @validation_name = @validation_name, @run_id = @run_id';
+                SET @sql =
+                    N'EXEC [qa].[run_validation] @vars = @vars, @validation_name = @validation_name, @run_id = @run_id';
 
                 EXEC sys.sp_executesql
-                         @sql,
-                         N'@vars qa.variables READONLY, @validation_name sysname, @run_id bigint',
-                         @vars = @vars,
-                         @validation_name = @validation_name,
-                         @run_id = @run_id;
+                     @sql,
+                     N'@vars qa.variables READONLY, @validation_name sysname, @run_id bigint',
+                     @vars = @vars,
+                     @validation_name = @validation_name,
+                     @run_id = @run_id;
 
             END TRY
             BEGIN CATCH

@@ -1,4 +1,4 @@
-MERGE INTO dbo.module_connetion AS target
+MERGE INTO dbo.module_connection AS target
 USING #temp_module_connection AS source
 ON target.module_id = (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash)
     AND target.record_hash = source.record_hash

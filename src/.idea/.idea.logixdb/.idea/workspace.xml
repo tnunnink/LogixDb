@@ -19,13 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteWriter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/002_QaValidationRunTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/002_QaValidationRunTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/011_QaRunValidationProcedure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/011_QaRunValidationProcedure.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/012_QaRunValidationsProcedure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/012_QaRunValidationsProcedure.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,61 +130,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="7.545370586798474E-82" />
-      <entry key="MS500" value="2.4229401325783126E-16" />
-      <entry key="S2" value="6.625232928296656E-4" />
-      <entry key="S5" value="0.21189390771972014" />
-      <entry key="S10" value="1.4545282323743454" />
-      <entry key="S30" value="5.319131079322352" />
-      <entry key="S60" value="7.59832379652937" />
-      <entry key="M2" value="10.20433614634314" />
-      <entry key="M5" value="17.931160372998768" />
-      <entry key="M10" value="35.868776271189695" />
-      <entry key="M15" value="53.48948418953763" />
-      <entry key="M30" value="88.3884940525544" />
-      <entry key="H1" value="118.33574759136519" />
-      <entry key="H2" value="142.50253305766987" />
-      <entry key="H4" value="171.2726694784067" />
-      <entry key="D1" value="602.3683149754972" />
-      <entry key="W1" value="1903.36885224975" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000000003164" />
-      <entry key="S30" value="1.000330073546071" />
-      <entry key="S60" value="1.0601208273535017" />
-      <entry key="M2" value="1.8300514680629802" />
-      <entry key="M5" value="6.126353705412983" />
-      <entry key="M10" value="14.298238199129733" />
-      <entry key="M15" value="21.36352378294016" />
-      <entry key="M30" value="34.443135121306824" />
-      <entry key="H1" value="45.29695523571543" />
-      <entry key="H2" value="55.393454164544934" />
-      <entry key="H4" value="71.83145447210876" />
-      <entry key="D1" value="246.26157455609734" />
-      <entry key="W1" value="584.606084082236" />
+      <entry key="S2" value="1.0000000001433738" />
+      <entry key="S5" value="1.0001155015759453" />
+      <entry key="S10" value="1.0107532956532783" />
+      <entry key="S30" value="1.2630037844053168" />
+      <entry key="S60" value="1.895892445442517" />
+      <entry key="M2" value="3.369607433886094" />
+      <entry key="M5" value="9.128733855061373" />
+      <entry key="M10" value="23.33876861546347" />
+      <entry key="M15" value="39.38027766517992" />
+      <entry key="M30" value="76.22602007635011" />
+      <entry key="H1" value="111.83458832020013" />
+      <entry key="H2" value="141.15776597749925" />
+      <entry key="H4" value="173.19571685765615" />
+      <entry key="D1" value="606.3801133833455" />
+      <entry key="W1" value="1909.0201169984903" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="1.003689358329656E-93" />
+      <entry key="S5" value="6.318874470141138E-38" />
+      <entry key="S10" value="2.5137371521591387E-19" />
+      <entry key="S30" value="6.313205799049776E-7" />
+      <entry key="S60" value="8.421872794764524E-4" />
+      <entry key="M2" value="0.0515810239570458" />
+      <entry key="M5" value="1.4696459742553145" />
+      <entry key="M10" value="7.003060187873415" />
+      <entry key="M15" value="13.274243374058058" />
+      <entry key="M30" value="27.150080343330192" />
+      <entry key="H1" value="40.216403766672556" />
+      <entry key="H2" value="52.194598138547576" />
+      <entry key="H4" value="69.7265561768338" />
+      <entry key="D1" value="245.0439086449951" />
+      <entry key="W1" value="584.1922569566041" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.013888166893227662" />
-      <entry key="MS500" value="0.4251370800320982" />
-      <entry key="S2" value="0.8081412064030998" />
-      <entry key="S5" value="1.129634074442823" />
-      <entry key="S10" value="2.411695798278743" />
-      <entry key="S30" value="6.304116830469464" />
-      <entry key="S60" value="8.649576111467667" />
-      <entry key="M2" value="12.023743700149236" />
-      <entry key="M5" value="24.03711540856427" />
-      <entry key="M10" value="50.1330116428793" />
-      <entry key="M15" value="74.81353825761833" />
-      <entry key="M30" value="122.79479492594959" />
-      <entry key="H1" value="163.606906707232" />
-      <entry key="H2" value="197.88021905490507" />
-      <entry key="H4" value="243.0945347259386" />
-      <entry key="D1" value="848.6246722345062" />
-      <entry key="W1" value="2487.9731257413628" />
+      <entry key="MS100" value="0.9330329915368074" />
+      <entry key="MS500" value="0.9862327044933592" />
+      <entry key="S2" value="0.9965402629449305" />
+      <entry key="S5" value="0.9987211704652967" />
+      <entry key="S10" value="1.0096333140623222" />
+      <entry key="S30" value="1.2597968950547564" />
+      <entry key="S60" value="1.893363852720907" />
+      <entry key="M2" value="3.418364500251851" />
+      <entry key="M5" value="10.592165024710537" />
+      <entry key="M10" value="30.324447015430565" />
+      <entry key="M15" value="52.62949498427645" />
+      <entry key="M30" value="103.34680616889956" />
+      <entry key="H1" value="152.0279573747934" />
+      <entry key="H2" value="193.337440003171" />
+      <entry key="H4" value="242.91293140007446" />
+      <entry key="D1" value="851.4188249410367" />
+      <entry key="W1" value="2493.2105638474072" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -372,15 +370,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="39476000" />
-    </task>
-    <task id="LOCAL-00295" summary="Bump version to 0.12.2 in project files for service and CLI applications.">
-      <option name="closed" value="true" />
-      <created>1779907312130</created>
-      <option name="number" value="00295" />
-      <option name="presentableId" value="LOCAL-00295" />
-      <option name="project" value="LOCAL" />
-      <updated>1779907312130</updated>
+      <workItem from="1781199999831" duration="40129000" />
     </task>
     <task id="LOCAL-00296" summary="Add composite index on `version_id` and `component_id` in `target_version_map` table">
       <option name="closed" value="true" />
@@ -766,7 +756,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781315101490</updated>
     </task>
-    <option name="localTasksCounter" value="344" />
+    <task id="LOCAL-00344" summary="Add `MergeModuleConnection` logic for managing module connections in SQLite and SQL Server.">
+      <option name="closed" value="true" />
+      <created>1781315469201</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
+      <option name="project" value="LOCAL" />
+      <updated>1781315469201</updated>
+    </task>
+    <option name="localTasksCounter" value="345" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -794,7 +792,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove `last_modified_date` from merge scripts and update test assertions (`tag_name` to `member_path`)." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment`, adjust assertions, and update unique index to use `member_path`." />
     <MESSAGE value="Bump version to 0.13.0 in project files for service and CLI applications." />
     <MESSAGE value="Update `TagMemberMap`: map `parent_name` to `MemberName` instead of `LocalPath`." />
@@ -819,7 +816,8 @@
     <MESSAGE value="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration" />
     <MESSAGE value="Bump project versions to 0.13.2." />
     <MESSAGE value="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic." />
+    <MESSAGE value="Add `MergeModuleConnection` logic for managing module connections in SQLite and SQL Server." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `MergeModuleConnection` logic for managing module connections in SQLite and SQL Server." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

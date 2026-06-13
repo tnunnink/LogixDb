@@ -18,7 +18,12 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,6 +113,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260213/M202602130930CreateTagValueTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260524/M202605241400SeedNativeDataTypes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
@@ -126,61 +132,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5421751669391803E-70" />
-      <entry key="MS500" value="1.0906193909117265E-14" />
-      <entry key="S2" value="4.164585542066927E-4" />
-      <entry key="S5" value="0.16345622790173273" />
-      <entry key="S10" value="1.843520581724829" />
-      <entry key="S30" value="10.721609869443979" />
-      <entry key="S60" value="17.03456467944282" />
-      <entry key="M2" value="22.46633008783583" />
-      <entry key="M5" value="30.946310563353293" />
-      <entry key="M10" value="43.17360050142633" />
-      <entry key="M15" value="57.041554082820795" />
-      <entry key="M30" value="93.96445132892497" />
-      <entry key="H1" value="135.14549966701455" />
-      <entry key="H2" value="170.75425577996262" />
-      <entry key="H4" value="207.1459432622514" />
-      <entry key="D1" value="643.3476326082761" />
-      <entry key="W1" value="1948.2195510094205" />
+      <entry key="MS100" value="3.9283328840060206E-33" />
+      <entry key="MS500" value="3.904490192227453E-7" />
+      <entry key="S2" value="0.04392528844680567" />
+      <entry key="S5" value="0.7170853713493631" />
+      <entry key="S10" value="2.6268899703584285" />
+      <entry key="S30" value="9.986114766725493" />
+      <entry key="S60" value="18.026797622544713" />
+      <entry key="M2" value="27.407683495069286" />
+      <entry key="M5" value="41.42618897264923" />
+      <entry key="M10" value="53.43780946878635" />
+      <entry key="M15" value="59.7880378955549" />
+      <entry key="M30" value="68.0664371001776" />
+      <entry key="H1" value="73.14694680271916" />
+      <entry key="H2" value="76.45561590773637" />
+      <entry key="H4" value="88.52524014793502" />
+      <entry key="D1" value="473.5726447520255" />
+      <entry key="W1" value="1895.932322885931" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000000000002" />
-      <entry key="MS500" value="1.0007268775748008" />
-      <entry key="S2" value="1.167831323663432" />
-      <entry key="S5" value="1.7936487660385243" />
-      <entry key="S10" value="3.4880958574289838" />
-      <entry key="S30" value="9.309311436181126" />
-      <entry key="S60" value="13.09000875720523" />
-      <entry key="M2" value="16.226204148844158" />
-      <entry key="M5" value="20.53678608211944" />
-      <entry key="M10" value="25.67012478607502" />
-      <entry key="M15" value="31.169097339954103" />
-      <entry key="M30" value="45.24725830580807" />
-      <entry key="H1" value="60.538799211024184" />
-      <entry key="H2" value="74.8236328873038" />
-      <entry key="H4" value="93.82192936129535" />
-      <entry key="D1" value="270.40326045775004" />
-      <entry key="W1" value="610.6388410419933" />
+      <entry key="MS100" value="1.0000000053418996" />
+      <entry key="MS500" value="1.022169493019326" />
+      <entry key="S2" value="1.4638888233304392" />
+      <entry key="S5" value="2.4530230244402107" />
+      <entry key="S10" value="4.107539317006184" />
+      <entry key="S30" value="9.042277545239058" />
+      <entry key="S60" value="14.129316501253495" />
+      <entry key="M2" value="20.296600050230534" />
+      <entry key="M5" value="29.72428971273927" />
+      <entry key="M10" value="37.59973487496989" />
+      <entry key="M15" value="41.705969827330605" />
+      <entry key="M30" value="47.02211847183621" />
+      <entry key="H1" value="50.26935505329923" />
+      <entry key="H2" value="52.28254743359708" />
+      <entry key="H4" value="58.03062091794908" />
+      <entry key="D1" value="219.78503632909442" />
+      <entry key="W1" value="623.4768390380224" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.7521366730664375E-4" />
-      <entry key="MS500" value="0.2066552113283743" />
-      <entry key="S2" value="0.7941824486295654" />
-      <entry key="S5" value="1.7150153160323796" />
-      <entry key="S10" value="5.0871064701023485" />
-      <entry key="S30" value="19.785482373776926" />
-      <entry key="S60" value="29.944402127239226" />
-      <entry key="M2" value="38.57546537982298" />
-      <entry key="M5" value="51.41822289988204" />
-      <entry key="M10" value="68.7990288324335" />
-      <entry key="M15" value="88.17025671202475" />
-      <entry key="M30" value="139.17576362196908" />
-      <entry key="H1" value="195.65704465310307" />
-      <entry key="H2" value="245.56022832989436" />
-      <entry key="H4" value="300.95693816315355" />
-      <entry key="D1" value="913.7454015206018" />
-      <entry key="W1" value="2558.8565366425964" />
+      <entry key="MS100" value="2.7234299487752634E-8" />
+      <entry key="MS500" value="0.0307590629651058" />
+      <entry key="S2" value="0.6080036037498826" />
+      <entry key="S5" value="2.445469506028944" />
+      <entry key="S10" value="6.147127449661645" />
+      <entry key="S30" value="18.61106750792022" />
+      <entry key="S60" value="31.808691297664115" />
+      <entry key="M2" value="47.44045765801967" />
+      <entry key="M5" value="70.99309818636884" />
+      <entry key="M10" value="90.93897451475938" />
+      <entry key="M15" value="101.42159941526947" />
+      <entry key="M30" value="115.04808141099058" />
+      <entry key="H1" value="123.39477343719501" />
+      <entry key="H2" value="128.7269925565554" />
+      <entry key="H4" value="146.54962296708547" />
+      <entry key="D1" value="693.3533551001773" />
+      <entry key="W1" value="2519.40729464645" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -367,15 +373,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="42774000" />
-    </task>
-    <task id="LOCAL-00299" summary="Fix table alias in `dbo.GetVersionedTagComments` migration for `tag_comment` table.">
-      <option name="closed" value="true" />
-      <created>1779916024729</created>
-      <option name="number" value="00299" />
-      <option name="presentableId" value="LOCAL-00299" />
-      <option name="project" value="LOCAL" />
-      <updated>1779916024729</updated>
+      <workItem from="1781199999831" duration="45347000" />
     </task>
     <task id="LOCAL-00300" summary="Add clustered indexes to various migration tables and update primary key definitions where applicable">
       <option name="closed" value="true" />
@@ -761,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781319264733</updated>
     </task>
-    <option name="localTasksCounter" value="348" />
+    <task id="LOCAL-00348" summary="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.2 across projects and update `.idea` workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1781319695811</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1781319695811</updated>
+    </task>
+    <option name="localTasksCounter" value="349" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -789,7 +795,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove deprecated versioned helper functions (`tag_members_for`, `tag_comments_for`, `aoi_parameters_for`, `data_type_members_for`, `operands_for`) and associated tests, rename `M202605271010CreateLogixFor` to `M202605271010CreateLogicFor`, and update `tag_tree_from` function parameters and logic." />
     <MESSAGE value="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
     <MESSAGE value="Bump package versions across projects, including `L5Sharp` to 7.2.0, `Microsoft.NET.Test.Sdk` to 18.6.0, `NUnit.Analyzers` to 4.14.0, and several others." />
@@ -814,7 +819,8 @@
     <MESSAGE value="Update QA scripts to rename `environment_data/hash` to `variables_data/hash`, adjust references, and bump project versions to 0.13.3." />
     <MESSAGE value="Fix typo in `MergeModuleConnection.sql` (`module_connetion` → `module_connection`) and update `.idea` workspace configuration." />
     <MESSAGE value="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging." />
+    <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.2 across projects and update `.idea` workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.2 across projects and update `.idea` workspace configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -869,19 +875,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs</url>
-          <line>95</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerWriter.cs" containingFunctionPresentation="Method 'ExecuteMergeAsync'">
-            <startOffsets>
-              <option value="4787" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4861" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

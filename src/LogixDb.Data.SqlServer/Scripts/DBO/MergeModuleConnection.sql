@@ -20,7 +20,8 @@ WHEN NOT MATCHED THEN
             output_tag,
             output_size,
             output_suffix,
-            connection_path)
+            connection_path,
+            record_hash)
     VALUES ((SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash),
             source.connection_name,
             source.rpi,
@@ -38,4 +39,5 @@ WHEN NOT MATCHED THEN
             source.output_tag,
             source.output_size,
             source.output_suffix,
-            source.connection_path);
+            source.connection_path,
+            source.record_hash);

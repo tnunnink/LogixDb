@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="L5Sharp" Version="7.6.1" />
+      <PackageReference Include="L5Sharp" Version="7.6.2" />
       <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9" />
     </ItemGroup>
 

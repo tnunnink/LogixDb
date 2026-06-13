@@ -18,10 +18,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" afterDir="false" />
-    </list>
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -370,15 +367,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="42340000" />
-    </task>
-    <task id="LOCAL-00298" summary="Bump version to 0.12.3 in project files for service and CLI applications.">
-      <option name="closed" value="true" />
-      <created>1779915742609</created>
-      <option name="number" value="00298" />
-      <option name="presentableId" value="LOCAL-00298" />
-      <option name="project" value="LOCAL" />
-      <updated>1779915742609</updated>
+      <workItem from="1781199999831" duration="42774000" />
     </task>
     <task id="LOCAL-00299" summary="Fix table alias in `dbo.GetVersionedTagComments` migration for `tag_comment` table.">
       <option name="closed" value="true" />
@@ -764,7 +753,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781316100372</updated>
     </task>
-    <option name="localTasksCounter" value="347" />
+    <task id="LOCAL-00347" summary="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging.">
+      <option name="closed" value="true" />
+      <created>1781319264733</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
+      <option name="project" value="LOCAL" />
+      <updated>1781319264733</updated>
+    </task>
+    <option name="localTasksCounter" value="348" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -792,7 +789,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `TagMemberMap`: map `parent_name` to `MemberName` instead of `LocalPath`." />
     <MESSAGE value="Remove deprecated versioned helper functions (`tag_members_for`, `tag_comments_for`, `aoi_parameters_for`, `data_type_members_for`, `operands_for`) and associated tests, rename `M202605271010CreateLogixFor` to `M202605271010CreateLogicFor`, and update `tag_tree_from` function parameters and logic." />
     <MESSAGE value="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
@@ -817,7 +813,8 @@
     <MESSAGE value="Add `MergeModuleConnection` logic for managing module connections in SQLite and SQL Server." />
     <MESSAGE value="Update QA scripts to rename `environment_data/hash` to `variables_data/hash`, adjust references, and bump project versions to 0.13.3." />
     <MESSAGE value="Fix typo in `MergeModuleConnection.sql` (`module_connetion` → `module_connection`) and update `.idea` workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix typo in `MergeModuleConnection.sql` (`module_connetion` → `module_connection`) and update `.idea` workspace configuration." />
+    <MESSAGE value="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -885,19 +882,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs</url>
-          <line>28</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data\Transformers\ModuleTransformer.cs" containingFunctionPresentation="Method 'Transform'">
-            <startOffsets>
-              <option value="910" />
-            </startOffsets>
-            <endOffsets>
-              <option value="950" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

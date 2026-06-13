@@ -19,10 +19,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeModulePort.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/ModulePortMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112100CreateModuleConnectionTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/GetTargetByLatest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/GetTargetByLatest.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/GetTargetByVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/GetTargetByVersion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/ListTargets.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/ListTargets.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeAoi.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeAoi.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeAoiParameter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeAoiParameter.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeController.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeController.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataType.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataType.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataTypeMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeDataTypeMember.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeModule.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeModule.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeModuleConnection.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeModuleConnection.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeOperand.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeOperand.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeProgram.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeProgram.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRoutine.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRoutine.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTag.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTag.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagComment.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagConsumer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagConsumer.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagMember.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagProducer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagProducer.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagValue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTagValue.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTask.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeTask.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInfo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostInfo.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostVersion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/ModuleTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +91,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/37/b0cfea2b/Port.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/da/b4cd3128/Address.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/96/1597f6f9/LogixContainer`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/fb/dba6d945/Module.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/898a99b1d4d348c09fc9b65f48e111d61cee00/34/929e4a86/LogixIndex.cs" root0="SKIP_HIGHLIGHTING" />
@@ -101,6 +130,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteGuidHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModulePortMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -132,61 +162,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="3.9283328840060206E-33" />
-      <entry key="MS500" value="3.904490192227453E-7" />
-      <entry key="S2" value="0.04392528844680567" />
-      <entry key="S5" value="0.7170853713493631" />
-      <entry key="S10" value="2.6268899703584285" />
-      <entry key="S30" value="9.986114766725493" />
-      <entry key="S60" value="18.026797622544713" />
-      <entry key="M2" value="27.407683495069286" />
-      <entry key="M5" value="41.42618897264923" />
-      <entry key="M10" value="53.43780946878635" />
-      <entry key="M15" value="59.7880378955549" />
-      <entry key="M30" value="68.0664371001776" />
-      <entry key="H1" value="73.14694680271916" />
-      <entry key="H2" value="76.45561590773637" />
-      <entry key="H4" value="88.52524014793502" />
-      <entry key="D1" value="473.5726447520255" />
-      <entry key="W1" value="1895.932322885931" />
+      <entry key="MS100" value="1.1224275371983659" />
+      <entry key="MS500" value="1.6570158135746855" />
+      <entry key="S2" value="1.9003359401319528" />
+      <entry key="S5" value="1.9971729627962107" />
+      <entry key="S10" value="2.499735062473419" />
+      <entry key="S30" value="5.219321263392891" />
+      <entry key="S60" value="8.24331007494608" />
+      <entry key="M2" value="15.273367059467317" />
+      <entry key="M5" value="36.46725726029993" />
+      <entry key="M10" value="59.77097429043904" />
+      <entry key="M15" value="73.38537848203006" />
+      <entry key="M30" value="92.46889959950198" />
+      <entry key="H1" value="104.93086106174734" />
+      <entry key="H2" value="112.56261800746681" />
+      <entry key="H4" value="126.7296308483155" />
+      <entry key="D1" value="512.3858829875786" />
+      <entry key="W1" value="1935.712047701628" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000053418996" />
-      <entry key="MS500" value="1.022169493019326" />
-      <entry key="S2" value="1.4638888233304392" />
-      <entry key="S5" value="2.4530230244402107" />
-      <entry key="S10" value="4.107539317006184" />
-      <entry key="S30" value="9.042277545239058" />
-      <entry key="S60" value="14.129316501253495" />
-      <entry key="M2" value="20.296600050230534" />
-      <entry key="M5" value="29.72428971273927" />
-      <entry key="M10" value="37.59973487496989" />
-      <entry key="M15" value="41.705969827330605" />
-      <entry key="M30" value="47.02211847183621" />
-      <entry key="H1" value="50.26935505329923" />
-      <entry key="H2" value="52.28254743359708" />
-      <entry key="H4" value="58.03062091794908" />
-      <entry key="D1" value="219.78503632909442" />
-      <entry key="W1" value="623.4768390380224" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="6.285743963524807E-67" />
+      <entry key="S2" value="3.9042705198329716E-17" />
+      <entry key="S5" value="4.7272837240599443E-7" />
+      <entry key="S10" value="0.0013132230071628127" />
+      <entry key="S30" value="0.37861743698018424" />
+      <entry key="S60" value="2.314243507683686" />
+      <entry key="M2" value="7.720575804745787" />
+      <entry key="M5" value="22.816357425612154" />
+      <entry key="M10" value="38.797759214165715" />
+      <entry key="M15" value="47.99072790130932" />
+      <entry key="M30" value="60.757299436575614" />
+      <entry key="H1" value="69.03627804783329" />
+      <entry key="H2" value="73.98539179371315" />
+      <entry key="H4" value="81.20996591758961" />
+      <entry key="D1" value="243.75760109027374" />
+      <entry key="W1" value="648.0722822199656" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.7234299487752634E-8" />
-      <entry key="MS500" value="0.0307590629651058" />
-      <entry key="S2" value="0.6080036037498826" />
-      <entry key="S5" value="2.445469506028944" />
-      <entry key="S10" value="6.147127449661645" />
-      <entry key="S30" value="18.61106750792022" />
-      <entry key="S60" value="31.808691297664115" />
-      <entry key="M2" value="47.44045765801967" />
-      <entry key="M5" value="70.99309818636884" />
-      <entry key="M10" value="90.93897451475938" />
-      <entry key="M15" value="101.42159941526947" />
-      <entry key="M30" value="115.04808141099058" />
-      <entry key="H1" value="123.39477343719501" />
-      <entry key="H2" value="128.7269925565554" />
-      <entry key="H4" value="146.54962296708547" />
-      <entry key="D1" value="693.3533551001773" />
-      <entry key="W1" value="2519.40729464645" />
+      <entry key="MS100" value="0.19328286641769812" />
+      <entry key="MS500" value="1.2397409246590936" />
+      <entry key="S2" value="1.7737104671369461" />
+      <entry key="S5" value="1.9443973364828466" />
+      <entry key="S10" value="2.4739474537568316" />
+      <entry key="S30" value="5.575552828784314" />
+      <entry key="S60" value="10.506256116419026" />
+      <entry key="M2" value="22.904722225137647" />
+      <entry key="M5" value="59.17068780726175" />
+      <entry key="M10" value="98.47089022508112" />
+      <entry key="M15" value="121.29516878249133" />
+      <entry key="M30" value="153.17492813409717" />
+      <entry key="H1" value="173.93803039310126" />
+      <entry key="H2" value="186.53241658413145" />
+      <entry key="H4" value="207.93099003838128" />
+      <entry key="D1" value="756.1387507695628" />
+      <entry key="W1" value="2583.7824027843485" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -373,15 +403,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="45347000" />
-    </task>
-    <task id="LOCAL-00300" summary="Add clustered indexes to various migration tables and update primary key definitions where applicable">
-      <option name="closed" value="true" />
-      <created>1779977552417</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1779977552417</updated>
+      <workItem from="1781199999831" duration="46685000" />
     </task>
     <task id="LOCAL-00301" summary="Add database-specific table creation logic and index updates for `tag_member` and `data_type_member` tables.">
       <option name="closed" value="true" />
@@ -767,7 +789,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781319695811</updated>
     </task>
-    <option name="localTasksCounter" value="349" />
+    <task id="LOCAL-00349" summary="Add `record_hash` column to `MergeModuleConnection` script, make `connection_name` nullable in `module_connection` table, and create `module_port` table with migration script.">
+      <option name="closed" value="true" />
+      <created>1781377660297</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1781377660297</updated>
+    </task>
+    <option name="localTasksCounter" value="350" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -795,7 +825,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename `parent_name` to `parent_path` across tag-related scripts, migrations, maps, and tests for consistency and clarity." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly." />
     <MESSAGE value="Bump package versions across projects, including `L5Sharp` to 7.2.0, `Microsoft.NET.Test.Sdk` to 18.6.0, `NUnit.Analyzers` to 4.14.0, and several others." />
     <MESSAGE value="Refactor AOI and Parameter mappings: replace `ParameterRecord` with `Parameter`, update mapping logic, and clean up related code." />
@@ -820,7 +849,8 @@
     <MESSAGE value="Fix typo in `MergeModuleConnection.sql` (`module_connetion` → `module_connection`) and update `.idea` workspace configuration." />
     <MESSAGE value="Update `.idea` workspace configuration in multiple components and add breakpoint in `ModuleTransformer` for debugging." />
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.2 across projects and update `.idea` workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.2 across projects and update `.idea` workspace configuration." />
+    <MESSAGE value="Add `record_hash` column to `MergeModuleConnection` script, make `connection_name` nullable in `module_connection` table, and create `module_port` table with migration script." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `record_hash` column to `MergeModuleConnection` script, make `connection_name` nullable in `module_connection` table, and create `module_port` table with migration script." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

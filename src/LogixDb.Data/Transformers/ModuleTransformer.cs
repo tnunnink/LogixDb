@@ -11,6 +11,7 @@ namespace LogixDb.Data.Transformers;
 public class ModuleTransformer : IDbTransformer
 {
     private readonly ModuleMap _moduleMap = new();
+    private readonly ModulePortMap _portMap = new();
     private readonly ModuleConnectionMap _connectionMap = new();
 
     /// <inheritdoc />
@@ -22,6 +23,7 @@ public class ModuleTransformer : IDbTransformer
         var modules = source.Modules.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
 
         yield return _moduleMap.GenerateTable(modules);
+        yield return _portMap.GenerateTable(modules.SelectMany(m => m.Ports).ToList());
         yield return _connectionMap.GenerateTable(modules.SelectMany(m => m.Connections).ToList());
     }
 }

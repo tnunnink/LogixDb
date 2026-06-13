@@ -1,49 +1,57 @@
-INSERT OR IGNORE INTO aoi (aoi_name,
-                           aoi_description,
-                           aoi_revision,
-                           aoi_revision_extension,
-                           aoi_revision_note,
-                           aoi_vendor,
-                           aoi_help_text,
-                           created_date,
-                           created_by,
-                           edited_date,
-                           edited_by,
-                           software_revision,
-                           execute_pre_scan,
-                           execute_post_scan,
-                           execute_enable_in_false,
-                           is_encrypted,
-                           signature_id,
-                           signature_timestamp,
-                           component_class,
-                           content_hash,
-                           record_hash)
-SELECT t.aoi_name,
-       t.aoi_description,
-       t.aoi_revision,
-       t.aoi_revision_extension,
-       t.aoi_revision_note,
-       t.aoi_vendor,
-       t.aoi_help_text,
-       t.created_date,
-       t.created_by,
-       t.edited_date,
-       t.edited_by,
-       t.software_revision,
-       t.execute_pre_scan,
-       t.execute_post_scan,
-       t.execute_enable_in_false,
-       t.is_encrypted,
-       t.signature_id,
-       t.signature_timestamp,
-       t.component_class,
-       t.content_hash,
-       t.record_hash
+INSERT OR IGNORE INTO aoi
+(
+    aoi_name,
+    aoi_description,
+    aoi_revision,
+    aoi_revision_extension,
+    aoi_revision_note,
+    aoi_vendor,
+    aoi_help_text,
+    created_date,
+    created_by,
+    edited_date,
+    edited_by,
+    software_revision,
+    execute_pre_scan,
+    execute_post_scan,
+    execute_enable_in_false,
+    is_encrypted,
+    signature_id,
+    signature_timestamp,
+    component_class,
+    content_hash,
+    record_hash
+)
+SELECT
+    t.aoi_name,
+    t.aoi_description,
+    t.aoi_revision,
+    t.aoi_revision_extension,
+    t.aoi_revision_note,
+    t.aoi_vendor,
+    t.aoi_help_text,
+    t.created_date,
+    t.created_by,
+    t.edited_date,
+    t.edited_by,
+    t.software_revision,
+    t.execute_pre_scan,
+    t.execute_post_scan,
+    t.execute_enable_in_false,
+    t.is_encrypted,
+    t.signature_id,
+    t.signature_timestamp,
+    t.component_class,
+    t.content_hash,
+    t.record_hash
 FROM temp_aoi t;
 
-INSERT INTO target_version_map (version_id, record_id, component_id)
-SELECT @VersionId,
-       (SELECT aoi_id FROM aoi WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM target_component WHERE component_name = 'aoi')
+INSERT INTO target_version_map
+(
+    version_id, record_id, component_id
+)
+SELECT
+    @VersionId,
+    (SELECT aoi_id FROM aoi WHERE record_hash = t.record_hash),
+    (SELECT component_id FROM target_component WHERE component_name = 'aoi')
 FROM temp_aoi t;

@@ -19,6 +19,7 @@ public class M202606112200CreateModulePortTable : AutoReversingMigration
             .WithColumn("port_type").AsString(64).Nullable()
             .WithColumn("address").AsString("256").Nullable()
             .WithColumn("upstream").AsBoolean().Nullable()
+            .WithColumn("bus_size").AsByte().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("module_port")

@@ -137,6 +137,7 @@ public class TargetTests
             "aoi",
             "aoi_parameter",
             "module",
+            "module_connection",
             "task",
             "program",
             "routine",

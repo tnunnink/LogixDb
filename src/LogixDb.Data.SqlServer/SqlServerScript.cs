@@ -23,6 +23,7 @@ internal static class SqlServerScript
     public static string MergeDataType => Get(nameof(MergeDataType));
     public static string MergeDataTypeMember => Get(nameof(MergeDataTypeMember));
     public static string MergeModule => Get(nameof(MergeModule));
+    public static string MergeModuleConnection => Get(nameof(MergeModuleConnection));
     public static string MergeOperand => Get(nameof(MergeOperand));
     public static string MergeProgram => Get(nameof(MergeProgram));
     public static string MergeRoutine => Get(nameof(MergeRoutine));

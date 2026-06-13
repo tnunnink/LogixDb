@@ -19,8 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeModuleConnection.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606111410CreateTagTreeFrom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606111410CreateTagTreeFrom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,61 +132,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
+      <entry key="MS100" value="7.545370586798474E-82" />
+      <entry key="MS500" value="2.4229401325783126E-16" />
+      <entry key="S2" value="6.625232928296656E-4" />
+      <entry key="S5" value="0.21189390771972014" />
+      <entry key="S10" value="1.4545282323743454" />
+      <entry key="S30" value="5.319131079322352" />
+      <entry key="S60" value="7.59832379652937" />
+      <entry key="M2" value="10.20433614634314" />
+      <entry key="M5" value="17.931160372998768" />
+      <entry key="M10" value="35.868776271189695" />
+      <entry key="M15" value="53.48948418953763" />
+      <entry key="M30" value="88.3884940525544" />
+      <entry key="H1" value="118.33574759136519" />
+      <entry key="H2" value="142.50253305766987" />
+      <entry key="H4" value="171.2726694784067" />
+      <entry key="D1" value="602.3683149754972" />
+      <entry key="W1" value="1903.36885224975" />
+    </decayedCancelled>
+    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000117606350512" />
-      <entry key="S60" value="1.020041634224605" />
-      <entry key="M2" value="1.9204541819641776" />
-      <entry key="M5" value="10.60958675813618" />
-      <entry key="M10" value="22.199925707158712" />
-      <entry key="M15" value="28.62880762107908" />
-      <entry key="M30" value="37.168031127841246" />
-      <entry key="H1" value="44.07500031759009" />
-      <entry key="H2" value="52.62096382432752" />
-      <entry key="H4" value="72.49523739755942" />
-      <entry key="D1" value="538.7927722378779" />
-      <entry key="W1" value="1791.2839057968097" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="3.838518841865727E-91" />
-      <entry key="S5" value="1.860475433153701E-36" />
-      <entry key="S10" value="3.627327588890326E-18" />
-      <entry key="S30" value="7.654637082105264E-6" />
-      <entry key="S60" value="0.012674065277052381" />
-      <entry key="M2" value="0.5973978815400623" />
-      <entry key="M5" value="6.405709407539825" />
-      <entry key="M10" value="14.278168972834393" />
-      <entry key="M15" value="18.674677824920398" />
-      <entry key="M30" value="24.57664899565552" />
-      <entry key="H1" value="29.85091906275826" />
-      <entry key="H2" value="37.358462787214435" />
-      <entry key="H4" value="52.28126427632656" />
-      <entry key="D1" value="227.59663193650854" />
-      <entry key="W1" value="539.64865187356" />
+      <entry key="S10" value="1.0000000000003164" />
+      <entry key="S30" value="1.000330073546071" />
+      <entry key="S60" value="1.0601208273535017" />
+      <entry key="M2" value="1.8300514680629802" />
+      <entry key="M5" value="6.126353705412983" />
+      <entry key="M10" value="14.298238199129733" />
+      <entry key="M15" value="21.36352378294016" />
+      <entry key="M30" value="34.443135121306824" />
+      <entry key="H1" value="45.29695523571543" />
+      <entry key="H2" value="55.393454164544934" />
+      <entry key="H4" value="71.83145447210876" />
+      <entry key="D1" value="246.26157455609734" />
+      <entry key="W1" value="584.606084082236" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9201876506248751" />
-      <entry key="MS500" value="0.9835020740262483" />
-      <entry key="S2" value="0.9958497530944581" />
-      <entry key="S5" value="0.9983378297043665" />
-      <entry key="S10" value="0.999168569213607" />
-      <entry key="S30" value="0.999741906057966" />
-      <entry key="S60" value="1.032347938833415" />
-      <entry key="M2" value="2.512642188091285" />
-      <entry key="M5" value="16.993979657893252" />
-      <entry key="M10" value="36.45463586291922" />
-      <entry key="M15" value="47.28311414455984" />
-      <entry key="M30" value="61.73132026282139" />
-      <entry key="H1" value="73.91775835714911" />
-      <entry key="H2" value="89.97419935354954" />
-      <entry key="H4" value="124.77241303266993" />
-      <entry key="D1" value="766.3848724029801" />
-      <entry key="W1" value="2330.930917812393" />
+      <entry key="MS100" value="0.013888166893227662" />
+      <entry key="MS500" value="0.4251370800320982" />
+      <entry key="S2" value="0.8081412064030998" />
+      <entry key="S5" value="1.129634074442823" />
+      <entry key="S10" value="2.411695798278743" />
+      <entry key="S30" value="6.304116830469464" />
+      <entry key="S60" value="8.649576111467667" />
+      <entry key="M2" value="12.023743700149236" />
+      <entry key="M5" value="24.03711540856427" />
+      <entry key="M10" value="50.1330116428793" />
+      <entry key="M15" value="74.81353825761833" />
+      <entry key="M30" value="122.79479492594959" />
+      <entry key="H1" value="163.606906707232" />
+      <entry key="H2" value="197.88021905490507" />
+      <entry key="H4" value="243.0945347259386" />
+      <entry key="D1" value="848.6246722345062" />
+      <entry key="W1" value="2487.9731257413628" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -367,31 +372,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="35012000" />
-    </task>
-    <task id="LOCAL-00292" summary="Fix `is_native` column type in `M20260308Tests` from `integer` to `bit`.">
-      <option name="closed" value="true" />
-      <created>1779906520548</created>
-      <option name="number" value="00292" />
-      <option name="presentableId" value="LOCAL-00292" />
-      <option name="project" value="LOCAL" />
-      <updated>1779906520548</updated>
-    </task>
-    <task id="LOCAL-00293" summary="Bump version to 0.12.1 in project files for service and CLI applications.">
-      <option name="closed" value="true" />
-      <created>1779906538503</created>
-      <option name="number" value="00293" />
-      <option name="presentableId" value="LOCAL-00293" />
-      <option name="project" value="LOCAL" />
-      <updated>1779906538503</updated>
-    </task>
-    <task id="LOCAL-00294" summary="Add `is_native` field to operand seeding logic in `M202603082130SeedNativeOperands`">
-      <option name="closed" value="true" />
-      <created>1779907292895</created>
-      <option name="number" value="00294" />
-      <option name="presentableId" value="LOCAL-00294" />
-      <option name="project" value="LOCAL" />
-      <updated>1779907292895</updated>
+      <workItem from="1781199999831" duration="39476000" />
     </task>
     <task id="LOCAL-00295" summary="Bump version to 0.12.2 in project files for service and CLI applications.">
       <option name="closed" value="true" />
@@ -761,7 +742,31 @@
       <option name="project" value="LOCAL" />
       <updated>1781290738422</updated>
     </task>
-    <option name="localTasksCounter" value="341" />
+    <task id="LOCAL-00341" summary="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration">
+      <option name="closed" value="true" />
+      <created>1781292371535</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1781292371535</updated>
+    </task>
+    <task id="LOCAL-00342" summary="Bump project versions to 0.13.2.">
+      <option name="closed" value="true" />
+      <created>1781292390910</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1781292390910</updated>
+    </task>
+    <task id="LOCAL-00343" summary="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic.">
+      <option name="closed" value="true" />
+      <created>1781315101490</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1781315101490</updated>
+    </task>
+    <option name="localTasksCounter" value="344" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -789,9 +794,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes." />
-    <MESSAGE value="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments." />
-    <MESSAGE value="Update tests: add `tag_description`, replace `tag_name` with `member_path`, and rename `tag_comment` to `tag_member_comment` across SQLite and SQL Server migration tests." />
     <MESSAGE value="Remove `last_modified_date` from merge scripts and update test assertions (`tag_name` to `member_path`)." />
     <MESSAGE value="Update tests: replace `tag_comment` with `tag_member_comment`, adjust assertions, and update unique index to use `member_path`." />
     <MESSAGE value="Bump version to 0.13.0 in project files for service and CLI applications." />
@@ -814,7 +816,10 @@
     <MESSAGE value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
     <MESSAGE value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
     <MESSAGE value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
+    <MESSAGE value="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration" />
+    <MESSAGE value="Bump project versions to 0.13.2." />
+    <MESSAGE value="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -872,13 +877,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerWriter.cs</url>
-          <line>94</line>
+          <line>95</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerWriter.cs" containingFunctionPresentation="Method 'ExecuteMergeAsync'">
             <startOffsets>
-              <option value="4715" />
+              <option value="4787" />
             </startOffsets>
             <endOffsets>
-              <option value="4789" />
+              <option value="4861" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="55" />

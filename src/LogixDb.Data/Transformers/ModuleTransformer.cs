@@ -17,7 +17,7 @@ public class ModuleTransformer : IDbTransformer
     public IEnumerable<DataTable> Transform(Target target)
     {
         var source = target.GetSource(scrub: true);
-        
+
         // todo Some module elements don't have a name (VFD peripherals) not sure if these are worth adding or not.
         var modules = source.Modules.Where(x => !string.IsNullOrEmpty(x.Name)).ToList();
 

@@ -15,11 +15,10 @@ public class M202605271009CreateRungsFor : Migration
                     RETURNS TABLE AS RETURN (
                         SELECT r.* 
                         FROM dbo.rung r
-                        JOIN dbo.routine ro ON r.routine_id = ro.routine_id
-                        JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
+                        JOIN dbo.target_version_map tvm ON r.rung_id = tvm.record_id
                         JOIN dbo.target_component tc ON tvm.component_id = tc.component_id
                         WHERE tvm.version_id = @VersionId 
-                          AND tc.component_name = 'routine'
+                          AND tc.component_name = 'rung'
                     );
                     """);
     }

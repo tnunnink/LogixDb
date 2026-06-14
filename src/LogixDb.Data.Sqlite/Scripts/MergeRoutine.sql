@@ -5,7 +5,6 @@ INSERT OR IGNORE INTO routine
     routine_description,
     routine_type,
     is_definition,
-    content_hash,
     record_hash
 )
 SELECT
@@ -14,7 +13,6 @@ SELECT
     routine_description,
     routine_type,
     is_definition,
-    content_hash,
     record_hash
 FROM temp_routine t;
 

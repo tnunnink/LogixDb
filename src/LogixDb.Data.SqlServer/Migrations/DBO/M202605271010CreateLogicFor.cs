@@ -14,10 +14,8 @@ public class M202605271010CreateLogicFor : Migration
                     CREATE OR ALTER FUNCTION dbo.logic_for (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT 
-                            ro.routine_id,
                             r.rung_id,
-                            ro.container_name,
-                            ro.routine_name,
+                            r.routine_name,
                             r.rung_number,
                             ri.instruction_index,
                             ri.instruction_key,
@@ -31,10 +29,9 @@ public class M202605271010CreateLogicFor : Migration
                             ri.is_conditional,
                             ri.is_native,
                             o.is_destructive
-                        FROM dbo.routine ro
-                        JOIN dbo.target_version_map tvm ON ro.routine_id = tvm.record_id
-                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id AND tc.component_name = 'routine'
-                        JOIN dbo.rung r ON ro.routine_id = r.routine_id
+                        FROM dbo.rung r
+                        JOIN dbo.target_version_map tvm ON r.rung_id = tvm.record_id
+                        JOIN dbo.target_component tc ON tvm.component_id = tc.component_id AND tc.component_name = 'rung'
                         JOIN dbo.rung_instruction ri ON r.rung_id = ri.rung_id
                         LEFT JOIN dbo.rung_argument ra ON ri.rung_id = ra.rung_id 
                             AND ri.instruction_index = ra.instruction_index

@@ -213,7 +213,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("routine", "routine_description", "text");
             await AssertColumnDefinition("routine", "routine_type", "text");
             await AssertColumnDefinition("routine", "is_definition", "integer");
-            await AssertColumnDefinition("routine", "content_hash", "text");
             await AssertColumnDefinition("routine", "record_hash", "text");
 
             await AssertPrimaryKey("routine", "routine_id");

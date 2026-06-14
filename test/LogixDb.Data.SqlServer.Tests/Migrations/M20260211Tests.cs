@@ -213,7 +213,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("routine", "routine_description", "nvarchar");
             await AssertColumnDefinition("routine", "routine_type", "nvarchar");
             await AssertColumnDefinition("routine", "is_definition", "bit");
-            await AssertColumnDefinition("routine", "content_hash", "nvarchar");
             await AssertColumnDefinition("routine", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("routine", "routine_id");

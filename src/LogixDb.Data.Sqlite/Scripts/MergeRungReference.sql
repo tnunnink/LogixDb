@@ -6,9 +6,9 @@ INSERT INTO rung_reference
     reference_name
 )
 SELECT
-    t.rung_id,
+    r.rung_id,
     t.instruction_index,
     t.argument_index,
     t.reference_name
 FROM temp_rung_reference t
-     INNER JOIN rung r ON r.rung_id = t.rung_id;
+     INNER JOIN rung r ON r.record_hash = t.rung_hash;

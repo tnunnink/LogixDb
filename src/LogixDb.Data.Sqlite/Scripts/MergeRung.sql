@@ -1,7 +1,6 @@
 INSERT OR IGNORE INTO rung
 (
-    rung_id,
-    routine_id,
+    routine_name,
     rung_number,
     rung_text,
     rung_comment,
@@ -9,11 +8,17 @@ INSERT OR IGNORE INTO rung
     record_hash
 )
 SELECT
-    t.rung_id,
-    (SELECT routine_id FROM routine WHERE record_hash = t.routine_hash),
+    t.routine_name,
     t.rung_number,
     t.rung_text,
     t.rung_comment,
     t.code_hash,
     t.record_hash
+FROM temp_rung t;
+
+INSERT INTO target_version_map (version_id, record_id, component_id)
+SELECT
+    @VersionId,
+    (SELECT rung_id FROM rung WHERE record_hash = t.record_hash),
+    (SELECT component_id FROM target_component WHERE component_name = 'rung')
 FROM temp_rung t;

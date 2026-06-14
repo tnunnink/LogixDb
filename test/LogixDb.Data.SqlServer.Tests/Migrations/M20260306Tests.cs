@@ -12,8 +12,8 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "routine_id", "bigint");
+            await AssertColumnDefinition("rung", "rung_id", "bigint");
+            await AssertColumnDefinition("rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "rung_text", "nvarchar");
             await AssertColumnDefinition("rung", "rung_comment", "nvarchar");
@@ -21,8 +21,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("rung", "record_hash", "nvarchar");
 
             await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "routine_id", "record_hash");
-            await AssertUniqueIndex("rung", "routine_id", "rung_number");
+            await AssertUniqueIndex("rung", "record_hash");
             await AssertIndex("rung", "code_hash");
         }
     }
@@ -36,7 +35,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("rung_instruction");
 
-            await AssertColumnDefinition("rung_instruction", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_instruction", "rung_id", "bigint");
             await AssertColumnDefinition("rung_instruction", "instruction_index", "smallint");
             await AssertColumnDefinition("rung_instruction", "instruction_key", "nvarchar");
             await AssertColumnDefinition("rung_instruction", "instruction_text", "nvarchar");
@@ -60,7 +59,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("rung_argument");
 
-            await AssertColumnDefinition("rung_argument", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_argument", "rung_id", "bigint");
             await AssertColumnDefinition("rung_argument", "instruction_index", "smallint");
             await AssertColumnDefinition("rung_argument", "argument_index", "tinyint");
             await AssertColumnDefinition("rung_argument", "argument_type", "nvarchar");
@@ -80,7 +79,7 @@ public class M20260306Tests : SqlServerTestFixture
         {
             await AssertTableExists("rung_reference");
 
-            await AssertColumnDefinition("rung_reference", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_reference", "rung_id", "bigint");
             await AssertColumnDefinition("rung_reference", "instruction_index", "smallint");
             await AssertColumnDefinition("rung_reference", "argument_index", "tinyint");
             await AssertColumnDefinition("rung_reference", "reference_name", "nvarchar");

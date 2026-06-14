@@ -12,8 +12,8 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("rung");
 
-            await AssertColumnDefinition("rung", "rung_id", "uniqueidentifier");
-            await AssertColumnDefinition("rung", "routine_id", "integer");
+            await AssertColumnDefinition("rung", "rung_id", "integer");
+            await AssertColumnDefinition("rung", "routine_name", "text");
             await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "rung_text", "text");
             await AssertColumnDefinition("rung", "rung_comment", "text");
@@ -21,8 +21,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertColumnDefinition("rung", "record_hash", "text");
 
             await AssertPrimaryKey("rung", "rung_id");
-            await AssertUniqueIndex("rung", "routine_id", "record_hash");
-            await AssertUniqueIndex("rung", "routine_id", "rung_number");
+            await AssertUniqueIndex("rung", "record_hash");
             await AssertIndex("rung", "code_hash");
         }
     }
@@ -37,7 +36,7 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("rung_instruction");
 
-            await AssertColumnDefinition("rung_instruction", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_instruction", "rung_id", "integer");
             await AssertColumnDefinition("rung_instruction", "instruction_index", "integer");
             await AssertColumnDefinition("rung_instruction", "instruction_key", "text");
             await AssertColumnDefinition("rung_instruction", "instruction_text", "text");
@@ -61,7 +60,7 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("rung_argument");
 
-            await AssertColumnDefinition("rung_argument", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_argument", "rung_id", "integer");
             await AssertColumnDefinition("rung_argument", "instruction_index", "integer");
             await AssertColumnDefinition("rung_argument", "argument_index", "integer");
             await AssertColumnDefinition("rung_argument", "argument_type", "text");
@@ -81,7 +80,7 @@ public class M20260306Tests : SqliteTestFixture
         {
             await AssertTableExists("rung_reference");
 
-            await AssertColumnDefinition("rung_reference", "rung_id", "uniqueidentifier");
+            await AssertColumnDefinition("rung_reference", "rung_id", "integer");
             await AssertColumnDefinition("rung_reference", "instruction_index", "integer");
             await AssertColumnDefinition("rung_reference", "argument_index", "integer");
             await AssertColumnDefinition("rung_reference", "reference_name", "text");

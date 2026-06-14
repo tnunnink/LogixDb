@@ -16,7 +16,6 @@ public class ModulePortMap : TableMap<Port>
         ColumnMap<Port>.For(p => p.Address?.ToString(), "address"),
         ColumnMap<Port>.For(p => p.Upstream, "upstream"),
         ColumnMap<Port>.For(p => p.BusSize, "bus_size"),
-        ColumnMap<Port>.For(p => p.IsChassis, "bus_size"),
         ColumnMap<Port>.RecordHash(this)
     ];
 }

@@ -1,7 +1,6 @@
 MERGE INTO dbo.rung_reference AS target
 USING #temp_rung_reference AS source
 ON target.rung_id = (SELECT rung_id FROM dbo.rung WHERE record_hash = source.rung_hash)
-    AND target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT
     (

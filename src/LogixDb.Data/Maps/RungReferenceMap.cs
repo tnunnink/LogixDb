@@ -8,7 +8,7 @@ public class RungReferenceMap : TableMap<ReferenceRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ReferenceRecord>> Columns =>
     [
-        ColumnMap<ReferenceRecord>.For(r => r.RungHash, "rung_hash"),
+        ColumnMap<ReferenceRecord>.For(r => r.RungHash, "rung_hash", hashable: false),
         ColumnMap<ReferenceRecord>.For(r => r.InstructionIndex, "instruction_index"),
         ColumnMap<ReferenceRecord>.For(r => r.ArgumentIndex, "argument_index"),
         ColumnMap<ReferenceRecord>.For(r => r.ReferenceName, "reference_name")

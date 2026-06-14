@@ -8,7 +8,7 @@ public class RungInstructionMap : TableMap<InstructionRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<InstructionRecord>> Columns =>
     [
-        ColumnMap<InstructionRecord>.For(r => r.RungId, "rung_id"),
+        ColumnMap<InstructionRecord>.For(r => r.RungHash, "rung_hash", hashable: false),
         ColumnMap<InstructionRecord>.For(x => x.Index, "instruction_index"),
         ColumnMap<InstructionRecord>.For(x => x.Text, "instruction_text"),
         ColumnMap<InstructionRecord>.For(x => x.Key, "instruction_key"),
@@ -19,7 +19,7 @@ public class RungInstructionMap : TableMap<InstructionRecord>
 }
 
 public record InstructionRecord(
-    Guid RungId,
+    string RungHash,
     short Index,
     string Text,
     string Key,

@@ -13,7 +13,7 @@ public class M202603061400CreateRungReferenceTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("rung_reference")
-            .WithRelation<Guid>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<long>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
             .WithColumn("reference_name").AsString(256).NotNullable();

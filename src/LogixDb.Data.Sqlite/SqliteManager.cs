@@ -182,8 +182,8 @@ public sealed class SqliteManager : IDbManager
                 target,
                 transaction);
 
-            target.VersionId = result.VersionId;
-            target.VersionNumber = result.VersionNumber;
+            target.VersionId = (int)result.VersionId;
+            target.VersionNumber = (int)result.VersionNumber;
 
             // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqliteScript.PostInfo,

@@ -5,7 +5,7 @@ INSERT INTO dbo.rung_instruction (rung_id,
                                   is_conditional,
                                   is_native,
                                   record_hash)
-SELECT t.rung_id,
+SELECT r.rung_id,
        t.instruction_index,
        t.instruction_text,
        t.instruction_key,
@@ -13,4 +13,4 @@ SELECT t.rung_id,
        t.is_native,
        t.record_hash
 FROM #temp_rung_instruction t
-         INNER JOIN dbo.rung r ON r.rung_id = t.rung_id;
+         INNER JOIN dbo.rung r ON r.record_hash = t.rung_hash;

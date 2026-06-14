@@ -21,7 +21,6 @@ public class RoutineMap : TableMap<Routine>
         ColumnMap<Routine>.For(r => r.Description, "routine_description"),
         ColumnMap<Routine>.For(r => r.Type.Name, "routine_type"),
         ColumnMap<Routine>.For(r => r.Reference.Scope.IsDefinition, "is_definition"),
-        ColumnMap<Routine>.For(r => r.HashElement(), "content_hash"),
         ColumnMap<Routine>.RecordHash(this)
     ];
 }

@@ -26,12 +26,10 @@ public class RungTransformer : IDbTransformer
 
         foreach (var rung in rungs)
         {
-            // This is for child tables to form relational reference.
-            var rungId = Guid.CreateVersion7();
-            rung.Metadata.Add("rung_id", rungId);
-
+            // This forces the hash for the parent to be computed and cached so we can pass to child records.
+            var rungHash = _rungMap.ComputeHash(rung);
             rungRecords.Add(rung);
-            ProcessRung(rungId, rung, instructionRecords, argumentRecords, referenceRecords);
+            ProcessRung(rungHash, rung, instructionRecords, argumentRecords, referenceRecords);
         }
 
         yield return _rungMap.GenerateTable(rungRecords);
@@ -40,7 +38,7 @@ public class RungTransformer : IDbTransformer
         yield return _referenceMap.GenerateTable(referenceRecords);
     }
 
-    private static void ProcessRung(Guid rungId, Rung rung,
+    private static void ProcessRung(string rungHash, Rung rung,
         List<InstructionRecord> instructionRecords,
         List<ArgumentRecord> argumentRecords,
         List<ReferenceRecord> referenceRecords)
@@ -52,7 +50,7 @@ public class RungTransformer : IDbTransformer
             var instruction = instructions[i];
 
             instructionRecords.Add(new InstructionRecord(
-                rungId,
+                rungHash,
                 i,
                 instruction.ToString(),
                 instruction.Key,
@@ -65,10 +63,10 @@ public class RungTransformer : IDbTransformer
             for (byte a = 0; a < arguments.Length; a++)
             {
                 var argument = arguments[a];
-                argumentRecords.Add(new ArgumentRecord(rungId, i, a, argument.Type, argument.ToString()));
+                argumentRecords.Add(new ArgumentRecord(rungHash, i, a, argument.Type, argument.ToString()));
 
                 foreach (var reference in GetReferences(argument))
-                    referenceRecords.Add(new ReferenceRecord(rungId, i, a, reference));
+                    referenceRecords.Add(new ReferenceRecord(rungHash, i, a, reference));
             }
         }
     }

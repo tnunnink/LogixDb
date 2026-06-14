@@ -8,7 +8,7 @@ public class RungArgumentMap : TableMap<ArgumentRecord>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<ArgumentRecord>> Columns =>
     [
-        ColumnMap<ArgumentRecord>.For(r => r.RungId, "rung_id"),
+        ColumnMap<ArgumentRecord>.For(r => r.RungHash, "rung_hash", hashable: false),
         ColumnMap<ArgumentRecord>.For(r => r.InstructionIndex, "instruction_index"),
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentIndex, "argument_index"),
         ColumnMap<ArgumentRecord>.For(r => r.ArgumentType, "argument_type"),
@@ -18,7 +18,7 @@ public class RungArgumentMap : TableMap<ArgumentRecord>
 }
 
 public record ArgumentRecord(
-    Guid RungId,
+    string RungHash,
     int InstructionIndex,
     byte ArgumentIndex,
     string ArgumentType,

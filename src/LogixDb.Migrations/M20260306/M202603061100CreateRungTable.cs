@@ -1,6 +1,4 @@
-using System.Data;
 using FluentMigrator;
-using FluentMigrator.SqlServer;
 using JetBrains.Annotations;
 using LogixDb.Data;
 
@@ -13,51 +11,22 @@ public class M202603061100CreateRungTable : AutoReversingMigration
 {
     public override void Up()
     {
-        IfDatabase(ProcessorIdConstants.SQLite)
-            .Create.Table("rung")
-            .WithPrimaryKey<Guid>("rung_id")
-            .WithRelation<long>("routine_id", "routine").OnDelete(Rule.Cascade).NotNullable()
+        Create.Table("rung")
+            .WithPrimaryKey<long>("rung_id")
+            .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
             .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
             .WithColumn("code_hash").AsString(64).Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        IfDatabase(ProcessorIdConstants.SqlServer)
-            .Create.Table("rung")
-            .WithColumn("rung_id").AsGuid().NotNullable()
-            .WithRelation<long>("routine_id", "routine").OnDelete(Rule.Cascade).NotNullable()
-            .WithColumn("rung_number").AsInt32().NotNullable()
-            .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
-            .WithColumn("rung_comment").AsString(int.MaxValue).Nullable()
-            .WithColumn("code_hash").AsString(64).Nullable()
-            .WithColumn("record_hash").AsString(64).NotNullable();
-
-        IfDatabase(ProcessorIdConstants.SqlServer)
-            .Create
-            .PrimaryKey()
-            .OnTable("rung")
-            .Column("rung_id")
-            .NonClustered();
-
-        IfDatabase(ProcessorIdConstants.SqlServer)
-            .Create
-            .Index().OnTable("rung")
-            .OnColumn("routine_id").Ascending()
-            .OnColumn("rung_number").Ascending()
-            .WithOptions().Unique()
-            .WithOptions().Clustered();
-
-        IfDatabase(ProcessorIdConstants.SQLite)
-            .Create
-            .Index().OnTable("rung")
-            .OnColumn("routine_id").Ascending()
-            .OnColumn("rung_number").Ascending()
+        Create.Index().OnTable("rung")
+            .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("rung")
-            .OnColumn("routine_id").Ascending()
-            .OnColumn("record_hash").Ascending()
+            .OnColumn("routine_name").Ascending()
+            .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
 
         Create.Index().OnTable("rung")

@@ -15,6 +15,7 @@ public class M202605271010CreateLogicFor : Migration
                     RETURNS TABLE AS RETURN (
                         SELECT 
                             r.rung_id,
+                            r.container_name,
                             r.routine_name,
                             r.rung_number,
                             ri.instruction_index,

@@ -29,6 +29,7 @@ internal class SqliteWriter(int versionId, SqliteConnection connection, SqliteTr
         { "operand", SqliteScript.MergeOperand },
         { "module", SqliteScript.MergeModule },
         { "module_connection", SqliteScript.MergeModuleConnection },
+        { "module_port", SqliteScript.MergeModulePort },
         { "task", SqliteScript.MergeTask },
         { "program", SqliteScript.MergeProgram },
         { "routine", SqliteScript.MergeRoutine },

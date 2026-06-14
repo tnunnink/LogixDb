@@ -23,6 +23,7 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
         { "operand", SqlServerScript.MergeOperand },
         { "module", SqlServerScript.MergeModule },
         { "module_connection", SqlServerScript.MergeModuleConnection },
+        { "module_port", SqlServerScript.MergeModulePort },
         { "task", SqlServerScript.MergeTask },
         { "program", SqlServerScript.MergeProgram },
         { "routine", SqlServerScript.MergeRoutine },

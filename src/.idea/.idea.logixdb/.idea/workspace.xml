@@ -18,15 +18,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/PostVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/PostVersion.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostVersion.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/DbConnectionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbConnectionInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Target.cs" afterDir="false" />
-    </list>
+    <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -380,15 +372,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="53393000" />
-    </task>
-    <task id="LOCAL-00307" summary="Mark `ExecuteQuery_AfterLargeNumberOfFakeImports_ShouldBePerformant` test as explicit for ongoing work on high-load query stress testing.">
-      <option name="closed" value="true" />
-      <created>1780071499004</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1780071499004</updated>
+      <workItem from="1781199999831" duration="53719000" />
     </task>
     <task id="LOCAL-00308" summary="Bump version to 0.12.6 in project files for service and CLI applications.">
       <option name="closed" value="true" />
@@ -774,7 +758,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781402986807</updated>
     </task>
-    <option name="localTasksCounter" value="356" />
+    <task id="LOCAL-00356" summary="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models">
+      <option name="closed" value="true" />
+      <created>1781428230378</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1781428230378</updated>
+    </task>
+    <option name="localTasksCounter" value="357" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -802,7 +794,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `M202606112100CreateModuleConnectionTable`: make `rpi` column nullable" />
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.0 across projects." />
     <MESSAGE value="Remove all deprecated SQL scripts and their associated logic, including merge scripts (e.g., `MergeAoi`, `MergeController`) and helper functions, as part of cleanup." />
     <MESSAGE value="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup." />
@@ -827,7 +818,8 @@
     <MESSAGE value="Fix `module_port` migration: correct relation and data type issues, update `.idea` workspace configuration." />
     <MESSAGE value="Remove duplicate `IsChassis` column mapping from `ModulePortMap`." />
     <MESSAGE value="Add migration for `tag_concat` function in SQL Server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add migration for `tag_concat` function in SQL Server" />
+    <MESSAGE value="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

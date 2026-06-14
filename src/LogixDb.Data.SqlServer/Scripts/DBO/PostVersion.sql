@@ -1,5 +1,5 @@
 DECLARE @TargetId INT = (SELECT target_id FROM dbo.target WHERE target_key = @TargetKey);
-DECLARE @VersionNumber INT = (SELECT COALESCE(MAX(version_number), 0) + 1 FROM dbo.target_version WHERE target_id = @TargetId);
+DECLARE @NextVersionNumber INT = (SELECT COALESCE(MAX(version_number), 0) + 1 FROM dbo.target_version WHERE target_id = @TargetId);
 
 INSERT INTO dbo.target_version
 (
@@ -21,7 +21,7 @@ INSERT INTO dbo.target_version
 VALUES
     (
         @TargetId,
-        @VersionNumber,
+        @NextVersionNumber,
         @TargetType,
         @TargetName,
         @IsPartial,
@@ -36,4 +36,4 @@ VALUES
         @SourceData
     );
 
-SELECT CAST(SCOPE_IDENTITY() AS INT) AS VersionId, @VersionNumber AS VersionNumber;
+SELECT CAST(SCOPE_IDENTITY() AS INT) AS VersionId, @NextVersionNumber AS VersionNumber;

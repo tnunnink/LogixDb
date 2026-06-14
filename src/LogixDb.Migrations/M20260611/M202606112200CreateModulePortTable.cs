@@ -14,10 +14,10 @@ public class M202606112200CreateModulePortTable : AutoReversingMigration
     {
         Create.Table("module_port")
             .WithPrimaryKey<long>("port_id")
-            .WithRelation<long>("module", "module_id").OnDelete(Rule.Cascade).NotNullable()
+            .WithRelation<long>("module_id", "module").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("port_number").AsInt16().NotNullable()
             .WithColumn("port_type").AsString(64).Nullable()
-            .WithColumn("address").AsString("256").Nullable()
+            .WithColumn("address").AsString(256).Nullable()
             .WithColumn("upstream").AsBoolean().Nullable()
             .WithColumn("bus_size").AsByte().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();

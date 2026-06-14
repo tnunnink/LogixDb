@@ -1,4 +1,4 @@
-namespace LogixDb.Data.SqlServer.Tests.Migrations;
+﻿namespace LogixDb.Data.SqlServer.Tests.Migrations;
 
 [TestFixture]
 public class M20260611Tests : SqlServerTestFixture

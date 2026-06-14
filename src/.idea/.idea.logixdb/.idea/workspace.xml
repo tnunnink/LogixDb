@@ -19,18 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRung.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungArgument.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungInstruction.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungReference.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,61 +134,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0001555860140772" />
-      <entry key="MS500" value="1.1731386835138655" />
-      <entry key="S2" value="1.645059790681771" />
-      <entry key="S5" value="1.8449651579739654" />
-      <entry key="S10" value="2.019941736737049" />
-      <entry key="S30" value="3.196861557225655" />
-      <entry key="S60" value="5.123798954509389" />
-      <entry key="M2" value="8.23414123796395" />
-      <entry key="M5" value="15.820190106997202" />
-      <entry key="M10" value="27.691012744079735" />
-      <entry key="M15" value="38.93288662889063" />
-      <entry key="M30" value="67.93391318764567" />
-      <entry key="H1" value="107.63868631843378" />
-      <entry key="H2" value="148.4821522032659" />
-      <entry key="H4" value="191.36354381472177" />
-      <entry key="D1" value="561.452032130043" />
-      <entry key="W1" value="2062.2318318500297" />
+      <entry key="MS100" value="4.49911260159638E-5" />
+      <entry key="MS500" value="0.13509067525491894" />
+      <entry key="S2" value="0.6062564095308686" />
+      <entry key="S5" value="0.8185826533866101" />
+      <entry key="S10" value="0.9047603738861225" />
+      <entry key="S30" value="1.0193277098857454" />
+      <entry key="S60" value="1.5911476545777046" />
+      <entry key="M2" value="3.7003933234113973" />
+      <entry key="M5" value="15.561793270612025" />
+      <entry key="M10" value="38.753642123886976" />
+      <entry key="M15" value="56.991539799898916" />
+      <entry key="M30" value="90.66207222390955" />
+      <entry key="H1" value="124.80501561273871" />
+      <entry key="H2" value="176.7050703618461" />
+      <entry key="H4" value="267.89292999475276" />
+      <entry key="D1" value="754.5644629980852" />
+      <entry key="W1" value="2326.1274629507084" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="4.432849086874751E-108" />
-      <entry key="MS500" value="3.383269466048329E-22" />
-      <entry key="S2" value="4.288783736338107E-6" />
-      <entry key="S5" value="0.007127441458887604" />
-      <entry key="S10" value="0.08442417582956925" />
-      <entry key="S30" value="0.43900943028799083" />
-      <entry key="S60" value="0.6804638968981037" />
-      <entry key="M2" value="0.9752983587225965" />
-      <entry key="M5" value="1.942488433045168" />
-      <entry key="M10" value="3.859979103365623" />
-      <entry key="M15" value="6.035317215280893" />
-      <entry key="M30" value="11.403923343867882" />
-      <entry key="H1" value="16.87574216882577" />
-      <entry key="H2" value="21.450756269787387" />
-      <entry key="H4" value="30.01277433373225" />
-      <entry key="D1" value="185.64084749231174" />
-      <entry key="W1" value="638.9197313046233" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0000000000002391" />
+      <entry key="S10" value="1.000000635248383" />
+      <entry key="S30" value="1.0160485148531344" />
+      <entry key="S60" value="1.226389450250377" />
+      <entry key="M2" value="2.093386960984441" />
+      <entry key="M5" value="6.108376656400408" />
+      <entry key="M10" value="13.11430422715201" />
+      <entry key="M15" value="18.575368115442046" />
+      <entry key="M30" value="28.958153944524437" />
+      <entry key="H1" value="39.723494313656865" />
+      <entry key="H2" value="54.17323479489806" />
+      <entry key="H4" value="75.92303001832714" />
+      <entry key="D1" value="242.04904369955713" />
+      <entry key="W1" value="719.2671971775854" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0027440736982341225" />
-      <entry key="MS500" value="0.46192825572236984" />
-      <entry key="S2" value="1.3724569372879165" />
-      <entry key="S5" value="1.73070613244118" />
-      <entry key="S10" value="2.0340519549299056" />
-      <entry key="S30" value="3.5905121109311473" />
-      <entry key="S60" value="5.765002125440065" />
-      <entry key="M2" value="9.176022350766784" />
-      <entry key="M5" value="17.738099018611642" />
-      <entry key="M10" value="31.532309283001048" />
-      <entry key="M15" value="44.95200294861555" />
-      <entry key="M30" value="79.32562306543971" />
-      <entry key="H1" value="124.50633620989446" />
-      <entry key="H2" value="169.92803221237568" />
-      <entry key="H4" value="221.37302351324476" />
-      <entry key="D1" value="747.0893189285778" />
-      <entry key="W1" value="2701.14967640936" />
+      <entry key="MS100" value="5.30154203961787E-5" />
+      <entry key="MS500" value="0.22330612381495243" />
+      <entry key="S2" value="1.1504119906852512" />
+      <entry key="S5" value="1.602455482161915" />
+      <entry key="S10" value="1.7901102610358572" />
+      <entry key="S30" value="1.98834333884335" />
+      <entry key="S60" value="2.760114070286914" />
+      <entry key="M2" value="5.71835217356703" />
+      <entry key="M5" value="21.587128682197278" />
+      <entry key="M10" value="51.787731276736814" />
+      <entry key="M15" value="75.49433024668541" />
+      <entry key="M30" value="119.56659776057583" />
+      <entry key="H1" value="164.49306379776155" />
+      <entry key="H2" value="230.85500554025052" />
+      <entry key="H4" value="343.80048994462345" />
+      <entry key="D1" value="996.6073557706683" />
+      <entry key="W1" value="3045.392328472472" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -262,6 +252,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "db27ef2f-246d-4f4e-871d-3c60d305b332.executor": "Debug",
     "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
     "e57754cd-b12b-44f4-b8a2-711d0f71850e.executor": "Debug",
@@ -385,39 +376,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="58814000" />
-    </task>
-    <task id="LOCAL-00311" summary="Add SQLite and SQL Server-specific table creation and indexing logic for `rung`, `tag_member`, and `data_type_member` tables in migrations.">
-      <option name="closed" value="true" />
-      <created>1780078933923</created>
-      <option name="number" value="00311" />
-      <option name="presentableId" value="LOCAL-00311" />
-      <option name="project" value="LOCAL" />
-      <updated>1780078933923</updated>
-    </task>
-    <task id="LOCAL-00312" summary="Rnemaed all the version helper functions to different name that aligns more with the database table names for easy discovery.">
-      <option name="closed" value="true" />
-      <created>1781201340990</created>
-      <option name="number" value="00312" />
-      <option name="presentableId" value="LOCAL-00312" />
-      <option name="project" value="LOCAL" />
-      <updated>1781201340990</updated>
-    </task>
-    <task id="LOCAL-00313" summary="Bump version to 0.12.7 in project files for service and CLI applications.">
-      <option name="closed" value="true" />
-      <created>1781201366688</created>
-      <option name="number" value="00313" />
-      <option name="presentableId" value="LOCAL-00313" />
-      <option name="project" value="LOCAL" />
-      <updated>1781201366688</updated>
-    </task>
-    <task id="LOCAL-00314" summary="Rename versioned helper functions for rung hierarchy to a unified `logic_for` function, simplify test assertions, and update workspace configuration to reflect changes.">
-      <option name="closed" value="true" />
-      <created>1781205073218</created>
-      <option name="number" value="00314" />
-      <option name="presentableId" value="LOCAL-00314" />
-      <option name="project" value="LOCAL" />
-      <updated>1781205073218</updated>
+      <workItem from="1781199999831" duration="70171000" />
     </task>
     <task id="LOCAL-00315" summary="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity.">
       <option name="closed" value="true" />
@@ -779,7 +738,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781432193689</updated>
     </task>
-    <option name="localTasksCounter" value="360" />
+    <task id="LOCAL-00360" summary="Refactor `rung` merge scripts to use `MERGE` statement, add `container_name` handling, update indices and column mappings for improved consistency.">
+      <option name="closed" value="true" />
+      <created>1781433543080</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1781433543080</updated>
+    </task>
+    <task id="LOCAL-00361" summary="Add `container_name` to `rung` migration return columns">
+      <option name="closed" value="true" />
+      <created>1781433666629</created>
+      <option name="number" value="00361" />
+      <option name="presentableId" value="LOCAL-00361" />
+      <option name="project" value="LOCAL" />
+      <updated>1781433666629</updated>
+    </task>
+    <task id="LOCAL-00362" summary="Refactor `rung_reference` merge logic: remove redundant `record_hash` condition, update column map to disable hashing for `rung_hash`.">
+      <option name="closed" value="true" />
+      <created>1781434046770</created>
+      <option name="number" value="00362" />
+      <option name="presentableId" value="LOCAL-00362" />
+      <option name="project" value="LOCAL" />
+      <updated>1781434046770</updated>
+    </task>
+    <task id="LOCAL-00363" summary="Bump project version to 0.14.0 in service and CLI.">
+      <option name="closed" value="true" />
+      <created>1781434086717</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
+      <option name="project" value="LOCAL" />
+      <updated>1781434086717</updated>
+    </task>
+    <option name="localTasksCounter" value="364" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -807,10 +798,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
-    <MESSAGE value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
-    <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
-    <MESSAGE value="Rename `QA` to `Qa` in `ComponentOptions` and related QA migration tests for consistency." />
     <MESSAGE value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
     <MESSAGE value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
     <MESSAGE value="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration" />
@@ -832,7 +819,11 @@
     <MESSAGE value="Update `.idea` workspace configuration and rename `@VersionNumber` to `@NextVersionNumber` in `PostVersion.sql` script." />
     <MESSAGE value=" Moving rung to flat deduplicate mmodel for consistency and space reduction. Refactor `rung`-related logic across migrations, maps, and transformers: replace `rung_id` with `rung_hash`, remove unused columns, and update merge scripts for improved consistency." />
     <MESSAGE value="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency." />
+    <MESSAGE value="Refactor `rung` merge scripts to use `MERGE` statement, add `container_name` handling, update indices and column mappings for improved consistency." />
+    <MESSAGE value="Add `container_name` to `rung` migration return columns" />
+    <MESSAGE value="Refactor `rung_reference` merge logic: remove redundant `record_hash` condition, update column map to disable hashing for `rung_hash`." />
+    <MESSAGE value="Bump project version to 0.14.0 in service and CLI." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump project version to 0.14.0 in service and CLI." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

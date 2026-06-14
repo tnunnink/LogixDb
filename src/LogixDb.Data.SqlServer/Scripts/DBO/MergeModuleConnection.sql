@@ -1,43 +1,53 @@
 MERGE INTO dbo.module_connection AS target
 USING #temp_module_connection AS source
-ON target.module_id = (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash)
+ON target.module_id = (SELECT
+                           module_id
+                       FROM dbo.module
+                       WHERE record_hash = source.module_hash
+                       )
     AND target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
-    INSERT (module_id,
-            connection_name,
-            rpi,
-            connection_type,
-            connection_priority,
-            transmission_type,
-            production_trigger,
-            output_redundant_owner,
-            unicast,
-            programatically_send_event_trigger,
-            event_id,
-            input_tag,
-            input_size,
-            input_suffix,
-            output_tag,
-            output_size,
-            output_suffix,
-            connection_path,
-            record_hash)
-    VALUES ((SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash),
-            source.connection_name,
-            source.rpi,
-            source.connection_type,
-            source.connection_priority,
-            source.transmission_type,
-            source.production_trigger,
-            source.output_redundant_owner,
-            source.unicast,
-            source.programatically_send_event_trigger,
-            source.event_id,
-            source.input_tag,
-            source.input_size,
-            source.input_suffix,
-            source.output_tag,
-            source.output_size,
-            source.output_suffix,
-            source.connection_path,
-            source.record_hash);
+    INSERT
+    (
+        module_id,
+        connection_name,
+        rpi,
+        connection_type,
+        connection_priority,
+        transmission_type,
+        production_trigger,
+        output_redundant_owner,
+        unicast,
+        programatically_send_event_trigger,
+        event_id,
+        input_tag,
+        input_size,
+        input_suffix,
+        output_tag,
+        output_size,
+        output_suffix,
+        connection_path,
+        record_hash
+    )
+    VALUES
+    (
+        (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash),
+        source.connection_name,
+        source.rpi,
+        source.connection_type,
+        source.connection_priority,
+        source.transmission_type,
+        source.production_trigger,
+        source.output_redundant_owner,
+        source.unicast,
+        source.programatically_send_event_trigger,
+        source.event_id,
+        source.input_tag,
+        source.input_size,
+        source.input_suffix,
+        source.output_tag,
+        source.output_size,
+        source.output_suffix,
+        source.connection_path,
+        source.record_hash
+    );

@@ -37,4 +37,28 @@ public class M20260611Tests : SqliteTestFixture
             await AssertUniqueIndex("module_connection", "module_id", "record_hash");
         }
     }
+
+    [Test]
+    public async Task MigrateUp_ToM202606112200_CreatesModulePortTableWithExpectedColumns()
+    {
+        await Database.Migrate(202606112200);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("module_port");
+
+            await AssertColumnDefinition("module_port", "port_id", "integer");
+            await AssertColumnDefinition("module_port", "module_id", "integer");
+            await AssertColumnDefinition("module_port", "port_number", "integer");
+            await AssertColumnDefinition("module_port", "port_type", "text");
+            await AssertColumnDefinition("module_port", "address", "text");
+            await AssertColumnDefinition("module_port", "upstream", "integer");
+            await AssertColumnDefinition("module_port", "bus_size", "integer");
+            await AssertColumnDefinition("module_port", "record_hash", "text");
+
+            await AssertPrimaryKey("module_port", "port_id");
+            await AssertUniqueIndex("module_port", "module_id", "record_hash");
+            await AssertForeignKey("module_port", "module_id", "module", "module_id");
+        }
+    }
 }

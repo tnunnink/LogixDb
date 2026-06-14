@@ -1,4 +1,4 @@
-﻿namespace LogixDb.Data.SqlServer.Tests.Migrations;
+namespace LogixDb.Data.SqlServer.Tests.Migrations;
 
 [TestFixture]
 public class M20260611Tests : SqlServerTestFixture
@@ -35,6 +35,30 @@ public class M20260611Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("module_connection", "connection_id");
             await AssertUniqueIndex("module_connection", "module_id", "record_hash");
+        }
+    }
+
+    [Test]
+    public async Task MigrateUp_ToM202606112200_CreatesModulePortTableWithExpectedColumns()
+    {
+        await Database.Migrate(202606112200);
+
+        using (Assert.EnterMultipleScope())
+        {
+            await AssertTableExists("module_port");
+
+            await AssertColumnDefinition("module_port", "port_id", "bigint");
+            await AssertColumnDefinition("module_port", "module_id", "bigint");
+            await AssertColumnDefinition("module_port", "port_number", "smallint");
+            await AssertColumnDefinition("module_port", "port_type", "nvarchar");
+            await AssertColumnDefinition("module_port", "address", "nvarchar");
+            await AssertColumnDefinition("module_port", "upstream", "bit");
+            await AssertColumnDefinition("module_port", "bus_size", "tinyint");
+            await AssertColumnDefinition("module_port", "record_hash", "nvarchar");
+
+            await AssertPrimaryKey("module_port", "port_id");
+            await AssertUniqueIndex("module_port", "module_id", "record_hash");
+            await AssertForeignKey("module_port", "module_id", "module", "module_id");
         }
     }
 }

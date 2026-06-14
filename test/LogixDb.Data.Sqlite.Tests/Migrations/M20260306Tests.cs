@@ -13,6 +13,7 @@ public class M20260306Tests : SqliteTestFixture
             await AssertTableExists("rung");
 
             await AssertColumnDefinition("rung", "rung_id", "integer");
+            await AssertColumnDefinition("rung", "container_name", "text");
             await AssertColumnDefinition("rung", "routine_name", "text");
             await AssertColumnDefinition("rung", "rung_number", "integer");
             await AssertColumnDefinition("rung", "rung_text", "text");
@@ -22,6 +23,8 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertUniqueIndex("rung", "record_hash");
+            await AssertUniqueIndex("rung", "container_name", "routine_name", "rung_number");
+            await AssertIndex("rung", "routine_name", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }

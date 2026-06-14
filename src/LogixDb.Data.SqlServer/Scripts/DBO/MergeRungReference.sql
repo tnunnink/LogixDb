@@ -1,10 +1,19 @@
-INSERT INTO dbo.rung_reference (rung_id,
-                                instruction_index,
-                                argument_index,
-                                reference_name)
-SELECT r.rung_id,
-       t.instruction_index,
-       t.argument_index,
-       t.reference_name
-FROM #temp_rung_reference t
-         INNER JOIN dbo.rung r ON r.record_hash = t.rung_hash;
+MERGE INTO dbo.rung_reference AS target
+USING #temp_rung_reference AS source
+ON target.rung_id = (SELECT rung_id FROM dbo.rung WHERE record_hash = source.rung_hash)
+    AND target.record_hash = source.record_hash
+WHEN NOT MATCHED THEN
+    INSERT
+    (
+        rung_id,
+        instruction_index,
+        argument_index,
+        reference_name
+    )
+    VALUES
+    (
+        (SELECT rung_id FROM dbo.rung WHERE record_hash = source.rung_hash),
+        source.instruction_index,
+        source.argument_index,
+        source.reference_name
+    );

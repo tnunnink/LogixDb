@@ -19,25 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRoutine.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRoutine.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRung.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungArgument.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungInstruction.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/MergeRungReference.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RoutineMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungArgumentMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungArgumentMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungInstructionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungInstructionMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRung.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungArgument.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungInstruction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/MergeRungReference.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungReferenceMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungReferenceMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/RungTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/RungTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061200SeedComponentTypes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061200SeedComponentTypes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260211/M202602111930CreateRoutineTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateRungInstructionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061200CreateRungInstructionTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateRungArgumentTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061300CreateRungArgumentTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061400CreateRungReferenceTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061400CreateRungReferenceTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,61 +144,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000003628269" />
-      <entry key="MS500" value="1.0132265577098833" />
-      <entry key="S2" value="1.4839641299809991" />
-      <entry key="S5" value="2.4064377305675237" />
-      <entry key="S10" value="3.5456302592575755" />
-      <entry key="S30" value="5.963301554173463" />
-      <entry key="S60" value="7.683568767290547" />
-      <entry key="M2" value="9.590351714174822" />
-      <entry key="M5" value="15.474076991230694" />
-      <entry key="M10" value="24.818470019407606" />
-      <entry key="M15" value="32.78922618658643" />
-      <entry key="M30" value="54.50653752536593" />
-      <entry key="H1" value="83.64530691840274" />
-      <entry key="H2" value="112.36172083160749" />
-      <entry key="H4" value="146.07784802801962" />
-      <entry key="D1" value="508.26878776808434" />
-      <entry key="W1" value="2005.0202122607882" />
+      <entry key="MS100" value="1.0001555860140772" />
+      <entry key="MS500" value="1.1731386835138655" />
+      <entry key="S2" value="1.645059790681771" />
+      <entry key="S5" value="1.8449651579739654" />
+      <entry key="S10" value="2.019941736737049" />
+      <entry key="S30" value="3.196861557225655" />
+      <entry key="S60" value="5.123798954509389" />
+      <entry key="M2" value="8.23414123796395" />
+      <entry key="M5" value="15.820190106997202" />
+      <entry key="M10" value="27.691012744079735" />
+      <entry key="M15" value="38.93288662889063" />
+      <entry key="M30" value="67.93391318764567" />
+      <entry key="H1" value="107.63868631843378" />
+      <entry key="H2" value="148.4821522032659" />
+      <entry key="H4" value="191.36354381472177" />
+      <entry key="D1" value="561.452032130043" />
+      <entry key="W1" value="2062.2318318500297" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="2.59104438478823E-229" />
-      <entry key="S2" value="7.134584946058778E-58" />
-      <entry key="S5" value="1.3846738332960463E-23" />
-      <entry key="S10" value="3.721120722379917E-12" />
-      <entry key="S30" value="1.5724845704207023E-4" />
-      <entry key="S60" value="0.017322728232273016" />
-      <entry key="M2" value="0.3602992211251372" />
-      <entry key="M5" value="3.4818860225455794" />
-      <entry key="M10" value="8.129139273269699" />
-      <entry key="M15" value="10.90845782813286" />
-      <entry key="M30" value="14.725717984962493" />
-      <entry key="H1" value="17.170398849124282" />
-      <entry key="H2" value="19.263489492779527" />
-      <entry key="H4" value="26.70907719729003" />
-      <entry key="D1" value="182.6574646199855" />
-      <entry key="W1" value="634.4161570442176" />
+      <entry key="MS100" value="4.432849086874751E-108" />
+      <entry key="MS500" value="3.383269466048329E-22" />
+      <entry key="S2" value="4.288783736338107E-6" />
+      <entry key="S5" value="0.007127441458887604" />
+      <entry key="S10" value="0.08442417582956925" />
+      <entry key="S30" value="0.43900943028799083" />
+      <entry key="S60" value="0.6804638968981037" />
+      <entry key="M2" value="0.9752983587225965" />
+      <entry key="M5" value="1.942488433045168" />
+      <entry key="M10" value="3.859979103365623" />
+      <entry key="M15" value="6.035317215280893" />
+      <entry key="M30" value="11.403923343867882" />
+      <entry key="H1" value="16.87574216882577" />
+      <entry key="H2" value="21.450756269787387" />
+      <entry key="H4" value="30.01277433373225" />
+      <entry key="D1" value="185.64084749231174" />
+      <entry key="W1" value="638.9197313046233" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.13490352962674967" />
-      <entry key="MS500" value="0.6791861324090084" />
-      <entry key="S2" value="1.3413287941149878" />
-      <entry key="S5" value="2.3099258497934607" />
-      <entry key="S10" value="3.4744948939249802" />
-      <entry key="S30" value="5.919594825936371" />
-      <entry key="S60" value="7.669098381477258" />
-      <entry key="M2" value="9.926757029780463" />
-      <entry key="M5" value="18.93341909543105" />
-      <entry key="M10" value="32.927688038375464" />
-      <entry key="M15" value="43.681001199123514" />
-      <entry key="M30" value="69.22156854112063" />
-      <entry key="H1" value="100.80959662490226" />
-      <entry key="H2" value="131.62179087275985" />
-      <entry key="H4" value="172.78445438474864" />
-      <entry key="D1" value="690.9228146086739" />
-      <entry key="W1" value="2639.434503835418" />
+      <entry key="MS100" value="0.0027440736982341225" />
+      <entry key="MS500" value="0.46192825572236984" />
+      <entry key="S2" value="1.3724569372879165" />
+      <entry key="S5" value="1.73070613244118" />
+      <entry key="S10" value="2.0340519549299056" />
+      <entry key="S30" value="3.5905121109311473" />
+      <entry key="S60" value="5.765002125440065" />
+      <entry key="M2" value="9.176022350766784" />
+      <entry key="M5" value="17.738099018611642" />
+      <entry key="M10" value="31.532309283001048" />
+      <entry key="M15" value="44.95200294861555" />
+      <entry key="M30" value="79.32562306543971" />
+      <entry key="H1" value="124.50633620989446" />
+      <entry key="H2" value="169.92803221237568" />
+      <entry key="H4" value="221.37302351324476" />
+      <entry key="D1" value="747.0893189285778" />
+      <entry key="W1" value="2701.14967640936" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -392,23 +385,7 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="56951000" />
-    </task>
-    <task id="LOCAL-00309" summary="Update `M20260206Tests` to assert `component_id` column type as `tinyint`">
-      <option name="closed" value="true" />
-      <created>1780071774822</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1780071774822</updated>
-    </task>
-    <task id="LOCAL-00310" summary="Update `.idea` workspace configuration to reflect changes in migrations, performance tests, and schema mappings.">
-      <option name="closed" value="true" />
-      <created>1780076489402</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1780076489402</updated>
+      <workItem from="1781199999831" duration="58814000" />
     </task>
     <task id="LOCAL-00311" summary="Add SQLite and SQL Server-specific table creation and indexing logic for `rung`, `tag_member`, and `data_type_member` tables in migrations.">
       <option name="closed" value="true" />
@@ -786,7 +763,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781428493619</updated>
     </task>
-    <option name="localTasksCounter" value="358" />
+    <task id="LOCAL-00358" summary=" Moving rung to flat deduplicate mmodel for consistency and space reduction. Refactor `rung`-related logic across migrations, maps, and transformers: replace `rung_id` with `rung_hash`, remove unused columns, and update merge scripts for improved consistency.">
+      <option name="closed" value="true" />
+      <created>1781431716637</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1781431716637</updated>
+    </task>
+    <task id="LOCAL-00359" summary="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency.">
+      <option name="closed" value="true" />
+      <created>1781432193689</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1781432193689</updated>
+    </task>
+    <option name="localTasksCounter" value="360" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -814,8 +807,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove all deprecated SQL scripts and their associated logic, including merge scripts (e.g., `MergeAoi`, `MergeController`) and helper functions, as part of cleanup." />
-    <MESSAGE value="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup." />
     <MESSAGE value="Refactor QA migration tests: split into migration-specific test cases for improved granularity and clarity." />
     <MESSAGE value="Update `.idea` workspace configuration and expand `ClearData` handling in `CryptoExtensions` to support additional types." />
     <MESSAGE value="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.1 across projects and update `.idea` workspace configuration." />
@@ -839,7 +830,9 @@
     <MESSAGE value="Add migration for `tag_concat` function in SQL Server" />
     <MESSAGE value="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models" />
     <MESSAGE value="Update `.idea` workspace configuration and rename `@VersionNumber` to `@NextVersionNumber` in `PostVersion.sql` script." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration and rename `@VersionNumber` to `@NextVersionNumber` in `PostVersion.sql` script." />
+    <MESSAGE value=" Moving rung to flat deduplicate mmodel for consistency and space reduction. Refactor `rung`-related logic across migrations, maps, and transformers: replace `rung_id` with `rung_hash`, remove unused columns, and update merge scripts for improved consistency." />
+    <MESSAGE value="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

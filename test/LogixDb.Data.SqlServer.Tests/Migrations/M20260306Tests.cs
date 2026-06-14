@@ -13,6 +13,7 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertTableExists("rung");
 
             await AssertColumnDefinition("rung", "rung_id", "bigint");
+            await AssertColumnDefinition("rung", "container_name", "nvarchar");
             await AssertColumnDefinition("rung", "routine_name", "nvarchar");
             await AssertColumnDefinition("rung", "rung_number", "int");
             await AssertColumnDefinition("rung", "rung_text", "nvarchar");
@@ -22,6 +23,8 @@ public class M20260306Tests : SqlServerTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertUniqueIndex("rung", "record_hash");
+            await AssertUniqueIndex("rung", "container_name", "routine_name", "rung_number");
+            await AssertIndex("rung", "routine_name", "rung_number");
             await AssertIndex("rung", "code_hash");
         }
     }

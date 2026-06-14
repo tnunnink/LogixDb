@@ -13,6 +13,7 @@ public class M202603061100CreateRungTable : AutoReversingMigration
     {
         Create.Table("rung")
             .WithPrimaryKey<long>("rung_id")
+            .WithColumn("container_name").AsString(256).NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
             .WithColumn("rung_number").AsInt32().NotNullable()
             .WithColumn("rung_text").AsString(int.MaxValue).Nullable()
@@ -25,9 +26,14 @@ public class M202603061100CreateRungTable : AutoReversingMigration
             .WithOptions().Unique();
 
         Create.Index().OnTable("rung")
+            .OnColumn("container_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending()
             .WithOptions().Unique();
+
+        Create.Index().OnTable("rung")
+            .OnColumn("routine_name").Ascending()
+            .OnColumn("rung_number").Ascending();
 
         Create.Index().OnTable("rung")
             .OnColumn("code_hash").Ascending();

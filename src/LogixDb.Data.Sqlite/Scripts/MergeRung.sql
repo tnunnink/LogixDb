@@ -1,5 +1,6 @@
 INSERT OR IGNORE INTO rung
 (
+    container_name,
     routine_name,
     rung_number,
     rung_text,
@@ -8,6 +9,7 @@ INSERT OR IGNORE INTO rung
     record_hash
 )
 SELECT
+    t.container_name,
     t.routine_name,
     t.rung_number,
     t.rung_text,

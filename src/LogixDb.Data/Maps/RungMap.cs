@@ -16,7 +16,8 @@ public class RungMap : TableMap<Rung>
     /// <inheritdoc />
     protected override IReadOnlyList<ColumnMap<Rung>> Columns =>
     [
-        ColumnMap<Rung>.For(r => r.Routine?.Name, "routine_name"),
+        ColumnMap<Rung>.For(r => r.Scope.Container, "container_name"),
+        ColumnMap<Rung>.For(r => r.Scope.Routine, "routine_name"),
         ColumnMap<Rung>.For(r => r.Number, "rung_number"),
         ColumnMap<Rung>.For(r => r.Text, "rung_text"),
         ColumnMap<Rung>.For(r => r.Comment, "rung_comment"),

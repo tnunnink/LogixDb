@@ -4,6 +4,7 @@ ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT
     (
+        container_name,
         routine_name,
         rung_number,
         rung_text,
@@ -13,6 +14,7 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (
+        source.container_name,
         source.routine_name,
         source.rung_number,
         source.rung_text,

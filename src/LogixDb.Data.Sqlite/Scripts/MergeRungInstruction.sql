@@ -1,4 +1,4 @@
-INSERT INTO rung_instruction
+INSERT OR IGNORE INTO rung_instruction
 (
     rung_id,
     instruction_index,

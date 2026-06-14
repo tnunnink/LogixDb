@@ -35,4 +35,4 @@ VALUES
         @SourceHash,
         @SourceData
     )
-RETURNING version_id;
+RETURNING version_id AS VersionId, version_number AS VersionNumber;

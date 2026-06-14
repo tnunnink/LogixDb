@@ -54,7 +54,7 @@ public sealed class Target
 
     public string TargetKey { get; init; } = string.Empty;
     public int VersionId { get; set; }
-    public int VersionNumber { get; init; }
+    public int VersionNumber { get; set; }
     public string TargetType { get; init; } = string.Empty;
     public string TargetName { get; init; } = string.Empty;
     public bool IsPartial { get; init; }

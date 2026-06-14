@@ -166,12 +166,14 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
             // Insert target key if not already.
             await connection.ExecuteAsync(SqlServerScript.PostTarget, target, transaction);
 
-            // Inserts a new version for the target key (handles getting target id in scripts) and returns the inserted version id.
-            // This is needed in some spots, and is an indicator that the version was posted. 
-            target.VersionId = await connection.ExecuteScalarAsync<int>(
+            // Execute the script and retrieve both VersionId and VersionNumber
+            var result = await connection.QuerySingleAsync(
                 SqlServerScript.PostVersion,
                 target,
                 transaction);
+
+            target.VersionId = result.VersionId;
+            target.VersionNumber = result.VersionNumber;
 
             // Inserts all the configured metadata for the version.
             await connection.ExecuteAsync(SqlServerScript.PostInfo,

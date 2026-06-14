@@ -72,8 +72,18 @@ public sealed record DbConnectionInfo(
                 throw new FormatException(
                     $"Invalid connection string format. Expected 'Key=Value' but got '{parts[i]}'.");
 
-            var key = pair[0];
-            var value = pair[1];
+            var key = pair[0].Trim();
+            var value = pair[1].Trim();
+
+            info = key.ToLowerInvariant() switch
+            {
+                "user" or "username" or "u" => info with { User = value },
+                "password" or "pw" or "p" => info with { Password = value },
+                "port" => info with { Port = int.Parse(value) },
+                "trust" or "trustservercertificate" => info with { Trust = bool.Parse(value) },
+                "encrypt" => info with { Encrypt = bool.Parse(value) },
+                _ => info
+            };
 
             info = key switch
             {

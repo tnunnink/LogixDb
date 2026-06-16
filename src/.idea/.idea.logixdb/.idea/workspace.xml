@@ -19,9 +19,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161322CreateQaGetVariableAsBitProcedure.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161323CreateQaGetVariableAsRealProcedure.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161324CreateQaGetVariableAsDateProcedure.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/013_QaGetVariableAsBitProcedure.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/014_QaGetVariableAsRealProcedure.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/015_QaGetVariableAsDateProcedure.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -378,15 +381,7 @@
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
       <workItem from="1781199999831" duration="86890000" />
-      <workItem from="1781551720140" duration="21187000" />
-    </task>
-    <task id="LOCAL-00325" summary="Update tests: replace `tag_comment` with `tag_member_comment` in SQL Server migration tests and adjust assertions accordingly.">
-      <option name="closed" value="true" />
-      <created>1781231592257</created>
-      <option name="number" value="00325" />
-      <option name="presentableId" value="LOCAL-00325" />
-      <option name="project" value="LOCAL" />
-      <updated>1781231592257</updated>
+      <workItem from="1781551720140" duration="21550000" />
     </task>
     <task id="LOCAL-00326" summary="Bump package versions across projects, including `L5Sharp` to 7.2.0, `Microsoft.NET.Test.Sdk` to 18.6.0, `NUnit.Analyzers` to 4.14.0, and several others.">
       <option name="closed" value="true" />
@@ -772,7 +767,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781621852599</updated>
     </task>
-    <option name="localTasksCounter" value="374" />
+    <task id="LOCAL-00374" summary="Refactor SQL migrations: standardize helper function names to use `_at_version` suffix, update related tests, and bump project version to 0.14.2.">
+      <option name="closed" value="true" />
+      <created>1781634072135</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
+      <option name="project" value="LOCAL" />
+      <updated>1781634072135</updated>
+    </task>
+    <option name="localTasksCounter" value="375" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -800,7 +803,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `record_hash` column to `MergeModuleConnection` script, make `connection_name` nullable in `module_connection` table, and create `module_port` table with migration script." />
     <MESSAGE value="Reformat SQL scripts to improve readability by adding consistent indentation and updating SELECT-INTO structures across multiple merge scripts." />
     <MESSAGE value="Add migration tests for `module_port` table creation and reformat `MergeModuleConnection.sql` for consistent SQL style" />
     <MESSAGE value="Add `MergeModulePort` logic to SQLite and SQL Server writers and scripts for handling `module_port` data" />
@@ -825,7 +827,8 @@
     <MESSAGE value="Add `config_tag` column definition tests for SQL Server and SQLite migrations" />
     <MESSAGE value="Add `config_tag` column to `Module` migrations and update corresponding SQL scripts" />
     <MESSAGE value="Remove `last_modified_date` column from `controller` table in SQL Server and SQLite migrations and update associated tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `last_modified_date` column from `controller` table in SQL Server and SQLite migrations and update associated tests." />
+    <MESSAGE value="Refactor SQL migrations: standardize helper function names to use `_at_version` suffix, update related tests, and bump project version to 0.14.2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor SQL migrations: standardize helper function names to use `_at_version` suffix, update related tests, and bump project version to 0.14.2." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

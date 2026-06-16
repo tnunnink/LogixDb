@@ -101,4 +101,28 @@ public class QaMigrationTests : SqlServerTestFixture
 
         await AssertProcedureExists("qa", "run_validations");
     }
+
+    [Test]
+    public async Task MigrateUp_To202606161322_CreatesQaGetVariableAsBitProcedure()
+    {
+        await Database.Migrate(202606161322, ComponentOptions.Qa);
+
+        await AssertProcedureExists("qa", "get_variable_as_bit");
+    }
+
+    [Test]
+    public async Task MigrateUp_To202606161323_CreatesQaGetVariableAsRealProcedure()
+    {
+        await Database.Migrate(202606161323, ComponentOptions.Qa);
+
+        await AssertProcedureExists("qa", "get_variable_as_real");
+    }
+
+    [Test]
+    public async Task MigrateUp_To202606161324_CreatesQaGetVariableAsDateProcedure()
+    {
+        await Database.Migrate(202606161324, ComponentOptions.Qa);
+
+        await AssertProcedureExists("qa", "get_variable_as_date");
+    }
 }

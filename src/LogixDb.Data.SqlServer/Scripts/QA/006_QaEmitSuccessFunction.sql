@@ -1,5 +1,6 @@
 ﻿CREATE FUNCTION [qa].[emit_success](
-    @result_message nvarchar(max)
+   @result_message nvarchar(max),
+   @result_details nvarchar(max)
 )
     RETURNS TABLE
         AS
@@ -7,6 +8,6 @@
         (
         SELECT CONVERT(bit, 1) AS is_success,
                ISNULL(@result_message, N'') AS result_message,
-               CONVERT(nvarchar(max), '[]') AS result_details
+               @result_details AS result_details
         )
 GO

@@ -39,5 +39,10 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
             .OnTable("target_version")
             .OnColumn("target_id").Ascending()
             .OnColumn("import_date").Descending();
+        
+        Create.Index()
+            .OnTable("target_version")
+            .OnColumn("target_name").Ascending()
+            .OnColumn("version_number").Ascending();
     }
 }

@@ -78,7 +78,8 @@ The available options are defined by the `ComponentOptions` flags:
 | `Module`     | 8     | Includes all IO and module configuration tables.      |
 | `Tag`        | 16    | Includes all controller and program tags.             |
 | `Logic`      | 32    | Includes all program, routine, and rung logic tables. |
-| `All`        | 63    | Includes all tables (Default).                        |
+| `Qa`         | 64    | Includes all QA and validation schema tables.         |
+| `All`        | 127   | Includes all tables (Default).                        |
 
 **Example: Migrate only Tag and Logic tables**
 
@@ -243,6 +244,24 @@ This tool currently supports both Microsoft SQL Server and SQLite database provi
 
 This tool enables automated ingestion of L5X and ACD files into either database provider.
 
+### QA & Validation (SQL Server Only)
+
+For SQL Server, LogixDb includes a dedicated `qa` schema designed for automated project validation. This allows users to
+define and run custom validation rules against ingested PLC projects.
+
+| Object                      | Type        | Description                                                                              |
+|-----------------------------|-------------|------------------------------------------------------------------------------------------|
+| `qa.validations`            | View        | Lists all registered validation procedures and their metadata.                            |
+| `qa.run_validation`         | Procedure   | Executes a specific validation procedure for a given target version.                     |
+| `qa.run_validations`        | Procedure   | Executes all applicable validations for a given target version.                          |
+| `qa.rerun_validations`      | Procedure   | Reruns validations for a specific run ID, useful for debugging or re-evaluating results. |
+| `qa.get_variable_as_bit`    | Procedure   | Helper to retrieve a tag value as a bit for validation logic.                            |
+| `qa.get_variable_as_real`   | Procedure   | Helper to retrieve a tag value as a real for validation logic.                           |
+| `qa.get_variable_as_date`   | Procedure   | Helper to retrieve a tag value as a date for validation logic.                           |
+
+These tools enable developers to build robust automated testing pipelines for their PLC code, ensuring compliance with
+coding standards and functional requirements before deployment.
+
 ## ACD File Conversion
 
 LogixDb uses the Rockwell Logix Designer SDK to convert `.ACD` files into `.L5X` so they can be parsed and
@@ -404,6 +423,8 @@ thousands of versions if they remain unchanged.
 
 * **Non-Ripple Effect**: By using names (`program_name`, `tag_name`) for top-level relationships instead of shifting
   GUIDs, we ensure that changes in one part of the project don't force a re-import or hash change of related entities.
+* **Standardized Helpers**: Most query-side helper functions are standardized with the `_at_version` suffix (e.g.,
+  `GetTypeTree_at_version`), providing a consistent API for retrieving temporal snapshots of project data.
 * **Performance**: Physical relationships use `long` (bigint) IDs for primary and foreign keys, ensuring the
   fastest possible joins and minimal index sizes compared to GUID-based relational models.
 
@@ -465,12 +486,14 @@ erDiagram
 | `target_version_map` | Primary manifest table mapping versions to deduplicated component records.                     |
 | `target_info`        | User-defined information or comments associated with a specific target version.                |
 | `target_component`   | Lookup table for component type IDs (tag, program, etc.) used in the manifest.                 |
+| `qa_validation_run`   | Records instances of validation runs, including metadata like run time and user.               |
+| `qa_validation_result`| Stores specific results (pass/fail/warning) for each validation procedure executed.            |
 | `controller`         | Global controller settings (name, processor type, revision, etc.).                             |
 | `data_type`          | User-defined and system-defined data type definitions.                                         |
 | `data_type_member`   | Individual members of a data type, including their name, data type, and dimensions.            |
 | `aoi`                | Add-On Instruction definitions, including revision and creation metadata.                      |
 | `aoi_parameter`      | Parameters and local tags for AOIs, including usage (Input, Output, InOut) and default values. |
-| `module`             | IO configuration and module properties (catalog number, slot, IP address).                     |
+| `module`             | IO configuration and module properties (catalog number, slot, IP address, config tag).        |
 | `tag`                | All controller and program scope tags, including names, types, and descriptions.               |
 | `tag_member`         | Hierarchical tag structure for UDTs and Arrays.                                                |
 | `tag_value`          | Snapshot of live or offline tag values associated with a specific version.                     |

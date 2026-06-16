@@ -18,7 +18,6 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("controller", "revision", "nvarchar");
             await AssertColumnDefinition("controller", "controller_description", "nvarchar");
             await AssertColumnDefinition("controller", "project_creation_date", "datetime");
-            await AssertColumnDefinition("controller", "last_modified_date", "datetime");
             await AssertColumnDefinition("controller", "communication_path", "nvarchar");
             await AssertColumnDefinition("controller", "sfc_execution_control", "nvarchar");
             await AssertColumnDefinition("controller", "sfc_restart_position", "nvarchar");

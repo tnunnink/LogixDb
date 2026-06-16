@@ -18,7 +18,6 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("controller", "revision", "text");
             await AssertColumnDefinition("controller", "controller_description", "text");
             await AssertColumnDefinition("controller", "project_creation_date", "datetime");
-            await AssertColumnDefinition("controller", "last_modified_date", "datetime");
             await AssertColumnDefinition("controller", "communication_path", "text");
             await AssertColumnDefinition("controller", "sfc_execution_control", "text");
             await AssertColumnDefinition("controller", "sfc_restart_position", "text");

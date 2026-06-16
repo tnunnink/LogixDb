@@ -18,7 +18,6 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithColumn("catalog_number").AsString(256).Nullable()
             .WithColumn("revision").AsString(32).Nullable()
             .WithColumn("project_creation_date").AsDateTime().Nullable()
-            .WithColumn("last_modified_date").AsDateTime().Nullable()
             .WithColumn("communication_path").AsString(256).Nullable()
             .WithColumn("sfc_execution_control").AsString(32).Nullable()
             .WithColumn("sfc_restart_position").AsString(32).Nullable()

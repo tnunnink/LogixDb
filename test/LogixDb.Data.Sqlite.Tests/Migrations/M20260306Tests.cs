@@ -23,7 +23,7 @@ public class M20260306Tests : SqliteTestFixture
 
             await AssertPrimaryKey("rung", "rung_id");
             await AssertUniqueIndex("rung", "record_hash");
-            await AssertUniqueIndex("rung", "container_name", "routine_name", "rung_number");
+            await AssertIndex("rung", "container_name", "routine_name", "rung_number");
             await AssertIndex("rung", "routine_name", "rung_number");
             await AssertIndex("rung", "code_hash");
         }

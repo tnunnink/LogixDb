@@ -20,7 +20,10 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/logix.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606132100CreateTagConcat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606132100CreateTagConcat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,61 +137,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="4.49911260159638E-5" />
-      <entry key="MS500" value="0.13509067525491894" />
-      <entry key="S2" value="0.6062564095308686" />
-      <entry key="S5" value="0.8185826533866101" />
-      <entry key="S10" value="0.9047603738861225" />
-      <entry key="S30" value="1.0193277098857454" />
-      <entry key="S60" value="1.5911476545777046" />
-      <entry key="M2" value="3.7003933234113973" />
-      <entry key="M5" value="15.561793270612025" />
-      <entry key="M10" value="38.753642123886976" />
-      <entry key="M15" value="56.991539799898916" />
-      <entry key="M30" value="90.66207222390955" />
-      <entry key="H1" value="124.80501561273871" />
-      <entry key="H2" value="176.7050703618461" />
-      <entry key="H4" value="267.89292999475276" />
-      <entry key="D1" value="754.5644629980852" />
-      <entry key="W1" value="2326.1274629507084" />
+      <entry key="MS100" value="1.0029980804042464" />
+      <entry key="MS500" value="2.381870729069824" />
+      <entry key="S2" value="12.521640685326837" />
+      <entry key="S5" value="28.828311168018914" />
+      <entry key="S10" value="45.63044208814988" />
+      <entry key="S30" value="77.59412847519071" />
+      <entry key="S60" value="113.5759568181763" />
+      <entry key="M2" value="164.43615960441196" />
+      <entry key="M5" value="239.7093227767614" />
+      <entry key="M10" value="299.91386676339107" />
+      <entry key="M15" value="333.985256973138" />
+      <entry key="M30" value="382.602776422079" />
+      <entry key="H1" value="423.281442925941" />
+      <entry key="H2" value="513.2163278072529" />
+      <entry key="H4" value="703.1067854886611" />
+      <entry key="D1" value="1540.3549672365239" />
+      <entry key="W1" value="3440.7927590271183" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000000000002391" />
-      <entry key="S10" value="1.000000635248383" />
-      <entry key="S30" value="1.0160485148531344" />
-      <entry key="S60" value="1.226389450250377" />
-      <entry key="M2" value="2.093386960984441" />
-      <entry key="M5" value="6.108376656400408" />
-      <entry key="M10" value="13.11430422715201" />
-      <entry key="M15" value="18.575368115442046" />
-      <entry key="M30" value="28.958153944524437" />
-      <entry key="H1" value="39.723494313656865" />
-      <entry key="H2" value="54.17323479489806" />
-      <entry key="H4" value="75.92303001832714" />
-      <entry key="D1" value="242.04904369955713" />
-      <entry key="W1" value="719.2671971775854" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="6.243570565206994E-150" />
+      <entry key="S5" value="2.1578226392402987E-60" />
+      <entry key="S10" value="1.8399700330253972E-30" />
+      <entry key="S30" value="2.6246830623585247E-10" />
+      <entry key="S60" value="3.801719044737809E-5" />
+      <entry key="M2" value="0.02071231238950662" />
+      <entry key="M5" value="1.362368807581662" />
+      <entry key="M10" value="6.2915540596983615" />
+      <entry key="M15" value="10.695620768273615" />
+      <entry key="M30" value="18.42317820077067" />
+      <entry key="H1" value="26.564528749901367" />
+      <entry key="H2" value="50.34263996925092" />
+      <entry key="H4" value="103.82524627157126" />
+      <entry key="D1" value="355.87708409731334" />
+      <entry key="W1" value="936.0815808770726" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.30154203961787E-5" />
-      <entry key="MS500" value="0.22330612381495243" />
-      <entry key="S2" value="1.1504119906852512" />
-      <entry key="S5" value="1.602455482161915" />
-      <entry key="S10" value="1.7901102610358572" />
-      <entry key="S30" value="1.98834333884335" />
-      <entry key="S60" value="2.760114070286914" />
-      <entry key="M2" value="5.71835217356703" />
-      <entry key="M5" value="21.587128682197278" />
-      <entry key="M10" value="51.787731276736814" />
-      <entry key="M15" value="75.49433024668541" />
-      <entry key="M30" value="119.56659776057583" />
-      <entry key="H1" value="164.49306379776155" />
-      <entry key="H2" value="230.85500554025052" />
-      <entry key="H4" value="343.80048994462345" />
-      <entry key="D1" value="996.6073557706683" />
-      <entry key="W1" value="3045.392328472472" />
+      <entry key="MS100" value="0.9823510907241272" />
+      <entry key="MS500" value="2.3701347077011694" />
+      <entry key="S2" value="12.5046746366853" />
+      <entry key="S5" value="28.812455278489455" />
+      <entry key="S10" value="45.61778674704697" />
+      <entry key="S30" value="77.5869345579384" />
+      <entry key="S60" value="113.57074615490036" />
+      <entry key="M2" value="164.4525461999207" />
+      <entry key="M5" value="241.05545883185167" />
+      <entry key="M10" value="306.1718579346628" />
+      <entry key="M15" value="344.6435572196899" />
+      <entry key="M30" value="400.9943152639366" />
+      <entry key="H1" value="449.82347625297456" />
+      <entry key="H2" value="563.5382494364106" />
+      <entry key="H4" value="806.9109687813883" />
+      <entry key="D1" value="1896.2208367153935" />
+      <entry key="W1" value="4376.870807773366" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -206,80 +209,80 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
-    "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
-    "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
-    "126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor": "Debug",
-    "13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor": "Debug",
-    "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
-    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
-    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
-    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
-    "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
-    "3e588a23-4139-418a-942c-482934391d2a.executor": "Debug",
-    "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
-    "42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor": "Debug",
-    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
-    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
-    "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
-    "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
-    "695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor": "Debug",
-    "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
-    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
-    "7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor": "Debug",
-    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
-    "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
-    "95485339-4be7-43cb-b8d7-c8ef07c63aee.executor": "Debug",
-    "9a039f25-f941-4a11-ae80-8ab4c0ac8a7d.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "a2a32091-c5c7-4df8-847b-04a76b8394ed.executor": "Debug",
-    "ab4c6561-4da2-42eb-9936-ab684a9b91fd.executor": "Debug",
-    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
-    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
-    "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
-    "bb8142bb-e865-42cd-926e-68b469a1002e.executor": "Debug",
-    "c9dae028-5c51-47ea-ab78-a1ae1448939b.executor": "Debug",
-    "ced1c75b-02a6-42f8-afbd-597075e6a718.executor": "Debug",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "db27ef2f-246d-4f4e-871d-3c60d305b332.executor": "Debug",
-    "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
-    "e57754cd-b12b-44f4-b8a2-711d0f71850e.executor": "Debug",
-    "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.SQL",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Debug&quot;,
+    &quot;023f2559-4d27-4bd0-b75c-e1f573990a1d.executor&quot;: &quot;Debug&quot;,
+    &quot;04139c1b-5b64-4aed-b537-1f9c61cac291.executor&quot;: &quot;Debug&quot;,
+    &quot;126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor&quot;: &quot;Debug&quot;,
+    &quot;13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor&quot;: &quot;Debug&quot;,
+    &quot;2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor&quot;: &quot;Debug&quot;,
+    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
+    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
+    &quot;34c483ea-991b-4a3f-a7ce-9d756930abc5.executor&quot;: &quot;Debug&quot;,
+    &quot;35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor&quot;: &quot;Debug&quot;,
+    &quot;3e588a23-4139-418a-942c-482934391d2a.executor&quot;: &quot;Debug&quot;,
+    &quot;41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor&quot;: &quot;Debug&quot;,
+    &quot;42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor&quot;: &quot;Debug&quot;,
+    &quot;487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor&quot;: &quot;Debug&quot;,
+    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
+    &quot;5ae67152-70fa-4f70-b289-3643031b7f89.executor&quot;: &quot;Debug&quot;,
+    &quot;6100961a-9699-4645-983c-6fc6781b89c3.executor&quot;: &quot;Debug&quot;,
+    &quot;695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor&quot;: &quot;Debug&quot;,
+    &quot;6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor&quot;: &quot;Debug&quot;,
+    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
+    &quot;7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor&quot;: &quot;Debug&quot;,
+    &quot;7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor&quot;: &quot;Debug&quot;,
+    &quot;8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor&quot;: &quot;Debug&quot;,
+    &quot;95485339-4be7-43cb-b8d7-c8ef07c63aee.executor&quot;: &quot;Debug&quot;,
+    &quot;9a039f25-f941-4a11-ae80-8ab4c0ac8a7d.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;a2a32091-c5c7-4df8-847b-04a76b8394ed.executor&quot;: &quot;Debug&quot;,
+    &quot;ab4c6561-4da2-42eb-9936-ab684a9b91fd.executor&quot;: &quot;Debug&quot;,
+    &quot;b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor&quot;: &quot;Debug&quot;,
+    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
+    &quot;bab2bab0-9cea-416e-aaea-975b3296228d.executor&quot;: &quot;Debug&quot;,
+    &quot;bb8142bb-e865-42cd-926e-68b469a1002e.executor&quot;: &quot;Debug&quot;,
+    &quot;c9dae028-5c51-47ea-ab78-a1ae1448939b.executor&quot;: &quot;Debug&quot;,
+    &quot;ced1c75b-02a6-42f8-afbd-597075e6a718.executor&quot;: &quot;Debug&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;db27ef2f-246d-4f4e-871d-3c60d305b332.executor&quot;: &quot;Debug&quot;,
+    &quot;db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor&quot;: &quot;Debug&quot;,
+    &quot;e57754cd-b12b-44f4-b8a2-711d0f71850e.executor&quot;: &quot;Debug&quot;,
+    &quot;e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.SQL&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "TSQL",
-      "SQLite"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;TSQL&quot;,
+      &quot;SQLite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.100696936" />
@@ -376,15 +379,8 @@
       <workItem from="1779466137407" duration="56869000" />
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
-      <workItem from="1781199999831" duration="70171000" />
-    </task>
-    <task id="LOCAL-00315" summary="Rename `tag_comment` table to `tag_member_comment`, update schema columns (`tag_name` to `member_path`, `tag_comment` to `comment`), and adjust related migrations, maps, transformers, and tests for consistency and improved clarity.">
-      <option name="closed" value="true" />
-      <created>1781228656578</created>
-      <option name="number" value="00315" />
-      <option name="presentableId" value="LOCAL-00315" />
-      <option name="project" value="LOCAL" />
-      <updated>1781228656578</updated>
+      <workItem from="1781199999831" duration="86890000" />
+      <workItem from="1781551720140" duration="7818000" />
     </task>
     <task id="LOCAL-00316" summary="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes.">
       <option name="closed" value="true" />
@@ -770,7 +766,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781434086717</updated>
     </task>
-    <option name="localTasksCounter" value="364" />
+    <task id="LOCAL-00364" summary="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity.">
+      <option name="closed" value="true" />
+      <created>1781462167160</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1781462167160</updated>
+    </task>
+    <option name="localTasksCounter" value="365" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -798,7 +802,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `TagMemberMap` to handle null parent paths consistently, add helper extensions for `ParentPath` and `MemberOrBaseName`, and adjust `.idea` workspace configuration." />
     <MESSAGE value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
     <MESSAGE value="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration" />
     <MESSAGE value="Bump project versions to 0.13.2." />
@@ -823,7 +826,8 @@
     <MESSAGE value="Add `container_name` to `rung` migration return columns" />
     <MESSAGE value="Refactor `rung_reference` merge logic: remove redundant `record_hash` condition, update column map to disable hashing for `rung_hash`." />
     <MESSAGE value="Bump project version to 0.14.0 in service and CLI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump project version to 0.14.0 in service and CLI." />
+    <MESSAGE value="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

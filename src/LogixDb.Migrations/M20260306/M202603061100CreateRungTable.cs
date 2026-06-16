@@ -28,8 +28,7 @@ public class M202603061100CreateRungTable : AutoReversingMigration
         Create.Index().OnTable("rung")
             .OnColumn("container_name").Ascending()
             .OnColumn("routine_name").Ascending()
-            .OnColumn("rung_number").Ascending()
-            .WithOptions().Unique();
+            .OnColumn("rung_number").Ascending();
 
         Create.Index().OnTable("rung")
             .OnColumn("routine_name").Ascending()

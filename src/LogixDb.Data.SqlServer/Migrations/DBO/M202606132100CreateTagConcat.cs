@@ -19,9 +19,14 @@ public class M202606132100CreateTagConcat : Migration
                     RETURNS NVARCHAR(256)
                     AS
                     BEGIN
-                    	DECLARE @Separator NVARCHAR(1) = IIF(CHARINDEX('[', @MemberPath) = 1, '', '.')
-                    	DECLARE @TagPath NVARCHAR(256) = CONCAT(@TagName, @Separator, @MemberPath)
-                    	RETURN @TagPath
+                    	DECLARE @Separator NVARCHAR(1) = CASE
+                            WHEN @MemberPath IS NULL OR @MemberPath = '' THEN ''
+                            WHEN CHARINDEX('[', @MemberPath) = 1 THEN ''
+                            ELSE '.'
+                        END;
+                        
+                        DECLARE @TagPath NVARCHAR(256) = CONCAT(@TagName, @Separator, @MemberPath)
+                        RETURN @TagPath
                     END;
                     """
         );
@@ -29,6 +34,6 @@ public class M202606132100CreateTagConcat : Migration
 
     public override void Down()
     {
-        throw new NotImplementedException();
+    Execute.Sql("DROP FUNCTION IF EXISTS [dbo].[tag_concat];");
     }
 }

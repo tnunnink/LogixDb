@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202605271002, "Create versioned helper function for data_type")]
+[Migration(202605271002, "Create data_types_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
-public class M202605271002CreateDataTypesFor : Migration
+public class M202605271002CreateDataTypesAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.data_types_for (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.data_types_at_version (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT dt.* 
                         FROM dbo.data_type dt
@@ -25,6 +25,6 @@ public class M202605271002CreateDataTypesFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.data_types_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.data_types_at_version;");
     }
 }

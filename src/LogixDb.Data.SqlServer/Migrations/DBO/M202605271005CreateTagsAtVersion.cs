@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202605271005, "Create versioned helper function for tag")]
+[Migration(202605271005, "Create tags_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
-public class M202605271005CreateTagsFor : Migration
+public class M202605271005CreateTagsAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.tags_for (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.tags_at_version (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT t.* 
                         FROM dbo.tag t
@@ -25,6 +25,6 @@ public class M202605271005CreateTagsFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tags_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tags_at_version;");
     }
 }

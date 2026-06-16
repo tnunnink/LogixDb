@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202605271008, "Create versioned helper function for routine")]
+[Migration(202605271008, "Create routines_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202605271008CreateRoutinesFor : Migration
+public class M202605271008CreateRoutinesAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.routines_for (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.routines_at_version (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT r.* 
                         FROM dbo.routine r
@@ -25,6 +25,6 @@ public class M202605271008CreateRoutinesFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.routines_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.routines_at_version;");
     }
 }

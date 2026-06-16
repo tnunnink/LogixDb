@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202605271010, "Create versioned helper function for PLC logic hierarchy")]
+[Migration(202605271010, "Create logic_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Logic)]
-public class M202605271010CreateLogicFor : Migration
+public class M202605271010CreateLogicAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.logic_for (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.logic_at_version (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT 
                             r.rung_id,
@@ -58,6 +58,6 @@ public class M202605271010CreateLogicFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.logic_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.logic_at_version;");
     }
 }

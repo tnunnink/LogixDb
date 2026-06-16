@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202605271004, "Create versioned helper function for module")]
+[Migration(202605271004, "Create modules_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Module)]
-public class M202605271004CreateModulesFor : Migration
+public class M202605271004CreateModulesAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.modules_for (@VersionId INT)
+                    CREATE OR ALTER FUNCTION dbo.modules_at_version (@VersionId INT)
                     RETURNS TABLE AS RETURN (
                         SELECT m.* 
                         FROM dbo.module m
@@ -25,6 +25,6 @@ public class M202605271004CreateModulesFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.modules_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.modules_at_version;");
     }
 }

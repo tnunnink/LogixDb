@@ -10,15 +10,15 @@ public class M20260527Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("controllers_for");
-            await AssertFunctionExists("data_types_for");
-            await AssertFunctionExists("aois_for");
-            await AssertFunctionExists("modules_for");
-            await AssertFunctionExists("tags_for");
-            await AssertFunctionExists("tasks_for");
-            await AssertFunctionExists("programs_for");
-            await AssertFunctionExists("routines_for");
-            await AssertFunctionExists("rungs_for");
+            await AssertFunctionExists("controllers_at_version");
+            await AssertFunctionExists("data_types_at_version");
+            await AssertFunctionExists("aois_at_version");
+            await AssertFunctionExists("modules_at_version");
+            await AssertFunctionExists("tags_at_version");
+            await AssertFunctionExists("tasks_at_version");
+            await AssertFunctionExists("programs_at_version");
+            await AssertFunctionExists("routines_at_version");
+            await AssertFunctionExists("rungs_at_version");
         }
     }
     
@@ -29,7 +29,7 @@ public class M20260527Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("logic_for");
+            await AssertFunctionExists("logic_at_version");
         }
     }
 }

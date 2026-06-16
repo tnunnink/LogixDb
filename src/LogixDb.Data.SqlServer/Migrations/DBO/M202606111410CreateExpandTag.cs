@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202606111410, "Create tag_tree_from recursive function for hierarchical tag exploration")]
+[Migration(202606111410, "Create expand_tag recursive function for hierarchical tag exploration")]
 [Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
-public class M202606111410CreateTagTreeFrom : Migration
+public class M202606111410CreateExpandTag : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-                    CREATE OR ALTER FUNCTION dbo.tag_tree_from (@MemberId BIGINT)
+                    CREATE OR ALTER FUNCTION dbo.expand_tag (@MemberId BIGINT)
                     RETURNS TABLE AS RETURN (
                         WITH TagTree AS (
                             -- Anchor: Start with the specific member provided
@@ -39,6 +39,6 @@ public class M202606111410CreateTagTreeFrom : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.tag_tree_from;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.expand_tag;");
     }
 }

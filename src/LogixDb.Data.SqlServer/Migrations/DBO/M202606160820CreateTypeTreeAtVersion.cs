@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
-[Migration(202606160820, "Create type_tree_for function for resolving recursive type hierarchies")]
+[Migration(202606160820, "Create type_tree_at_version function")]
 [Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
-public class M202606160820CreateTypeTreeFor : Migration
+public class M202606160820CreateTypeTreeAtVersion : Migration
 {
     public override void Up()
     {
         Execute.Sql("""
-            CREATE OR ALTER FUNCTION dbo.type_tree_for(
+            CREATE OR ALTER FUNCTION dbo.type_tree_at_version(
                 @VersionId INT
             )
                 RETURNS TABLE AS RETURN(WITH type_tree AS (
@@ -27,7 +27,7 @@ public class M202606160820CreateTypeTreeFor : Migration
                         dt.type_name                [data_type],
                         dt.type_description         [root_description],
                         CAST(NULL AS NVARCHAR(MAX)) [member_description]
-                    FROM dbo.data_types_for(@VersionId) dt
+                    FROM dbo.data_types_at_version(@VersionId) dt
 
                     UNION ALL
 
@@ -48,7 +48,7 @@ public class M202606160820CreateTypeTreeFor : Migration
                          JOIN data_type_member ctm ON ctm.type_id = dt.type_id
                          OUTER APPLY (
                             SELECT *
-                            FROM dbo.data_types_for(@VersionId)
+                            FROM dbo.data_types_at_version(@VersionId)
                             WHERE type_name = ctm.data_type
                             ) ct
                     WHERE ctm.is_hidden = 0
@@ -62,6 +62,6 @@ public class M202606160820CreateTypeTreeFor : Migration
 
     public override void Down()
     {
-        Execute.Sql("DROP FUNCTION IF EXISTS dbo.type_tree_for;");
+        Execute.Sql("DROP FUNCTION IF EXISTS dbo.type_tree_at_version;");
     }
 }

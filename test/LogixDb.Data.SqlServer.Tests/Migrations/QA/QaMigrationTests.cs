@@ -125,4 +125,12 @@ public class QaMigrationTests : SqlServerTestFixture
 
         await AssertProcedureExists("qa", "get_variable_as_date");
     }
+
+    [Test]
+    public async Task MigrateUp_To202606161327_CreatesQaRerunValidationsProcedure()
+    {
+        await Database.Migrate(202606161327, ComponentOptions.Qa);
+
+        await AssertProcedureExists("qa", "rerun_validations");
+    }
 }

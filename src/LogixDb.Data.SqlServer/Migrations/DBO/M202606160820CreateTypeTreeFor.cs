@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations.DBO;
 
 [UsedImplicitly]
 [Migration(202606160820, "Create type_tree_for function for resolving recursive type hierarchies")]
-[Tags(TagBehavior.RequireAny, MigrationTag.Tag)]
+[Tags(TagBehavior.RequireAny, MigrationTag.DataType)]
 public class M202606160820CreateTypeTreeFor : Migration
 {
     public override void Up()

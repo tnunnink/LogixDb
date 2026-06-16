@@ -10,4 +10,12 @@ public class M20260616Tests : SqlServerTestFixture
 
         await AssertFunctionExists("type_tree_at_version");
     }
+
+    [Test]
+    public async Task MigrateUp_ToM202606161358_CreatesGetLatestVersionIdFunction()
+    {
+        await Database.Migrate(202606161358);
+
+        await AssertFunctionExists("get_latest_version_id");
+    }
 }

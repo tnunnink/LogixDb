@@ -19,8 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/QA/016_QaRerunValidationsProcedure.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,61 +133,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8356960227205141" />
-      <entry key="MS500" value="5.619843397152236" />
-      <entry key="S2" value="12.092883247535644" />
-      <entry key="S5" value="15.566043561791851" />
-      <entry key="S10" value="17.138495380828573" />
-      <entry key="S30" value="18.343740586968554" />
-      <entry key="S60" value="18.865715528742108" />
-      <entry key="M2" value="25.650321658106304" />
-      <entry key="M5" value="89.50357512153347" />
-      <entry key="M10" value="199.25969609809403" />
-      <entry key="M15" value="287.2160035136633" />
-      <entry key="M30" value="489.04700457826397" />
-      <entry key="H1" value="745.2017943760146" />
-      <entry key="H2" value="996.5857268750018" />
-      <entry key="H4" value="1240.5263745026266" />
-      <entry key="D1" value="2492.3823642670645" />
-      <entry key="W1" value="4861.964077868969" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000278705319" />
+      <entry key="S5" value="1.0060047018142566" />
+      <entry key="S10" value="1.4051239488700045" />
+      <entry key="S30" value="13.810514154606176" />
+      <entry key="S60" value="41.37323611970189" />
+      <entry key="M2" value="81.21859502043762" />
+      <entry key="M5" value="148.66466931372227" />
+      <entry key="M10" value="247.79974242148842" />
+      <entry key="M15" value="337.41871929308985" />
+      <entry key="M30" value="553.6245791295307" />
+      <entry key="H1" value="834.2470524534046" />
+      <entry key="H2" value="1113.6521688655014" />
+      <entry key="H4" value="1379.6331435868522" />
+      <entry key="D1" value="2656.091884074851" />
+      <entry key="W1" value="5034.560302580664" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="5.499921991632466E-186" />
-      <entry key="S60" value="2.3726566311017398E-93" />
-      <entry key="M2" value="5.935207114828225E-47" />
-      <entry key="M5" value="7.892986568131811E-19" />
-      <entry key="M10" value="2.8109945238164624E-9" />
-      <entry key="M15" value="4.958126057659192E-6" />
-      <entry key="M30" value="0.010188213464169368" />
-      <entry key="H1" value="0.5003734331524843" />
-      <entry key="H2" value="3.8958155954314413" />
-      <entry key="H4" value="18.17209069364683" />
-      <entry key="D1" value="271.795097171953" />
-      <entry key="W1" value="944.6788505011864" />
+      <entry key="MS500" value="9.81017904100867E-163" />
+      <entry key="S2" value="3.147162975503836E-41" />
+      <entry key="S5" value="6.297492998940993E-17" />
+      <entry key="S10" value="7.935674513827366E-9" />
+      <entry key="S30" value="0.0019946251110430956" />
+      <entry key="S60" value="0.04466122603604924" />
+      <entry key="M2" value="0.21133202794666298" />
+      <entry key="M5" value="0.5370146433395904" />
+      <entry key="M10" value="0.7328128310735066" />
+      <entry key="M15" value="0.8128249717287902" />
+      <entry key="M30" value="0.9096349582186741" />
+      <entry key="H1" value="1.3948004375839778" />
+      <entry key="H2" value="4.649565664231933" />
+      <entry key="H4" value="18.6370430333092" />
+      <entry key="D1" value="271.4753956970989" />
+      <entry key="W1" value="945.0229797573891" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.781874167395315" />
-      <entry key="MS500" value="5.586527320150551" />
-      <entry key="S2" value="12.075597898272536" />
-      <entry key="S5" value="15.557237559216809" />
-      <entry key="S10" value="17.133664585322038" />
-      <entry key="S30" value="18.342021025693608" />
-      <entry key="S60" value="18.86483174736012" />
-      <entry key="M2" value="25.64971980482836" />
-      <entry key="M5" value="89.50272927631235" />
-      <entry key="M10" value="199.25875646964957" />
-      <entry key="M15" value="287.2151081276631" />
-      <entry key="M30" value="489.0564125821143" />
-      <entry key="H1" value="745.7012001184214" />
-      <entry key="H2" value="1000.4796207078865" />
-      <entry key="H4" value="1258.6945463035843" />
-      <entry key="D1" value="2764.1686458330687" />
-      <entry key="W1" value="5806.639263009536" />
+      <entry key="MS100" value="0.9460576467255959" />
+      <entry key="MS500" value="0.9889709163809315" />
+      <entry key="S2" value="0.9972312791834719" />
+      <entry key="S5" value="1.004892984198125" />
+      <entry key="S10" value="1.404459666256516" />
+      <entry key="S30" value="13.810749006540014" />
+      <entry key="S60" value="41.41135842669876" />
+      <entry key="M2" value="81.41720602568657" />
+      <entry key="M5" value="149.1892956999643" />
+      <entry key="M10" value="248.5238871503715" />
+      <entry key="M15" value="338.2249382585455" />
+      <entry key="M30" value="554.530257721323" />
+      <entry key="H1" value="835.6392367082362" />
+      <entry key="H2" value="1118.2990218324812" />
+      <entry key="H4" value="1398.2659247622257" />
+      <entry key="D1" value="2927.5584301729" />
+      <entry key="W1" value="5979.579608540299" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -377,23 +376,7 @@
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
       <workItem from="1781199999831" duration="86890000" />
-      <workItem from="1781551720140" duration="22944000" />
-    </task>
-    <task id="LOCAL-00328" summary="Refactor `Parameter` formatting logic: replace `Dimension &gt; 0` check with `Dimensions?.IsEmpty is false` for improved null safety.">
-      <option name="closed" value="true" />
-      <created>1781233256061</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1781233256061</updated>
-    </task>
-    <task id="LOCAL-00329" summary="Add `ModuleConnectionMap` for module connections, update `ModuleTransformer` to generate corresponding tables, and add migration tests for `module_connection`.">
-      <option name="closed" value="true" />
-      <created>1781233306137</created>
-      <option name="number" value="00329" />
-      <option name="presentableId" value="LOCAL-00329" />
-      <option name="project" value="LOCAL" />
-      <updated>1781233306137</updated>
+      <workItem from="1781551720140" duration="23593000" />
     </task>
     <task id="LOCAL-00330" summary="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.5.0 across projects, and update `TestSource` to fix version serialization issues.">
       <option name="closed" value="true" />
@@ -771,7 +754,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781634565640</updated>
     </task>
-    <option name="localTasksCounter" value="377" />
+    <task id="LOCAL-00377" summary="Add procedure `qa.rerun_validations` and update workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1781635636713</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1781635636713</updated>
+    </task>
+    <task id="LOCAL-00378" summary="Add migration `M202606161327CreateQaRerunValidationsProcedure` for QA rerun validations procedure">
+      <option name="closed" value="true" />
+      <created>1781635662749</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
+      <option name="project" value="LOCAL" />
+      <updated>1781635662749</updated>
+    </task>
+    <option name="localTasksCounter" value="379" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -799,8 +798,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `MergeModulePort` logic to SQLite and SQL Server writers and scripts for handling `module_port` data" />
-    <MESSAGE value="Fix `module_port` migration: correct relation and data type issues, update `.idea` workspace configuration." />
     <MESSAGE value="Remove duplicate `IsChassis` column mapping from `ModulePortMap`." />
     <MESSAGE value="Add migration for `tag_concat` function in SQL Server" />
     <MESSAGE value="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models" />
@@ -824,7 +821,9 @@
     <MESSAGE value="Refactor SQL migrations: standardize helper function names to use `_at_version` suffix, update related tests, and bump project version to 0.14.2." />
     <MESSAGE value="Add migrations and procedures for retrieving QA variables as bit, real, and date types, with corresponding tests and SQL scripts." />
     <MESSAGE value="Add migration test for `M202606161327CreateQaRerunValidationsProcedure`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add migration test for `M202606161327CreateQaRerunValidationsProcedure`." />
+    <MESSAGE value="Add procedure `qa.rerun_validations` and update workspace configuration." />
+    <MESSAGE value="Add migration `M202606161327CreateQaRerunValidationsProcedure` for QA rerun validations procedure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add migration `M202606161327CreateQaRerunValidationsProcedure` for QA rerun validations procedure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

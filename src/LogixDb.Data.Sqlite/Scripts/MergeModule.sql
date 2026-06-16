@@ -13,6 +13,7 @@ INSERT OR IGNORE INTO module
     is_inhibited,
     is_major_fault_enabled,
     is_safety_enabled,
+    config_tag,
     ip_address,
     slot_number,
     record_hash
@@ -31,6 +32,7 @@ SELECT
     t.is_inhibited,
     t.is_major_fault_enabled,
     t.is_safety_enabled,
+    t.config_tag,
     t.ip_address,
     t.slot_number,
     t.record_hash

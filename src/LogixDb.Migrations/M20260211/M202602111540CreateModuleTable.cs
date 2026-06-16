@@ -26,6 +26,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("is_inhibited").AsBoolean().Nullable()
             .WithColumn("is_major_fault_enabled").AsBoolean().Nullable()
             .WithColumn("is_safety_enabled").AsBoolean().Nullable()
+            .WithColumn("config_tag").AsString(256).Nullable()
             .WithColumn("ip_address").AsString(32).Nullable()
             .WithColumn("slot_number").AsByte().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();

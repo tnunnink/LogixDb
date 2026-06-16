@@ -21,6 +21,7 @@ public class M202606132100CreateTagConcat : Migration
                     BEGIN
                     	DECLARE @Separator NVARCHAR(1) = CASE
                             WHEN @MemberPath IS NULL OR @MemberPath = '' THEN ''
+                            WHEN @TagName IS NULL OR @TagName = '' THEN ''
                             WHEN CHARINDEX('[', @MemberPath) = 1 THEN ''
                             ELSE '.'
                         END;

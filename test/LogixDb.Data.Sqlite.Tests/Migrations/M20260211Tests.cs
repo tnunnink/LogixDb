@@ -128,6 +128,7 @@ public class M20260211Tests : SqliteTestFixture
             await AssertColumnDefinition("module", "is_inhibited", "integer");
             await AssertColumnDefinition("module", "is_major_fault_enabled", "integer");
             await AssertColumnDefinition("module", "is_safety_enabled", "integer");
+            await AssertColumnDefinition("module", "config_tag", "text");
             await AssertColumnDefinition("module", "ip_address", "text");
             await AssertColumnDefinition("module", "slot_number", "integer");
             await AssertColumnDefinition("module", "record_hash", "text");

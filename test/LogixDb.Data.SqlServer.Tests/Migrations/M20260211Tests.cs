@@ -128,6 +128,7 @@ public class M20260211Tests : SqlServerTestFixture
             await AssertColumnDefinition("module", "is_inhibited", "bit");
             await AssertColumnDefinition("module", "is_major_fault_enabled", "bit");
             await AssertColumnDefinition("module", "is_safety_enabled", "bit");
+            await AssertColumnDefinition("module", "config_tag", "nvarchar");
             await AssertColumnDefinition("module", "ip_address", "nvarchar");
             await AssertColumnDefinition("module", "slot_number", "tinyint");
             await AssertColumnDefinition("module", "record_hash", "nvarchar");

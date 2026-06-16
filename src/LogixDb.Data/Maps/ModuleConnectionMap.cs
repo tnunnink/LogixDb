@@ -24,7 +24,7 @@ public class ModuleConnectionMap : TableMap<Connection>
         ColumnMap<Connection>.For(r => r.InputTag?.Name, "input_tag"),
         ColumnMap<Connection>.For(r => r.InputSize, "input_size"),
         ColumnMap<Connection>.For(r => r.InputTagSuffix, "input_suffix"),
-        ColumnMap<Connection>.For(r => r.InputTag?.Name, "output_tag"),
+        ColumnMap<Connection>.For(r => r.OutputTag?.Name, "output_tag"),
         ColumnMap<Connection>.For(r => r.OutputSize, "output_size"),
         ColumnMap<Connection>.For(r => r.OutputTagSuffix, "output_suffix"),
         ColumnMap<Connection>.For(r => r.ConnectionPath, "connection_path"),

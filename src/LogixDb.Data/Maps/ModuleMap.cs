@@ -29,6 +29,7 @@ public class ModuleMap : TableMap<Module>
         ColumnMap<Module>.For(r => r.Inhibited, "is_inhibited"),
         ColumnMap<Module>.For(r => r.MajorFault, "is_major_fault_enabled"),
         ColumnMap<Module>.For(r => r.SafetyEnabled, "is_safety_enabled"),
+        ColumnMap<Module>.For(r => r.Config?.Name, "config_tag"),
         ColumnMap<Module>.For(r => r.IP?.ToString(), "ip_address"),
         ColumnMap<Module>.For(r => r.Slot, "slot_number"),
         ColumnMap<Module>.For(r => r.HashElement(), "content_hash"),

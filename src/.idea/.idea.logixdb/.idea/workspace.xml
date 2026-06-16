@@ -19,11 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606132100CreateTagConcat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606132100CreateTagConcat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260306/M202603061100CreateRungTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,61 +133,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0029980804042464" />
-      <entry key="MS500" value="2.381870729069824" />
-      <entry key="S2" value="12.521640685326837" />
-      <entry key="S5" value="28.828311168018914" />
-      <entry key="S10" value="45.63044208814988" />
-      <entry key="S30" value="77.59412847519071" />
-      <entry key="S60" value="113.5759568181763" />
-      <entry key="M2" value="164.43615960441196" />
-      <entry key="M5" value="239.7093227767614" />
-      <entry key="M10" value="299.91386676339107" />
-      <entry key="M15" value="333.985256973138" />
-      <entry key="M30" value="382.602776422079" />
-      <entry key="H1" value="423.281442925941" />
-      <entry key="H2" value="513.2163278072529" />
-      <entry key="H4" value="703.1067854886611" />
-      <entry key="D1" value="1540.3549672365239" />
-      <entry key="W1" value="3440.7927590271183" />
+      <entry key="MS100" value="1.0193704328115472" />
+      <entry key="MS500" value="1.45589150457502" />
+      <entry key="S2" value="2.1534914315240536" />
+      <entry key="S5" value="2.9981590417472797" />
+      <entry key="S10" value="3.8436138179897448" />
+      <entry key="S30" value="5.5494939152538585" />
+      <entry key="S60" value="7.6508931398977404" />
+      <entry key="M2" value="12.82262886453265" />
+      <entry key="M5" value="27.71735643697796" />
+      <entry key="M10" value="47.39057322049642" />
+      <entry key="M15" value="61.607135849539134" />
+      <entry key="M30" value="85.57303105079339" />
+      <entry key="H1" value="104.1889258588151" />
+      <entry key="H2" value="130.0973806543896" />
+      <entry key="H4" value="249.62068946521416" />
+      <entry key="D1" value="1372.380693820039" />
+      <entry key="W1" value="3585.6306499303178" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="6.243570565206994E-150" />
-      <entry key="S5" value="2.1578226392402987E-60" />
-      <entry key="S10" value="1.8399700330253972E-30" />
-      <entry key="S30" value="2.6246830623585247E-10" />
-      <entry key="S60" value="3.801719044737809E-5" />
-      <entry key="M2" value="0.02071231238950662" />
-      <entry key="M5" value="1.362368807581662" />
-      <entry key="M10" value="6.2915540596983615" />
-      <entry key="M15" value="10.695620768273615" />
-      <entry key="M30" value="18.42317820077067" />
-      <entry key="H1" value="26.564528749901367" />
-      <entry key="H2" value="50.34263996925092" />
-      <entry key="H4" value="103.82524627157126" />
-      <entry key="D1" value="355.87708409731334" />
-      <entry key="W1" value="936.0815808770726" />
+      <entry key="MS500" value="3.0117606406878353E-75" />
+      <entry key="S2" value="2.3426376281095603E-19" />
+      <entry key="S5" value="3.5329167912646987E-8" />
+      <entry key="S10" value="1.942370056258379E-4" />
+      <entry key="S30" value="0.08657680663833725" />
+      <entry key="S60" value="0.4817626558305812" />
+      <entry key="M2" value="1.221018815205666" />
+      <entry key="M5" value="2.7220249040145643" />
+      <entry key="M10" value="4.930040092245421" />
+      <entry key="M15" value="6.85364592322228" />
+      <entry key="M30" value="10.530076606576287" />
+      <entry key="H1" value="13.626685123806" />
+      <entry key="H2" value="17.750179983663777" />
+      <entry key="H4" value="38.976489461272934" />
+      <entry key="D1" value="310.70399193705794" />
+      <entry key="W1" value="958.4261833365149" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9823510907241272" />
-      <entry key="MS500" value="2.3701347077011694" />
-      <entry key="S2" value="12.5046746366853" />
-      <entry key="S5" value="28.812455278489455" />
-      <entry key="S10" value="45.61778674704697" />
-      <entry key="S30" value="77.5869345579384" />
-      <entry key="S60" value="113.57074615490036" />
-      <entry key="M2" value="164.4525461999207" />
-      <entry key="M5" value="241.05545883185167" />
-      <entry key="M10" value="306.1718579346628" />
-      <entry key="M15" value="344.6435572196899" />
-      <entry key="M30" value="400.9943152639366" />
-      <entry key="H1" value="449.82347625297456" />
-      <entry key="H2" value="563.5382494364106" />
-      <entry key="H4" value="806.9109687813883" />
-      <entry key="D1" value="1896.2208367153935" />
-      <entry key="W1" value="4376.870807773366" />
+      <entry key="MS100" value="0.020835823086033652" />
+      <entry key="MS500" value="0.6465285048710115" />
+      <entry key="S2" value="1.7876638560219265" />
+      <entry key="S5" value="2.795012555382054" />
+      <entry key="S10" value="3.697051259621152" />
+      <entry key="S30" value="5.551239349769478" />
+      <entry key="S60" value="8.070992277121864" />
+      <entry key="M2" value="13.995940354135225" />
+      <entry key="M5" value="30.402401553053746" />
+      <entry key="M10" value="52.28875656617124" />
+      <entry key="M15" value="68.43236588777904" />
+      <entry key="M30" value="96.08240009422032" />
+      <entry key="H1" value="117.80261163951593" />
+      <entry key="H2" value="147.83930054111127" />
+      <entry key="H4" value="288.5886028002603" />
+      <entry key="D1" value="1683.0745650065796" />
+      <entry key="W1" value="4544.05311374703" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -380,15 +376,7 @@
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
       <workItem from="1781199999831" duration="86890000" />
-      <workItem from="1781551720140" duration="7818000" />
-    </task>
-    <task id="LOCAL-00316" summary="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and align schema with `tag_member_comment` changes.">
-      <option name="closed" value="true" />
-      <created>1781229187510</created>
-      <option name="number" value="00316" />
-      <option name="presentableId" value="LOCAL-00316" />
-      <option name="project" value="LOCAL" />
-      <updated>1781229187510</updated>
+      <workItem from="1781551720140" duration="14480000" />
     </task>
     <task id="LOCAL-00317" summary="Update tag-related scripts: replace `tag_name` with `member_path`, add `tag_description`, and rename `tag_comment` to `tag_member_comment` with schema adjustments.">
       <option name="closed" value="true" />
@@ -774,7 +762,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781462167160</updated>
     </task>
-    <option name="localTasksCounter" value="365" />
+    <task id="LOCAL-00365" summary="Refactor `rung` table migration: remove unique index from `container_name`, `routine_name`, and `rung_number`, update tests, and improve `tag_concat` function handling null/empty `MemberPath`.">
+      <option name="closed" value="true" />
+      <created>1781575286456</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1781575286456</updated>
+    </task>
+    <option name="localTasksCounter" value="366" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -802,7 +798,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bump project versions to 0.13.1 and update `.idea` workspace configuration." />
     <MESSAGE value="Update `.idea` workspace configuration and fix null check in `CreateTagTreeFrom` migration" />
     <MESSAGE value="Bump project versions to 0.13.2." />
     <MESSAGE value="Introduce `GetSource(scrub: true)` for sanitizing Target data and enhance module and connection mapping logic." />
@@ -827,7 +822,8 @@
     <MESSAGE value="Refactor `rung_reference` merge logic: remove redundant `record_hash` condition, update column map to disable hashing for `rung_hash`." />
     <MESSAGE value="Bump project version to 0.14.0 in service and CLI." />
     <MESSAGE value="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity." />
+    <MESSAGE value="Refactor `rung` table migration: remove unique index from `container_name`, `routine_name`, and `rung_number`, update tests, and improve `tag_concat` function handling null/empty `MemberPath`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `rung` table migration: remove unique index from `container_name`, `routine_name`, and `rung_number`, update tests, and improve `tag_concat` function handling null/empty `MemberPath`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

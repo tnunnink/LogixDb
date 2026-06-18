@@ -129,13 +129,26 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     /// <inheritdoc />
     public Task PutImport(Import import, CancellationToken token = default)
     {
-        return ExecuteSqlScriptAsync(SqlServerScript.PutImport, import, token);
+        return ExecuteSqlScriptAsync(SqlServerScript.PutImport, new
+        {
+            import.ImportId,
+            ImportStatus = import.ImportStatus.ToString(),
+            SourceType = import.SourceType.ToString(),
+            FileType = import.FileType.ToString(),
+            import.FileName
+        }, token);
     }
 
     /// <inheritdoc />
     public Task LogImport(ImportLog log, CancellationToken token = default)
     {
-        return ExecuteSqlScriptAsync(SqlServerScript.PostLog, log, token);
+        return ExecuteSqlScriptAsync(SqlServerScript.PutImport, new
+        {
+            log.ImportId,
+            LogSeverity =log.LogSeverity.ToString(),
+            log.LogMessage,
+            log.LogException
+        }, token);
     }
 
     /// <summary>

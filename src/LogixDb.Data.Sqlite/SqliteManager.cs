@@ -159,7 +159,13 @@ public sealed class SqliteManager : IDbManager
     /// <inheritdoc />
     public Task LogImport(ImportLog log, CancellationToken token = default)
     {
-        return ExecuteSqliteScriptAsync(SqliteScript.PostLog, log, token);
+        return ExecuteSqliteScriptAsync(SqliteScript.PutImport, new
+        {
+            log.ImportId,
+            LogSeverity =log.LogSeverity.ToString(),
+            log.LogMessage,
+            log.LogException
+        }, token);
     }
 
     /// <summary>

@@ -146,7 +146,14 @@ public sealed class SqliteManager : IDbManager
     /// <inheritdoc />
     public Task PutImport(Import import, CancellationToken token = default)
     {
-        return ExecuteSqliteScriptAsync(SqliteScript.PutImport, import, token);
+        return ExecuteSqliteScriptAsync(SqliteScript.PutImport, new
+        {
+            import.ImportId,
+            ImportStatus = import.ImportStatus.ToString(),
+            SourceType = import.SourceType.ToString(),
+            FileType = import.FileType.ToString(),
+            import.FileName
+        }, token);
     }
 
     /// <inheritdoc />

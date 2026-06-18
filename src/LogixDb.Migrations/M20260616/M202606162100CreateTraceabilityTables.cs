@@ -18,10 +18,10 @@ public class M202606162100CreateTraceabilityTables : AutoReversingMigration
             .WithColumn("file_type").AsString(256).NotNullable()
             .WithColumn("file_name").AsString(256).NotNullable()
             .WithColumn("posted_on").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentDateTime);
-        
+
         Create.Index().OnTable("import")
             .OnColumn("file_name").Ascending();
-        
+
         Create.Index().OnTable("import")
             .OnColumn("posted_on").Descending();
 
@@ -31,7 +31,7 @@ public class M202606162100CreateTraceabilityTables : AutoReversingMigration
             .WithColumn("timestamp").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentDateTime)
             .WithColumn("log_severity").AsString(64).NotNullable()
             .WithColumn("log_message").AsString(int.MaxValue).NotNullable()
-            .WithColumn("log_exception").AsString(int.MaxValue).NotNullable();
+            .WithColumn("log_exception").AsString(int.MaxValue);
 
         Create.Index().OnTable("import_log")
             .OnColumn("import_id").Ascending();

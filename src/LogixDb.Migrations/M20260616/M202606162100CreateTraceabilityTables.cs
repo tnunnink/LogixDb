@@ -31,7 +31,7 @@ public class M202606162100CreateTraceabilityTables : AutoReversingMigration
             .WithColumn("timestamp").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentDateTime)
             .WithColumn("log_severity").AsString(64).NotNullable()
             .WithColumn("log_message").AsString(int.MaxValue).NotNullable()
-            .WithColumn("log_exception").AsString(int.MaxValue);
+            .WithColumn("log_exception").AsString(int.MaxValue).Nullable();
 
         Create.Index().OnTable("import_log")
             .OnColumn("import_id").Ascending();

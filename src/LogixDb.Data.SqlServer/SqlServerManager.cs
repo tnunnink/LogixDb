@@ -142,7 +142,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
     /// <inheritdoc />
     public Task LogImport(ImportLog log, CancellationToken token = default)
     {
-        return ExecuteSqlScriptAsync(SqlServerScript.PutImport, new
+        return ExecuteSqlScriptAsync(SqlServerScript.PostLog, new
         {
             log.ImportId,
             LogSeverity =log.LogSeverity.ToString(),

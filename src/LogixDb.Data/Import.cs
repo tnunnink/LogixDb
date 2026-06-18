@@ -116,7 +116,7 @@ public sealed record Import
         IDictionary<string, string>? metadata = null
     )
     {
-        var fileType = Enum.Parse<FileType>(Path.GetExtension(fileName).Trim('.'));
+        var fileType = Enum.Parse<FileType>(Path.GetExtension(fileName).Trim('.'), ignoreCase: true);
 
         var source = new Import
         {

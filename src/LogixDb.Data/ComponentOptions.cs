@@ -45,7 +45,7 @@ public enum ComponentOptions
     /// <summary>
     /// Includes all QA validation-related tables and logic during migration.
     /// </summary>
-    Qa = 64,
+    Qa = 128,
     
     /// <summary>
     /// Include all component tables during migration.

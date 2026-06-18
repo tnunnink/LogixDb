@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Channels;
 using LogixConverter.Abstractions;
 using LogixConverter.LogixSdk;
+using LogixDb.Data;
 using LogixDb.Service.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseWindowsService(o => o.ServiceName = "LogixDb");
 builder.Services.Configure<LogixConfig>(builder.Configuration.GetSection(nameof(LogixConfig)));
-builder.Services.AddSingleton(Channel.CreateUnbounded<SourceInfo>());
+builder.Services.AddSingleton(Channel.CreateUnbounded<Import>());
 builder.Services.AddSingleton(Channel.CreateUnbounded<AssetInfo>());
 builder.Services.AddSingleton<ILogixFileConverter, LogixSdkConverter>();
 builder.Services.AddSingleton<SourceUploadService>();
@@ -57,7 +58,7 @@ app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, So
 
     return Results.Accepted(uri: string.Empty, value: new
     {
-        traceId = source.SourceId,
+        traceId = source.ImportId,
         received = source.FileName,
         status = "Queued"
     });

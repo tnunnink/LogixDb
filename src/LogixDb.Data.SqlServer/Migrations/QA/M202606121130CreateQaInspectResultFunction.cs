@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations.QA;
 
 [UsedImplicitly]
 [Migration(202606121130, "Create QA inspect result function")]
-[Tags(TagBehavior.RequireAny, MigrationTag.QA)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Qa)]
 public class M202606121130CreateQaInspectResultFunction : Migration
 {
     public override void Up()

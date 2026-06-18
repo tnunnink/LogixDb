@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations.QA;
 
 [UsedImplicitly]
 [Migration(202606121100, "Create QA list validations view")]
-[Tags(TagBehavior.RequireAny, MigrationTag.QA)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Qa)]
 public class M202606121100CreateQaListValidationsView : Migration
 {
     public override void Up()

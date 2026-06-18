@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations.QA;
 
 [UsedImplicitly]
 [Migration(202606121210, "Create QA get variable procedure")]
-[Tags(TagBehavior.RequireAny, MigrationTag.QA)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Qa)]
 public class M202606121210CreateQaGetVariableProcedure : Migration
 {
     public override void Up()

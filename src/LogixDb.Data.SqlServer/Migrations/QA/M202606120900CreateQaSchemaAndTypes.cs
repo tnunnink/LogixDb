@@ -5,7 +5,7 @@ namespace LogixDb.Data.SqlServer.Migrations.QA;
 
 [UsedImplicitly]
 [Migration(202606120900, "Create QA schema and basic user defined types")]
-[Tags(TagBehavior.RequireAny, MigrationTag.QA)]
+[Tags(TagBehavior.RequireAny, MigrationTag.Qa)]
 public class M202606120900CreateQaSchemaAndTypes : Migration
 {
     public override void Up()

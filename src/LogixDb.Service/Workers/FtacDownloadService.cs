@@ -1,5 +1,7 @@
 using System.Data;
 using System.Threading.Channels;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
 using LogixDb.Service.Common;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
@@ -14,7 +16,8 @@ namespace LogixDb.Service.Workers;
 /// </summary>
 public class FtacDownloadService(
     Channel<AssetInfo> assets,
-    Channel<SourceInfo> sources,
+    Channel<Import> imports,
+    IDbManager manager,
     IOptions<LogixConfig> options,
     ILogger<FtacDownloadService> logger
 ) : BackgroundService
@@ -39,31 +42,39 @@ public class FtacDownloadService(
     {
         await foreach (var asset in assets.Reader.ReadAllAsync(token))
         {
+            Directory.CreateDirectory(options.Value.DropPath);
+            
+            // Create a new import session with the database first to track this import.
+            // If we fail here, then we shouldn't continue with the download.
+            // This will log errors to Event Viewer as a fallback.
+            var import = await CreateImportSession(asset, token);
+            if (import is null) continue;
+
             try
             {
-                if (logger.IsEnabled(LogLevel.Information))
-                    logger.LogInformation("Downloading asset {FileName}...", asset.AssetName);
+                await manager.LogImport(
+                    import.Info("Opening connection to FTAC database"),
+                    token
+                );
 
                 var connectionString = options.Value.GetFtacConnectionString();
                 await using var connection = new SqlConnection(connectionString);
                 await connection.OpenAsync(token);
 
-                var size = await ReadAssetSize(connection, asset, token);
-                var source = await DownloadAsset(connection, asset, size, token);
-                
-                source.Metadata.Add(nameof(asset.AssetId), asset.AssetId.ToString());
-                source.Metadata.Add(nameof(asset.VersionId), asset.VersionId.ToString());
-                source.Metadata.Add(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
-                source.Metadata.Add(nameof(asset.AssetName), asset.AssetName);
+                var size = await ReadAssetSize(connection, asset, import, token);
+                await DownloadAsset(connection, asset, import, size, token);
 
-                await sources.Writer.WriteAsync(source, token);
+                await imports.Writer.WriteAsync(import, token);
 
-                if (logger.IsEnabled(LogLevel.Information))
-                    logger.LogInformation("Queued {FileName} for processing", source.FileName);
+                await manager.LogImport(
+                    import.Info("Queued asset for for processing and ingestion"),
+                    token
+                );
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error downloading asset {FileName}", asset.AssetName);
+                await manager.LogImport(import.Error($"Error downloading asset {asset.AssetName}", ex), token);
             }
         }
     }
@@ -72,16 +83,14 @@ public class FtacDownloadService(
     /// Reads the size of an asset by executing a stored procedure on the provided database connection.
     /// The procedure retrieves details about the file size and version, ensuring the asset is valid for processing.
     /// </summary>
-    /// <param name="connection">The SQL connection to the database where the asset information is stored.</param>
-    /// <param name="asset">An object containing the unique identifiers of the asset and its version.</param>
-    /// <param name="token">A cancellation token to monitor for operation cancellation.</param>
-    /// <returns>The size of the asset in bytes.</returns>
-    /// <exception cref="Exception">Thrown when the stored procedure returns a non-zero result code.</exception>
-    private async Task<long> ReadAssetSize(SqlConnection connection, AssetInfo asset, CancellationToken token)
+    private async Task<long> ReadAssetSize(
+        SqlConnection connection,
+        AssetInfo asset,
+        Import import,
+        CancellationToken token
+    )
     {
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Reading asset info for {AssetName} - v{VersionNumber}",
-                asset.AssetName, asset.VersionNumber);
+        await manager.LogImport(import.Info("Reading asset info to determine file length"), token);
 
         await using var command = new SqlCommand("dbo.arch_ReadFileChunkStart", connection);
         command.CommandType = CommandType.StoredProcedure;
@@ -108,35 +117,34 @@ public class FtacDownloadService(
         await command.ExecuteNonQueryAsync(token);
 
         if ((int)result.Value != 0)
+        {
             throw new Exception($"arch_ReadFileChunkStart failed with ResultCode: {result.Value}");
+        }
+
 
         return (long)fileLength.Value;
     }
 
     /// <summary>
-    /// Downloads the specified asset from the database and saves it to a local file.
-    /// The method reads asset chunks from the database using a stored procedure
-    /// and writes them incrementally to the file system while reporting progress.
+    /// Downloads an asset from the FTAC database using the provided connection and streams it to a file.
     /// </summary>
-    /// <param name="connection">An open SQL connection used to retrieve the asset data.</param>
-    /// <param name="asset">The metadata of the asset to be downloaded, including identifiers and name.</param>
-    /// <param name="length">The total length of the asset in bytes, used for determining chunk sizes and progress.</param>
-    /// <param name="token">A cancellation token to observe while performing the asynchronous operation.</param>
-    /// <returns>A task that produces a <see cref="SourceInfo"/> object containing information about the downloaded asset upon completion.</returns>
-    /// <exception cref="SqlException">Thrown if any SQL operation encounters an error during execution.</exception>
-    /// <exception cref="IOException">Thrown if the file operation fails while writing the downloaded asset to the file system.</exception>
-    /// <exception cref="OperationCanceledException">Thrown if the operation is canceled via the provided cancellation token.</exception>
-    private async Task<SourceInfo> DownloadAsset(
+    /// <param name="connection">An open SQL connection to the FTAC database.</param>
+    /// <param name="import">An object representing the import operation, including file path and metadata.</param>
+    /// <param name="asset">Details about the asset to be downloaded, such as asset ID and version.</param>
+    /// <param name="length">The total size, in bytes, of the asset to be downloaded.</param>
+    /// <param name="token">A cancellation token to observe while performing the download operation.</param>
+    /// <returns>A task that represents the asynchronous download operation.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the operation encounters an unexpected state during execution.</exception>
+    private async Task DownloadAsset(
         SqlConnection connection,
         AssetInfo asset,
+        Import import,
         long length,
         CancellationToken token)
     {
-        Directory.CreateDirectory(options.Value.DropPath);
-        var source = SourceInfo.Create(asset.AssetName, options.Value.DropPath);
+        await manager.LogImport(import.Info("Downloading asset from FTAC database"), token);
 
-        await using var stream = new FileStream(source.FilePath, FileMode.Create, FileAccess.Write, FileShare.None);
-
+        await using var stream = new FileStream(import.FilePath, FileMode.Create, FileAccess.Write, FileShare.None);
         await using var command = new SqlCommand("dbo.arch_ReadFileChunk", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@AssetId", SqlDbType.UniqueIdentifier).Value = asset.AssetId;
@@ -160,20 +168,52 @@ public class FtacDownloadService(
             }
             else
             {
-                throw new Exception($"No data returned for offset={offset} size={size}");
+                throw new InvalidOperationException($"No data returned for offset={offset} size={size}");
             }
 
             offset += size;
-            var percent = (double)offset / length * 100;
-
-            if (logger.IsEnabled(LogLevel.Information))
-                logger.LogInformation("\rProgress: {Percent:F2}% ({Offset}/{FileLength} bytes)",
-                    percent, offset, length);
         }
 
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Successfully downloaded asset {FileName}", asset.AssetName);
+        await manager.LogImport(
+            import.Info($"Download completed successfully for {asset.AssetName} - v{asset.VersionNumber}"),
+            token
+        );
+    }
 
-        return source;
+    /// <summary>
+    /// Creates a new import session for the specified asset. This operation initializes a directory
+    /// and metadata for the import, associates it with the given asset, and stores it in the database.
+    /// </summary>
+    /// <param name="asset">The asset information used to create the import session.</param>
+    /// <param name="token">A cancellation token to observe during the operation.</param>
+    /// <returns>The created import session if successful; otherwise, null if the operation fails.</returns>
+    private async Task<Import?> CreateImportSession(AssetInfo asset, CancellationToken token)
+    {
+        try
+        {
+            var import = Import.Create(asset.AssetName, options.Value.DropPath, SourceType.FTAC);
+            import.Metadata.Add(nameof(asset.AssetId), asset.AssetId.ToString());
+            import.Metadata.Add(nameof(asset.VersionId), asset.VersionId.ToString());
+            import.Metadata.Add(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
+            import.Metadata.Add(nameof(asset.AssetName), asset.AssetName);
+
+            await manager.PutImport(import, token);
+
+            await manager.LogImport(
+                import.Info($"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}"),
+                token
+            );
+
+            return import;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex,
+                "Failed to create import session for {AssetName}. Check database settings and services.",
+                asset.AssetName
+            );
+        }
+
+        return null;
     }
 }

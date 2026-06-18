@@ -40,8 +40,10 @@ internal static class SqliteScript
     public static string MergeTagValue => Get(nameof(MergeTagValue));
     public static string MergeTask => Get(nameof(MergeTask));
     public static string PostInfo => Get(nameof(PostInfo));
+    public static string PostLog => Get(nameof(PostLog));
     public static string PostTarget => Get(nameof(PostTarget));
     public static string PostVersion => Get(nameof(PostVersion));
+    public static string PutImport => Get(nameof(PutImport));
 
     /// <summary>
     /// Retrieves the content of an embedded SQL script resource by its name.

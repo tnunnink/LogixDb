@@ -1,4 +1,4 @@
-namespace LogixDb.Service.Common;
+namespace LogixDb.Data;
 
 /// <summary>
 /// Specifies the supported Rockwell Automation Logix file types for ingestion and processing.

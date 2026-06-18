@@ -16,33 +16,13 @@ namespace LogixDb.Service.Workers;
 /// progress and errors as needed.
 /// </summary>
 /// <remarks>
-/// The <see cref="SourceIngestionService"/> listens to an unbounded channel for incoming <see cref="SourceInfo"/> items
+/// The <see cref="SourceIngestionService"/> listens to an unbounded channel for incoming <see cref="Import"/> items
 /// to process. Each item represents a file to be ingested, and the service coordinates database updates,
 /// file conversion, and logging for each task. This class inherits from <see cref="BackgroundService"/>,
 /// ensuring lifecycle management is integrated with the ASP.NET Core service hosting environment.
 /// </remarks>
-/// <param name="channel">
-/// The asynchronous channel from which <see cref="SourceInfo"/> items are read for processing. This serves as
-/// the primary mechanism to manage ingestion task flow.
-/// </param>
-/// <param name="manager">
-/// The database abstraction used to perform associated operations such as migrations or data updates during
-/// ingestion tasks.
-/// </param>
-/// <param name="converter">
-/// The file converter used for transforming source files into a standardized format. This ensures the integrity
-/// of data before persisting it into the database.
-/// </param>
-/// <param name="options">
-/// Configuration options related to the service, injected via <see cref="IOptions{T}"/> to allow for flexible,
-/// runtime-configurable settings.
-/// </param>
-/// <param name="logger">
-/// The logger instance for capturing informational messages, warnings, and errors throughout the lifecycle
-/// of the service. Useful for monitoring and diagnosing the service in production environments.
-/// </param>
 public class SourceIngestionService(
-    Channel<SourceInfo> channel,
+    Channel<Import> channel,
     IDbManager manager,
     ILogixFileConverter converter,
     IOptions<LogixConfig> options,
@@ -59,38 +39,67 @@ public class SourceIngestionService(
         // Try to wait for a good connection to the database to avoid server reboot and service restart issues.
         await ValidateDatabase(stoppingToken);
 
-        await foreach (var source in channel.Reader.ReadAllAsync(stoppingToken))
+        await foreach (var import in channel.Reader.ReadAllAsync(stoppingToken))
         {
             try
             {
-                if (logger.IsEnabled(LogLevel.Information))
-                    logger.LogInformation("Processing {FileName}...", source.FileName);
+                // Signal to the database the import is now being processed (converted, parsed, and ingested).
+                import.ImportStatus = ImportStatus.Processing;
+                await manager.PutImport(import, stoppingToken);
+                await manager.LogImport(
+                    import.Info($"Starting ingestion process for '{import.FileName}'"),
+                    stoppingToken
+                );
 
                 // Create a temp L5X file for processing, either converting it from ACD or just copying it, depending on the file type.
-                var tempFile = await ConvertOrCopy(source, stoppingToken);
+                var tempFile = await ConvertOrCopy(import, stoppingToken);
 
+                await manager.LogImport(import.Info("Loading L5X content from disc"), stoppingToken);
                 // Load the L5X file, create a target and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
+                await manager.LogImport(import.Info("Creating new target instance for import"), stoppingToken);
                 var target = Target.Create(content);
 
                 // Load the metadata configured for the source instance.
-                target.Info.Add(nameof(source.SourceId), source.SourceId.ToString());
-                foreach (var item in source.Metadata)
+                target.Info.Add(nameof(import.ImportId), import.ImportId.ToString());
+                foreach (var item in import.Metadata)
                     target.Info.Add(item.Key, item.Value);
 
                 // Import the target to the database.
+                await manager.LogImport(
+                    import.Info($"Importing target {target.TargetKey} into local database"),
+                    stoppingToken
+                );
                 await manager.ImportTarget(target, stoppingToken);
 
+                // Import the target to the database.
+                await manager.LogImport(
+                    import.Info($"Target '{target.TargetName}' imported new version with id: {target.VersionId}"),
+                    stoppingToken
+                );
+
+                await manager.LogImport(import.Info("Cleaning up file uploads and temporary copies"), stoppingToken);
                 // Clean up temp and upload files after processing completes.
                 File.Delete(tempFile);
-                File.Delete(source.FilePath);
+                File.Delete(import.FilePath);
 
-                if (logger.IsEnabled(LogLevel.Information))
-                    logger.LogInformation("Successfully processed {FileName}", source.FileName);
+                // Signal to the database the import process has completed
+                await manager.LogImport(
+                    import.Info($"Import complete for target {target.TargetKey} @v{target.VersionNumber}"),
+                    stoppingToken
+                );
+
+                import.ImportStatus = ImportStatus.Complete;
+                await manager.PutImport(import, stoppingToken);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error processing logix file {FileName}", source.FileName);
+                await manager.LogImport(
+                    import.Error($"Failed to process import for '{import.FileName}'. Review exception for details", ex),
+                    stoppingToken
+                );
+
+                logger.LogError(ex, "Error processing logix file {FileName}", import.FileName);
             }
         }
     }
@@ -132,30 +141,32 @@ public class SourceIngestionService(
     /// <summary>
     /// Converts or copies a source file to a temporary .L5X file, depending on its type.
     /// </summary>
-    /// <param name="source">The source information containing the file metadata and type.</param>
+    /// <param name="import">The source information containing the file metadata and type.</param>
     /// <param name="token">The cancellation token to observe while performing the operation.</param>
     /// <returns>A task that represents the asynchronous operation containing the path to the temporary .L5X file.</returns>
-    private async Task<string> ConvertOrCopy(SourceInfo source, CancellationToken token)
+    private async Task<string> ConvertOrCopy(Import import, CancellationToken token)
     {
+        await manager.LogImport(import.Info("Creating temporary drop path for uploaded file"), token);
+
         var tempLocation = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
             "LogixDb",
             "Temp"
         );
+
         Directory.CreateDirectory(tempLocation);
+        var tempFile = Path.Combine(tempLocation, $"{import.FileName}.{import.ImportId:N}.L5X");
 
-        var tempFile = Path.Combine(tempLocation, $"{source.SourceId:N}.L5X");
-
-        switch (source.FileType)
+        switch (import.FileType)
         {
             case FileType.L5X:
-                await CopyToTempFile(source, tempFile, token);
+                await CopyToTempFile(import, tempFile, token);
                 break;
             case FileType.ACD:
-                await ConvertToTempFile(source, tempFile, token);
+                await ConvertToTempFile(import, tempFile, token);
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(source), source.FileType, "Unsupported file type.");
+                throw new ArgumentOutOfRangeException(nameof(import), import.FileType, "Unsupported file type.");
         }
 
         return tempFile;
@@ -164,22 +175,23 @@ public class SourceIngestionService(
     /// <summary>
     /// Converts the content of the source file to the L5X format and writes it to the specified temporary file location.
     /// </summary>
-    /// <param name="source">The source information containing the file metadata and location.</param>
+    /// <param name="import">The source information containing the file metadata and location.</param>
     /// <param name="tempFile">The path to the temporary file where the converted content will be written.</param>
     /// <param name="token">The cancellation token to observe while performing the operation.</param>
     /// <returns>A task that represents the asynchronous conversion operation.</returns>
-    private async Task ConvertToTempFile(SourceInfo source, string tempFile, CancellationToken token)
+    private async Task ConvertToTempFile(Import import, string tempFile, CancellationToken token)
     {
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Converting {FileName} to temp L5X for processing", source.FileName);
+        await manager.LogImport(import.Info($"Converting {import.FileName} to temp L5X for processing"), token);
 
         // Use the configured ACD converter on the local machine instead of the default file converter.
         if (options.Value.AcdConverter is not null)
         {
+            await manager.LogImport(import.Info("Custom ACD converter detected. Calling convert command"), token);
+
             await Cli.Wrap(options.Value.AcdConverter)
                 .WithArguments(args => args
                     .Add("convert")
-                    .Add("-i").Add(source.FilePath)
+                    .Add("-i").Add(import.FilePath)
                     .Add("-o").Add(tempFile)
                     .Add("--force"))
                 .WithValidation(CommandResultValidation.ZeroExitCode)
@@ -189,22 +201,21 @@ public class SourceIngestionService(
         }
 
         // Fall back the default file converter
-        await converter.ConvertAsync(source.FilePath, tempFile, token: token);
+        await manager.LogImport(import.Info("Attempting to convert ACD using Logix SDK on local machine"), token);
+        await converter.ConvertAsync(import.FilePath, tempFile, token: token);
     }
 
     /// <summary>
     /// Copies the content of the source file to a temporary file at the specified path.
     /// </summary>
-    /// <param name="source">The source information containing the file metadata and location.</param>
+    /// <param name="import">The source information containing the file metadata and location.</param>
     /// <param name="tempFile">The path to the temporary file where the content will be copied.</param>
     /// <param name="token">The cancellation token to observe while performing the operation.</param>
     /// <returns>A task that represents the asynchronous copy operation.</returns>
-    private async Task CopyToTempFile(SourceInfo source, string tempFile, CancellationToken token)
+    private async Task CopyToTempFile(Import import, string tempFile, CancellationToken token)
     {
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Copying {FileName} to temp file for processing", source.FileName);
-
-        await using var reader = File.OpenRead(source.FilePath);
+        await manager.LogImport(import.Info($"Copying {import.FileName} to temp file for processing"), token);
+        await using var reader = File.OpenRead(import.FilePath);
         await using var writer = File.Create(tempFile);
         await reader.CopyToAsync(writer, token);
     }

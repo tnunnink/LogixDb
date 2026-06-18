@@ -126,6 +126,18 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
         );
     }
 
+    /// <inheritdoc />
+    public Task PutImport(Import import, CancellationToken token = default)
+    {
+        return ExecuteSqlScriptAsync(SqlServerScript.PutImport, import, token);
+    }
+
+    /// <inheritdoc />
+    public Task LogImport(ImportLog log, CancellationToken token = default)
+    {
+        return ExecuteSqlScriptAsync(SqlServerScript.PostLog, log, token);
+    }
+
     /// <summary>
     /// Executes the specified SQL script asynchronously using the database session.
     /// </summary>

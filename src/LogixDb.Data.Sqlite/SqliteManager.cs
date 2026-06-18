@@ -143,6 +143,18 @@ public sealed class SqliteManager : IDbManager
         );
     }
 
+    /// <inheritdoc />
+    public Task PutImport(Import import, CancellationToken token = default)
+    {
+        return ExecuteSqliteScriptAsync(SqliteScript.PutImport, import, token);
+    }
+
+    /// <inheritdoc />
+    public Task LogImport(ImportLog log, CancellationToken token = default)
+    {
+        return ExecuteSqliteScriptAsync(SqliteScript.PostLog, log, token);
+    }
+
     /// <summary>
     /// Executes the specified SQL script asynchronously using the database session.
     /// </summary>

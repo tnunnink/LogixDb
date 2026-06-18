@@ -1,6 +1,9 @@
 using System.Threading.Channels;
+using LogixDb.Data;
+using LogixDb.Data.Abstractions;
 using LogixDb.Service.Common;
 using Microsoft.Extensions.Options;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace LogixDb.Service.Workers;
 
@@ -22,7 +25,8 @@ namespace LogixDb.Service.Workers;
 /// The logger instance used to log information, errors, and warnings during the upload process.
 /// </param>
 public class SourceUploadService(
-    Channel<SourceInfo> channel,
+    Channel<Import> channel,
+    IDbManager manager,
     IOptions<LogixConfig> options,
     ILogger<SourceUploadService> logger)
 {
@@ -32,36 +36,74 @@ public class SourceUploadService(
     /// <param name="file">The file to upload, represented as an <see cref="IFormFile"/>.</param>
     /// <param name="metadata">A collection of metadata associated with the file. Can be null.</param>
     /// <returns>
-    /// A task that represents the asynchronous operation. The task result contains an instance of <see cref="SourceInfo"/>
+    /// A task that represents the asynchronous operation. The task result contains an instance of <see cref="Import"/>
     /// with information about the uploaded file.
     /// </returns>
-    public async Task<SourceInfo> UploadAsync(IFormFile file, IDictionary<string, string> metadata)
+    public async Task<Import> UploadAsync(IFormFile file, IDictionary<string, string> metadata)
     {
         if (logger.IsEnabled(LogLevel.Information))
             logger.LogInformation("Upload requested for file: {FileName} ({FileSize} bytes)",
                 file.FileName, file.Length);
 
-        // Ensure the drop path is always available
-        Directory.CreateDirectory(options.Value.DropPath);
+        var import = await CreateImportSession(file, metadata, CancellationToken.None);
+        if (import is null) return null; //todo need to figure out what to return for error to API request.
 
-        // Create the source record from the provided args
-        var source = SourceInfo.Create(file.FileName, options.Value.DropPath, metadata);
+        await manager.LogImport(
+            import.Info("Starting file upload with server"),
+            CancellationToken.None
+        );
 
         // Upload the file to the local server drop path
-        await using (var stream = new FileStream(source.FilePath, FileMode.Create))
+        await using (var stream = new FileStream(import.DropPath, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
 
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("File successfully uploaded to: {Path}", source.FilePath);
-
         // Queue the source for processing by the background service
-        await channel.Writer.WriteAsync(source);
+        await channel.Writer.WriteAsync(import);
 
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Queued {FileName} for processing", source.FileName);
+        await manager.LogImport(
+            import.Info("Upload complete - File queued for for processing and ingestion"),
+            CancellationToken.None
+        );
 
-        return source;
+        return import;
+    }
+
+    /// <summary>
+    /// Creates a new import session for the specified file, saving related metadata and initializing it in the system.
+    /// </summary>
+    /// <param name="file">The file to be imported, represented as an <see cref="IFormFile"/>.</param>
+    /// <param name="metadata">A dictionary containing metadata associated with the import. Can be null or empty.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the operation to complete.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains an <see cref="Import"/> instance
+    /// if the session is successfully created, or null if an error occurred during the process.
+    /// </returns>
+    private async Task<Import?> CreateImportSession(IFormFile file, IDictionary<string, string> metadata,
+        CancellationToken token)
+    {
+        try
+        {
+            Directory.CreateDirectory(options.Value.DropPath);
+            var import = Import.Create(file.FileName, options.Value.DropPath, SourceType.API, metadata);
+            await manager.PutImport(import, CancellationToken.None);
+
+            await manager.LogImport(
+                import.Info($"Import starting for file {file.FileName}"),
+                token
+            );
+
+            return import;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex,
+                "Failed to create import session for {FileName}. Check database settings and services.",
+                file.FileName
+            );
+
+            return null;
+        }
     }
 }

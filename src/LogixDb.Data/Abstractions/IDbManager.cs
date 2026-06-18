@@ -102,4 +102,24 @@ public interface IDbManager
     /// <param name="token">A cancellation token to cancel the operation if necessary.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task DeleteVersions(string targetKey, DateTime beforeDate, CancellationToken token = default);
+
+    /// <summary>
+    /// Persists the provided import object into the database asynchronously.
+    /// </summary>
+    /// <param name="import">The instance of the <see cref="Import"/> object to be saved.</param>
+    /// <param name="token">A cancellation token to signal task cancellation.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <remarks>
+    /// Inserts this import data if not already in the database. If found, will only update the import
+    /// status to reflect the current status of the provided import.
+    /// </remarks>
+    Task PutImport(Import import, CancellationToken token = default);
+
+    /// <summary>
+    /// Logs information about an import operation to the database.
+    /// </summary>
+    /// <param name="log">The details of the import operation, including the import ID, log level, and message.</param>
+    /// <param name="token">A cancellation token to cancel the logging operation.</param>
+    /// <returns>A task representing the asynchronous logging operation.</returns>
+    Task LogImport(ImportLog log, CancellationToken token = default);
 }

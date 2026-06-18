@@ -19,7 +19,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260206/M202602061000CreateTargetVersionTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/PostLog.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/DBO/PutImport.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PostLog.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/PutImport.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ImportLog.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ImportStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/LogSeverity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/SourceType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Migrations/M20260616/M202606162100CreateTraceabilityTables.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606120900CreateQaSchemaAndTypes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606120900CreateQaSchemaAndTypes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121000CreateQaValidationRunTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121000CreateQaValidationRunTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121010CreateQaValidationResultTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121010CreateQaValidationResultTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121100CreateQaListValidationsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121100CreateQaListValidationsView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121110CreateQaEmitFailureFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121110CreateQaEmitFailureFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121120CreateQaEmitSuccessFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121120CreateQaEmitSuccessFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121130CreateQaInspectResultFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121130CreateQaInspectResultFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121200CreateQaCreateValidationProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121200CreateQaCreateValidationProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121210CreateQaGetVariableProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121210CreateQaGetVariableProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121220CreateQaGetVariableAsIntProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121220CreateQaGetVariableAsIntProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121230CreateQaRunValidationProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121230CreateQaRunValidationProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121240CreateQaRunValidationsProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606121240CreateQaRunValidationsProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161322CreateQaGetVariableAsBitProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161322CreateQaGetVariableAsBitProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161323CreateQaGetVariableAsRealProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161323CreateQaGetVariableAsRealProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161324CreateQaGetVariableAsDateProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161324CreateQaGetVariableAsDateProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161327CreateQaRerunValidationsProcedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/QA/M202606161327CreateQaRerunValidationsProcedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ComponentOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/MigrationTag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/FileType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/SourceInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Import.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/SourceInfoTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceIngestionServiceTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Services/SourceUploadServiceTests.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +143,14 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/PurgeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.SqlServer/Migrations/DBO/M202606132100CreateTagConcat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteGuidHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportLog.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModulePortMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagMemberMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/SourceType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/TableMap.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Target.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/OperandTransformer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,7 +163,6 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Migrations/M20260611/M202606112200CreateModulePortTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/FileType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPerformanceTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/FakeSourceTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -135,59 +180,59 @@
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000278705319" />
-      <entry key="S5" value="1.0060047018142566" />
-      <entry key="S10" value="1.4051239488700045" />
-      <entry key="S30" value="13.810514154606176" />
-      <entry key="S60" value="41.37323611970189" />
-      <entry key="M2" value="81.21859502043762" />
-      <entry key="M5" value="148.66466931372227" />
-      <entry key="M10" value="247.79974242148842" />
-      <entry key="M15" value="337.41871929308985" />
-      <entry key="M30" value="553.6245791295307" />
-      <entry key="H1" value="834.2470524534046" />
-      <entry key="H2" value="1113.6521688655014" />
-      <entry key="H4" value="1379.6331435868522" />
-      <entry key="D1" value="2656.091884074851" />
-      <entry key="W1" value="5034.560302580664" />
+      <entry key="S2" value="1.0000000001037148" />
+      <entry key="S5" value="1.0008601423974786" />
+      <entry key="S10" value="1.1820226597164805" />
+      <entry key="S30" value="10.847404154493935" />
+      <entry key="S60" value="44.92342036895016" />
+      <entry key="M2" value="115.67541473836076" />
+      <entry key="M5" value="265.2416753202851" />
+      <entry key="M10" value="393.7045148392153" />
+      <entry key="M15" value="458.5722293882929" />
+      <entry key="M30" value="540.9720735771045" />
+      <entry key="H1" value="601.6610399291217" />
+      <entry key="H2" value="748.3743503268745" />
+      <entry key="H4" value="1202.1433897839233" />
+      <entry key="D1" value="5322.35507193107" />
+      <entry key="W1" value="10578.154741326505" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="9.81017904100867E-163" />
-      <entry key="S2" value="3.147162975503836E-41" />
-      <entry key="S5" value="6.297492998940993E-17" />
-      <entry key="S10" value="7.935674513827366E-9" />
-      <entry key="S30" value="0.0019946251110430956" />
-      <entry key="S60" value="0.04466122603604924" />
-      <entry key="M2" value="0.21133202794666298" />
-      <entry key="M5" value="0.5370146433395904" />
-      <entry key="M10" value="0.7328128310735066" />
-      <entry key="M15" value="0.8128249717287902" />
-      <entry key="M30" value="0.9096349582186741" />
-      <entry key="H1" value="1.3948004375839778" />
-      <entry key="H2" value="4.649565664231933" />
-      <entry key="H4" value="18.6370430333092" />
-      <entry key="D1" value="271.4753956970989" />
-      <entry key="W1" value="945.0229797573891" />
+      <entry key="MS100" value="2.6828336453010818E-59" />
+      <entry key="MS500" value="1.962340988182282E-12" />
+      <entry key="S2" value="0.0016004703063199227" />
+      <entry key="S5" value="0.11205479080391333" />
+      <entry key="S10" value="0.4709379104741847" />
+      <entry key="S30" value="1.2339874784578655" />
+      <entry key="S60" value="1.5991737769084569" />
+      <entry key="M2" value="2.0303051168142963" />
+      <entry key="M5" value="4.105803261330384" />
+      <entry key="M10" value="9.55537374735583" />
+      <entry key="M15" value="14.195127598760072" />
+      <entry key="M30" value="22.151402111344353" />
+      <entry key="H1" value="28.280628092731448" />
+      <entry key="H2" value="36.101703583432666" />
+      <entry key="H4" value="57.48000803890738" />
+      <entry key="D1" value="258.09822100340887" />
+      <entry key="W1" value="1017.1970158484371" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9460576467255959" />
-      <entry key="MS500" value="0.9889709163809315" />
-      <entry key="S2" value="0.9972312791834719" />
-      <entry key="S5" value="1.004892984198125" />
-      <entry key="S10" value="1.404459666256516" />
-      <entry key="S30" value="13.810749006540014" />
-      <entry key="S60" value="41.41135842669876" />
-      <entry key="M2" value="81.41720602568657" />
-      <entry key="M5" value="149.1892956999643" />
-      <entry key="M10" value="248.5238871503715" />
-      <entry key="M15" value="338.2249382585455" />
-      <entry key="M30" value="554.530257721323" />
-      <entry key="H1" value="835.6392367082362" />
-      <entry key="H2" value="1118.2990218324812" />
-      <entry key="H4" value="1398.2659247622257" />
-      <entry key="D1" value="2927.5584301729" />
-      <entry key="W1" value="5979.579608540299" />
+      <entry key="MS100" value="0.0017360208616534574" />
+      <entry key="MS500" value="0.280485870132802" />
+      <entry key="S2" value="0.728711340550135" />
+      <entry key="S5" value="0.9746765505418614" />
+      <entry key="S10" value="1.5511421660571212" />
+      <entry key="S30" value="12.024208039176079" />
+      <entry key="S60" value="46.48667766092236" />
+      <entry key="M2" value="117.68012788449734" />
+      <entry key="M5" value="269.3223453357737" />
+      <entry key="M10" value="403.2342650143724" />
+      <entry key="M15" value="472.7438871280505" />
+      <entry key="M30" value="563.1066271133249" />
+      <entry key="H1" value="629.9313434887997" />
+      <entry key="H2" value="784.4695763954539" />
+      <entry key="H4" value="1259.6182023348958" />
+      <entry key="D1" value="5580.447382942028" />
+      <entry key="W1" value="11595.348106568337" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -376,39 +421,7 @@
       <workItem from="1779905648473" duration="29324000" />
       <workItem from="1780064425963" duration="20165000" />
       <workItem from="1781199999831" duration="86890000" />
-      <workItem from="1781551720140" duration="23593000" />
-    </task>
-    <task id="LOCAL-00330" summary="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.5.0 across projects, and update `TestSource` to fix version serialization issues.">
-      <option name="closed" value="true" />
-      <created>1781274300203</created>
-      <option name="number" value="00330" />
-      <option name="presentableId" value="LOCAL-00330" />
-      <option name="project" value="LOCAL" />
-      <updated>1781274300203</updated>
-    </task>
-    <task id="LOCAL-00331" summary="Update `M202606112100CreateModuleConnectionTable`: make `rpi` column nullable">
-      <option name="closed" value="true" />
-      <created>1781274565995</created>
-      <option name="number" value="00331" />
-      <option name="presentableId" value="LOCAL-00331" />
-      <option name="project" value="LOCAL" />
-      <updated>1781274565995</updated>
-    </task>
-    <task id="LOCAL-00332" summary="Bump `L5Sharp` and `L5Sharp.Gateway` package versions to 7.6.0 across projects.">
-      <option name="closed" value="true" />
-      <created>1781275063072</created>
-      <option name="number" value="00332" />
-      <option name="presentableId" value="LOCAL-00332" />
-      <option name="project" value="LOCAL" />
-      <updated>1781275063072</updated>
-    </task>
-    <task id="LOCAL-00333" summary="Remove all deprecated SQL scripts and their associated logic, including merge scripts (e.g., `MergeAoi`, `MergeController`) and helper functions, as part of cleanup.">
-      <option name="closed" value="true" />
-      <created>1781275613696</created>
-      <option name="number" value="00333" />
-      <option name="presentableId" value="LOCAL-00333" />
-      <option name="project" value="LOCAL" />
-      <updated>1781275613696</updated>
+      <workItem from="1781551720140" duration="53625000" />
     </task>
     <task id="LOCAL-00334" summary="Remove all QA-related SQL scripts, procedures, functions, views, and tables as part of discontinued feature cleanup.">
       <option name="closed" value="true" />
@@ -770,7 +783,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781635662749</updated>
     </task>
-    <option name="localTasksCounter" value="379" />
+    <task id="LOCAL-00379" summary="Add index on `target_name` and `version_number` columns in `target_version` table.">
+      <option name="closed" value="true" />
+      <created>1781636286873</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
+      <option name="project" value="LOCAL" />
+      <updated>1781636286873</updated>
+    </task>
+    <task id="LOCAL-00380" summary="Add migration `M202606161358CreateGetLatestVersionIdFunction` and corresponding function for retrieving the latest version ID.">
+      <option name="closed" value="true" />
+      <created>1781636377912</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
+      <option name="project" value="LOCAL" />
+      <updated>1781636377912</updated>
+    </task>
+    <task id="LOCAL-00381" summary="Bump project version to 0.14.3 in Service and CLI.">
+      <option name="closed" value="true" />
+      <created>1781637310240</created>
+      <option name="number" value="00381" />
+      <option name="presentableId" value="LOCAL-00381" />
+      <option name="project" value="LOCAL" />
+      <updated>1781637310240</updated>
+    </task>
+    <task id="LOCAL-00382" summary="Update README with QA schema details, validation procedures, and helper functions.">
+      <option name="closed" value="true" />
+      <created>1781637366756</created>
+      <option name="number" value="00382" />
+      <option name="presentableId" value="LOCAL-00382" />
+      <option name="project" value="LOCAL" />
+      <updated>1781637366756</updated>
+    </task>
+    <option name="localTasksCounter" value="383" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -798,10 +843,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove duplicate `IsChassis` column mapping from `ModulePortMap`." />
-    <MESSAGE value="Add migration for `tag_concat` function in SQL Server" />
-    <MESSAGE value="Update versioning logic: include `VersionNumber` in `PostVersion` scripts and adjust related data models" />
-    <MESSAGE value="Update `.idea` workspace configuration and rename `@VersionNumber` to `@NextVersionNumber` in `PostVersion.sql` script." />
     <MESSAGE value=" Moving rung to flat deduplicate mmodel for consistency and space reduction. Refactor `rung`-related logic across migrations, maps, and transformers: replace `rung_id` with `rung_hash`, remove unused columns, and update merge scripts for improved consistency." />
     <MESSAGE value="Refactor `rung`-related logic: replace `rung_id` with `rung_hash`, remove `routine_id` and `content_hash`, update merge/migration scripts, and adjust column definitions for consistency." />
     <MESSAGE value="Refactor `rung` merge scripts to use `MERGE` statement, add `container_name` handling, update indices and column mappings for improved consistency." />
@@ -823,7 +864,11 @@
     <MESSAGE value="Add migration test for `M202606161327CreateQaRerunValidationsProcedure`." />
     <MESSAGE value="Add procedure `qa.rerun_validations` and update workspace configuration." />
     <MESSAGE value="Add migration `M202606161327CreateQaRerunValidationsProcedure` for QA rerun validations procedure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add migration `M202606161327CreateQaRerunValidationsProcedure` for QA rerun validations procedure" />
+    <MESSAGE value="Add index on `target_name` and `version_number` columns in `target_version` table." />
+    <MESSAGE value="Add migration `M202606161358CreateGetLatestVersionIdFunction` and corresponding function for retrieving the latest version ID." />
+    <MESSAGE value="Bump project version to 0.14.3 in Service and CLI." />
+    <MESSAGE value="Update README with QA schema details, validation procedures, and helper functions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README with QA schema details, validation procedures, and helper functions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

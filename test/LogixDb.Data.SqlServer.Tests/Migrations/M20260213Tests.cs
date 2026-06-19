@@ -6,7 +6,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602130830_CreatesTagTableWithExpectedColumns()
     {
-        await Database.Migrate(202602130830);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -39,7 +39,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602130900_CreatesTagMemberTableWithExpectedColumns()
     {
-        await Database.Migrate(202602130900);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -65,7 +65,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602130930_CreatesTagValueTableWithExpectedColumns()
     {
-        await Database.Migrate(202602130930);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -83,7 +83,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131200_CreatesTagCommentTableWithExpectedColumns()
     {
-        await Database.Migrate(202602131200);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -104,7 +104,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131300_CreatesTagProducerTableWithExpectedColumns()
     {
-        await Database.Migrate(202602131300);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -126,7 +126,7 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131330_CreatesTagConsumerTableWithExpectedColumns()
     {
-        await Database.Migrate(202602131330);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

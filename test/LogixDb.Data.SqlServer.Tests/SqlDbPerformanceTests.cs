@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Dapper;
 using LogixDb.Testing;
+using Microsoft.Data.SqlClient;
 
 namespace LogixDb.Data.SqlServer.Tests;
 
@@ -10,7 +11,7 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
     [SetUp]
     public async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -31,9 +32,10 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
     public async Task ExecuteQuery_AfterLargeNumberOfFakeImports_ShouldBePerformant(int count)
     {
         var target = Target.Create(TestSource.Fake(count), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
-        using var connection = await Database.Connect();
+        await using var connection = new SqlConnection(Connection.ToConnectionString());
+        await connection.OpenAsync();
         
         // We want to test the GetVersionedTags function
         var version = await connection.QuerySingleAsync<int>("SELECT MAX(version_id) FROM dbo.target_version");

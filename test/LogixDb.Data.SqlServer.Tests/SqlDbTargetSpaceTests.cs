@@ -8,7 +8,7 @@ public class SqlDbTargetSpaceTests : SqlServerTestFixture
     [SetUp]
     public async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -25,7 +25,7 @@ public class SqlDbTargetSpaceTests : SqlServerTestFixture
         for (var i = 1; i <= iterations; i++)
         {
             var target = Target.Create(TestSource.LocalExample(), "TestProject");
-            await Database.ImportTarget(target);
+            await Manager.ImportTarget(target);
 
             var currentSize = await GetDatabaseSize();
             var delta = currentSize - previousSize;
@@ -44,7 +44,7 @@ public class SqlDbTargetSpaceTests : SqlServerTestFixture
         Console.WriteLine($"Total Growth after {iterations} imports: {totalGrowth:F2} MB");
         Console.WriteLine($"Average size per target: {averageGrowth:F2} MB");
 
-        var targets = await Database.ListTargets();
+        var targets = await Manager.ListTargets();
 
         using (Assert.EnterMultipleScope())
         {

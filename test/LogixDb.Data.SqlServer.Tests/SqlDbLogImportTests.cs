@@ -8,17 +8,17 @@ public class SqlDbLogImportTests : SqlServerTestFixture
     [SetUp]
     protected async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
     public async Task LogImport_ValidLog_InsertsRecord()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
-        await Database.PutImport(import);
+        await Manager.PutImport(import);
         var log = import.Info("Test message");
 
-        await Database.LogImport(log);
+        await Manager.LogImport(log);
 
         await AssertRecordExists("import_log", "log_message", "Test message");
     }
@@ -27,10 +27,10 @@ public class SqlDbLogImportTests : SqlServerTestFixture
     public async Task LogImport_MultipleLogs_InsertsMultipleRecords()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
-        await Database.PutImport(import);
+        await Manager.PutImport(import);
         
-        await Database.LogImport(import.Info("Message 1"));
-        await Database.LogImport(import.Info("Message 2"));
+        await Manager.LogImport(import.Info("Message 1"));
+        await Manager.LogImport(import.Info("Message 2"));
 
         await AssertRecordCount("import_log", 2);
     }

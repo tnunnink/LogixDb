@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.Sqlite", "Logi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.SqlServer", "LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj", "{EE45F858-3361-4220-A85E-B76258782A92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Migrations", "LogixDb.Migrations\LogixDb.Migrations.csproj", "{DBFEC497-660A-4C44-A370-FD726CF9A079}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data", "LogixDb.Data\LogixDb.Data.csproj", "{32C44799-68EF-4867-9E9A-E88A294648F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogixDb.Data.Sqlite.Tests", "..\test\LogixDb.Data.Sqlite.Tests\LogixDb.Data.Sqlite.Tests.csproj", "{3194B7A6-F02D-49A7-A9D4-5386F296794C}"
@@ -44,10 +42,6 @@ Global
 		{EE45F858-3361-4220-A85E-B76258782A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE45F858-3361-4220-A85E-B76258782A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE45F858-3361-4220-A85E-B76258782A92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBFEC497-660A-4C44-A370-FD726CF9A079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBFEC497-660A-4C44-A370-FD726CF9A079}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBFEC497-660A-4C44-A370-FD726CF9A079}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBFEC497-660A-4C44-A370-FD726CF9A079}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32C44799-68EF-4867-9E9A-E88A294648F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32C44799-68EF-4867-9E9A-E88A294648F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C44799-68EF-4867-9E9A-E88A294648F3}.Release|Any CPU.ActiveCfg = Release|Any CPU

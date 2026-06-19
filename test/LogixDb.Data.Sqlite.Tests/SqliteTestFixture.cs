@@ -15,7 +15,7 @@ public abstract class SqliteTestFixture
     /// The file path for the temporary SQLite database used during the test execution.
     /// This path is dynamically generated to ensure uniqueness for each test run.
     /// </summary>
-    protected static readonly string TempDb = Path.Combine(Path.GetTempPath(), $"Logix_{Guid.NewGuid():N}.db");
+    private static readonly string TempDb = Path.Combine(Path.GetTempPath(), $"Logix_{Guid.NewGuid():N}.db");
 
     /// <summary>
     /// Represents an instance of the SqliteProvider, which facilitates database connection

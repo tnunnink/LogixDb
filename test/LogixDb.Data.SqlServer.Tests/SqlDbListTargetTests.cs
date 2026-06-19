@@ -8,13 +8,13 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     [SetUp]
     protected async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
     
     [Test]
     public async Task ListTargets_EmptyDatabase_ShouldReturnEmpty()
     {
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
 
         Assert.That(result, Is.Empty);
     }
@@ -22,9 +22,9 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     [Test]
     public async Task ListTargets_HasSingleTarget_ShouldHaveExpectedCount()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
 
         Assert.That(result, Has.Length.EqualTo(1));
     }
@@ -32,11 +32,11 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     [Test]
     public async Task ListTargets_MultipleTargets_ShouldHaveExpectedCount()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
 
         Assert.That(result, Has.Length.EqualTo(3));
     }
@@ -45,12 +45,12 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     public async Task ListTargets_FilterByTargetKey_ShouldReturnMatchingOnly()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "Controller://DifferentTarget");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        var result = (await Database.ListTargets(target1.TargetKey)).ToArray();
+        var result = (await Manager.ListTargets(target1.TargetKey)).ToArray();
 
         Assert.That(result, Has.Length.EqualTo(1));
         Assert.That(result[0].TargetKey, Is.EqualTo(target1.TargetKey));
@@ -59,9 +59,9 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     [Test]
     public async Task ListTargets_FilterByNonExistentTargetKey_ShouldReturnEmpty()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
-        var result = (await Database.ListTargets("nonexistent://target")).ToArray();
+        var result = (await Manager.ListTargets("nonexistent://target")).ToArray();
 
         Assert.That(result, Is.Empty);
     }
@@ -70,12 +70,12 @@ public class SqlDbListTargetTests : SqlServerTestFixture
     public async Task ListTargets_MultipleTargetsSameTarget_ShouldReturnAll()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        var result = (await Database.ListTargets(target1.TargetKey)).ToArray();
+        var result = (await Manager.ListTargets(target1.TargetKey)).ToArray();
 
         Assert.That(result, Has.Length.EqualTo(2));
     }

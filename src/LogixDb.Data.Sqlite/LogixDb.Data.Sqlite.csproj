@@ -8,20 +8,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="dbup-sqlite" Version="6.0.4" />
-        <PackageReference Include="SqlKata" Version="4.0.1" />
-        <PackageReference Include="Dapper" Version="2.1.79" />
-        <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.9" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
-        <PackageReference Include="JetBrains.Annotations" Version="2025.2.2"/>
+        <EmbeddedResource Include="Scripts\**\*.sql"/>
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Scripts\**\*.sql" />
+        <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="dbup-sqlite" Version="6.0.4"/>
+        <PackageReference Include="SQLitePCLRaw.core" Version="3.0.3"/>
+        <PackageReference Include="SqlKata" Version="4.0.1"/>
+        <PackageReference Include="Dapper" Version="2.1.79"/>
+    </ItemGroup>
+
 
 </Project>

@@ -6,7 +6,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111430_CreatesControllerTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111430);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -55,7 +55,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111500_CreatesDataTypeTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111500);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -77,7 +77,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111530_CreatesDataTypeMemberTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111530);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -107,7 +107,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111540);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -142,7 +142,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111600_CreatesTaskTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111600);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -171,7 +171,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111630_CreatesProgramTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111630);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -201,7 +201,7 @@ public class M20260211Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111930_CreatesRoutineTableWithExpectedColumns()
     {
-        await Database.Migrate(202602111930);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

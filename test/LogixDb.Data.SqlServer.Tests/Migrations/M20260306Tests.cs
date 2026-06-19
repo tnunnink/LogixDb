@@ -6,7 +6,7 @@ public class M20260306Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061100_CreatesRungTableWithExpectedColumns()
     {
-        await Database.Migrate(202603061100);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -32,7 +32,7 @@ public class M20260306Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061200_CreatesInstructionTableWithExpectedColumns()
     {
-        await Database.Migrate(202603061200);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -56,7 +56,7 @@ public class M20260306Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061300_CreatesArgumentTableWithExpectedColumns()
     {
-        await Database.Migrate(202603061300);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -76,7 +76,7 @@ public class M20260306Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061400_CreatesRungReferenceTableWithExpectedColumns()
     {
-        await Database.Migrate(202603061400);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

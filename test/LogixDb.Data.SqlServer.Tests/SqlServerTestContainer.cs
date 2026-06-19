@@ -1,5 +1,4 @@
 using LogixDb.Data.Abstractions;
-using Microsoft.Extensions.Logging.Testing;
 using Testcontainers.MsSql;
 
 namespace LogixDb.Data.SqlServer.Tests;
@@ -21,6 +20,22 @@ public static class SqlServerTestContainer
     private static MsSqlContainer _container;
 
     /// <summary>
+    /// Provides the essential connection information used to interact with the SQL Server
+    /// test container. This property includes details such as the database provider,
+    /// host, port, authentication credentials, and database name, allowing for seamless
+    /// integration testing against an isolated SQL Server instance.
+    /// </summary>
+    public static DbConnectionInfo Connection { get; private set; }
+
+    /// <summary>
+    /// Represents an instance of <see cref="IDbProvider"/> used for interacting with the SQL Server
+    /// test environment. This property provides access to database-specific operations such as
+    /// connection management, script handling, and data writing within the context of the
+    /// containerized SQL Server instance.
+    /// </summary>
+    public static IDbProvider Provider { get; private set; }
+
+    /// <summary>
     /// Provides an instance of <see cref="IDbManager"/> for interacting with the LogixDb database
     /// within the context of integration tests using the SqlServerTestContainer.
     /// </summary>
@@ -29,7 +44,7 @@ public static class SqlServerTestContainer
     /// database connection to a SQL Server instance running in a container. It allows for executing
     /// database operations such as migrations, targets, and data interactions during tests.
     /// </remarks>
-    public static IDbManager Database { get; private set; }
+    public static IDbManager Manager { get; private set; }
 
     /// <summary>
     /// Performs a one-time setup for initializing the SQL Server test environment. This includes
@@ -46,7 +61,7 @@ public static class SqlServerTestContainer
 
         await _container.StartAsync();
 
-        var connection = new DbConnectionInfo(
+        Connection = new DbConnectionInfo(
             DbProvider.SqlServer,
             _container.Hostname,
             Database: "logix",
@@ -55,7 +70,7 @@ public static class SqlServerTestContainer
             Password: "LogixDb!Test123"
         );
 
-        Database = new SqlServerManager(connection);
+        Provider = new SqlServerProvider(Connection);
     }
 
     /// <summary>

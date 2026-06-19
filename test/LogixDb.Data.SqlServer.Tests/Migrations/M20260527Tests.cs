@@ -6,7 +6,7 @@ public class M20260527Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202605271009_CreatesCoreVersionedFunctions()
     {
-        await Database.Migrate(202605271009);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -25,7 +25,7 @@ public class M20260527Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202605271010_CreatesCoreVersionedFunctions()
     {
-        await Database.Migrate(202605271010);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

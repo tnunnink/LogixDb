@@ -6,7 +6,7 @@ public class M20260212Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602120830_CreatesAoiTableWithExpectedColumns()
     {
-        await Database.Migrate(202602120830);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -44,7 +44,7 @@ public class M20260212Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602120900_CreatesAoiParameterTableWithExpectedColumns()
     {
-        await Database.Migrate(202602120900);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

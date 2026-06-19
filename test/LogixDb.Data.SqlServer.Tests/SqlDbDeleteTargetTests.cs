@@ -8,31 +8,31 @@ public class SqlDbDeleteTargetTests : SqlServerTestFixture
     [SetUp]
     protected async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
     public async Task DeleteTarget_SingleTarget_ShouldHaveNoTarget()
     {
         var target = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
-        await Database.DeleteTarget(target.TargetKey);
+        await Manager.DeleteTarget(target.TargetKey);
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Is.Empty);
     }
 
     [Test]
     public async Task DeleteTarget_MultipleTargetDifferentKey_ShouldRemoveOnlyApplicableTargets()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
+        await Manager.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
 
-        await Database.DeleteTarget("CustomTarget");
+        await Manager.DeleteTarget("CustomTarget");
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
         Assert.That(result[0].TargetKey, Is.EqualTo("TestProject"));
     }
@@ -40,7 +40,7 @@ public class SqlDbDeleteTargetTests : SqlServerTestFixture
     [Test]
     public Task DeleteTarget_NonExistentKey_ShouldNotThrow()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.DeleteTarget("NonExistent"));
+        Assert.DoesNotThrowAsync(async () => await Manager.DeleteTarget("NonExistent"));
         return Task.CompletedTask;
     }
 }

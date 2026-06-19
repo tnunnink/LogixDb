@@ -8,7 +8,7 @@ public class M20260308Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082100_CreatesOperandTableWithExpectedColumns()
     {
-        await Database.Migrate(202603082100);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -34,7 +34,7 @@ public class M20260308Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082130_SeedsExpectedOperands()
     {
-        await Database.Migrate(202603082130);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

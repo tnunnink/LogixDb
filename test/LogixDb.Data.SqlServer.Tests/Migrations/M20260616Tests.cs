@@ -6,7 +6,7 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606160820_CreatesTypeTreeAtVersionFunction()
     {
-        await Database.Migrate(202606160820);
+        await Migrator.Migrate(Connection);
 
         await AssertFunctionExists("type_tree_at_version");
     }
@@ -14,7 +14,7 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606161358_CreatesGetLatestVersionIdFunction()
     {
-        await Database.Migrate(202606161358);
+        await Migrator.Migrate(Connection);
 
         await AssertFunctionExists("get_latest_version_id");
     }
@@ -22,11 +22,10 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606162100_CreatesTraceabilityTablesWithExpectedColumns()
     {
-        await Database.Migrate(202606162100, ComponentOptions.All);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
-            // Assert import table
             await AssertTableExists("import");
             await AssertColumnDefinition("import", "import_id", "uniqueidentifier");
             await AssertColumnDefinition("import", "import_status", "nvarchar");
@@ -36,7 +35,6 @@ public class M20260616Tests : SqlServerTestFixture
             await AssertColumnDefinition("import", "posted_on", "datetime");
             await AssertPrimaryKey("import", "import_id");
 
-            // Assert import_log table
             await AssertTableExists("import_log");
             await AssertColumnDefinition("import_log", "log_id", "bigint");
             await AssertColumnDefinition("import_log", "import_id", "uniqueidentifier");

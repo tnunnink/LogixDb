@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [qa].[get_variable]
+CREATE PROCEDURE [qa].[get_variable]
     @vars qa.variables READONLY,
     @key NVARCHAR(MAX),
     @variable NVARCHAR(MAX) OUTPUT

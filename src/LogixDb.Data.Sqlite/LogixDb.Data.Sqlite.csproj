@@ -9,14 +9,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LogixDb.Data\LogixDb.Data.csproj" />
-      <ProjectReference Include="..\LogixDb.Migrations\LogixDb.Migrations.csproj" />
     </ItemGroup>
     
     <ItemGroup>
         <PackageReference Include="dbup-sqlite" Version="6.0.4" />
         <PackageReference Include="SqlKata" Version="4.0.1" />
-        <PackageReference Include="L5Sharp" Version="7.6.2" />
-        <PackageReference Include="L5Sharp.Gateway" Version="7.6.2" />
         <PackageReference Include="Dapper" Version="2.1.79" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.9" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />

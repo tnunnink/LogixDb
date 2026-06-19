@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [qa].[get_variable_as_int]
+CREATE PROCEDURE [qa].[get_variable_as_int]
     @vars qa.variables READONLY,
     @key NVARCHAR(MAX),
     @variable INT OUTPUT

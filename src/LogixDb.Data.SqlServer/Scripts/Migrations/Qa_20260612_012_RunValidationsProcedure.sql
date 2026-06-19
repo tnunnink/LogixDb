@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [qa].[run_validations] @vars qa.variables READONLY,
+CREATE PROCEDURE [qa].[run_validations] @vars qa.variables READONLY,
                                         @vals qa.validations READONLY,
                                         @run_name SYSNAME = NULL
 AS

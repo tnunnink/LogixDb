@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [qa].[run_validation]
+CREATE PROCEDURE [qa].[run_validation]
     @vars     qa.variables READONLY,
     @validation_name sysname,
     @run_id bigint = NULL,

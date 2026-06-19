@@ -15,10 +15,10 @@ public class SqliteDbDeleteVersionTests : SqliteTestFixture
     [Test]
     public async Task DeleteVersion_SpecificVersion_ShouldRemoveOnlyThatVersion()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1); // Version 1
 
-        var target2 = Target.Create(TestSource.LocalTest());
+        var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target2); // Version 2
 
         await Database.DeleteVersion(target1.TargetKey, 1);
@@ -31,7 +31,7 @@ public class SqliteDbDeleteVersionTests : SqliteTestFixture
     [Test]
     public async Task DeleteVersion_MultipleTargets_ShouldOnlyRemoveTargetVersion()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "OtherTarget");

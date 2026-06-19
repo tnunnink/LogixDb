@@ -24,7 +24,7 @@ public class SqlDbTargetSpaceTests : SqlServerTestFixture
 
         for (var i = 1; i <= iterations; i++)
         {
-            var target = Target.Create(TestSource.LocalExample());
+            var target = Target.Create(TestSource.LocalExample(), "TestProject");
             await Database.ImportTarget(target);
 
             var currentSize = await GetDatabaseSize();

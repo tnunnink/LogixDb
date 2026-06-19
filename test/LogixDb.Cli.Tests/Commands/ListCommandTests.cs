@@ -43,7 +43,7 @@ public class ListCommandTests : TestDbFixture
     [Test]
     public async Task List_WithSingleTarget_ShouldReturnZeroExitCode()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target);
 
         using var console = new FakeInMemoryConsole();

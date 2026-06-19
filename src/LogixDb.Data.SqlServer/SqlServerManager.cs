@@ -132,7 +132,7 @@ public sealed class SqlServerManager(DbConnectionInfo connectionInfo) : IDbManag
         return ExecuteSqlScriptAsync(SqlServerScript.PutImport, new
         {
             import.ImportId,
-            ImportStatus = import.ImportStatus.ToString(),
+            ImportStatus = import.Status.ToString(),
             SourceType = import.SourceType.ToString(),
             FileType = import.FileType.ToString(),
             import.FileName

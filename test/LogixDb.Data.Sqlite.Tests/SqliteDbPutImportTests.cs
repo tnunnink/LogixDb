@@ -12,7 +12,7 @@ public class SqliteDbPutImportTests : SqliteTestFixture
     [Test]
     public async Task PutImport_NewImport_InsertsRecord()
     {
-        var import = Import.Create("test.L5X", "C:\\Temp", SourceType.CLI);
+        var import = Import.Create("test.L5X", SourceType.CLI);
 
         await Database.PutImport(import);
 
@@ -22,10 +22,10 @@ public class SqliteDbPutImportTests : SqliteTestFixture
     [Test]
     public async Task PutImport_ExistingImport_UpdatesStatus()
     {
-        var import = Import.Create("test.L5X", "C:\\Temp", SourceType.CLI);
+        var import = Import.Create("test.L5X", SourceType.CLI);
         await Database.PutImport(import);
 
-        import.ImportStatus = ImportStatus.Complete;
+        import.Status = ImportStatus.Complete;
         await Database.PutImport(import);
 
         await AssertRecordExists("import", "import_status", nameof(ImportStatus.Complete));

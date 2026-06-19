@@ -29,6 +29,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("config_tag").AsString(256).Nullable()
             .WithColumn("ip_address").AsString(32).Nullable()
             .WithColumn("slot_number").AsByte().Nullable()
+            .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
         Create.Index().OnTable("module")

@@ -30,7 +30,7 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
     [Explicit("Still WIP - eventually want to stress test queries on high load to ensure index performance.")]
     public async Task ExecuteQuery_AfterLargeNumberOfFakeImports_ShouldBePerformant(int count)
     {
-        var target = Target.Create(TestSource.Fake(count));
+        var target = Target.Create(TestSource.Fake(count), "TestProject");
         await Database.ImportTarget(target);
 
         using var connection = await Database.Connect();

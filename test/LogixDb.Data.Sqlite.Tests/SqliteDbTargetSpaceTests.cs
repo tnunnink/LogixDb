@@ -25,7 +25,7 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
         for (var i = 1; i <= iterations; i++)
         {
             // Use LocalExample() for a more realistic L5X file size
-            var target = Target.Create(TestSource.LocalExample());
+            var target = Target.Create(TestSource.LocalExample(), "TestProject");
 
             await Database.ImportTarget(target);
             

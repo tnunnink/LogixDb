@@ -14,7 +14,7 @@ public class SqliteDbDeleteTargetTests : SqliteTestFixture
     [Test]
     public async Task DeleteTarget_SingleTarget_ShouldHaveNoTarget()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target);
 
         await Database.DeleteTarget(target.TargetKey);
@@ -26,7 +26,7 @@ public class SqliteDbDeleteTargetTests : SqliteTestFixture
     [Test]
     public async Task DeleteTarget_MultipleTargetDifferentKey_ShouldRemoveOnlyApplicableTargets()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
         await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
         await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "CustomTarget"));
 

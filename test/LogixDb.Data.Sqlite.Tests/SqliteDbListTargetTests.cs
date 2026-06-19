@@ -22,7 +22,7 @@ public class SqliteDbListTargetTests : SqliteTestFixture
     [Test]
     public async Task ListTargets_HasSingleTarget_ShouldHaveExpectedCount()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
         var result = (await Database.ListTargets()).ToArray();
 
@@ -32,9 +32,9 @@ public class SqliteDbListTargetTests : SqliteTestFixture
     [Test]
     public async Task ListTargets_MultipleTargets_ShouldHaveExpectedCount()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
         var result = (await Database.ListTargets()).ToArray();
 
@@ -44,7 +44,7 @@ public class SqliteDbListTargetTests : SqliteTestFixture
     [Test]
     public async Task ListTargets_FilterByTargetKey_ShouldReturnMatchingOnly()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "Controller://DifferentTarget");
@@ -59,7 +59,7 @@ public class SqliteDbListTargetTests : SqliteTestFixture
     [Test]
     public async Task ListTargets_FilterByNonExistentTargetKey_ShouldReturnEmpty()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
         var result = (await Database.ListTargets("nonexistent://target")).ToArray();
 
@@ -69,10 +69,10 @@ public class SqliteDbListTargetTests : SqliteTestFixture
     [Test]
     public async Task ListTargets_MultipleTargetsSameTarget_ShouldReturnAll()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1);
 
-        var target2 = Target.Create(TestSource.LocalTest());
+        var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target2);
 
         var result = (await Database.ListTargets(target1.TargetKey)).ToArray();

@@ -14,7 +14,7 @@ public class SqlServerDbLogImportTests : SqlServerTestFixture
     [Test]
     public async Task LogImport_ValidLog_InsertsRecord()
     {
-        var import = Import.Create("test.L5X", "C:\\Temp", SourceType.CLI);
+        var import = Import.Create("test.L5X", SourceType.CLI);
         await Database.PutImport(import);
         var log = import.Info("Test message");
 
@@ -26,7 +26,7 @@ public class SqlServerDbLogImportTests : SqlServerTestFixture
     [Test]
     public async Task LogImport_MultipleLogs_InsertsMultipleRecords()
     {
-        var import = Import.Create("test.L5X", "C:\\Temp", SourceType.CLI);
+        var import = Import.Create("test.L5X", SourceType.CLI);
         await Database.PutImport(import);
         
         await Database.LogImport(import.Info("Message 1"));

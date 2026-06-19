@@ -149,7 +149,7 @@ public sealed class SqliteManager : IDbManager
         return ExecuteSqliteScriptAsync(SqliteScript.PutImport, new
         {
             import.ImportId,
-            ImportStatus = import.ImportStatus.ToString(),
+            ImportStatus = import.Status.ToString(),
             SourceType = import.SourceType.ToString(),
             FileType = import.FileType.ToString(),
             import.FileName

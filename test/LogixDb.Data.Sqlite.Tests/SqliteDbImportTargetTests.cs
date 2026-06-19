@@ -17,7 +17,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_LocalTestSource_ShouldReturnValidId()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
 
         await Database.ImportTarget(target);
 
@@ -27,7 +27,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_ValidSource_ShouldPopulateTargetTable()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
 
         await Database.ImportTarget(target);
 
@@ -38,10 +38,10 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_SameTargetTwice_ShouldReuseSameTargetId()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1);
 
-        var target2 = Target.Create(TestSource.LocalTest());
+        var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target2);
 
         await AssertRecordCount("target", 1);
@@ -50,10 +50,10 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_SameTargetTwice_ShouldHaveTwoVersions()
     {
-        var target1 = Target.Create(TestSource.LocalTest());
+        var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target1);
 
-        var target2 = Target.Create(TestSource.LocalTest());
+        var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target2);
 
         var result = (await Database.ListTargets()).ToArray();
@@ -63,7 +63,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_OverrideTargetKey_ShouldHaveTwoTargetsEntries()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
         await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "MyCustomKey"));
 
         var result = (await Database.ListTargets()).ToArray();
@@ -76,9 +76,9 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_MultipleSameTarget_ShouldContainSingleControllerRecord()
     {
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
-        await Database.ImportTarget(Target.Create(TestSource.LocalTest()));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
+        await Database.ImportTarget(Target.Create(TestSource.LocalTest(), "TestProject"));
 
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
@@ -105,7 +105,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
         var target = Target.Create(TestSource.Custom(c =>
         {
             c.DataTypes.Add(new DataType("TestType") { Description = "This is a test" });
-        }));
+        }), "TestProject");
 
         await Database.ImportTarget(target);
 
@@ -115,7 +115,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_LocalExampleSource_ShouldReturnValidId()
     {
-        var target = Target.Create(TestSource.LocalExample());
+        var target = Target.Create(TestSource.LocalExample(), "TestProject");
 
         var stopwatch = Stopwatch.StartNew();
         await Database.ImportTarget(target);
@@ -128,7 +128,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_WithMetadata_ShouldPopulateTargetInfoTable()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
         target.Info.Add("TestKey", "TestValue");
 
         await Database.ImportTarget(target);

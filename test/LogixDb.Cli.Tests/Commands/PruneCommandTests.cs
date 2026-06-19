@@ -33,7 +33,7 @@ public class PruneCommandTests : TestDbFixture
     [Test]
     public async Task Prune_ValidTarget_ShouldReturnZero()
     {
-        var target = Target.Create(TestSource.LocalTest());
+        var target = Target.Create(TestSource.LocalTest(), "TestProject");
         await Database.ImportTarget(target);
 
         using var console = new FakeInMemoryConsole();

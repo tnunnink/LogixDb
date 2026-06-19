@@ -10,7 +10,7 @@ public class M20260206Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("target");
+            await AssertTableExists("logix", "target");
 
             await AssertColumnDefinition("target", "target_id", "int");
             await AssertColumnDefinition("target", "target_key", "nvarchar");
@@ -28,7 +28,7 @@ public class M20260206Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("target_version");
+            await AssertTableExists("logix", "target_version");
 
             await AssertColumnDefinition("target_version", "version_id", "int");
             await AssertColumnDefinition("target_version", "target_id", "int");
@@ -58,7 +58,7 @@ public class M20260206Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("target_version_map");
+            await AssertTableExists("logix", "target_version_map");
 
             await AssertColumnDefinition("target_version_map", "version_id", "int");
             await AssertColumnDefinition("target_version_map", "record_id", "bigint");
@@ -77,7 +77,7 @@ public class M20260206Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("target_info");
+            await AssertTableExists("logix", "target_info");
 
             await AssertColumnDefinition("target_info", "property_id", "uniqueidentifier");
             await AssertColumnDefinition("target_info", "version_id", "int");
@@ -97,7 +97,7 @@ public class M20260206Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("target_component");
+            await AssertTableExists("logix", "target_component");
 
             await AssertColumnDefinition("target_component", "component_id", "tinyint");
             await AssertColumnDefinition("target_component", "component_name", "nvarchar");

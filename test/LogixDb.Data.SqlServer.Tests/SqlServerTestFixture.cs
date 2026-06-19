@@ -131,19 +131,32 @@ public abstract class SqlServerTestFixture
     /// <exception cref="AssertionException">Thrown if the specified table is found in the database.</exception>
     protected static async Task AssertTableDoesNotExists(string tableName)
     {
+        await AssertTableDoesNotExists("logix", tableName);
+    }
+
+    /// <summary>
+    /// Verifies that the specified table does not exist in the database by querying the
+    /// INFORMATION_SCHEMA.TABLES view. If the table is found, an exception is thrown.
+    /// </summary>
+    /// <param name="schemaName">The schema where the table is located.</param>
+    /// <param name="tableName">The name of the table to verify non-existence for.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="AssertionException">Thrown if the specified table is found in the database.</exception>
+    protected static async Task AssertTableDoesNotExists(string schemaName, string tableName)
+    {
         await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
 
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
             SELECT 1
             FROM INFORMATION_SCHEMA.TABLES
-            WHERE TABLE_NAME = @tableName
+            WHERE TABLE_SCHEMA = @schemaName AND TABLE_NAME = @tableName
             """,
-            new { tableName }
+            new { schemaName, tableName }
         );
 
         if (result == 1)
-            throw new AssertionException($"Table '{tableName}' was found in the database.");
+            throw new AssertionException($"Table '{schemaName}.{tableName}' was found in the database.");
     }
 
     /// <summary>
@@ -190,18 +203,6 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
-    /// Verifies the existence of a specific function in the database by querying the
-    /// INFORMATION_SCHEMA.ROUTINES view. If the function does not exist, an exception is thrown.
-    /// </summary>
-    /// <param name="functionName">The name of the function to check for existence in the database.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="AssertionException">Thrown if the specified function does not exist in the database.</exception>
-    protected static async Task AssertFunctionExists(string functionName)
-    {
-        await AssertFunctionExists("dbo", functionName);
-    }
-
-    /// <summary>
     /// Verifies the existence of a specific table in the database by querying the
     /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
     /// </summary>
@@ -224,18 +225,6 @@ public abstract class SqlServerTestFixture
 
         if (result < 1)
             throw new AssertionException($"Table '{schemaName}.{tableName}' was not found in the database.");
-    }
-
-    /// <summary>
-    /// Verifies the existence of a specific table in the database by querying the
-    /// INFORMATION_SCHEMA.TABLES view. If the table does not exist, an exception is thrown.
-    /// </summary>
-    /// <param name="tableName">The name of the table to check for existence in the database.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
-    protected static async Task AssertTableExists(string tableName)
-    {
-        await AssertTableExists("dbo", tableName);
     }
 
     /// <summary>

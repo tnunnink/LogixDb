@@ -10,7 +10,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag");
+            await AssertTableExists("logix", "tag");
 
             await AssertColumnDefinition("tag", "tag_id", "bigint");
             await AssertColumnDefinition("tag", "program_name", "nvarchar");
@@ -43,7 +43,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_member");
+            await AssertTableExists("logix", "tag_member");
 
             await AssertColumnDefinition("tag_member", "member_id", "bigint");
             await AssertColumnDefinition("tag_member", "tag_id", "bigint");
@@ -69,7 +69,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_value");
+            await AssertTableExists("logix", "tag_value");
 
             await AssertColumnDefinition("tag_value", "version_id", "int");
             await AssertColumnDefinition("tag_value", "member_id", "bigint");
@@ -87,7 +87,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_member_comment");
+            await AssertTableExists("logix", "tag_member_comment");
 
             await AssertColumnDefinition("tag_member_comment", "tag_id", "bigint");
             await AssertColumnDefinition("tag_member_comment", "member_path", "nvarchar");
@@ -108,7 +108,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_producer");
+            await AssertTableExists("logix", "tag_producer");
 
             await AssertColumnDefinition("tag_producer", "tag_id", "bigint");
             await AssertColumnDefinition("tag_producer", "produce_count", "int");
@@ -130,7 +130,7 @@ public class M20260213Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("tag_consumer");
+            await AssertTableExists("logix", "tag_consumer");
 
             await AssertColumnDefinition("tag_consumer", "tag_id", "bigint");
             await AssertColumnDefinition("tag_consumer", "producer", "nvarchar");

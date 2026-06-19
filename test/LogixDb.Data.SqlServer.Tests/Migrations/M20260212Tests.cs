@@ -10,7 +10,7 @@ public class M20260212Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("aoi");
+            await AssertTableExists("logix", "aoi");
 
             await AssertColumnDefinition("aoi", "aoi_id", "bigint");
             await AssertColumnDefinition("aoi", "aoi_name", "nvarchar");
@@ -48,7 +48,7 @@ public class M20260212Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("aoi_parameter");
+            await AssertTableExists("logix", "aoi_parameter");
 
             await AssertColumnDefinition("aoi_parameter", "parameter_id", "bigint");
             await AssertColumnDefinition("aoi_parameter", "aoi_id", "bigint");

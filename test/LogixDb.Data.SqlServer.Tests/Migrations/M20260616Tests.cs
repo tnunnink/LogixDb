@@ -8,7 +8,7 @@ public class M20260616Tests : SqlServerTestFixture
     {
         await Migrator.Migrate(Connection);
 
-        await AssertFunctionExists("type_tree_at_version");
+        await AssertFunctionExists("logix", "type_tree_at_version");
     }
 
     [Test]
@@ -16,7 +16,7 @@ public class M20260616Tests : SqlServerTestFixture
     {
         await Migrator.Migrate(Connection);
 
-        await AssertFunctionExists("get_latest_version_id");
+        await AssertFunctionExists("logix", "get_latest_version_id");
     }
 
     [Test]
@@ -26,7 +26,7 @@ public class M20260616Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("import");
+            await AssertTableExists("logix", "import");
             await AssertColumnDefinition("import", "import_id", "uniqueidentifier");
             await AssertColumnDefinition("import", "import_status", "nvarchar");
             await AssertColumnDefinition("import", "source_type", "nvarchar");
@@ -35,7 +35,7 @@ public class M20260616Tests : SqlServerTestFixture
             await AssertColumnDefinition("import", "posted_on", "datetime");
             await AssertPrimaryKey("import", "import_id");
 
-            await AssertTableExists("import_log");
+            await AssertTableExists("logix", "import_log");
             await AssertColumnDefinition("import_log", "log_id", "bigint");
             await AssertColumnDefinition("import_log", "import_id", "uniqueidentifier");
             await AssertColumnDefinition("import_log", "timestamp", "datetime");

@@ -10,7 +10,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("controller");
+            await AssertTableExists("logix", "controller");
 
             await AssertColumnDefinition("controller", "controller_id", "bigint");
             await AssertColumnDefinition("controller", "controller_name", "nvarchar");
@@ -59,7 +59,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("data_type");
+            await AssertTableExists("logix", "data_type");
 
             await AssertColumnDefinition("data_type", "type_id", "bigint");
             await AssertColumnDefinition("data_type", "type_name", "nvarchar");
@@ -81,7 +81,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("data_type_member");
+            await AssertTableExists("logix", "data_type_member");
 
             await AssertColumnDefinition("data_type_member", "member_id", "bigint");
             await AssertColumnDefinition("data_type_member", "type_id", "bigint");
@@ -111,7 +111,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("module");
+            await AssertTableExists("logix", "module");
 
             await AssertColumnDefinition("module", "module_id", "bigint");
             await AssertColumnDefinition("module", "module_name", "nvarchar");
@@ -146,7 +146,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("task");
+            await AssertTableExists("logix", "task");
 
             await AssertColumnDefinition("task", "task_id", "bigint");
             await AssertColumnDefinition("task", "task_name", "nvarchar");
@@ -175,7 +175,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("program");
+            await AssertTableExists("logix", "program");
 
             await AssertColumnDefinition("program", "program_id", "bigint");
             await AssertColumnDefinition("program", "program_name", "nvarchar");
@@ -205,7 +205,7 @@ public class M20260211Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("routine");
+            await AssertTableExists("logix", "routine");
 
             await AssertColumnDefinition("routine", "routine_id", "bigint");
             await AssertColumnDefinition("routine", "container_name", "nvarchar");

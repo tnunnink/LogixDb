@@ -1,6 +1,7 @@
 using System.Reflection;
 using DbUp;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Sqlite.Scripts.Migrations;
 
 namespace LogixDb.Data.SqlServer;
 
@@ -25,7 +26,7 @@ public class SqlServerMigrator : IDbMigrator
         var upgrader = DeployChanges.To
             .SqlDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
-            /*.WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())*/
+            .WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())
             .LogToConsole()
             .Build();
 

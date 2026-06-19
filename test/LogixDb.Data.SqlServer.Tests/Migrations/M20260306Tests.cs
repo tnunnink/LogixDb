@@ -10,7 +10,7 @@ public class M20260306Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("rung");
+            await AssertTableExists("logix", "rung");
 
             await AssertColumnDefinition("rung", "rung_id", "bigint");
             await AssertColumnDefinition("rung", "container_name", "nvarchar");
@@ -36,7 +36,7 @@ public class M20260306Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("rung_instruction");
+            await AssertTableExists("logix", "rung_instruction");
 
             await AssertColumnDefinition("rung_instruction", "rung_id", "bigint");
             await AssertColumnDefinition("rung_instruction", "instruction_index", "smallint");
@@ -60,7 +60,7 @@ public class M20260306Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("rung_argument");
+            await AssertTableExists("logix", "rung_argument");
 
             await AssertColumnDefinition("rung_argument", "rung_id", "bigint");
             await AssertColumnDefinition("rung_argument", "instruction_index", "smallint");
@@ -80,7 +80,7 @@ public class M20260306Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("rung_reference");
+            await AssertTableExists("logix", "rung_reference");
 
             await AssertColumnDefinition("rung_reference", "rung_id", "bigint");
             await AssertColumnDefinition("rung_reference", "instruction_index", "smallint");

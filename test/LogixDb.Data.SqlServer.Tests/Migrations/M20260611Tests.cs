@@ -10,7 +10,7 @@ public class M20260611Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("module_connection");
+            await AssertTableExists("logix", "module_connection");
 
             await AssertColumnDefinition("module_connection", "connection_id", "bigint");
             await AssertColumnDefinition("module_connection", "module_id", "bigint");
@@ -45,7 +45,7 @@ public class M20260611Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("module_port");
+            await AssertTableExists("logix", "module_port");
 
             await AssertColumnDefinition("module_port", "port_id", "bigint");
             await AssertColumnDefinition("module_port", "module_id", "bigint");

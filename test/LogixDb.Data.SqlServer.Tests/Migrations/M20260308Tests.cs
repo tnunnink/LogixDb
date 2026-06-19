@@ -12,7 +12,7 @@ public class M20260308Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertTableExists("operand");
+            await AssertTableExists("logix", "operand");
 
             await AssertColumnDefinition("operand", "operand_id", "bigint");
             await AssertColumnDefinition("operand", "instruction_key", "nvarchar");

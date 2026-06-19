@@ -19,24 +19,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagMemberComment.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260308_002_SeedNativeOperands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260308_002_SeedNativeOperands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeTagComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeTagMemberComment.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeTagValue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeTagValue.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602111430_CreateControllerTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602111430_CreateControllerTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602111600_CreateTaskTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602111600_CreateTaskTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602131300_CreateTagProducerTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602131300_CreateTagProducerTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602131330_CreateTagConsumerTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202602131330_CreateTagConsumerTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061100_CreateRungTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061100_CreateRungTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061200_CreateRungInstructionTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061200_CreateRungInstructionTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061300_CreateRungArgumentTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061300_CreateRungArgumentTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061400_CreateRungReferenceTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202603061400_CreateRungReferenceTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202606162100_CreateTraceabilityTables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/Logix_202606162100_CreateTraceabilityTables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/TagValueMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeAoi.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeAoi.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeAoiParameter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeAoiParameter.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeController.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeController.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeDataType.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeDataType.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeDataTypeMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeDataTypeMember.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModule.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModule.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModuleConnection.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModuleConnection.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModulePort.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeModulePort.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeOperand.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeOperand.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeProgram.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeProgram.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRoutine.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRoutine.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRung.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRung.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungArgument.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungArgument.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungInstruction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungInstruction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungReference.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTag.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTag.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagConsumer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagConsumer.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagMember.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagMember.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagMemberComment.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagMemberComment.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagProducer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagProducer.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagValue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTagValue.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTask.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeTask.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostTarget.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostTarget.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostVersion.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,61 +165,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000000000002" />
-      <entry key="S5" value="1.0000052982537704" />
-      <entry key="S10" value="1.017670308875127" />
-      <entry key="S30" value="5.195838321429824" />
-      <entry key="S60" value="17.766195566300254" />
-      <entry key="M2" value="41.80668357489837" />
-      <entry key="M5" value="141.54190256651884" />
-      <entry key="M10" value="289.8176794606667" />
-      <entry key="M15" value="402.5435273703014" />
-      <entry key="M30" value="703.3940227135847" />
-      <entry key="H1" value="1253.8767845924094" />
-      <entry key="H2" value="2146.036617519688" />
-      <entry key="H4" value="3343.8384237428345" />
-      <entry key="D1" value="9200.215001439074" />
-      <entry key="W1" value="18428.085039217603" />
+      <entry key="MS100" value="1.00000000000077" />
+      <entry key="MS500" value="1.0037784231625544" />
+      <entry key="S2" value="1.2479291826845733" />
+      <entry key="S5" value="1.5724414320319022" />
+      <entry key="S10" value="1.7565985937782804" />
+      <entry key="S30" value="1.9131176438179218" />
+      <entry key="S60" value="2.29436633053305" />
+      <entry key="M2" value="7.758696240645017" />
+      <entry key="M5" value="66.14243744421526" />
+      <entry key="M10" value="197.10845671825348" />
+      <entry key="M15" value="311.2071515699297" />
+      <entry key="M30" value="618.4787297548754" />
+      <entry key="H1" value="1175.8560214425024" />
+      <entry key="H2" value="2078.429429323912" />
+      <entry key="H4" value="3291.1624425313244" />
+      <entry key="D1" value="9176.969990126654" />
+      <entry key="W1" value="18422.852833475146" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="8.43416873996048E-239" />
-      <entry key="S5" value="8.269922304519376E-96" />
-      <entry key="S10" value="4.009596745414298E-48" />
-      <entry key="S30" value="2.7810047407932087E-16" />
-      <entry key="S60" value="3.130207352585925E-8" />
-      <entry key="M2" value="3.9022293494640964E-4" />
-      <entry key="M5" value="0.2006583191413163" />
-      <entry key="M10" value="2.6981969052253407" />
-      <entry key="M15" value="7.507609931090211" />
-      <entry key="M30" value="26.66907789367146" />
-      <entry key="H1" value="66.91624259200532" />
-      <entry key="H2" value="132.08432273835868" />
-      <entry key="H4" value="209.84780408280662" />
-      <entry key="D1" value="522.4530064193414" />
-      <entry key="W1" value="1417.1305188899141" />
+      <entry key="S2" value="2.3686724735034588E-290" />
+      <entry key="S5" value="1.981009327570379E-116" />
+      <entry key="S10" value="1.962425788270102E-58" />
+      <entry key="S30" value="1.0172614286057188E-19" />
+      <entry key="S60" value="5.986714277757458E-10" />
+      <entry key="M2" value="5.396603406145954E-5" />
+      <entry key="M5" value="0.09094529893581813" />
+      <entry key="M10" value="1.8164990800344936" />
+      <entry key="M15" value="5.766904086518618" />
+      <entry key="M30" value="23.373756424277005" />
+      <entry key="H1" value="62.64577755146465" />
+      <entry key="H2" value="127.80016137924237" />
+      <entry key="H4" value="206.41653962066354" />
+      <entry key="D1" value="521.0194187054362" />
+      <entry key="W1" value="1416.5743583925437" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9526379980439373" />
-      <entry key="MS500" value="0.9903428719330246" />
-      <entry key="S2" value="0.9975769252644546" />
-      <entry key="S5" value="0.9990353601117851" />
-      <entry key="S10" value="1.017180555983094" />
-      <entry key="S30" value="5.195304862741013" />
-      <entry key="S60" value="17.76537043245787" />
-      <entry key="M2" value="41.80608271612314" />
-      <entry key="M5" value="141.73848315687528" />
-      <entry key="M10" value="292.50382222770287" />
-      <entry key="M15" value="410.033546756046" />
-      <entry key="M30" value="730.0382828541768" />
-      <entry key="H1" value="1320.7651624052805" />
-      <entry key="H2" value="2278.094329426519" />
-      <entry key="H4" value="3553.6650258485506" />
-      <entry key="D1" value="9722.658527132338" />
-      <entry key="W1" value="19845.211090057503" />
+      <entry key="MS100" value="0.8766057213160351" />
+      <entry key="MS500" value="0.9745954956350138" />
+      <entry key="S2" value="1.1493699312065915" />
+      <entry key="S5" value="1.4728967822715642" />
+      <entry key="S10" value="1.6882687447708442" />
+      <entry key="S30" value="1.8849398272683024" />
+      <entry key="S60" value="2.279489458388435" />
+      <entry key="M2" value="7.750981483787794" />
+      <entry key="M5" value="66.22843257902905" />
+      <entry key="M10" value="198.91528131642724" />
+      <entry key="M15" value="316.9595022407731" />
+      <entry key="M30" value="641.8302133659438" />
+      <entry key="H1" value="1238.4754514457918" />
+      <entry key="H2" value="2206.203712414421" />
+      <entry key="H4" value="3497.558061547824" />
+      <entry key="D1" value="9697.979943234523" />
+      <entry key="W1" value="19839.42272401597" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -405,23 +411,7 @@
       <workItem from="1781199999831" duration="86890000" />
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
-      <workItem from="1781898046481" duration="3943000" />
-    </task>
-    <task id="LOCAL-00363" summary="Bump project version to 0.14.0 in service and CLI.">
-      <option name="closed" value="true" />
-      <created>1781434086717</created>
-      <option name="number" value="00363" />
-      <option name="presentableId" value="LOCAL-00363" />
-      <option name="project" value="LOCAL" />
-      <updated>1781434086717</updated>
-    </task>
-    <task id="LOCAL-00364" summary="Update `.idea` workspace configuration and clean up redundant task entries for improved clarity.">
-      <option name="closed" value="true" />
-      <created>1781462167160</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1781462167160</updated>
+      <workItem from="1781898046481" duration="4548000" />
     </task>
     <task id="LOCAL-00365" summary="Refactor `rung` table migration: remove unique index from `container_name`, `routine_name`, and `rung_number`, update tests, and improve `tag_concat` function handling null/empty `MemberPath`.">
       <option name="closed" value="true" />
@@ -799,7 +789,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781900226144</updated>
     </task>
-    <option name="localTasksCounter" value="412" />
+    <task id="LOCAL-00412" summary="Standardize SQL scripts and migrations: format index definitions, replace `REAL` data type with `NUMERIC`, adjust table and column references, and update associated tests and workflows.">
+      <option name="closed" value="true" />
+      <created>1781901995759</created>
+      <option name="number" value="00412" />
+      <option name="presentableId" value="LOCAL-00412" />
+      <option name="project" value="LOCAL" />
+      <updated>1781901995759</updated>
+    </task>
+    <task id="LOCAL-00413" summary="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`.">
+      <option name="closed" value="true" />
+      <created>1781902064603</created>
+      <option name="number" value="00413" />
+      <option name="presentableId" value="LOCAL-00413" />
+      <option name="project" value="LOCAL" />
+      <updated>1781902064603</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -827,8 +833,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `ComponentOptions.Qa` value and standardize `MigrationTag.Qa` usage in migration tags" />
-    <MESSAGE value="Refactor service configuration: Replace `SourceInfo` with `Import`, update traceId to use `ImportId`, and add reference to `LogixDb.Data`." />
     <MESSAGE value="Update `.idea` workspace configuration: include new file references, adjust highlighting settings, and add project folders to tests setup." />
     <MESSAGE value="Add unit tests for `M202606162100CreateTraceabilityTables` migration in SQL Server and SQLite contexts" />
     <MESSAGE value="Make `Enum.Parse&lt;FileType&gt;` case-insensitive in file type resolution" />
@@ -852,7 +856,9 @@
     <MESSAGE value="Remove QA framework: delete `qa` schema, related types, tables, procedures, functions, views, and associated FluentMigrator migrations." />
     <MESSAGE value="Refactor database interactions: replace `Database` references with `Manager` or `Migrator`, remove outdated migration project, and adjust tests for SQL Server to reflect updated workflows." />
     <MESSAGE value="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script." />
+    <MESSAGE value="Standardize SQL scripts and migrations: format index definitions, replace `REAL` data type with `NUMERIC`, adjust table and column references, and update associated tests and workflows." />
+    <MESSAGE value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

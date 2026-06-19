@@ -1,4 +1,4 @@
-MERGE INTO dbo.data_type AS target
+MERGE INTO logix.data_type AS target
 USING #temp_data_type AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -15,8 +15,8 @@ WHEN NOT MATCHED THEN
             source.content_hash,
             source.record_hash);
 
-INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
+INSERT INTO logix.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT type_id FROM dbo.data_type WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.target_component WHERE component_name = 'data_type')
+       (SELECT type_id FROM logix.data_type WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM logix.target_component WHERE component_name = 'data_type')
 FROM #temp_data_type t;

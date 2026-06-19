@@ -1,6 +1,6 @@
 IF NOT EXISTS (SELECT 1
-               FROM dbo.target
+               FROM logix.target
                WHERE target_key = @TargetKey)
     BEGIN
-        INSERT INTO dbo.target (target_key) VALUES (@TargetKey)
+        INSERT INTO logix.target (target_key) VALUES (@TargetKey)
     END

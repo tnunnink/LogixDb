@@ -1,6 +1,6 @@
-MERGE INTO dbo.rung_instruction AS target
+MERGE INTO logix.rung_instruction AS target
 USING #temp_rung_instruction AS source
-ON target.rung_id = (SELECT rung_id FROM dbo.rung WHERE record_hash = source.rung_hash)
+ON target.rung_id = (SELECT rung_id FROM logix.rung WHERE record_hash = source.rung_hash)
     AND target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT
@@ -15,7 +15,7 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (
-        (SELECT rung_id FROM dbo.rung WHERE record_hash = source.rung_hash),
+        (SELECT rung_id FROM logix.rung WHERE record_hash = source.rung_hash),
         source.instruction_index,
         source.instruction_text,
         source.instruction_key,

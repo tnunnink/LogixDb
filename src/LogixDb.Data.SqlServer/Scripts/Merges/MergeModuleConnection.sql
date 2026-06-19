@@ -1,8 +1,8 @@
-MERGE INTO dbo.module_connection AS target
+MERGE INTO logix.module_connection AS target
 USING #temp_module_connection AS source
 ON target.module_id = (SELECT
                            module_id
-                       FROM dbo.module
+                       FROM logix.module
                        WHERE record_hash = source.module_hash
                        )
     AND target.record_hash = source.record_hash
@@ -31,7 +31,7 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (
-        (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash),
+        (SELECT module_id FROM logix.module WHERE record_hash = source.module_hash),
         source.connection_name,
         source.rpi,
         source.connection_type,

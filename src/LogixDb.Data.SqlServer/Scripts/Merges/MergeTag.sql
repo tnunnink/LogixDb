@@ -1,4 +1,4 @@
-MERGE INTO dbo.tag AS target
+MERGE INTO logix.tag AS target
 USING #temp_tag AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -31,8 +31,8 @@ WHEN NOT MATCHED THEN
             source.content_hash,
             source.record_hash);
 
-INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
+INSERT INTO logix.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT tag_id FROM dbo.tag WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.target_component WHERE component_name = 'tag')
+       (SELECT tag_id FROM logix.tag WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM logix.target_component WHERE component_name = 'tag')
 FROM #temp_tag t;

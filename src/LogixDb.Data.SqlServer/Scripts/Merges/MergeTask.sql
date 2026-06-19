@@ -1,4 +1,4 @@
-MERGE INTO dbo.task AS target
+MERGE INTO logix.task AS target
 USING #temp_task AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -27,8 +27,8 @@ WHEN NOT MATCHED THEN
             source.enable_timeout,
             source.record_hash);
 
-INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
+INSERT INTO logix.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT task_id FROM dbo.task WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.target_component WHERE component_name = 'task')
+       (SELECT task_id FROM logix.task WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM logix.target_component WHERE component_name = 'task')
 FROM #temp_task t;

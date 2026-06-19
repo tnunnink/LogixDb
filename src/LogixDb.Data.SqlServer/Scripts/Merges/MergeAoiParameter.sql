@@ -1,6 +1,6 @@
-MERGE INTO dbo.aoi_parameter AS target
+MERGE INTO logix.aoi_parameter AS target
 USING #temp_aoi_parameter AS source
-ON target.aoi_id = (SELECT aoi_id FROM dbo.aoi WHERE record_hash = source.aoi_hash)
+ON target.aoi_id = (SELECT aoi_id FROM logix.aoi WHERE record_hash = source.aoi_hash)
     AND target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT (aoi_id,
@@ -18,7 +18,7 @@ WHEN NOT MATCHED THEN
             is_required,
             is_constant,
             record_hash)
-    VALUES ((SELECT aoi_id FROM dbo.aoi WHERE record_hash = source.aoi_hash),
+    VALUES ((SELECT aoi_id FROM logix.aoi WHERE record_hash = source.aoi_hash),
             source.parameter_name,
             source.parameter_description,
             source.data_type,

@@ -1,7 +1,7 @@
-DECLARE @TargetId INT = (SELECT target_id FROM dbo.target WHERE target_key = @TargetKey);
-DECLARE @NextVersionNumber INT = (SELECT COALESCE(MAX(version_number), 0) + 1 FROM dbo.target_version WHERE target_id = @TargetId);
+DECLARE @TargetId INT = (SELECT target_id FROM logix.target WHERE target_key = @TargetKey);
+DECLARE @NextVersionNumber INT = (SELECT COALESCE(MAX(version_number), 0) + 1 FROM logix.target_version WHERE target_id = @TargetId);
 
-INSERT INTO dbo.target_version
+INSERT INTO logix.target_version
 (
     target_id,
     version_number,

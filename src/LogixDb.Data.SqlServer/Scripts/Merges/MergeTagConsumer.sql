@@ -1,4 +1,4 @@
-MERGE INTO dbo.tag_consumer AS target
+MERGE INTO logix.tag_consumer AS target
 USING #temp_tag_consumer AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -9,7 +9,7 @@ WHEN NOT MATCHED THEN
             rpi,
             unicast,
             record_hash)
-    VALUES ((SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_hash),
+    VALUES ((SELECT tag_id FROM logix.tag WHERE record_hash = source.tag_hash),
             source.producer,
             source.remote_tag,
             source.remote_instance,

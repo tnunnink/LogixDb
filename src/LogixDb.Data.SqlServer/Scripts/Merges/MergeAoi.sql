@@ -1,4 +1,4 @@
-MERGE INTO dbo.aoi AS target
+MERGE INTO logix.aoi AS target
 USING #temp_aoi AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -45,8 +45,8 @@ WHEN NOT MATCHED THEN
             source.content_hash,
             source.record_hash);
 
-INSERT INTO dbo.target_version_map (version_id, record_id, component_id)
+INSERT INTO logix.target_version_map (version_id, record_id, component_id)
 SELECT @VersionId,
-       (SELECT aoi_id FROM dbo.aoi WHERE record_hash = t.record_hash),
-       (SELECT component_id FROM dbo.target_component WHERE component_name = 'aoi')
+       (SELECT aoi_id FROM logix.aoi WHERE record_hash = t.record_hash),
+       (SELECT component_id FROM logix.target_component WHERE component_name = 'aoi')
 FROM #temp_aoi t;

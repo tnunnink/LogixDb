@@ -1,4 +1,4 @@
-MERGE INTO dbo.routine AS target
+MERGE INTO logix.routine AS target
 USING #temp_routine AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -21,7 +21,7 @@ WHEN NOT MATCHED THEN
             source.record_hash
         );
 
-INSERT INTO dbo.target_version_map
+INSERT INTO logix.target_version_map
 (
     version_id,
     record_id,
@@ -29,6 +29,6 @@ INSERT INTO dbo.target_version_map
 )
 SELECT
     @VersionId,
-    (SELECT routine_id FROM dbo.routine WHERE record_hash = t.record_hash),
-    (SELECT component_id FROM dbo.target_component WHERE component_name = 'routine')
+    (SELECT routine_id FROM logix.routine WHERE record_hash = t.record_hash),
+    (SELECT component_id FROM logix.target_component WHERE component_name = 'routine')
 FROM #temp_routine t;

@@ -1,8 +1,8 @@
-INSERT INTO dbo.tag_value (version_id, member_id, tag_value)
+INSERT INTO logix.tag_value (version_id, member_id, tag_value)
 SELECT
     @VersionId,
     tm.member_id,
     t.tag_value
 FROM #temp_tag_value t
-     JOIN dbo.tag tg ON tg.record_hash = t.tag_hash
-     JOIN dbo.tag_member tm ON tm.tag_id = tg.tag_id AND tm.member_path = t.member_path;
+     JOIN logix.tag tg ON tg.record_hash = t.tag_hash
+     JOIN logix.tag_member tm ON tm.tag_id = tg.tag_id AND tm.member_path = t.member_path;

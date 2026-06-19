@@ -1,6 +1,6 @@
-MERGE INTO dbo.module_port AS target
+MERGE INTO logix.module_port AS target
 USING #temp_module_port AS source
-ON target.module_id = (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash)
+ON target.module_id = (SELECT module_id FROM logix.module WHERE record_hash = source.module_hash)
     AND target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
     INSERT
@@ -15,7 +15,7 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (
-        (SELECT module_id FROM dbo.module WHERE record_hash = source.module_hash),
+        (SELECT module_id FROM logix.module WHERE record_hash = source.module_hash),
         source.port_number,
         source.port_type,
         source.address,

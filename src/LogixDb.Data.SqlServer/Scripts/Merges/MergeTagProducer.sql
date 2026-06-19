@@ -1,4 +1,4 @@
-MERGE INTO dbo.tag_producer AS target
+MERGE INTO logix.tag_producer AS target
 USING #temp_tag_producer AS source
 ON target.record_hash = source.record_hash
 WHEN NOT MATCHED THEN
@@ -10,7 +10,7 @@ WHEN NOT MATCHED THEN
             minimum_rpi,
             default_rpi,
             record_hash)
-    VALUES ((SELECT tag_id FROM dbo.tag WHERE record_hash = source.tag_hash),
+    VALUES ((SELECT tag_id FROM logix.tag WHERE record_hash = source.tag_hash),
             source.produce_count,
             source.send_event_trigger,
             source.unicast_permitted,

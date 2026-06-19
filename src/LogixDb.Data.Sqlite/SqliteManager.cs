@@ -1,8 +1,11 @@
 ﻿using System.Data;
+using System.Reflection;
 using Dapper;
+using DbUp;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Initialization;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Sqlite.Scripts.Migrations;
 using LogixDb.Migrations;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,12 +41,20 @@ public sealed class SqliteManager : IDbManager
     }
 
     /// <inheritdoc />
-    public async Task Migrate(ComponentOptions options = ComponentOptions.All,
-        CancellationToken token = default)
+    public async Task Migrate(CancellationToken token = default)
     {
-        await using var provider = BuildMigrationProvider(_connectionInfo.ToConnectionString(), options);
-        var runner = provider.GetRequiredService<IMigrationRunner>();
-        runner.MigrateUp();
+        var connectionString = _connectionInfo.ToConnectionString();
+        
+        var upgrader = DeployChanges.To
+            .SqliteDatabase(connectionString)
+            .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
+            .WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())
+            .LogToConsole()
+            .Build();
+        
+        var result = upgrader.PerformUpgrade();
+        //todo handle result.
+        
         await ConfigureDatabase(token);
     }
 
@@ -162,7 +173,7 @@ public sealed class SqliteManager : IDbManager
         return ExecuteSqliteScriptAsync(SqliteScript.PostLog, new
         {
             log.ImportId,
-            LogSeverity =log.LogSeverity.ToString(),
+            LogSeverity = log.LogSeverity.ToString(),
             log.LogMessage,
             log.LogException
         }, token);
@@ -300,6 +311,13 @@ public sealed class SqliteManager : IDbManager
     /// <returns>A configured <see cref="ServiceProvider"/> instance to execute migrations.</returns>
     private static ServiceProvider BuildMigrationProvider(string connectionString, ComponentOptions options)
     {
+        var upgrader = DeployChanges.To
+            .SqliteDatabase(connectionString)
+            .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
+            .WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())
+            .LogToConsole()
+            .Build();
+
         var services = new ServiceCollection();
 
         services.AddFluentMigratorCore()

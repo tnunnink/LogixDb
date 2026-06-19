@@ -1,0 +1,40 @@
+CREATE TABLE controller
+(
+    controller_id               INTEGER PRIMARY KEY AUTOINCREMENT,
+    controller_name             TEXT     NOT NULL,
+    controller_description      TEXT     NULL,
+    catalog_number              TEXT     NULL,
+    revision                    TEXT     NULL,
+    project_creation_date       DATETIME NULL,
+    communication_path          TEXT     NULL,
+    sfc_execution_control       TEXT     NULL,
+    sfc_restart_position        TEXT     NULL,
+    sfc_last_scan               TEXT     NULL,
+    project_serial_number       TEXT     NULL,
+    match_project_to_controller INTEGER  NULL,
+    inhibit_firmware_updates    INTEGER  NULL,
+    allow_rfi_from_producer     INTEGER  NULL,
+    pass_through_option         TEXT     NULL,
+    download_documentation      INTEGER  NULL,
+    download_properties         INTEGER  NULL,
+    ethernet_ip_mode            TEXT     NULL,
+    redundancy_enabled          INTEGER  NULL,
+    keep_test_edits_on_switch   INTEGER  NULL,
+    io_memory_pad_percent       REAL     NULL,
+    data_table_pad_percent      REAL     NULL,
+    safety_signature            TEXT     NULL,
+    safety_lock_password        TEXT     NULL,
+    safety_unlock_password      TEXT     NULL,
+    configure_safety_io_always  INTEGER  NULL,
+    signature_run_mode_protect  INTEGER  NULL,
+    security_code               INTEGER  NULL,
+    security_authority_id       TEXT     NULL,
+    security_authority_uri      TEXT     NULL,
+    permission_set              TEXT     NULL,
+    changed_to_detect           TEXT     NULL,
+    trusted_slots               TEXT     NULL,
+    record_hash                 TEXT     NOT NULL
+);
+
+CREATE UNIQUE INDEX IX_controller_record_hash ON controller (record_hash ASC);
+CREATE INDEX IX_controller_controller_name ON controller (controller_name ASC);

@@ -19,11 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_002_CreateLogixSchema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260206_001_CreateTargetTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260206_001_CreateTargetTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/AddLogixDbTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/AddLogixDbTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_003_ConfigurePermissions.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260226_001_SqlServerConfigureServiceAccount.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,61 +143,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.217988805334791" />
-      <entry key="MS500" value="4.7076202949493915" />
-      <entry key="S2" value="18.13320820366288" />
-      <entry key="S5" value="39.6774502884355" />
-      <entry key="S10" value="63.959194239663304" />
-      <entry key="S30" value="99.43716450498769" />
-      <entry key="S60" value="113.21424835517189" />
-      <entry key="M2" value="121.27873912691311" />
-      <entry key="M5" value="133.7800659471811" />
-      <entry key="M10" value="176.52825986801466" />
-      <entry key="M15" value="242.18967574907586" />
-      <entry key="M30" value="491.513541503003" />
-      <entry key="H1" value="1026.3904017133834" />
-      <entry key="H2" value="1953.6130508788199" />
-      <entry key="H4" value="3235.680104838655" />
-      <entry key="D1" value="9284.67442952616" />
-      <entry key="W1" value="18636.216483126726" />
+      <entry key="MS100" value="1.044891823919795" />
+      <entry key="MS500" value="3.117468968953896" />
+      <entry key="S2" value="11.01183811482646" />
+      <entry key="S5" value="24.313540168304375" />
+      <entry key="S10" value="35.59668598966359" />
+      <entry key="S30" value="56.24607491244193" />
+      <entry key="S60" value="99.02337907001424" />
+      <entry key="M2" value="187.405366272349" />
+      <entry key="M5" value="366.5196036195522" />
+      <entry key="M10" value="519.0509967152936" />
+      <entry key="M15" value="624.5269818799882" />
+      <entry key="M30" value="906.9236633822953" />
+      <entry key="H1" value="1454.8462973895837" />
+      <entry key="H2" value="2398.538737929434" />
+      <entry key="H4" value="3709.2631210538125" />
+      <entry key="D1" value="9823.143967976703" />
+      <entry key="W1" value="19215.149024508562" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="1.2871098206562418E-237" />
-      <entry key="S10" value="5.002162361805063E-119" />
-      <entry key="S30" value="6.449916489663101E-40" />
-      <entry key="S60" value="4.767045404369957E-20" />
-      <entry key="M2" value="4.815605276282803E-10" />
-      <entry key="M5" value="8.689452353344881E-4" />
-      <entry key="M10" value="0.17755841433221572" />
-      <entry key="M15" value="1.2237145172228423" />
-      <entry key="M30" value="10.767061802290348" />
-      <entry key="H1" value="42.518325265420124" />
-      <entry key="H2" value="105.28671488270594" />
-      <entry key="H4" value="187.3551259651121" />
-      <entry key="D1" value="512.6733681958815" />
-      <entry key="W1" value="1413.3102133443615" />
+      <entry key="S5" value="2.0515288243045368E-282" />
+      <entry key="S10" value="1.9970493346956912E-141" />
+      <entry key="S30" value="2.2044373540998225E-47" />
+      <entry key="S60" value="8.812946290703144E-24" />
+      <entry key="M2" value="6.54767024230502E-12" />
+      <entry key="M5" value="1.557280240826285E-4" />
+      <entry key="M10" value="0.07516721185395776" />
+      <entry key="M15" value="0.6899297959613229" />
+      <entry key="M30" value="8.084619790181682" />
+      <entry key="H1" value="36.84320030483758" />
+      <entry key="H2" value="98.00859734810271" />
+      <entry key="H4" value="180.76355716794902" />
+      <entry key="D1" value="509.6221639895577" />
+      <entry key="W1" value="1412.1055092330973" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.1784686922659762" />
-      <entry key="MS500" value="4.682449296476686" />
-      <entry key="S2" value="18.11069879676756" />
-      <entry key="S5" value="39.65764823880475" />
-      <entry key="S10" value="63.942969456850484" />
-      <entry key="S30" value="99.42859217443595" />
-      <entry key="S60" value="113.20933941728728" />
-      <entry key="M2" value="121.27609938874049" />
-      <entry key="M5" value="133.77958975010242" />
-      <entry key="M10" value="176.7037833328814" />
-      <entry key="M15" value="243.40930222589952" />
-      <entry key="M30" value="502.26960016999874" />
-      <entry key="H1" value="1068.8903801009808" />
-      <entry key="H2" value="2058.878185153126" />
-      <entry key="H4" value="3423.0161035364877" />
-      <entry key="D1" value="9797.33845946523" />
-      <entry key="W1" value="20049.5222354148" />
+      <entry key="MS100" value="1.009741477505845" />
+      <entry key="MS500" value="3.0998913697359396" />
+      <entry key="S2" value="10.997322692459356" />
+      <entry key="S5" value="24.30092764096672" />
+      <entry key="S10" value="35.587506523104416" />
+      <entry key="S30" value="56.241266506523885" />
+      <entry key="S60" value="99.01913623527265" />
+      <entry key="M2" value="187.40129085607032" />
+      <entry key="M5" value="366.51647811342303" />
+      <entry key="M10" value="519.123314427287" />
+      <entry key="M15" value="625.2131471533978" />
+      <entry key="M30" value="914.9992145720634" />
+      <entry key="H1" value="1491.6731750139406" />
+      <entry key="H2" value="2496.527028535146" />
+      <entry key="H4" value="3890.0081134914276" />
+      <entry key="D1" value="10332.756830683144" />
+      <entry key="W1" value="20627.25007382527" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -392,15 +389,7 @@
       <workItem from="1781199999831" duration="86890000" />
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
-      <workItem from="1781898046481" duration="6326000" />
-    </task>
-    <task id="LOCAL-00369" summary="Update migration tags for `type_tree_for` function to use `MigrationTag.DataType`.">
-      <option name="closed" value="true" />
-      <created>1781616278859</created>
-      <option name="number" value="00369" />
-      <option name="presentableId" value="LOCAL-00369" />
-      <option name="project" value="LOCAL" />
-      <updated>1781616278859</updated>
+      <workItem from="1781898046481" duration="6976000" />
     </task>
     <task id="LOCAL-00370" summary="Fix incorrect `ModuleConnectionMap` column mapping for `OutputTag` and add `config_tag` mapping in `ModuleMap`.">
       <option name="closed" value="true" />
@@ -786,7 +775,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781903664265</updated>
     </task>
-    <option name="localTasksCounter" value="418" />
+    <task id="LOCAL-00418" summary="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic.">
+      <option name="closed" value="true" />
+      <created>1781904381032</created>
+      <option name="number" value="00418" />
+      <option name="presentableId" value="LOCAL-00418" />
+      <option name="project" value="LOCAL" />
+      <updated>1781904381032</updated>
+    </task>
+    <option name="localTasksCounter" value="419" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -814,7 +811,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add unit tests for `PutImport` and `LogImport` methods in SQL Server and SQLite implementations, and enhance `PutImport` to include additional import properties." />
     <MESSAGE value="Update `PutImport` and `LogImport` in SQL Server and SQLite managers to map enums to strings and include additional properties" />
     <MESSAGE value="Bump version to 0.15.0 for Service and CLI projects" />
     <MESSAGE value="Update `LogImport` methods to use `PostLog` script and allow nullable `log_exception` in `import_log` table" />
@@ -839,7 +835,8 @@
     <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
     <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
     <MESSAGE value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
+    <MESSAGE value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

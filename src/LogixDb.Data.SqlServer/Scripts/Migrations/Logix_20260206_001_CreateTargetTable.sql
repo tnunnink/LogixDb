@@ -1,8 +1,3 @@
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'logix')
-BEGIN
-    EXEC('CREATE SCHEMA [logix]')
-END
-
 CREATE TABLE [logix].[target]
 (
     [target_id]  INT IDENTITY (1, 1) NOT NULL,

@@ -19,9 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbImportTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbImportTargetTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_002_CreateLogixSchema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260206_001_CreateTargetTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260206_001_CreateTargetTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/TargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/AddLogixDbTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/Common/AddLogixDbTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,61 +146,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0036700107391172" />
-      <entry key="MS500" value="1.3258402196280412" />
-      <entry key="S2" value="1.8943024977835754" />
-      <entry key="S5" value="2.57979975188202" />
-      <entry key="S10" value="3.1161002017957493" />
-      <entry key="S30" value="3.751605195215542" />
-      <entry key="S60" value="6.988306098780747" />
-      <entry key="M2" value="23.082776100383064" />
-      <entry key="M5" value="67.41062865190003" />
-      <entry key="M10" value="145.84170996866098" />
-      <entry key="M15" value="236.73169137301005" />
-      <entry key="M30" value="523.1817878430325" />
-      <entry key="H1" value="1077.8071241651335" />
-      <entry key="H2" value="1999.4781893345983" />
-      <entry key="H4" value="3251.929546831129" />
-      <entry key="D1" value="9225.129044372725" />
-      <entry key="W1" value="18526.494145086508" />
+      <entry key="MS100" value="1.217988805334791" />
+      <entry key="MS500" value="4.7076202949493915" />
+      <entry key="S2" value="18.13320820366288" />
+      <entry key="S5" value="39.6774502884355" />
+      <entry key="S10" value="63.959194239663304" />
+      <entry key="S30" value="99.43716450498769" />
+      <entry key="S60" value="113.21424835517189" />
+      <entry key="M2" value="121.27873912691311" />
+      <entry key="M5" value="133.7800659471811" />
+      <entry key="M10" value="176.52825986801466" />
+      <entry key="M15" value="242.18967574907586" />
+      <entry key="M30" value="491.513541503003" />
+      <entry key="H1" value="1026.3904017133834" />
+      <entry key="H2" value="1953.6130508788199" />
+      <entry key="H4" value="3235.680104838655" />
+      <entry key="D1" value="9284.67442952616" />
+      <entry key="W1" value="18636.216483126726" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="4.301481836856376E-180" />
-      <entry key="S10" value="2.8917385777238135E-90" />
-      <entry key="S30" value="2.4939505605261234E-30" />
-      <entry key="S60" value="2.964259105309559E-15" />
-      <entry key="M2" value="1.200837712900675E-7" />
-      <entry key="M5" value="0.007901795412004238" />
-      <entry key="M10" value="0.5354364657463565" />
-      <entry key="M15" value="2.5542176629960327" />
-      <entry key="M30" value="15.555576167011807" />
-      <entry key="H1" value="51.10584787397193" />
-      <entry key="H2" value="115.43055908344468" />
-      <entry key="H4" value="196.17298105748296" />
-      <entry key="D1" value="516.618189505824" />
-      <entry key="W1" value="1414.8586673403615" />
+      <entry key="S5" value="1.2871098206562418E-237" />
+      <entry key="S10" value="5.002162361805063E-119" />
+      <entry key="S30" value="6.449916489663101E-40" />
+      <entry key="S60" value="4.767045404369957E-20" />
+      <entry key="M2" value="4.815605276282803E-10" />
+      <entry key="M5" value="8.689452353344881E-4" />
+      <entry key="M10" value="0.17755841433221572" />
+      <entry key="M15" value="1.2237145172228423" />
+      <entry key="M30" value="10.767061802290348" />
+      <entry key="H1" value="42.518325265420124" />
+      <entry key="H2" value="105.28671488270594" />
+      <entry key="H4" value="187.3551259651121" />
+      <entry key="D1" value="512.6733681958815" />
+      <entry key="W1" value="1413.3102133443615" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9046985211900906" />
-      <entry key="MS500" value="1.3012203315231907" />
-      <entry key="S2" value="1.8862717600974068" />
-      <entry key="S5" value="2.575619318973131" />
-      <entry key="S10" value="3.113623605867585" />
-      <entry key="S30" value="3.750640483441151" />
-      <entry key="S60" value="6.987638678674346" />
-      <entry key="M2" value="23.081704744209308" />
-      <entry key="M5" value="67.41631336520386" />
-      <entry key="M10" value="146.37269521005643" />
-      <entry key="M15" value="239.27815772081433" />
-      <entry key="M30" value="538.7217391812808" />
-      <entry key="H1" value="1128.8910329505252" />
-      <entry key="H2" value="2114.8851403854082" />
-      <entry key="H4" value="3448.0825251292977" />
-      <entry key="D1" value="9741.737827736462" />
-      <entry key="W1" value="19941.348347046285" />
+      <entry key="MS100" value="1.1784686922659762" />
+      <entry key="MS500" value="4.682449296476686" />
+      <entry key="S2" value="18.11069879676756" />
+      <entry key="S5" value="39.65764823880475" />
+      <entry key="S10" value="63.942969456850484" />
+      <entry key="S30" value="99.42859217443595" />
+      <entry key="S60" value="113.20933941728728" />
+      <entry key="M2" value="121.27609938874049" />
+      <entry key="M5" value="133.77958975010242" />
+      <entry key="M10" value="176.7037833328814" />
+      <entry key="M15" value="243.40930222589952" />
+      <entry key="M30" value="502.26960016999874" />
+      <entry key="H1" value="1068.8903801009808" />
+      <entry key="H2" value="2058.878185153126" />
+      <entry key="H4" value="3423.0161035364877" />
+      <entry key="D1" value="9797.33845946523" />
+      <entry key="W1" value="20049.5222354148" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -390,23 +392,7 @@
       <workItem from="1781199999831" duration="86890000" />
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
-      <workItem from="1781898046481" duration="5488000" />
-    </task>
-    <task id="LOCAL-00367" summary="Add `type_tree_for` function: resolve recursive type hierarchies in `data_types_for`. Include migration and unit test.">
-      <option name="closed" value="true" />
-      <created>1781616179236</created>
-      <option name="number" value="00367" />
-      <option name="presentableId" value="LOCAL-00367" />
-      <option name="project" value="LOCAL" />
-      <updated>1781616179237</updated>
-    </task>
-    <task id="LOCAL-00368" summary="Bump project version to 0.14.1 in service and CLI.">
-      <option name="closed" value="true" />
-      <created>1781616216294</created>
-      <option name="number" value="00368" />
-      <option name="presentableId" value="LOCAL-00368" />
-      <option name="project" value="LOCAL" />
-      <updated>1781616216294</updated>
+      <workItem from="1781898046481" duration="6326000" />
     </task>
     <task id="LOCAL-00369" summary="Update migration tags for `type_tree_for` function to use `MigrationTag.DataType`.">
       <option name="closed" value="true" />
@@ -784,7 +770,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781903236931</updated>
     </task>
-    <option name="localTasksCounter" value="416" />
+    <task id="LOCAL-00416" summary="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors.">
+      <option name="closed" value="true" />
+      <created>1781903544616</created>
+      <option name="number" value="00416" />
+      <option name="presentableId" value="LOCAL-00416" />
+      <option name="project" value="LOCAL" />
+      <updated>1781903544616</updated>
+    </task>
+    <task id="LOCAL-00417" summary="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor.">
+      <option name="closed" value="true" />
+      <created>1781903664265</created>
+      <option name="number" value="00417" />
+      <option name="presentableId" value="LOCAL-00417" />
+      <option name="project" value="LOCAL" />
+      <updated>1781903664265</updated>
+    </task>
+    <option name="localTasksCounter" value="418" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -812,8 +814,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Make `Enum.Parse&lt;FileType&gt;` case-insensitive in file type resolution" />
-    <MESSAGE value="Add unit tests for `Import` creation, file type detection, metadata population, and logging methods." />
     <MESSAGE value="Add unit tests for `PutImport` and `LogImport` methods in SQL Server and SQLite implementations, and enhance `PutImport` to include additional import properties." />
     <MESSAGE value="Update `PutImport` and `LogImport` in SQL Server and SQLite managers to map enums to strings and include additional properties" />
     <MESSAGE value="Bump version to 0.15.0 for Service and CLI projects" />
@@ -837,7 +837,9 @@
     <MESSAGE value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
     <MESSAGE value="Refactor SQL scripts: replace `dbo` schema references with `logix` for consistency across merge scripts." />
     <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
+    <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
+    <MESSAGE value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

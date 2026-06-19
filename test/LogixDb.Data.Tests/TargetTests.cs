@@ -39,7 +39,7 @@ public class TargetTests
         var target = Target.Create(source, "TestProject");
 
         target.Should().NotBeNull();
-        target.TargetKey.Should().Be($"{source.Content.TargetType?.ToLower()}://{source.Content.TargetName}");
+        target.TargetKey.Should().Be("TestProject");
         target.TargetType.Should().Be(source.Content.TargetType);
         target.TargetName.Should().Be(source.Content.TargetName);
         target.IsPartial.Should().Be(source.Content.ContainsContext);

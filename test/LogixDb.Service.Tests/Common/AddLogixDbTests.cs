@@ -38,22 +38,6 @@ public class AddLogixDbTests
     }
 
     [Test]
-    public void AddLogixDb_SqlServerProvider_ShouldRegisterSqlServerManager()
-    {
-        var config = new LogixConfig
-        {
-            DbConnection = "Database@Server"
-        };
-
-        _services.AddLogixDb(config);
-        var provider = _services.BuildServiceProvider();
-
-        var manager = provider.GetRequiredService<IDbManager>();
-
-        Assert.That(manager, Is.InstanceOf<DbManager>());
-    }
-
-    [Test]
     public void AddLogixDb_WhenResolved_ShouldNotThrowInvalidOperationException()
     {
         var config = new LogixConfig

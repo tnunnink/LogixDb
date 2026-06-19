@@ -31,7 +31,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
 
         await Manager.ImportTarget(target);
 
-        await AssertRecordExists("target", "target_key", target.TargetKey);
+        await AssertRecordExists("logix.target", "target_key", target.TargetKey);
     }
 
     [Test]
@@ -43,7 +43,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
         await Manager.ImportTarget(target2);
 
-        await AssertRecordCount("target", 1);
+        await AssertRecordCount("logix.target", 1);
     }
 
     [Test]
@@ -68,8 +68,8 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
 
-        await AssertRecordExists("target", "target_key", "TestProject");
-        await AssertRecordExists("target", "target_key", "MyCustomKey");
+        await AssertRecordExists("logix.target", "target_key", "TestProject");
+        await AssertRecordExists("logix.target", "target_key", "MyCustomKey");
     }
 
     [Test]
@@ -82,7 +82,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
 
-        await AssertRecordCount("controller", 1);
+        await AssertRecordCount("logix.controller", 1);
     }
 
     [Test]
@@ -95,7 +95,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
         var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(3));
 
-        await AssertRecordCount("controller", 1);
+        await AssertRecordCount("logix.controller", 1);
     }
 
     [Test]
@@ -108,7 +108,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
 
         await Manager.ImportTarget(target);
 
-        await AssertRecordExists("data_type", "type_name", "TestType");
+        await AssertRecordExists("logix.data_type", "type_name", "TestType");
     }
 
     [Test]
@@ -132,7 +132,7 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
 
         await Manager.ImportTarget(target);
 
-        await AssertRecordExists("target_info", "property_name", "TestKey");
-        await AssertRecordExists("target_info", "property_value", "TestValue");
+        await AssertRecordExists("logix.target_info", "property_name", "TestKey");
+        await AssertRecordExists("logix.target_info", "property_value", "TestValue");
     }
 }

@@ -20,7 +20,7 @@ public class SqlDbLogImportTests : SqlServerTestFixture
 
         await Manager.LogImport(log);
 
-        await AssertRecordExists("import_log", "log_message", "Test message");
+        await AssertRecordExists("logix.import_log", "log_message", "Test message");
     }
 
     [Test]
@@ -32,6 +32,6 @@ public class SqlDbLogImportTests : SqlServerTestFixture
         await Manager.LogImport(import.Info("Message 1"));
         await Manager.LogImport(import.Info("Message 2"));
 
-        await AssertRecordCount("import_log", 2);
+        await AssertRecordCount("logix.import_log", 2);
     }
 }

@@ -16,9 +16,9 @@ public class SqlDbPutImportTests : SqlServerTestFixture
 
         await Manager.PutImport(import);
 
-        await AssertRecordExists("import", "file_name", "test");
-        await AssertRecordExists("import", "file_type", "L5X");
-        await AssertRecordExists("import", "source_type", "CLI");
+        await AssertRecordExists("logix.import", "file_name", "test");
+        await AssertRecordExists("logix.import", "file_type", "L5X");
+        await AssertRecordExists("logix.import", "source_type", "CLI");
     }
 
     [Test]
@@ -30,6 +30,6 @@ public class SqlDbPutImportTests : SqlServerTestFixture
         import.Status = ImportStatus.Complete;
         await Manager.PutImport(import);
 
-        await AssertRecordExists("import", "import_status", nameof(ImportStatus.Complete));
+        await AssertRecordExists("logix.import", "import_status", nameof(ImportStatus.Complete));
     }
 }

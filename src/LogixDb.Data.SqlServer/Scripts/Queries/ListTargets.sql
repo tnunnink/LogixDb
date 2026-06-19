@@ -13,7 +13,7 @@ SELECT t.target_id         [TargetId],
        v.import_user       [ImportUser],
        v.import_machine    [ImportMachine],
        v.source_hash       [SourceHash]
-FROM target t
-         JOIN target_version v on t.target_id = v.target_id
+FROM logix.target t
+         JOIN logix.target_version v on t.target_id = v.target_id
 WHERE @TargetKey is null
    OR t.target_key = @TargetKey

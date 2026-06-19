@@ -14,7 +14,7 @@ SELECT TOP 1 t.target_id         [TargetId],
              v.import_machine    [ImportMachine],
              v.source_hash       [SourceHash],
              v.source_data       [SourceData]
-FROM target_version v
-         JOIN target t on t.target_id = v.target_id
+FROM logix.target_version v
+         JOIN logix.target t on t.target_id = v.target_id
 WHERE t.target_key = @TargetKey
 ORDER BY import_date DESC

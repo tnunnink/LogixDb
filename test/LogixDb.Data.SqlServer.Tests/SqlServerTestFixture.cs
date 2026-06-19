@@ -64,7 +64,6 @@ public abstract class SqlServerTestFixture
             $"Expected {expectedCount} records in table '{tableName}', but found {result}");
     }
 
-    /*
     /// <summary>
     /// Cleans up after each test by dropping the database instance used during the test.
     /// This ensures the database is reset and no residual data persists between tests,
@@ -74,8 +73,29 @@ public abstract class SqlServerTestFixture
     [TearDown]
     protected virtual async Task TearDown()
     {
-        await Database.Drop();
-    }*/
+        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+
+        // This script disables constraints, wipes all data in the logix schema, and re-enables constraints.
+        // This is much faster than dropping the database for every test.
+        await connection.ExecuteAsync(
+            """
+                EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL'
+                
+                -- Delete from tables that aren't automatically handled or have circular refs
+                -- or just wipe everything in the logix schema
+                DECLARE @Sql NVARCHAR(MAX) = '';
+                SELECT @Sql += 'DELETE FROM ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ';'
+                FROM sys.tables t
+                JOIN sys.schemas s ON t.schema_id = s.schema_id
+                WHERE s.name = 'logix'
+                -- Exclude seed/lookup tables that should persist across tests
+                AND t.name NOT IN ('target_component', 'operand');;
+                
+                EXEC sp_executesql @Sql;
+
+                EXEC sp_MSforeachtable 'ALTER TABLE ? CHECK CONSTRAINT ALL'
+            """);
+    }
 
     /// <summary>
     /// Retrieves the current size of the database in megabytes.

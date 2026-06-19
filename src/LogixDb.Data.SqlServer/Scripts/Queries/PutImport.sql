@@ -1,4 +1,4 @@
-MERGE INTO [import] AS target
+MERGE INTO [logix].[import] AS target
 USING (SELECT @ImportId AS import_id) AS source
 ON (target.import_id = source.import_id)
 WHEN MATCHED THEN

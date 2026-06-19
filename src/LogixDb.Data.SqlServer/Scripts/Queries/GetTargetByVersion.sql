@@ -14,7 +14,7 @@ SELECT t.target_id         [TargetId],
        v.import_machine    [ImportMachine],
        v.source_hash       [SourceHash],
        v.source_data       [SourceData]
-FROM target t
-         JOIN target_version v on t.target_id = v.target_id
+FROM logix.target t
+         JOIN logix.target_version v on t.target_id = v.target_id
 WHERE t.target_key = @TargetKey
   AND v.version_number = @VersionNumber

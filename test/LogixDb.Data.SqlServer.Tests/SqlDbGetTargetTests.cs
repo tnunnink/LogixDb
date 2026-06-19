@@ -76,9 +76,9 @@ public class SqlDbGetTargetTests : SqlServerTestFixture
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.VersionId, Is.EqualTo(target2.VersionId));
-            Assert.That(result.TargetKey, Is.EqualTo(target2.TargetKey));
-            Assert.That(result.VersionNumber, Is.EqualTo(2));
+            Assert.That(result?.VersionId, Is.EqualTo(target2.VersionId));
+            Assert.That(result?.TargetKey, Is.EqualTo(target2.TargetKey));
+            Assert.That(result?.VersionNumber, Is.EqualTo(2));
         }
     }
 }

@@ -36,17 +36,6 @@ public static class SqlServerTestContainer
     public static IDbProvider Provider { get; private set; }
 
     /// <summary>
-    /// Provides an instance of <see cref="IDbManager"/> for interacting with the LogixDb database
-    /// within the context of integration tests using the SqlServerTestContainer.
-    /// </summary>
-    /// <remarks>
-    /// This property is initialized during the test lifecycle setup and represents a configured
-    /// database connection to a SQL Server instance running in a container. It allows for executing
-    /// database operations such as migrations, targets, and data interactions during tests.
-    /// </remarks>
-    public static IDbManager Manager { get; private set; }
-
-    /// <summary>
     /// Performs a one-time setup for initializing the SQL Server test environment. This includes
     /// creating and starting a SQL Server container using Testcontainers, configuring the
     /// connection details, and initializing a database instance to be used in integration tests.

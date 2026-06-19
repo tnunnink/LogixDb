@@ -38,17 +38,17 @@ public partial class ImportCommand : DbCommand
         import.Status = ImportStatus.Processing;
         await manager.PutImport(import, token);
         await manager.LogImport(
-            import.Info($"Starting ingestion process for {import.FileName}"),
+            import.Info($"Starting ingestion process for '{import.FileName}'"),
             token
         );
 
         await ConvertOrCopy(manager, import, token);
         var target = await ImportFileAsync(console, manager, import, token);
-        File.Delete(import.TempFile);
+        File.Delete(import.GetTempFile());
 
         // Signal to the database the import process has completed
         await manager.LogImport(
-            import.Info($"Import complete for target {target.TargetKey} @v{target.VersionNumber}"),
+            import.Info($"Import complete for target: {target.TargetKey} @v{target.VersionNumber}"),
             token
         );
 
@@ -80,10 +80,7 @@ public partial class ImportCommand : DbCommand
                 var target = Target.Create(content, import.FileName);
 
                 ctx.Status("Importing source to database...");
-                await manager.LogImport(
-                    import.Info($"Importing target {target.TargetKey} into LogixDb database"),
-                    token
-                );
+                await manager.LogImport(import.Info("Importing target into LogixDb database"), token);
                 await manager.ImportTarget(target, token);
 
                 return target;
@@ -141,7 +138,7 @@ public partial class ImportCommand : DbCommand
     /// <returns>A task representing the asynchronous operation.</returns>
     private async Task ConvertToTempFile(IDbManager manager, Import import, CancellationToken token)
     {
-        await manager.LogImport(import.Info($"Converting {import.FileName} to temp L5X for processing"), token);
+        await manager.LogImport(import.Info("Converting file to L5X for processing"), token);
 
         // Use the configured ACD converter on the local machine instead of the default file converter.
         if (Converter is not null)
@@ -152,7 +149,7 @@ public partial class ImportCommand : DbCommand
                 .WithArguments(args => args
                     .Add("convert")
                     .Add("-i").Add(import.SourceFile)
-                    .Add("-o").Add(import.TempFile)
+                    .Add("-o").Add(import.GetTempFile())
                     .Add("--force"))
                 .WithValidation(CommandResultValidation.ZeroExitCode)
                 .ExecuteAsync(token);
@@ -164,7 +161,7 @@ public partial class ImportCommand : DbCommand
         // Fall back the default file converter
         await manager.LogImport(import.Info("Attempting to convert ACD using Logix SDK on local machine"), token);
         var converter = new LogixSdkConverter();
-        await converter.ConvertAsync(import.SourceFile, import.TempFile, token: token);
+        await converter.ConvertAsync(import.SourceFile, import.GetTempFile(), token: token);
     }
 
     /// <summary>
@@ -176,9 +173,9 @@ public partial class ImportCommand : DbCommand
     /// <returns>A task representing the asynchronous operation.</returns>
     private static async Task CopyToTempFile(IDbManager manager, Import import, CancellationToken token)
     {
-        await manager.LogImport(import.Info($"Creating temp copy of {import.FileName} for processing"), token);
+        await manager.LogImport(import.Info("Creating temp L5X copy for processing"), token);
         await using var reader = File.OpenRead(import.SourceFile);
-        await using var writer = File.Create(import.TempFile);
+        await using var writer = File.Create(import.GetTempFile());
         await reader.CopyToAsync(writer, token);
     }
 

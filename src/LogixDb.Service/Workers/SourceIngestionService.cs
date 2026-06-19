@@ -80,7 +80,7 @@ public class SourceIngestionService(
 
                 await manager.LogImport(import.Info("Cleaning up file uploads and temporary copies"), stoppingToken);
                 // Clean up temp and upload files after processing completes.
-                File.Delete(import.TempFile);
+                File.Delete(import.GetTempFile());
                 File.Delete(import.SourceFile);
 
                 // Signal to the database the import process has completed

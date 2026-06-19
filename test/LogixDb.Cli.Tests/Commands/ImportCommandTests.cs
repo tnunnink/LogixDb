@@ -52,11 +52,11 @@ public class ImportCommandTests : TestDbFixture
     }
 
     [Test]
-    public async Task Import_WithTargetOverride_ShouldUseCustomTarget()
+    public async Task Import_WithLocalTest_ShouldImportSuccessfullyAndHaveExpectedKey()
     {
         //Generate and save L5X to the local directory for command.
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
-        var source = TestSource.Fake();
+        var source = TestSource.LocalTest();
         source.Save(testFile);
 
         using var console = new FakeInMemoryConsole();
@@ -65,14 +65,13 @@ public class ImportCommandTests : TestDbFixture
         var exitCode = await app.RunAsync([
             "import",
             "-c", DbConnection,
-            "-s", testFile,
-            "-t", "Controller://CustomTarget"
+            "-s", testFile
         ]);
 
         Assert.That(exitCode, Is.Zero);
 
         var targets = await Database.ListTargets();
-        Assert.That(targets.First().TargetKey, Is.EqualTo("Controller://CustomTarget"));
+        Assert.That(targets.First().TargetKey, Is.EqualTo("Test"));
         File.Delete(testFile);
     }
 }

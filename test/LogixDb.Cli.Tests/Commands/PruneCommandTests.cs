@@ -24,7 +24,7 @@ public class PruneCommandTests : TestDbFixture
         var exitCode = await app.RunAsync([
             "prune",
             "-c", DbConnection,
-            "-t", "Controller://Fake",
+            "-t", "Fake",
             "-v", "1"
         ]);
 
@@ -42,7 +42,7 @@ public class PruneCommandTests : TestDbFixture
         var exitCode = await app.RunAsync([
             "prune",
             "-c", DbConnection,
-            "-t", "controller://TestController",
+            "-t", "TestProject",
             "-v", "1"
         ]);
 

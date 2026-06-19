@@ -17,7 +17,7 @@ public class ImportTests
         import.FileName.Should().Be("test");
         import.FilePath.Should().NotBeEmpty();
         import.SourceFile.Should().NotBeEmpty();
-        import.TempFile.Should().Contain(import.ImportId.ToString("N"));
+        import.GetTempFile().Should().Contain(import.ImportId.ToString("N"));
     }
 
     [Test]
@@ -86,7 +86,7 @@ public class ImportTests
         var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
         var import = Import.Create(sourceFile, SourceType.CLI);
 
-        var fullPath = import.TempFile;
+        var fullPath = import.GetTempFile();
 
         fullPath.Should().Be(Path.Combine(
             Path.GetTempPath(),

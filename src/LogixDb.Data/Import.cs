@@ -5,6 +5,8 @@ namespace LogixDb.Data;
 /// </summary>
 public sealed record Import
 {
+    private const string Logixdb = "LogixDb";
+
     /// <summary>
     /// Gets the unique identifier for the import operation. This identifier is
     /// automatically generated as a version 7 GUID and is used to distinctly
@@ -53,15 +55,6 @@ public sealed record Import
     /// accessing or referencing the file during the import operation.
     /// </summary>
     public string SourceFile => Path.Combine(FilePath, $"{FileName}.{FileType}");
-
-    /// <summary>
-    /// Gets the full path to the temporary file created during the import operation.
-    /// This path is generated dynamically and is composed of the system's temporary directory,
-    /// a predefined subdirectory, and the file name with its associated unique identifier
-    /// and file type extension. It is primarily used for intermediate processing within
-    /// the import workflow.
-    /// </summary>
-    public string TempFile => Path.Combine(Path.GetTempPath(), "LogixDb", $"{FileName}.{ImportId:N}.{FileType.L5X}");
 
     /// <summary>
     /// Represents additional data or descriptive key-value pairs associated with the source.
@@ -139,6 +132,33 @@ public sealed record Import
 
         foreach (var kvp in metadata)
             Metadata[kvp.Key] = kvp.Value;
+    }
+
+    /// <summary>
+    /// Gets the full path to the temporary file created during the import operation.
+    /// This path is generated dynamically and is composed of the system's temporary directory,
+    /// a predefined subdirectory, and the file name with its associated unique identifier
+    /// and file type extension. It is primarily used for intermediate processing within
+    /// the import workflow.
+    /// </summary>
+    public string GetTempFile()
+    {
+        var tempPath = Path.Combine(Path.GetTempPath(), Logixdb);
+        Directory.CreateDirectory(tempPath);
+        return Path.Combine(tempPath, $"{FileName}.{ImportId:N}.{FileType.L5X}");
+    }
+
+    /// <summary>
+    /// Deletes the temporary file associated with the current import operation.
+    /// Constructs the temporary file path based on the static LogixDb temp directory,
+    /// the unique import identifier, and the specified file type.
+    /// If the file exists, it is removed from the system.
+    /// </summary>
+    public void ClearTemp()
+    {
+        var tempPath = Path.Combine(Path.GetTempPath(), Logixdb);
+        var filePath = Path.Combine(tempPath, $"{FileName}.{ImportId:N}.{FileType.L5X}");
+        File.Delete(filePath);
     }
 
     /// <summary>

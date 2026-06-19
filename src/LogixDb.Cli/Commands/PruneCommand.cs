@@ -14,7 +14,7 @@ namespace LogixDb.Cli.Commands;
 public partial class PruneCommand : DbCommand
 {
     [Required]
-    [CommandOption("target", 't', Description = "Target key to prune (format: targettype://targetname)")]
+    [CommandOption("target", 't', Description = "Target key to prune")]
     public string Target { get; set; } = string.Empty;
 
     [Required]

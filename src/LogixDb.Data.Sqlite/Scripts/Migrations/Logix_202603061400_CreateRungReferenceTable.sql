@@ -7,11 +7,7 @@ CREATE TABLE rung_reference
     FOREIGN KEY (rung_id) REFERENCES rung (rung_id) ON DELETE CASCADE
 );
 
-CREATE INDEX IX_rung_reference_rung_id_instruction_index_argument_index ON rung_reference (rung_id ASC, instruction_index ASC, argument_index ASC);
-CREATE INDEX IX_rung_reference_reference_name_rung_id_instruction_index_argument_index ON rung_reference (reference_name
-                                                                                                          ASC, rung_id
-                                                                                                          ASC,
-                                                                                                          instruction_index
-                                                                                                          ASC,
-                                                                                                          argument_index
-                                                                                                          ASC);
+CREATE INDEX IX_rung_reference_rung_id_instruction_index_argument_index
+    ON rung_reference (rung_id ASC, instruction_index ASC, argument_index ASC);
+CREATE INDEX IX_rung_reference_reference_name_rung_id_instruction_index_argument_index
+    ON rung_reference (reference_name ASC, rung_id ASC, instruction_index ASC, argument_index ASC);

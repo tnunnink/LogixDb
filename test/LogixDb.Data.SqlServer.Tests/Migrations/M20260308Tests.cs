@@ -38,15 +38,17 @@ public class M20260308Tests : SqlServerTestFixture
 
         using (Assert.EnterMultipleScope())
         {
-            await AssertRecordExists("operand", "instruction_key", "ABS");
-            await AssertRecordExists("operand", "instruction_key", "ALMA");
-            await AssertRecordExists("operand", "instruction_key", "MOVE");
-            await AssertRecordExists("operand", "instruction_key", "MOV");
-            await AssertRecordExists("operand", "instruction_key", "OTE");
-            await AssertRecordExists("operand", "instruction_key", "XIC");
-            await AssertRecordExists("operand", "instruction_key", "TON");
-            await AssertRecordExists("operand", "operand_name", "source");
-            await AssertRecordExists("operand", "operand_name", "destination");
+            await AssertTableExists("logix", "operand");
+            
+            await AssertRecordExists("logix.operand", "instruction_key", "ABS");
+            await AssertRecordExists("logix.operand", "instruction_key", "ALMA");
+            await AssertRecordExists("logix.operand", "instruction_key", "MOVE");
+            await AssertRecordExists("logix.operand", "instruction_key", "MOV");
+            await AssertRecordExists("logix.operand", "instruction_key", "OTE");
+            await AssertRecordExists("logix.operand", "instruction_key", "XIC");
+            await AssertRecordExists("logix.operand", "instruction_key", "TON");
+            await AssertRecordExists("logix.operand", "operand_name", "source");
+            await AssertRecordExists("logix.operand", "operand_name", "destination");
         }
     }
 }

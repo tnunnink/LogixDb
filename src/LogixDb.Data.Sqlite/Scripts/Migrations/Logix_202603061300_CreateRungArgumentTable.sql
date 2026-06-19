@@ -9,4 +9,5 @@ CREATE TABLE rung_argument
     FOREIGN KEY (rung_id) REFERENCES rung (rung_id) ON DELETE CASCADE
 );
 
-CREATE UNIQUE INDEX IX_rung_argument_rung_id_instruction_index_argument_index ON rung_argument (rung_id ASC, instruction_index ASC, argument_index ASC);
+CREATE UNIQUE INDEX IX_rung_argument_rung_id_instruction_index_argument_index
+    ON rung_argument (rung_id ASC, instruction_index ASC, argument_index ASC);

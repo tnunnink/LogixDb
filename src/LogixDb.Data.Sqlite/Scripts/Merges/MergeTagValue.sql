@@ -1,9 +1,6 @@
-INSERT INTO tag_value
-(
-    version_id, member_id, tag_value
-)
+INSERT INTO tag_value (version_id, member_id, tag_value)
 SELECT
-    t.version_id,
+    @VersionId,
     tm.member_id,
     t.tag_value
 FROM temp_tag_value t

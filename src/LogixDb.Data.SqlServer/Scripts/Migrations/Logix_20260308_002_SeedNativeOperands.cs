@@ -10,7 +10,7 @@ using SqlKata.Compilers;
 
 namespace LogixDb.Data.Sqlite.Scripts.Migrations;
 
-public class Logix_202606180900_SeedOperands : IScript
+public class Logix_20260308_002_SeedNativeOperands : IScript
 {
     private static readonly OperandMap Map = new();
 
@@ -22,7 +22,7 @@ public class Logix_202606180900_SeedOperands : IScript
         var queries = records.Select(r =>
         {
             var hash = Map.ComputeHash(r);
-            var query = new Query("operand").AsInsert(new
+            var query = new Query("logix.operand").AsInsert(new
             {
                 instruction_key = r.Key,
                 operand_index = r.Index,

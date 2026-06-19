@@ -50,7 +50,6 @@ public class TagTransformer : IDbTransformer
                 if (member is { Value: AtomicData atomic, TagName.MemberPath: not null })
                 {
                     valueRecords.Add(new TagValueRecord(
-                        target.VersionId,
                         tagHash,
                         member.TagName.MemberPath,
                         atomic.ToSqlFormat())

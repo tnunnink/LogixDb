@@ -26,11 +26,12 @@ public class SqlServerMigrator : IDbMigrator
         var upgrader = DeployChanges.To
             .SqlDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
-            .WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())
+            .WithScript(nameof(Logix_20260308_002_SeedNativeOperands), new Logix_20260308_002_SeedNativeOperands())
             .LogToConsole()
             .Build();
-
+        
         var result = upgrader.PerformUpgrade();
+        
 
         // Aggregate the error message using the failed script name and exception message.
         var error = result.Error is not null

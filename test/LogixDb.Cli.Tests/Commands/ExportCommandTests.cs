@@ -12,7 +12,7 @@ public class ExportCommandTests : TestDbFixture
     [SetUp]
     public Task Setup()
     {
-        return Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class ExportCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "export",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "Controller://Fake",
             "-o", "output.l5x"
         ]);
@@ -38,14 +38,14 @@ public class ExportCommandTests : TestDbFixture
         var testFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Test.L5X");
         var source = TestSource.LocalTest();
         source.Save(testFile);
-        await Database.ImportTarget(Target.Create(source, "TestTarget"));
+        await Manager.ImportTarget(Target.Create(source, "TestTarget"));
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ExportCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "export",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "TestTarget",
             "-o", "output.L5X"
         ]);

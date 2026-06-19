@@ -10,7 +10,7 @@ public class PurgeCommandTests : TestDbFixture
     [SetUp]
     public Task Setup()
     {
-        return Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -21,7 +21,7 @@ public class PurgeCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "purge",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "Controller://Test",
             "--force"
         ]);

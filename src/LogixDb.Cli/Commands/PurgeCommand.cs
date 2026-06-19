@@ -21,7 +21,7 @@ public partial class PurgeCommand : DbCommand
     public bool Force { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         var confirm = $"Are you sure you want to purge all data for target '{Target}'? This action cannot be undone.";
         if (!Force && !await console.Ansi().ConfirmAsync(confirm, false, token))
@@ -32,6 +32,9 @@ public partial class PurgeCommand : DbCommand
 
         try
         {
+            var connection = ParseConnection();
+            var manager = GetManager(connection);
+
             await console.Ansi().Status().StartAsync($"Purging target '{Target}'...",
                 _ => manager.DeleteTarget(Target, token)
             );

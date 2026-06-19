@@ -1,7 +1,6 @@
 using System.Data;
 using Dapper;
 using LogixDb.Data.Abstractions;
-using Microsoft.Extensions.Logging.Testing;
 
 namespace LogixDb.Data.Sqlite.Tests;
 
@@ -19,21 +18,44 @@ public abstract class SqliteTestFixture
     protected static readonly string TempDb = Path.Combine(Path.GetTempPath(), $"Logix_{Guid.NewGuid():N}.db");
 
     /// <summary>
+    /// Represents an instance of the SqliteProvider, which facilitates database connection
+    /// and operations for the SQLite database backend configured for testing purposes.
+    /// </summary>
+    private readonly SqliteProvider _provider;
+
+    /// <summary>
     /// Provides a test fixture for setting up and managing SQLite-based test environments.
     /// This class generates a temporary SQLite database, configures required services, and
     /// handles cleanup after tests are executed.
     /// </summary>
     protected SqliteTestFixture()
     {
-        Database = new SqliteManager(new DbConnectionInfo(DbProvider.Sqlite, TempDb));
+        Connection = new DbConnectionInfo(DbProvider.Sqlite, TempDb);
+        _provider = new SqliteProvider(Connection);
+        Migrator = new SqliteMigrator();
+        Manager = new DbManager(_provider);
     }
 
     /// <summary>
-    /// Represents an instance of the SQLite database used in tests within the SQLite test fixture.
-    /// Provides functionality for lifecycle management, migrations, and other database operations
-    /// required during the execution of unit tests.
+    /// Represents the connection details used to interact with the temporary SQLite database
+    /// within the context of the test framework. This property provides information about
+    /// the database provider and file path used for the test database.
     /// </summary>
-    protected IDbManager Database { get; }
+    protected DbConnectionInfo Connection { get; }
+
+    /// <summary>
+    /// Represents the database migrator responsible for managing schema migrations
+    /// in the temporary SQLite database during test execution.
+    /// </summary>
+    protected IDbMigrator Migrator { get; }
+
+    /// <summary>
+    /// Provides an interface for managing database-related operations, such as importing, deleting,
+    /// and listing targets, as well as performing cleanup actions like dropping the database.
+    /// This property is primarily used for testing database operations and ensuring the proper handling
+    /// of data within the SQLite test environment.
+    /// </summary>
+    protected IDbManager Manager { get; }
 
     /// <summary>
     /// Performs cleanup operations after a test within the fixture has run. This method attempts to
@@ -74,7 +96,7 @@ public abstract class SqliteTestFixture
     /// <returns>A task that represents the asynchronous assertion operation.</returns>
     protected async Task AssertRecordExists(string tableName, string columnName, object expected)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
 
         var result = await connection.QuerySingleAsync<int>(
             $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
@@ -94,7 +116,7 @@ public abstract class SqliteTestFixture
     /// <exception cref="AssertionException">Thrown when the actual record count does not match the specified count.</exception>
     protected async Task AssertRecordCount(string tableName, int count)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var result = await connection.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM {tableName}");
         Assert.That(result, Is.EqualTo(count), $"Invalid record count for table '{tableName}'");
     }
@@ -112,7 +134,7 @@ public abstract class SqliteTestFixture
     /// </exception>
     protected async Task AssertTableExists(string tableName)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
 
         var result = await connection.ExecuteScalarAsync<int>(
             """
@@ -130,7 +152,7 @@ public abstract class SqliteTestFixture
 
     protected async Task AssertTableDoesNotExists(string tableName)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
 
         var result = await connection.ExecuteScalarAsync<int>(
             """
@@ -152,7 +174,7 @@ public abstract class SqliteTestFixture
     /// </summary>
     protected async Task AssertRecordDoesNotExist(string tableName, string columnName, object expected)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
 
         var result = await connection.QuerySingleAsync<int>(
             $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
@@ -180,7 +202,7 @@ public abstract class SqliteTestFixture
     /// </exception>
     protected async Task AssertColumnDefinition(string tableName, string columnName, string columnType)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var records = await connection.QueryAsync($"PRAGMA table_info('{tableName}');");
         var column = records.SingleOrDefault(r => r.name == columnName);
 
@@ -198,7 +220,7 @@ public abstract class SqliteTestFixture
     /// </summary>
     protected async Task AssertPrimaryKey(string tableName, string column)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var records = await connection.QueryAsync($"PRAGMA table_info('{tableName}');");
         var key = records.SingleOrDefault(r => r.pk > 0 && r.name == column);
 
@@ -220,7 +242,7 @@ public abstract class SqliteTestFixture
     /// </exception>
     protected async Task AssertForeignKey(string fromTable, string fromColumn, string toTable, string toColumn)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var records = await connection.QueryAsync($"PRAGMA foreign_key_list('{fromTable}');");
         var key = records.SingleOrDefault(r => r.table == toTable && r.from == fromColumn && r.to == toColumn);
 
@@ -239,7 +261,7 @@ public abstract class SqliteTestFixture
     /// <exception cref="AssertionException">Thrown if no index matches the specified columns on the table.</exception>
     protected async Task AssertIndex(string tableName, params string[] columns)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var records = await connection.QueryAsync($"PRAGMA index_list('{tableName}');");
         var indexes = records.Select(r => r.name).Cast<string>().ToArray();
 
@@ -264,7 +286,7 @@ public abstract class SqliteTestFixture
     /// <exception cref="AssertionException">Thrown if no UNIQUE index matches the specified columns on the table.</exception>
     protected async Task AssertUniqueIndex(string tableName, params string[] columns)
     {
-        using var connection = await Database.Connect();
+        using var connection = await _provider.OpenConnection();
         var records = await connection.QueryAsync($"PRAGMA index_list('{tableName}');");
         var indexes = records.Where(r => r.unique == 1).Select(r => r.name).Cast<string>().ToArray();
 

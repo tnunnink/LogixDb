@@ -10,7 +10,7 @@ public class SyncCommandTests : TestDbFixture
     [SetUp]
     public Task Setup()
     {
-        return Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -21,7 +21,7 @@ public class SyncCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "sync",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "Controller://Fake"
         ]);
 

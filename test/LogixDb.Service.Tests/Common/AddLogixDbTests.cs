@@ -34,7 +34,7 @@ public class AddLogixDbTests
 
         var manager = provider.GetRequiredService<IDbManager>();
 
-        Assert.That(manager, Is.InstanceOf<SqliteManager>());
+        Assert.That(manager, Is.InstanceOf<DbManager>());
     }
 
     [Test]

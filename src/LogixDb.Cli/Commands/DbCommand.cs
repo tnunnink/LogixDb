@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
+using LogixDb.Data.Sqlite;
 
 namespace LogixDb.Cli.Commands;
 
@@ -18,37 +19,70 @@ namespace LogixDb.Cli.Commands;
 public abstract class DbCommand : ICommand
 {
     [Required]
-    [CommandOption("connection", 'c',
-        Description = "The database connection path. Specify file path (SQLite) or 'database@host' (SQL Server)")]
+    [CommandOption("connection", 'c', Description = "The database connection string.")]
     public string Connection { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Executes the asynchronous command logic.
-    /// Prepares the necessary SQL connection information based on the input parameters
-    /// and delegates execution to an implementation-specific method.
-    /// </summary>
-    /// <param name="console">The console through which the command interacts with the user.</param>
-    /// <returns>
-    /// A <see cref="ValueTask"/> representing the asynchronous operation.
-    /// </returns>
+    /// <inheritdoc />
     public ValueTask ExecuteAsync(IConsole console)
     {
         if (string.IsNullOrWhiteSpace(Connection))
             throw new CommandException("Database argument 'connection' is required.", ErrorCodes.UsageError);
 
-        var connection = DbConnectionInfo.Parse(Connection);
-        var manager = DatabaseResolver.GetDatabase(connection);
         var cancellation = console.RegisterCancellationHandler();
-        return ExecuteAsync(console, manager, cancellation);
+        return ExecuteAsync(console, cancellation);
     }
 
     /// <summary>
-    /// Executes the command-specific logic using the provided console and database connection.
-    /// This method must be implemented by derived classes to define the actual command behavior.
+    /// 
     /// </summary>
-    /// <param name="console">The console interface for interacting with the user and displaying output.</param>
-    /// <param name="manager">The connected Logix database instance to operate on.</param>
-    /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
-    /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
-    protected abstract ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token);
+    /// <param name="console"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    protected abstract ValueTask ExecuteAsync(IConsole console, CancellationToken token);
+
+    /// <summary>
+    /// Parses the database connection string into a <see cref="DbConnectionInfo"/> object.
+    /// This method uses the <see cref="DbConnectionInfo.Parse(string)"/> method to interpret
+    /// the provided connection string and extract details about the database provider, source,
+    /// authentication credentials, and other related settings.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="DbConnectionInfo"/> instance containing the parsed details of the
+    /// database connection string.
+    /// </returns>
+    protected DbConnectionInfo ParseConnection() => DbConnectionInfo.Parse(Connection);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    /// <exception cref="Exception"></exception>
+    protected static IDbMigrator GetMigrator(DbConnectionInfo connection)
+    {
+        return connection.Provider switch
+        {
+            DbProvider.Sqlite => new SqliteMigrator(),
+            DbProvider.SqlServer => throw new NotImplementedException(),
+            _ => throw new Exception($"Unsupported SQL provider: {connection.Provider}")
+        };
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    /// <exception cref="Exception"></exception>
+    protected static IDbManager GetManager(DbConnectionInfo connection)
+    {
+        var provider = connection.Provider switch
+        {
+            DbProvider.Sqlite => new SqliteProvider(connection),
+            DbProvider.SqlServer => throw new NotImplementedException(),
+            _ => throw new Exception($"Unsupported SQL provider: {connection.Provider}")
+        };
+
+        return new DbManager(provider);
+    }
 }

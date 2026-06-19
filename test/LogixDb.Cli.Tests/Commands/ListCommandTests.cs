@@ -11,7 +11,7 @@ public class ListCommandTests : TestDbFixture
     [SetUp]
     public Task Setup()
     {
-        return Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -20,7 +20,7 @@ public class ListCommandTests : TestDbFixture
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ListCommand.Descriptor);
 
-        var exitCode = await app.RunAsync(["list", "-c", DbConnection]);
+        var exitCode = await app.RunAsync(["list", "-c", Connection.Source]);
         Assert.That(exitCode, Is.Zero);
     }
 
@@ -33,7 +33,7 @@ public class ListCommandTests : TestDbFixture
         var exitCode = await app.RunAsync(
         [
             "list",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "controller://TestController"
         ]);
 
@@ -44,12 +44,12 @@ public class ListCommandTests : TestDbFixture
     public async Task List_WithSingleTarget_ShouldReturnZeroExitCode()
     {
         var target = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, ListCommand.Descriptor);
 
-        var exitCode = await app.RunAsync(["list", "-c", DbConnection]);
+        var exitCode = await app.RunAsync(["list", "-c", Connection.Source]);
 
         Assert.That(exitCode, Is.Zero);
     }

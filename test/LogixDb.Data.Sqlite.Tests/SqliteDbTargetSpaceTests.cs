@@ -8,7 +8,7 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
     [SetUp]
     public async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -27,7 +27,7 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
             // Use LocalExample() for a more realistic L5X file size
             var target = Target.Create(TestSource.LocalExample(), "TestProject");
 
-            await Database.ImportTarget(target);
+            await Manager.ImportTarget(target);
             
             var currentSize = await GetDatabaseSize();
             var delta = currentSize - previousSize;

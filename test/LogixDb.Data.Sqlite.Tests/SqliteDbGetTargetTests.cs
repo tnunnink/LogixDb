@@ -8,16 +8,16 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
     [SetUp]
     protected async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
     public async Task GetTarget_LatestVersionButContainsSingleTarget_ShouldNotBeNull()
     {
         var target = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
-        var result = await Database.GetTarget(target.TargetKey);
+        var result = await Manager.GetTarget(target.TargetKey);
 
         Assert.That(result, Is.Not.Null);
 
@@ -32,14 +32,14 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
     public async Task GetTarget_LatestVersionAndContainsMultipleTarget_ShouldReturnLatest()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         await Task.Delay(1000); // Ensure different timestamps
 
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        var result = await Database.GetTarget(target1.TargetKey);
+        var result = await Manager.GetTarget(target1.TargetKey);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result.VersionId, Is.EqualTo(target2.VersionId));
@@ -49,9 +49,9 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
     public async Task GetTarget_ByVersionExistingTarget_ShouldReturnTarget()
     {
         var target = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
-        var result = await Database.GetTarget(target.TargetKey, 1);
+        var result = await Manager.GetTarget(target.TargetKey, 1);
 
         Assert.That(result, Is.Not.Null);
 
@@ -66,12 +66,12 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
     public async Task GetTarget_ByVersionMultipleTargets_ShouldReturnCorrectOne()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        var result = await Database.GetTarget(target1.TargetKey, 2);
+        var result = await Manager.GetTarget(target1.TargetKey, 2);
         
         using (Assert.EnterMultipleScope())
         {

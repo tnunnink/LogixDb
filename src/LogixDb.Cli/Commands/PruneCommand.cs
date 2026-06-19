@@ -22,7 +22,7 @@ public partial class PruneCommand : DbCommand
     public int Version { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         if (string.IsNullOrWhiteSpace(Target))
             throw new CommandException(
@@ -38,6 +38,9 @@ public partial class PruneCommand : DbCommand
 
         try
         {
+            var connection = ParseConnection();
+            var manager = GetManager(connection);
+            
             await console.Ansi().Status().StartAsync($"Pruning instances for '{Target}'...",
                 _ => manager.DeleteVersion(Target, Version, token)
             );

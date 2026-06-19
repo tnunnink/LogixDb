@@ -23,9 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\operands.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <Folder Include="Resources\" />
     </ItemGroup>
 
 </Project>

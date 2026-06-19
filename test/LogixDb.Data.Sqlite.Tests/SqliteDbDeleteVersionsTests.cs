@@ -8,21 +8,21 @@ public class SqliteDbDeleteVersionsTests : SqliteTestFixture
     [SetUp]
     protected async Task Setup()
     {
-        await Database.Migrate();
+        await Migrator.Migrate(Connection);
     }
 
     [Test]
     public async Task DeleteVersions_ByVersion_ShouldRemovePreviousVersions()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        await Database.DeleteVersions(target1.TargetKey, 2);
+        await Manager.DeleteVersions(target1.TargetKey, 2);
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
         Assert.That(result[0].VersionNumber, Is.EqualTo(2));
     }
@@ -31,18 +31,18 @@ public class SqliteDbDeleteVersionsTests : SqliteTestFixture
     public async Task DeleteVersions_ByDate_ShouldRemoveOlderVersions()
     {
         var target1 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target1);
+        await Manager.ImportTarget(target1);
 
         await Task.Delay(1000);
         var cutoff = DateTime.Now;
         await Task.Delay(1000);
 
         var target2 = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target2);
+        await Manager.ImportTarget(target2);
 
-        await Database.DeleteVersions(target1.TargetKey, cutoff);
+        await Manager.DeleteVersions(target1.TargetKey, cutoff);
 
-        var result = (await Database.ListTargets()).ToArray();
+        var result = (await Manager.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
         Assert.That(result[0].VersionId, Is.EqualTo(target2.VersionId));
     }
@@ -50,8 +50,8 @@ public class SqliteDbDeleteVersionsTests : SqliteTestFixture
     [Test]
     public Task DeleteVersions_NonExistentKey_ShouldNotThrow()
     {
-        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", 1));
-        Assert.DoesNotThrowAsync(async () => await Database.DeleteVersions("NonExistent", DateTime.Now));
+        Assert.DoesNotThrowAsync(async () => await Manager.DeleteVersions("NonExistent", 1));
+        Assert.DoesNotThrowAsync(async () => await Manager.DeleteVersions("NonExistent", DateTime.Now));
         return Task.CompletedTask;
     }
 }

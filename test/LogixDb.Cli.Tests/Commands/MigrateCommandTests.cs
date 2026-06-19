@@ -12,7 +12,7 @@ public class MigrateCommandTests : TestDbFixture
         var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, MigrateCommand.Descriptor);
 
-        var exitCode = await app.RunAsync(["migrate", "-c", DbConnection]);
+        var exitCode = await app.RunAsync(["migrate", "-c", Connection.Source]);
 
         Assert.That(exitCode, Is.Zero);
     }

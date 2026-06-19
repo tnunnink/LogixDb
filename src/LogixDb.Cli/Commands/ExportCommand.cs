@@ -4,7 +4,7 @@ using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Data.Abstractions;
+using LogixDb.Data;
 
 namespace LogixDb.Cli.Commands;
 
@@ -19,21 +19,24 @@ public partial class ExportCommand : DbCommand
     [Required]
     [CommandOption("target", 't', Description = "Target key to export")]
     public string TargetKey { get; set; } = string.Empty;
-    
+
     [CommandOption("version", 'v', Description = "Version number of the target to export (0 for latest)")]
-    public int Version { get; set; }
+    public int VersionNumber { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         try
         {
-            var target = await manager.GetTarget(TargetKey, Version, token);
+            var connection = ParseConnection();
+            var manager = GetManager(connection);
+
+            var target = await manager.GetTarget(TargetKey, VersionNumber, token);
 
             if (target is null)
             {
                 throw new CommandException(
-                    $"Target '{TargetKey}' with version {Version} not found.",
+                    $"Target '{TargetKey}' with version {VersionNumber} not found.",
                     ErrorCodes.NotFound
                 );
             }

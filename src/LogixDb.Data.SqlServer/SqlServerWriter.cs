@@ -1,4 +1,5 @@
 using System.Data;
+using Dapper;
 using LogixDb.Data.Abstractions;
 using Microsoft.Data.SqlClient;
 
@@ -8,57 +9,95 @@ namespace LogixDb.Data.SqlServer;
 /// Implements a writer for persisting <see cref="DataTable"/> objects to a SQL Server database
 /// using an established <see cref="SqlConnection"/> and optional <see cref="SqlTransaction"/>.
 /// </summary>
-internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTransaction transaction) : IDbWriter
+internal class SqlServerWriter(IDbProvider provider) : IDbWriter
 {
-    /// <summary>
-    /// A dictionary mapping table names to corresponding SQL Server merge scripts.
-    /// </summary>
-    private static readonly Dictionary<string, string> MergeScripts = new()
+    /// <inheritdoc />
+    public async Task WriteAsync(Target target, CancellationToken token)
     {
-        { "controller", SqlServerScript.MergeController },
-        { "data_type", SqlServerScript.MergeDataType },
-        { "data_type_member", SqlServerScript.MergeDataTypeMember },
-        { "aoi", SqlServerScript.MergeAoi },
-        { "aoi_parameter", SqlServerScript.MergeAoiParameter },
-        { "operand", SqlServerScript.MergeOperand },
-        { "module", SqlServerScript.MergeModule },
-        { "module_connection", SqlServerScript.MergeModuleConnection },
-        { "module_port", SqlServerScript.MergeModulePort },
-        { "task", SqlServerScript.MergeTask },
-        { "program", SqlServerScript.MergeProgram },
-        { "routine", SqlServerScript.MergeRoutine },
-        { "rung", SqlServerScript.MergeRung },
-        { "rung_instruction", SqlServerScript.MergeRungInstruction },
-        { "rung_argument", SqlServerScript.MergeRungArgument },
-        { "rung_reference", SqlServerScript.MergeRungReference },
-        { "tag", SqlServerScript.MergeTag },
-        { "tag_member", SqlServerScript.MergeTagMember },
-        { "tag_comment", SqlServerScript.MergeTagComment },
-        { "tag_producer", SqlServerScript.MergeTagProducer },
-        { "tag_consumer", SqlServerScript.MergeTagConsumer },
-        { "tag_value", SqlServerScript.MergeTagValue }
-    };
+        await using var dbConnection = (SqlConnection)await provider.OpenConnection(token);
+        await using var dbTransaction = (SqlTransaction)await dbConnection.BeginTransactionAsync(token);
 
-    /// <summary>
-    /// Writes the specified collection of <see cref="DataTable"/> objects to the SQL Server database asynchronously.
-    /// </summary>
-    /// <param name="tables">The collection of <see cref="DataTable"/> objects to be written to the database.</param>
-    /// <param name="token">A <see cref="CancellationToken"/> that can be used to observe cancellation requests.</param>
-    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    public async Task WriteAsync(IEnumerable<DataTable> tables, CancellationToken token)
-    {
-        foreach (var table in tables)
+        try
         {
-            await CreateTempTableAsync(table, token);
-            await WriteTableAsync(table, token);
-            await ExecuteMergeAsync(table, token);
+            // Before writing to the database, ensure we can parse and compile the L5X into a set of data tables.
+            var tables = target.Compile().ToList();
+
+            // Start with database import by inserting new target and version records.
+            // This sets the local version id and number which we need to merge each compiled table. 
+            await PostTargetVersionAsync(dbConnection, dbTransaction, target);
+
+            // Bulk copy import - create temp tables, load data, and execute the merge script for each compiled table.
+            foreach (var table in tables)
+            {
+                await CreateTempTableAsync(dbConnection, dbTransaction, table, token);
+                await WriteTableAsync(dbConnection, dbTransaction, table, token);
+                await ExecuteMergeAsync(dbConnection, dbTransaction, target.VersionId, table, token);
+            }
+
+            // Commit once complete if now issues.
+            await dbTransaction.CommitAsync(token);
+        }
+        catch (Exception)
+        {
+            // Roll back the entire process for any error and throw the exception to bubble up to the caller.
+            await dbTransaction.RollbackAsync(token);
+            throw;
         }
     }
 
     /// <summary>
-    /// Creates a local temporary table in the SQL Server database corresponding to the structure of the given <see cref="DataTable"/> asynchronously.
+    /// Posts the target version and its associated metadata into the database using the provided SQL scripts.
     /// </summary>
-    private async Task CreateTempTableAsync(DataTable table, CancellationToken token)
+    /// <param name="connection">The SQLite database connection to be used for the operation.</param>
+    /// <param name="transaction">The SQLite transaction in which this operation should be executed.</param>
+    /// <param name="target">The target object containing version and metadata information to be persisted.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    private async Task PostTargetVersionAsync(
+        SqlConnection connection,
+        SqlTransaction transaction,
+        Target target
+    )
+    {
+        // Insert target key if not already.
+        var postTarget = provider.GetScript(ScriptName.PostTarget);
+        await connection.ExecuteAsync(postTarget, target, transaction);
+
+        // Execute the script and retrieve both VersionId and VersionNumber
+        var postVersion = provider.GetScript(ScriptName.PostVersion);
+        var result = await connection.QuerySingleAsync(postVersion, target, transaction);
+
+        // Update the target version id and number that were computed from the SQL script.
+        target.VersionId = (int)result.VersionId;
+        target.VersionNumber = (int)result.VersionNumber;
+
+        // Inserts all the configured metadata for the version.
+        var postInfo = provider.GetScript(ScriptName.PostInfo);
+        await connection.ExecuteAsync(postInfo,
+            target.Info.Select(p => new
+            {
+                property_id = Guid.CreateVersion7(),
+                version_id = target.VersionId,
+                property_name = p.Key,
+                property_value = p.Value
+            }).ToList(),
+            transaction
+        );
+    }
+
+    /// <summary>
+    /// Creates a temporary table in the SQL Server database based on the structure of the provided <see cref="DataTable"/>.
+    /// </summary>
+    /// <param name="connection">The active <see cref="SqlConnection"/> used to execute the SQL command.</param>
+    /// <param name="transaction">The active <see cref="SqlTransaction"/> within which the command should be executed.</param>
+    /// <param name="table">The <see cref="DataTable"/> whose schema is used to define the temporary table.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation of creating the temporary table.</returns>
+    private static async Task CreateTempTableAsync(
+        SqlConnection connection,
+        SqlTransaction transaction,
+        DataTable table,
+        CancellationToken token
+    )
     {
         var columns = table.Columns.Cast<DataColumn>().Select(c => $"[{c.ColumnName}] {c.DataType.ToSqlServerType()}");
         var sql = $"CREATE TABLE #temp_{table.TableName} ({string.Join(", ", columns)});";
@@ -67,12 +106,20 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
     }
 
     /// <summary>
-    /// Writes the specified <see cref="DataTable"/> to the SQL Server database asynchronously.
+    /// Writes the contents of the specified <see cref="DataTable"/> to a temporary table in the database
+    /// using a bulk copy mechanism for high-performance data insertion.
     /// </summary>
-    /// <param name="table">The <see cref="DataTable"/> to be written to the database.</param>
-    /// <param name="token">A <see cref="CancellationToken"/> that can be used to observe cancellation requests.</param>
+    /// <param name="connection">The <see cref="SqlConnection"/> to the database where the data will be written.</param>
+    /// <param name="transaction">The <see cref="SqlTransaction"/> associated with the operation, ensuring atomicity and consistency.</param>
+    /// <param name="table">The <see cref="DataTable"/> containing the data to be written to the temporary table.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    private async Task WriteTableAsync(DataTable table, CancellationToken token)
+    private static async Task WriteTableAsync(
+        SqlConnection connection,
+        SqlTransaction transaction,
+        DataTable table,
+        CancellationToken token
+    )
     {
         // Set up a bulk copy instance to insert records for max performance.
         using var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.TableLock, transaction);
@@ -87,16 +134,24 @@ internal class SqlServerWriter(int versionId, SqlConnection connection, SqlTrans
     }
 
     /// <summary>
-    /// Executes the merge script for the specified <see cref="DataTable"/> in the context of a SQL Server database.
+    /// Executes a SQL merge operation for the specified <see cref="DataTable"/> against a target database table.
     /// </summary>
-    private async Task ExecuteMergeAsync(DataTable table, CancellationToken token)
+    /// <param name="connection">The active <see cref="SqlConnection"/> to the database where the merge will be executed.</param>
+    /// <param name="transaction">The active <see cref="SqlTransaction"/> to ensure changes are part of a transaction.</param>
+    /// <param name="versionId">The version identifier associated with the data being merged.</param>
+    /// <param name="table">The <see cref="DataTable"/> containing the data to be merged.</param>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
+    private async Task ExecuteMergeAsync(
+        SqlConnection connection,
+        SqlTransaction transaction,
+        int versionId,
+        DataTable table,
+        CancellationToken token)
     {
-        if (!MergeScripts.TryGetValue(table.TableName, out var script))
-            return;
-
+        var script = provider.GetMergeScript(table.TableName);
         await using var command = new SqlCommand(script, connection, transaction);
         command.Parameters.AddWithValue("@VersionId", versionId);
-        command.CommandTimeout = 0;
         await command.ExecuteNonQueryAsync(token);
     }
 }

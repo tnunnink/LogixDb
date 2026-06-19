@@ -60,11 +60,11 @@ internal class SqliteWriter(IDbProvider provider) : IDbWriter
     )
     {
         // Insert target key if not already.
-        var postTarget = provider.GetManagerScript(ScriptName.PostTarget);
+        var postTarget = provider.GetScript(ScriptName.PostTarget);
         await connection.ExecuteAsync(postTarget, target, transaction);
 
         // Execute the script and retrieve both VersionId and VersionNumber
-        var postVersion = provider.GetManagerScript(ScriptName.PostVersion);
+        var postVersion = provider.GetScript(ScriptName.PostVersion);
         var result = await connection.QuerySingleAsync(postVersion, target, transaction);
 
         // Update the target version id and number that were computed from the SQL script.
@@ -72,7 +72,7 @@ internal class SqliteWriter(IDbProvider provider) : IDbWriter
         target.VersionNumber = (int)result.VersionNumber;
 
         // Inserts all the configured metadata for the version.
-        var postInfo = provider.GetManagerScript(ScriptName.PostInfo);
+        var postInfo = provider.GetScript(ScriptName.PostInfo);
         await connection.ExecuteAsync(postInfo,
             target.Info.Select(p => new
             {

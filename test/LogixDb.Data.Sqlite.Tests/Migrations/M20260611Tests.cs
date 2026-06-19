@@ -6,7 +6,7 @@ public class M20260611Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202606112100_CreatesModuleConnectionTableWithExpectedColumns()
     {
-        await Database.Migrate(202606112100);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {
@@ -41,7 +41,7 @@ public class M20260611Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202606112200_CreatesModulePortTableWithExpectedColumns()
     {
-        await Database.Migrate(202606112200);
+        await Migrator.Migrate(Connection);
 
         using (Assert.EnterMultipleScope())
         {

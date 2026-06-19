@@ -3,8 +3,6 @@ using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Data;
-using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
@@ -13,19 +11,34 @@ namespace LogixDb.Cli.Commands;
 [Command("migrate", Description = "Runs migrations to create and/or ensure the latest database schema")]
 public partial class MigrateCommand : DbCommand
 {
-    [CommandOption("components", Description = "Specifies the Logix components to include during migration")]
-    public ComponentOptions Components { get; set; } = ComponentOptions.All;
-
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         try
         {
-            await console.Ansi().Status().StartAsync("Migrating database...",
-                _ => manager.Migrate(Components, token)
+            var connection = ParseConnection();
+            var migrator = GetMigrator(connection);
+
+            var result = await console.Ansi().Status().StartAsync("Migrating database...",
+                _ => migrator.Migrate(connection, token)
             );
 
-            console.Ansi().MarkupLine("[green]✓[/] Database migration completed successfully");
+            if (!result.Success)
+            {
+                console.Ansi().MarkupLine($"[red]Error:[/] {result.Error}");
+                return;
+            }
+
+            if (result.Executed.Count > 0)
+            {
+                console.Ansi().MarkupLine("[green]✓[/] Database updated successfully");
+                foreach (var script in result.Executed)
+                    console.Ansi().MarkupLine($"  [blue]-[/] Applied: {script}");
+            }
+            else
+            {
+                console.Ansi().MarkupLine("[yellow]![/] Database is already up to date.");
+            }
         }
         catch (Exception e)
         {

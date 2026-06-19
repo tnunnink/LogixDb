@@ -4,7 +4,6 @@ using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
-using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
@@ -13,14 +12,17 @@ namespace LogixDb.Cli.Commands;
 [Command("list", Description = "Lists all target versions, optionally filtered by target key")]
 public partial class ListCommand : DbCommand
 {
-    [CommandOption("target", 't', Description = "Optional target key filter (format: targettype://targetname)")]
+    [CommandOption("target", 't', Description = "Optional target key filter")]
     public string? TargetKey { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         try
         {
+            var connection = ParseConnection();
+            var manager = GetManager(connection);
+
             var targets = await console.Ansi().Status().StartAsync("Retrieving targets...",
                 _ => manager.ListTargets(TargetKey, token)
             );

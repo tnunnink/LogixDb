@@ -8,8 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="L5Sharp" Version="7.6.2" />
-      <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9" />
+        <PackageReference Include="L5Sharp" Version="7.6.2"/>
+        <PackageReference Include="Dapper" Version="2.1.79"/>
+        <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\operands.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </EmbeddedResource>
     </ItemGroup>
 
 </Project>

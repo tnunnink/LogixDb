@@ -12,7 +12,7 @@ public class PruneCommandTests : TestDbFixture
     [SetUp]
     public Task Setup()
     {
-        return Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class PruneCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "prune",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "Fake",
             "-v", "1"
         ]);
@@ -34,21 +34,21 @@ public class PruneCommandTests : TestDbFixture
     public async Task Prune_ValidTarget_ShouldReturnZero()
     {
         var target = Target.Create(TestSource.LocalTest(), "TestProject");
-        await Database.ImportTarget(target);
+        await Manager.ImportTarget(target);
 
         using var console = new FakeInMemoryConsole();
         var app = TestApp.Create(console, PruneCommand.Descriptor);
 
         var exitCode = await app.RunAsync([
             "prune",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-t", "TestProject",
             "-v", "1"
         ]);
 
         Assert.That(exitCode, Is.Zero);
         
-        var results = (await Database.ListTargets()).ToArray();
+        var results = (await Manager.ListTargets()).ToArray();
         Assert.That(results, Is.Empty);
     }
 }

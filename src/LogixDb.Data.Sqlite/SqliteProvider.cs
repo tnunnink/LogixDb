@@ -50,7 +50,7 @@ public class SqliteProvider : IDbProvider
     }
 
     /// <inheritdoc />
-    public string GetManagerScript(ScriptName scriptName)
+    public string GetScript(ScriptName scriptName)
     {
         return LoadResource($"Scripts.Queries.{scriptName}");
     }

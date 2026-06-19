@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using CliFx;
 using CliFx.Binding;
 using CliFx.Infrastructure;
-using LogixDb.Data.Abstractions;
 using LogixDb.Cli.Common;
 using JetBrains.Annotations;
 using L5Sharp.Core;
@@ -27,8 +26,11 @@ public partial class SyncCommand : DbCommand
     [CommandOption("slot", Description = "Processor slot number. Defaults to  comm path from source project.")]
     public int Slot { get; set; } = -1;
 
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
+        var connection = ParseConnection();
+        var manager = GetManager(connection);
+
         var target = await manager.GetTarget(TargetKey, token: token);
 
         if (target is null)

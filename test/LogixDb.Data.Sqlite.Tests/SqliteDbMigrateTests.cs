@@ -10,20 +10,24 @@ public class SqliteDbMigrateTests : SqliteTestFixture
     /// The base test fixture will create and migrate the database
     /// </summary>
     [Test]
-    [Explicit("Only run this locally as it is to refresh a database in the project folder")]
+    [Explicit("Only run this locally to refresh a database in the project folder")]
     public async Task MigrateLocalTestDatabaseForWritingQueriesAgainst()
     {
         var connection = new DbConnectionInfo(DbProvider.Sqlite, "../../../logix.db");
-        var database = new SqliteManager(connection);
-        await database.Drop();
-        await database.Migrate();
+
+        if (File.Exists(connection.Source)) 
+            File.Delete(connection.Source);
+        
+        var result = await Migrator.Migrate(connection);
+        
+        Assert.That(result.Success, Is.True);
         FileAssert.Exists("../../../logix.db");
     }
 
     [Test]
     public async Task Migrate_OnlyControllerAndTagBasedTables_ShouldOnlyHaveExpectedTables()
     {
-        await Database.Migrate(ComponentOptions.Controller | ComponentOptions.Tag);
+        await Migrator.Migrate(Connection);
 
         // Required Tables
         await AssertTableExists("target");
@@ -59,7 +63,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
     [Test]
     public async Task Migrate_OnlyLogicBasedTables_ShouldOnlyHaveLogicTables()
     {
-        await Database.Migrate(ComponentOptions.Logic);
+        await Migrator.Migrate(Connection);
 
         // Required Tables
         await AssertTableExists("target");
@@ -95,7 +99,7 @@ public class SqliteDbMigrateTests : SqliteTestFixture
     [Test]
     public async Task Migrate_NoComponentTables_ShouldHaveNoComponentTables()
     {
-        await Database.Migrate(ComponentOptions.None);
+        await Migrator.Migrate(Connection);
 
         // Required Tables
         await AssertTableExists("target");

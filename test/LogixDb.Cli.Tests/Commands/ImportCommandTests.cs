@@ -10,9 +10,9 @@ namespace LogixDb.Cli.Tests.Commands;
 public class ImportCommandTests : TestDbFixture
 {
     [SetUp]
-    public async Task Setup()
+    public Task Setup()
     {
-        await Database.Migrate();
+        return Migrator.Migrate(Connection);
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class ImportCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "import",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-s", "Fake.L5X"
         ]);
 
@@ -43,7 +43,7 @@ public class ImportCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "import",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-s", testFile
         ]);
 
@@ -64,13 +64,13 @@ public class ImportCommandTests : TestDbFixture
 
         var exitCode = await app.RunAsync([
             "import",
-            "-c", DbConnection,
+            "-c", Connection.Source,
             "-s", testFile
         ]);
 
         Assert.That(exitCode, Is.Zero);
 
-        var targets = await Database.ListTargets();
+        var targets = await Manager.ListTargets();
         Assert.That(targets.First().TargetKey, Is.EqualTo("Test"));
         File.Delete(testFile);
     }

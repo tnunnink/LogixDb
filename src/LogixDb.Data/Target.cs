@@ -22,20 +22,19 @@ public sealed class Target
     /// such as controllers, data types, AOIs, operands, and more. The keys in the dictionary are case-insensitive,
     /// allowing for robust and flexible access.
     /// </summary>
-    private readonly Dictionary<string, IDbTransformer> _transformers =
-        new(StringComparer.OrdinalIgnoreCase)
-        {
-            { "controller", new ControllerTransformer() },
-            { "data_type", new DataTypeTransformer() },
-            { "aoi", new AoiTransformer() },
-            { "operand", new OperandTransformer() },
-            { "module", new ModuleTransformer() },
-            { "task", new TaskTransformer() },
-            { "program", new ProgramTransformer() },
-            { "routine", new RoutineTransformer() },
-            { "rung", new RungTransformer() },
-            { "tag", new TagTransformer() }
-        };
+    private readonly List<IDbTransformer> _transformers =
+    [
+        new ControllerTransformer(),
+        new DataTypeTransformer(),
+        new AoiTransformer(),
+        new OperandTransformer(),
+        new ModuleTransformer(),
+        new TaskTransformer(),
+        new ProgramTransformer(),
+        new RoutineTransformer(),
+        new RungTransformer(),
+        new TagTransformer()
+    ];
 
     /// <summary>
     /// A private field representing the parsed L5X data associated with the Target.
@@ -126,26 +125,21 @@ public sealed class Target
     }
 
     /// <summary>
-    /// Compiles the Target's data into a collection of DataTables filtered by the given table names.
-    /// Filters the data transformers based on the provided table names, applies the transformations,
-    /// and yields only the DataTables matching the specified names.
+    /// Compiles the target's data by applying each registered transformer to generate a collection of data tables.
+    /// Each transformer processes the target and produces one or more data tables which are then aggregated into the result.
     /// </summary>
-    /// <param name="tableNames">A collection of table names to filter the data during the compilation process.</param>
-    /// <returns>An enumerable collection of DataTable objects that match the specified table names.</returns>
-    public IEnumerable<DataTable> Compile(ICollection<string> tableNames)
+    /// <returns>A collection of data tables populated with the transformed data from the target.</returns>
+    public IEnumerable<DataTable> Compile()
     {
-        // Filter transformers based on provided table options.
-        var transformers = _transformers.Where(kvp => tableNames.Contains(kvp.Key)).Select(kvp => kvp.Value);
+        var data = new List<DataTable>();
 
-        foreach (var transformer in transformers)
+        foreach (var transformer in _transformers)
         {
             var tables = transformer.Transform(this);
-
-            // Further filter specific DataTables based on what actually exists in the DB schema
-            foreach (var table in tables)
-                if (tableNames.Contains(table.TableName))
-                    yield return table;
+            data.AddRange(tables);
         }
+
+        return data;
     }
 
     /// <summary>

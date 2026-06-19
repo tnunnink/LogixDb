@@ -28,7 +28,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
     [Test]
     public async Task Migrate_OnlyControllerAndTagBasedTables_ShouldOnlyHaveExpectedTables()
     {
-        await Database.Migrate(ComponentOptions.Controller | ComponentOptions.Tag);
+        await Database.Migrate();
 
         // Required Tables
         await AssertTableExists("target");
@@ -64,7 +64,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
     [Test]
     public async Task Migrate_OnlyLogicBasedTables_ShouldOnlyHaveLogicTables()
     {
-        await Database.Migrate(ComponentOptions.Logic);
+        await Database.Migrate();
 
         // Required Tables
         await AssertTableExists("target");
@@ -100,7 +100,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
     [Test]
     public async Task Migrate_NoComponentTables_ShouldHaveNoComponentTables()
     {
-        await Database.Migrate(ComponentOptions.None);
+        await Database.Migrate();
 
         // Required Tables
         await AssertTableExists("target");

@@ -1,5 +1,3 @@
-using System.Data;
-
 namespace LogixDb.Data.Abstractions;
 
 /// <summary>
@@ -9,37 +7,6 @@ namespace LogixDb.Data.Abstractions;
 /// </summary>
 public interface IDbManager
 {
-    /// <summary>
-    /// Applies pending database migrations to update the schema to the latest version.
-    /// </summary>
-    /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(ComponentOptions options = ComponentOptions.All, CancellationToken token = default);
-
-    /// <summary>
-    /// Applies pending database migrations up to the specified schema version.
-    /// </summary>
-    /// <param name="version">The target schema version to migrate to.</param>
-    /// <param name="options">Configuration options that specify which tables should be created during migration.</param>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task Migrate(long version, ComponentOptions options = ComponentOptions.All, CancellationToken token = default);
-
-    /// <summary>
-    /// Drops or deletes the database, removing all tables and data.
-    /// </summary>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task Drop(CancellationToken token = default);
-
-    /// <summary>
-    /// Establishes a connection to the database and returns an active database connection instance.
-    /// </summary>
-    /// <param name="token">A cancellation token to cancel the operation.</param>
-    /// <returns>A task that represents the asynchronous operation, containing the opened database connection.</returns>
-    Task<IDbConnection> Connect(CancellationToken token = default);
-
     /// <summary>
     /// Lists all Targets in the database, optionally filtered by target key.
     /// </summary>
@@ -110,7 +77,7 @@ public interface IDbManager
     /// <param name="token">A cancellation token to signal task cancellation.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     /// <remarks>
-    /// Inserts this import data if not already in the database. If found, will only update the import
+    /// Inserts this import data if not already in the database. If found, it will only update the import
     /// status to reflect the current status of the provided import.
     /// </remarks>
     Task PutImport(Import import, CancellationToken token = default);

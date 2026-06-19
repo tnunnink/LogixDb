@@ -84,44 +84,12 @@ public class TargetTests
     {
         var source = TestSource.LocalTest();
         var target = Target.Create(source, "TestProject");
-        var tableNames = new List<string> { "controller", "tag", "task", "program" };
 
-        var tables = target.Compile(tableNames).ToList();
+        var tables = target.Compile().ToList();
 
         tables.Should().NotBeEmpty();
         tables.Should().Contain(t => t.TableName == "controller");
-
-        // Ensure that only requested tables are returned, and they are not empty (if they exist in the source)
-        foreach (var table in tables)
-        {
-            tableNames.Should().Contain(table.TableName);
-            table.Rows.Count.Should().BeGreaterThanOrEqualTo(0);
-        }
-    }
-
-    [Test]
-    public void Compile_WithEmptyList_ShouldReturnNoTables()
-    {
-        var source = TestSource.LocalTest();
-        var target = Target.Create(source, "TestProject");
-        var tableNames = new List<string>();
-
-        var tables = target.Compile(tableNames).ToList();
-
-        tables.Should().BeEmpty();
-    }
-
-    [Test]
-    public void Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
-    {
-        var source = TestSource.LocalTest();
-        var target = Target.Create(source, "TestProject");
-        var tableNames = new List<string> { "controller", "non_existent_table" };
-
-        var tables = target.Compile(tableNames).ToList();
-
-        tables.Should().HaveCount(1);
-        tables.First().TableName.Should().Be("controller");
+        tables.Should().Contain(t => t.TableName == "tag");
     }
 
     [Test]
@@ -129,36 +97,10 @@ public class TargetTests
     {
         var source = TestSource.LocalExample();
         var target = Target.Create(source, "TestProject");
-        var tableNames = new List<string>
-        {
-            "controller",
-            "data_type",
-            "data_type_member",
-            "aoi",
-            "aoi_parameter",
-            "module",
-            "module_connection",
-            "task",
-            "program",
-            "routine",
-            "rung",
-            "rung_instruction",
-            "rung_argument",
-            "rung_reference",
-            "operand",
-            "tag",
-            "tag_member",
-            "tag_comment",
-            "tag_value",
-            "tag_producer",
-            "tag_consumer",
-            "task"
-        };
 
         var stopwatch = Stopwatch.StartNew();
-        var tables = target.Compile(tableNames).ToList();
+        var tables = target.Compile().ToList();
         stopwatch.Stop();
-
 
         tables.Should().NotBeEmpty();
         stopwatch.Elapsed.Should().BeLessThan(TimeSpan.FromSeconds(3));

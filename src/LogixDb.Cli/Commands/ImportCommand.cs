@@ -27,11 +27,13 @@ public partial class ImportCommand : DbCommand
     public string? Converter { get; set; }
 
     /// <inheritdoc />
-    protected override async ValueTask ExecuteAsync(IConsole console, IDbManager manager, CancellationToken token)
+    protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.NotFound);
-
+        
+        var connection = ParseConnection();
+        var manager = GetManager(connection);
         var import = Import.Create(SourcePath, SourceType.CLI);
 
         // Signal to the database the import is now being processed (converted, parsed, and ingested).

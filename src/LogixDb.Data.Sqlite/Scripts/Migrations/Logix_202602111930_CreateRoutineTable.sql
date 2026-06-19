@@ -1,6 +1,6 @@
 CREATE TABLE routine
 (
-    routine_id          INTEGER PRIMARY KEY,
+    routine_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     container_name      TEXT    NOT NULL,
     routine_name        TEXT    NOT NULL,
     routine_description TEXT    NULL,

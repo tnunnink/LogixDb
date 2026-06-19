@@ -1,6 +1,6 @@
 CREATE TABLE data_type_member
 (
-    member_id          INTEGER PRIMARY KEY,
+    member_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     type_id            INTEGER NOT NULL,
     member_name        TEXT    NOT NULL,
     member_description TEXT    NULL,

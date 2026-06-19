@@ -1,6 +1,6 @@
 CREATE TABLE module
 (
-    module_id              INTEGER PRIMARY KEY,
+    module_id              INTEGER PRIMARY KEY AUTOINCREMENT,
     module_name            TEXT    NOT NULL,
     module_description     TEXT    NULL,
     catalog_number         TEXT    NULL,

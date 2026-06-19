@@ -1,6 +1,6 @@
 CREATE TABLE task
 (
-    task_id          INTEGER PRIMARY KEY,
+    task_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     task_name        TEXT    NOT NULL,
     task_description TEXT    NULL,
     task_type        TEXT    NULL,

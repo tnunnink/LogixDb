@@ -1,6 +1,6 @@
 CREATE TABLE aoi
 (
-    aoi_id                  INTEGER PRIMARY KEY,
+    aoi_id                  INTEGER PRIMARY KEY AUTOINCREMENT,
     aoi_name                TEXT     NOT NULL,
     aoi_description         TEXT     NULL,
     aoi_revision            TEXT     NULL,

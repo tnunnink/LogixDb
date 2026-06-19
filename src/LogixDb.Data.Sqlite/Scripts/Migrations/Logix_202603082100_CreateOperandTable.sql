@@ -1,6 +1,6 @@
 CREATE TABLE operand
 (
-    operand_id          INTEGER PRIMARY KEY,
+    operand_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     instruction_key     TEXT    NOT NULL,
     operand_index       INTEGER NOT NULL,
     operand_name        TEXT    NOT NULL,

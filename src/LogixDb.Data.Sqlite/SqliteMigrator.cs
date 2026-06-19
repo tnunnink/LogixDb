@@ -8,12 +8,17 @@ using Microsoft.Data.Sqlite;
 namespace LogixDb.Data.Sqlite;
 
 /// <summary>
-/// 
+/// Provides functionality for applying database migrations to a SQLite database.
 /// </summary>
+/// <remarks>
+/// This class implements the <see cref="IDbMigrator"/> interface, enabling support for
+/// running migrations in SQLite-based systems. It uses embedded migration scripts defined
+/// within the assembly and performs versioning and upgrade operations.
+/// </remarks>
 public class SqliteMigrator : IDbMigrator
 {
     /// <inheritdoc />
-    public async Task<bool> Migrate(DbConnectionInfo connection, CancellationToken token = default)
+    public async Task<MigrationResult> Migrate(DbConnectionInfo connection, CancellationToken token = default)
     {
         var connectionString = connection.ToConnectionString();
         await ConfigureDatabase(connectionString, token);
@@ -27,8 +32,17 @@ public class SqliteMigrator : IDbMigrator
 
         var result = upgrader.PerformUpgrade();
 
-        //todo perhaps have a better result type here
-        return result.Successful;
+        // Aggregate the error message using the failed script name and exception message.
+        var error = result.Error is not null
+            ? $"Failed to execute migration '{result.ErrorScript?.Name}' with exception: {result.Error}"
+            : null;
+
+        return new MigrationResult
+        {
+            Success = result.Successful,
+            Error = error,
+            Executed = result.Scripts.Select(s => s.Name).ToList()
+        };
     }
 
     /// <summary>

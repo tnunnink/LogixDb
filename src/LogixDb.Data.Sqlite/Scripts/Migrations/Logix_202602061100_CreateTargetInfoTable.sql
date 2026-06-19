@@ -1,6 +1,6 @@
 CREATE TABLE target_info
 (
-    property_id    TEXT PRIMARY KEY,
+    property_id    UNIQUEIDENTIFIER PRIMARY KEY,
     version_id     INTEGER NOT NULL,
     property_name  TEXT    NOT NULL,
     property_value TEXT    NULL,

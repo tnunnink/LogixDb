@@ -1,6 +1,6 @@
 CREATE TABLE module_port
 (
-    port_id     INTEGER PRIMARY KEY,
+    port_id     INTEGER PRIMARY KEY AUTOINCREMENT,
     module_id   INTEGER NOT NULL,
     port_number INTEGER NOT NULL,
     port_type   TEXT    NULL,

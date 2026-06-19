@@ -1,6 +1,6 @@
 CREATE TABLE target_component
 (
-    component_id   INTEGER PRIMARY KEY,
+    component_id   INTEGER PRIMARY KEY AUTOINCREMENT,
     component_name TEXT NOT NULL
 );
 

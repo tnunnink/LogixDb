@@ -1,6 +1,6 @@
 CREATE TABLE tag_member
 (
-    member_id   INTEGER PRIMARY KEY,
+    member_id   INTEGER PRIMARY KEY AUTOINCREMENT,
     tag_id      INTEGER NOT NULL,
     member_path TEXT    NOT NULL,
     member_name TEXT    NULL,

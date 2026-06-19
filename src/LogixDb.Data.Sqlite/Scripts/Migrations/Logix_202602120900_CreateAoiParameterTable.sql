@@ -1,6 +1,6 @@
 CREATE TABLE aoi_parameter
 (
-    parameter_id          INTEGER PRIMARY KEY,
+    parameter_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     aoi_id                INTEGER NOT NULL,
     parameter_name        TEXT    NOT NULL,
     parameter_description TEXT    NULL,

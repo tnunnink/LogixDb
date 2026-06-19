@@ -1,6 +1,6 @@
 CREATE TABLE module_connection
 (
-    connection_id                      INTEGER PRIMARY KEY,
+    connection_id                      INTEGER PRIMARY KEY AUTOINCREMENT,
     module_id                          INTEGER NOT NULL,
     connection_name                    TEXT    NULL,
     rpi                                INTEGER NULL,

@@ -1,6 +1,6 @@
 CREATE TABLE rung
 (
-    rung_id        INTEGER PRIMARY KEY,
+    rung_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     container_name TEXT    NOT NULL,
     routine_name   TEXT    NOT NULL,
     rung_number    INTEGER NOT NULL,

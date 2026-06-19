@@ -1,6 +1,6 @@
 CREATE TABLE tag
 (
-    tag_id          INTEGER PRIMARY KEY,
+    tag_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     program_name    TEXT    NULL,
     tag_name        TEXT    NOT NULL,
     tag_description TEXT    NULL,

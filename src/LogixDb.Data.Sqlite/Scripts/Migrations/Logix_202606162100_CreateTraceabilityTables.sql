@@ -13,7 +13,7 @@ CREATE INDEX IX_import_posted_on ON import (posted_on DESC);
 
 CREATE TABLE import_log
 (
-    log_id        INTEGER PRIMARY KEY,
+    log_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     import_id     TEXT     NOT NULL,
     timestamp     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     log_severity  TEXT     NOT NULL,

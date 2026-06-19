@@ -1,6 +1,6 @@
 CREATE TABLE program
 (
-    program_id          INTEGER PRIMARY KEY,
+    program_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     program_name        TEXT    NOT NULL,
     task_name           TEXT    NULL,
     folder_name         TEXT    NULL,

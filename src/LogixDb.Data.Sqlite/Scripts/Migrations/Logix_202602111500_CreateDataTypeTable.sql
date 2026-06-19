@@ -1,6 +1,6 @@
 CREATE TABLE data_type
 (
-    type_id          INTEGER PRIMARY KEY,
+    type_id          INTEGER PRIMARY KEY AUTOINCREMENT,
     type_name        TEXT NOT NULL,
     type_description TEXT NULL,
     type_class       TEXT NULL,

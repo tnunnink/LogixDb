@@ -11,7 +11,7 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("task")
+        Create.Table("task").InLogixSchema()
             .WithPrimaryKey<long>("task_id")
             .WithColumn("task_name").AsString(256).NotNullable()
             .WithColumn("task_description").AsString(512).Nullable()
@@ -26,11 +26,13 @@ public class M202602111600CreateTaskTable : AutoReversingMigration
             .WithColumn("enable_timeout").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("task")
+        Create.Index()
+            .OnTable("task").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("task")
+        Create.Index()
+            .OnTable("task").InLogixSchema()
             .OnColumn("task_name").Ascending();
     }
 }

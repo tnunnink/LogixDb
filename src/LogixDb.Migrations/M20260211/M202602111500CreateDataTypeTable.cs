@@ -11,7 +11,7 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("data_type")
+        Create.Table("data_type").InLogixSchema()
             .WithPrimaryKey<long>("type_id")
             .WithColumn("type_name").AsString(256).NotNullable()
             .WithColumn("type_description").AsString(512).Nullable()
@@ -20,11 +20,13 @@ public class M202602111500CreateDataTypeTable : AutoReversingMigration
             .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("data_type")
+        Create.Index()
+            .OnTable("data_type").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("data_type")
+        Create.Index()
+            .OnTable("data_type").InLogixSchema()
             .OnColumn("type_name").Ascending();
     }
 }

@@ -11,7 +11,7 @@ public class M202602130830CreateTagTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("tag")
+        Create.Table("tag").InLogixSchema()
             .WithPrimaryKey<long>("tag_id")
             .WithColumn("program_name").AsString(256).Nullable()
             .WithColumn("tag_name").AsString(256).NotNullable()
@@ -28,18 +28,22 @@ public class M202602130830CreateTagTable : AutoReversingMigration
             .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("tag")
+        Create.Index()
+            .OnTable("tag").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("tag")
+        Create.Index()
+            .OnTable("tag").InLogixSchema()
             .OnColumn("program_name").Ascending()
             .OnColumn("tag_name").Ascending();
 
-        Create.Index().OnTable("tag")
+        Create.Index()
+            .OnTable("tag").InLogixSchema()
             .OnColumn("tag_name").Ascending();
 
-        Create.Index().OnTable("tag")
+        Create.Index()
+            .OnTable("tag").InLogixSchema()
             .OnColumn("data_type").Ascending();
     }
 }

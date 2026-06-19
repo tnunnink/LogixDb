@@ -11,7 +11,7 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("module")
+        Create.Table("module").InLogixSchema()
             .WithPrimaryKey<long>("module_id")
             .WithColumn("module_name").AsString(256).NotNullable()
             .WithColumn("module_description").AsString(512).Nullable()
@@ -32,14 +32,17 @@ public class M202602111540CreateModuleTable : AutoReversingMigration
             .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("module")
+        Create.Index()
+            .OnTable("module").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("module")
+        Create.Index()
+            .OnTable("module").InLogixSchema()
             .OnColumn("module_name").Ascending();
 
-        Create.Index().OnTable("module")
+        Create.Index()
+            .OnTable("module").InLogixSchema()
             .OnColumn("parent_name").Ascending();
     }
 }

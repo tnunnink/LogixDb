@@ -12,7 +12,7 @@ public class M202603061300CreateRungArgumentTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("rung_argument")
+        Create.Table("rung_argument").InLogixSchema()
             .WithRelation<long>("rung_id", "rung").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("instruction_index").AsInt16().NotNullable()
             .WithColumn("argument_index").AsByte().NotNullable()
@@ -20,7 +20,8 @@ public class M202603061300CreateRungArgumentTable : AutoReversingMigration
             .WithColumn("argument_text").AsString(int.MaxValue).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("rung_argument")
+        Create.Index()
+            .OnTable("rung_argument").InLogixSchema()
             .OnColumn("rung_id").Ascending()
             .OnColumn("instruction_index").Ascending()
             .OnColumn("argument_index").Ascending()

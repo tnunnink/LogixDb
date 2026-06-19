@@ -12,7 +12,7 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("target_version")
+        Create.Table("target_version").InLogixSchema()
             .WithColumn("version_id").AsInt32().NotNullable().PrimaryKey().Identity()
             .WithRelation<int>("target_id", "target").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("version_number").AsInt32().NotNullable()
@@ -31,18 +31,18 @@ public class M202602061000CreateTargetVersionTable : AutoReversingMigration
             .WithColumn("source_data").AsBinary(int.MaxValue).NotNullable();
 
         Create.Index()
-            .OnTable("target_version")
+            .OnTable("target_version").InLogixSchema()
             .OnColumn("target_id").Ascending()
             .OnColumn("version_number").Ascending()
             .WithOptions().Unique();
 
         Create.Index()
-            .OnTable("target_version")
+            .OnTable("target_version").InLogixSchema()
             .OnColumn("target_id").Ascending()
             .OnColumn("import_date").Descending();
         
         Create.Index()
-            .OnTable("target_version")
+            .OnTable("target_version").InLogixSchema()
             .OnColumn("target_name").Ascending()
             .OnColumn("version_number").Ascending();
     }

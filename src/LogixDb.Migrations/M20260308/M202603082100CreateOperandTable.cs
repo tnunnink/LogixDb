@@ -11,7 +11,7 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("operand")
+        Create.Table("operand").InLogixSchema()
             .WithPrimaryKey<long>("operand_id")
             .WithColumn("instruction_key").AsString(128).NotNullable()
             .WithColumn("operand_index").AsByte().NotNullable()
@@ -23,11 +23,13 @@ public class M202603082100CreateOperandTable : AutoReversingMigration
             .WithColumn("is_native").AsBoolean().NotNullable().WithDefaultValue(false)
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("operand")
+        Create.Index()
+            .OnTable("operand").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("operand")
+        Create.Index()
+            .OnTable("operand").InLogixSchema()
             .OnColumn("instruction_key").Ascending()
             .OnColumn("operand_index").Ascending();
     }

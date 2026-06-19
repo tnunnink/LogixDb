@@ -14,7 +14,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
     public override void Up()
     {
         IfDatabase(ProcessorIdConstants.SQLite)
-            .Create.Table("data_type_member")
+            .Create.Table("data_type_member").InLogixSchema()
             .WithPrimaryKey<long>("member_id")
             .WithRelation<long>("type_id", "data_type").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
@@ -32,7 +32,7 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
         // SQL server supports creating clustered index on non PK columns which we want for performance.
         // This is the only syntax that works for both providers...
         IfDatabase(ProcessorIdConstants.SqlServer)
-            .Create.Table("data_type_member")
+            .Create.Table("data_type_member").InLogixSchema()
             .WithColumn("member_id").AsInt64().NotNullable().Identity()
             .WithRelation<long>("type_id", "data_type").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("member_name").AsString(256).NotNullable()
@@ -55,25 +55,27 @@ public class M202602111530CreateDataTypeMemberTable : AutoReversingMigration
 
         IfDatabase(ProcessorIdConstants.SqlServer)
             .Create
-            .Index().OnTable("data_type_member")
+            .Index().OnTable("data_type_member").InLogixSchema()
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique()
             .WithOptions().Clustered();
 
         IfDatabase(ProcessorIdConstants.SQLite)
-            .Create
-            .Index().OnTable("data_type_member")
+            .Create.Index()
+            .OnTable("data_type_member").InLogixSchema()
             .OnColumn("type_id").Ascending()
             .OnColumn("member_name").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("data_type_member")
+        Create.Index()
+            .OnTable("data_type_member").InLogixSchema()
             .OnColumn("type_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("data_type_member")
+        Create.Index()
+            .OnTable("data_type_member").InLogixSchema()
             .OnColumn("member_name").Ascending();
     }
 }

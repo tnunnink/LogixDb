@@ -12,12 +12,13 @@ public class M202602130930CreateTagValueTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("tag_value")
+        Create.Table("tag_value").InLogixSchema()
             .WithRelation<int>("version_id", "target_version").OnDelete(Rule.SetNull).Nullable()
             .WithRelation<long>("member_id", "tag_member").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("tag_value").AsString(256).NotNullable();
 
-        Create.Index().OnTable("tag_value")
+        Create.Index()
+            .OnTable("tag_value").InLogixSchema()
             .OnColumn("version_id").Ascending()
             .OnColumn("member_id").Ascending()
             .WithOptions().Clustered();

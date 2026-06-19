@@ -11,7 +11,7 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("controller")
+        Create.Table("controller").InLogixSchema()
             .WithPrimaryKey<long>("controller_id")
             .WithColumn("controller_name").AsString(256).NotNullable()
             .WithColumn("controller_description").AsString(512).Nullable()
@@ -47,11 +47,13 @@ public class M202602111430CreateControllerTable : AutoReversingMigration
             .WithColumn("trusted_slots").AsString(64).Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("controller")
+        Create.Index()
+            .OnTable("controller").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("controller")
+        Create.Index()
+            .OnTable("controller").InLogixSchema()
             .OnColumn("controller_name").Ascending();
     }
 }

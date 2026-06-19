@@ -12,24 +12,27 @@ public class M202602131200CreateTagCommentTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("tag_member_comment")
+        Create.Table("tag_member_comment").InLogixSchema()
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("member_path").AsString(256).NotNullable()
             .WithColumn("comment").AsString(int.MaxValue).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("tag_member_comment")
+        Create.Index()
+            .OnTable("tag_member_comment").InLogixSchema()
             .OnColumn("tag_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("tag_member_comment")
+        Create.Index()
+            .OnTable("tag_member_comment").InLogixSchema()
             .OnColumn("tag_id").Ascending()
             .OnColumn("member_path").Ascending()
             .WithOptions().Unique()
             .WithOptions().Clustered();
 
-        Create.Index().OnTable("tag_member_comment")
+        Create.Index()
+            .OnTable("tag_member_comment").InLogixSchema()
             .OnColumn("member_path").Ascending();
     }
 }

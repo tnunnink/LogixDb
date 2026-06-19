@@ -12,14 +12,14 @@ public class M202602061100CreateTargetInfoTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("target_info")
+        Create.Table("target_info").InLogixSchema()
             .WithPrimaryKey<Guid>("property_id")
             .WithRelation<int>("version_id", "target_version").OnDeleteOrUpdate(Rule.Cascade).NotNullable()
             .WithColumn("property_name").AsString().NotNullable()
             .WithColumn("property_value").AsString().Nullable();
 
         Create.Index()
-            .OnTable("target_info")
+            .OnTable("target_info").InLogixSchema()
             .OnColumn("version_id").Ascending()
             .OnColumn("property_name").Ascending()
             .WithOptions().Unique();

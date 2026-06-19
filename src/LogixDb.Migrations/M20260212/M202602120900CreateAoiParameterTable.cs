@@ -13,6 +13,7 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi_parameter")
+            .InLogixSchema()
             .WithPrimaryKey<long>("parameter_id")
             .WithRelation<long>("aoi_id", "aoi").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("parameter_name").AsString(256).NotNullable()
@@ -30,17 +31,17 @@ public class M202602120900CreateAoiParameterTable : AutoReversingMigration
             .WithColumn("is_constant").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("aoi_parameter")
+        Create.Index().OnTable("aoi_parameter").InLogixSchema()
             .OnColumn("aoi_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("aoi_parameter")
+        Create.Index().OnTable("aoi_parameter").InLogixSchema()
             .OnColumn("aoi_id").Ascending()
             .OnColumn("parameter_name").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("aoi_parameter")
+        Create.Index().OnTable("aoi_parameter").InLogixSchema()
             .OnColumn("parameter_name").Ascending();
     }
 }

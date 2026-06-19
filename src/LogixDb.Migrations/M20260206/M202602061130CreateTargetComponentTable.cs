@@ -11,11 +11,12 @@ public class M202602061130CreateComponentTypeTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("target_component")
+        Create.Table("target_component").InLogixSchema()
             .WithPrimaryKey<byte>("component_id")
             .WithColumn("component_name").AsString(64).NotNullable();
 
-        Create.Index().OnTable("target_component")
+        Create.Index()
+            .OnTable("target_component").InLogixSchema()
             .OnColumn("component_name").Ascending()
             .WithOptions().Unique();
     }

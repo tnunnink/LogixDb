@@ -11,7 +11,7 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("program")
+        Create.Table("program").InLogixSchema()
             .WithPrimaryKey<long>("program_id")
             .WithColumn("program_name").AsString(256).NotNullable()
             .WithColumn("task_name").AsString(256).Nullable()
@@ -25,17 +25,17 @@ public class M202602111630CreateProgramTable : AutoReversingMigration
             .WithColumn("has_test_edits").AsBoolean().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("program")
+        Create.Index().OnTable("program").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("program")
+        Create.Index().OnTable("program").InLogixSchema()
             .OnColumn("program_name").Ascending();
 
-        Create.Index().OnTable("program")
+        Create.Index().OnTable("program").InLogixSchema()
             .OnColumn("folder_name").Ascending();
 
-        Create.Index().OnTable("program")
+        Create.Index().OnTable("program").InLogixSchema()
             .OnColumn("task_name").Ascending();
     }
 }

@@ -12,7 +12,7 @@ public class M202602131330CreateTagConsumerTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("tag_consumer")
+        Create.Table("tag_consumer").InLogixSchema()
             .WithRelation<long>("tag_id", "tag").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("producer").AsString().NotNullable()
             .WithColumn("remote_tag").AsString().NotNullable()

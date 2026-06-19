@@ -11,7 +11,7 @@ public class M202603061100CreateRungTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("rung")
+        Create.Table("rung").InLogixSchema()
             .WithPrimaryKey<long>("rung_id")
             .WithColumn("container_name").AsString(256).NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
@@ -21,20 +21,24 @@ public class M202603061100CreateRungTable : AutoReversingMigration
             .WithColumn("code_hash").AsString(64).Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("rung")
+        Create.Index()
+            .OnTable("rung").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("rung")
+        Create.Index()
+            .OnTable("rung").InLogixSchema()
             .OnColumn("container_name").Ascending()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending();
 
-        Create.Index().OnTable("rung")
+        Create.Index()
+            .OnTable("rung").InLogixSchema()
             .OnColumn("routine_name").Ascending()
             .OnColumn("rung_number").Ascending();
 
-        Create.Index().OnTable("rung")
+        Create.Index()
+            .OnTable("rung").InLogixSchema()
             .OnColumn("code_hash").Ascending();
     }
 }

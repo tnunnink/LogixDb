@@ -12,19 +12,19 @@ public class M202602061030CreateTargetVersionMapTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("target_version_map")
+        Create.Table("target_version_map").InLogixSchema()
             .WithRelation<int>("version_id", "target_version").OnDelete(Rule.Cascade)
             .WithColumn("record_id").AsInt64().NotNullable()
             .WithColumn("component_id").AsByte().NotNullable();
 
-        Create.Index().OnTable("target_version_map")
+        Create.Index().OnTable("target_version_map").InLogixSchema()
             .OnColumn("version_id").Ascending()
             .OnColumn("component_id").Ascending()
             .OnColumn("record_id").Ascending()
             .WithOptions().Unique()
             .WithOptions().Clustered();
         
-        Create.Index().OnTable("target_version_map")
+        Create.Index().OnTable("target_version_map").InLogixSchema()
             .OnColumn("record_id").Ascending()
             .OnColumn("component_id").Ascending();
     }

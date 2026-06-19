@@ -12,7 +12,7 @@ public class M202606112100CreateModuleConnectionTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("module_connection")
+        Create.Table("module_connection").InLogixSchema()
             .WithPrimaryKey<long>("connection_id")
             .WithRelation<long>("module_id", "module").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("connection_name").AsString(256).Nullable()
@@ -34,7 +34,8 @@ public class M202606112100CreateModuleConnectionTable : AutoReversingMigration
             .WithColumn("connection_path").AsString(512).Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("module_connection")
+        Create.Index()
+            .OnTable("module_connection").InLogixSchema()
             .OnColumn("module_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();

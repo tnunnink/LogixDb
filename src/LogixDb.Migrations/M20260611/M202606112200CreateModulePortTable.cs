@@ -12,7 +12,7 @@ public class M202606112200CreateModulePortTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("module_port")
+        Create.Table("module_port").InLogixSchema()
             .WithPrimaryKey<long>("port_id")
             .WithRelation<long>("module_id", "module").OnDelete(Rule.Cascade).NotNullable()
             .WithColumn("port_number").AsInt16().NotNullable()
@@ -22,7 +22,8 @@ public class M202606112200CreateModulePortTable : AutoReversingMigration
             .WithColumn("bus_size").AsByte().Nullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("module_port")
+        Create.Index()
+            .OnTable("module_port").InLogixSchema()
             .OnColumn("module_id").Ascending()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();

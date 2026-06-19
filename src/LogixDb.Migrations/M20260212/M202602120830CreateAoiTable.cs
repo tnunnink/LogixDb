@@ -12,6 +12,7 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
     public override void Up()
     {
         Create.Table("aoi")
+            .InLogixSchema()
             .WithPrimaryKey<long>("aoi_id")
             .WithColumn("aoi_name").AsString(256).NotNullable()
             .WithColumn("aoi_description").AsString(512).Nullable()
@@ -35,11 +36,11 @@ public class M202602120830CreateAoiTable : AutoReversingMigration
             .WithColumn("content_hash").AsString(64).NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("aoi")
+        Create.Index().OnTable("aoi").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("aoi")
+        Create.Index().OnTable("aoi").InLogixSchema()
             .OnColumn("aoi_name").Ascending();
     }
 }

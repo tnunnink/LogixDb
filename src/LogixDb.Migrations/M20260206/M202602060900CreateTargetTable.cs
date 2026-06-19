@@ -11,13 +11,13 @@ public class M202602060900CreateTargetTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("target").InSchema("logix")
+        Create.Table("target").InLogixSchema()
             .WithPrimaryKey<int>("target_id")
             .WithColumn("target_key").AsString(128).NotNullable()
             .WithColumn("created_on").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime);
 
         Create.Index()
-            .OnTable("target")
+            .OnTable("target").InLogixSchema()
             .OnColumn("target_key").Ascending()
             .WithOptions().Unique();
     }

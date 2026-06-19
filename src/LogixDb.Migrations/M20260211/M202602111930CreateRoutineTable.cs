@@ -11,7 +11,7 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
 {
     public override void Up()
     {
-        Create.Table("routine")
+        Create.Table("routine").InLogixSchema()
             .WithPrimaryKey<long>("routine_id")
             .WithColumn("container_name").AsString(256).NotNullable()
             .WithColumn("routine_name").AsString(256).NotNullable()
@@ -20,15 +20,18 @@ public class M202602111930CreateRoutineTable : AutoReversingMigration
             .WithColumn("is_definition").AsBoolean().NotNullable()
             .WithColumn("record_hash").AsString(64).NotNullable();
 
-        Create.Index().OnTable("routine")
+        Create.Index()
+            .OnTable("routine").InLogixSchema()
             .OnColumn("record_hash").Ascending()
             .WithOptions().Unique();
 
-        Create.Index().OnTable("routine")
+        Create.Index()
+            .OnTable("routine").InLogixSchema()
             .OnColumn("container_name").Ascending()
             .OnColumn("routine_name").Ascending();
 
-        Create.Index().OnTable("routine")
+        Create.Index()
+            .OnTable("routine").InLogixSchema()
             .OnColumn("routine_name").Ascending();
     }
 }

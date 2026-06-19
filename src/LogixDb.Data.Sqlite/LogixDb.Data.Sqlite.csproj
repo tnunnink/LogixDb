@@ -26,6 +26,45 @@
 
     <ItemGroup>
         <EmbeddedResource Include="Scripts\*.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeAoi.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeAoiParameter.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeController.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeDataType.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeDataTypeMember.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeModule.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeModuleConnection.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeModulePort.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeOperand.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeProgram.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeRoutine.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeRung.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeRungArgument.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeRungInstruction.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeRungReference.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTag.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTagComment.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTagConsumer.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTagMember.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTagProducer.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTagValue.sql" />
+        <EmbeddedResource Include="Scripts\Merges\MergeTask.sql" />
+        <EmbeddedResource Include="Scripts\Queries\DeleteTarget.sql" />
+        <EmbeddedResource Include="Scripts\Queries\DeleteVersion.sql" />
+        <EmbeddedResource Include="Scripts\Queries\DeleteVersionsBeforeDate.sql" />
+        <EmbeddedResource Include="Scripts\Queries\DeleteVersionsByNumber.sql" />
+        <EmbeddedResource Include="Scripts\Queries\GetTableNames.sql" />
+        <EmbeddedResource Include="Scripts\Queries\GetTargetByLatest.sql" />
+        <EmbeddedResource Include="Scripts\Queries\GetTargetByVersion.sql" />
+        <EmbeddedResource Include="Scripts\Queries\ListTargets.sql" />
+        <EmbeddedResource Include="Scripts\Queries\PostInfo.sql" />
+        <EmbeddedResource Include="Scripts\Queries\PostLog.sql" />
+        <EmbeddedResource Include="Scripts\Queries\PostTarget.sql" />
+        <EmbeddedResource Include="Scripts\Queries\PostVersion.sql" />
+        <EmbeddedResource Include="Scripts\Queries\PutImport.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Scripts\Migrations\" />
     </ItemGroup>
 
 </Project>

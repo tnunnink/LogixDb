@@ -22,17 +22,6 @@ public class LogixConfig
     public string DbConnection { get; init; } = "logix@localhost";
 
     /// <summary>
-    /// Gets the file system path used as the designated drop location for uploading files
-    /// to the LogixDb service.
-    /// </summary>
-    /// <remarks>
-    /// This property defines the directory where files are temporarily stored before being processed
-    /// by the system. It must be accessible by the application and preconfigured to ensure successful
-    /// file uploads. The drop path is immutable once initialized in configuration settings.
-    /// </remarks>
-    public string DropPath { get; init; } = @"C:\Program Data\LogixDb";
-
-    /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.
     /// </summary>
     /// <remarks>

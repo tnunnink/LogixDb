@@ -1,30 +1,23 @@
+using FluentAssertions;
+
 namespace LogixDb.Data.Tests;
 
 [TestFixture]
 public class ImportTests
 {
-    private const string TestDropPath = "C:\\Temp";
-
     [Test]
     public void Create_L5XFile_ReturnsCorrectImport()
     {
-        const string fileName = "test.L5X";
-        const SourceType sourceType = SourceType.CLI;
+        var import = Import.Create("test.L5X", SourceType.CLI);
 
-        var import = Import.Create(fileName, TestDropPath, sourceType);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(import.ImportId, Is.Not.EqualTo(Guid.Empty));
-            Assert.That(import.ImportStatus, Is.EqualTo(ImportStatus.Pending));
-            Assert.That(import.SourceType, Is.EqualTo(sourceType));
-            Assert.That(import.FileType, Is.EqualTo(FileType.L5X));
-            Assert.That(import.FileName, Is.EqualTo(fileName));
-            Assert.That(import.DropPath, Is.EqualTo(TestDropPath));
-            Assert.That(import.FilePath, Does.StartWith(TestDropPath));
-            Assert.That(import.FilePath, Does.Contain(fileName));
-            Assert.That(import.FilePath, Does.EndWith(".L5X"));
-        }
+        import.ImportId.Should().NotBeEmpty();
+        import.Status.Should().Be(ImportStatus.Pending);
+        import.SourceType.Should().Be(SourceType.CLI);
+        import.FileType.Should().Be(FileType.L5X);
+        import.FileName.Should().Be("test");
+        import.FilePath.Should().NotBeEmpty();
+        import.SourceFile.Should().NotBeEmpty();
+        import.TempFile.Should().Contain(import.ImportId.ToString("N"));
     }
 
     [Test]
@@ -33,105 +26,117 @@ public class ImportTests
         const string fileName = "test.ACD";
         const SourceType sourceType = SourceType.API;
 
-        var import = Import.Create(fileName, TestDropPath, sourceType);
+        var import = Import.Create(fileName, sourceType);
 
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(import.FileType, Is.EqualTo(FileType.ACD));
-            Assert.That(import.SourceType, Is.EqualTo(sourceType));
-            Assert.That(import.FilePath, Does.EndWith(".ACD"));
-        }
+        import.FileType.Should().Be(FileType.ACD);
+        import.SourceType.Should().Be(sourceType);
+        import.SourceFile.Should().EndWith(".ACD");
     }
 
     [Test]
-    public void Create_WithMetadata_PopulatesMetadata()
+    public void Create_ExplicitPath_ReturnsCorrectImport()
     {
-        var metadata = new Dictionary<string, string>
-        {
-            { "ProjectName", "TestProject" },
-            { "Version", "1.0" }
-        };
+        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
 
-        var import = Import.Create("test.L5X", TestDropPath, SourceType.FTAC, metadata);
+        var import = Import.Create(sourceFile, SourceType.CLI);
 
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(import.Metadata, Has.Count.EqualTo(2));
-            Assert.That(import.Metadata["ProjectName"], Is.EqualTo("TestProject"));
-            Assert.That(import.Metadata["Version"], Is.EqualTo("1.0"));
-        }
-    }
-
-    [Test]
-    public void FilePath_Property_FollowsExpectedFormat()
-    {
-        var import = Import.Create("Project.L5X", TestDropPath, SourceType.CLI);
-        var expectedFileNamePart = $"Project.L5X.{import.ImportId:N}.L5X";
-
-        var filePath = import.FilePath;
-
-        Assert.That(filePath, Is.EqualTo(Path.Combine(TestDropPath, expectedFileNamePart)));
-    }
-
-    [Test]
-    public void Info_ValidMessage_CreatesCorrectImportLog()
-    {
-        var import = Import.Create("test.L5X", TestDropPath, SourceType.CLI);
-        const string message = "Starting process";
-
-        var log = import.Info(message);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(log.ImportId, Is.EqualTo(import.ImportId));
-            Assert.That(log.LogSeverity, Is.EqualTo(LogSeverity.Info));
-            Assert.That(log.LogMessage, Is.EqualTo(message));
-            Assert.That(log.LogException, Is.Null);
-        }
-    }
-
-    [Test]
-    public void NewWarning_ValidMessage_CreatesCorrectImportLog()
-    {
-        var import = Import.Create("test.L5X", TestDropPath, SourceType.CLI);
-        const string message = "Potential issue detected";
-
-        var log = import.NewWarning(message);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(log.ImportId, Is.EqualTo(import.ImportId));
-            Assert.That(log.LogSeverity, Is.EqualTo(LogSeverity.Warning));
-            Assert.That(log.LogMessage, Is.EqualTo(message));
-            Assert.That(log.LogException, Is.Null);
-        }
-    }
-
-    [Test]
-    public void Error_WithMessageAndException_CreatesCorrectImportLogWithException()
-    {
-        var import = Import.Create("test.L5X", TestDropPath, SourceType.CLI);
-        const string message = "Critical failure";
-        var exception = new InvalidOperationException("Something went wrong");
-
-        var log = import.Error(message, exception);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(log.ImportId, Is.EqualTo(import.ImportId));
-            Assert.That(log.LogSeverity, Is.EqualTo(LogSeverity.Error));
-            Assert.That(log.LogMessage, Is.EqualTo(message));
-            Assert.That(log.LogException, Is.Not.Null);
-            Assert.That(log.LogException, Does.Contain("InvalidOperationException"));
-            Assert.That(log.LogException, Does.Contain("Something went wrong"));
-        }
+        import.FileType.Should().Be(FileType.L5X);
+        import.FileName.Should().Be("test");
+        import.FilePath.Should().Be("C:\\Temp");
     }
 
     [Test]
     public void Create_LowerVariantExtension_ReturnsExpectedFileType()
     {
-        var import = Import.Create("test.l5x", TestDropPath, SourceType.CLI);
+        var import = Import.Create("test.l5x", SourceType.CLI);
 
-        Assert.That(import.FileType, Is.EqualTo(FileType.L5X));
+        import.FileType.Should().Be(FileType.L5X);
+    }
+
+    [Test]
+    public void AddData_WithMetadata_PopulatesMetadata()
+    {
+        var import = Import.Create("test.L5X", SourceType.FTAC);
+
+        import.AddData(new Dictionary<string, string>
+        {
+            { "ProjectName", "TestProject" },
+            { "Version", "1.0" }
+        });
+
+        import.Metadata.Should().HaveCount(2);
+        import.Metadata["ProjectName"].Should().Be("TestProject");
+        import.Metadata["Version"].Should().Be("1.0");
+    }
+
+    [Test]
+    public void SourceFile_Property_FollowsExpectedFormat()
+    {
+        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
+        var import = Import.Create(sourceFile, SourceType.CLI);
+
+        var fullPath = import.SourceFile;
+
+        fullPath.Should().Be(@"C:\Temp\test.L5X");
+    }
+
+    [Test]
+    public void TempFile_Property_FollowsExpectedFormat()
+    {
+        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
+        var import = Import.Create(sourceFile, SourceType.CLI);
+
+        var fullPath = import.TempFile;
+
+        fullPath.Should().Be(Path.Combine(
+            Path.GetTempPath(),
+            "LogixDb",
+            $"test.{import.ImportId:N}.L5X")
+        );
+    }
+
+    [Test]
+    public void Info_ValidMessage_CreatesCorrectImportLog()
+    {
+        const string message = "Starting process";
+        var import = Import.Create("test.L5X", SourceType.CLI);
+
+        var log = import.Info(message);
+
+        log.ImportId.Should().Be(import.ImportId);
+        log.LogSeverity.Should().Be(LogSeverity.Info);
+        log.LogMessage.Should().Be(message);
+        log.LogException.Should().BeNull();
+    }
+
+    [Test]
+    public void Warning_ValidMessage_CreatesCorrectImportLog()
+    {
+        const string message = "Potential issue detected";
+        var import = Import.Create("test.L5X", SourceType.CLI);
+
+        var log = import.NewWarning(message);
+
+        log.ImportId.Should().Be(import.ImportId);
+        log.LogSeverity.Should().Be(LogSeverity.Warning);
+        log.LogMessage.Should().Be(message);
+        log.LogException.Should().BeNull();
+    }
+
+    [Test]
+    public void Error_WithMessageAndException_CreatesCorrectImportLogWithException()
+    {
+        const string message = "Critical failure";
+        var import = Import.Create("test.L5X", SourceType.CLI);
+        var exception = new InvalidOperationException("Something went wrong");
+
+        var log = import.Error(message, exception);
+
+        log.ImportId.Should().Be(import.ImportId);
+        log.LogSeverity.Should().Be(LogSeverity.Error);
+        log.LogMessage.Should().Be(message);
+        log.LogException.Should().NotBeNull();
+        log.LogException.Should().Contain("InvalidOperationException");
+        log.LogException.Should().Contain("Something went wrong");
     }
 }

@@ -2,33 +2,13 @@ using System.Threading.Channels;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Service.Common;
-using Microsoft.Extensions.Options;
-using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace LogixDb.Service.Workers;
 
 /// <summary>
-/// Handles the uploading and queuing of source files for further processing.
+/// Provides functionality to handle file uploads to the server and queue them for processing.
 /// </summary>
-/// <remarks>
-/// This class is responsible for managing the transfer of files from an incoming stream
-/// to a designated drop path, ensuring that a unique file name is generated to prevent conflicts.
-/// It also queues the uploaded files for further processing using a provided channel.
-/// </remarks>
-/// <param name="channel">
-/// The channel used to queue the source information for downstream processing.
-/// </param>
-/// <param name="options">
-/// The configuration options containing the drop path for uploaded files.
-/// </param>
-/// <param name="logger">
-/// The logger instance used to log information, errors, and warnings during the upload process.
-/// </param>
-public class SourceUploadService(
-    Channel<Import> channel,
-    IDbManager manager,
-    IOptions<LogixConfig> options,
-    ILogger<SourceUploadService> logger)
+public class SourceUploadService(Channel<Import> channel, IDbManager manager, ILogger<SourceUploadService> logger)
 {
     /// <summary>
     /// Asynchronously uploads a file to the server and queues it for processing.
@@ -41,31 +21,19 @@ public class SourceUploadService(
     /// </returns>
     public async Task<Import> UploadAsync(IFormFile file, IDictionary<string, string> metadata)
     {
-        if (logger.IsEnabled(LogLevel.Information))
-            logger.LogInformation("Upload requested for file: {FileName} ({FileSize} bytes)",
-                file.FileName, file.Length);
-
         var import = await CreateImportSession(file, metadata, CancellationToken.None);
         if (import is null) return null; //todo need to figure out what to return for error to API request.
 
-        await manager.LogImport(
-            import.Info("Starting file upload with server"),
-            CancellationToken.None
-        );
-
         // Upload the file to the local server drop path
-        await using (var stream = new FileStream(import.DropPath, FileMode.Create))
+        await manager.LogImport(import.Info("Starting file upload with server"));
+        await using (var stream = new FileStream(import.SourceFile, FileMode.Create))
         {
             await file.CopyToAsync(stream);
         }
 
-        // Queue the source for processing by the background service
+        await manager.LogImport(import.Info($"Upload completed successfully for {file.FileName}"));
+        await manager.LogImport(import.Info("Queueing file for processing"));
         await channel.Writer.WriteAsync(import);
-
-        await manager.LogImport(
-            import.Info("Upload complete - File queued for for processing and ingestion"),
-            CancellationToken.None
-        );
 
         return import;
     }
@@ -85,10 +53,13 @@ public class SourceUploadService(
     {
         try
         {
-            Directory.CreateDirectory(options.Value.DropPath);
-            var import = Import.Create(file.FileName, options.Value.DropPath, SourceType.API, metadata);
-            await manager.PutImport(import, CancellationToken.None);
+            Directory.CreateDirectory(Paths.Dropzone);
+            var sourceFile = Path.Combine(Paths.Dropzone, file.FileName);
 
+            var import = Import.Create(sourceFile, SourceType.API);
+            import.AddData(metadata);
+
+            await manager.PutImport(import, CancellationToken.None);
             await manager.LogImport(
                 import.Info($"Import starting for file {file.FileName}"),
                 token

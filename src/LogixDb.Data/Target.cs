@@ -56,7 +56,8 @@ public sealed class Target
     public int VersionId { get; set; }
     public int VersionNumber { get; set; }
     public string TargetType { get; init; } = string.Empty;
-    public string TargetName { get; init; } = string.Empty;
+    public string? TargetName { get; init; }
+    public int? TargetCount { get; init; }
     public bool IsPartial { get; init; }
     public string? SchemaRevision { get; init; }
     public string? SoftwareRevision { get; init; }
@@ -75,13 +76,16 @@ public sealed class Target
     /// </summary>
     /// <param name="source">The L5X source file containing Logix controller data for which to take a Target.</param>
     /// <param name="targetKey">An optional custom target key. If not provided, a default key is generated from the
-    /// target type and name in the format "targettype://targetname".</param>
+    ///     target type and name in the format "targettype://targetname".</param>
     /// <returns>A new Target instance populated with metadata and source data from the L5X file.</returns>
     /// <exception cref="InvalidOperationException">
     /// Thrown when the L5X content does not contain a valid TargetType or TargetName.
     /// </exception>
-    public static Target Create(L5X source, string? targetKey = null)
+    public static Target Create(L5X source, string targetKey)
     {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(targetKey);
+
         if (source.Content.TargetType is null)
             throw new InvalidOperationException(
                 "The L5X content does not contain a valid TargetType. Cannot create Target without a target type.");
@@ -92,9 +96,10 @@ public sealed class Target
 
         return new Target
         {
-            TargetKey = targetKey ?? $"{source.Content.TargetType.ToLower()}://{source.Content.TargetName}",
+            TargetKey = targetKey,
             TargetType = source.Content.TargetType,
             TargetName = source.Content.TargetName,
+            TargetCount = source.Content.TargetCount,
             IsPartial = source.Content.ContainsContext,
             SchemaRevision = source.Content.SchemaRevision,
             SoftwareRevision = source.Content.SoftwareRevision,

@@ -36,7 +36,7 @@ public class TargetTests
     {
         var source = TestSource.LocalTest();
 
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
 
         target.Should().NotBeNull();
         target.TargetKey.Should().Be($"{source.Content.TargetType?.ToLower()}://{source.Content.TargetName}");
@@ -62,7 +62,7 @@ public class TargetTests
     public void GetSource_WhenCalled_ShouldReturnParsedL5X()
     {
         var source = TestSource.LocalTest();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
 
         var retrievedSource = target.GetSource();
 
@@ -74,7 +74,7 @@ public class TargetTests
     public void ToString_WhenCalled_ShouldReturnTargetKey()
     {
         var source = TestSource.LocalTest();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
 
         target.ToString().Should().Be(target.TargetKey);
     }
@@ -83,7 +83,7 @@ public class TargetTests
     public void Compile_ExplicitValidTables_ShouldReturnExpectedTables()
     {
         var source = TestSource.LocalTest();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
         var tableNames = new List<string> { "controller", "tag", "task", "program" };
 
         var tables = target.Compile(tableNames).ToList();
@@ -103,7 +103,7 @@ public class TargetTests
     public void Compile_WithEmptyList_ShouldReturnNoTables()
     {
         var source = TestSource.LocalTest();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
         var tableNames = new List<string>();
 
         var tables = target.Compile(tableNames).ToList();
@@ -115,7 +115,7 @@ public class TargetTests
     public void Compile_WithNonExistentTable_ShouldReturnOnlyExistentTables()
     {
         var source = TestSource.LocalTest();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
         var tableNames = new List<string> { "controller", "non_existent_table" };
 
         var tables = target.Compile(tableNames).ToList();
@@ -128,7 +128,7 @@ public class TargetTests
     public void Compile_AllTablesAgainstLocalTests_ShouldBePerformant()
     {
         var source = TestSource.LocalExample();
-        var target = Target.Create(source);
+        var target = Target.Create(source, "TestProject");
         var tableNames = new List<string>
         {
             "controller",

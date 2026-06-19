@@ -44,10 +44,10 @@ public class SourceIngestionService(
             try
             {
                 // Signal to the database the import is now being processed (converted, parsed, and ingested).
-                import.ImportStatus = ImportStatus.Processing;
+                import.Status = ImportStatus.Processing;
                 await manager.PutImport(import, stoppingToken);
                 await manager.LogImport(
-                    import.Info($"Starting ingestion process for '{import.FileName}'"),
+                    import.Info($"Starting ingestion process for {import.FileName}"),
                     stoppingToken
                 );
 
@@ -58,7 +58,7 @@ public class SourceIngestionService(
                 // Load the L5X file, create a target and add it to the database.
                 var content = await L5X.LoadAsync(tempFile, stoppingToken);
                 await manager.LogImport(import.Info("Creating new target instance for import"), stoppingToken);
-                var target = Target.Create(content);
+                var target = Target.Create(content, import.FileName);
 
                 // Load the metadata configured for the source instance.
                 target.Info.Add(nameof(import.ImportId), import.ImportId.ToString());
@@ -67,21 +67,21 @@ public class SourceIngestionService(
 
                 // Import the target to the database.
                 await manager.LogImport(
-                    import.Info($"Importing target {target.TargetKey} into local database"),
+                    import.Info($"Importing target {target.TargetKey} into LogixDb database"),
                     stoppingToken
                 );
                 await manager.ImportTarget(target, stoppingToken);
 
                 // Import the target to the database.
                 await manager.LogImport(
-                    import.Info($"Target '{target.TargetName}' imported new version with id: {target.VersionId}"),
+                    import.Info($"Target {target.TargetName} imported new version with id: {target.VersionId}"),
                     stoppingToken
                 );
 
                 await manager.LogImport(import.Info("Cleaning up file uploads and temporary copies"), stoppingToken);
                 // Clean up temp and upload files after processing completes.
-                File.Delete(tempFile);
-                File.Delete(import.FilePath);
+                File.Delete(import.TempFile);
+                File.Delete(import.SourceFile);
 
                 // Signal to the database the import process has completed
                 await manager.LogImport(
@@ -89,7 +89,7 @@ public class SourceIngestionService(
                     stoppingToken
                 );
 
-                import.ImportStatus = ImportStatus.Complete;
+                import.Status = ImportStatus.Complete;
                 await manager.PutImport(import, stoppingToken);
             }
             catch (Exception ex)
@@ -191,7 +191,7 @@ public class SourceIngestionService(
             await Cli.Wrap(options.Value.AcdConverter)
                 .WithArguments(args => args
                     .Add("convert")
-                    .Add("-i").Add(import.FilePath)
+                    .Add("-i").Add(import.SourceFile)
                     .Add("-o").Add(tempFile)
                     .Add("--force"))
                 .WithValidation(CommandResultValidation.ZeroExitCode)
@@ -202,7 +202,7 @@ public class SourceIngestionService(
 
         // Fall back the default file converter
         await manager.LogImport(import.Info("Attempting to convert ACD using Logix SDK on local machine"), token);
-        await converter.ConvertAsync(import.FilePath, tempFile, token: token);
+        await converter.ConvertAsync(import.SourceFile, tempFile, token: token);
     }
 
     /// <summary>
@@ -215,7 +215,7 @@ public class SourceIngestionService(
     private async Task CopyToTempFile(Import import, string tempFile, CancellationToken token)
     {
         await manager.LogImport(import.Info($"Copying {import.FileName} to temp file for processing"), token);
-        await using var reader = File.OpenRead(import.FilePath);
+        await using var reader = File.OpenRead(import.SourceFile);
         await using var writer = File.Create(tempFile);
         await reader.CopyToAsync(writer, token);
     }

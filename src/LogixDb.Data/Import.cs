@@ -16,7 +16,7 @@ public sealed record Import
     /// Gets or initializes the current status of the import operation.
     /// Defaults to <see cref="ImportStatus.Pending"/> when a new import session is created.
     /// </summary>
-    public ImportStatus ImportStatus { get; set; } = ImportStatus.Pending;
+    public ImportStatus Status { get; set; } = ImportStatus.Pending;
 
     /// <summary>
     /// Gets or initializes the type of sender that initiated the import operation.
@@ -45,15 +45,23 @@ public sealed record Import
     /// This path represents the location where the file is temporarily stored for
     /// processing and ingestion into the system.
     /// </summary>
-    public required string DropPath { get; init; }
+    public required string FilePath { get; init; }
 
     /// <summary>
-    /// Gets the fully qualified file path constructed by combining the drop path,
-    /// file name, unique import identifier, and file type. This property ensures
-    /// the generated file path is uniquely identifiable and correctly formatted
-    /// for processing and tracking within the system.
+    /// Gets the fully qualified path of the import file, constructed by combining the specified file path
+    /// and the file name with its appropriate extension based on the file type. This property is used for
+    /// accessing or referencing the file during the import operation.
     /// </summary>
-    public string FilePath => Path.Combine(DropPath, $"{FileName}.{ImportId:N}.{FileType}");
+    public string SourceFile => Path.Combine(FilePath, $"{FileName}.{FileType}");
+
+    /// <summary>
+    /// Gets the full path to the temporary file created during the import operation.
+    /// This path is generated dynamically and is composed of the system's temporary directory,
+    /// a predefined subdirectory, and the file name with its associated unique identifier
+    /// and file type extension. It is primarily used for intermediate processing within
+    /// the import workflow.
+    /// </summary>
+    public string TempFile => Path.Combine(Path.GetTempPath(), "LogixDb", $"{FileName}.{ImportId:N}.{FileType.L5X}");
 
     /// <summary>
     /// Represents additional data or descriptive key-value pairs associated with the source.
@@ -100,37 +108,63 @@ public sealed record Import
     }
 
     /// <summary>
-    /// Creates a new <see cref="Import"/> instance with a generated unique identifier,
-    /// file type parsed from the file extension, and a computed file path within the specified drop directory.
-    /// Optionally populates the metadata dictionary with provided key-value pairs.
+    /// Adds a key-value pair to the metadata collection associated with the import operation.
+    /// If the key already exists, its value will be updated with the provided value.
     /// </summary>
-    /// <param name="fileName">The original name of the file, including its extension, used to determine the file type.</param>
-    /// <param name="dropPath">The directory path where the file will be stored, combined with the generated source ID and file type.</param>
-    /// <param name="sourceType"></param>
-    /// <param name="metadata">An optional collection of key-value pairs to populate the <see cref="Metadata"/> dictionary.</param>
-    /// <returns>A new <see cref="Import"/> instance with all required properties initialized.</returns>
-    public static Import Create(
-        string fileName,
-        string dropPath,
-        SourceType sourceType,
-        IDictionary<string, string>? metadata = null
-    )
+    /// <param name="key">The key representing the metadata entry. It cannot be null, empty, or consist only of whitespace.</param>
+    /// <param name="value">The value corresponding to the metadata key. It cannot be null, empty, or consist only of whitespace.</param>
+    /// <exception cref="ArgumentException">Thrown when the key or value is null, empty, or consists only of whitespace.</exception>
+    public void AddData(string key, string value)
     {
-        var fileType = Enum.Parse<FileType>(Path.GetExtension(fileName).Trim('.'), ignoreCase: true);
+        if (string.IsNullOrWhiteSpace(key))
+            throw new ArgumentException("The metadata key cannot be null, empty, or consist only of whitespace.",
+                nameof(key));
+
+        if (string.IsNullOrWhiteSpace(value))
+            throw new ArgumentException("The metadata value cannot be null, empty, or consist only of whitespace.",
+                nameof(value));
+
+        Metadata[key] = value;
+    }
+
+    /// <summary>
+    /// Adds or updates metadata entries in the current import operation.
+    /// If the provided keys already exist in the metadata dictionary, their values will be replaced.
+    /// </summary>
+    /// <param name="metadata">A dictionary containing metadata keys and their corresponding values to be added or updated. Cannot be null.</param>
+    /// <exception cref="ArgumentNullException">Thrown if the <paramref name="metadata"/> parameter is null.</exception>
+    public void AddData(IDictionary<string, string> metadata)
+    {
+        ArgumentNullException.ThrowIfNull(metadata);
+
+        foreach (var kvp in metadata)
+            Metadata[kvp.Key] = kvp.Value;
+    }
+
+    /// <summary>
+    /// Creates an instance of the <see cref="Import"/> class using the specified source file and source type.
+    /// Determines the file type, file name, and directory path from the provided source file.
+    /// </summary>
+    /// <param name="sourceFile">The full path to the source file to be imported.</param>
+    /// <param name="sourceType">The source type associated with the import, indicating the origin of the file (e.g., CLI, API, FTAC).</param>
+    /// <returns>An <see cref="Import"/> instance populated with the extracted file attributes and the specified source type.</returns>
+    public static Import Create(string sourceFile, SourceType sourceType)
+    {
+        var fileType = Enum.Parse<FileType>(Path.GetExtension(sourceFile).Trim('.'), ignoreCase: true);
+        var fileName = Path.GetFileNameWithoutExtension(sourceFile);
+        var filePath = Path.GetDirectoryName(Path.GetFullPath(sourceFile));
+
+        if (filePath is null)
+            throw new InvalidOperationException(
+                $"Unable to determine the directory path for the source file: {sourceFile}");
 
         var source = new Import
         {
             SourceType = sourceType,
             FileType = fileType,
-            DropPath = dropPath,
+            FilePath = filePath,
             FileName = fileName
         };
-
-        if (metadata is not null)
-        {
-            foreach (var kvp in metadata)
-                source.Metadata[kvp.Key] = kvp.Value;
-        }
 
         return source;
     }

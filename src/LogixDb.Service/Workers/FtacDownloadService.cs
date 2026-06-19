@@ -42,8 +42,6 @@ public class FtacDownloadService(
     {
         await foreach (var asset in assets.Reader.ReadAllAsync(token))
         {
-            Directory.CreateDirectory(options.Value.DropPath);
-            
             // Create a new import session with the database first to track this import.
             // If we fail here, then we shouldn't continue with the download.
             // This will log errors to Event Viewer as a fallback.
@@ -64,12 +62,11 @@ public class FtacDownloadService(
                 var size = await ReadAssetSize(connection, asset, import, token);
                 await DownloadAsset(connection, asset, import, size, token);
 
-                await imports.Writer.WriteAsync(import, token);
-
                 await manager.LogImport(
-                    import.Info("Queued asset for for processing and ingestion"),
+                    import.Info("Queueing asset for for processing"),
                     token
                 );
+                await imports.Writer.WriteAsync(import, token);
             }
             catch (Exception ex)
             {
@@ -144,7 +141,7 @@ public class FtacDownloadService(
     {
         await manager.LogImport(import.Info("Downloading asset from FTAC database"), token);
 
-        await using var stream = new FileStream(import.FilePath, FileMode.Create, FileAccess.Write, FileShare.None);
+        await using var stream = new FileStream(import.SourceFile, FileMode.Create, FileAccess.Write, FileShare.None);
         await using var command = new SqlCommand("dbo.arch_ReadFileChunk", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@AssetId", SqlDbType.UniqueIdentifier).Value = asset.AssetId;
@@ -191,14 +188,16 @@ public class FtacDownloadService(
     {
         try
         {
-            var import = Import.Create(asset.AssetName, options.Value.DropPath, SourceType.FTAC);
-            import.Metadata.Add(nameof(asset.AssetId), asset.AssetId.ToString());
-            import.Metadata.Add(nameof(asset.VersionId), asset.VersionId.ToString());
-            import.Metadata.Add(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
-            import.Metadata.Add(nameof(asset.AssetName), asset.AssetName);
+            Directory.CreateDirectory(Paths.Dropzone);
+            var sourceFile = Path.Combine(Paths.Dropzone, asset.AssetName);
+
+            var import = Import.Create(sourceFile, SourceType.FTAC);
+            import.AddData(nameof(asset.AssetId), asset.AssetId.ToString());
+            import.AddData(nameof(asset.VersionId), asset.VersionId.ToString());
+            import.AddData(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
+            import.AddData(nameof(asset.AssetName), asset.AssetName);
 
             await manager.PutImport(import, token);
-
             await manager.LogImport(
                 import.Info($"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}"),
                 token

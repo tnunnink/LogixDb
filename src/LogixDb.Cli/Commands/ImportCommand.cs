@@ -6,25 +6,24 @@ using CliFx.Infrastructure;
 using CliWrap;
 using JetBrains.Annotations;
 using L5Sharp.Core;
+using LogixConverter.LogixSdk;
 using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using Spectre.Console;
+using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Cli.Commands;
 
 [PublicAPI]
-[Command("import", Description = "Imports an L5X or ACD file into the database as a new target or version")]
+[Command("import", Description = "Imports an L5X or ACD file into the database as a new target version")]
 public partial class ImportCommand : DbCommand
 {
     [Required]
-    [CommandOption("source", 's', Description = "Path to the source L5X file to add")]
+    [CommandOption("source", 's', Description = "Path to the source L5X/ACD file to import")]
     public string? SourcePath { get; set; }
 
-    [CommandOption("target", 't', Description = "Optional target key override (default: <TargetType>://<TargetName>)")]
-    public string? TargetKey { get; set; }
-
-    [CommandOption("converter", Description = "Optional path to a custom ACD to L5X converter executable")]
+    [CommandOption("converter", Description = "Optional path to a custom ACD converter executable")]
     public string? Converter { get; set; }
 
     /// <inheritdoc />
@@ -33,21 +32,40 @@ public partial class ImportCommand : DbCommand
         if (!File.Exists(SourcePath))
             throw new CommandException($"File not found: {SourcePath}", ErrorCodes.NotFound);
 
-        if (StringComparer.OrdinalIgnoreCase.Equals(Path.GetExtension(SourcePath), ".acd"))
-        {
-            var tempSource = await ConvertFileAsync(console, Path.GetFullPath(SourcePath), token);
-            await ImportFileAsync(console, manager, tempSource, token);
-            File.Delete(tempSource);
-            return;
-        }
+        var import = Import.Create(SourcePath, SourceType.CLI);
 
-        await ImportFileAsync(console, manager, Path.GetFullPath(SourcePath), token);
+        // Signal to the database the import is now being processed (converted, parsed, and ingested).
+        import.Status = ImportStatus.Processing;
+        await manager.PutImport(import, token);
+        await manager.LogImport(
+            import.Info($"Starting ingestion process for {import.FileName}"),
+            token
+        );
+
+        await ConvertOrCopy(manager, import, token);
+        var target = await ImportFileAsync(console, manager, import, token);
+        File.Delete(import.TempFile);
+
+        // Signal to the database the import process has completed
+        await manager.LogImport(
+            import.Info($"Import complete for target {target.TargetKey} @v{target.VersionNumber}"),
+            token
+        );
+
+        import.Status = ImportStatus.Complete;
+        await manager.PutImport(import, token);
+        OutputResult(console, target);
     }
 
     /// <summary>
-    /// Imports a specified L5X file into the database as a new target.
+    /// Imports a file into the database as a target version.
     /// </summary>
-    private async ValueTask ImportFileAsync(IConsole console, IDbManager database, string importTarget,
+    /// <param name="console">The console instance used for output and user interaction.</param>
+    /// <param name="manager">The database manager used to perform import operations.</param>
+    /// <param name="import">The import details containing source file information.</param>
+    /// <param name="token">A cancellation token to observe while awaiting the operation.</param>
+    /// <returns>The imported target containing metadata for the processed source file.</returns>
+    private static async ValueTask<Target> ImportFileAsync(IConsole console, IDbManager manager, Import import,
         CancellationToken token)
     {
         try
@@ -55,14 +73,23 @@ public partial class ImportCommand : DbCommand
             var result = await console.Ansi().Status().StartAsync("Importing source...", async ctx =>
             {
                 ctx.Status("Loading L5X file...");
-                var content = await L5X.LoadAsync(importTarget, token);
-                var target = Target.Create(content, TargetKey);
+                await manager.LogImport(import.Info("Loading L5X content from disc"), token);
+                var content = await L5X.LoadAsync(import.SourceFile, token);
+
+                await manager.LogImport(import.Info("Creating new target instance for import"), token);
+                var target = Target.Create(content, import.FileName);
+
                 ctx.Status("Importing source to database...");
-                await database.ImportTarget(target, token);
+                await manager.LogImport(
+                    import.Info($"Importing target {target.TargetKey} into LogixDb database"),
+                    token
+                );
+                await manager.ImportTarget(target, token);
+
                 return target;
             });
 
-            OutputResult(console, result);
+            return result;
         }
         catch (XmlException e)
         {
@@ -83,53 +110,76 @@ public partial class ImportCommand : DbCommand
     }
 
     /// <summary>
-    /// Converts an ACD file to a specified format and returns the path of the converted file.
+    /// Handles the conversion or copying of a source file to a temporary location based on the file type.
     /// </summary>
-    /// <param name="console">The console interface used for displaying progress and messages.</param>
-    /// <param name="sourcePath">The path to the source ACD file to be converted.</param>
-    /// <param name="token">A token for observing cancellation requests.</param>
-    /// <returns>The path to the converted file.</returns>
-    private async ValueTask<string> ConvertFileAsync(IConsole console, string sourcePath,
-        CancellationToken token)
+    /// <param name="manager">The database manager responsible for handling import-related operations.</param>
+    /// <param name="import">The import object containing details about the source file and its properties.</param>
+    /// <param name="token">Cancellation token to monitor for cancellation requests.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when the file type of the import is unsupported.</exception>
+    private async Task ConvertOrCopy(IDbManager manager, Import import, CancellationToken token)
     {
-        if (string.IsNullOrWhiteSpace(Converter))
-            throw new CommandException(
-                "A converter path must be specified to convert ACD files. Use the --converter option to specify the path to the ACD to L5X converter executable.",
-                ErrorCodes.UsageError
-            );
-
-        var destination = Path.Combine(
-            Path.GetTempPath(),
-            $"{Guid.NewGuid():N}{Path.GetFileNameWithoutExtension(sourcePath)}.L5X"
-        );
-
-        try
+        switch (import.FileType)
         {
-            await console.Ansi().Status().StartAsync("Converting ACD file...", _ =>
-                CliWrap.Cli.Wrap(Converter)
-                    .WithArguments(args => args
-                        .Add("convert")
-                        .Add("-i").Add(sourcePath)
-                        .Add("-o").Add(destination)
-                        .Add("--force"))
-                    .WithValidation(CommandResultValidation.ZeroExitCode)
-                    .ExecuteAsync(token)
-            );
+            case FileType.L5X:
+                await CopyToTempFile(manager, import, token);
+                break;
+            case FileType.ACD:
+                await ConvertToTempFile(manager, import, token);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(import), import.FileType, "Unsupported file type.");
+        }
+    }
 
-            return destination;
-        }
-        catch (CommandException)
+    /// <summary>
+    /// Converts an ACD file to an L5X formatted temporary file for processing.
+    /// </summary>
+    /// <param name="manager">The database manager instance used for logging and file operations.</param>
+    /// <param name="import">The import object containing the file information and metadata.</param>
+    /// <param name="token">The cancellation token used to propagate the cancellation request.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private async Task ConvertToTempFile(IDbManager manager, Import import, CancellationToken token)
+    {
+        await manager.LogImport(import.Info($"Converting {import.FileName} to temp L5X for processing"), token);
+
+        // Use the configured ACD converter on the local machine instead of the default file converter.
+        if (Converter is not null)
         {
-            throw;
+            await manager.LogImport(import.Info("Custom ACD converter detected - calling convert command"), token);
+
+            await CliWrap.Cli.Wrap(Converter)
+                .WithArguments(args => args
+                    .Add("convert")
+                    .Add("-i").Add(import.SourceFile)
+                    .Add("-o").Add(import.TempFile)
+                    .Add("--force"))
+                .WithValidation(CommandResultValidation.ZeroExitCode)
+                .ExecuteAsync(token);
+
+            return;
         }
-        catch (Exception e)
-        {
-            throw new CommandException(
-                $"Project conversion failed with error: {e.Message}",
-                ErrorCodes.InternalError,
-                false, e
-            );
-        }
+
+
+        // Fall back the default file converter
+        await manager.LogImport(import.Info("Attempting to convert ACD using Logix SDK on local machine"), token);
+        var converter = new LogixSdkConverter();
+        await converter.ConvertAsync(import.SourceFile, import.TempFile, token: token);
+    }
+
+    /// <summary>
+    /// Creates a temporary copy of the specified import file for processing.
+    /// </summary>
+    /// <param name="manager">The database manager responsible for handling logging and database operations.</param>
+    /// <param name="import">The import object containing information about the file to be copied.</param>
+    /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    private static async Task CopyToTempFile(IDbManager manager, Import import, CancellationToken token)
+    {
+        await manager.LogImport(import.Info($"Creating temp copy of {import.FileName} for processing"), token);
+        await using var reader = File.OpenRead(import.SourceFile);
+        await using var writer = File.Create(import.TempFile);
+        await reader.CopyToAsync(writer, token);
     }
 
     /// <summary>
@@ -143,7 +193,13 @@ public partial class ImportCommand : DbCommand
 
         table.AddRow("Key", target.TargetKey);
         table.AddRow("Type", target.TargetType);
-        table.AddRow("Name", target.TargetName);
+
+        if (target.TargetName is not null)
+            table.AddRow("Name", target.TargetName);
+
+        if (target.TargetCount is not null)
+            table.AddRow("Count", target.TargetCount.ToString() ?? "0");
+
         table.AddRow("Version", target.VersionNumber.ToString());
         table.AddRow("Revision", target.SoftwareRevision ?? "?");
         table.AddRow("Date", target.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));

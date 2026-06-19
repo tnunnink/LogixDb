@@ -69,7 +69,7 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(2));
 
-        await AssertRecordExists("target", "target_key", "controller://TestController");
+        await AssertRecordExists("target", "target_key", "TestProject");
         await AssertRecordExists("target", "target_key", "MyCustomKey");
     }
 

@@ -20,6 +20,7 @@ WHEN NOT MATCHED THEN
         config_tag,
         ip_address,
         slot_number,
+        content_hash,
         record_hash
     )
     VALUES
@@ -40,6 +41,7 @@ WHEN NOT MATCHED THEN
         source.config_tag,
         source.ip_address,
         source.slot_number,
+        source.content_hash,
         source.record_hash
     );
 

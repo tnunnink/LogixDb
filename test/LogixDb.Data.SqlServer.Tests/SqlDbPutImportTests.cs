@@ -1,7 +1,7 @@
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlServerDbPutImportTests : SqlServerTestFixture
+public class SqlDbPutImportTests : SqlServerTestFixture
 {
     [SetUp]
     protected async Task Setup()
@@ -16,7 +16,9 @@ public class SqlServerDbPutImportTests : SqlServerTestFixture
 
         await Database.PutImport(import);
 
-        await AssertRecordExists("import", "file_name", "test.L5X");
+        await AssertRecordExists("import", "file_name", "test");
+        await AssertRecordExists("import", "file_type", "L5X");
+        await AssertRecordExists("import", "source_type", "CLI");
     }
 
     [Test]

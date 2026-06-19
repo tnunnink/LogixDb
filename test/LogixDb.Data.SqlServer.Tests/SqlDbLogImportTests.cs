@@ -3,7 +3,7 @@ using LogixDb.Testing;
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlServerDbLogImportTests : SqlServerTestFixture
+public class SqlDbLogImportTests : SqlServerTestFixture
 {
     [SetUp]
     protected async Task Setup()

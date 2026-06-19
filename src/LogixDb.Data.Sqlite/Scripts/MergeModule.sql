@@ -16,6 +16,7 @@ INSERT OR IGNORE INTO module
     config_tag,
     ip_address,
     slot_number,
+    content_hash,
     record_hash
 )
 SELECT
@@ -35,6 +36,7 @@ SELECT
     t.config_tag,
     t.ip_address,
     t.slot_number,
+    content_hash,
     t.record_hash
 FROM temp_module t;
 

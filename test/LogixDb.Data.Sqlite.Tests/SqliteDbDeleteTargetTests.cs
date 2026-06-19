@@ -34,7 +34,7 @@ public class SqliteDbDeleteTargetTests : SqliteTestFixture
 
         var result = (await Database.ListTargets()).ToArray();
         Assert.That(result, Has.Length.EqualTo(1));
-        Assert.That(result[0].TargetKey, Is.EqualTo("controller://TestController"));
+        Assert.That(result[0].TargetKey, Is.EqualTo("TestProject"));
     }
 
     [Test]

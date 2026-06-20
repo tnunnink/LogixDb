@@ -191,6 +191,7 @@ public partial class ImportCommand : DbCommand
         var table = new Table().Border(TableBorder.Rounded).AddColumn("Property").AddColumn("Value");
 
         table.AddRow("Key", target.TargetKey);
+        table.AddRow("Version", target.VersionNumber.ToString());
         table.AddRow("Type", target.TargetType);
 
         if (target.TargetName is not null)
@@ -198,13 +199,11 @@ public partial class ImportCommand : DbCommand
 
         if (target.TargetCount is not null)
             table.AddRow("Count", target.TargetCount.ToString() ?? "0");
-
-        table.AddRow("Version", target.VersionNumber.ToString());
+        
         table.AddRow("Revision", target.SoftwareRevision ?? "?");
         table.AddRow("Date", target.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"));
         table.AddRow("User", target.ImportUser);
         table.AddRow("Machine", target.ImportMachine);
-        table.AddRow("Hash", target.SourceHash);
 
         console.Ansi().MarkupLine("[green]✓[/] Target imported successfully");
         console.Ansi().Write(table);

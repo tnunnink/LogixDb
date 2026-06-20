@@ -19,8 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_003_ConfigurePermissions.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260226_001_SqlServerConfigureServiceAccount.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,61 +148,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.044891823919795" />
-      <entry key="MS500" value="3.117468968953896" />
-      <entry key="S2" value="11.01183811482646" />
-      <entry key="S5" value="24.313540168304375" />
-      <entry key="S10" value="35.59668598966359" />
-      <entry key="S30" value="56.24607491244193" />
-      <entry key="S60" value="99.02337907001424" />
-      <entry key="M2" value="187.405366272349" />
-      <entry key="M5" value="366.5196036195522" />
-      <entry key="M10" value="519.0509967152936" />
-      <entry key="M15" value="624.5269818799882" />
-      <entry key="M30" value="906.9236633822953" />
-      <entry key="H1" value="1454.8462973895837" />
-      <entry key="H2" value="2398.538737929434" />
-      <entry key="H4" value="3709.2631210538125" />
-      <entry key="D1" value="9823.143967976703" />
-      <entry key="W1" value="19215.149024508562" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.2231791095281697E-116" />
+      <entry key="S2" value="6.814473705860948E-29" />
+      <entry key="S5" value="2.5119053741181558E-11" />
+      <entry key="S10" value="1.892547658925228E-5" />
+      <entry key="S30" value="0.24690461981927075" />
+      <entry key="S60" value="3.2602136593144104" />
+      <entry key="M2" value="12.350721600515813" />
+      <entry key="M5" value="27.8077313116052" />
+      <entry key="M10" value="36.5175430668255" />
+      <entry key="M15" value="40.00515563037179" />
+      <entry key="M30" value="46.910657677435225" />
+      <entry key="H1" value="130.86478437590625" />
+      <entry key="H2" value="626.6963399248111" />
+      <entry key="H4" value="1871.1227012560346" />
+      <entry key="D1" value="8774.81222397977" />
+      <entry key="W1" value="18941.045925071267" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="2.0515288243045368E-282" />
-      <entry key="S10" value="1.9970493346956912E-141" />
-      <entry key="S30" value="2.2044373540998225E-47" />
-      <entry key="S60" value="8.812946290703144E-24" />
-      <entry key="M2" value="6.54767024230502E-12" />
-      <entry key="M5" value="1.557280240826285E-4" />
-      <entry key="M10" value="0.07516721185395776" />
-      <entry key="M15" value="0.6899297959613229" />
-      <entry key="M30" value="8.084619790181682" />
-      <entry key="H1" value="36.84320030483758" />
-      <entry key="H2" value="98.00859734810271" />
-      <entry key="H4" value="180.76355716794902" />
-      <entry key="D1" value="509.6221639895577" />
-      <entry key="W1" value="1412.1055092330973" />
+      <entry key="MS100" value="1.0000000000363312" />
+      <entry key="MS500" value="1.0081668757828528" />
+      <entry key="S2" value="1.3006173122245444" />
+      <entry key="S5" value="1.6183090383638592" />
+      <entry key="S10" value="1.7863262925553611" />
+      <entry key="S30" value="1.9229983666666957" />
+      <entry key="S60" value="1.960728039908639" />
+      <entry key="M2" value="1.9801673530110249" />
+      <entry key="M5" value="1.9920192353541601" />
+      <entry key="M10" value="1.9960016271634728" />
+      <entry key="M15" value="1.9973406780290388" />
+      <entry key="M30" value="2.0262663325627153" />
+      <entry key="H1" value="4.152060723800725" />
+      <entry key="H2" value="25.6904867610181" />
+      <entry key="H4" value="90.87262913898846" />
+      <entry key="D1" value="454.74946080280677" />
+      <entry key="W1" value="1390.4353714672923" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.009741477505845" />
-      <entry key="MS500" value="3.0998913697359396" />
-      <entry key="S2" value="10.997322692459356" />
-      <entry key="S5" value="24.30092764096672" />
-      <entry key="S10" value="35.587506523104416" />
-      <entry key="S30" value="56.241266506523885" />
-      <entry key="S60" value="99.01913623527265" />
-      <entry key="M2" value="187.40129085607032" />
-      <entry key="M5" value="366.51647811342303" />
-      <entry key="M10" value="519.123314427287" />
-      <entry key="M15" value="625.2131471533978" />
-      <entry key="M30" value="914.9992145720634" />
-      <entry key="H1" value="1491.6731750139406" />
-      <entry key="H2" value="2496.527028535146" />
-      <entry key="H4" value="3890.0081134914276" />
-      <entry key="D1" value="10332.756830683144" />
-      <entry key="W1" value="20627.25007382527" />
+      <entry key="MS100" value="4.83063167419403E-11" />
+      <entry key="MS500" value="0.010663711227767677" />
+      <entry key="S2" value="0.51689942338942" />
+      <entry key="S5" value="1.159506046750926" />
+      <entry key="S10" value="1.5218447056936342" />
+      <entry key="S30" value="2.072496455894971" />
+      <entry key="S60" value="5.170800684506161" />
+      <entry key="M2" value="14.305223214327524" />
+      <entry key="M5" value="29.78922192628789" />
+      <entry key="M10" value="38.50821566799525" />
+      <entry key="M15" value="41.99892693963752" />
+      <entry key="M30" value="48.93509940983043" />
+      <entry key="H1" value="135.01499217699188" />
+      <entry key="H2" value="652.3814678917164" />
+      <entry key="H4" value="1961.9859777444806" />
+      <entry key="D1" value="9229.553383936362" />
+      <entry key="W1" value="20331.476906013617" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -389,23 +394,7 @@
       <workItem from="1781199999831" duration="86890000" />
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
-      <workItem from="1781898046481" duration="6976000" />
-    </task>
-    <task id="LOCAL-00370" summary="Fix incorrect `ModuleConnectionMap` column mapping for `OutputTag` and add `config_tag` mapping in `ModuleMap`.">
-      <option name="closed" value="true" />
-      <created>1781617012938</created>
-      <option name="number" value="00370" />
-      <option name="presentableId" value="LOCAL-00370" />
-      <option name="project" value="LOCAL" />
-      <updated>1781617012938</updated>
-    </task>
-    <task id="LOCAL-00371" summary="Add `config_tag` column definition tests for SQL Server and SQLite migrations">
-      <option name="closed" value="true" />
-      <created>1781617068792</created>
-      <option name="number" value="00371" />
-      <option name="presentableId" value="LOCAL-00371" />
-      <option name="project" value="LOCAL" />
-      <updated>1781617068792</updated>
+      <workItem from="1781898046481" duration="9000000" />
     </task>
     <task id="LOCAL-00372" summary="Add `config_tag` column to `Module` migrations and update corresponding SQL scripts">
       <option name="closed" value="true" />
@@ -783,7 +772,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781904381032</updated>
     </task>
-    <option name="localTasksCounter" value="419" />
+    <task id="LOCAL-00419" summary="Replace `Logix_20260226_001_SqlServerConfigureServiceAccount.sql` with `Logix_20260201_003_ConfigurePermissions.sql` for refined service user setup and schema permissions.">
+      <option name="closed" value="true" />
+      <created>1781905032737</created>
+      <option name="number" value="00419" />
+      <option name="presentableId" value="LOCAL-00419" />
+      <option name="project" value="LOCAL" />
+      <updated>1781905032737</updated>
+    </task>
+    <task id="LOCAL-00420" summary="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property.">
+      <option name="closed" value="true" />
+      <created>1781905130076</created>
+      <option name="number" value="00420" />
+      <option name="presentableId" value="LOCAL-00420" />
+      <option name="project" value="LOCAL" />
+      <updated>1781905130076</updated>
+    </task>
+    <option name="localTasksCounter" value="421" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -811,8 +816,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `PutImport` and `LogImport` in SQL Server and SQLite managers to map enums to strings and include additional properties" />
-    <MESSAGE value="Bump version to 0.15.0 for Service and CLI projects" />
     <MESSAGE value="Update `LogImport` methods to use `PostLog` script and allow nullable `log_exception` in `import_log` table" />
     <MESSAGE value="Update `.idea` workspace configuration to reflect recent changes in scripts, logging, and metadata settings." />
     <MESSAGE value="Refactor file upload and import workflows: update `Target.Create` method, rename `Import` properties, and remove redundant `DropPath`. Added logging to write to database for import process" />
@@ -836,7 +839,9 @@
     <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
     <MESSAGE value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
     <MESSAGE value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
+    <MESSAGE value="Replace `Logix_20260226_001_SqlServerConfigureServiceAccount.sql` with `Logix_20260201_003_ConfigurePermissions.sql` for refined service user setup and schema permissions." />
+    <MESSAGE value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -853,19 +858,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbGetTargetTests.cs</url>
-          <line>75</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\SqlDbGetTargetTests.cs" containingFunctionPresentation="Method 'GetTarget_ByVersionMultipleTargets_ShouldReturnCorrectOne'">
-            <startOffsets>
-              <option value="2352" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2387" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

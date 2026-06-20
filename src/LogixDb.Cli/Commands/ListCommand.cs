@@ -56,12 +56,10 @@ public partial class ListCommand : DbCommand
             .AddColumn("Key")
             .AddColumn("Version")
             .AddColumn("Type")
-            .AddColumn("Name")
             .AddColumn("Revision")
             .AddColumn("Date")
             .AddColumn("User")
-            .AddColumn("Machine")
-            .AddColumn("Hash");
+            .AddColumn("Machine");
 
         foreach (var target in targets.OrderByDescending(s => s.ImportDate))
         {
@@ -69,12 +67,10 @@ public partial class ListCommand : DbCommand
                 target.TargetKey,
                 target.VersionNumber.ToString(),
                 target.TargetType,
-                target.TargetName,
                 target.SoftwareRevision ?? "N/A",
                 target.ImportDate.ToString("yyyy-MM-dd HH:mm:ss"),
                 target.ImportUser,
-                target.ImportMachine,
-                target.SourceHash
+                target.ImportMachine
             );
         }
 

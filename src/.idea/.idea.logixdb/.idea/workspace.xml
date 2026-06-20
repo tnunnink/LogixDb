@@ -19,13 +19,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Admin_003_ConfigurePermissions.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ListCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/LogixDb.Data.Sqlite.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/LogixDb.Data.SqlServer.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/LogixDb.Data.Sqlite.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbGetTargetTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_001_ConfigureRecorverySimple.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Admin_001_ConfigureRecorverySimple.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_002_CreateLogixSchema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Admin_002_CreateSchemas.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260201_003_ConfigurePermissions.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,61 +146,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.2231791095281697E-116" />
-      <entry key="S2" value="6.814473705860948E-29" />
-      <entry key="S5" value="2.5119053741181558E-11" />
-      <entry key="S10" value="1.892547658925228E-5" />
-      <entry key="S30" value="0.24690461981927075" />
-      <entry key="S60" value="3.2602136593144104" />
-      <entry key="M2" value="12.350721600515813" />
-      <entry key="M5" value="27.8077313116052" />
-      <entry key="M10" value="36.5175430668255" />
-      <entry key="M15" value="40.00515563037179" />
-      <entry key="M30" value="46.910657677435225" />
-      <entry key="H1" value="130.86478437590625" />
-      <entry key="H2" value="626.6963399248111" />
-      <entry key="H4" value="1871.1227012560346" />
-      <entry key="D1" value="8774.81222397977" />
-      <entry key="W1" value="18941.045925071267" />
+      <entry key="MS100" value="1.7580730097704755" />
+      <entry key="MS500" value="4.614411702198522" />
+      <entry key="S2" value="12.676940152884287" />
+      <entry key="S5" value="30.420282016023695" />
+      <entry key="S10" value="61.95454716645337" />
+      <entry key="S30" value="175.76275585987744" />
+      <entry key="S60" value="283.41484211030024" />
+      <entry key="M2" value="387.82238616181337" />
+      <entry key="M5" value="519.5687801367692" />
+      <entry key="M10" value="614.0373817141534" />
+      <entry key="M15" value="660.4932999873478" />
+      <entry key="M30" value="721.2721477944705" />
+      <entry key="H1" value="824.2962626298402" />
+      <entry key="H2" value="1299.1839368119888" />
+      <entry key="H4" value="2519.887868888209" />
+      <entry key="D1" value="9448.342504902424" />
+      <entry key="W1" value="19665.528295290776" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000000363312" />
-      <entry key="MS500" value="1.0081668757828528" />
-      <entry key="S2" value="1.3006173122245444" />
-      <entry key="S5" value="1.6183090383638592" />
-      <entry key="S10" value="1.7863262925553611" />
-      <entry key="S30" value="1.9229983666666957" />
-      <entry key="S60" value="1.960728039908639" />
-      <entry key="M2" value="1.9801673530110249" />
-      <entry key="M5" value="1.9920192353541601" />
-      <entry key="M10" value="1.9960016271634728" />
-      <entry key="M15" value="1.9973406780290388" />
-      <entry key="M30" value="2.0262663325627153" />
-      <entry key="H1" value="4.152060723800725" />
-      <entry key="H2" value="25.6904867610181" />
-      <entry key="H4" value="90.87262913898846" />
-      <entry key="D1" value="454.74946080280677" />
-      <entry key="W1" value="1390.4353714672923" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="1.5681366023975508E-155" />
+      <entry key="S5" value="1.7440350321031698E-62" />
+      <entry key="S10" value="1.8544181225885864E-31" />
+      <entry key="S30" value="9.037768361066312E-11" />
+      <entry key="S60" value="1.3441833295263128E-5" />
+      <entry key="M2" value="0.005184686111770451" />
+      <entry key="M5" value="0.1847148267040214" />
+      <entry key="M10" value="0.6078060316259705" />
+      <entry key="M15" value="0.904041200511868" />
+      <entry key="M30" value="1.3632156606867227" />
+      <entry key="H1" value="3.4056319813213896" />
+      <entry key="H2" value="23.266943890722942" />
+      <entry key="H4" value="86.48018262548375" />
+      <entry key="D1" value="451.0099365416865" />
+      <entry key="W1" value="1388.7961689453361" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="4.83063167419403E-11" />
-      <entry key="MS500" value="0.010663711227767677" />
-      <entry key="S2" value="0.51689942338942" />
-      <entry key="S5" value="1.159506046750926" />
-      <entry key="S10" value="1.5218447056936342" />
-      <entry key="S30" value="2.072496455894971" />
-      <entry key="S60" value="5.170800684506161" />
-      <entry key="M2" value="14.305223214327524" />
-      <entry key="M5" value="29.78922192628789" />
-      <entry key="M10" value="38.50821566799525" />
-      <entry key="M15" value="41.99892693963752" />
-      <entry key="M30" value="48.93509940983043" />
-      <entry key="H1" value="135.01499217699188" />
-      <entry key="H2" value="652.3814678917164" />
-      <entry key="H4" value="1961.9859777444806" />
-      <entry key="D1" value="9229.553383936362" />
-      <entry key="W1" value="20331.476906013617" />
+      <entry key="MS100" value="1.7096137699403287" />
+      <entry key="MS500" value="4.587538232539" />
+      <entry key="S2" value="12.658551844082554" />
+      <entry key="S5" value="30.403074864257828" />
+      <entry key="S10" value="61.93751044317217" />
+      <entry key="S30" value="175.74729311380202" />
+      <entry key="S60" value="283.4025226621814" />
+      <entry key="M2" value="387.8190856235172" />
+      <entry key="M5" value="519.7480063915162" />
+      <entry key="M10" value="614.6409205114766" />
+      <entry key="M15" value="661.3938429691516" />
+      <entry key="M30" value="722.6331226542438" />
+      <entry key="H1" value="827.6998474165762" />
+      <entry key="H2" value="1322.445758165099" />
+      <entry key="H4" value="2606.359014850913" />
+      <entry key="D1" value="9899.344185971197" />
+      <entry key="W1" value="21054.320075612646" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -394,15 +392,7 @@
       <workItem from="1781199999831" duration="86890000" />
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
-      <workItem from="1781898046481" duration="9000000" />
-    </task>
-    <task id="LOCAL-00372" summary="Add `config_tag` column to `Module` migrations and update corresponding SQL scripts">
-      <option name="closed" value="true" />
-      <created>1781617233171</created>
-      <option name="number" value="00372" />
-      <option name="presentableId" value="LOCAL-00372" />
-      <option name="project" value="LOCAL" />
-      <updated>1781617233171</updated>
+      <workItem from="1781898046481" duration="10030000" />
     </task>
     <task id="LOCAL-00373" summary="Remove `last_modified_date` column from `controller` table in SQL Server and SQLite migrations and update associated tests.">
       <option name="closed" value="true" />
@@ -788,7 +778,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781905130076</updated>
     </task>
-    <option name="localTasksCounter" value="421" />
+    <task id="LOCAL-00421" summary="Remove unused `FluentMigrator` package references, update assertions in `SqliteDbGetTargetTests`, and refine table output structure in CLI commands.">
+      <option name="closed" value="true" />
+      <created>1781919895687</created>
+      <option name="number" value="00421" />
+      <option name="presentableId" value="LOCAL-00421" />
+      <option name="project" value="LOCAL" />
+      <updated>1781919895687</updated>
+    </task>
+    <option name="localTasksCounter" value="422" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -816,7 +814,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `LogImport` methods to use `PostLog` script and allow nullable `log_exception` in `import_log` table" />
     <MESSAGE value="Update `.idea` workspace configuration to reflect recent changes in scripts, logging, and metadata settings." />
     <MESSAGE value="Refactor file upload and import workflows: update `Target.Create` method, rename `Import` properties, and remove redundant `DropPath`. Added logging to write to database for import process" />
     <MESSAGE value="Bump `LogixConverter.LogixSdk` package version to 0.2.2 in CLI project." />
@@ -841,7 +838,8 @@
     <MESSAGE value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
     <MESSAGE value="Replace `Logix_20260226_001_SqlServerConfigureServiceAccount.sql` with `Logix_20260201_003_ConfigurePermissions.sql` for refined service user setup and schema permissions." />
     <MESSAGE value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
+    <MESSAGE value="Remove unused `FluentMigrator` package references, update assertions in `SqliteDbGetTargetTests`, and refine table output structure in CLI commands." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused `FluentMigrator` package references, update assertions in `SqliteDbGetTargetTests`, and refine table output structure in CLI commands." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -858,6 +856,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs</url>
+          <line>36</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerMigrator.cs" containingFunctionPresentation="Method 'Migrate'">
+            <startOffsets>
+              <option value="1366" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1527" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

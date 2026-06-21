@@ -80,7 +80,7 @@ public sealed record DbConnectionInfo(
                 "user" or "username" or "u" => info with { User = value },
                 "password" or "pw" or "p" => info with { Password = value },
                 "port" => info with { Port = int.Parse(value) },
-                "trust" or "trustservercertificate" => info with { Trust = bool.Parse(value) },
+                "trust" => info with { Trust = bool.Parse(value) },
                 "encrypt" => info with { Encrypt = bool.Parse(value) },
                 _ => info
             };

@@ -103,6 +103,11 @@ public abstract class TableMap<T> where T : class
         foreach (var column in columns)
         {
             var value = column.Getter(record);
+            
+            // Omit null column values - this allows us to retain backward compatibility with older schemas.
+            // When L5X gets new properties that we map, having old rows default to null won't break their hash.
+            if (value is null) continue;
+            
             hashBuilder.Append(SerializeField(column.Name, value));
         }
 
@@ -141,15 +146,17 @@ public abstract class TableMap<T> where T : class
     /// A string representing the serialized column name and value, formatted with delimiters.
     /// Null values are replaced by a specific placeholder during serialization.
     /// </returns>
-    private static string SerializeField(string name, object? value)
+    private static string SerializeField(string name, object value)
     {
+        ArgumentNullException.ThrowIfNull(name);
+        ArgumentNullException.ThrowIfNull(value);
+        
         return '\u001E' + name + '\u001F' + FormatValue(value);
 
-        static string FormatValue(object? value)
+        static string FormatValue(object value)
         {
             return value switch
             {
-                null => "\u2400",
                 byte[] b => Convert.ToHexStringLower(b),
                 string s => s.Replace("\r\n", "\n"),
                 IFormattable f => f.ToString(null, CultureInfo.InvariantCulture),

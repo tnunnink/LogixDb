@@ -41,7 +41,7 @@ public class TagTransformer : IDbTransformer
                 consumerRecords.Add(tag.ConsumeInfo);
 
             // We will store each member since we potentially won't have corresponding data type definitions to resolve against.
-            // Only store atomic member values as a slim table. This data will change with each version so we want to split
+            // Only store atomic member values as a slim table. This data will change with each version, so we want to split
             // it out from the tag definition/structure.
             foreach (var member in tag.Members())
             {

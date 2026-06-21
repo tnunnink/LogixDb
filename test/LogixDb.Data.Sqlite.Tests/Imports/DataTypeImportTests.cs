@@ -2,10 +2,10 @@ using L5Sharp.Core;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 
-namespace LogixDb.Data.Sqlite.Tests.Components;
+namespace LogixDb.Data.Sqlite.Tests.Imports;
 
 [TestFixture]
-public class DataTypeTests : SqliteTestFixture
+public class DataTypeImportTests : SqliteTestFixture
 {
     [Test]
     public async Task ImportTarget_WithSingleDataType_ShouldContainExpectedRecords()

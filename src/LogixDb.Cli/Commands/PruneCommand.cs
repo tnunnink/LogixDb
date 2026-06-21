@@ -37,8 +37,7 @@ public partial class PruneCommand : DbCommand
 
         try
         {
-            var connection = ParseConnection();
-            var manager = GetManager(connection);
+            var manager = GetManager();
             
             await console.Ansi().Status().StartAsync($"Pruning instances for '{Target}'...",
                 _ => manager.DeleteVersion(Target, Version, token)

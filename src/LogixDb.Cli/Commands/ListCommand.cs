@@ -20,8 +20,7 @@ public partial class ListCommand : DbCommand
     {
         try
         {
-            var connection = ParseConnection();
-            var manager = GetManager(connection);
+            var manager = GetManager();
 
             var targets = await console.Ansi().Status().StartAsync("Retrieving targets...",
                 _ => manager.ListTargets(TargetKey, token)

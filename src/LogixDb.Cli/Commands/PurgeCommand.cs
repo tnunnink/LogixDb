@@ -31,8 +31,7 @@ public partial class PurgeCommand : DbCommand
 
         try
         {
-            var connection = ParseConnection();
-            var manager = GetManager(connection);
+            var manager = GetManager();
 
             await console.Ansi().Status().StartAsync($"Purging target '{Target}'...",
                 _ => manager.DeleteTarget(Target, token)

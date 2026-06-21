@@ -7,6 +7,7 @@ using LogixDb.Cli.Common;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
 using LogixDb.Data.Sqlite;
+using LogixDb.Data.SqlServer;
 
 namespace LogixDb.Cli.Commands;
 
@@ -33,54 +34,58 @@ public abstract class DbCommand : ICommand
     }
 
     /// <summary>
-    /// 
+    /// When overridden in a derived class, executes the database command asynchronously
+    /// with the specified console interface and cancellation token.
     /// </summary>
-    /// <param name="console"></param>
-    /// <param name="token"></param>
-    /// <returns></returns>
+    /// <param name="console">The console instance used for input/output operations and rendering.</param>
+    /// <param name="token">A cancellation token that can be used to cancel the asynchronous operation.</param>
+    /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
     protected abstract ValueTask ExecuteAsync(IConsole console, CancellationToken token);
 
     /// <summary>
-    /// Parses the database connection string into a <see cref="DbConnectionInfo"/> object.
-    /// This method uses the <see cref="DbConnectionInfo.Parse(string)"/> method to interpret
-    /// the provided connection string and extract details about the database provider, source,
-    /// authentication credentials, and other related settings.
+    /// Creates and returns an appropriate database migrator instance based on the
+    /// database provider specified in the connection string.
     /// </summary>
     /// <returns>
-    /// A <see cref="DbConnectionInfo"/> instance containing the parsed details of the
-    /// database connection string.
+    /// An <see cref="IDbMigrator"/> instance corresponding to the database provider:
+    /// <see cref="SqliteMigrator"/> for SQLite databases, or
+    /// <see cref="SqlServerMigrator"/> for SQL Server databases.
     /// </returns>
-    protected DbConnectionInfo ParseConnection() => DbConnectionInfo.Parse(Connection);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    /// <exception cref="Exception"></exception>
-    protected static IDbMigrator GetMigrator(DbConnectionInfo connection)
+    /// <exception cref="CommandException">
+    /// Thrown when the database provider specified in the connection string is not supported.
+    /// </exception>
+    protected IDbMigrator GetMigrator()
     {
+        var connection = DbConnectionInfo.Parse(Connection);
         return connection.Provider switch
         {
             DbProvider.Sqlite => new SqliteMigrator(),
-            DbProvider.SqlServer => throw new NotImplementedException(),
-            _ => throw new Exception($"Unsupported SQL provider: {connection.Provider}")
+            DbProvider.SqlServer => new SqlServerMigrator(),
+            _ => throw new CommandException($"Unsupported SQL provider: {connection.Provider}")
         };
     }
 
     /// <summary>
-    /// 
+    /// Creates and returns an appropriate database manager instance based on the
+    /// database provider specified in the connection string.
     /// </summary>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    /// <exception cref="Exception"></exception>
-    protected static IDbManager GetManager(DbConnectionInfo connection)
+    /// <returns>
+    /// An <see cref="IDbManager"/> instance that manages database operations
+    /// using the appropriate provider (<see cref="SqliteProvider"/> for SQLite
+    /// databases or <see cref="SqlServerProvider"/> for SQL Server databases).
+    /// </returns>
+    /// <exception cref="CommandException">
+    /// Thrown when the database provider specified in the connection string is not supported.
+    /// </exception>
+    protected IDbManager GetManager()
     {
-        var provider = connection.Provider switch
+        var connection = DbConnectionInfo.Parse(Connection);
+
+        IDbProvider provider = connection.Provider switch
         {
             DbProvider.Sqlite => new SqliteProvider(connection),
-            DbProvider.SqlServer => throw new NotImplementedException(),
-            _ => throw new Exception($"Unsupported SQL provider: {connection.Provider}")
+            DbProvider.SqlServer => new SqlServerProvider(connection),
+            _ => throw new CommandException($"Unsupported SQL provider: {connection.Provider}")
         };
 
         return new DbManager(provider);

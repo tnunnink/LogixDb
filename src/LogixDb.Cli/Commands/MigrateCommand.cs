@@ -3,6 +3,7 @@ using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
+using LogixDb.Data;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
@@ -16,8 +17,8 @@ public partial class MigrateCommand : DbCommand
     {
         try
         {
-            var connection = ParseConnection();
-            var migrator = GetMigrator(connection);
+            var connection = DbConnectionInfo.Parse(Connection);
+            var migrator = GetMigrator();
 
             var result = await console.Ansi().Status().StartAsync("Migrating database...",
                 _ => migrator.Migrate(connection, token)

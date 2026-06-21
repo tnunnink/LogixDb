@@ -28,8 +28,7 @@ public partial class ExportCommand : DbCommand
     {
         try
         {
-            var connection = ParseConnection();
-            var manager = GetManager(connection);
+            var manager = GetManager();
 
             var target = await manager.GetTarget(TargetKey, VersionNumber, token);
 

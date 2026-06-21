@@ -28,8 +28,7 @@ public partial class SyncCommand : DbCommand
 
     protected override async ValueTask ExecuteAsync(IConsole console, CancellationToken token)
     {
-        var connection = ParseConnection();
-        var manager = GetManager(connection);
+        var manager = GetManager();
 
         var target = await manager.GetTarget(TargetKey, token: token);
 

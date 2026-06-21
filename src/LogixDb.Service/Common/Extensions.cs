@@ -29,7 +29,7 @@ public static class Extensions
         switch (connection.Provider)
         {
             case DbProvider.SqlServer:
-                /*services.AddTransient<IDbProvider>(_ => new SqlServerProvider(connection));*/
+                services.AddTransient<IDbProvider>(_ => new SqlServerProvider(connection));
                 break;
             case DbProvider.Sqlite:
                 services.AddTransient<IDbProvider>(_ => new SqliteProvider(connection));

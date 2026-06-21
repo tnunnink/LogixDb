@@ -19,7 +19,7 @@ public class LogixConfig
     /// This property determines how the application connects to the database, including the server address,
     /// authentication, and database selection. It is initialized during configuration and remains immutable.
     /// </remarks>
-    public string DbConnection { get; init; } = "logix@localhost";
+    public string DbConnection { get; init; } = "logixdb@localhost";
 
     /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.

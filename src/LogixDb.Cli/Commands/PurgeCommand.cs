@@ -4,7 +4,6 @@ using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;
@@ -14,7 +13,7 @@ namespace LogixDb.Cli.Commands;
 public partial class PurgeCommand : DbCommand
 {
     [Required]
-    [CommandOption("target", 't', Description = "Target key to purge (format: targettype://targetname)")]
+    [CommandOption("target", 't', Description = "Target key to purge")]
     public string Target { get; set; } = string.Empty;
 
     [CommandOption("force", 'f', Description = "Skip confirmation prompt.")]

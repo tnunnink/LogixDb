@@ -4,7 +4,6 @@ using CliFx.Binding;
 using CliFx.Infrastructure;
 using JetBrains.Annotations;
 using LogixDb.Cli.Common;
-using LogixDb.Data.Abstractions;
 using Spectre.Console;
 
 namespace LogixDb.Cli.Commands;

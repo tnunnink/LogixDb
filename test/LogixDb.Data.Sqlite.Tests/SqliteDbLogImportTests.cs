@@ -1,16 +1,8 @@
-using LogixDb.Testing;
-
 namespace LogixDb.Data.Sqlite.Tests;
 
 [TestFixture]
 public class SqliteDbLogImportTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task LogImport_ValidLog_InsertsRecord()
     {
@@ -28,7 +20,7 @@ public class SqliteDbLogImportTests : SqliteTestFixture
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
         await Manager.PutImport(import);
-        
+
         await Manager.LogImport(import.Info("Message 1"));
         await Manager.LogImport(import.Info("Message 2"));
 

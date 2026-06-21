@@ -6,8 +6,6 @@ public class M20260212Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602120830_CreatesAoiTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("aoi");
@@ -44,8 +42,6 @@ public class M20260212Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602120900_CreatesAoiParameterTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("aoi_parameter");

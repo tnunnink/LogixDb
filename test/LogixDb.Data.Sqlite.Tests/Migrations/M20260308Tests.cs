@@ -6,8 +6,6 @@ public class M20260308Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082100_CreatesOperandTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("operand");
@@ -32,8 +30,6 @@ public class M20260308Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082130_SeedsExpectedOperands()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertRecordExists("operand", "instruction_key", "ABS");

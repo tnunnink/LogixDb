@@ -5,12 +5,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbDeleteTargetTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task DeleteTarget_SingleTarget_ShouldHaveNoTarget()
     {

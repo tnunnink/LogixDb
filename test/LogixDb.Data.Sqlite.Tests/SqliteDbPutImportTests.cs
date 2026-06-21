@@ -3,12 +3,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbPutImportTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task PutImport_NewImport_InsertsRecord()
     {

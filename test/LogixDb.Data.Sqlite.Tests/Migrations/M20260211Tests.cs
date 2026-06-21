@@ -6,8 +6,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111430_CreatesControllerTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("controller");
@@ -55,8 +53,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111500_CreatesDataTypeTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("data_type");
@@ -77,8 +73,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111530_CreatesDataTypeMemberTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("data_type_member");
@@ -107,8 +101,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111540_CreatesModuleTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("module");
@@ -142,8 +134,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111600_CreatesTaskTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("task");
@@ -171,8 +161,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111630_CreatesProgramTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("program");
@@ -201,8 +189,6 @@ public class M20260211Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602111930_CreatesRoutineTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("routine");

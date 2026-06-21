@@ -6,8 +6,6 @@ public class M20260206Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602060900_CreatesTargetTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("target");
@@ -24,8 +22,6 @@ public class M20260206Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602061000_CreatesVersionTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("target_version");
@@ -54,8 +50,6 @@ public class M20260206Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602061030_CreatesVersionMapTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("target_version_map");
@@ -73,8 +67,6 @@ public class M20260206Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202602061100_CreatesTargetInfoTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("target_info");
@@ -89,12 +81,10 @@ public class M20260206Tests : SqliteTestFixture
             await AssertUniqueIndex("target_info", "version_id", "property_name");
         }
     }
-    
+
     [Test]
     public async Task MigrateUp_ToM202602061130_CreatesComponentTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("target_component");

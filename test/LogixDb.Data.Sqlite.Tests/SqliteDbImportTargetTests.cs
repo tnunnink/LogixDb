@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using L5Sharp.Core;
 using LogixDb.Testing;
 using Task = System.Threading.Tasks.Task;
 
@@ -8,12 +7,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbImportTargetTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task ImportTarget_LocalTestSource_ShouldReturnValidId()
     {
@@ -97,19 +90,6 @@ public class SqliteDbImportTargetTests : SqliteTestFixture
         Assert.That(result, Has.Length.EqualTo(3));
 
         await AssertRecordCount("controller", 1);
-    }
-
-    [Test]
-    public async Task ImportTarget_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
-    {
-        var target = Target.Create(TestSource.Custom(c =>
-        {
-            c.DataTypes.Add(new DataType("TestType") { Description = "This is a test" });
-        }), "TestProject");
-
-        await Manager.ImportTarget(target);
-
-        await AssertRecordExists("data_type", "type_name", "TestType");
     }
 
     [Test]

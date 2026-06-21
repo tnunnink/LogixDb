@@ -1,7 +1,7 @@
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlDbMigrateTest : SqlServerTestFixture
+public class SqlDbMigrateTest
 {
     /// <summary>
     /// This test is mostly just to refresh a local db instance to inspect and write queries against.
@@ -11,6 +11,8 @@ public class SqlDbMigrateTest : SqlServerTestFixture
     [Explicit("Manually run against local test server to check migrations and develop SQL queries against")]
     public async Task MigrateLocalTestDatabaseForWritingQueriesAgainst()
     {
+        var migrator = new SqlServerMigrator();
+        
         var connectionInfo = new DbConnectionInfo(
             Provider: DbProvider.SqlServer,
             Source: "localhost,1433",
@@ -20,7 +22,7 @@ public class SqlDbMigrateTest : SqlServerTestFixture
             Trust: true
         );
 
-        var result = await Migrator.Migrate(connectionInfo);
+        var result = await migrator.Migrate(connectionInfo);
 
         Assert.That(result.Success, Is.True);
     }

@@ -6,8 +6,6 @@ public class M20260616Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202606162100_CreatesTraceabilityTablesWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             // Assert import table

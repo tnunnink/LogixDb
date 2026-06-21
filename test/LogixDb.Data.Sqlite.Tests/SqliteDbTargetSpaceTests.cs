@@ -5,12 +5,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbTargetSpaceTests : SqliteTestFixture
 {
-    [SetUp]
-    public async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task MeasureTargetSpaceGrowth()
     {
@@ -28,7 +22,7 @@ public class SqliteDbTargetSpaceTests : SqliteTestFixture
             var target = Target.Create(TestSource.LocalExample(), "TestProject");
 
             await Manager.ImportTarget(target);
-            
+
             var currentSize = await GetDatabaseSize();
             var delta = currentSize - previousSize;
 

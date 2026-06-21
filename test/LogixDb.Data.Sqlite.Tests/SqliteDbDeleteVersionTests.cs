@@ -1,4 +1,3 @@
-using LogixDb.Data;
 using LogixDb.Testing;
 
 namespace LogixDb.Data.Sqlite.Tests;
@@ -6,12 +5,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbDeleteVersionTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task DeleteVersion_SpecificVersion_ShouldRemoveOnlyThatVersion()
     {

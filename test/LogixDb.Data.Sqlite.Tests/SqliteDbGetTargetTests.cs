@@ -5,12 +5,6 @@ namespace LogixDb.Data.Sqlite.Tests;
 [TestFixture]
 public class SqliteDbGetTargetTests : SqliteTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task GetTarget_LatestVersionButContainsSingleTarget_ShouldNotBeNull()
     {
@@ -27,7 +21,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
             Assert.That(result.TargetKey, Is.EqualTo(target.TargetKey));
         }
     }
-    
+
     [Test]
     public async Task GetTarget_LatestVersionAndContainsMultipleTarget_ShouldReturnLatest()
     {
@@ -72,7 +66,7 @@ public class SqliteDbGetTargetTests : SqliteTestFixture
         await Manager.ImportTarget(target2);
 
         var result = await Manager.GetTarget(target1.TargetKey, 2);
-        
+
         using (Assert.EnterMultipleScope())
         {
             Assert.That(result, Is.Not.Null);

@@ -6,8 +6,6 @@ public class M20260306Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061100_CreatesRungTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung");
@@ -33,8 +31,6 @@ public class M20260306Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061200_CreatesInstructionTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung_instruction");
@@ -57,8 +53,6 @@ public class M20260306Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061300_CreatesArgumentTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung_argument");
@@ -77,8 +71,6 @@ public class M20260306Tests : SqliteTestFixture
     [Test]
     public async Task MigrateUp_ToM202603061400_CreatesRungReferenceTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("rung_reference");

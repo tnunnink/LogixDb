@@ -5,12 +5,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbTargetSpaceTests : SqlServerTestFixture
 {
-    [SetUp]
-    public async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task MeasureTargetSpaceGrowth()
     {

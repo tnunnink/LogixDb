@@ -5,12 +5,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbListTargetTests : SqlServerTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-    
     [Test]
     public async Task ListTargets_EmptyDatabase_ShouldReturnEmpty()
     {
@@ -18,7 +12,7 @@ public class SqlDbListTargetTests : SqlServerTestFixture
 
         Assert.That(result, Is.Empty);
     }
-    
+
     [Test]
     public async Task ListTargets_HasSingleTarget_ShouldHaveExpectedCount()
     {
@@ -28,7 +22,7 @@ public class SqlDbListTargetTests : SqlServerTestFixture
 
         Assert.That(result, Has.Length.EqualTo(1));
     }
-    
+
     [Test]
     public async Task ListTargets_MultipleTargets_ShouldHaveExpectedCount()
     {
@@ -40,7 +34,7 @@ public class SqlDbListTargetTests : SqlServerTestFixture
 
         Assert.That(result, Has.Length.EqualTo(3));
     }
-    
+
     [Test]
     public async Task ListTargets_FilterByTargetKey_ShouldReturnMatchingOnly()
     {
@@ -55,7 +49,7 @@ public class SqlDbListTargetTests : SqlServerTestFixture
         Assert.That(result, Has.Length.EqualTo(1));
         Assert.That(result[0].TargetKey, Is.EqualTo(target1.TargetKey));
     }
-    
+
     [Test]
     public async Task ListTargets_FilterByNonExistentTargetKey_ShouldReturnEmpty()
     {

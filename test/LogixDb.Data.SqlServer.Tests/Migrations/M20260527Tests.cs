@@ -6,8 +6,6 @@ public class M20260527Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202605271009_CreatesCoreVersionedFunctions()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertFunctionExists("logix", "controllers_at_version");
@@ -25,8 +23,6 @@ public class M20260527Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202605271010_CreatesCoreVersionedFunctions()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertFunctionExists("logix", "logic_at_version");

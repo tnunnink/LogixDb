@@ -31,6 +31,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\LogixDb.Data.Sqlite\LogixDb.Data.Sqlite.csproj" />
+      <ProjectReference Include="..\LogixDb.Testing.Sqlite\LogixDb.Testing.Sqlite.csproj" />
       <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
     </ItemGroup>
 

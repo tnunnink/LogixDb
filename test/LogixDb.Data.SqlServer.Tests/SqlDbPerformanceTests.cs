@@ -1,26 +1,19 @@
 using System.Diagnostics;
 using Dapper;
 using LogixDb.Testing;
-using Microsoft.Data.SqlClient;
 
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
 public class SqlDbPerformanceTests : SqlServerTestFixture
 {
-    [SetUp]
-    public async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public void CreateFake()
     {
         var fake = TestSource.Fake(1000);
-        
+
         Assert.That(fake, Is.Not.Null);
-    } 
+    }
 
     [Test]
     [TestCase(10)]
@@ -34,9 +27,8 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
         var target = Target.Create(TestSource.Fake(count), "TestProject");
         await Manager.ImportTarget(target);
 
-        await using var connection = new SqlConnection(Connection.ToConnectionString());
-        await connection.OpenAsync();
-        
+        await using var connection = await Provider.OpenConnection();
+
         // We want to test the GetVersionedTags function
         var version = await connection.QuerySingleAsync<int>("SELECT MAX(version_id) FROM logix.target_version");
 
@@ -47,7 +39,7 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
         var recordCount = tags.Count();
         Console.WriteLine($"[DEBUG_LOG] Query for Version {version} returned {recordCount} tags.");
         Console.WriteLine($"[DEBUG_LOG] Time taken: {sw.ElapsedMilliseconds} ms");
-        
+
         Assert.That(recordCount, Is.GreaterThan(0));
     }
 }

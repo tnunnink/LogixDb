@@ -1,6 +1,7 @@
 using System.Data;
 using Dapper;
 using LogixDb.Data.Abstractions;
+using LogixDb.Testing.SqlServer;
 
 namespace LogixDb.Data.SqlServer.Tests;
 
@@ -14,27 +15,11 @@ namespace LogixDb.Data.SqlServer.Tests;
 public abstract class SqlServerTestFixture
 {
     /// <summary>
-    /// Provides an instance of the database migrator to perform schema and data migration
-    /// operations against a SQL Server database during integration tests.
+    /// Provides access to database operations and connection management for a Microsoft SQL Server database
+    /// within the context of the SqlServerTestFixture. This provider is responsible for establishing connections
+    /// and executing commands against the test database, enabling integration testing scenarios within an isolated environment.
     /// </summary>
-    /// <remarks>
-    /// The migrator is used to apply migrations and ensure that the database schema is
-    /// correctly configured and up to date. It relies on the implementation of the
-    /// <c>IDbMigrator</c> interface, which defines the contract for executing migration processes.
-    /// </remarks>
-    protected static IDbMigrator Migrator => new SqlServerMigrator();
-
-    /// <summary>
-    /// Provides the database connection details used to interact with the
-    /// SQL Server test container during integration tests.
-    /// </summary>
-    /// <remarks>
-    /// This property returns an instance of <c>DbConnectionInfo</c>, describing the
-    /// configuration necessary for establishing a connection to the SQL Server test database.
-    /// The information includes provider, server address, credentials, encryption settings, and other
-    /// connection-specific attributes.
-    /// </remarks>
-    protected static DbConnectionInfo Connection => SqlServerTestContainer.Connection;
+    protected static SqlServerProvider Provider => new(SqlServerEnvironment.Database.Connection);
 
     /// <summary>
     /// Provides an instance of the database manager to interact with the SQL Server test container.
@@ -46,7 +31,20 @@ public abstract class SqlServerTestFixture
     /// It is designed to facilitate testing of database schemas, data integrity, and performance in a controlled
     /// environment.
     /// </remarks>
-    protected static IDbManager Manager => new DbManager(SqlServerTestContainer.Provider);
+    protected static IDbManager Manager => new DbManager(Provider);
+
+    /// <summary>
+    /// Cleans up the database by removing all test-related data while leaving specific seed or lookup
+    /// tables intact. This method disables constraints, deletes records in the specified schema, and
+    /// re-enables constraints to ensure the database is in a consistent state for later tests.
+    /// This approach is optimized to avoid dropping the database, making the cleanup faster.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    [TearDown]
+    protected Task PurgeDatabase()
+    {
+        return SqlServerEnvironment.Database.PurgeAsync();
+    }
 
     /// <summary>
     /// Asserts that the specified table contains exactly the expected number of records.
@@ -56,7 +54,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task that represents the asynchronous assertion operation.</returns>
     protected static async Task AssertRecordCount(string tableName, int expectedCount)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleAsync<int>($"SELECT COUNT(*) FROM {tableName}");
 
@@ -65,45 +63,12 @@ public abstract class SqlServerTestFixture
     }
 
     /// <summary>
-    /// Cleans up after each test by dropping the database instance used during the test.
-    /// This ensures the database is reset and no residual data persists between tests,
-    /// maintaining isolation and consistency across test cases.
-    /// </summary>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    [TearDown]
-    protected virtual async Task TearDown()
-    {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
-
-        // This script disables constraints, wipes all data in the logix schema, and re-enables constraints.
-        // This is much faster than dropping the database for every test.
-        await connection.ExecuteAsync(
-            """
-                EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT ALL'
-                
-                -- Delete from tables that aren't automatically handled or have circular refs
-                -- or just wipe everything in the logix schema
-                DECLARE @Sql NVARCHAR(MAX) = '';
-                SELECT @Sql += 'DELETE FROM ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ';'
-                FROM sys.tables t
-                JOIN sys.schemas s ON t.schema_id = s.schema_id
-                WHERE s.name = 'logix'
-                -- Exclude seed/lookup tables that should persist across tests
-                AND t.name NOT IN ('target_component', 'operand');;
-                
-                EXEC sp_executesql @Sql;
-
-                EXEC sp_MSforeachtable 'ALTER TABLE ? CHECK CONSTRAINT ALL'
-            """);
-    }
-
-    /// <summary>
     /// Retrieves the current size of the database in megabytes.
     /// </summary>
     /// <returns>A task that represents the asynchronous operation. The result contains the size of the database in megabytes as an integer.</returns>
     protected static async Task<decimal> GetDatabaseSize()
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         return await connection.QuerySingleAsync<decimal>(
             """
@@ -129,7 +94,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task that represents the asynchronous assertion operation.</returns>
     protected static async Task AssertRecordExists(string tableName, string columnName, object expected)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleAsync<int>(
             $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
@@ -138,62 +103,6 @@ public abstract class SqlServerTestFixture
 
         Assert.That(result, Is.GreaterThanOrEqualTo(1),
             $"No record with '{columnName}={expected}' exists in table '{tableName}'"
-        );
-    }
-
-
-    /// <summary>
-    /// Verifies that the specified table does not exist in the database by querying the
-    /// INFORMATION_SCHEMA.TABLES view. If the table is found, an exception is thrown.
-    /// </summary>
-    /// <param name="tableName">The name of the table to verify non-existence for.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="AssertionException">Thrown if the specified table is found in the database.</exception>
-    protected static async Task AssertTableDoesNotExists(string tableName)
-    {
-        await AssertTableDoesNotExists("logix", tableName);
-    }
-
-    /// <summary>
-    /// Verifies that the specified table does not exist in the database by querying the
-    /// INFORMATION_SCHEMA.TABLES view. If the table is found, an exception is thrown.
-    /// </summary>
-    /// <param name="schemaName">The schema where the table is located.</param>
-    /// <param name="tableName">The name of the table to verify non-existence for.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    /// <exception cref="AssertionException">Thrown if the specified table is found in the database.</exception>
-    protected static async Task AssertTableDoesNotExists(string schemaName, string tableName)
-    {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
-
-        var result = await connection.QuerySingleOrDefaultAsync<int>(
-            """
-            SELECT 1
-            FROM INFORMATION_SCHEMA.TABLES
-            WHERE TABLE_SCHEMA = @schemaName AND TABLE_NAME = @tableName
-            """,
-            new { schemaName, tableName }
-        );
-
-        if (result == 1)
-            throw new AssertionException($"Table '{schemaName}.{tableName}' was found in the database.");
-    }
-
-    /// <summary>
-    /// Asserts that a record does not exist in a specified table with a specific value for a given column.
-    /// An exception is thrown if a matching record is found.
-    /// </summary>
-    protected static async Task AssertRecordDoesNotExist(string tableName, string columnName, object expected)
-    {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
-
-        var result = await connection.QuerySingleAsync<int>(
-            $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = @expected",
-            new { expected }
-        );
-
-        Assert.That(result, Is.EqualTo(0),
-            $"Record with '{columnName}={expected}' exists in table '{tableName}' but should not"
         );
     }
 
@@ -207,7 +116,7 @@ public abstract class SqlServerTestFixture
     /// <exception cref="AssertionException">Thrown if the specified function does not exist in the database.</exception>
     protected static async Task AssertFunctionExists(string schemaName, string functionName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
@@ -232,7 +141,7 @@ public abstract class SqlServerTestFixture
     /// <exception cref="AssertionException">Thrown if the specified table does not exist in the database.</exception>
     protected static async Task AssertTableExists(string schemaName, string tableName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
@@ -254,7 +163,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation.</returns>
     protected static async Task AssertSchemaExists(string schemaName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             "SELECT 1 FROM sys.schemas WHERE name = @schemaName",
             new { schemaName }
@@ -272,7 +181,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation.</returns>
     protected static async Task AssertTypeExists(string schemaName, string typeName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
             SELECT 1 
@@ -295,7 +204,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation.</returns>
     protected static async Task AssertViewExists(string schemaName, string viewName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
             SELECT 1
@@ -317,7 +226,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation.</returns>
     protected static async Task AssertProcedureExists(string schemaName, string procedureName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
         var result = await connection.QuerySingleOrDefaultAsync<int>(
             """
             SELECT 1
@@ -341,7 +250,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation.</returns>
     protected static async Task AssertColumnDefinition(string tableName, string columnName, string columnType)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleOrDefaultAsync<string>(
             """
@@ -369,7 +278,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous validation operation.</returns>
     protected static async Task AssertPrimaryKey(string tableName, string columnName)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QuerySingleAsync<int>(
             """
@@ -402,7 +311,7 @@ public abstract class SqlServerTestFixture
     /// <returns>A task representing the asynchronous operation, which throws an <see cref="AssertionException"/> if the foreign key does not exist.</returns>
     protected static async Task AssertForeignKey(string fromTable, string fromColumn, string toTable, string toColumn)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var result = await connection.QueryFirstOrDefaultAsync<int>(
             """
@@ -436,7 +345,7 @@ public abstract class SqlServerTestFixture
     /// <exception cref="AssertionException">Thrown if no index matches the specified columns on the table.</exception>
     protected static async Task AssertIndex(string tableName, params string[] columns)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var indexes = (await connection.QueryAsync<string>(
             """
@@ -471,7 +380,7 @@ public abstract class SqlServerTestFixture
     /// <exception cref="AssertionException">Thrown if no UNIQUE index matches the specified columns on the table.</exception>
     protected static async Task AssertUniqueIndex(string tableName, params string[] columns)
     {
-        await using var connection = await SqlServerTestContainer.Provider.OpenConnection();
+        await using var connection = await Provider.OpenConnection();
 
         var indexes = (await connection.QueryAsync<string>(
             """

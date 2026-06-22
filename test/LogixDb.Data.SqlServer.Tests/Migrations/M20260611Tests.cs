@@ -6,8 +6,6 @@ public class M20260611Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606112100_CreatesModuleConnectionTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "module_connection");
@@ -41,8 +39,6 @@ public class M20260611Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606112200_CreatesModulePortTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "module_port");

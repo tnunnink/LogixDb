@@ -7,18 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Bogus" Version="35.6.5" />
-      <PackageReference Include="L5Sharp" Version="7.6.2" />
+        <PackageReference Include="Bogus" Version="35.6.5"/>
+        <PackageReference Include="L5Sharp" Version="7.6.2"/>
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Test.L5X" />
+        <EmbeddedResource Include="Test.L5X"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Test.ACD">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="Test.ACD">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

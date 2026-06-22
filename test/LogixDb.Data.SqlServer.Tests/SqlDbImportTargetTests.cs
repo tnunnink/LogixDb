@@ -8,12 +8,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbImportTargetTests : SqlServerTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task ImportTarget_LocalTestSource_ShouldReturnValidId()
     {
@@ -101,10 +95,12 @@ public class SqlDbImportTargetTests : SqlServerTestFixture
     [Test]
     public async Task ImportTarget_FakeSource_ShouldContainExpectedNumberOFDataTypesRecords()
     {
-        var target = Target.Create(TestSource.Custom(c =>
-        {
-            c.DataTypes.Add(new DataType("TestType") { Description = "This is a test" });
-        }), "TestProject");
+        var target =
+            Target.Create(
+                TestSource.Custom(c =>
+                {
+                    c.DataTypes.Add(new DataType("TestType") { Description = "This is a test" });
+                }), "TestProject");
 
         await Manager.ImportTarget(target);
 

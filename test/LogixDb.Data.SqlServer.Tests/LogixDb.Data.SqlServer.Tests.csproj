@@ -30,6 +30,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\LogixDb.Data.SqlServer\LogixDb.Data.SqlServer.csproj" />
+      <ProjectReference Include="..\LogixDb.Testing.SqlServer\LogixDb.Testing.SqlServer.csproj" />
       <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
     </ItemGroup>
 

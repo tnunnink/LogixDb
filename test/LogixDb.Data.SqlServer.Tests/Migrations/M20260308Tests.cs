@@ -8,8 +8,6 @@ public class M20260308Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082100_CreatesOperandTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "operand");
@@ -34,12 +32,10 @@ public class M20260308Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202603082130_SeedsExpectedOperands()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "operand");
-            
+
             await AssertRecordExists("logix.operand", "instruction_key", "ABS");
             await AssertRecordExists("logix.operand", "instruction_key", "ALMA");
             await AssertRecordExists("logix.operand", "instruction_key", "MOVE");

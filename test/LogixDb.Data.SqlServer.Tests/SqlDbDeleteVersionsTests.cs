@@ -5,12 +5,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbDeleteVersionsTests : SqlServerTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task TruncateTarget_ByVersion_ShouldRemovePreviousVersions()
     {

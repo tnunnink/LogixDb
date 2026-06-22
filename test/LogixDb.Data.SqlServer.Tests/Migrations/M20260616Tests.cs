@@ -6,24 +6,18 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606160820_CreatesTypeTreeAtVersionFunction()
     {
-        await Migrator.Migrate(Connection);
-
         await AssertFunctionExists("logix", "type_tree_at_version");
     }
 
     [Test]
     public async Task MigrateUp_ToM202606161358_CreatesGetLatestVersionIdFunction()
     {
-        await Migrator.Migrate(Connection);
-
         await AssertFunctionExists("logix", "get_latest_version_id");
     }
 
     [Test]
     public async Task MigrateUp_ToM202606162100_CreatesTraceabilityTablesWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "import");

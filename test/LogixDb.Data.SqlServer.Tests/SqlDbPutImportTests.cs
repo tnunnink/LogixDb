@@ -3,12 +3,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbPutImportTests : SqlServerTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task PutImport_NewImport_InsertsRecord()
     {

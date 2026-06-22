@@ -49,6 +49,6 @@ public static class Extensions
     /// <returns>True if the file extension matches a supported Logix file type; otherwise, false.</returns>
     public static bool IsLogixFile(this string fileName)
     {
-        return Enum.TryParse<FileType>(Path.GetExtension(fileName).Trim('.'), out _);
+        return Enum.TryParse<FileType>(Path.GetExtension(fileName).Trim('.'), true, out _);
     }
 }

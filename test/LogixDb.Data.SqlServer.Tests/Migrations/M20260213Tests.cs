@@ -6,8 +6,6 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602130830_CreatesTagTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag");
@@ -39,8 +37,6 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602130900_CreatesTagMemberTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag_member");
@@ -61,12 +57,10 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertIndex("tag_member", "data_type", "tag_id");
         }
     }
-    
+
     [Test]
     public async Task MigrateUp_ToM202602130930_CreatesTagValueTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag_value");
@@ -83,8 +77,6 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131200_CreatesTagCommentTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag_member_comment");
@@ -104,8 +96,6 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131300_CreatesTagProducerTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag_producer");
@@ -126,8 +116,6 @@ public class M20260213Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202602131330_CreatesTagConsumerTableWithExpectedColumns()
     {
-        await Migrator.Migrate(Connection);
-
         using (Assert.EnterMultipleScope())
         {
             await AssertTableExists("logix", "tag_consumer");
@@ -143,5 +131,4 @@ public class M20260213Tests : SqlServerTestFixture
             await AssertForeignKey("tag_consumer", "tag_id", "tag", "tag_id");
         }
     }
-
 }

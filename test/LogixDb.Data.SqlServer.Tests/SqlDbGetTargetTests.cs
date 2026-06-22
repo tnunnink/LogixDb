@@ -5,12 +5,6 @@ namespace LogixDb.Data.SqlServer.Tests;
 [TestFixture]
 public class SqlDbGetTargetTests : SqlServerTestFixture
 {
-    [SetUp]
-    protected async Task Setup()
-    {
-        await Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task GetTarget_LatestVersionButContainsSingleTarget_ShouldNotBeNull()
     {

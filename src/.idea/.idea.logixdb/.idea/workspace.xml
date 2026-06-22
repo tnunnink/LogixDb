@@ -21,10 +21,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/SqlServerEnvironment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/DbConnectionInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbConnectionInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Common/LogixConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/appsettings.Development.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/IngestIntegrationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/IngestIntegrationTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/LogixDb.Service.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/SqlServerEnvironment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/TestEnvironment.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +38,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="22" />
+    <option name="cachedIndexableFilesCount" value="1" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -94,7 +97,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3cca26e6dd627c1a7919bec86cb05b6d975a30287456f7daa8773a92451a/List.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/57f527b763276a63b4f184a78531bfa2109193c3dc111eccb184c086505781a4/SpanHelpers.Char.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb4b860ad274bc3f8c7c0fb32f03875bbb0b45fa99f710d430d12922eed4/AnsiConsoleExtensions.Progress.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7e70952ee66de1d29e43a8c44ae756e92fc1a4cb192a881dcb9ab76929ced64/WebHostBuilderBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b1dcf3158124f84888ef6e971e8838c373a93c4ba6786df5dcf4c08228c736/WebApplicationFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6f79e18ad35c4aede2e2c24988c23a228cc40237d78ed6f493e27cf86e7b89c/ICreateIndexOptionsSyntax.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c737b259bdbafc66dd6bf6dbdf56414a7658cb2a8f0b479637eda81be8fdf/DataColumnCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1d7280b53be4f32b5e9b2587f54915348ec89107b99282d2748ac94b8c1/HttpClient.cs" root0="FORCE_HIGHLIGHTING" />
@@ -146,61 +151,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7035944293146112" />
-      <entry key="MS500" value="4.304135515257518" />
-      <entry key="S2" value="15.347988152642028" />
-      <entry key="S5" value="33.60593458931314" />
-      <entry key="S10" value="63.12864847923158" />
-      <entry key="S30" value="137.95883537443234" />
-      <entry key="S60" value="181.48892810699206" />
-      <entry key="M2" value="227.1477501721096" />
-      <entry key="M5" value="312.84707143045233" />
-      <entry key="M10" value="375.60786083599953" />
-      <entry key="M15" value="408.8685168119795" />
-      <entry key="M30" value="489.8994387317729" />
-      <entry key="H1" value="665.1923313225238" />
-      <entry key="H2" value="974.103687607961" />
-      <entry key="H4" value="1449.0156640132477" />
-      <entry key="D1" value="6552.214550992267" />
-      <entry key="W1" value="23091.71421189218" />
+      <entry key="MS100" value="2.704248210914706E-122" />
+      <entry key="MS500" value="4.857460863843719E-25" />
+      <entry key="S2" value="8.348382510764415E-7" />
+      <entry key="S5" value="0.003708278081276522" />
+      <entry key="S10" value="0.06509807907158346" />
+      <entry key="S30" value="1.2609196911406413" />
+      <entry key="S60" value="4.570416326767312" />
+      <entry key="M2" value="10.463570957942641" />
+      <entry key="M5" value="25.414501415141178" />
+      <entry key="M10" value="40.24415299257913" />
+      <entry key="M15" value="48.97670254985689" />
+      <entry key="M30" value="75.39511671063457" />
+      <entry key="H1" value="168.8813130958207" />
+      <entry key="H2" value="440.4716343375225" />
+      <entry key="H4" value="974.7809517370407" />
+      <entry key="D1" value="6145.692622464486" />
+      <entry key="W1" value="23008.920373430647" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="1.5928952054764467E-263" />
-      <entry key="S10" value="7.597259369084329E-132" />
-      <entry key="S30" value="4.91030004909828E-44" />
-      <entry key="S60" value="4.503491841654393E-22" />
-      <entry key="M2" value="4.488514888210082E-11" />
-      <entry key="M5" value="1.9787918642701684E-4" />
-      <entry key="M10" value="0.045014908868706655" />
-      <entry key="M15" value="0.3316067732854588" />
-      <entry key="M30" value="3.0881590843703637" />
-      <entry key="H1" value="13.036812729450787" />
-      <entry key="H2" value="33.709510889315794" />
-      <entry key="H4" value="67.24128923138969" />
-      <entry key="D1" value="314.2539631843404" />
-      <entry key="W1" value="1429.352193030704" />
+      <entry key="MS100" value="1.0000250676016051" />
+      <entry key="MS500" value="1.1689977193278775" />
+      <entry key="S2" value="2.1913449754556376" />
+      <entry key="S5" value="3.1610857638076233" />
+      <entry key="S10" value="3.8561802331987574" />
+      <entry key="S30" value="5.531475155562695" />
+      <entry key="S60" value="8.958619712266202" />
+      <entry key="M2" value="14.140166663400997" />
+      <entry key="M5" value="20.47532185228995" />
+      <entry key="M10" value="23.86050046698939" />
+      <entry key="M15" value="25.3521962361642" />
+      <entry key="M30" value="27.27231996081607" />
+      <entry key="H1" value="29.4767630048835" />
+      <entry key="H2" value="38.52984037176759" />
+      <entry key="H4" value="64.97293235469179" />
+      <entry key="D1" value="312.2998809496267" />
+      <entry key="W1" value="1437.6636509710638" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6736839491337017" />
-      <entry key="MS500" value="4.2841668481122355" />
-      <entry key="S2" value="15.326738042922633" />
-      <entry key="S5" value="33.58718724459629" />
-      <entry key="S10" value="63.11139672611369" />
-      <entry key="S30" value="137.94666731488925" />
-      <entry key="S60" value="181.48099700430157" />
-      <entry key="M2" value="227.1427810193394" />
-      <entry key="M5" value="312.8444910378806" />
-      <entry key="M10" value="375.65076623152856" />
-      <entry key="M15" value="409.19700516996875" />
-      <entry key="M30" value="492.9797976110887" />
-      <entry key="H1" value="678.217400720288" />
-      <entry key="H2" value="1007.801266063659" />
-      <entry key="H4" value="1516.2469217859687" />
-      <entry key="D1" value="6866.462334994093" />
-      <entry key="W1" value="24521.06200664283" />
+      <entry key="MS100" value="5.835306320184045E-5" />
+      <entry key="MS500" value="0.24161132047568287" />
+      <entry key="S2" value="1.6506674437405067" />
+      <entry key="S5" value="2.8487235472624617" />
+      <entry key="S10" value="3.7220315288340244" />
+      <entry key="S30" value="6.681562973055563" />
+      <entry key="S60" value="13.426741836102357" />
+      <entry key="M2" value="24.517831235685914" />
+      <entry key="M5" value="45.838676933445726" />
+      <entry key="M10" value="64.0745507594865" />
+      <entry key="M15" value="74.30745563774761" />
+      <entry key="M30" value="102.65573813477307" />
+      <entry key="H1" value="198.3510116275981" />
+      <entry key="H2" value="478.9949754627627" />
+      <entry key="H4" value="1039.7469737425" />
+      <entry key="D1" value="6457.986674016623" />
+      <entry key="W1" value="24446.579653098088" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -237,6 +242,7 @@
     "42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor": "Debug",
     "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
     "4b89c8c5-2789-43c0-8027-835f03a430f1.executor": "Debug",
+    "4ec9c3b2-3a31-4fef-9a2d-41c3981156f9.executor": "Debug",
     "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
     "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
     "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
@@ -428,15 +434,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="22011000" />
-    </task>
-    <task id="LOCAL-00384" summary="Remove unit tests for `SourceIngestionService` and `SourceUploadService` classes.">
-      <option name="closed" value="true" />
-      <created>1781747601909</created>
-      <option name="number" value="00384" />
-      <option name="presentableId" value="LOCAL-00384" />
-      <option name="project" value="LOCAL" />
-      <updated>1781747601910</updated>
+      <workItem from="1782069806075" duration="27348000" />
     </task>
     <task id="LOCAL-00385" summary="Refactor file ingestion process: Replace `SourceInfo` with `Import`. Add import logging, new SQL scripts (`PostLog` and `PutImport`), and enum types (`LogSeverity`, `ImportStatus`, `SourceType`). Update related services, database managers, and tests.">
       <option name="closed" value="true" />
@@ -822,7 +820,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782134380515</updated>
     </task>
-    <option name="localTasksCounter" value="433" />
+    <task id="LOCAL-00433" summary="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation">
+      <option name="closed" value="true" />
+      <created>1782144893470</created>
+      <option name="number" value="00433" />
+      <option name="presentableId" value="LOCAL-00433" />
+      <option name="project" value="LOCAL" />
+      <updated>1782144893470</updated>
+    </task>
+    <option name="localTasksCounter" value="434" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -850,7 +856,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove `SqlServerManager` and its references; add SQL Server scripts for core schema migration and seed logic." />
     <MESSAGE value="Remove QA framework: delete `qa` schema, related types, tables, procedures, functions, views, and associated FluentMigrator migrations." />
     <MESSAGE value="Refactor database interactions: replace `Database` references with `Manager` or `Migrator`, remove outdated migration project, and adjust tests for SQL Server to reflect updated workflows." />
     <MESSAGE value="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script." />
@@ -875,7 +880,8 @@
     <MESSAGE value="Add unit tests for LogixDb.Maps, covering table generation and hashing logic for Task, Program, Routine, Tag, Module, Rung, AOI, and Controller entities." />
     <MESSAGE value="Add unit tests for table generation and hashing logic across maps, including Tag, Module, Rung, AOI, and DataType entities." />
     <MESSAGE value="Refactoring the test libraries and how the global SQL Server and Sqlite test database instancesa are managed to imporve test speed and code reuse across other testing projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring the test libraries and how the global SQL Server and Sqlite test database instancesa are managed to imporve test speed and code reuse across other testing projects" />
+    <MESSAGE value="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -892,32 +898,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Service.Tests/IngestIntegrationTests.cs</url>
-          <line>45</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Service.Tests\IngestIntegrationTests.cs" containingFunctionPresentation="Method 'PostIngest_ValidFile_ReturnsAccepted'">
-            <startOffsets>
-              <option value="1202" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1238" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs</url>
-          <line>23</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Service\Workers\SourceUploadService.cs" containingFunctionPresentation="Method 'UploadAsync'">
-            <startOffsets>
-              <option value="1031" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1110" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs</url>
           <line>55</line>

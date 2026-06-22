@@ -9,7 +9,7 @@ namespace LogixDb.Service.Tests;
 /// ensuring a clean and isolated state for each testing session.
 /// </summary>
 [SetUpFixture]
-public static class SqlServerEnvironment
+public static class TestEnvironment
 {
     /// <summary>
     /// Represents the SQL Server test database instance used for testing purposes.

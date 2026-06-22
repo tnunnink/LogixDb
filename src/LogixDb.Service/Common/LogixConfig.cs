@@ -19,7 +19,7 @@ public class LogixConfig
     /// This property determines how the application connects to the database, including the server address,
     /// authentication, and database selection. It is initialized during configuration and remains immutable.
     /// </remarks>
-    public string DbConnection { get; init; } = "logixdb@localhost";
+    public string DbConnection { get; set; } = "logixdb@localhost";
 
     /// <summary>
     /// Gets the file system path to the ACD (Allen-Bradley Controller Description) converter executable.
@@ -60,7 +60,7 @@ public class LogixConfig
     /// This property contains a set of filter criteria that are applied during FTAC (File Transfer Authentication Code) monitoring.
     /// These filters help determine which files or events are processed based on specified conditions or patterns.
     /// </remarks>
-    public string[] FtacFilters { get; init; } = [];
+    public string[] FtacFilters { get; set; } = [];
 
     /// <summary>
     /// Constructs and retrieves the connection string used for FTAC monitoring functionality.

@@ -58,7 +58,7 @@ app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, So
 
     return Results.Accepted(uri: string.Empty, value: new
     {
-        traceId = source.ImportId,
+        importId = source.ImportId,
         received = source.FileName,
         status = "Queued"
     });

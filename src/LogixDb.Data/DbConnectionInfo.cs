@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace LogixDb.Data;
 
 /// <summary>
@@ -123,5 +125,34 @@ public sealed record DbConnectionInfo(
         {
             return !string.IsNullOrWhiteSpace(Path.GetFileName(text)) && Path.HasExtension(connectionString);
         }
+    }
+
+    /// <summary>
+    /// Generates a string representation of the <c>DbConnectionInfo</c> instance.
+    /// The format of the returned string varies depending on the database provider.
+    /// For SQLite, the source is returned directly. For SQL Server, a connection string
+    /// is constructed using the database name, source, port, and any provided optional
+    /// authentication and encryption settings.
+    /// </summary>
+    /// <returns>A string that represents the current <c>DbConnectionInfo</c> instance.
+    /// For SQLite, this will typically be the source. For SQL Server, this will
+    /// be a detailed connection string.</returns>
+    public override string ToString()
+    {
+        if (Provider == DbProvider.Sqlite)
+        {
+            return Source;
+        }
+
+        // Build the custom SQL Server connection string
+        var builder = new StringBuilder();
+        builder.Append(Database).Append('@').Append(Source);
+        builder.Append(';').Append(nameof(Port)).Append('=').Append(Port);
+        if (User is not null) builder.Append(';').Append(nameof(User)).Append('=').Append(User);
+        if (Password is not null) builder.Append(';').Append(nameof(Password)).Append('=').Append(Password);
+        builder.Append(';').Append(nameof(Trust)).Append('=').Append(Trust);
+        builder.Append(';').Append(nameof(Encrypt)).Append('=').Append(Encrypt);
+
+        return builder.ToString();
     }
 }

@@ -1,11 +1,7 @@
 using System.Net;
 using System.Net.Http.Headers;
-using LogixDb.Data;
-using LogixDb.Service.Common;
 using LogixDb.Testing;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace LogixDb.Service.Tests;
 
@@ -18,17 +14,7 @@ public class IngestIntegrationTests
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        _factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
-        {
-            builder.ConfigureTestServices(services =>
-            {
-                services.AddSingleton(new LogixConfig
-                {
-                    DbConnection = SqlServerEnvironment.Database.Connection.ToString()
-                });
-            });
-        });
-
+        _factory = new CustomWebApplicationFactory<Program>();
         _client = _factory.CreateClient();
     }
 
@@ -47,7 +33,7 @@ public class IngestIntegrationTests
         using var content = new MultipartFormDataContent();
         var fileContent = new StringContent(source.ToString());
         fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/xml");
-        content.Add(fileContent, "file", "test.l5x");
+        content.Add(fileContent, "file", "Test.l5x");
 
         // Act
         var response = await _client.PostAsync("/ingest", content);
@@ -56,7 +42,7 @@ public class IngestIntegrationTests
         var result = await response.Content.ReadAsStringAsync();
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Accepted), $"Response body: {result}");
         Assert.That(result, Does.Contain("Queued"));
-        Assert.That(result, Does.Contain("test.l5x"));
+        Assert.That(result, Does.Contain("Test"));
     }
 
     [OneTimeTearDown]

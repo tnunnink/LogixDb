@@ -22,7 +22,6 @@ public class SourceUploadService(Channel<Import> channel, IDbManager manager, IL
     public async Task<Import> UploadAsync(IFormFile file, IDictionary<string, string> metadata)
     {
         var import = await CreateImportSession(file, metadata, CancellationToken.None);
-        if (import is null) return null; //todo need to figure out what to return for error to API request.
 
         // Upload the file to the local server drop path
         await manager.LogImport(import.Info("Starting file upload with server"));
@@ -48,7 +47,7 @@ public class SourceUploadService(Channel<Import> channel, IDbManager manager, IL
     /// A task that represents the asynchronous operation. The task result contains an <see cref="Import"/> instance
     /// if the session is successfully created, or null if an error occurred during the process.
     /// </returns>
-    private async Task<Import?> CreateImportSession(IFormFile file, IDictionary<string, string> metadata,
+    private async Task<Import> CreateImportSession(IFormFile file, IDictionary<string, string> metadata,
         CancellationToken token)
     {
         try
@@ -74,7 +73,7 @@ public class SourceUploadService(Channel<Import> channel, IDbManager manager, IL
                 file.FileName
             );
 
-            return null;
+            throw;
         }
     }
 }

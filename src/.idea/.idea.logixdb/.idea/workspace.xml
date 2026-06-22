@@ -21,18 +21,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestEnvironment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ExportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ImportCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/ListCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PruneCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/PurgeCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/Commands/SyncCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/LogixDb.Cli.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Cli.Tests/TestDbFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/IngestIntegrationTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/IngestIntegrationTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing.Sqlite/SqliteTestDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing.Sqlite/SqliteTestDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/TagImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/TagImportTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,61 +146,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000005653386437" />
-      <entry key="S10" value="1.0022552041125325" />
-      <entry key="S30" value="1.6295792273996081" />
-      <entry key="S60" value="3.9047824610077932" />
-      <entry key="M2" value="8.088547851593953" />
-      <entry key="M5" value="18.815227506774196" />
-      <entry key="M10" value="35.10531012920527" />
-      <entry key="M15" value="47.1591219676834" />
-      <entry key="M30" value="77.7648012373715" />
-      <entry key="H1" value="168.63680837809486" />
-      <entry key="H2" value="433.263004219566" />
-      <entry key="H4" value="964.2081507032738" />
-      <entry key="D1" value="6133.195622300895" />
-      <entry key="W1" value="23012.440991580796" />
+      <entry key="MS100" value="9.33518764213535E-74" />
+      <entry key="MS500" value="2.4858564367917453E-15" />
+      <entry key="S2" value="3.189997911605192E-4" />
+      <entry key="S5" value="0.08287764106081903" />
+      <entry key="S10" value="0.6072256629660063" />
+      <entry key="S30" value="2.439119855968924" />
+      <entry key="S60" value="3.4852585876503124" />
+      <entry key="M2" value="4.176514627388734" />
+      <entry key="M5" value="5.559190964915253" />
+      <entry key="M10" value="12.537525871254633" />
+      <entry key="M15" value="22.055586305767992" />
+      <entry key="M30" value="51.86976598835571" />
+      <entry key="H1" value="135.9741519343087" />
+      <entry key="H2" value="386.85723807520367" />
+      <entry key="H4" value="910.2123480886248" />
+      <entry key="D1" value="6074.001938037196" />
+      <entry key="W1" value="22982.877290242955" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.2782504159511107E-216" />
-      <entry key="MS500" value="9.466926757343285E-44" />
-      <entry key="S2" value="3.450649182167099E-11" />
-      <entry key="S5" value="1.2413683389576112E-4" />
-      <entry key="S10" value="0.019420161977437532" />
-      <entry key="S30" value="0.7975517381505336" />
-      <entry key="S60" value="3.112616251011077" />
-      <entry key="M2" value="7.594202802181386" />
-      <entry key="M5" value="17.226201742666202" />
-      <entry key="M10" value="26.80294146228307" />
-      <entry key="M15" value="32.13444323751292" />
-      <entry key="M30" value="39.447503300135594" />
-      <entry key="H1" value="45.05507870169075" />
-      <entry key="H2" value="55.66209351957873" />
-      <entry key="H4" value="82.63979444968516" />
-      <entry key="D1" value="330.51913729895426" />
-      <entry key="W1" value="1456.5051064156314" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000428834154065" />
+      <entry key="S2" value="1.1319932288590882" />
+      <entry key="S5" value="1.6779205117423923" />
+      <entry key="S10" value="2.262836709402782" />
+      <entry key="S30" value="3.412252848970476" />
+      <entry key="S60" value="4.046525788452505" />
+      <entry key="M2" value="4.477239038021427" />
+      <entry key="M5" value="5.607896057084856" />
+      <entry key="M10" value="10.776377112847856" />
+      <entry key="M15" value="16.626275655758427" />
+      <entry key="M30" value="28.767246952406442" />
+      <entry key="H1" value="39.98128530225945" />
+      <entry key="H2" value="54.050106984406725" />
+      <entry key="H4" value="82.57919291530962" />
+      <entry key="D1" value="332.0589822999017" />
+      <entry key="W1" value="1459.317393407727" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.11825720584069947" />
-      <entry key="MS500" value="0.6524774738444787" />
-      <entry key="S2" value="0.8987551266323484" />
-      <entry key="S5" value="0.9582995323952904" />
-      <entry key="S10" value="0.9982444697502733" />
-      <entry key="S30" value="2.386797523616343" />
-      <entry key="S60" value="6.949781895690499" />
-      <entry key="M2" value="15.603959241079142" />
-      <entry key="M5" value="35.975944676896646" />
-      <entry key="M10" value="61.86067735786604" />
-      <entry key="M15" value="79.25656915225382" />
-      <entry key="M30" value="117.19018941891704" />
-      <entry key="H1" value="213.67887256551043" />
-      <entry key="H2" value="488.91553697439474" />
-      <entry key="H4" value="1046.8395048152456" />
-      <entry key="D1" value="6463.708667374957" />
-      <entry key="W1" value="24468.941687929768" />
+      <entry key="MS100" value="5.806675366224222E-4" />
+      <entry key="MS500" value="0.22533163687904995" />
+      <entry key="S2" value="0.7742286657747331" />
+      <entry key="S5" value="1.4896426014690736" />
+      <entry key="S10" value="2.6571742808229293" />
+      <entry key="S30" value="5.729716938504665" />
+      <entry key="S60" value="7.457525983924273" />
+      <entry key="M2" value="8.612143328746935" />
+      <entry key="M5" value="11.146049077473235" />
+      <entry key="M10" value="23.294284467362534" />
+      <entry key="M15" value="38.66222858472652" />
+      <entry key="M30" value="80.62056094287455" />
+      <entry key="H1" value="175.94376749785596" />
+      <entry key="H2" value="440.8981369211979" />
+      <entry key="H4" value="992.783225911522" />
+      <entry key="D1" value="6406.054826632032" />
+      <entry key="W1" value="24442.19027088576" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -439,15 +429,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="28025000" />
-    </task>
-    <task id="LOCAL-00386" summary="Add migration `M202606162100CreateTraceabilityTables` for import traceability and logging">
-      <option name="closed" value="true" />
-      <created>1781747690086</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1781747690086</updated>
+      <workItem from="1782069806075" duration="28922000" />
     </task>
     <task id="LOCAL-00387" summary="Update `ComponentOptions.Qa` value and standardize `MigrationTag.Qa` usage in migration tags">
       <option name="closed" value="true" />
@@ -833,7 +815,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782152514917</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`.">
+      <option name="closed" value="true" />
+      <created>1782152913261</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1782152913262</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -861,7 +851,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor database interactions: replace `Database` references with `Manager` or `Migrator`, remove outdated migration project, and adjust tests for SQL Server to reflect updated workflows." />
     <MESSAGE value="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script." />
     <MESSAGE value="Standardize SQL scripts and migrations: format index definitions, replace `REAL` data type with `NUMERIC`, adjust table and column references, and update associated tests and workflows." />
     <MESSAGE value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
@@ -886,7 +875,8 @@
     <MESSAGE value="Refactoring the test libraries and how the global SQL Server and Sqlite test database instancesa are managed to imporve test speed and code reuse across other testing projects" />
     <MESSAGE value="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation" />
     <MESSAGE value="Add `ToString` override for `DbConnectionInfo` to generate provider-specific connection strings; introduce `CustomWebApplicationFactory` for enhanced test configuration management." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `ToString` override for `DbConnectionInfo` to generate provider-specific connection strings; introduce `CustomWebApplicationFactory` for enhanced test configuration management." />
+    <MESSAGE value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

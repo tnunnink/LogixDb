@@ -39,8 +39,21 @@ public class AoiMapTests
     {
         var map = new AoiMap();
 
-        var first = new AddOnInstruction { Name = "AoiA", Description = "Test" };
-        var second = new AddOnInstruction { Name = "AoiA", Description = "Test" };
+        var first = new AddOnInstruction
+        {
+            Name = "AoiA",
+            Description = "Test",
+            CreatedDate = DateTime.Today,
+            EditedDate = DateTime.Today
+        };
+
+        var second = new AddOnInstruction
+        {
+            Name = "AoiA",
+            Description = "Test",
+            CreatedDate = DateTime.Today,
+            EditedDate = DateTime.Today
+        };
 
         var firstHash = map.ComputeHash(first);
         var secondHash = map.ComputeHash(second);

@@ -19,7 +19,7 @@ public class TagImportTests : SqliteTestFixture
         };
         var source = TestSource.Custom(c => { c.Tags.Add(tag); });
         var target = Target.Create(source, "TestProject");
-        
+
         await Manager.ImportTarget(target);
 
         await AssertRecordCount("tag", 1);
@@ -34,21 +34,17 @@ public class TagImportTests : SqliteTestFixture
     {
         var source = TestSource.Custom(c =>
         {
-            c.Add(new Tag
-            {
-                Name = "Program:MyProgram.ProgramTag",
-                Value = true,
-                Description = "A program scoped tag"
-            });
+            c.Add(Tag.Named("Program:MainProgram.LocalDint").WithValue(123).Build());
         });
-        var target = Target.Create(source, "TestProject");
         
+        var target = Target.Create(source, "TestProject");
+
         await Manager.ImportTarget(target);
 
         await AssertRecordCount("tag", 1);
-        await AssertRecordExists("tag", "tag_name", "ProgramTag");
+        await AssertRecordExists("tag", "tag_name", "LocalDint");
         await AssertRecordExists("tag", "program_name", "MainProgram");
-        await AssertRecordExists("tag", "data_type", "BOOL");
+        await AssertRecordExists("tag", "data_type", "DINT");
     }
 
     [Test]

@@ -22,18 +22,13 @@ public class IngestIntegrationTests
         {
             builder.ConfigureTestServices(services =>
             {
-                // We want to override the LogixConfig to use an in-memory SQLite database
-                // Note: LogixDb registration depends on this config.
-                // Depending on how AddLogixDb is implemented, we might need to re-register IDbManager
-                // or just ensure the config is correct before it's used.
-                
                 services.AddSingleton(new LogixConfig
                 {
-                    DbConnection = "Data Source=IngestTests;Mode=Memory;Cache=Shared"
+                    DbConnection = SqlServerEnvironment.Database.Connection.ToString()
                 });
             });
         });
-        
+
         _client = _factory.CreateClient();
     }
 

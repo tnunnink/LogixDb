@@ -9,12 +9,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class ImportCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task Import_FileNotFound_ShouldReturnExpectedErrorCode()
     {

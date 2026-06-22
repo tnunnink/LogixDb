@@ -9,12 +9,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class ExportCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task Export_TargetNotFound_ShouldReturnTargetNotFound()
     {

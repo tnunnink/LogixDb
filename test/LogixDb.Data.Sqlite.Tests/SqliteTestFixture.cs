@@ -33,9 +33,9 @@ public abstract class SqliteTestFixture
     /// </summary>
     /// <returns>A task that represents the asynchronous operation of purging the database.</returns>
     [TearDown]
-    protected async Task PurgeAllData()
+    protected async Task Teardown()
     {
-        await SqliteTestDatabase.Purge();
+        await SqliteEnvironment.Database.Purge();
     }
 
     /// <summary>

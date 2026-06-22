@@ -18,6 +18,13 @@ public class IngestIntegrationTests
         _client = _factory.CreateClient();
     }
 
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        _client.Dispose();
+        _factory.Dispose();
+    }
+
     [Test]
     public async Task GetHealth_ReturnsOk()
     {
@@ -43,13 +50,6 @@ public class IngestIntegrationTests
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Accepted), $"Response body: {result}");
         Assert.That(result, Does.Contain("Queued"));
         Assert.That(result, Does.Contain("Test"));
-    }
-
-    [OneTimeTearDown]
-    public void TearDown()
-    {
-        _client.Dispose();
-        _factory.Dispose();
     }
 
     [Test]

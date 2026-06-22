@@ -7,12 +7,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class PurgeCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task Purge_WithForce_ShouldReturnZero()
     {

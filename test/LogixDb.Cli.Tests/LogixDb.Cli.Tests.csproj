@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\LogixDb.Cli\LogixDb.Cli.csproj" />
+      <ProjectReference Include="..\LogixDb.Testing.Sqlite\LogixDb.Testing.Sqlite.csproj" />
       <ProjectReference Include="..\LogixDb.Testing\LogixDb.Testing.csproj" />
     </ItemGroup>
 

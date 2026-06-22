@@ -8,12 +8,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class ListCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task List_EmptyDatabase_ShouldReturnZeroExitCode()
     {

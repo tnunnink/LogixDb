@@ -7,12 +7,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class SyncCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task Sync_TargetNotFound_ShouldReturnFileNotFound()
     {

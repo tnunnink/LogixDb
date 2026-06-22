@@ -9,12 +9,6 @@ namespace LogixDb.Cli.Tests.Commands;
 [TestFixture]
 public class PruneCommandTests : TestDbFixture
 {
-    [SetUp]
-    public Task Setup()
-    {
-        return Migrator.Migrate(Connection);
-    }
-
     [Test]
     public async Task Prune_TargetNotFound_ShouldReturnZero()
     {
@@ -30,6 +24,7 @@ public class PruneCommandTests : TestDbFixture
 
         Assert.That(exitCode, Is.Zero);
     }
+
     [Test]
     public async Task Prune_ValidTarget_ShouldReturnZero()
     {
@@ -47,7 +42,7 @@ public class PruneCommandTests : TestDbFixture
         ]);
 
         Assert.That(exitCode, Is.Zero);
-        
+
         var results = (await Manager.ListTargets()).ToArray();
         Assert.That(results, Is.Empty);
     }

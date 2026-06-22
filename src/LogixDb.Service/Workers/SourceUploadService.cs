@@ -8,7 +8,7 @@ namespace LogixDb.Service.Workers;
 /// <summary>
 /// Provides functionality to handle file uploads to the server and queue them for processing.
 /// </summary>
-public class SourceUploadService(Channel<Import> channel, IDbManager manager, ILogger<SourceUploadService> logger)
+public class SourceUploadService(Channel<Import> channel, IDbManager manager)
 {
     /// <summary>
     /// Asynchronously uploads a file to the server and queues it for processing.
@@ -50,30 +50,18 @@ public class SourceUploadService(Channel<Import> channel, IDbManager manager, IL
     private async Task<Import> CreateImportSession(IFormFile file, IDictionary<string, string> metadata,
         CancellationToken token)
     {
-        try
-        {
-            Directory.CreateDirectory(Paths.Dropzone);
-            var sourceFile = Path.Combine(Paths.Dropzone, file.FileName);
+        Directory.CreateDirectory(Paths.Dropzone);
+        var sourceFile = Path.Combine(Paths.Dropzone, file.FileName);
 
-            var import = Import.Create(sourceFile, SourceType.API);
-            import.AddData(metadata);
+        var import = Import.Create(sourceFile, SourceType.API);
+        import.AddData(metadata);
 
-            await manager.PutImport(import, CancellationToken.None);
-            await manager.LogImport(
-                import.Info($"Import starting for file {file.FileName}"),
-                token
-            );
+        await manager.PutImport(import, CancellationToken.None);
+        await manager.LogImport(
+            import.Info($"Import starting for file {file.FileName}"),
+            token
+        );
 
-            return import;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex,
-                "Failed to create import session for {FileName}. Check database settings and services.",
-                file.FileName
-            );
-
-            throw;
-        }
+        return import;
     }
 }

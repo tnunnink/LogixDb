@@ -33,7 +33,12 @@ app.MapGet("/health",
 // Defines the primary endpoint for ingesting L5X and ACD files.
 // This lets external tools or scripts upload logix files to the local server.
 // The service hosts a background service that will ingest these uploaded files to the configured LogixDb database.
-app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, SourceUploadService uploadService) =>
+app.MapPost("/ingest", async (
+    [FromForm] IFormFile file,
+    HttpRequest request,
+    SourceUploadService uploadService,
+    ILogger<Program> logger
+) =>
 {
     if (file.Length == 0)
         return Results.BadRequest("No file content provided.");
@@ -54,14 +59,22 @@ app.MapPost("/ingest", async ([FromForm] IFormFile file, HttpRequest request, So
         }
     }
 
-    var source = await uploadService.UploadAsync(file, metadata);
-
-    return Results.Accepted(uri: string.Empty, value: new
+    try
     {
-        importId = source.ImportId,
-        received = source.FileName,
-        status = "Queued"
-    });
+        var source = await uploadService.UploadAsync(file, metadata);
+
+        return Results.Accepted(uri: string.Empty, value: new
+        {
+            importId = source.ImportId,
+            received = source.FileName,
+            status = "Queued"
+        });
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred while processing the upload for {FileName}", file.FileName);
+        return Results.Problem("An internal error occurred while processing the upload. Please check server logs.");
+    }
 }).DisableAntiforgery();
 
 await app.RunAsync();

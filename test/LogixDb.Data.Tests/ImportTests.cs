@@ -36,13 +36,14 @@ public class ImportTests
     [Test]
     public void Create_ExplicitPath_ReturnsCorrectImport()
     {
-        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
+        var tempDir = Path.GetTempPath();
+        var sourceFile = Path.Combine(tempDir, "test.L5X");
 
         var import = Import.Create(sourceFile, SourceType.CLI);
 
         import.FileType.Should().Be(FileType.L5X);
         import.FileName.Should().Be("test");
-        import.FilePath.Should().Be("C:\\Temp");
+        import.FilePath.Should().Be(Path.GetDirectoryName(Path.GetFullPath(sourceFile)));
     }
 
     [Test]
@@ -72,12 +73,13 @@ public class ImportTests
     [Test]
     public void SourceFile_Property_FollowsExpectedFormat()
     {
-        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
+        var tempDir = Path.GetTempPath();
+        var sourceFile = Path.Combine(tempDir, "test.L5X");
         var import = Import.Create(sourceFile, SourceType.CLI);
 
         var fullPath = import.SourceFile;
-
-        fullPath.Should().Be(@"C:\Temp\test.L5X");
+        
+        fullPath.Should().Be(Path.Combine(tempDir, "test.L5X"));
     }
 
     [Test]

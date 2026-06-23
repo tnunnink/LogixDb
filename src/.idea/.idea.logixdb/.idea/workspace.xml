@@ -21,8 +21,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/TagImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/TagImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/ProgramImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/ProgramImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +68,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/37/b0cfea2b/Port.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/5c/d9cf04ff/AddOnInstruction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/90/1c05b8d7/DataType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/da/b4cd3128/Address.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/96/1597f6f9/LogixContainer`1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -146,61 +150,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="9.33518764213535E-74" />
-      <entry key="MS500" value="2.4858564367917453E-15" />
-      <entry key="S2" value="3.189997911605192E-4" />
-      <entry key="S5" value="0.08287764106081903" />
-      <entry key="S10" value="0.6072256629660063" />
-      <entry key="S30" value="2.439119855968924" />
-      <entry key="S60" value="3.4852585876503124" />
-      <entry key="M2" value="4.176514627388734" />
-      <entry key="M5" value="5.559190964915253" />
-      <entry key="M10" value="12.537525871254633" />
-      <entry key="M15" value="22.055586305767992" />
-      <entry key="M30" value="51.86976598835571" />
-      <entry key="H1" value="135.9741519343087" />
-      <entry key="H2" value="386.85723807520367" />
-      <entry key="H4" value="910.2123480886248" />
-      <entry key="D1" value="6074.001938037196" />
-      <entry key="W1" value="22982.877290242955" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000182187898" />
+      <entry key="S2" value="1.0122730649035276" />
+      <entry key="S5" value="1.2600472239760627" />
+      <entry key="S10" value="2.149514336956318" />
+      <entry key="S30" value="7.867414306221757" />
+      <entry key="S60" value="13.984063872444809" />
+      <entry key="M2" value="20.60134189203604" />
+      <entry key="M5" value="32.74310123413918" />
+      <entry key="M10" value="47.22131589351113" />
+      <entry key="M15" value="57.12839772825184" />
+      <entry key="M30" value="73.5934787254036" />
+      <entry key="H1" value="109.58019645405562" />
+      <entry key="H2" value="261.09523405412125" />
+      <entry key="H4" value="691.4458298701388" />
+      <entry key="D1" value="5743.593007662481" />
+      <entry key="W1" value="23174.73157757709" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000428834154065" />
-      <entry key="S2" value="1.1319932288590882" />
-      <entry key="S5" value="1.6779205117423923" />
-      <entry key="S10" value="2.262836709402782" />
-      <entry key="S30" value="3.412252848970476" />
-      <entry key="S60" value="4.046525788452505" />
-      <entry key="M2" value="4.477239038021427" />
-      <entry key="M5" value="5.607896057084856" />
-      <entry key="M10" value="10.776377112847856" />
-      <entry key="M15" value="16.626275655758427" />
-      <entry key="M30" value="28.767246952406442" />
-      <entry key="H1" value="39.98128530225945" />
-      <entry key="H2" value="54.050106984406725" />
-      <entry key="H4" value="82.57919291530962" />
-      <entry key="D1" value="332.0589822999017" />
-      <entry key="W1" value="1459.317393407727" />
+      <entry key="MS100" value="1.3284748737380149E-31" />
+      <entry key="MS500" value="6.678372959552855E-7" />
+      <entry key="S2" value="0.028596432361330512" />
+      <entry key="S5" value="0.25667706646025507" />
+      <entry key="S10" value="0.7832738868876506" />
+      <entry key="S30" value="3.6325304774663585" />
+      <entry key="S60" value="6.190770902794217" />
+      <entry key="M2" value="8.451401055994685" />
+      <entry key="M5" value="11.008834981859877" />
+      <entry key="M10" value="12.56022921927691" />
+      <entry key="M15" value="13.2447060456507" />
+      <entry key="M30" value="14.055279996753855" />
+      <entry key="H1" value="15.036269527666393" />
+      <entry key="H2" value="21.11141408958727" />
+      <entry key="H4" value="43.721063837307284" />
+      <entry key="D1" value="295.7538222809745" />
+      <entry key="W1" value="1442.6640248990996" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.806675366224222E-4" />
-      <entry key="MS500" value="0.22533163687904995" />
-      <entry key="S2" value="0.7742286657747331" />
-      <entry key="S5" value="1.4896426014690736" />
-      <entry key="S10" value="2.6571742808229293" />
-      <entry key="S30" value="5.729716938504665" />
-      <entry key="S60" value="7.457525983924273" />
-      <entry key="M2" value="8.612143328746935" />
-      <entry key="M5" value="11.146049077473235" />
-      <entry key="M10" value="23.294284467362534" />
-      <entry key="M15" value="38.66222858472652" />
-      <entry key="M30" value="80.62056094287455" />
-      <entry key="H1" value="175.94376749785596" />
-      <entry key="H2" value="440.8981369211979" />
-      <entry key="H4" value="992.783225911522" />
-      <entry key="D1" value="6406.054826632032" />
-      <entry key="W1" value="24442.19027088576" />
+      <entry key="MS100" value="0.29936967615473214" />
+      <entry key="MS500" value="0.7856730034412925" />
+      <entry key="S2" value="0.978211409549615" />
+      <entry key="S5" value="1.4697254488358626" />
+      <entry key="S10" value="2.868116708849675" />
+      <entry key="S30" value="11.387892243570242" />
+      <entry key="S60" value="20.07647001849357" />
+      <entry key="M2" value="28.984374260212373" />
+      <entry key="M5" value="43.715363068541166" />
+      <entry key="M10" value="59.76023038566552" />
+      <entry key="M15" value="70.35795315938648" />
+      <entry key="M30" value="87.64059949603207" />
+      <entry key="H1" value="124.61200755094299" />
+      <entry key="H2" value="282.20323494963196" />
+      <entry key="H4" value="735.1627281399591" />
+      <entry key="D1" value="6039.341443482938" />
+      <entry key="W1" value="24617.39125410918" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -429,23 +433,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="28922000" />
-    </task>
-    <task id="LOCAL-00387" summary="Update `ComponentOptions.Qa` value and standardize `MigrationTag.Qa` usage in migration tags">
-      <option name="closed" value="true" />
-      <created>1781747697013</created>
-      <option name="number" value="00387" />
-      <option name="presentableId" value="LOCAL-00387" />
-      <option name="project" value="LOCAL" />
-      <updated>1781747697013</updated>
-    </task>
-    <task id="LOCAL-00388" summary="Refactor service configuration: Replace `SourceInfo` with `Import`, update traceId to use `ImportId`, and add reference to `LogixDb.Data`.">
-      <option name="closed" value="true" />
-      <created>1781747703715</created>
-      <option name="number" value="00388" />
-      <option name="presentableId" value="LOCAL-00388" />
-      <option name="project" value="LOCAL" />
-      <updated>1781747703715</updated>
+      <workItem from="1782069806075" duration="42583000" />
     </task>
     <task id="LOCAL-00389" summary="Update `.idea` workspace configuration: include new file references, adjust highlighting settings, and add project folders to tests setup.">
       <option name="closed" value="true" />
@@ -823,7 +811,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782152913262</updated>
     </task>
-    <option name="localTasksCounter" value="436" />
+    <task id="LOCAL-00436" summary="Refactor `SourceUploadService` to throw exceptions for session creation errors, update AOI map hashing test with additional fields, and refine `TagImportTests` logic and assertions.">
+      <option name="closed" value="true" />
+      <created>1782154479432</created>
+      <option name="number" value="00436" />
+      <option name="presentableId" value="LOCAL-00436" />
+      <option name="project" value="LOCAL" />
+      <updated>1782154479432</updated>
+    </task>
+    <task id="LOCAL-00437" summary="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints.">
+      <option name="closed" value="true" />
+      <created>1782154645858</created>
+      <option name="number" value="00437" />
+      <option name="presentableId" value="LOCAL-00437" />
+      <option name="project" value="LOCAL" />
+      <updated>1782154645858</updated>
+    </task>
+    <option name="localTasksCounter" value="438" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -851,8 +855,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script." />
-    <MESSAGE value="Standardize SQL scripts and migrations: format index definitions, replace `REAL` data type with `NUMERIC`, adjust table and column references, and update associated tests and workflows." />
     <MESSAGE value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
     <MESSAGE value="Refactor SQL scripts: replace `dbo` schema references with `logix` for consistency across merge scripts." />
     <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
@@ -876,7 +878,9 @@
     <MESSAGE value="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation" />
     <MESSAGE value="Add `ToString` override for `DbConnectionInfo` to generate provider-specific connection strings; introduce `CustomWebApplicationFactory` for enhanced test configuration management." />
     <MESSAGE value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
+    <MESSAGE value="Refactor `SourceUploadService` to throw exceptions for session creation errors, update AOI map hashing test with additional fields, and refine `TagImportTests` logic and assertions." />
+    <MESSAGE value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -893,19 +897,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs</url>
-          <line>55</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Service\Workers\SourceUploadService.cs" containingFunctionPresentation="Method 'CreateImportSession'">
-            <startOffsets>
-              <option value="2706" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2748" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs</url>
           <line>26</line>

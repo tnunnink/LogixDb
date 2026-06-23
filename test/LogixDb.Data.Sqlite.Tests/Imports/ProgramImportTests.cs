@@ -10,14 +10,14 @@ public class ProgramImportTests : SqliteTestFixture
     [Test]
     public async Task ImportTarget_WithSingleProgram_ShouldContainExpectedRecords()
     {
-        var program = new Program
+        var source = TestSource.With<Program>(p =>
         {
-            Name = "TestProgram",
-            Description = "This is a test program",
-            MainRoutineName = "Main",
-            Disabled = true
-        };
-        var source = TestSource.Custom(c => { c.Programs.Add(program); });
+            p.Name = "TestProgram";
+            p.Description = "This is a test program";
+            p.MainRoutineName = "Main";
+            p.Disabled = true;
+        });
+
         var target = Target.Create(source, "TestProject");
 
         await Manager.ImportTarget(target);
@@ -38,7 +38,7 @@ public class ProgramImportTests : SqliteTestFixture
             c.Tasks.Add(new L5Sharp.Core.Task("MainTask") { ScheduledPrograms = [new ScheduledProgram("MyProgram")] });
         });
         var target = Target.Create(source, "TestProject");
-        
+
         await Manager.ImportTarget(target);
 
         await AssertRecordCount("program", 1);

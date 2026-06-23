@@ -26,6 +26,21 @@ public static class TestSource
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="config"></param>
+    /// <typeparam name="TComponent"></typeparam>
+    /// <returns></returns>
+    public static L5X With<TComponent>(Action<TComponent> config) where TComponent : ILogixComponent, new()
+    {
+        var content = L5X.New("Test", "1756-L83E", "33.1");
+        var component = new TComponent();
+        config.Invoke(component);
+        content.Add(component);
+        return content;
+    }
+
+    /// <summary>
     /// Creates a new L5X instance populated with auto-generated fake data using the Bogus library.
     /// Generates test data types and optionally applies additional custom configuration.
     /// </summary>

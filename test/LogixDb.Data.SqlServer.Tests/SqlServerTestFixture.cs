@@ -1,7 +1,6 @@
 using System.Data;
 using Dapper;
 using LogixDb.Data.Abstractions;
-using LogixDb.Testing.SqlServer;
 
 namespace LogixDb.Data.SqlServer.Tests;
 
@@ -60,28 +59,6 @@ public abstract class SqlServerTestFixture
 
         Assert.That(result, Is.EqualTo(expectedCount),
             $"Expected {expectedCount} records in table '{tableName}', but found {result}");
-    }
-
-    /// <summary>
-    /// Retrieves the current size of the database in megabytes.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation. The result contains the size of the database in megabytes as an integer.</returns>
-    protected static async Task<decimal> GetDatabaseSize()
-    {
-        await using var connection = await Provider.OpenConnection();
-
-        return await connection.QuerySingleAsync<decimal>(
-            """
-            SELECT CAST(SUM(FILEPROPERTY(name, 'SpaceUsed')) * 8 / 1024.0 AS DECIMAL(10,2)) AS SpaceUsedMB
-            FROM sys.database_files
-            WHERE type_desc = 'ROWS';
-            """);
-        // """
-        // SELECT CAST(SUM(size) * 8 / 1024 AS DECIMAL(10,2)) AS SizeMB
-        // FROM sys.master_files
-        // WHERE database_id = DB_ID()
-        // GROUP BY database_id;
-        // """);
     }
 
     /// <summary>

@@ -21,8 +21,8 @@ public static class TestEnvironment
     public static readonly SqlServerTestDatabase Database = new();
 
     [OneTimeSetUp]
-    public static Task Setup() => Database.StartAsync(new SqlServerMigrator());
+    public static Task Setup() => Database.BuildAsync(new SqlServerMigrator());
 
     [OneTimeTearDown]
-    public static Task Teardown() => Database.StopAsync();
+    public static ValueTask Teardown() => Database.DisposeAsync();
 }

@@ -11,7 +11,7 @@ namespace LogixDb.Testing.SqlServer;
 /// Provides a test infrastructure for SQL Server by managing a test container and enabling database operations.
 /// This class facilitates the creation, teardown, and purging of a transient SQL Server database for testing purposes.
 /// </summary>
-public class SqlServerTestDatabase
+public sealed class SqlServerTestDatabase : IAsyncDisposable
 {
     /// <summary>
     /// Represents a test container instance for managing a Microsoft SQL Server database lifecycle
@@ -37,7 +37,7 @@ public class SqlServerTestDatabase
     /// </summary>
     /// <param name="migrator">The database migrator responsible for executing schema updates on the test database during initialization.</param>
     /// <returns>A task representing the asynchronous operation of starting the container and applying migrations.</returns>
-    public async Task StartAsync(IDbMigrator migrator)
+    public async Task BuildAsync(IDbMigrator migrator)
     {
         await _container.StartAsync();
 
@@ -58,7 +58,7 @@ public class SqlServerTestDatabase
     /// This method ensures proper cleanup of the container and releases associated resources for the test environment.
     /// </summary>
     /// <returns>A task representing the asynchronous operation of stopping and disposing of the container.</returns>
-    public async Task StopAsync()
+    public async ValueTask DisposeAsync()
     {
         if (_container.State == TestcontainersStates.Running)
         {

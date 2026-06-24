@@ -21,11 +21,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/ProgramImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Imports/ProgramImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing/TestSource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerEnvironment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerEnvironment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbTargetSpaceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbTargetSpaceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/TestEnvironment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/TestEnvironment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing.SqlServer/SqlServerTestDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing.SqlServer/SqlServerTestDatabase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,61 +153,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000182187898" />
-      <entry key="S2" value="1.0122730649035276" />
-      <entry key="S5" value="1.2600472239760627" />
-      <entry key="S10" value="2.149514336956318" />
-      <entry key="S30" value="7.867414306221757" />
-      <entry key="S60" value="13.984063872444809" />
-      <entry key="M2" value="20.60134189203604" />
-      <entry key="M5" value="32.74310123413918" />
-      <entry key="M10" value="47.22131589351113" />
-      <entry key="M15" value="57.12839772825184" />
-      <entry key="M30" value="73.5934787254036" />
-      <entry key="H1" value="109.58019645405562" />
-      <entry key="H2" value="261.09523405412125" />
-      <entry key="H4" value="691.4458298701388" />
-      <entry key="D1" value="5743.593007662481" />
-      <entry key="W1" value="23174.73157757709" />
+      <entry key="MS100" value="1.5465128654613966E-133" />
+      <entry key="MS500" value="6.961281008922932E-27" />
+      <entry key="S2" value="1.4469904300917969E-6" />
+      <entry key="S5" value="0.022098173044931866" />
+      <entry key="S10" value="0.5999159249366083" />
+      <entry key="S30" value="5.8394554024888645" />
+      <entry key="S60" value="12.87856455787412" />
+      <entry key="M2" value="29.27048386774938" />
+      <entry key="M5" value="78.66446541278872" />
+      <entry key="M10" value="168.10836987929835" />
+      <entry key="M15" value="243.70473074118692" />
+      <entry key="M30" value="376.4480221052292" />
+      <entry key="H1" value="478.12062333050943" />
+      <entry key="H2" value="541.5077959415431" />
+      <entry key="H4" value="587.0961039830688" />
+      <entry key="D1" value="3455.1435927943403" />
+      <entry key="W1" value="21577.661170245265" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.3284748737380149E-31" />
-      <entry key="MS500" value="6.678372959552855E-7" />
-      <entry key="S2" value="0.028596432361330512" />
-      <entry key="S5" value="0.25667706646025507" />
-      <entry key="S10" value="0.7832738868876506" />
-      <entry key="S30" value="3.6325304774663585" />
-      <entry key="S60" value="6.190770902794217" />
-      <entry key="M2" value="8.451401055994685" />
-      <entry key="M5" value="11.008834981859877" />
-      <entry key="M10" value="12.56022921927691" />
-      <entry key="M15" value="13.2447060456507" />
-      <entry key="M30" value="14.055279996753855" />
-      <entry key="H1" value="15.036269527666393" />
-      <entry key="H2" value="21.11141408958727" />
-      <entry key="H4" value="43.721063837307284" />
-      <entry key="D1" value="295.7538222809745" />
-      <entry key="W1" value="1442.6640248990996" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000039317" />
+      <entry key="S2" value="1.001528821943377" />
+      <entry key="S5" value="1.1155847865960125" />
+      <entry key="S10" value="1.6854692552389063" />
+      <entry key="S30" value="4.1491824563585045" />
+      <entry key="S60" value="6.534238234291449" />
+      <entry key="M2" value="9.342179031085362" />
+      <entry key="M5" value="14.943975749889464" />
+      <entry key="M10" value="20.043419508591047" />
+      <entry key="M15" value="22.631375633937694" />
+      <entry key="M30" value="25.88523335366187" />
+      <entry key="H1" value="27.820683275368218" />
+      <entry key="H2" value="28.882490838211908" />
+      <entry key="H4" value="30.07863789880206" />
+      <entry key="D1" value="176.4886913639522" />
+      <entry key="W1" value="1335.0040037458232" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.29936967615473214" />
-      <entry key="MS500" value="0.7856730034412925" />
-      <entry key="S2" value="0.978211409549615" />
-      <entry key="S5" value="1.4697254488358626" />
-      <entry key="S10" value="2.868116708849675" />
-      <entry key="S30" value="11.387892243570242" />
-      <entry key="S60" value="20.07647001849357" />
-      <entry key="M2" value="28.984374260212373" />
-      <entry key="M5" value="43.715363068541166" />
-      <entry key="M10" value="59.76023038566552" />
-      <entry key="M15" value="70.35795315938648" />
-      <entry key="M30" value="87.64059949603207" />
-      <entry key="H1" value="124.61200755094299" />
-      <entry key="H2" value="282.20323494963196" />
-      <entry key="H4" value="735.1627281399591" />
-      <entry key="D1" value="6039.341443482938" />
-      <entry key="W1" value="24617.39125410918" />
+      <entry key="MS100" value="1.513315063402082E-4" />
+      <entry key="MS500" value="0.17218125579889862" />
+      <entry key="S2" value="0.6452544642693259" />
+      <entry key="S5" value="0.9604614803718372" />
+      <entry key="S10" value="2.1388867928337683" />
+      <entry key="S30" value="9.82692508152704" />
+      <entry key="S60" value="19.271964542662587" />
+      <entry key="M2" value="38.50789564789584" />
+      <entry key="M5" value="93.54098561221737" />
+      <entry key="M10" value="188.10649124968836" />
+      <entry key="M15" value="266.30187845652233" />
+      <entry key="M30" value="402.31352746300735" />
+      <entry key="H1" value="505.93064008082797" />
+      <entry key="H2" value="570.3847292413202" />
+      <entry key="H4" value="617.1718426692911" />
+      <entry key="D1" value="3631.629133058509" />
+      <entry key="W1" value="22912.661171523134" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -231,6 +234,7 @@
     "11f19ff6-b504-4ebd-bbb4-5f31bb3277bb.executor": "Debug",
     "126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor": "Debug",
     "13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor": "Debug",
+    "245b8624-4107-48dc-bdd8-4421c3c4b002.executor": "Debug",
     "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
     "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
     "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
@@ -433,15 +437,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="42583000" />
-    </task>
-    <task id="LOCAL-00389" summary="Update `.idea` workspace configuration: include new file references, adjust highlighting settings, and add project folders to tests setup.">
-      <option name="closed" value="true" />
-      <created>1781747734026</created>
-      <option name="number" value="00389" />
-      <option name="presentableId" value="LOCAL-00389" />
-      <option name="project" value="LOCAL" />
-      <updated>1781747734026</updated>
+      <workItem from="1782069806075" duration="46259000" />
     </task>
     <task id="LOCAL-00390" summary="Add unit tests for `M202606162100CreateTraceabilityTables` migration in SQL Server and SQLite contexts">
       <option name="closed" value="true" />
@@ -827,7 +823,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782154645858</updated>
     </task>
-    <option name="localTasksCounter" value="438" />
+    <task id="LOCAL-00438" summary="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity.">
+      <option name="closed" value="true" />
+      <created>1782179303419</created>
+      <option name="number" value="00438" />
+      <option name="presentableId" value="LOCAL-00438" />
+      <option name="project" value="LOCAL" />
+      <updated>1782179303419</updated>
+    </task>
+    <option name="localTasksCounter" value="439" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -855,7 +859,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove redundant SQLite migration tests and apply minor formatting improvements to `MergeTagValue.sql`." />
     <MESSAGE value="Refactor SQL scripts: replace `dbo` schema references with `logix` for consistency across merge scripts." />
     <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
     <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
@@ -880,7 +883,8 @@
     <MESSAGE value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
     <MESSAGE value="Refactor `SourceUploadService` to throw exceptions for session creation errors, update AOI map hashing test with additional fields, and refine `TagImportTests` logic and assertions." />
     <MESSAGE value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
+    <MESSAGE value="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

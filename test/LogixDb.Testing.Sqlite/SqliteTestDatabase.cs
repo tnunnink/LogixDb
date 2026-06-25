@@ -32,7 +32,7 @@ public sealed class SqliteTestDatabase : IDisposable
     /// <returns>A task representing the asynchronous operation. The task result contains an instance of <see cref="SqliteTestDatabase"/> with the migrations applied.</returns>
     public async Task BuildAsync(IDbMigrator migrator, CancellationToken token = default)
     {
-        Connection = new DbConnectionInfo(DbProvider.Sqlite, _tempDb);
+        Connection = new DbConnectionInfo(ProviderType.Sqlite, _tempDb);
         await migrator.Migrate(Connection, token);
     }
 

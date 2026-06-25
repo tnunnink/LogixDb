@@ -14,7 +14,7 @@ public class SqlDbMigrateTest
         var migrator = new SqlServerMigrator();
         
         var connectionInfo = new DbConnectionInfo(
-            Provider: DbProvider.SqlServer,
+            ProviderType: ProviderType.SqlServer,
             Source: "localhost,1433",
             Database: "logixdb",
             User: "sa",

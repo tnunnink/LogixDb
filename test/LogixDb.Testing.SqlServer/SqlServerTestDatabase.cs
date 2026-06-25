@@ -42,7 +42,7 @@ public sealed class SqlServerTestDatabase : IAsyncDisposable
         await _container.StartAsync();
 
         Connection = new DbConnectionInfo(
-            DbProvider.SqlServer,
+            ProviderType.SqlServer,
             _container.Hostname,
             Database: "logixdb",
             Port: _container.GetMappedPublicPort(),

@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the supported SQL database provider types for Logix database operations.
 /// </summary>
-public enum DbProvider
+public enum ProviderType
 {
     /// <summary>
     /// Represents the SQLite database provider.

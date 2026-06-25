@@ -11,7 +11,7 @@ public class DbConnectionInfoTests
         const string connectionString = "test.db";
         var connection = DbConnectionInfo.Parse(connectionString);
 
-        connection.Provider.Should().Be(DbProvider.Sqlite);
+        connection.ProviderType.Should().Be(ProviderType.Sqlite);
         connection.Source.Should().Be(connectionString);
     }
 
@@ -21,7 +21,7 @@ public class DbConnectionInfoTests
         const string connectionString = @"C:\Data\test.db";
         var connection = DbConnectionInfo.Parse(connectionString);
 
-        connection.Provider.Should().Be(DbProvider.Sqlite);
+        connection.ProviderType.Should().Be(ProviderType.Sqlite);
         connection.Source.Should().Be(connectionString);
     }
 
@@ -32,7 +32,7 @@ public class DbConnectionInfoTests
             "MyDatabase@MyServer;User=admin;Password=secret;Port=1234;Trust=true;Encrypt=true";
         var connection = DbConnectionInfo.Parse(connectionString);
 
-        connection.Provider.Should().Be(DbProvider.SqlServer);
+        connection.ProviderType.Should().Be(ProviderType.SqlServer);
         connection.Database.Should().Be("MyDatabase");
         connection.Source.Should().Be("MyServer");
         connection.User.Should().Be("admin");
@@ -48,7 +48,7 @@ public class DbConnectionInfoTests
         const string connectionString = "MyDatabase@MyServer";
         var connection = DbConnectionInfo.Parse(connectionString);
 
-        connection.Provider.Should().Be(DbProvider.SqlServer);
+        connection.ProviderType.Should().Be(ProviderType.SqlServer);
         connection.Database.Should().Be("MyDatabase");
         connection.Source.Should().Be("MyServer");
         connection.Port.Should().Be(1433); // Default

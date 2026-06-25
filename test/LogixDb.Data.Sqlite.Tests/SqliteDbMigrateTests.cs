@@ -15,7 +15,7 @@ public class SqliteDbMigrateTests
     {
         var migrator = new SqliteMigrator();
         
-        var connection = new DbConnectionInfo(DbProvider.Sqlite, "../../../logix.db");
+        var connection = new DbConnectionInfo(ProviderType.Sqlite, "../../../logix.db");
 
         if (File.Exists(connection.Source))
             File.Delete(connection.Source);

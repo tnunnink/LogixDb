@@ -8,7 +8,7 @@ namespace LogixDb.Data;
 /// source, database, authentication credentials, port, and encryption settings.
 /// </summary>
 public sealed record DbConnectionInfo(
-    DbProvider Provider,
+    ProviderType ProviderType,
     string Source,
     string? Database = null,
     string? User = null,
@@ -55,7 +55,7 @@ public sealed record DbConnectionInfo(
     {
         var provider = InferProvider(connection);
 
-        if (provider == DbProvider.Sqlite)
+        if (provider == ProviderType.Sqlite)
             return new DbConnectionInfo(provider, connection);
 
         var parts = connection.Split(SemiColon);
@@ -109,15 +109,15 @@ public sealed record DbConnectionInfo(
     /// <param name="connectionString">The database path or connection string to analyze.</param>
     /// <returns>The inferred SQL provider type as an <c>SqlProvider</c> enum value.</returns>
     /// <exception cref="ArgumentException">Thrown if the SQL provider cannot be inferred from the provided database path.</exception>
-    private static DbProvider InferProvider(string connectionString)
+    private static ProviderType InferProvider(string connectionString)
     {
         // If the path contains the host separator, we know it is SqlServer.
         if (connectionString.IndexOf(Ampersand) > 0)
-            return DbProvider.SqlServer;
+            return ProviderType.SqlServer;
 
         // If this is an existing file, or it appears to be a valid file name, assume a Sqlite provider.
         if (File.Exists(connectionString) || IsFileName(connectionString))
-            return DbProvider.Sqlite;
+            return ProviderType.Sqlite;
 
         throw new ArgumentException($"Unable to infer SQL provider from connection string '{connectionString}')");
 
@@ -139,7 +139,7 @@ public sealed record DbConnectionInfo(
     /// be a detailed connection string.</returns>
     public override string ToString()
     {
-        if (Provider == DbProvider.Sqlite)
+        if (ProviderType == ProviderType.Sqlite)
         {
             return Source;
         }

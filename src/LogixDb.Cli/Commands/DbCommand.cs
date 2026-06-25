@@ -57,11 +57,11 @@ public abstract class DbCommand : ICommand
     protected IDbMigrator GetMigrator()
     {
         var connection = DbConnectionInfo.Parse(Connection);
-        return connection.Provider switch
+        return connection.ProviderType switch
         {
-            DbProvider.Sqlite => new SqliteMigrator(),
-            DbProvider.SqlServer => new SqlServerMigrator(),
-            _ => throw new CommandException($"Unsupported SQL provider: {connection.Provider}")
+            ProviderType.Sqlite => new SqliteMigrator(),
+            ProviderType.SqlServer => new SqlServerMigrator(),
+            _ => throw new CommandException($"Unsupported SQL provider: {connection.ProviderType}")
         };
     }
 
@@ -81,11 +81,11 @@ public abstract class DbCommand : ICommand
     {
         var connection = DbConnectionInfo.Parse(Connection);
 
-        IDbProvider provider = connection.Provider switch
+        IDbProvider provider = connection.ProviderType switch
         {
-            DbProvider.Sqlite => new SqliteProvider(connection),
-            DbProvider.SqlServer => new SqlServerProvider(connection),
-            _ => throw new CommandException($"Unsupported SQL provider: {connection.Provider}")
+            ProviderType.Sqlite => new SqliteProvider(connection),
+            ProviderType.SqlServer => new SqlServerProvider(connection),
+            _ => throw new CommandException($"Unsupported SQL provider: {connection.ProviderType}")
         };
 
         return new DbManager(provider);

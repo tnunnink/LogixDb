@@ -26,16 +26,16 @@ public static class Extensions
 
         var connection = DbConnectionInfo.Parse(config.DbConnection);
 
-        switch (connection.Provider)
+        switch (connection.ProviderType)
         {
-            case DbProvider.SqlServer:
+            case ProviderType.SqlServer:
                 services.AddTransient<IDbProvider>(_ => new SqlServerProvider(connection));
                 break;
-            case DbProvider.Sqlite:
+            case ProviderType.Sqlite:
                 services.AddTransient<IDbProvider>(_ => new SqliteProvider(connection));
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(config), connection.Provider, "Unsupported SQL provider");
+                throw new ArgumentOutOfRangeException(nameof(config), connection.ProviderType, "Unsupported SQL provider");
         }
 
         services.AddTransient<IDbManager, DbManager>();

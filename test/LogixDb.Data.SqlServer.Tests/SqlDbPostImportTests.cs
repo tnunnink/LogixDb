@@ -1,7 +1,7 @@
 namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class SqlDbPutImportTests : SqlServerTestFixture
+public class SqlDbPostImportTests : SqlServerTestFixture
 {
     [Test]
     public async Task PutImport_NewImport_InsertsRecord()
@@ -20,9 +20,8 @@ public class SqlDbPutImportTests : SqlServerTestFixture
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
         await Manager.CreateImport(import);
-
-        import.Status = ImportStatus.Complete;
-        await Manager.CreateImport(import);
+        
+        await Manager.MarkImport(import.ImportId, ImportStatus.Complete);
 
         await AssertRecordExists("logix.import", "import_status", nameof(ImportStatus.Complete));
     }

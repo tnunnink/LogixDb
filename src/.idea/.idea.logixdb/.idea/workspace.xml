@@ -21,27 +21,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/UpdateImport.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/UpdateImport.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ImportConverter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PutImport.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostImport.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/PutImport.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/PostImport.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/DbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Data/Import.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Import.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Constants.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbLogImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbLogImportTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbPutImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbPutImportTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,61 +155,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0081442637565712" />
-      <entry key="MS500" value="1.3820941301946532" />
-      <entry key="S2" value="1.787571345210763" />
-      <entry key="S5" value="1.9795059442077592" />
-      <entry key="S10" value="2.2244537384737884" />
-      <entry key="S30" value="3.3579545117413874" />
-      <entry key="S60" value="5.479040358436779" />
-      <entry key="M2" value="8.064894266350588" />
-      <entry key="M5" value="10.634898846612321" />
-      <entry key="M10" value="11.74019498082674" />
-      <entry key="M15" value="12.142864023190645" />
-      <entry key="M30" value="13.301057652847518" />
-      <entry key="H1" value="34.15216196240631" />
-      <entry key="H2" value="133.7546351176845" />
-      <entry key="H4" value="348.5788638360377" />
-      <entry key="D1" value="2440.7898816533843" />
-      <entry key="W1" value="20301.660448898874" />
+      <entry key="MS100" value="2.1673765558791835" />
+      <entry key="MS500" value="6.297441686875342" />
+      <entry key="S2" value="18.359348669159175" />
+      <entry key="S5" value="36.0627158001261" />
+      <entry key="S10" value="51.3643970680172" />
+      <entry key="S30" value="75.41990949500092" />
+      <entry key="S60" value="114.87539714736833" />
+      <entry key="M2" value="191.6428663928208" />
+      <entry key="M5" value="370.3013212161945" />
+      <entry key="M10" value="563.9257421988854" />
+      <entry key="M15" value="678.9316122111832" />
+      <entry key="M30" value="843.5565525961955" />
+      <entry key="H1" value="966.4369853867685" />
+      <entry key="H2" value="1113.1992230300086" />
+      <entry key="H4" value="1351.1956448963076" />
+      <entry key="D1" value="3464.275307259732" />
+      <entry key="W1" value="21321.266480275288" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="8.71930261811161E-303" />
-      <entry key="MS500" value="3.873436943986642E-61" />
-      <entry key="S2" value="8.077109745578407E-16" />
-      <entry key="S5" value="1.1135608324360916E-6" />
-      <entry key="S10" value="0.0014053995663984992" />
-      <entry key="S30" value="0.1751598510987085" />
-      <entry key="S60" value="0.5907367366302745" />
-      <entry key="M2" value="1.0864298808592217" />
-      <entry key="M5" value="1.5666362277508288" />
-      <entry key="M10" value="1.770071290951863" />
-      <entry key="M15" value="1.8438496741714288" />
-      <entry key="M30" value="2.0854581752633417" />
-      <entry key="H1" value="6.465426996033117" />
-      <entry key="H2" value="26.79596916569126" />
-      <entry key="H4" value="71.25994202794531" />
-      <entry key="D1" value="329.4149528807729" />
-      <entry key="W1" value="1518.871170196204" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="2.7185243094655283E-205" />
+      <entry key="S2" value="9.843716381288747E-52" />
+      <entry key="S5" value="7.315038933361862E-21" />
+      <entry key="S10" value="1.7165946656579833E-10" />
+      <entry key="S30" value="0.0017626023200948589" />
+      <entry key="S60" value="0.12898121182293043" />
+      <entry key="M2" value="1.3871251509251386" />
+      <entry key="M5" value="7.031705554240412" />
+      <entry key="M10" value="13.81956353275318" />
+      <entry key="M15" value="18.15023999054181" />
+      <entry key="M30" value="24.91497918686203" />
+      <entry key="H1" value="32.5355705578778" />
+      <entry key="H2" value="52.40845714038613" />
+      <entry key="H4" value="96.11503306348628" />
+      <entry key="D1" value="357.00793772049275" />
+      <entry key="W1" value="1548.7534189985777" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9662721545640399" />
-      <entry key="MS500" value="1.1950326898399302" />
-      <entry key="S2" value="1.66946249990321" />
-      <entry key="S5" value="1.9102502812969555" />
-      <entry key="S10" value="2.17086961562592" />
-      <entry key="S30" value="3.486809190132954" />
-      <entry key="S60" value="6.023219049164975" />
-      <entry key="M2" value="9.114042483672243" />
-      <entry key="M5" value="12.181087599871663" />
-      <entry key="M10" value="13.498854712627287" />
-      <entry key="M15" value="13.978818000845362" />
-      <entry key="M30" value="15.382306666250267" />
-      <entry key="H1" value="40.6139989686141" />
-      <entry key="H2" value="160.5453366085391" />
-      <entry key="H4" value="419.83182152089324" />
-      <entry key="D1" value="2770.1984622427053" />
-      <entry key="W1" value="21820.527086653903" />
+      <entry key="MS100" value="2.128271692941659" />
+      <entry key="MS500" value="6.270265394405479" />
+      <entry key="S2" value="18.336978220188875" />
+      <entry key="S5" value="36.04412523926509" />
+      <entry key="S10" value="51.350922827173335" />
+      <entry key="S30" value="75.4149736183669" />
+      <entry key="S60" value="114.996770653568" />
+      <entry key="M2" value="193.01316740090056" />
+      <entry key="M5" value="377.3058503212649" />
+      <entry key="M10" value="577.7183387503843" />
+      <entry key="M15" value="697.0573086754272" />
+      <entry key="M30" value="868.4534995583167" />
+      <entry key="H1" value="998.9603528872603" />
+      <entry key="H2" value="1165.5979739664187" />
+      <entry key="H4" value="1447.3015354258807" />
+      <entry key="D1" value="3821.276484799937" />
+      <entry key="W1" value="22870.015306037814" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -453,23 +439,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="69506000" />
-    </task>
-    <task id="LOCAL-00391" summary="Make `Enum.Parse&lt;FileType&gt;` case-insensitive in file type resolution">
-      <option name="closed" value="true" />
-      <created>1781748267778</created>
-      <option name="number" value="00391" />
-      <option name="presentableId" value="LOCAL-00391" />
-      <option name="project" value="LOCAL" />
-      <updated>1781748267778</updated>
-    </task>
-    <task id="LOCAL-00392" summary="Add unit tests for `Import` creation, file type detection, metadata population, and logging methods.">
-      <option name="closed" value="true" />
-      <created>1781748299187</created>
-      <option name="number" value="00392" />
-      <option name="presentableId" value="LOCAL-00392" />
-      <option name="project" value="LOCAL" />
-      <updated>1781748299187</updated>
+      <workItem from="1782069806075" duration="71913000" />
     </task>
     <task id="LOCAL-00393" summary="Add unit tests for `PutImport` and `LogImport` methods in SQL Server and SQLite implementations, and enhance `PutImport` to include additional import properties.">
       <option name="closed" value="true" />
@@ -847,7 +817,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782265637747</updated>
     </task>
-    <option name="localTasksCounter" value="440" />
+    <task id="LOCAL-00440" summary="Refactor import handling: replace `PutImport` with `CreateImport`, update SQL scripts and tests, and enhance import file lifecycle management with improved methods for writing, loading, and cleanup.">
+      <option name="closed" value="true" />
+      <created>1782400597809</created>
+      <option name="number" value="00440" />
+      <option name="presentableId" value="LOCAL-00440" />
+      <option name="project" value="LOCAL" />
+      <updated>1782400597809</updated>
+    </task>
+    <task id="LOCAL-00441" summary="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity.">
+      <option name="closed" value="true" />
+      <created>1782400695774</created>
+      <option name="number" value="00441" />
+      <option name="presentableId" value="LOCAL-00441" />
+      <option name="project" value="LOCAL" />
+      <updated>1782400695774</updated>
+    </task>
+    <option name="localTasksCounter" value="442" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -875,8 +861,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
-    <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
     <MESSAGE value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
     <MESSAGE value="Update unit tests and SQL migrations to align with `logix` schema adjustments; remove redundant tests and duplicate schema creation logic." />
     <MESSAGE value="Replace `Logix_20260226_001_SqlServerConfigureServiceAccount.sql` with `Logix_20260201_003_ConfigurePermissions.sql` for refined service user setup and schema permissions." />
@@ -900,7 +884,9 @@
     <MESSAGE value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
     <MESSAGE value="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity." />
     <MESSAGE value="Refactor test database lifecycle management for SQL Server and SQLite: replace `StartAsync`/`StopAsync` with `BuildAsync`/`DisposeAsync` for improved resource handling; update related tests accordingly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor test database lifecycle management for SQL Server and SQLite: replace `StartAsync`/`StopAsync` with `BuildAsync`/`DisposeAsync` for improved resource handling; update related tests accordingly." />
+    <MESSAGE value="Refactor import handling: replace `PutImport` with `CreateImport`, update SQL scripts and tests, and enhance import file lifecycle management with improved methods for writing, loading, and cleanup." />
+    <MESSAGE value="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

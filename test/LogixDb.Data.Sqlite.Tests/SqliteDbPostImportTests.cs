@@ -1,7 +1,7 @@
 namespace LogixDb.Data.Sqlite.Tests;
 
 [TestFixture]
-public class SqliteDbPutImportTests : SqliteTestFixture
+public class SqliteDbPostImportTests : SqliteTestFixture
 {
     [Test]
     public async Task PutImport_NewImport_InsertsRecord()
@@ -16,13 +16,12 @@ public class SqliteDbPutImportTests : SqliteTestFixture
     }
 
     [Test]
-    public async Task PutImport_ExistingImport_UpdatesStatus()
+    public async Task MarkImport_ExistingImport_UpdatesStatus()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
         await Manager.CreateImport(import);
-
-        import.Status = ImportStatus.Complete;
-        await Manager.CreateImport(import);
+        
+        await Manager.MarkImport(import.ImportId, ImportStatus.Complete);
 
         await AssertRecordExists("import", "import_status", nameof(ImportStatus.Complete));
     }

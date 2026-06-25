@@ -132,7 +132,10 @@ public class ImportTests
     [Test]
     public async Task WriteAsync_TestL5XFileOnDisc_FileShouldExistAndHaveExpectedSize()
     {
-        var sourceFile = Path.Combine(Path.GetTempPath(), "LogixDb", "Test.L5X");
+        var tempDir = Path.Combine(Path.GetTempPath(), "LogixDb");
+        Directory.CreateDirectory(tempDir);
+        var sourceFile = Path.Combine(tempDir, "Test.L5X");
+
         var content = TestSource.LocalTest();
         content.Save(sourceFile);
 
@@ -142,7 +145,7 @@ public class ImportTests
 
         file.Exists.Should().BeTrue();
         file.Length.Should().Be(new FileInfo(sourceFile).Length);
-        File.Delete(sourceFile);
+        Directory.Delete(tempDir, true);
     }
 
     [Test]

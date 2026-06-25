@@ -34,10 +34,13 @@ public class TagTransformer : IDbTransformer
             var tagHash = _tagMap.ComputeHash(tag);
             tagRecords.Add(tag);
 
-            if (TagType.Produced.Equals(tag.TagType) && tag.ProduceInfo is not null)
+            // this checks both that the produce info object exists and that an expected attribute (ProduceCount) exists.
+            // Found old projects where a ProduceInfo element exists with no attribute,
+            // which I want to skip to avoid parse errors, but also since an empty ProduceInfo seems to add no value.
+            if (tag.ProduceInfo?.Serialize().Attribute(L5XName.ProduceCount) is not null)
                 producerRecords.Add(tag.ProduceInfo);
 
-            if (TagType.Consumed.Equals(tag.TagType) && tag.ConsumeInfo is not null)
+            if (tag.ConsumeInfo is not null)
                 consumerRecords.Add(tag.ConsumeInfo);
 
             // We will store each member since we potentially won't have corresponding data type definitions to resolve against.

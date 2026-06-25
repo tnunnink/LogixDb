@@ -22,6 +22,7 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/14/d96fb4d2/Tag.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/37/b0cfea2b/Port.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/45/afc717df/ProduceInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/5c/d9cf04ff/AddOnInstruction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/90/1c05b8d7/DataType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/da/b4cd3128/Address.cs" root0="FORCE_HIGHLIGHTING" />
@@ -148,61 +151,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.000102433763969" />
-      <entry key="MS500" value="1.232968424317189" />
-      <entry key="S2" value="3.2485454787654513" />
-      <entry key="S5" value="6.025846258565419" />
-      <entry key="S10" value="7.972207212183921" />
-      <entry key="S30" value="9.862620235099767" />
-      <entry key="S60" value="12.630325087007762" />
-      <entry key="M2" value="37.42722005298597" />
-      <entry key="M5" value="179.29585085354083" />
-      <entry key="M10" value="391.25109584011227" />
-      <entry key="M15" value="533.0811160493104" />
-      <entry key="M30" value="750.733495845683" />
-      <entry key="H1" value="916.013801427461" />
-      <entry key="H2" value="1088.2441046311176" />
-      <entry key="H4" value="1340.1960826319016" />
-      <entry key="D1" value="3465.810960452487" />
-      <entry key="W1" value="21323.935704566527" />
+      <entry key="MS100" value="0.032803646363220855" />
+      <entry key="MS500" value="0.5048756490413858" />
+      <entry key="S2" value="0.8510490612379891" />
+      <entry key="S5" value="1.250171042849546" />
+      <entry key="S10" value="2.0792810159995434" />
+      <entry key="S30" value="3.5937311918866603" />
+      <entry key="S60" value="4.221392598648921" />
+      <entry key="M2" value="4.596595256856798" />
+      <entry key="M5" value="7.819179332127276" />
+      <entry key="M10" value="52.35421502378296" />
+      <entry key="M15" value="134.95439195301154" />
+      <entry key="M30" value="377.32299741458803" />
+      <entry key="H1" value="654.6668055409018" />
+      <entry key="H2" value="927.4525927783708" />
+      <entry key="H4" value="1245.1501185784955" />
+      <entry key="D1" value="3436.2986367577114" />
+      <entry key="W1" value="21300.6258192366" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.8742127385566884E-100" />
-      <entry key="S2" value="2.7633731750921686E-25" />
-      <entry key="S5" value="3.290358006060136E-10" />
-      <entry key="S10" value="3.597632942899474E-5" />
-      <entry key="S30" value="0.08302912872405466" />
-      <entry key="S60" value="0.5786671464634542" />
-      <entry key="M2" value="1.7115257745067252" />
-      <entry key="M5" value="5.9129771046007376" />
-      <entry key="M10" value="12.615298113543437" />
-      <entry key="M15" value="17.473409128108223" />
-      <entry key="M30" value="25.598900008996544" />
-      <entry key="H1" value="34.34095264628554" />
-      <entry key="H2" value="54.651890012417994" />
-      <entry key="H4" value="98.51814923982663" />
-      <entry key="D1" value="360.02726310903483" />
-      <entry key="W1" value="1552.147516183397" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.000463867651414" />
+      <entry key="S2" value="1.1526850193516158" />
+      <entry key="S5" value="1.739011953810564" />
+      <entry key="S10" value="2.938408848549142" />
+      <entry key="S30" value="5.743270415201279" />
+      <entry key="S60" value="7.203069693159951" />
+      <entry key="M2" value="8.558254871945572" />
+      <entry key="M5" value="10.932194903309089" />
+      <entry key="M10" value="15.132191770003619" />
+      <entry key="M15" value="19.791763659256322" />
+      <entry key="M30" value="31.236483999903665" />
+      <entry key="H1" value="44.98109286961655" />
+      <entry key="H2" value="68.018344006076" />
+      <entry key="H4" value="113.14439692409597" />
+      <entry key="D1" value="378.45933523448207" />
+      <entry key="W1" value="1572.7595720939619" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9076089463806762" />
-      <entry key="MS500" value="1.2077900508691808" />
-      <entry key="S2" value="3.230379089382868" />
-      <entry key="S5" value="6.01208998134425" />
-      <entry key="S10" value="7.963070314577097" />
-      <entry key="S30" value="9.94015225438819" />
-      <entry key="S60" value="13.20093190386773" />
-      <entry key="M2" value="39.1275894557461" />
-      <entry key="M5" value="185.19048565554738" />
-      <entry key="M10" value="403.84462082936597" />
-      <entry key="M15" value="550.5331089881985" />
-      <entry key="M30" value="776.3152317075974" />
-      <entry key="H1" value="950.3426300111887" />
-      <entry key="H2" value="1142.8862482794466" />
-      <entry key="H4" value="1438.7050600045004" />
-      <entry key="D1" value="3825.8314519633263" />
-      <entry key="W1" value="22876.078625034464" />
+      <entry key="MS100" value="0.04832960191845667" />
+      <entry key="MS500" value="0.926948943472855" />
+      <entry key="S2" value="1.7586274989937503" />
+      <entry key="S5" value="2.7771580419037285" />
+      <entry key="S10" value="4.770793668220403" />
+      <entry key="S30" value="9.140701818048049" />
+      <entry key="S60" value="11.296404042718352" />
+      <entry key="M2" value="13.075985269718108" />
+      <entry key="M5" value="18.709623353014123" />
+      <entry key="M10" value="67.458039851733" />
+      <entry key="M15" value="154.72166716235373" />
+      <entry key="M30" value="408.5397649672599" />
+      <entry key="H1" value="699.6331752178706" />
+      <entry key="H2" value="995.4594897418948" />
+      <entry key="H4" value="1358.284433041636" />
+      <entry key="D1" value="3814.7510105987" />
+      <entry key="W1" value="22873.38076369992" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -432,15 +435,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="72621000" />
-    </task>
-    <task id="LOCAL-00395" summary="Bump version to 0.15.0 for Service and CLI projects">
-      <option name="closed" value="true" />
-      <created>1781749481504</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1781749481504</updated>
+      <workItem from="1782069806075" duration="74031000" />
     </task>
     <task id="LOCAL-00396" summary="Update `LogImport` methods to use `PostLog` script and allow nullable `log_exception` in `import_log` table">
       <option name="closed" value="true" />
@@ -826,7 +821,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782403158911</updated>
     </task>
-    <option name="localTasksCounter" value="444" />
+    <task id="LOCAL-00444" summary="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`.">
+      <option name="closed" value="true" />
+      <created>1782403903078</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1782403903078</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -854,7 +857,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replace `Logix_20260226_001_SqlServerConfigureServiceAccount.sql` with `Logix_20260201_003_ConfigurePermissions.sql` for refined service user setup and schema permissions." />
     <MESSAGE value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
     <MESSAGE value="Remove unused `FluentMigrator` package references, update assertions in `SqliteDbGetTargetTests`, and refine table output structure in CLI commands." />
     <MESSAGE value="Rename and refactor SQL migration scripts to align with updated naming conventions and enhance Windows-specific service account handling, schema authorization, and security settings." />
@@ -879,7 +881,8 @@
     <MESSAGE value="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity." />
     <MESSAGE value="Refactor import logic: standardize method names (`OpenWriter` to `OpenWrite`), streamline logging and error handling across services, and remove unused dependencies for improved clarity and maintainability." />
     <MESSAGE value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
+    <MESSAGE value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

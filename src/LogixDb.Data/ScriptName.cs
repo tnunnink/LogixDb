@@ -12,9 +12,10 @@ public enum ScriptName
     GetTargetByLatest,
     GetTargetByVersion,
     ListTargets,
+    PostImport,
     PostInfo,
     PostLog,
     PostTarget,
     PostVersion,
-    PutImport
+    UpdateImport
 }

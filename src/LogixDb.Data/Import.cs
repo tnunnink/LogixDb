@@ -1,11 +1,53 @@
+using L5Sharp.Core;
+using LogixConverter.Abstractions;
+
 namespace LogixDb.Data;
 
 /// <summary>
-/// Represents an import operation for processing files within the system.
+/// Represents an import operation for handling source files, tracking metadata,
+/// and managing the lifecycle of the import process within the system.
 /// </summary>
-public sealed record Import
+public sealed record Import : IDisposable
 {
-    private const string Logixdb = "LogixDb";
+    /// <summary>
+    /// Represents the directory used as the dropzone for imported files.
+    /// This directory serves as a centralized location where files are placed
+    /// for processing within the system.
+    /// </summary>
+    private static readonly DirectoryInfo ImportDirectory = new(Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+        "LogixDb")
+    );
+
+    /// <summary>
+    /// Generates the full file path for the source file associated with the current import operation.
+    /// Combines the predefined import directory, file name, import identifier, and file type to construct the path.
+    /// </summary>
+    private readonly string _sourceFile;
+
+    /// <summary>
+    /// Represents the path of the file being processed during an import operation.
+    /// This file is derived from the import configuration and is stored within a
+    /// predefined directory for handling and processing within the system.
+    /// </summary>
+    private readonly string _importFile;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Import"/> class with the specified source type, file type, and file name.
+    /// Constructs the source file and import file paths based on the import directory and the provided parameters.
+    /// </summary>
+    /// <param name="sourceType">The source type indicating the origin of the import operation (e.g., CLI, API, FTAC).</param>
+    /// <param name="fileType">The file type specifying the format of the file being imported (e.g., L5X, ACD).</param>
+    /// <param name="fileName">The name of the file without its extension.</param>
+    private Import(SourceType sourceType, FileType fileType, string fileName)
+    {
+        SourceType = sourceType;
+        FileType = fileType;
+        FileName = fileName;
+
+        _sourceFile = Path.Combine(ImportDirectory.FullName, $"{FileName}.{ImportId}.{FileType}");
+        _importFile = Path.Combine(ImportDirectory.FullName, $"{FileName}.{ImportId}.{FileType.L5X}");
+    }
 
     /// <summary>
     /// Gets the unique identifier for the import operation. This identifier is
@@ -26,35 +68,21 @@ public sealed record Import
     /// an application programming interface (API), or FactoryTalk AssetCentre (FTAC).
     /// It helps in identifying where the source came from.
     /// </summary>
-    public required SourceType SourceType { get; init; }
+    public SourceType SourceType { get; }
 
     /// <summary>
     /// Specifies the type of file being processed or referenced.
     /// Used to distinguish between supported file formats in the system,
     /// such as L5X and ACD, for processing or validation purposes.
     /// </summary>
-    public required FileType FileType { get; init; }
+    public FileType FileType { get; }
 
     /// <summary>
     /// Represents the name of the file associated with the source.
     /// This property typically includes the file's full path or its designated name,
     /// used for identification and processing in the ingestion workflow.
     /// </summary>
-    public required string FileName { get; init; }
-
-    /// <summary>
-    /// Gets or initializes the file system path where the source file is uploaded.
-    /// This path represents the location where the file is temporarily stored for
-    /// processing and ingestion into the system.
-    /// </summary>
-    public required string FilePath { get; init; }
-
-    /// <summary>
-    /// Gets the fully qualified path of the import file, constructed by combining the specified file path
-    /// and the file name with its appropriate extension based on the file type. This property is used for
-    /// accessing or referencing the file during the import operation.
-    /// </summary>
-    public string SourceFile => Path.Combine(FilePath, $"{FileName}.{FileType}");
+    public string FileName { get; }
 
     /// <summary>
     /// Represents additional data or descriptive key-value pairs associated with the source.
@@ -81,7 +109,7 @@ public sealed record Import
     /// </summary>
     /// <param name="message">The descriptive message providing details about the warning being logged.</param>
     /// <returns>An <see cref="ImportLog"/> instance containing the import identifier, severity level, and the descriptive message.</returns>
-    public ImportLog NewWarning(string message)
+    public ImportLog Warning(string message)
     {
         return new ImportLog(ImportId, LogSeverity.Warning, message);
     }
@@ -135,33 +163,6 @@ public sealed record Import
     }
 
     /// <summary>
-    /// Gets the full path to the temporary file created during the import operation.
-    /// This path is generated dynamically and is composed of the system's temporary directory,
-    /// a predefined subdirectory, and the file name with its associated unique identifier
-    /// and file type extension. It is primarily used for intermediate processing within
-    /// the import workflow.
-    /// </summary>
-    public string GetTempFile()
-    {
-        var tempPath = Path.Combine(Path.GetTempPath(), Logixdb);
-        Directory.CreateDirectory(tempPath);
-        return Path.Combine(tempPath, $"{FileName}.{ImportId:N}.{FileType.L5X}");
-    }
-
-    /// <summary>
-    /// Deletes the temporary file associated with the current import operation.
-    /// Constructs the temporary file path based on the static LogixDb temp directory,
-    /// the unique import identifier, and the specified file type.
-    /// If the file exists, it is removed from the system.
-    /// </summary>
-    public void ClearTemp()
-    {
-        var tempPath = Path.Combine(Path.GetTempPath(), Logixdb);
-        var filePath = Path.Combine(tempPath, $"{FileName}.{ImportId:N}.{FileType.L5X}");
-        File.Delete(filePath);
-    }
-
-    /// <summary>
     /// Creates an instance of the <see cref="Import"/> class using the specified source file and source type.
     /// Determines the file type, file name, and directory path from the provided source file.
     /// </summary>
@@ -170,22 +171,97 @@ public sealed record Import
     /// <returns>An <see cref="Import"/> instance populated with the extracted file attributes and the specified source type.</returns>
     public static Import Create(string sourceFile, SourceType sourceType)
     {
+        ArgumentNullException.ThrowIfNull(sourceFile);
+
         var fileType = Enum.Parse<FileType>(Path.GetExtension(sourceFile).Trim('.'), ignoreCase: true);
         var fileName = Path.GetFileNameWithoutExtension(sourceFile);
-        var filePath = Path.GetDirectoryName(Path.GetFullPath(sourceFile));
 
-        if (filePath is null)
-            throw new InvalidOperationException(
-                $"Unable to determine the directory path for the source file: {sourceFile}");
+        if (string.IsNullOrWhiteSpace(fileName))
+            throw new ArgumentException("The source file name is required.", nameof(sourceFile));
 
-        var source = new Import
+        return new Import(sourceType, fileType, fileName);
+    }
+
+    /// <summary>
+    /// Asynchronously loads and returns an L5X representation of the source file.
+    /// If the source file is an ACD file, it is first converted to L5X format using the provided or default converter.
+    /// If the source file is already in L5X format, it is loaded directly without conversion.
+    /// </summary>
+    /// <param name="converter">An optional converter to use for ACD to L5X conversion. If not provided, a default <see cref="ImportConverter"/> will be used.</param>
+    /// <param name="token">A cancellation token to observe while waiting for the asynchronous operation to complete.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the loaded <see cref="L5X"/> instance representing the imported file content.</returns>
+    /// <remarks>
+    /// When the source file type is ACD, this method performs a conversion to L5X format before loading.
+    /// The conversion creates a temporary L5X file that is then loaded and returned.
+    /// For L5X source files, the file is loaded directly without any conversion step.
+    /// </remarks>
+    public async Task<L5X> LoadAsync(ILogixFileConverter? converter = null, CancellationToken token = default)
+    {
+        // Only when the source is an ACD do we need to first handle the conversion
+        if (FileType == FileType.ACD)
         {
-            SourceType = sourceType,
-            FileType = fileType,
-            FilePath = filePath,
-            FileName = fileName
-        };
+            converter ??= new ImportConverter();
+            var options = new ConversionOptions { Overwrite = true };
+            var result = await converter.ConvertAsync(_sourceFile, _importFile, options, token);
 
-        return source;
+            if (!result.Success)
+                throw new InvalidOperationException(result.Error);
+        }
+
+        // This will either be the converted file or if the source was an L5X, the source file itself.
+        return await L5X.LoadAsync(_importFile, token);
+    }
+
+    /// <summary>
+    /// Creates a writable <see cref="FileStream"/> for the source file associated with the current import operation.
+    /// The stream is opened in Create mode with Write access and no sharing, allowing for exclusive write operations.
+    /// </summary>
+    /// <returns>A new <see cref="FileStream"/> instance for writing to the source file.</returns>
+    public FileStream OpenWriter()
+    {
+        ImportDirectory.Create();
+        return new FileStream(_sourceFile, FileMode.Create, FileAccess.Write, FileShare.None);
+    }
+
+    /// <summary>
+    /// Copies the content of the source file to the import's source file location.
+    /// Ensures the import directory exists before performing the copy operation.
+    /// </summary>
+    /// <param name="sourceFile">The path of the source file to be copied.</param>
+    /// <param name="token">A cancellation token to observe while copying the file.</param>
+    /// <returns>A task that represents the asynchronous copy operation.</returns>
+    public async Task<FileInfo> WriteAsync(string sourceFile, CancellationToken token = default)
+    {
+        ImportDirectory.Create();
+        await using var reader = File.OpenRead(sourceFile);
+        await using var writer = File.Create(_sourceFile);
+        await reader.CopyToAsync(writer, token);
+        return new FileInfo(_sourceFile);
+    }
+
+    /// <summary>
+    /// Writes the content of the specified stream to the file associated with the current import operation.
+    /// The data from the provided stream is copied into the file, overwriting any existing content if necessary.
+    /// </summary>
+    /// <param name="sourceStream">The input stream containing the data to be written to the file.</param>
+    /// <param name="token">A token used to propagate notification that the operation should be canceled.</param>
+    /// <returns>A task representing the asynchronous operation of writing the stream to the file.</returns>
+    public async Task<FileInfo> WriteAsync(Stream sourceStream, CancellationToken token = default)
+    {
+        ImportDirectory.Create();
+        await using var writer = File.Create(_sourceFile);
+        await sourceStream.CopyToAsync(writer, token);
+        return new FileInfo(_sourceFile);
+    }
+
+    /// <summary>
+    /// Releases resources associated with the current import operation.
+    /// Deletes the source file if it exists, ensuring the cleanup of temporary files
+    /// generated or used during the import process.
+    /// </summary>
+    public void Dispose()
+    {
+        if (File.Exists(_sourceFile)) File.Delete(_sourceFile);
+        if (File.Exists(_importFile)) File.Delete(_importFile);
     }
 }

@@ -21,14 +21,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/UpdateImport.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/UpdateImport.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data/ImportConverter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbTargetSpaceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerEnvironment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerEnvironment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlServerTestFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbTargetSpaceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbTargetSpaceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteTestFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/TestEnvironment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Service.Tests/TestEnvironment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Testing.SqlServer/SqlServerTestDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Testing.SqlServer/SqlServerTestDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/Commands/ImportCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PutImport.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Queries/PostImport.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/PutImport.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Queries/PostImport.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/DbManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/DbManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Import.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Import.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/LogixDb.Data.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/ScriptName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Common/Constants.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/FtacDownloadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/Workers/SourceUploadService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbLogImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPutImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbLogImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbLogImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbPutImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteDbPutImportTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/ImportTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +90,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/da/b4cd3128/Address.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/96/1597f6f9/LogixContainer`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/fb/dba6d945/Module.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d2694c4c60346cba1a5202623b1a9363a00/5e/e5dc212e/LogixSdkConverter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/898a99b1d4d348c09fc9b65f48e111d61cee00/34/929e4a86/LogixIndex.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -121,6 +136,7 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Data.Sqlite/SqliteProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbMigrator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Abstractions/IDbProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportLog.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/ImportStatus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Maps/ModuleConnectionMap.cs" root0="FORCE_HIGHLIGHTING" />
@@ -153,61 +169,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5465128654613966E-133" />
-      <entry key="MS500" value="6.961281008922932E-27" />
-      <entry key="S2" value="1.4469904300917969E-6" />
-      <entry key="S5" value="0.022098173044931866" />
-      <entry key="S10" value="0.5999159249366083" />
-      <entry key="S30" value="5.8394554024888645" />
-      <entry key="S60" value="12.87856455787412" />
-      <entry key="M2" value="29.27048386774938" />
-      <entry key="M5" value="78.66446541278872" />
-      <entry key="M10" value="168.10836987929835" />
-      <entry key="M15" value="243.70473074118692" />
-      <entry key="M30" value="376.4480221052292" />
-      <entry key="H1" value="478.12062333050943" />
-      <entry key="H2" value="541.5077959415431" />
-      <entry key="H4" value="587.0961039830688" />
-      <entry key="D1" value="3455.1435927943403" />
-      <entry key="W1" value="21577.661170245265" />
+      <entry key="MS100" value="1.0081442637565712" />
+      <entry key="MS500" value="1.3820941301946532" />
+      <entry key="S2" value="1.787571345210763" />
+      <entry key="S5" value="1.9795059442077592" />
+      <entry key="S10" value="2.2244537384737884" />
+      <entry key="S30" value="3.3579545117413874" />
+      <entry key="S60" value="5.479040358436779" />
+      <entry key="M2" value="8.064894266350588" />
+      <entry key="M5" value="10.634898846612321" />
+      <entry key="M10" value="11.74019498082674" />
+      <entry key="M15" value="12.142864023190645" />
+      <entry key="M30" value="13.301057652847518" />
+      <entry key="H1" value="34.15216196240631" />
+      <entry key="H2" value="133.7546351176845" />
+      <entry key="H4" value="348.5788638360377" />
+      <entry key="D1" value="2440.7898816533843" />
+      <entry key="W1" value="20301.660448898874" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000000039317" />
-      <entry key="S2" value="1.001528821943377" />
-      <entry key="S5" value="1.1155847865960125" />
-      <entry key="S10" value="1.6854692552389063" />
-      <entry key="S30" value="4.1491824563585045" />
-      <entry key="S60" value="6.534238234291449" />
-      <entry key="M2" value="9.342179031085362" />
-      <entry key="M5" value="14.943975749889464" />
-      <entry key="M10" value="20.043419508591047" />
-      <entry key="M15" value="22.631375633937694" />
-      <entry key="M30" value="25.88523335366187" />
-      <entry key="H1" value="27.820683275368218" />
-      <entry key="H2" value="28.882490838211908" />
-      <entry key="H4" value="30.07863789880206" />
-      <entry key="D1" value="176.4886913639522" />
-      <entry key="W1" value="1335.0040037458232" />
+      <entry key="MS100" value="8.71930261811161E-303" />
+      <entry key="MS500" value="3.873436943986642E-61" />
+      <entry key="S2" value="8.077109745578407E-16" />
+      <entry key="S5" value="1.1135608324360916E-6" />
+      <entry key="S10" value="0.0014053995663984992" />
+      <entry key="S30" value="0.1751598510987085" />
+      <entry key="S60" value="0.5907367366302745" />
+      <entry key="M2" value="1.0864298808592217" />
+      <entry key="M5" value="1.5666362277508288" />
+      <entry key="M10" value="1.770071290951863" />
+      <entry key="M15" value="1.8438496741714288" />
+      <entry key="M30" value="2.0854581752633417" />
+      <entry key="H1" value="6.465426996033117" />
+      <entry key="H2" value="26.79596916569126" />
+      <entry key="H4" value="71.25994202794531" />
+      <entry key="D1" value="329.4149528807729" />
+      <entry key="W1" value="1518.871170196204" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.513315063402082E-4" />
-      <entry key="MS500" value="0.17218125579889862" />
-      <entry key="S2" value="0.6452544642693259" />
-      <entry key="S5" value="0.9604614803718372" />
-      <entry key="S10" value="2.1388867928337683" />
-      <entry key="S30" value="9.82692508152704" />
-      <entry key="S60" value="19.271964542662587" />
-      <entry key="M2" value="38.50789564789584" />
-      <entry key="M5" value="93.54098561221737" />
-      <entry key="M10" value="188.10649124968836" />
-      <entry key="M15" value="266.30187845652233" />
-      <entry key="M30" value="402.31352746300735" />
-      <entry key="H1" value="505.93064008082797" />
-      <entry key="H2" value="570.3847292413202" />
-      <entry key="H4" value="617.1718426692911" />
-      <entry key="D1" value="3631.629133058509" />
-      <entry key="W1" value="22912.661171523134" />
+      <entry key="MS100" value="0.9662721545640399" />
+      <entry key="MS500" value="1.1950326898399302" />
+      <entry key="S2" value="1.66946249990321" />
+      <entry key="S5" value="1.9102502812969555" />
+      <entry key="S10" value="2.17086961562592" />
+      <entry key="S30" value="3.486809190132954" />
+      <entry key="S60" value="6.023219049164975" />
+      <entry key="M2" value="9.114042483672243" />
+      <entry key="M5" value="12.181087599871663" />
+      <entry key="M10" value="13.498854712627287" />
+      <entry key="M15" value="13.978818000845362" />
+      <entry key="M30" value="15.382306666250267" />
+      <entry key="H1" value="40.6139989686141" />
+      <entry key="H2" value="160.5453366085391" />
+      <entry key="H4" value="419.83182152089324" />
+      <entry key="D1" value="2770.1984622427053" />
+      <entry key="W1" value="21820.527086653903" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -437,15 +453,7 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="46259000" />
-    </task>
-    <task id="LOCAL-00390" summary="Add unit tests for `M202606162100CreateTraceabilityTables` migration in SQL Server and SQLite contexts">
-      <option name="closed" value="true" />
-      <created>1781748017006</created>
-      <option name="number" value="00390" />
-      <option name="presentableId" value="LOCAL-00390" />
-      <option name="project" value="LOCAL" />
-      <updated>1781748017006</updated>
+      <workItem from="1782069806075" duration="69506000" />
     </task>
     <task id="LOCAL-00391" summary="Make `Enum.Parse&lt;FileType&gt;` case-insensitive in file type resolution">
       <option name="closed" value="true" />
@@ -831,7 +839,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782179303419</updated>
     </task>
-    <option name="localTasksCounter" value="439" />
+    <task id="LOCAL-00439" summary="Refactor test database lifecycle management for SQL Server and SQLite: replace `StartAsync`/`StopAsync` with `BuildAsync`/`DisposeAsync` for improved resource handling; update related tests accordingly.">
+      <option name="closed" value="true" />
+      <created>1782265637747</created>
+      <option name="number" value="00439" />
+      <option name="presentableId" value="LOCAL-00439" />
+      <option name="project" value="LOCAL" />
+      <updated>1782265637747</updated>
+    </task>
+    <option name="localTasksCounter" value="440" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -859,7 +875,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor SQL scripts: replace `dbo` schema references with `logix` for consistency across merge scripts." />
     <MESSAGE value="Refactor SQL scripts: replaced `dbo` schema references with `logix`, removed unused queries, and updated cleanup logic to improve consistency and maintainability." />
     <MESSAGE value="Update unit tests to use `logix` schema references for table validation, ensuring consistency with recent SQL script refactors." />
     <MESSAGE value="Remove `LogixDb.Migrations` project and all associated migration scripts, extensions, and references, aligning with the migration workflow refactor." />
@@ -884,7 +899,8 @@
     <MESSAGE value="Refactor `SourceUploadService` to throw exceptions for session creation errors, update AOI map hashing test with additional fields, and refine `TagImportTests` logic and assertions." />
     <MESSAGE value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
     <MESSAGE value="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `With` method to `TestSource` for streamlined component configuration; expand and restructure README for improved documentation clarity." />
+    <MESSAGE value="Refactor test database lifecycle management for SQL Server and SQLite: replace `StartAsync`/`StopAsync` with `BuildAsync`/`DisposeAsync` for improved resource handling; update related tests accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor test database lifecycle management for SQL Server and SQLite: replace `StartAsync`/`StopAsync` with `BuildAsync`/`DisposeAsync` for improved resource handling; update related tests accordingly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -913,19 +929,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Service/Workers/SourceIngestionService.cs</url>
-          <line>46</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Service\Workers\SourceIngestionService.cs" containingFunctionPresentation="Method 'ExecuteAsync'">
-            <startOffsets>
-              <option value="2243" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2283" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -80,7 +80,16 @@ public interface IDbManager
     /// Inserts this import data if not already in the database. If found, it will only update the import
     /// status to reflect the current status of the provided import.
     /// </remarks>
-    Task PutImport(Import import, CancellationToken token = default);
+    Task CreateImport(Import import, CancellationToken token = default);
+    
+    /// <summary>
+    /// Updates the status of an existing import operation in the database.
+    /// </summary>
+    /// <param name="importId">The unique identifier of the import operation to update.</param>
+    /// <param name="status">The new status to assign to the import operation.</param>
+    /// <param name="token">A cancellation token to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    Task MarkImport(Guid importId, ImportStatus status, CancellationToken token = default);
 
     /// <summary>
     /// Logs information about an import operation to the database.

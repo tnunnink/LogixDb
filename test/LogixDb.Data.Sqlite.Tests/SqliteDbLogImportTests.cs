@@ -7,7 +7,7 @@ public class SqliteDbLogImportTests : SqliteTestFixture
     public async Task LogImport_ValidLog_InsertsRecord()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
-        await Manager.PutImport(import);
+        await Manager.CreateImport(import);
         var log = import.Info("Test message");
 
         await Manager.LogImport(log);
@@ -19,7 +19,7 @@ public class SqliteDbLogImportTests : SqliteTestFixture
     public async Task LogImport_MultipleLogs_InsertsMultipleRecords()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
-        await Manager.PutImport(import);
+        await Manager.CreateImport(import);
 
         await Manager.LogImport(import.Info("Message 1"));
         await Manager.LogImport(import.Info("Message 2"));

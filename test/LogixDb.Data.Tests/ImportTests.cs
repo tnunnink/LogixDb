@@ -1,4 +1,6 @@
+using System.Text;
 using FluentAssertions;
+using LogixDb.Testing;
 
 namespace LogixDb.Data.Tests;
 
@@ -6,58 +8,60 @@ namespace LogixDb.Data.Tests;
 public class ImportTests
 {
     [Test]
+    public void Create_NoFileExtension_ShouldThrowException()
+    {
+        FluentActions.Invoking(() => _ = Import.Create("test", SourceType.API)).Should().Throw<ArgumentException>();
+    }
+
+    [Test]
+    public void Create_EmptyFile_ShouldThrowException()
+    {
+        FluentActions.Invoking(() => _ = Import.Create("", SourceType.API)).Should().Throw<ArgumentException>();
+    }
+
+    [Test]
+    public void Create_OnlyExtension_ShouldThrowException()
+    {
+        FluentActions.Invoking(() => _ = Import.Create(".L5X", SourceType.API)).Should().Throw<ArgumentException>();
+    }
+
+    [Test]
     public void Create_L5XFile_ReturnsCorrectImport()
     {
-        var import = Import.Create("test.L5X", SourceType.CLI);
+        using var import = Import.Create("test.L5X", SourceType.CLI);
 
         import.ImportId.Should().NotBeEmpty();
         import.Status.Should().Be(ImportStatus.Pending);
         import.SourceType.Should().Be(SourceType.CLI);
         import.FileType.Should().Be(FileType.L5X);
         import.FileName.Should().Be("test");
-        import.FilePath.Should().NotBeEmpty();
-        import.SourceFile.Should().NotBeEmpty();
-        import.GetTempFile().Should().Contain(import.ImportId.ToString("N"));
     }
 
     [Test]
     public void Create_ACDFile_ReturnsCorrectImport()
     {
-        const string fileName = "test.ACD";
-        const SourceType sourceType = SourceType.API;
+        using var import = Import.Create("test.ACD", SourceType.API);
 
-        var import = Import.Create(fileName, sourceType);
-
+        import.ImportId.Should().NotBeEmpty();
+        import.Status.Should().Be(ImportStatus.Pending);
+        import.SourceType.Should().Be(SourceType.API);
         import.FileType.Should().Be(FileType.ACD);
-        import.SourceType.Should().Be(sourceType);
-        import.SourceFile.Should().EndWith(".ACD");
     }
 
     [Test]
-    public void Create_ExplicitPath_ReturnsCorrectImport()
+    [TestCase("test.l5x", "L5X")]
+    [TestCase("test.acd", "ACD")]
+    public void Create_LowerVariantExtension_ReturnsExpectedFileType(string fileName, string expected)
     {
-        var tempDir = Path.GetTempPath();
-        var sourceFile = Path.Combine(tempDir, "test.L5X");
+        using var import = Import.Create(fileName, SourceType.CLI);
 
-        var import = Import.Create(sourceFile, SourceType.CLI);
-
-        import.FileType.Should().Be(FileType.L5X);
-        import.FileName.Should().Be("test");
-        import.FilePath.Should().Be(Path.GetDirectoryName(Path.GetFullPath(sourceFile)));
-    }
-
-    [Test]
-    public void Create_LowerVariantExtension_ReturnsExpectedFileType()
-    {
-        var import = Import.Create("test.l5x", SourceType.CLI);
-
-        import.FileType.Should().Be(FileType.L5X);
+        import.FileType.Should().Be(Enum.Parse<FileType>(expected));
     }
 
     [Test]
     public void AddData_WithMetadata_PopulatesMetadata()
     {
-        var import = Import.Create("test.L5X", SourceType.FTAC);
+        using var import = Import.Create("test.L5X", SourceType.FTAC);
 
         import.AddData(new Dictionary<string, string>
         {
@@ -71,74 +75,119 @@ public class ImportTests
     }
 
     [Test]
-    public void SourceFile_Property_FollowsExpectedFormat()
-    {
-        var tempDir = Path.GetTempPath();
-        var sourceFile = Path.Combine(tempDir, "test.L5X");
-        var import = Import.Create(sourceFile, SourceType.CLI);
-
-        var fullPath = import.SourceFile;
-        
-        fullPath.Should().Be(Path.Combine(tempDir, "test.L5X"));
-    }
-
-    [Test]
-    public void TempFile_Property_FollowsExpectedFormat()
-    {
-        var sourceFile = Path.Combine("C:\\Temp", "test.L5X");
-        var import = Import.Create(sourceFile, SourceType.CLI);
-
-        var fullPath = import.GetTempFile();
-
-        fullPath.Should().Be(Path.Combine(
-            Path.GetTempPath(),
-            "LogixDb",
-            $"test.{import.ImportId:N}.L5X")
-        );
-    }
-
-    [Test]
     public void Info_ValidMessage_CreatesCorrectImportLog()
     {
-        const string message = "Starting process";
-        var import = Import.Create("test.L5X", SourceType.CLI);
+        using var import = Import.Create("test.L5X", SourceType.CLI);
 
-        var log = import.Info(message);
+        var log = import.Info("Starting process");
 
         log.ImportId.Should().Be(import.ImportId);
         log.LogSeverity.Should().Be(LogSeverity.Info);
-        log.LogMessage.Should().Be(message);
+        log.LogMessage.Should().Be("Starting process");
         log.LogException.Should().BeNull();
     }
 
     [Test]
     public void Warning_ValidMessage_CreatesCorrectImportLog()
     {
-        const string message = "Potential issue detected";
-        var import = Import.Create("test.L5X", SourceType.CLI);
+        using var import = Import.Create("test.L5X", SourceType.CLI);
 
-        var log = import.NewWarning(message);
+        var log = import.Warning("Potential issue detected");
 
         log.ImportId.Should().Be(import.ImportId);
         log.LogSeverity.Should().Be(LogSeverity.Warning);
-        log.LogMessage.Should().Be(message);
+        log.LogMessage.Should().Be("Potential issue detected");
         log.LogException.Should().BeNull();
     }
 
     [Test]
     public void Error_WithMessageAndException_CreatesCorrectImportLogWithException()
     {
-        const string message = "Critical failure";
-        var import = Import.Create("test.L5X", SourceType.CLI);
+        using var import = Import.Create("test.L5X", SourceType.CLI);
         var exception = new InvalidOperationException("Something went wrong");
 
-        var log = import.Error(message, exception);
+        var log = import.Error("Critical failure", exception);
 
         log.ImportId.Should().Be(import.ImportId);
         log.LogSeverity.Should().Be(LogSeverity.Error);
-        log.LogMessage.Should().Be(message);
+        log.LogMessage.Should().Be("Critical failure");
         log.LogException.Should().NotBeNull();
         log.LogException.Should().Contain("InvalidOperationException");
         log.LogException.Should().Contain("Something went wrong");
+    }
+
+    [Test]
+    public async Task WriteAsync_TestStream_FileShouldExist()
+    {
+        const string content = "test content";
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
+        using var import = Import.Create("test.L5X", SourceType.CLI);
+
+        var file = await import.WriteAsync(stream);
+
+        file.Exists.Should().BeTrue();
+        file.Length.Should().BeGreaterThan(0);
+    }
+
+    [Test]
+    public async Task WriteAsync_TestL5XFileOnDisc_FileShouldExistAndHaveExpectedSize()
+    {
+        var sourceFile = Path.Combine(Path.GetTempPath(), "LogixDb", "Test.L5X");
+        var content = TestSource.LocalTest();
+        content.Save(sourceFile);
+
+        using var import = Import.Create(sourceFile, SourceType.CLI);
+
+        var file = await import.WriteAsync(sourceFile);
+
+        file.Exists.Should().BeTrue();
+        file.Length.Should().Be(new FileInfo(sourceFile).Length);
+        File.Delete(sourceFile);
+    }
+
+    [Test]
+    public async Task OpenWriter_WhenCalled_ShouldNotBeNull()
+    {
+        using var import = Import.Create("test.L5X", SourceType.CLI);
+
+        await using var writer = import.OpenWriter();
+
+        writer.Should().NotBeNull();
+    }
+
+    [Test]
+    public async Task OpenWriter_WhenWritten_ShouldUpdateExpectedFileContent()
+    {
+        var testData = "Hello"u8.ToArray();
+        using var import = Import.Create("test.L5X", SourceType.CLI);
+
+        var expectedFile = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+            "LogixDb",
+            $"{import.FileName}.{import.ImportId}.{import.FileType}"
+        );
+
+        await using var writer = import.OpenWriter();
+        await writer.WriteAsync(testData);
+        await writer.FlushAsync();
+
+        var file = new FileInfo(expectedFile);
+        file.Exists.Should().BeTrue();
+        file.Length.Should().Be(testData.Length);
+    }
+
+    [Test]
+    public async Task Dispose_TestFile_FileShouldBeDeleted()
+    {
+        const string content = "test content";
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
+        var import = Import.Create("test.L5X", SourceType.CLI);
+
+        var file = await import.WriteAsync(stream);
+
+        file.Exists.Should().BeTrue();
+        import.Dispose();
+        file.Refresh();
+        file.Exists.Should().BeFalse();
     }
 }

@@ -8,7 +8,7 @@ public class SqlDbPutImportTests : SqlServerTestFixture
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
 
-        await Manager.PutImport(import);
+        await Manager.CreateImport(import);
 
         await AssertRecordExists("logix.import", "file_name", "test");
         await AssertRecordExists("logix.import", "file_type", "L5X");
@@ -19,10 +19,10 @@ public class SqlDbPutImportTests : SqlServerTestFixture
     public async Task PutImport_ExistingImport_UpdatesStatus()
     {
         var import = Import.Create("test.L5X", SourceType.CLI);
-        await Manager.PutImport(import);
+        await Manager.CreateImport(import);
 
         import.Status = ImportStatus.Complete;
-        await Manager.PutImport(import);
+        await Manager.CreateImport(import);
 
         await AssertRecordExists("logix.import", "import_status", nameof(ImportStatus.Complete));
     }

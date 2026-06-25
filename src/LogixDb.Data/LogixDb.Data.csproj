@@ -9,6 +9,9 @@
 
     <ItemGroup>
         <PackageReference Include="L5Sharp" Version="7.6.2"/>
+        <PackageReference Include="LogixConverter.Abstractions" Version="0.2.0"/>
+        <PackageReference Include="LogixConverter.LogixSdk" Version="0.2.2"/>
+        <PackageReference Include="CliWrap" Version="3.10.2" />
         <PackageReference Include="Dapper" Version="2.1.79"/>
         <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9"/>
     </ItemGroup>

@@ -2,18 +2,30 @@ using LogixDb.Service.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Channels;
 using LogixConverter.Abstractions;
-using LogixConverter.LogixSdk;
 using LogixDb.Data;
 using LogixDb.Service.Workers;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseWindowsService(o => o.ServiceName = "LogixDb");
+
+// Register the app settings configuration to drive further registration.
 builder.Services.Configure<LogixConfig>(builder.Configuration.GetSection(nameof(LogixConfig)));
+
+// Add message channels for queuing work to be processed by background services.
 builder.Services.AddSingleton(Channel.CreateUnbounded<Import>());
 builder.Services.AddSingleton(Channel.CreateUnbounded<AssetInfo>());
-builder.Services.AddSingleton<ILogixFileConverter, LogixSdkConverter>();
+
+// Register the local import converter wrapper with the options ACD executable from the configuration settings.
+builder.Services.AddSingleton<ILogixFileConverter>(p =>
+    new ImportConverter(p.GetRequiredService<IOptions<LogixConfig>>().Value.AcdConverter)
+);
+
+// Register API background services
 builder.Services.AddSingleton<SourceUploadService>();
 builder.Services.AddHostedService<SourceIngestionService>();
+
+// Add the appropriate ILogixProvider based on the connection string
 builder.Services.AddLogixDb(builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>());
 
 // Add the FTAC services if enabled in configuration. By default, it is disabled. Users need to opt in.
@@ -24,6 +36,7 @@ if (builder.Configuration.GetSection(nameof(LogixConfig)).Get<LogixConfig>()?.Ft
 }
 
 var app = builder.Build();
+
 
 // Defines a simple health check endpoint to verify communication with service.
 app.MapGet("/health",

@@ -91,9 +91,9 @@ public sealed class DbManager(IDbProvider provider) : IDbManager
     }
 
     /// <inheritdoc />
-    public Task PutImport(Import import, CancellationToken token = default)
+    public Task CreateImport(Import import, CancellationToken token = default)
     {
-        var script = provider.GetScript(ScriptName.PutImport);
+        var script = provider.GetScript(ScriptName.PostImport);
 
         return ExecuteSqliteScriptAsync(script, new
         {
@@ -102,6 +102,17 @@ public sealed class DbManager(IDbProvider provider) : IDbManager
             SourceType = import.SourceType.ToString(),
             FileType = import.FileType.ToString(),
             import.FileName
+        }, token);
+    }
+
+    public Task MarkImport(Guid importId, ImportStatus status, CancellationToken token = default)
+    {
+        var script = provider.GetScript(ScriptName.UpdateImport);
+
+        return ExecuteSqliteScriptAsync(script, new
+        {
+            ImportId = importId,
+            ImportStatus = status.ToString()
         }, token);
     }
 

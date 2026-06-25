@@ -42,19 +42,21 @@ public class FtacDownloadService(
     {
         await foreach (var asset in assets.Reader.ReadAllAsync(token))
         {
-            // Create a new import session with the database first to track this import.
-            // If we fail here, then we shouldn't continue with the download.
-            // This will log errors to Event Viewer as a fallback.
-            var import = await CreateImportSession(asset, token);
-            if (import is null) continue;
+            var import = Import.Create(asset.AssetName, SourceType.FTAC);
+            import.AddData(nameof(asset.AssetId), asset.AssetId.ToString());
+            import.AddData(nameof(asset.VersionId), asset.VersionId.ToString());
+            import.AddData(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
+            import.AddData(nameof(asset.AssetName), asset.AssetName);
 
             try
             {
+                await manager.CreateImport(import, token);
                 await manager.LogImport(
-                    import.Info("Opening connection to FTAC database"),
+                    import.Info($"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}"),
                     token
                 );
 
+                await manager.LogImport(import.Info("Opening connection to FTAC database"), token);
                 var connectionString = options.Value.GetFtacConnectionString();
                 await using var connection = new SqlConnection(connectionString);
                 await connection.OpenAsync(token);
@@ -141,7 +143,7 @@ public class FtacDownloadService(
     {
         await manager.LogImport(import.Info("Downloading asset from FTAC database"), token);
 
-        await using var stream = new FileStream(import.SourceFile, FileMode.Create, FileAccess.Write, FileShare.None);
+        await using var writer = import.OpenWriter();
         await using var command = new SqlCommand("dbo.arch_ReadFileChunk", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@AssetId", SqlDbType.UniqueIdentifier).Value = asset.AssetId;
@@ -161,7 +163,7 @@ public class FtacDownloadService(
             if (await reader.ReadAsync(token))
             {
                 var bytes = (byte[])reader.GetValue(0);
-                await stream.WriteAsync(bytes, token);
+                await writer.WriteAsync(bytes, token);
             }
             else
             {
@@ -175,44 +177,5 @@ public class FtacDownloadService(
             import.Info($"Download completed successfully for {asset.AssetName} - v{asset.VersionNumber}"),
             token
         );
-    }
-
-    /// <summary>
-    /// Creates a new import session for the specified asset. This operation initializes a directory
-    /// and metadata for the import, associates it with the given asset, and stores it in the database.
-    /// </summary>
-    /// <param name="asset">The asset information used to create the import session.</param>
-    /// <param name="token">A cancellation token to observe during the operation.</param>
-    /// <returns>The created import session if successful; otherwise, null if the operation fails.</returns>
-    private async Task<Import?> CreateImportSession(AssetInfo asset, CancellationToken token)
-    {
-        try
-        {
-            Directory.CreateDirectory(Paths.Dropzone);
-            var sourceFile = Path.Combine(Paths.Dropzone, asset.AssetName);
-
-            var import = Import.Create(sourceFile, SourceType.FTAC);
-            import.AddData(nameof(asset.AssetId), asset.AssetId.ToString());
-            import.AddData(nameof(asset.VersionId), asset.VersionId.ToString());
-            import.AddData(nameof(asset.VersionNumber), asset.VersionNumber.ToString());
-            import.AddData(nameof(asset.AssetName), asset.AssetName);
-
-            await manager.PutImport(import, token);
-            await manager.LogImport(
-                import.Info($"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}"),
-                token
-            );
-
-            return import;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex,
-                "Failed to create import session for {AssetName}. Check database settings and services.",
-                asset.AssetName
-            );
-        }
-
-        return null;
     }
 }

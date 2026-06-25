@@ -217,7 +217,7 @@ public sealed record Import : IDisposable
     /// The stream is opened in Create mode with Write access and no sharing, allowing for exclusive write operations.
     /// </summary>
     /// <returns>A new <see cref="FileStream"/> instance for writing to the source file.</returns>
-    public FileStream OpenWriter()
+    public FileStream OpenWrite()
     {
         ImportDirectory.Create();
         return new FileStream(_sourceFile, FileMode.Create, FileAccess.Write, FileShare.None);

@@ -27,7 +27,7 @@ public class SourceUploadService(Channel<Import> channel, IDbManager manager)
 
         await import.WriteAsync(file.OpenReadStream(), token);
 
-        await manager.LogImport(import.Info($"Upload completed successfully for {file.FileName}"), token);
+        await manager.LogImport(import.Info("Upload completed successfully"), token);
         await channel.Writer.WriteAsync(import, token);
 
         return import;

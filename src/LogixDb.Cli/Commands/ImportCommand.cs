@@ -32,11 +32,25 @@ public partial class ImportCommand : DbCommand
 
         try
         {
+            // First test that we can log to the target database.
+            // If not, abort the operations by throwing a command exception which will redirect to console output.
+            await manager.CreateImport(import, token);
+            await manager.LogImport(import.Info($"Starting ingestion process for '{SourcePath}'"), token);
+        }
+        catch (Exception e)
+        {
+            throw new CommandException(
+                $"Failed to initiate import with target database: {Connection}",
+                ErrorCodes.SystemError,
+                false, e
+            );
+        }
+
+        try
+        {
             var result = await console.Ansi().Status().StartAsync("Importing source...", async ctx =>
             {
                 // Signal to the database the import is now being processed (converted, parsed, and ingested).
-                await manager.CreateImport(import, token);
-                await manager.LogImport(import.Info($"Starting ingestion process for '{import.FileName}'"), token);
                 await manager.MarkImport(import.ImportId, ImportStatus.Processing, token);
 
                 // Copy provided source path to local ingestion file.
@@ -46,7 +60,7 @@ public partial class ImportCommand : DbCommand
                 // Have the import load the source, converting to L5X if needed, and return the content for processing.
                 await manager.LogImport(import.Info("Converting and loading source file for processing"), token);
                 ctx.Status("Converting and loading source file...");
-                var content = await import.LoadAsync(token: token);
+                var content = await import.LoadAsync(new ImportConverter(Converter), token);
 
                 // Creat a new target instance to ingest into the database
                 await manager.LogImport(import.Info("Creating new target instance for import"), token);
@@ -71,6 +85,9 @@ public partial class ImportCommand : DbCommand
         }
         catch (XmlException e)
         {
+            await manager.MarkImport(import.ImportId, ImportStatus.Failed, token);
+            await manager.LogImport(import.Error("Failed to parse L5X file during import operation", e), token);
+
             throw new CommandException(
                 $"Failed to parse L5X file with error: {e.Message}",
                 ErrorCodes.FormatError,
@@ -79,6 +96,9 @@ public partial class ImportCommand : DbCommand
         }
         catch (Exception e)
         {
+            await manager.MarkImport(import.ImportId, ImportStatus.Failed, token);
+            await manager.LogImport(import.Error("Internal error encountered during import operation", e), token);
+
             throw new CommandException(
                 $"Database import failed for {import.FileName}.{import.FileType}: {e.Message}",
                 ErrorCodes.InternalError,

@@ -2,8 +2,6 @@ using System.Threading.Channels;
 using LogixConverter.Abstractions;
 using LogixDb.Data;
 using LogixDb.Data.Abstractions;
-using LogixDb.Service.Common;
-using Microsoft.Extensions.Options;
 using Task = System.Threading.Tasks.Task;
 
 namespace LogixDb.Service.Workers;
@@ -23,7 +21,6 @@ public class SourceIngestionService(
     Channel<Import> channel,
     IDbManager manager,
     ILogixFileConverter converter,
-    IOptions<LogixConfig> options,
     ILogger<SourceIngestionService> logger) : BackgroundService
 {
     /// <summary>
@@ -33,8 +30,8 @@ public class SourceIngestionService(
     /// <returns>A task that represents the lifecycle of the background execution process.</returns>
     protected override async Task ExecuteAsync(CancellationToken token)
     {
-        // Startup Validation (Pre-flight check): If the database is not created or migrated, shutdown the app.
-        // Try to wait for a good connection to the database to avoid server reboot and service restart issues.
+        // Startup Validation (Pre-flight check): Try to wait for a good connection to the database to
+        // avoid server reboot and service restart issues.
         await ValidateDatabase(token);
 
         await foreach (var import in channel.Reader.ReadAllAsync(token))
@@ -42,14 +39,10 @@ public class SourceIngestionService(
             try
             {
                 // Signal to the database the import is now being processed (converted, parsed, and ingested).
-                import.Status = ImportStatus.Processing;
-                await manager.CreateImport(import, token);
-                await manager.LogImport(
-                    import.Info($"Starting ingestion process for {import.FileName}"),
-                    token
-                );
+                await manager.MarkImport(import.ImportId, ImportStatus.Processing, token);
+                await manager.LogImport(import.Info($"Starting ingestion process for {import.FileName}"), token);
 
-                await manager.LogImport(import.Info("Loading L5X content from disc"), token);
+                await manager.LogImport(import.Info("Converting and loading content for ingestion"), token);
                 var content = await import.LoadAsync(converter, token);
 
                 await manager.LogImport(import.Info("Creating new target instance for import"), token);
@@ -60,38 +53,21 @@ public class SourceIngestionService(
                 foreach (var item in import.Metadata)
                     target.Info.Add(item.Key, item.Value);
 
-                // Import the target to the database.
-                await manager.LogImport(
-                    import.Info($"Importing target {target.TargetKey} into LogixDb database"),
-                    token
-                );
+                // Import the target to the database. Dispose of resource when finished
+                await manager.LogImport(import.Info("Importing target into LogixDb database"), token);
                 await manager.ImportTarget(target, token);
-
-                // Import the target to the database.
-                await manager.LogImport(
-                    import.Info($"Target {target.TargetName} imported new version with id: {target.VersionId}"),
-                    token
-                );
-
-                await manager.LogImport(import.Info("Cleaning up file uploads and temporary copies"), token);
-                // Clean up temp and upload files after processing completes.
                 import.Dispose();
 
                 // Signal to the database the import process has completed
-                await manager.LogImport(
-                    import.Info($"Import complete for target {target.TargetKey} @v{target.VersionNumber}"),
-                    token
-                );
-
-                import.Status = ImportStatus.Complete;
-                await manager.CreateImport(import, token);
+                var completeMessage = $"Import complete for target: {target.TargetKey} @v{target.VersionId}";
+                await manager.MarkImport(import.ImportId, ImportStatus.Complete, token);
+                await manager.LogImport(import.Info(completeMessage), token);
             }
             catch (Exception ex)
             {
-                await manager.LogImport(
-                    import.Error($"Failed to process import for '{import.FileName}'. Review exception for details", ex),
-                    token
-                );
+                await manager.MarkImport(import.ImportId, ImportStatus.Failed, token);
+                var failedMessage = $"Failed to process import with id: '{import.ImportId}'";
+                await manager.LogImport(import.Error(failedMessage, ex), token);
 
                 logger.LogError(ex, "Error processing logix file {FileName}", import.FileName);
             }

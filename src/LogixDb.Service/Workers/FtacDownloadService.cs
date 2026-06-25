@@ -51,29 +51,37 @@ public class FtacDownloadService(
             try
             {
                 await manager.CreateImport(import, token);
-                await manager.LogImport(
-                    import.Info($"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}"),
-                    token
-                );
+                var startMessage = $"Import starting for asset {asset.AssetName} - v{asset.VersionNumber}";
+                await manager.LogImport(import.Info(startMessage), token);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Failed to initiate import with database for {FileName}", asset.AssetName);
+                continue;
+            }
 
+            try
+            {
                 await manager.LogImport(import.Info("Opening connection to FTAC database"), token);
                 var connectionString = options.Value.GetFtacConnectionString();
                 await using var connection = new SqlConnection(connectionString);
                 await connection.OpenAsync(token);
 
-                var size = await ReadAssetSize(connection, asset, import, token);
-                await DownloadAsset(connection, asset, import, size, token);
+                await manager.LogImport(import.Info("Reading asset info to determine file length"), token);
+                var size = await ReadAssetSize(connection, asset, token);
 
-                await manager.LogImport(
-                    import.Info("Queueing asset for for processing"),
-                    token
-                );
+                await manager.LogImport(import.Info("Downloading asset from FTAC database"), token);
+                await DownloadAsset(connection, asset, import, size, token);
+                await manager.LogImport(import.Info("Download completed successfully"), token);
+
+                await manager.LogImport(import.Info("Queueing asset for for ingestion"), token);
                 await imports.Writer.WriteAsync(import, token);
             }
             catch (Exception ex)
             {
+                await manager.MarkImport(import.ImportId, ImportStatus.Failed, token);
+                await manager.LogImport(import.Error($"Failed to download asset {asset.AssetName}", ex), token);
                 logger.LogError(ex, "Error downloading asset {FileName}", asset.AssetName);
-                await manager.LogImport(import.Error($"Error downloading asset {asset.AssetName}", ex), token);
             }
         }
     }
@@ -82,15 +90,8 @@ public class FtacDownloadService(
     /// Reads the size of an asset by executing a stored procedure on the provided database connection.
     /// The procedure retrieves details about the file size and version, ensuring the asset is valid for processing.
     /// </summary>
-    private async Task<long> ReadAssetSize(
-        SqlConnection connection,
-        AssetInfo asset,
-        Import import,
-        CancellationToken token
-    )
+    private static async Task<long> ReadAssetSize(SqlConnection connection, AssetInfo asset, CancellationToken token)
     {
-        await manager.LogImport(import.Info("Reading asset info to determine file length"), token);
-
         await using var command = new SqlCommand("dbo.arch_ReadFileChunkStart", connection);
         command.CommandType = CommandType.StoredProcedure;
 
@@ -134,16 +135,11 @@ public class FtacDownloadService(
     /// <param name="token">A cancellation token to observe while performing the download operation.</param>
     /// <returns>A task that represents the asynchronous download operation.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the operation encounters an unexpected state during execution.</exception>
-    private async Task DownloadAsset(
-        SqlConnection connection,
-        AssetInfo asset,
-        Import import,
-        long length,
-        CancellationToken token)
+    private static async Task DownloadAsset(SqlConnection connection, AssetInfo asset, Import import, long length,
+        CancellationToken token
+    )
     {
-        await manager.LogImport(import.Info("Downloading asset from FTAC database"), token);
-
-        await using var writer = import.OpenWriter();
+        await using var writer = import.OpenWrite();
         await using var command = new SqlCommand("dbo.arch_ReadFileChunk", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@AssetId", SqlDbType.UniqueIdentifier).Value = asset.AssetId;
@@ -172,10 +168,5 @@ public class FtacDownloadService(
 
             offset += size;
         }
-
-        await manager.LogImport(
-            import.Info($"Download completed successfully for {asset.AssetName} - v{asset.VersionNumber}"),
-            token
-        );
     }
 }

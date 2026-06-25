@@ -150,7 +150,7 @@ public class ImportTests
     {
         using var import = Import.Create("test.L5X", SourceType.CLI);
 
-        await using var writer = import.OpenWriter();
+        await using var writer = import.OpenWrite();
 
         writer.Should().NotBeNull();
     }
@@ -167,7 +167,7 @@ public class ImportTests
             $"{import.FileName}.{import.ImportId}.{import.FileType}"
         );
 
-        await using var writer = import.OpenWriter();
+        await using var writer = import.OpenWrite();
         await writer.WriteAsync(testData);
         await writer.FlushAsync();
 

@@ -36,40 +36,50 @@ BEGIN
     @vars qa.variables READONLY
 AS
 BEGIN
-	-- Reads a variable called ''version_id'' from the provided variables table and handles errors (key not found, invalid cast)
-	DECLARE @version_id INT;
-	EXEC qa.get_variable_as_int @vars, ''version_id'', @version_id OUT
+    -- Reads a variable called ''version_id'' from the provided variables table and handles errors (key not found, invalid cast)
+    DECLARE @version_id INT;
+    EXEC qa.get_variable_as_int @vars, ''version_id'', @version_id OUT
 
     /*
     Recommended pattern:
     - Query data set to validate.
-	  - Optionally insert data into a temp table (e.g. #validation_data) which makes multiple validations easier.
+    - Optionally insert data into a temp table (e.g. #validation_data) which makes multiple validations easier.
     - Evaluate resulting data set count and rows as needed.
     - For each failure case, emit a relevant failure message associated result data as JSON payload
-	  - By default, emitting no failure results in success when executed by the runner.
-	  - If needed, you can emit a custom success message with associated result data as JSON payload.
+    - By default, emitting no failure results in success when executed by the runner.
+    - If needed, you can emit a custom success message with associated result data as JSON payload.
     */
-
-	  -- Replace with your validation query
+    
+    -- Replace with your validation query
     SELECT
         CONVERT(nvarchar(128), N''example_key'') AS item_key,
         CONVERT(nvarchar(max), N''actual_value'') AS actual_value,
         CONVERT(nvarchar(max), N''expected_value'') AS expected_value
     INTO #validation_data
+        
+    -- Replace with your validation logic
+    -- qa.emit_failure is a built in function that simplifies the contract for returning valid qa.outcome UDT
 
-	  -- Replace with your validation logic
+    -- Ensure rows in the validation set so that we do not fail silently
+    IF (SELECT COUNT(*) FROM #validation_data) = 0
+    BEGIN
+        SELECT * FROM qa.emit_failure(
+            ''No validation records found for the provided version id'',
+            -- This is the result details payload. It can be a simple string or complex JSON string (see below)
+            (SELECT FORMATMESSAGE(''version_id = %s'', CAST(@version_id AS NVARCHAR(MAX)))
+        );
+    END
+        
     IF EXISTS (SELECT 1 FROM #validation_data WHERE 1 = 0)
     BEGIN
-		-- ''qa.emit_failure'' is a built in function that simplifies the contract for returning valid qa.outcome UDT
-        SELECT *
-        FROM qa.emit_failure(
+        SELECT * FROM qa.emit_failure(
             ''Validation failed message that should explain why validation failed.'',
-			/*
-			This following statement converts the failed result set into a JSON payload that can be inspected later.
-			Note that we are only returning the rows that violate the expectation or test case. 
-			This is best practice because it directs user to the violating records.
-			*/
-            (SELECT * FROM #validation_data  WHERE 1 = 0 FOR JSON PATH) 
+              /*
+              This following statement converts the failed result set into a JSON payload that can be inspected later.
+              Note that we are only returning the rows that violate the expectation or test case. 
+              This is best practice because it directs user to the violating records.
+              */
+            (SELECT * FROM #validation_data WHERE 1 = 0 FOR JSON PATH) 
         );
     END
 

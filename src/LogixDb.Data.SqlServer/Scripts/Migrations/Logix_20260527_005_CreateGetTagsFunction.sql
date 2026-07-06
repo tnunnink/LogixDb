@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[tags_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_tags] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT t.* 
     FROM [logix].[tag] t

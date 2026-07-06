@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[logic_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_logic] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT 
         r.rung_id,

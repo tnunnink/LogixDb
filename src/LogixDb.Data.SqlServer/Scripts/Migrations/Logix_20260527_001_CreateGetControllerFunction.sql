@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[controllers_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_controller] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT c.* 
     FROM [logix].[controller] c

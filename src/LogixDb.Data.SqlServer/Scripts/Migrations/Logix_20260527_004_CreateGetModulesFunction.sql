@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[modules_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_modules] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT m.* 
     FROM [logix].[module] m

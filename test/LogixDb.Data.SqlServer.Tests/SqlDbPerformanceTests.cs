@@ -33,7 +33,7 @@ public class SqlDbPerformanceTests : SqlServerTestFixture
         var version = await connection.QuerySingleAsync<int>("SELECT MAX(version_id) FROM logix.target_version");
 
         var sw = Stopwatch.StartNew();
-        var tags = await connection.QueryAsync("SELECT * FROM logix.tags_at_version(@version)", new { version });
+        var tags = await connection.QueryAsync("SELECT * FROM logix.get_tags(@version)", new { version });
         sw.Stop();
 
         var recordCount = tags.Count();

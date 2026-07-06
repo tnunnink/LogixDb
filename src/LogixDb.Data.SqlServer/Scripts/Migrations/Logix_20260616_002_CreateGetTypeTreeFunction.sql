@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[type_tree_at_version](
+CREATE OR ALTER FUNCTION [logix].[get_type_tree](
     @VersionId INT
 )
     RETURNS TABLE AS RETURN(WITH type_tree AS (
@@ -14,7 +14,7 @@ CREATE OR ALTER FUNCTION [logix].[type_tree_at_version](
             dt.type_name                [data_type],
             dt.type_description         [root_description],
             CAST(NULL AS NVARCHAR(MAX)) [member_description]
-        FROM [logix].[data_types_at_version](@VersionId) dt
+        FROM [logix].[get_data_types](@VersionId) dt
 
         UNION ALL
 
@@ -35,7 +35,7 @@ CREATE OR ALTER FUNCTION [logix].[type_tree_at_version](
              JOIN [logix].[data_type_member] ctm ON ctm.type_id = dt.type_id
              OUTER APPLY (
                 SELECT *
-                FROM [logix].[data_types_at_version](@VersionId)
+                FROM [logix].[get_data_types](@VersionId)
                 WHERE type_name = ctm.data_type
                 ) ct
         WHERE ctm.is_hidden = 0

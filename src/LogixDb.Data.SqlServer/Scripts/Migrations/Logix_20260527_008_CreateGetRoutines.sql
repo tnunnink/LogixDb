@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[routines_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_routines] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT r.* 
     FROM [logix].[routine] r

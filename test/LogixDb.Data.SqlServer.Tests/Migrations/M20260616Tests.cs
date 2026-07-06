@@ -6,7 +6,7 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606160820_CreatesTypeTreeAtVersionFunction()
     {
-        await AssertFunctionExists("logix", "type_tree_at_version");
+        await AssertFunctionExists("logix", "get_type_tree");
     }
 
     [Test]

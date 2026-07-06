@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[programs_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_programs] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT p.* 
     FROM [logix].[program] p

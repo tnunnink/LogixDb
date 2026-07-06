@@ -22,7 +22,22 @@
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Cli/LogixDb.Cli.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_001_CreateControllersAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_001_CreateGetControllerFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_002_CreateDataTypesAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_002_CreateGetDataTypesFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_003_CreateAoisAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_003_CreateGetAoisFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_004_CreateModulesAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_004_CreateGetModulesFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_005_CreateTagsAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_005_CreateGetTagsFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_006_CreateTasksAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_006_CreateGetTasksFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_007_CreateProgramsAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_007_CreateGetProgramsFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_008_CreateRoutinesAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_008_CreateGetRoutines.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_009_CreateRungsAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_009_CreateGetRungsFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_010_CreateLogicAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260527_010_CreateGetLogicFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260616_002_CreateTypeTreeAtVersion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/Logix_20260616_002_CreateGetTypeTreeFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Service/LogixDb.Service.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260527Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260527Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260616Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260616Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPerformanceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPerformanceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +48,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1" />
+    <option name="cachedIndexableFilesCount" value="2" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -223,86 +238,86 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.LogixDb.Service.executor": "Debug",
-    ".NET Launch Settings Profile.LogixDb.Web: http.executor": "Run",
-    "023f2559-4d27-4bd0-b75c-e1f573990a1d.executor": "Debug",
-    "04139c1b-5b64-4aed-b537-1f9c61cac291.executor": "Debug",
-    "11f19ff6-b504-4ebd-bbb4-5f31bb3277bb.executor": "Debug",
-    "126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor": "Debug",
-    "13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor": "Debug",
-    "245b8624-4107-48dc-bdd8-4421c3c4b002.executor": "Debug",
-    "2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor": "Debug",
-    "306e4faf-75f3-49db-b83f-ba259752c159.executor": "Debug",
-    "318f4a3c-5272-44c4-bb3a-c90e76056755.executor": "Debug",
-    "34c483ea-991b-4a3f-a7ce-9d756930abc5.executor": "Debug",
-    "35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor": "Debug",
-    "3e588a23-4139-418a-942c-482934391d2a.executor": "Debug",
-    "41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor": "Debug",
-    "42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor": "Debug",
-    "487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor": "Debug",
-    "4b89c8c5-2789-43c0-8027-835f03a430f1.executor": "Debug",
-    "4ec9c3b2-3a31-4fef-9a2d-41c3981156f9.executor": "Debug",
-    "53b9e772-009f-4a96-81f8-64fdb3c217f4.executor": "Debug",
-    "5ae67152-70fa-4f70-b289-3643031b7f89.executor": "Debug",
-    "6100961a-9699-4645-983c-6fc6781b89c3.executor": "Debug",
-    "695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor": "Debug",
-    "6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor": "Debug",
-    "77be6975-875d-4c36-a792-f24ed0629adb.executor": "Debug",
-    "7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor": "Debug",
-    "7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor": "Debug",
-    "8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor": "Debug",
-    "95485339-4be7-43cb-b8d7-c8ef07c63aee.executor": "Debug",
-    "9a039f25-f941-4a11-ae80-8ab4c0ac8a7d.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "a2a32091-c5c7-4df8-847b-04a76b8394ed.executor": "Debug",
-    "ab4c6561-4da2-42eb-9936-ab684a9b91fd.executor": "Debug",
-    "b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor": "Debug",
-    "b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor": "Debug",
-    "bab2bab0-9cea-416e-aaea-975b3296228d.executor": "Debug",
-    "bb8142bb-e865-42cd-926e-68b469a1002e.executor": "Debug",
-    "bd519f9b-ed82-4a76-997f-00ddd09539a5.executor": "Debug",
-    "c9dae028-5c51-47ea-ab78-a1ae1448939b.executor": "Debug",
-    "ced1c75b-02a6-42f8-afbd-597075e6a718.executor": "Debug",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "db27ef2f-246d-4f4e-871d-3c60d305b332.executor": "Debug",
-    "db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor": "Debug",
-    "e57754cd-b12b-44f4-b8a2-711d0f71850e.executor": "Debug",
-    "e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor": "Debug",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.LogixDb.Service.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.LogixDb.Web: http.executor&quot;: &quot;Run&quot;,
+    &quot;023f2559-4d27-4bd0-b75c-e1f573990a1d.executor&quot;: &quot;Debug&quot;,
+    &quot;04139c1b-5b64-4aed-b537-1f9c61cac291.executor&quot;: &quot;Debug&quot;,
+    &quot;11f19ff6-b504-4ebd-bbb4-5f31bb3277bb.executor&quot;: &quot;Debug&quot;,
+    &quot;126ae000-c6a4-4cde-b709-20ab7c8d6db6.executor&quot;: &quot;Debug&quot;,
+    &quot;13f3d8f8-ca34-45a3-987a-9f8e4568d426.executor&quot;: &quot;Debug&quot;,
+    &quot;245b8624-4107-48dc-bdd8-4421c3c4b002.executor&quot;: &quot;Debug&quot;,
+    &quot;2a29c096-72b7-4ea9-8e2d-f8d326b1b97e.executor&quot;: &quot;Debug&quot;,
+    &quot;306e4faf-75f3-49db-b83f-ba259752c159.executor&quot;: &quot;Debug&quot;,
+    &quot;318f4a3c-5272-44c4-bb3a-c90e76056755.executor&quot;: &quot;Debug&quot;,
+    &quot;34c483ea-991b-4a3f-a7ce-9d756930abc5.executor&quot;: &quot;Debug&quot;,
+    &quot;35112c5d-7fbf-43b1-89ea-c0fc543f26f7.executor&quot;: &quot;Debug&quot;,
+    &quot;3e588a23-4139-418a-942c-482934391d2a.executor&quot;: &quot;Debug&quot;,
+    &quot;41bd472a-ea40-46e2-95bc-1e6e978d63c2.executor&quot;: &quot;Debug&quot;,
+    &quot;42d57da7-67a4-4e49-ad97-b24f1d4faeab.executor&quot;: &quot;Debug&quot;,
+    &quot;487034c8-acbc-49ba-8c63-b1a4bc6c0c8a.executor&quot;: &quot;Debug&quot;,
+    &quot;4b89c8c5-2789-43c0-8027-835f03a430f1.executor&quot;: &quot;Debug&quot;,
+    &quot;4ec9c3b2-3a31-4fef-9a2d-41c3981156f9.executor&quot;: &quot;Debug&quot;,
+    &quot;53b9e772-009f-4a96-81f8-64fdb3c217f4.executor&quot;: &quot;Debug&quot;,
+    &quot;5ae67152-70fa-4f70-b289-3643031b7f89.executor&quot;: &quot;Debug&quot;,
+    &quot;6100961a-9699-4645-983c-6fc6781b89c3.executor&quot;: &quot;Debug&quot;,
+    &quot;695cd56c-ca6f-4488-9a55-ab3b0729ad70.executor&quot;: &quot;Debug&quot;,
+    &quot;6d23b5cf-f991-4219-a2b1-c6b2fe8126c8.executor&quot;: &quot;Debug&quot;,
+    &quot;77be6975-875d-4c36-a792-f24ed0629adb.executor&quot;: &quot;Debug&quot;,
+    &quot;7b9bfb52-d20f-4b5d-9405-f5441f3db9e7.executor&quot;: &quot;Debug&quot;,
+    &quot;7ce84f90-6ae2-4e9e-860e-eb90f45871f3.executor&quot;: &quot;Debug&quot;,
+    &quot;8f22db4e-b8d0-4060-9cef-d89afd8f8a8e.executor&quot;: &quot;Debug&quot;,
+    &quot;95485339-4be7-43cb-b8d7-c8ef07c63aee.executor&quot;: &quot;Debug&quot;,
+    &quot;9a039f25-f941-4a11-ae80-8ab4c0ac8a7d.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;a2a32091-c5c7-4df8-847b-04a76b8394ed.executor&quot;: &quot;Debug&quot;,
+    &quot;ab4c6561-4da2-42eb-9936-ab684a9b91fd.executor&quot;: &quot;Debug&quot;,
+    &quot;b1ee4bd6-69d4-43ee-87d2-005f50eba87d.executor&quot;: &quot;Debug&quot;,
+    &quot;b4cc6f81-828c-4c64-9c79-3d968c07a77c.executor&quot;: &quot;Debug&quot;,
+    &quot;bab2bab0-9cea-416e-aaea-975b3296228d.executor&quot;: &quot;Debug&quot;,
+    &quot;bb8142bb-e865-42cd-926e-68b469a1002e.executor&quot;: &quot;Debug&quot;,
+    &quot;bd519f9b-ed82-4a76-997f-00ddd09539a5.executor&quot;: &quot;Debug&quot;,
+    &quot;c9dae028-5c51-47ea-ab78-a1ae1448939b.executor&quot;: &quot;Debug&quot;,
+    &quot;ced1c75b-02a6-42f8-afbd-597075e6a718.executor&quot;: &quot;Debug&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;db27ef2f-246d-4f4e-871d-3c60d305b332.executor&quot;: &quot;Debug&quot;,
+    &quot;db95b10d-1604-4c63-aa25-8e754f0e2d2c.executor&quot;: &quot;Debug&quot;,
+    &quot;e57754cd-b12b-44f4-b8a2-711d0f71850e.executor&quot;: &quot;Debug&quot;,
+    &quot;e9c10b56-bb5c-443c-8cba-5b022bc2bbaa.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tnunnink/Documents/Projects/logixdb/src/LogixDb.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "SQLite",
-      "TSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;SQLite&quot;,
+      &quot;TSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1773082809547" />
     <option name="spentUsd" value="0.100696936" />
@@ -435,15 +450,9 @@
       <workItem from="1781551720140" duration="57790000" />
       <workItem from="1781789191885" duration="46139000" />
       <workItem from="1781898046481" duration="27228000" />
-      <workItem from="1782069806075" duration="74031000" />
-    </task>
-    <task id="LOCAL-00396" summary="Update `LogImport` methods to use `PostLog` script and allow nullable `log_exception` in `import_log` table">
-      <option name="closed" value="true" />
-      <created>1781749595358</created>
-      <option name="number" value="00396" />
-      <option name="presentableId" value="LOCAL-00396" />
-      <option name="project" value="LOCAL" />
-      <updated>1781749595358</updated>
+      <workItem from="1782069806075" duration="77213000" />
+      <workItem from="1782508719534" duration="6000" />
+      <workItem from="1783359647197" duration="1162000" />
     </task>
     <task id="LOCAL-00397" summary="Update `.idea` workspace configuration to reflect recent changes in scripts, logging, and metadata settings.">
       <option name="closed" value="true" />
@@ -829,7 +838,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782403903078</updated>
     </task>
-    <option name="localTasksCounter" value="445" />
+    <task id="LOCAL-00445" summary="Refactor `TagTransformer`: improve validation for `ProduceInfo` elements to skip entries with missing attributes and prevent parsing errors.">
+      <option name="closed" value="true" />
+      <created>1782405290285</created>
+      <option name="number" value="00445" />
+      <option name="presentableId" value="LOCAL-00445" />
+      <option name="project" value="LOCAL" />
+      <updated>1782405290285</updated>
+    </task>
+    <option name="localTasksCounter" value="446" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -857,7 +874,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `SqlDbGetTargetTests` to handle nullable assertions, remove unused `SQLitePCLRaw.core` reference, and clean up `SqlServerTestContainer` by removing redundant `IDbManager` property." />
     <MESSAGE value="Remove unused `FluentMigrator` package references, update assertions in `SqliteDbGetTargetTests`, and refine table output structure in CLI commands." />
     <MESSAGE value="Rename and refactor SQL migration scripts to align with updated naming conventions and enhance Windows-specific service account handling, schema authorization, and security settings." />
     <MESSAGE value="Remove obsolete migration calls and `SetUp` methods from SQLite unit tests, ensuring consistency with updated migration workflow." />
@@ -882,7 +898,8 @@
     <MESSAGE value="Refactor import logic: standardize method names (`OpenWriter` to `OpenWrite`), streamline logging and error handling across services, and remove unused dependencies for improved clarity and maintainability." />
     <MESSAGE value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
     <MESSAGE value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
+    <MESSAGE value="Refactor `TagTransformer`: improve validation for `ProduceInfo` elements to skip entries with missing attributes and prevent parsing errors." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `TagTransformer`: improve validation for `ProduceInfo` elements to skip entries with missing attributes and prevent parsing errors." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

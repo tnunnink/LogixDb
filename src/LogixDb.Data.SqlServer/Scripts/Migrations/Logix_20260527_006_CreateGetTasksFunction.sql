@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[tasks_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_tasks] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT t.* 
     FROM [logix].[task] t

@@ -8,15 +8,15 @@ public class M20260527Tests : SqlServerTestFixture
     {
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("logix", "controllers_at_version");
-            await AssertFunctionExists("logix", "data_types_at_version");
-            await AssertFunctionExists("logix", "aois_at_version");
-            await AssertFunctionExists("logix", "modules_at_version");
-            await AssertFunctionExists("logix", "tags_at_version");
-            await AssertFunctionExists("logix", "tasks_at_version");
-            await AssertFunctionExists("logix", "programs_at_version");
-            await AssertFunctionExists("logix", "routines_at_version");
-            await AssertFunctionExists("logix", "rungs_at_version");
+            await AssertFunctionExists("logix", "get_controller");
+            await AssertFunctionExists("logix", "get_data_types");
+            await AssertFunctionExists("logix", "get_aois");
+            await AssertFunctionExists("logix", "get_modules");
+            await AssertFunctionExists("logix", "get_tags");
+            await AssertFunctionExists("logix", "get_tasks");
+            await AssertFunctionExists("logix", "get_programs");
+            await AssertFunctionExists("logix", "get_routines");
+            await AssertFunctionExists("logix", "get_rungs");
         }
     }
 
@@ -25,7 +25,7 @@ public class M20260527Tests : SqlServerTestFixture
     {
         using (Assert.EnterMultipleScope())
         {
-            await AssertFunctionExists("logix", "logic_at_version");
+            await AssertFunctionExists("logix", "get_logic");
         }
     }
 }

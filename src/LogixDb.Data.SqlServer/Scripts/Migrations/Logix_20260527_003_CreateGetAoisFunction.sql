@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[aois_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_aois] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT a.* 
     FROM [logix].[aoi] a

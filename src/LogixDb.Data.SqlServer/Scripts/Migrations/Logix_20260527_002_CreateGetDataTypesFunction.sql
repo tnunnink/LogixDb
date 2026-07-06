@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[data_types_at_version] (@VersionId INT)
+CREATE OR ALTER FUNCTION [logix].[get_data_types] (@VersionId INT)
 RETURNS TABLE AS RETURN (
     SELECT dt.* 
     FROM [logix].[data_type] dt

@@ -66,7 +66,7 @@ BEGIN
         SELECT * FROM qa.emit_failure(
             ''No validation records found for the provided version id'',
             -- This is the result details payload. It can be a simple string or complex JSON string (see below)
-            (SELECT FORMATMESSAGE(''version_id = %s'', CAST(@version_id AS NVARCHAR(MAX)))
+            (SELECT FORMATMESSAGE(''version_id = %s'', CAST(@version_id AS NVARCHAR(MAX))))
         );
     END
         

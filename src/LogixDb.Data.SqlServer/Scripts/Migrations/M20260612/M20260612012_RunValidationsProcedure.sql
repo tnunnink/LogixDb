@@ -13,7 +13,7 @@ BEGIN
     DECLARE @variables_hash VARBINARY(32);
     DECLARE @validation_name NVARCHAR(300);
     DECLARE @sql NVARCHAR(MAX);
-    DECLARE @outcome qa.outcome;
+    DECLARE @results qa.results;
     DECLARE @has_error BIT = 0;
 
     SELECT
@@ -43,7 +43,7 @@ BEGIN
 
     WHILE @@FETCH_STATUS = 0
         BEGIN
-            DELETE FROM @outcome;
+            DELETE FROM @results;
 
             IF OBJECT_ID(@validation_name, N'P') IS NULL
                 BEGIN

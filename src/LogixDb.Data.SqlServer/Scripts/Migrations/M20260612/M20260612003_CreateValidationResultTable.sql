@@ -5,7 +5,7 @@ CREATE TABLE [qa].[validation_result]
     validation_name SYSNAME       NOT NULL,
     execution_time  DATETIME2     NOT NULL DEFAULT SYSUTCDATETIME(),
     is_success      BIT           NOT NULL,
-    result_message  NVARCHAR(MAX) NOT NULL,
+    result_message  NVARCHAR(256) NOT NULL,
     result_details  NVARCHAR(MAX) NULL,
     CONSTRAINT [fk_qa_validation_result_run] FOREIGN KEY (run_id) REFERENCES [qa].[validation_run] (run_id)
 )

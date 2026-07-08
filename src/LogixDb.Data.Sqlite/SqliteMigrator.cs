@@ -26,7 +26,7 @@ public class SqliteMigrator : IDbMigrator
         var upgrader = DeployChanges.To
             .SqliteDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
-            .WithScript(nameof(Logix_202606180900_SeedOperands), new Logix_202606180900_SeedOperands())
+            .WithScript(nameof(M202603082130_SeedOperands), new M202603082130_SeedOperands())
             .LogToConsole()
             .Build();
 

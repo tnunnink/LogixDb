@@ -9,7 +9,7 @@ public class QaMigrationTests : SqlServerTestFixture
         await AssertSchemaExists("qa");
         await AssertTypeExists("qa", "variables");
         await AssertTypeExists("qa", "validations");
-        await AssertTypeExists("qa", "outcome");
+        await AssertTypeExists("qa", "results");
     }
 
     [Test]

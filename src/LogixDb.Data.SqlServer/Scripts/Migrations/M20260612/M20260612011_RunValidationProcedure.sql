@@ -13,7 +13,7 @@ BEGIN
     DECLARE @variables_data nvarchar(max);
     DECLARE @variables_hash varbinary(32);
     DECLARE @sql nvarchar(max);
-    DECLARE @outcome qa.outcome;
+    DECLARE @results qa.results;
     DECLARE @has_error bit = 0;
 
     IF @run_id IS NULL
@@ -45,7 +45,7 @@ BEGIN
         BEGIN
             BEGIN TRY
                 SET @sql = N'EXEC ' + @validation_name + N' @vars = @vars';
-                INSERT INTO @outcome
+                INSERT INTO @results
                     EXEC sys.sp_executesql @sql, N'@vars qa.variables READONLY', @vars = @vars;
             END TRY
             BEGIN CATCH
@@ -55,7 +55,7 @@ BEGIN
             END CATCH
         END
 
-    IF @has_error = 0 AND (SELECT COUNT(*) FROM @outcome) = 0
+    IF @has_error = 0 AND (SELECT COUNT(*) FROM @results) = 0
         BEGIN
             INSERT INTO [qa].validation_result (run_id, validation_name, is_success, result_message, result_details)
             VALUES(@run_id, @validation_name, 1, N'Validation completed successfully with no results.', N'[]');
@@ -65,7 +65,7 @@ BEGIN
         BEGIN
             INSERT INTO [qa].validation_result (run_id, validation_name, is_success, result_message, result_details)
             SELECT @run_id, @validation_name, is_success, result_message, result_details
-            FROM @outcome;
+            FROM @results;
         END
 
     UPDATE [qa].validation_run

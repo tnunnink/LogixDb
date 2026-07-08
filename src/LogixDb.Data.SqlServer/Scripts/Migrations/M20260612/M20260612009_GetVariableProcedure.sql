@@ -15,7 +15,7 @@ BEGIN
     IF @variable IS NULL
         BEGIN
             DECLARE @message AS NVARCHAR(4000) = FORMATMESSAGE('''%s'' was not found in provided variables', @key);
-            RAISERROR(@message, 16, 1);
+            THROW 50000, @message, 1;
         END
 END;
 GO

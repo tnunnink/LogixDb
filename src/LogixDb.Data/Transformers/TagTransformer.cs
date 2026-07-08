@@ -50,11 +50,15 @@ public class TagTransformer : IDbTransformer
             {
                 memberRecords.Add(member);
 
-                if (member is { Value: AtomicData atomic, TagName.MemberPath: not null })
+                // I'm deciding to not store atomic values that are default (zero) since that
+                // tends to be a very large portion of the tag data. This can reduce the size of the
+                // tag value table around ~80% per version with this approach.
+                // In SQL, we will just infer zero if no matching atomic value is found.
+                if (member is { Value: AtomicData atomic } && atomic != 0)
                 {
                     valueRecords.Add(new TagValueRecord(
                         tagHash,
-                        member.TagName.MemberPath,
+                        member.TagName.MemberPath ?? string.Empty,
                         atomic.ToSqlFormat())
                     );
                 }

@@ -1,7 +1,7 @@
 using System.Reflection;
 using DbUp;
 using LogixDb.Data.Abstractions;
-using LogixDb.Data.Sqlite.Scripts.Migrations;
+using LogixDb.Data.SqlServer.Scripts.Migrations;
 
 namespace LogixDb.Data.SqlServer;
 
@@ -26,12 +26,11 @@ public class SqlServerMigrator : IDbMigrator
         var upgrader = DeployChanges.To
             .SqlDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
-            .WithScript(nameof(Logix_20260308_002_SeedNativeOperands), new Logix_20260308_002_SeedNativeOperands())
+            .WithScript(nameof(M20260308002SeedNativeOperands), new M20260308002SeedNativeOperands())
             .LogToConsole()
             .Build();
-        
+
         var result = upgrader.PerformUpgrade();
-        
 
         // Aggregate the error message using the failed script name and exception message.
         var error = result.Error is not null

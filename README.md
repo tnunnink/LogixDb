@@ -236,10 +236,10 @@ execution history and results over time.
 ### Validation Design
 
 LogixDb uses a **Stored Procedure-based** validation model. Validations are standard SQL procedures that accept a
-`qa.variables` table-valued parameter and return a result set matching the `qa.outcome` type.
+`qa.variables` table-valued parameter and return a result set matching the `qa.results` type.
 
 *   **`qa.variables`**: A key-value table used to pass parameters (like `version_id`) to the validation logic.
-*   **`qa.outcome`**: A standard structure for validation results, including `is_success`, `result_message`, and `result_details` (JSON).
+*   **`qa.results`**: A standard structure for validation results, including `is_success`, `result_message`, and `result_details` (JSON).
 
 ### Creating Validations
 

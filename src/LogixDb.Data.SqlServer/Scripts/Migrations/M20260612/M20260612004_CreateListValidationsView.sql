@@ -7,6 +7,7 @@ FROM sys.procedures AS p
      JOIN sys.parameters AS param ON param.object_id = p.object_id
 WHERE SCHEMA_NAME(p.schema_id) <> N'qa'
   AND SCHEMA_NAME(p.schema_id) <> N'dbo'
+  AND SCHEMA_NAME(p.schema_id) <> N'logix'
   AND param.name = N'@vars'
   AND param.parameter_id = 1
   AND param.is_readonly = 1

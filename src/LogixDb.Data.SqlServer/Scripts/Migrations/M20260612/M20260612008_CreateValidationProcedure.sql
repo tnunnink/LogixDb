@@ -58,7 +58,7 @@ BEGIN
     INTO #validation_data
         
     -- Replace with your validation logic
-    -- qa.emit_failure is a built in function that simplifies the contract for returning valid qa.outcome UDT
+    -- qa.emit_failure is a built in function that simplifies the contract for returning valid qa.results UDT
 
     -- Ensure rows in the validation set so that we do not fail silently
     IF (SELECT COUNT(*) FROM #validation_data) = 0

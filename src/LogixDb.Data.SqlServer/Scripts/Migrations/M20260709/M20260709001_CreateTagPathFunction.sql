@@ -12,7 +12,7 @@ BEGIN
     IF @Separator IS NULL 
         RETURN ''
 
-    -- Otherwise, return everything after the separator (including '[' if array opening
-    DECLARE @StartIndex INT = IIF(@Separator = '.', @Separator + 1, @Separator)
-    RETURN SUBSTRING(@TagName, @StartIndex, LEN(@TagName));
+    -- Otherwise, return everything after the separator (trim leading '.' if found)
+    DECLARE @Path NVARCHAR(256) = SUBSTRING(@TagName, @Separator, LEN(@TagName));
+    RETURN IIF(CHARINDEX('.', @Path) = 1, RIGHT(@Path, LEN(@PATH) - 1), @Path);
 END;

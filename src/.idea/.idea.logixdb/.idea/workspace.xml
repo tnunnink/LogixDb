@@ -21,9 +21,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260708001_CreateTagMemberFunction.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260708Tests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260709Tests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260708/M20260708_CreateGetTagBaseFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260708/M20260708001_CreateGetTagBaseFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260709001_CreateTagMemberFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260709001_CreateTagMemberFunction.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,61 +160,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.1242698341185045" />
-      <entry key="MS500" value="5.30330784678833" />
-      <entry key="S2" value="14.077889627142206" />
-      <entry key="S5" value="28.090518038996883" />
-      <entry key="S10" value="47.33111379679331" />
-      <entry key="S30" value="84.33348734736715" />
-      <entry key="S60" value="101.38312510027741" />
-      <entry key="M2" value="111.87993770544777" />
-      <entry key="M5" value="118.93999808740995" />
-      <entry key="M10" value="121.43312456439845" />
-      <entry key="M15" value="122.28043664716576" />
-      <entry key="M30" value="123.1360456423373" />
-      <entry key="H1" value="123.5938222999727" />
-      <entry key="H2" value="126.94126943429069" />
-      <entry key="H4" value="260.08217604290974" />
-      <entry key="D1" value="6304.473746118464" />
-      <entry key="W1" value="28339.506616005572" />
+      <entry key="MS100" value="1.0002045617069057" />
+      <entry key="MS500" value="1.2877107581310716" />
+      <entry key="S2" value="2.265425429539637" />
+      <entry key="S5" value="3.469333446769038" />
+      <entry key="S10" value="5.238038158022802" />
+      <entry key="S30" value="9.451130655212294" />
+      <entry key="S60" value="13.66469470682375" />
+      <entry key="M2" value="21.27494254477057" />
+      <entry key="M5" value="56.19262608825335" />
+      <entry key="M10" value="105.50312279286621" />
+      <entry key="M15" value="135.24861149323698" />
+      <entry key="M30" value="176.46271702245636" />
+      <entry key="H1" value="202.8349220470581" />
+      <entry key="H2" value="220.61587977606052" />
+      <entry key="H4" value="355.5188006424523" />
+      <entry key="D1" value="6363.917147653662" />
+      <entry key="W1" value="28417.132011107682" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="1.21974723432888E-196" />
-      <entry key="M2" value="3.648502110090014E-98" />
-      <entry key="M5" value="4.644841648775716E-39" />
-      <entry key="M10" value="2.355916078708591E-19" />
-      <entry key="M15" value="8.728963755642982E-13" />
-      <entry key="M30" value="3.235711732009953E-6" />
-      <entry key="H1" value="0.006234619862076963" />
-      <entry key="H2" value="0.2830472912728749" />
-      <entry key="H4" value="2.301937055913081" />
-      <entry key="D1" value="76.13244558262537" />
-      <entry key="W1" value="1226.3443528959308" />
+      <entry key="MS100" value="4.7159455866402986E-201" />
+      <entry key="MS500" value="8.604264593459207E-41" />
+      <entry key="S2" value="9.633452548080239E-11" />
+      <entry key="S5" value="1.0213354850228844E-4" />
+      <entry key="S10" value="0.012330933304230147" />
+      <entry key="S30" value="0.500805876276271" />
+      <entry key="S60" value="1.5096901486088448" />
+      <entry key="M2" value="2.715532334896586" />
+      <entry key="M5" value="3.905988668199811" />
+      <entry key="M10" value="4.4172755533586425" />
+      <entry key="M15" value="4.60309222025973" />
+      <entry key="M30" value="4.797206802179827" />
+      <entry key="H1" value="4.902639076375098" />
+      <entry key="H2" value="5.205643694871194" />
+      <entry key="H4" value="7.168387407058316" />
+      <entry key="D1" value="80.52248288792909" />
+      <entry key="W1" value="1229.94527846358" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.0668037651969255" />
-      <entry key="MS500" value="5.273623963722906" />
-      <entry key="S2" value="14.057791361369796" />
-      <entry key="S5" value="28.0741501961238" />
-      <entry key="S10" value="47.316949022457855" />
-      <entry key="S30" value="84.32484321418903" />
-      <entry key="S60" value="101.37789166645791" />
-      <entry key="M2" value="111.87703977031373" />
-      <entry key="M5" value="118.93876316376657" />
-      <entry key="M10" value="121.43249371998097" />
-      <entry key="M15" value="122.28001305150342" />
-      <entry key="M30" value="123.13583554535728" />
-      <entry key="H1" value="123.59994651652381" />
-      <entry key="H2" value="127.2241855021618" />
-      <entry key="H4" value="262.38372261280034" />
-      <entry key="D1" value="6380.6043664410445" />
-      <entry key="W1" value="29565.847256258912" />
+      <entry key="MS100" value="0.9728551059942404" />
+      <entry key="MS500" value="1.2806905348483748" />
+      <entry key="S2" value="2.262320253038512" />
+      <entry key="S5" value="3.4674699556246975" />
+      <entry key="S10" value="5.246456231641033" />
+      <entry key="S30" value="9.917925007845025" />
+      <entry key="S60" value="15.118109138739449" />
+      <entry key="M2" value="23.93593471037332" />
+      <entry key="M5" value="60.065328021090075" />
+      <entry key="M10" value="109.90103086554741" />
+      <entry key="M15" value="139.8380845787494" />
+      <entry key="M30" value="181.2527255147838" />
+      <entry key="H1" value="207.73385409452789" />
+      <entry key="H2" value="225.8195734146787" />
+      <entry key="H4" value="362.6858946333674" />
+      <entry key="D1" value="6444.437665458376" />
+      <entry key="W1" value="29647.07355909337" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -446,15 +447,7 @@
       <workItem from="1781898046481" duration="27228000" />
       <workItem from="1782069806075" duration="77213000" />
       <workItem from="1782508719534" duration="6000" />
-      <workItem from="1783359647197" duration="44037000" />
-    </task>
-    <task id="LOCAL-00407" summary="Remove deprecated classes (`ComponentOptions`, `DatabaseResolver`, `DropCommand`, `MigrationTag`) and associated tests (`DropCommandTests`, `SqlDbDropTests`, `SqliteDbDropTests`) while introducing `ScriptName` and updating related workflows for better script management and maintainability.">
-      <option name="closed" value="true" />
-      <created>1781897173494</created>
-      <option name="number" value="00407" />
-      <option name="presentableId" value="LOCAL-00407" />
-      <option name="project" value="LOCAL" />
-      <updated>1781897173494</updated>
+      <workItem from="1783359647197" duration="44755000" />
     </task>
     <task id="LOCAL-00408" summary="Remove `SqlServerManager` and its references; add SQL Server scripts for core schema migration and seed logic.">
       <option name="closed" value="true" />
@@ -840,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783564066962</updated>
     </task>
-    <option name="localTasksCounter" value="456" />
+    <task id="LOCAL-00456" summary="Rename and add new SQL migration functions: `CreateGetTagBaseFunction` and `CreateTagMemberFunction`, update workspace metadata for recent task and script changes.">
+      <option name="closed" value="true" />
+      <created>1783602975229</created>
+      <option name="number" value="00456" />
+      <option name="presentableId" value="LOCAL-00456" />
+      <option name="project" value="LOCAL" />
+      <updated>1783602975229</updated>
+    </task>
+    <option name="localTasksCounter" value="457" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -868,7 +869,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add unit tests for LogixDb.Maps, covering table generation and hashing logic for Task, Program, Routine, Tag, Module, Rung, AOI, and Controller entities." />
     <MESSAGE value="Add unit tests for table generation and hashing logic across maps, including Tag, Module, Rung, AOI, and DataType entities." />
     <MESSAGE value="Refactoring the test libraries and how the global SQL Server and Sqlite test database instancesa are managed to imporve test speed and code reuse across other testing projects" />
     <MESSAGE value="Introduce SQL Server integration test environment and update tests to utilize transient database for enhanced test isolation" />
@@ -893,7 +893,8 @@
     <MESSAGE value="Refactor `RungReference`: replace `reference_name` with `base_reference` and `member_reference`, update related scripts, mappings, transformers, and tests for improved indexing and cross-reference performance." />
     <MESSAGE value="Refactor `RungReference` migration and tests: replace `reference_name` with `base_reference` and `member_reference`, update scripts, mappings, and validations accordingly." />
     <MESSAGE value="Update test: rename function assertion to `latest_version_id` in `M202606161358` migration test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update test: rename function assertion to `latest_version_id` in `M202606161358` migration test." />
+    <MESSAGE value="Rename and add new SQL migration functions: `CreateGetTagBaseFunction` and `CreateTagMemberFunction`, update workspace metadata for recent task and script changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename and add new SQL migration functions: `CreateGetTagBaseFunction` and `CreateTagMemberFunction`, update workspace metadata for recent task and script changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -948,6 +949,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs</url>
+          <line>32</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerMigrator.cs" containingFunctionPresentation="Method 'Migrate'">
+            <startOffsets>
+              <option value="1198" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1237" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

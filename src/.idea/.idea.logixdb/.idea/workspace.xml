@@ -21,8 +21,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260306/M20260306004_CreateRungReferenceTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260306/M20260306004_CreateRungReferenceTable.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Maps/RungChildMapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Tests/Maps/RungChildMapTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260708001_CreateTagMemberFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260708/M20260708_CreateGetTagBaseFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260708/M20260708001_CreateGetTagBaseFunction.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,61 +159,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000067" />
-      <entry key="MS500" value="1.0014577913899385" />
-      <entry key="S2" value="1.1953996786775682" />
-      <entry key="S5" value="1.520438646343422" />
-      <entry key="S10" value="1.7214572825855154" />
-      <entry key="S30" value="2.0160449514788423" />
-      <entry key="S60" value="3.2610552971180073" />
-      <entry key="M2" value="7.807504620209213" />
-      <entry key="M5" value="19.76444092292311" />
-      <entry key="M10" value="29.373726812406634" />
-      <entry key="M15" value="33.900233006468355" />
-      <entry key="M30" value="39.3673172967041" />
-      <entry key="H1" value="44.242264859011044" />
-      <entry key="H2" value="129.08395489476084" />
-      <entry key="H4" value="875.5014263189528" />
-      <entry key="D1" value="8428.902394773066" />
-      <entry key="W1" value="29493.267235236865" />
+      <entry key="MS100" value="2.1242698341185045" />
+      <entry key="MS500" value="5.30330784678833" />
+      <entry key="S2" value="14.077889627142206" />
+      <entry key="S5" value="28.090518038996883" />
+      <entry key="S10" value="47.33111379679331" />
+      <entry key="S30" value="84.33348734736715" />
+      <entry key="S60" value="101.38312510027741" />
+      <entry key="M2" value="111.87993770544777" />
+      <entry key="M5" value="118.93999808740995" />
+      <entry key="M10" value="121.43312456439845" />
+      <entry key="M15" value="122.28043664716576" />
+      <entry key="M30" value="123.1360456423373" />
+      <entry key="H1" value="123.5938222999727" />
+      <entry key="H2" value="126.94126943429069" />
+      <entry key="H4" value="260.08217604290974" />
+      <entry key="D1" value="6304.473746118464" />
+      <entry key="W1" value="28339.506616005572" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.2576335813515972E-305" />
-      <entry key="S2" value="6.847698192237641E-77" />
-      <entry key="S5" value="5.520228080890681E-31" />
-      <entry key="S10" value="1.5085304596447546E-15" />
-      <entry key="S30" value="3.893961300629031E-5" />
-      <entry key="S60" value="0.018702508725056563" />
-      <entry key="M2" value="0.45178271785772667" />
-      <entry key="M5" value="3.1922501604966236" />
-      <entry key="M10" value="6.176220869975404" />
-      <entry key="M15" value="7.703203277629775" />
-      <entry key="M30" value="9.612230082361839" />
-      <entry key="H1" value="10.745760227606105" />
-      <entry key="H2" value="11.750939400758758" />
-      <entry key="H4" value="14.832017727907438" />
-      <entry key="D1" value="103.85344626513935" />
-      <entry key="W1" value="1281.9671096318707" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="1.21974723432888E-196" />
+      <entry key="M2" value="3.648502110090014E-98" />
+      <entry key="M5" value="4.644841648775716E-39" />
+      <entry key="M10" value="2.355916078708591E-19" />
+      <entry key="M15" value="8.728963755642982E-13" />
+      <entry key="M30" value="3.235711732009953E-6" />
+      <entry key="H1" value="0.006234619862076963" />
+      <entry key="H2" value="0.2830472912728749" />
+      <entry key="H4" value="2.301937055913081" />
+      <entry key="D1" value="76.13244558262537" />
+      <entry key="W1" value="1226.3443528959308" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9526379980439437" />
-      <entry key="MS500" value="0.9917885880443528" />
-      <entry key="S2" value="1.192570703901914" />
-      <entry key="S5" value="1.519036002269373" />
-      <entry key="S10" value="1.7206722043367708" />
-      <entry key="S30" value="2.0154760428219376" />
-      <entry key="S60" value="3.276113804873066" />
-      <entry key="M2" value="8.247392229432597" />
-      <entry key="M5" value="22.9352241025794" />
-      <entry key="M10" value="35.530706630025264" />
-      <entry key="M15" value="41.58771319198057" />
-      <entry key="M30" value="48.969868735675405" />
-      <entry key="H1" value="54.9826402084374" />
-      <entry key="H2" value="140.83186735015892" />
-      <entry key="H4" value="890.3311977152065" />
-      <entry key="D1" value="8532.75337332398" />
-      <entry key="W1" value="30775.23046679217" />
+      <entry key="MS100" value="2.0668037651969255" />
+      <entry key="MS500" value="5.273623963722906" />
+      <entry key="S2" value="14.057791361369796" />
+      <entry key="S5" value="28.0741501961238" />
+      <entry key="S10" value="47.316949022457855" />
+      <entry key="S30" value="84.32484321418903" />
+      <entry key="S60" value="101.37789166645791" />
+      <entry key="M2" value="111.87703977031373" />
+      <entry key="M5" value="118.93876316376657" />
+      <entry key="M10" value="121.43249371998097" />
+      <entry key="M15" value="122.28001305150342" />
+      <entry key="M30" value="123.13583554535728" />
+      <entry key="H1" value="123.59994651652381" />
+      <entry key="H2" value="127.2241855021618" />
+      <entry key="H4" value="262.38372261280034" />
+      <entry key="D1" value="6380.6043664410445" />
+      <entry key="W1" value="29565.847256258912" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -297,7 +298,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.LLMThirdPartyAiProvidersConfigurable",
+    "settings.editor.selected.configurable": "preferences.sourceCode.SQL",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -445,23 +446,7 @@
       <workItem from="1781898046481" duration="27228000" />
       <workItem from="1782069806075" duration="77213000" />
       <workItem from="1782508719534" duration="6000" />
-      <workItem from="1783359647197" duration="41240000" />
-    </task>
-    <task id="LOCAL-00405" summary="Moving to DbUp: Add SQLite migrations for core database schema and seed logic, implement `SqliteMigrator` for streamlined upgrades, and refactor `SqliteManager` to use DbUp for migration execution.">
-      <option name="closed" value="true" />
-      <created>1781881935671</created>
-      <option name="number" value="00405" />
-      <option name="presentableId" value="LOCAL-00405" />
-      <option name="project" value="LOCAL" />
-      <updated>1781881935671</updated>
-    </task>
-    <task id="LOCAL-00406" summary="Remove `SqliteManager` and `SqliteScript`, introduce `SqliteProvider` and refactor SQLite migrations, schemas, and workflows for improved structure and autoincrement primary keys.">
-      <option name="closed" value="true" />
-      <created>1781896393260</created>
-      <option name="number" value="00406" />
-      <option name="presentableId" value="LOCAL-00406" />
-      <option name="project" value="LOCAL" />
-      <updated>1781896393260</updated>
+      <workItem from="1783359647197" duration="44037000" />
     </task>
     <task id="LOCAL-00407" summary="Remove deprecated classes (`ComponentOptions`, `DatabaseResolver`, `DropCommand`, `MigrationTag`) and associated tests (`DropCommandTests`, `SqlDbDropTests`, `SqliteDbDropTests`) while introducing `ScriptName` and updating related workflows for better script management and maintainability.">
       <option name="closed" value="true" />
@@ -839,7 +824,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783563715345</updated>
     </task>
-    <option name="localTasksCounter" value="454" />
+    <task id="LOCAL-00454" summary="Refactor `RungReference` migration and tests: replace `reference_name` with `base_reference` and `member_reference`, update scripts, mappings, and validations accordingly.">
+      <option name="closed" value="true" />
+      <created>1783564045448</created>
+      <option name="number" value="00454" />
+      <option name="presentableId" value="LOCAL-00454" />
+      <option name="project" value="LOCAL" />
+      <updated>1783564045448</updated>
+    </task>
+    <task id="LOCAL-00455" summary="Update test: rename function assertion to `latest_version_id` in `M202606161358` migration test.">
+      <option name="closed" value="true" />
+      <created>1783564066962</created>
+      <option name="number" value="00455" />
+      <option name="presentableId" value="LOCAL-00455" />
+      <option name="project" value="LOCAL" />
+      <updated>1783564066962</updated>
+    </task>
+    <option name="localTasksCounter" value="456" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -867,8 +868,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `DataTypeMapTests` to validate table generation and hashing logic; rename and refactor SQLite `DataTypeTests` to `DataTypeImportTests`." />
-    <MESSAGE value="Uncomment `SqlServerProvider` registration, update default `DbConnection` value." />
     <MESSAGE value="Add unit tests for LogixDb.Maps, covering table generation and hashing logic for Task, Program, Routine, Tag, Module, Rung, AOI, and Controller entities." />
     <MESSAGE value="Add unit tests for table generation and hashing logic across maps, including Tag, Module, Rung, AOI, and DataType entities." />
     <MESSAGE value="Refactoring the test libraries and how the global SQL Server and Sqlite test database instancesa are managed to imporve test speed and code reuse across other testing projects" />
@@ -892,7 +891,9 @@
     <MESSAGE value="Reorganized migrations to better setup for continuted upgrades and not to go back and update old migrations. Fixed citical bug in tag transform for getting data for root tags. Also added gaurd to not post default tag value data to reduce table size by effectively 80% for entire database." />
     <MESSAGE value="Bump CLI and Service versions to `0.16.0`." />
     <MESSAGE value="Refactor `RungReference`: replace `reference_name` with `base_reference` and `member_reference`, update related scripts, mappings, transformers, and tests for improved indexing and cross-reference performance." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `RungReference`: replace `reference_name` with `base_reference` and `member_reference`, update related scripts, mappings, transformers, and tests for improved indexing and cross-reference performance." />
+    <MESSAGE value="Refactor `RungReference` migration and tests: replace `reference_name` with `base_reference` and `member_reference`, update scripts, mappings, and validations accordingly." />
+    <MESSAGE value="Update test: rename function assertion to `latest_version_id` in `M202606161358` migration test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update test: rename function assertion to `latest_version_id` in `M202606161358` migration test." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -923,19 +924,6 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs</url>
-          <line>32</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerMigrator.cs" containingFunctionPresentation="Method 'Migrate'">
-            <startOffsets>
-              <option value="1198" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1237" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs</url>
           <line>11</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\Migrations\QA\QaMigrationTests.cs" containingFunctionPresentation="Method 'MigrateUp_To202606120900_CreatesQaSchemaAndTypes'">
@@ -947,6 +935,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs</url>
+          <line>36</line>
+          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\Migrations\M20260308Tests.cs" containingFunctionPresentation="Method 'MigrateUp_ToM202603082130_SeedsExpectedOperands'">
+            <startOffsets>
+              <option value="1537" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1581" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

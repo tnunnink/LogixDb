@@ -10,6 +10,7 @@ public class M20260709Tests : SqlServerTestFixture
     {
         await AssertFunctionExists("logix", "tag_path");
         await AssertFunctionExists("logix", "is_atomic");
+        await AssertFunctionExists("logix", "default_value");
     }
 
     [TestCase("Tag", "")]
@@ -47,6 +48,30 @@ public class M20260709Tests : SqlServerTestFixture
     {
         await using var connection = await Provider.OpenConnection();
         var result = await connection.ExecuteScalarAsync<bool>("SELECT logix.is_atomic(@dataType)", new { dataType });
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [TestCase("BOOL", "0")]
+    [TestCase("SINT", "0")]
+    [TestCase("INT", "0")]
+    [TestCase("DINT", "0")]
+    [TestCase("LINT", "0")]
+    [TestCase("USINT", "0")]
+    [TestCase("UINT", "0")]
+    [TestCase("UDINT", "0")]
+    [TestCase("ULINT", "0")]
+    [TestCase("DT", "0")]
+    [TestCase("LDT", "0")]
+    [TestCase("TIME", "0")]
+    [TestCase("TIME32", "0")]
+    [TestCase("LTIME", "0")]
+    [TestCase("REAL", "0.0")]
+    [TestCase("LREAL", "0.0")]
+    [TestCase("STRING", null)]
+    public async Task DefaultValue_WithInput_ReturnsExpectedValue(string dataType, string? expected)
+    {
+        await using var connection = await Provider.OpenConnection();
+        var result = await connection.ExecuteScalarAsync<string>("SELECT logix.default_value(@dataType)", new { dataType });
         Assert.That(result, Is.EqualTo(expected));
     }
 }

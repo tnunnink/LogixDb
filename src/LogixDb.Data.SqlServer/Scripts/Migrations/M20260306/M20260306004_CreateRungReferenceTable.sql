@@ -4,7 +4,7 @@ CREATE TABLE [logix].[rung_reference]
     [instruction_index] SMALLINT      NOT NULL,
     [argument_index]    TINYINT       NOT NULL,
     [base_reference]    NVARCHAR(256) NOT NULL,
-    [member_reference]    NVARCHAR(256) NOT NULL,
+    [member_reference]  NVARCHAR(256) NOT NULL,
     CONSTRAINT [FK_rung_reference_rung] FOREIGN KEY ([rung_id]) REFERENCES [logix].[rung] ([rung_id]) ON DELETE CASCADE
 );
 

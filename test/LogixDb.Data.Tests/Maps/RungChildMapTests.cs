@@ -40,9 +40,10 @@ public class RungChildMapTests
         var table = map.GenerateTable([]);
 
         table.TableName.Should().Be("rung_reference");
-        table.Columns.Should().HaveCount(4);
+        table.Columns.Should().HaveCount(5);
         table.Columns.Should().Contain(c => c.ColumnName == "rung_hash");
-        table.Columns.Should().Contain(c => c.ColumnName == "reference_name");
+        table.Columns.Should().Contain(c => c.ColumnName == "base_reference");
+        table.Columns.Should().Contain(c => c.ColumnName == "member_reference");
     }
 
     [Test]

@@ -7,12 +7,14 @@ WHEN NOT MATCHED THEN
         rung_id,
         instruction_index,
         argument_index,
-        reference_name
+        base_reference,
+        member_reference
     )
     VALUES
     (
         (SELECT rung_id FROM logix.rung WHERE record_hash = source.rung_hash),
         source.instruction_index,
         source.argument_index,
-        source.reference_name
+        source.base_reference,
+        source.member_reference
     );

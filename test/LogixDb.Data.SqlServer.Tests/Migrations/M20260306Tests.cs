@@ -77,11 +77,12 @@ public class M20260306Tests : SqlServerTestFixture
             await AssertColumnDefinition("rung_reference", "rung_id", "bigint");
             await AssertColumnDefinition("rung_reference", "instruction_index", "smallint");
             await AssertColumnDefinition("rung_reference", "argument_index", "tinyint");
-            await AssertColumnDefinition("rung_reference", "reference_name", "nvarchar");
+            await AssertColumnDefinition("rung_reference", "base_reference", "nvarchar");
+            await AssertColumnDefinition("rung_reference", "member_reference", "nvarchar");
 
             await AssertForeignKey("rung_reference", "rung_id", "rung", "rung_id");
             await AssertIndex("rung_reference", "rung_id", "instruction_index", "argument_index");
-            await AssertIndex("rung_reference", "reference_name", "rung_id", "instruction_index", "argument_index");
+            await AssertIndex("rung_reference", "base_reference");
         }
     }
 }

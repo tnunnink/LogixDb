@@ -21,8 +21,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260708/M20260708_CreateGetTagBaseFunction.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Merges/MergeRungReference.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260306/M20260306004_CreateRungReferenceTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260306/M20260306004_CreateRungReferenceTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260616/M20260616002_CreateGetLatestVersionIdFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260616/M20260616002_CreateLatestVersionIdFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeRungReference.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Merges/MergeRungReference.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/M202603061400_CreateRungReferenceTable.sql" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.Sqlite/Scripts/Migrations/M202603061400_CreateRungReferenceTable.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Maps/RungReferenceMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Maps/RungReferenceMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data/Transformers/RungTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data/Transformers/RungTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/Migrations/M20260306Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,61 +167,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000004245448" />
-      <entry key="MS500" value="1.0187857642570715" />
-      <entry key="S2" value="1.6116113941040227" />
-      <entry key="S5" value="2.2442196420782494" />
-      <entry key="S10" value="2.6854414658566697" />
-      <entry key="S30" value="5.479272033076408" />
-      <entry key="S60" value="9.167826964995706" />
-      <entry key="M2" value="17.409625013854217" />
-      <entry key="M5" value="54.90198365536638" />
-      <entry key="M10" value="168.42176118388446" />
-      <entry key="M15" value="297.08407436397977" />
-      <entry key="M30" value="722.242523486482" />
-      <entry key="H1" value="1737.211407779536" />
-      <entry key="H2" value="3468.4694453313614" />
-      <entry key="H4" value="5447.319455143114" />
-      <entry key="D1" value="11316.380012776925" />
-      <entry key="W1" value="30557.869655802082" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0001637755765653" />
+      <entry key="S2" value="1.1185924018054685" />
+      <entry key="S5" value="1.552205500510103" />
+      <entry key="S10" value="2.151387105720852" />
+      <entry key="S30" value="4.393337395216556" />
+      <entry key="S60" value="7.9781750593679215" />
+      <entry key="M2" value="14.376146887031215" />
+      <entry key="M5" value="25.496240502396216" />
+      <entry key="M10" value="32.79065127079546" />
+      <entry key="M15" value="35.98016628844652" />
+      <entry key="M30" value="39.68468965156821" />
+      <entry key="H1" value="43.53229047630601" />
+      <entry key="H2" value="129.00892971873125" />
+      <entry key="H4" value="880.0908011281665" />
+      <entry key="D1" value="8437.46382940933" />
+      <entry key="W1" value="29496.54458747076" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.4161674705457425E-167" />
-      <entry key="MS500" value="4.39735665602115E-34" />
-      <entry key="S2" value="6.641444915154024E-9" />
-      <entry key="S5" value="9.824137846525564E-4" />
-      <entry key="S10" value="0.059312133853463546" />
-      <entry key="S30" value="0.9695924739168533" />
-      <entry key="S60" value="1.9660092019640338" />
-      <entry key="M2" value="2.8101026804446834" />
-      <entry key="M5" value="3.7777175135288363" />
-      <entry key="M10" value="5.482649169616198" />
-      <entry key="M15" value="7.523779063648064" />
-      <entry key="M30" value="12.433960418157692" />
-      <entry key="H1" value="17.237491543306366" />
-      <entry key="H2" value="20.651155516696335" />
-      <entry key="H4" value="22.7398319749644" />
-      <entry key="D1" value="127.70111680626428" />
-      <entry key="W1" value="1331.068872315016" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.246143944665565E-211" />
+      <entry key="S2" value="2.1604694639173374E-53" />
+      <entry key="S5" value="1.385346559833479E-21" />
+      <entry key="S10" value="7.557093368678867E-11" />
+      <entry key="S30" value="0.0014354625474127612" />
+      <entry key="S60" value="0.11355335844533822" />
+      <entry key="M2" value="1.1132165965013183" />
+      <entry key="M5" value="4.578855528649584" />
+      <entry key="M10" value="7.396952507460466" />
+      <entry key="M15" value="8.687430961733309" />
+      <entry key="M30" value="10.207847225810115" />
+      <entry key="H1" value="11.073684548752754" />
+      <entry key="H2" value="11.928891476920285" />
+      <entry key="H4" value="14.943901157826955" />
+      <entry key="D1" value="103.98360529667869" />
+      <entry key="W1" value="1282.1965126281225" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0028994601145771004" />
-      <entry key="MS500" value="0.32081538514140845" />
-      <entry key="S2" value="1.271544446372553" />
-      <entry key="S5" value="2.0613697696980924" />
-      <entry key="S10" value="2.634679064583807" />
-      <entry key="S30" value="6.374945301290765" />
-      <entry key="S60" value="11.077294575098168" />
-      <entry key="M2" value="20.182996460457012" />
-      <entry key="M5" value="58.66013664366427" />
-      <entry key="M10" value="173.8873151537537" />
-      <entry key="M15" value="304.5895533915228" />
-      <entry key="M30" value="734.6583058087831" />
-      <entry key="H1" value="1754.4347823717324" />
-      <entry key="H2" value="3489.111330327498" />
-      <entry key="H4" value="5470.053781674148" />
-      <entry key="D1" value="11444.078064684618" />
-      <entry key="W1" value="31888.93450329514" />
+      <entry key="MS100" value="0.9659363289248456" />
+      <entry key="MS500" value="0.9932549144151781" />
+      <entry key="S2" value="1.116612794472651" />
+      <entry key="S5" value="1.5510308493632061" />
+      <entry key="S10" value="2.1500091510283794" />
+      <entry key="S30" value="4.382909958063385" />
+      <entry key="S60" value="8.070493168481372" />
+      <entry key="M2" value="15.46023603661928" />
+      <entry key="M5" value="30.04434738825623" />
+      <entry key="M10" value="40.1645776683838" />
+      <entry key="M15" value="44.64987651267466" />
+      <entry key="M30" value="49.88226381338346" />
+      <entry key="H1" value="54.600428396912555" />
+      <entry key="H2" value="140.93474968150133" />
+      <entry key="H4" value="895.0324396398363" />
+      <entry key="D1" value="8541.44496400343" />
+      <entry key="W1" value="30778.73722134325" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -297,7 +306,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "ml.llm.LLMThirdPartyAiProvidersConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -445,15 +454,7 @@
       <workItem from="1781898046481" duration="27228000" />
       <workItem from="1782069806075" duration="77213000" />
       <workItem from="1782508719534" duration="6000" />
-      <workItem from="1783359647197" duration="33159000" />
-    </task>
-    <task id="LOCAL-00403" summary="Refactor migrations to standardize schema usage: replace explicit schema definitions with `InLogixSchema` extension method for tables and indexes, and update related FluentMigrator extensions.">
-      <option name="closed" value="true" />
-      <created>1781836406288</created>
-      <option name="number" value="00403" />
-      <option name="presentableId" value="LOCAL-00403" />
-      <option name="project" value="LOCAL" />
-      <updated>1781836406288</updated>
+      <workItem from="1783359647197" duration="41088000" />
     </task>
     <task id="LOCAL-00404" summary="Refactor scripts: reorganize SQLite and SQL Server scripts into `Queries`, `Migrations`, and `Merges` directories for improved structure.">
       <option name="closed" value="true" />
@@ -839,7 +840,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783522418531</updated>
     </task>
-    <option name="localTasksCounter" value="452" />
+    <task id="LOCAL-00452" summary="Bump CLI and Service versions to `0.16.0`.">
+      <option name="closed" value="true" />
+      <created>1783523301635</created>
+      <option name="number" value="00452" />
+      <option name="presentableId" value="LOCAL-00452" />
+      <option name="project" value="LOCAL" />
+      <updated>1783523301636</updated>
+    </task>
+    <option name="localTasksCounter" value="453" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -924,13 +933,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs</url>
-          <line>33</line>
+          <line>32</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerMigrator.cs" containingFunctionPresentation="Method 'Migrate'">
             <startOffsets>
-              <option value="1261" />
+              <option value="1198" />
             </startOffsets>
             <endOffsets>
-              <option value="1300" />
+              <option value="1237" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />

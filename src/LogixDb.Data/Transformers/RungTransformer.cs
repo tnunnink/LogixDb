@@ -66,7 +66,16 @@ public class RungTransformer : IDbTransformer
                 argumentRecords.Add(new ArgumentRecord(rungHash, i, a, argument.Type, argument.ToString()));
 
                 foreach (var reference in GetReferences(argument))
-                    referenceRecords.Add(new ReferenceRecord(rungHash, i, a, reference));
+                {
+                    // We are going to split up the base name from the member path so that we can use
+                    // a nonclustered index on the base reference to vastly improve cross-reference performance.
+                    var baseName = reference.BaseName;
+                    var memberPath = reference.MemberPath ?? string.Empty;
+                    var referenceRecord = new ReferenceRecord(rungHash, i, a, baseName, memberPath);
+                    referenceRecords.Add(referenceRecord);
+                }
+
+                
             }
         }
     }

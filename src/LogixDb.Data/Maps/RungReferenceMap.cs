@@ -11,7 +11,8 @@ public class RungReferenceMap : TableMap<ReferenceRecord>
         ColumnMap<ReferenceRecord>.For(r => r.RungHash, "rung_hash", hashable: false),
         ColumnMap<ReferenceRecord>.For(r => r.InstructionIndex, "instruction_index"),
         ColumnMap<ReferenceRecord>.For(r => r.ArgumentIndex, "argument_index"),
-        ColumnMap<ReferenceRecord>.For(r => r.ReferenceName, "reference_name")
+        ColumnMap<ReferenceRecord>.For(r => r.BaseReference, "base_reference"),
+        ColumnMap<ReferenceRecord>.For(r => r.MemberReference, "member_reference")
     ];
 }
 
@@ -19,5 +20,6 @@ public record ReferenceRecord(
     string RungHash,
     int InstructionIndex,
     byte ArgumentIndex,
-    string ReferenceName
+    string BaseReference,
+    string MemberReference
 );

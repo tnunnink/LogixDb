@@ -1,4 +1,4 @@
-CREATE OR ALTER FUNCTION [logix].[get_latest_version_id] (@target_name NVARCHAR(128))
+CREATE OR ALTER FUNCTION [logix].[latest_version_id] (@target_name NVARCHAR(128))
 RETURNS INT
 AS
 BEGIN

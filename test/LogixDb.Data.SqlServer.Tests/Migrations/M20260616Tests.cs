@@ -12,7 +12,7 @@ public class M20260616Tests : SqlServerTestFixture
     [Test]
     public async Task MigrateUp_ToM202606161358_CreatesGetLatestVersionIdFunction()
     {
-        await AssertFunctionExists("logix", "get_latest_version_id");
+        await AssertFunctionExists("logix", "latest_version_id");
     }
 
     [Test]

@@ -21,8 +21,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260709002_CreateIsAtomicFucntion.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260709/M20260709003_CreateDefaultValueFucntion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260709Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260709Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,61 +158,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000239436068756" />
-      <entry key="S2" value="1.070913006995605" />
-      <entry key="S5" value="1.4346613625621571" />
-      <entry key="S10" value="2.0546641062491995" />
-      <entry key="S30" value="4.777213240395623" />
-      <entry key="S60" value="21.008513873778004" />
-      <entry key="M2" value="81.69297648636524" />
-      <entry key="M5" value="204.1571217611822" />
-      <entry key="M10" value="283.35128913653375" />
-      <entry key="M15" value="326.1570552048258" />
-      <entry key="M30" value="410.39844664194226" />
-      <entry key="H1" value="499.2466217621301" />
-      <entry key="H2" value="571.3427490399354" />
-      <entry key="H4" value="724.804327215335" />
-      <entry key="D1" value="6629.345926614452" />
-      <entry key="W1" value="28743.041043384834" />
+      <entry key="MS100" value="1.9446022617713532" />
+      <entry key="MS500" value="4.735259827798174" />
+      <entry key="S2" value="13.426309183067632" />
+      <entry key="S5" value="29.10978035904054" />
+      <entry key="S10" value="45.945761954565484" />
+      <entry key="S30" value="86.08794775492254" />
+      <entry key="S60" value="117.19998435853634" />
+      <entry key="M2" value="147.0137042377704" />
+      <entry key="M5" value="221.14949383408563" />
+      <entry key="M10" value="330.8541499414191" />
+      <entry key="M15" value="406.6597701865331" />
+      <entry key="M30" value="544.887153235932" />
+      <entry key="H1" value="677.2017317829559" />
+      <entry key="H2" value="780.5849881623686" />
+      <entry key="H4" value="950.1811015279848" />
+      <entry key="D1" value="6842.731135242845" />
+      <entry key="W1" value="28971.623588722054" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="4.020121442643575E-176" />
-      <entry key="S10" value="2.0417936389529904E-88" />
-      <entry key="S30" value="7.401388694203986E-30" />
-      <entry key="S60" value="3.7130785008561455E-15" />
-      <entry key="M2" value="1.0002133925867934E-7" />
-      <entry key="M5" value="0.0042104007374911875" />
-      <entry key="M10" value="0.16612941345496035" />
-      <entry key="M15" value="0.5740916943318677" />
-      <entry key="M30" value="1.9979565603812501" />
-      <entry key="H1" value="3.7394479838344954" />
-      <entry key="H2" value="5.300815899943794" />
-      <entry key="H4" value="7.855746497427858" />
-      <entry key="D1" value="80.38117829853036" />
-      <entry key="W1" value="1227.31605577091" />
+      <entry key="MS500" value="3.8895424299853616E-89" />
+      <entry key="S2" value="7.897227121734157E-23" />
+      <entry key="S5" value="1.4420816523640515E-9" />
+      <entry key="S10" value="3.7974750194887784E-5" />
+      <entry key="S30" value="0.03361501255279896" />
+      <entry key="S60" value="0.18662637046532074" />
+      <entry key="M2" value="0.5428866467904634" />
+      <entry key="M5" value="1.6792465146094393" />
+      <entry key="M10" value="2.8805476809390975" />
+      <entry key="M15" value="3.7089092513359785" />
+      <entry key="M30" value="5.6042962160941086" />
+      <entry key="H1" value="7.768455500783945" />
+      <entry key="H2" value="9.69242887388382" />
+      <entry key="H4" value="12.457190485948939" />
+      <entry key="D1" value="84.8846042942208" />
+      <entry key="W1" value="1231.2727813661936" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9794202975869268" />
-      <entry key="MS500" value="0.9958734654748563" />
-      <entry key="S2" value="1.069702456581694" />
-      <entry key="S5" value="1.4338420190508512" />
-      <entry key="S10" value="2.0537332389055476" />
-      <entry key="S30" value="4.7739345585016" />
-      <entry key="S60" value="21.00425429492212" />
-      <entry key="M2" value="81.68858414396139" />
-      <entry key="M5" value="204.15805993436928" />
-      <entry key="M10" value="283.513768933482" />
-      <entry key="M15" value="326.7260843472379" />
-      <entry key="M30" value="412.38963102627054" />
-      <entry key="H1" value="502.9801961867863" />
-      <entry key="H2" value="576.6396117919535" />
-      <entry key="H4" value="732.6575248545737" />
-      <entry key="D1" value="6709.724921924431" />
-      <entry key="W1" value="29970.353343525177" />
+      <entry key="MS100" value="1.8900681166431932" />
+      <entry key="MS500" value="4.709860005354598" />
+      <entry key="S2" value="13.408895575149318" />
+      <entry key="S5" value="29.09499394097346" />
+      <entry key="S10" value="45.93412159409443" />
+      <entry key="S30" value="86.11254337270428" />
+      <entry key="S60" value="117.3770809718504" />
+      <entry key="M2" value="147.54733009579448" />
+      <entry key="M5" value="222.8203882794697" />
+      <entry key="M10" value="333.7274745456618" />
+      <entry key="M15" value="410.361449449574" />
+      <entry key="M30" value="550.4838122614339" />
+      <entry key="H1" value="684.9637160939983" />
+      <entry key="H2" value="790.2730183626383" />
+      <entry key="H4" value="962.6354662473889" />
+      <entry key="D1" value="6927.613507395389" />
+      <entry key="W1" value="30202.892608747206" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -445,15 +445,7 @@
       <workItem from="1781898046481" duration="27228000" />
       <workItem from="1782069806075" duration="77213000" />
       <workItem from="1782508719534" duration="6000" />
-      <workItem from="1783359647197" duration="47781000" />
-    </task>
-    <task id="LOCAL-00411" summary="Remove `Logix_20260308_002_SeedNativeOperands.sql` migration script.">
-      <option name="closed" value="true" />
-      <created>1781900226144</created>
-      <option name="number" value="00411" />
-      <option name="presentableId" value="LOCAL-00411" />
-      <option name="project" value="LOCAL" />
-      <updated>1781900226144</updated>
+      <workItem from="1783359647197" duration="48521000" />
     </task>
     <task id="LOCAL-00412" summary="Standardize SQL scripts and migrations: format index definitions, replace `REAL` data type with `NUMERIC`, adjust table and column references, and update associated tests and workflows.">
       <option name="closed" value="true" />
@@ -839,7 +831,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783604099483</updated>
     </task>
-    <option name="localTasksCounter" value="460" />
+    <task id="LOCAL-00460" summary="Refactor `DataTypeMemberMap` to conditionally map `data_type` as `BOOL` for `BIT` types; add `is_atomic` SQL function to determine atomic data types; update workspace metadata.">
+      <option name="closed" value="true" />
+      <created>1783606952163</created>
+      <option name="number" value="00460" />
+      <option name="presentableId" value="LOCAL-00460" />
+      <option name="project" value="LOCAL" />
+      <updated>1783606952163</updated>
+    </task>
+    <option name="localTasksCounter" value="461" />
     <option name="createBranch" value="false" />
     <option name="useBranch" value="true" />
     <servers />
@@ -867,7 +867,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `ToString` override for `DbConnectionInfo` to generate provider-specific connection strings; introduce `CustomWebApplicationFactory` for enhanced test configuration management." />
     <MESSAGE value="Refactor SQLite test database to improve test isolation and lifecycle management; remove redundant test setup steps and consolidate connection handling with `TestEnvironment`." />
     <MESSAGE value="Refactor `SourceUploadService` to throw exceptions for session creation errors, update AOI map hashing test with additional fields, and refine `TagImportTests` logic and assertions." />
     <MESSAGE value="Refactor `SourceUploadService` to simplify exception handling and improve error logging in file upload endpoints." />
@@ -892,7 +891,8 @@
     <MESSAGE value="Add and test new SQL migration function: `CreateTagPathFunction`, update metadata and workspace configuration." />
     <MESSAGE value="Simplify SQL function logic in `CreateTagPathFunction` to properly handle leading separators; update workspace metadata and configuration." />
     <MESSAGE value="Bump CLI and Service versions to `0.16.1`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and Service versions to `0.16.1`." />
+    <MESSAGE value="Refactor `DataTypeMemberMap` to conditionally map `data_type` as `BOOL` for `BIT` types; add `is_atomic` SQL function to determine atomic data types; update workspace metadata." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `DataTypeMemberMap` to conditionally map `data_type` as `BOOL` for `BIT` types; add `is_atomic` SQL function to determine atomic data types; update workspace metadata." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

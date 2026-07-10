@@ -1,0 +1,1 @@
+DROP PROCEDURE [qa].[run_validation]

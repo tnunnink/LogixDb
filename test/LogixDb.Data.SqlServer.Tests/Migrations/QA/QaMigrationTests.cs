@@ -67,12 +67,6 @@ public class QaMigrationTests : SqlServerTestFixture
     }
 
     [Test]
-    public async Task MigrateUp_To202606121230_CreatesQaRunValidationProcedure()
-    {
-        await AssertProcedureExists("qa", "run_validation");
-    }
-
-    [Test]
     public async Task MigrateUp_To202606121240_CreatesQaRunValidationsProcedure()
     {
         await AssertProcedureExists("qa", "run_validations");

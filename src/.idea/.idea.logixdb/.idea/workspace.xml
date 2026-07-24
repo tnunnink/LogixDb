@@ -21,11 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260723/M20260723001_CreateHashFunction.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260723/M20260723002_CreateGenerateApprovalProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260723/M20260723003_UpdateExecuteValidationProcedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/Scripts/Migrations/M20260723/M20260723004_CreateGetOverrideVariableProcedure.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260723Tests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -876,7 +872,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor import handling: replace `PutImport` with `CreateImport`, update SQL scripts and tests, and enhance import file lifecycle management with improved methods for writing, loading, and cleanup." />
     <MESSAGE value="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity." />
     <MESSAGE value="Refactor import logic: standardize method names (`OpenWriter` to `OpenWrite`), streamline logging and error handling across services, and remove unused dependencies for improved clarity and maintainability." />
     <MESSAGE value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
@@ -901,7 +896,8 @@
     <MESSAGE value="Add SQL migration procedures and tests for suite creation, duplication, and validation execution." />
     <MESSAGE value="Remove unused test methods from `QaMigrationTests` and `M20260709Tests`." />
     <MESSAGE value="Bump CLI and Service versions to `0.16.2`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and Service versions to `0.16.2`." />
+    <MESSAGE value="Add SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

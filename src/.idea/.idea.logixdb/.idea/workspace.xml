@@ -21,7 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260723Tests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +32,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="75" />
+    <option name="cachedIndexableFilesCount" value="76" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -157,61 +157,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="3.798486671803179E-8" />
-      <entry key="MS500" value="0.03281008531261598" />
-      <entry key="S2" value="0.5492804533562964" />
-      <entry key="S5" value="1.6937289552050712" />
-      <entry key="S10" value="2.915489658649661" />
-      <entry key="S30" value="5.723501907900705" />
-      <entry key="S60" value="8.210198136881214" />
-      <entry key="M2" value="10.461235445352195" />
-      <entry key="M5" value="12.383829849515628" />
-      <entry key="M10" value="13.15360375325686" />
-      <entry key="M15" value="13.426817078126911" />
-      <entry key="M30" value="13.70884310778633" />
-      <entry key="H1" value="13.853297872918061" />
-      <entry key="H2" value="14.089346678110077" />
-      <entry key="H4" value="28.747415638156443" />
-      <entry key="D1" value="3101.1555466671443" />
-      <entry key="W1" value="26204.673689690135" />
+      <entry key="MS100" value="1.0000000298023224" />
+      <entry key="MS500" value="1.0312561339878612" />
+      <entry key="S2" value="1.5426578872156116" />
+      <entry key="S5" value="2.685530835900498" />
+      <entry key="S10" value="3.9084252093160425" />
+      <entry key="S30" value="6.718875344759408" />
+      <entry key="S60" value="9.20687913043701" />
+      <entry key="M2" value="11.459120732832137" />
+      <entry key="M5" value="13.382828444719674" />
+      <entry key="M10" value="14.153071916646542" />
+      <entry key="M15" value="14.42645515343373" />
+      <entry key="M30" value="14.708658343138" />
+      <entry key="H1" value="14.853204516815213" />
+      <entry key="H2" value="15.089299204623057" />
+      <entry key="H4" value="29.747367206485197" />
+      <entry key="D1" value="3102.154675897558" />
+      <entry key="W1" value="26205.672638550357" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000000000278" />
-      <entry key="MS500" value="1.0019450190490127" />
-      <entry key="S2" value="1.2100057962965889" />
-      <entry key="S5" value="1.53754397585159" />
-      <entry key="S10" value="1.7752503822911845" />
-      <entry key="S30" value="2.2525020821665427" />
-      <entry key="S60" value="2.542026764122684" />
-      <entry key="M2" value="2.744206520441328" />
-      <entry key="M5" value="2.890327800208744" />
-      <entry key="M10" value="2.9438520077633576" />
-      <entry key="M15" value="2.962269730463907" />
-      <entry key="M30" value="2.9809840051783807" />
-      <entry key="H1" value="2.9904549010090644" />
-      <entry key="H2" value="2.998370796458994" />
-      <entry key="H4" value="3.216884952577394" />
-      <entry key="D1" value="40.75182504711947" />
-      <entry key="W1" value="1084.0660581294214" />
+      <entry key="MS100" value="0.7845840978967725" />
+      <entry key="MS500" value="0.9544908970969461" />
+      <entry key="S2" value="1.195416994951808" />
+      <entry key="S5" value="1.5301018352946125" />
+      <entry key="S10" value="1.770948817940587" />
+      <entry key="S30" value="2.2506812837678107" />
+      <entry key="S60" value="2.540999139323526" />
+      <entry key="M2" value="2.743651785972659" />
+      <entry key="M5" value="2.890094077026483" />
+      <entry key="M10" value="2.9437329796777885" />
+      <entry key="M15" value="2.9621898814157612" />
+      <entry key="M30" value="2.98094382815855" />
+      <entry key="H1" value="2.9904347486079637" />
+      <entry key="H2" value="2.9983606935691762" />
+      <entry key="H4" value="3.2168795329905895" />
+      <entry key="D1" value="40.75181360446549" />
+      <entry key="W1" value="1084.066014644623" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0056403578506312975" />
-      <entry key="MS500" value="0.3803448072641809" />
-      <entry key="S2" value="1.4335599856587173" />
-      <entry key="S5" value="3.0046451743986844" />
-      <entry key="S10" value="4.524473080749947" />
-      <entry key="S30" value="7.862157050922781" />
-      <entry key="S60" value="10.66720152487609" />
-      <entry key="M2" value="13.150461398724028" />
-      <entry key="M5" value="15.24798733160513" />
-      <entry key="M10" value="16.083543539079862" />
-      <entry key="M15" value="16.379617084737976" />
-      <entry key="M30" value="16.684991861661885" />
-      <entry key="H1" value="16.84130948447067" />
-      <entry key="H2" value="17.08648775036714" />
-      <entry key="H4" value="31.96362915895444" />
-      <entry key="D1" value="3141.9061667308156" />
-      <entry key="W1" value="27288.736393875995" />
+      <entry key="MS100" value="0.7890094329728031" />
+      <entry key="MS500" value="1.3149689138024938" />
+      <entry key="S2" value="2.4042190326649013" />
+      <entry key="S5" value="3.9852615777427314" />
+      <entry key="S10" value="5.5110868696007795" />
+      <entry key="S30" value="8.854993372142912" />
+      <entry key="S60" value="11.662485010560443" />
+      <entry key="M2" value="14.147600918425999" />
+      <entry key="M5" value="16.246673455959538" />
+      <entry key="M10" value="17.082852804125512" />
+      <entry key="M15" value="17.37914861089608" />
+      <entry key="M30" value="17.684753507391115" />
+      <entry key="H1" value="17.84118925352361" />
+      <entry key="H2" value="18.086426808674023" />
+      <entry key="H4" value="32.96357362409626" />
+      <entry key="D1" value="3142.9052842381248" />
+      <entry key="W1" value="27289.735299211443" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -300,7 +300,7 @@
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.intellij.ml.llm.agents.skills.settings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   },
@@ -872,8 +872,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor: rename `DbProvider` to `ProviderType` across Data, Service, CLI, and test projects to improve naming consistency and clarity." />
-    <MESSAGE value="Refactor import logic: standardize method names (`OpenWriter` to `OpenWrite`), streamline logging and error handling across services, and remove unused dependencies for improved clarity and maintainability." />
     <MESSAGE value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
     <MESSAGE value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
     <MESSAGE value="Refactor `TagTransformer`: improve validation for `ProduceInfo` elements to skip entries with missing attributes and prevent parsing errors." />
@@ -897,7 +895,9 @@
     <MESSAGE value="Remove unused test methods from `QaMigrationTests` and `M20260709Tests`." />
     <MESSAGE value="Bump CLI and Service versions to `0.16.2`." />
     <MESSAGE value="Add SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
+    <MESSAGE value="Add tests for SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
+    <MESSAGE value="Bump CLI and Service versions to `0.16.3`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and Service versions to `0.16.3`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -818,7 +818,6 @@ public class SqlDbSchemaTests : SqlServerTestFixture
 
             await AssertFunctionExists("qa", "emit_failure");
             await AssertFunctionExists("qa", "emit_success");
-            await AssertFunctionExists("qa", "inspect_result");
             await AssertFunctionExists("qa", "hash");
 
             await AssertProcedureExists("qa", "create_validation");
@@ -832,6 +831,7 @@ public class SqlDbSchemaTests : SqlServerTestFixture
             await AssertProcedureExists("qa", "generate_approval");
             await AssertProcedureExists("qa", "execute_validation");
             await AssertProcedureExists("qa", "get_override_variable");
+            await AssertProcedureExists("qa", "inspect_result");
             await AssertProcedureExists("qa", "create_suite");
         }
     }

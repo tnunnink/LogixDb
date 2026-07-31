@@ -1,5 +1,3 @@
-DROP FUNCTION [qa].[inspect_result]
-
 CREATE PROCEDURE [qa].[inspect_result]
     @result_id BIGINT
 AS

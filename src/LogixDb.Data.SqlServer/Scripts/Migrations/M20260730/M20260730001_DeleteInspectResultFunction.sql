@@ -1,0 +1,1 @@
+DROP FUNCTION [qa].[inspect_result]

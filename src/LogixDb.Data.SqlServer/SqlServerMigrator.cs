@@ -26,7 +26,9 @@ public class SqlServerMigrator : IDbMigrator
         var upgrader = DeployChanges.To
             .SqlDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), s => s.Contains("Migrations"))
-            .WithScript("LogixDb.Data.SqlServer.Scripts.Migrations.M20260308.M20260308002_SeedNativeOperands", new M20260308002SeedNativeOperands())
+            .WithScript(
+                "LogixDb.Data.SqlServer.Scripts.Migrations.M20260308.M20260308002_SeedNativeOperands",
+                new M20260308002SeedNativeOperands())
             .LogToConsole()
             .Build();
 

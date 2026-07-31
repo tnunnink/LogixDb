@@ -21,7 +21,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42dc92ef-3f62-44f8-96c8-f451e4417fe0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbFunctionTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbSchemaTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.logixdb/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260206Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260211Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260212Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260213Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260306Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260527Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260611Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260616Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260708Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260709Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260723Tests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,51 +79,6 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/14/d96fb4d2/Tag.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/37/b0cfea2b/Port.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/45/afc717df/ProduceInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/5c/d9cf04ff/AddOnInstruction.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/90/1c05b8d7/DataType.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0bbfd643e1be4f2084da03399ce69b1e1d0800/da/b4cd3128/Address.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/96/1597f6f9/LogixContainer`1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1986f903cd2942938211e7433685534b1d0a00/fb/dba6d945/Module.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d2694c4c60346cba1a5202623b1a9363a00/5e/e5dc212e/LogixSdkConverter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/898a99b1d4d348c09fc9b65f48e111d61cee00/34/929e4a86/LogixIndex.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8d145bdca1b14d8f9b0bc76708515aba35f238/f2/aa7f6016/DataColumn.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/900241a5535c46a18b938d3aad0159681cda00/ba/857f466b/Dimensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/90cc4081e7c64d13b0360e1e3edbe1341d0800/4a/47fff568/Connection.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aa5f1386bcf7452cae3189004485a88e1d0600/19/cb43b191/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/aabf6f0c1a4b406488e1ffba23dd0b8b3c400/b7/93eaef70/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c5312ab6df534365b6e44dc5819713f31d0800/b2/e8448cb8/Parameter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/06/c2fafa08/LogixSerializer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/32/fd77874f/LogixType.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/58/84991d6d/LogixElement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/6d/f882e9a1/TagName.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/80/06c003af/LogixMetadata.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/82/d4b7d06c/Parameter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/97/bba3b973/LogixData.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/a9/3af6da57/Tag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c71a80d6f9f5408d9fe931a46785514c1cdc00/ff/ef72fe56/Controller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/10325b30f3b1c5e3095d19028199bc2c5ab99f1ae45b4b46b59f05241eaf0/ToCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1d44e3b2c83edcd85dd7f1bf6b520265735c665d75fe83f81d89d6efe2969c/CommandLineApplication.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/228bff957d5b9f32cfbedd8bf82a5d3e862ec3e051593a67913b95ae288287/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3bad7d76da568b26665cde7c6a9f8b320a5dac8cd60d2440eacb376c17e0ee/XmlDsigC14NTransform.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3cca26e6dd627c1a7919bec86cb05b6d975a30287456f7daa8773a92451a/List.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4676d56862fb4fd21787f86512ac8f40f35af31ab13e43293e8827c7c28594/SetUpTearDownItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53d2ad3a3874fd7fce7c94c1dd485689b30f4dee3eb9b9e6465c2edd7e074/AsyncToSyncAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/57f527b763276a63b4f184a78531bfa2109193c3dc111eccb184c086505781a4/SpanHelpers.Char.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb4b860ad274bc3f8c7c0fb32f03875bbb0b45fa99f710d430d12922eed4/AnsiConsoleExtensions.Progress.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7e2046b255d41e4cc862b65313663190a5689a6f6f4b91959751087ff9c1299/CompositeWorkItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7e70952ee66de1d29e43a8c44ae756e92fc1a4cb192a881dcb9ab76929ced64/WebHostBuilderBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a03c17f2fd36df8b7b37de9344e96d937dfeaa584f76d8d77beee4c9fcd58/MessagePumpStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a8f3aa8bee39a96ab7d81328758f8f5a530ab899249c973b75f4afa53c/DockerUnavailableException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b1dcf3158124f84888ef6e971e8838c373a93c4ba6786df5dcf4c08228c736/WebApplicationFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b95362c6803783f7bd805f96ba16fa5359323ee61e95a9a8f92577c6433d/BeforeTestCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6f79e18ad35c4aede2e2c24988c23a228cc40237d78ed6f493e27cf86e7b89c/ICreateIndexOptionsSyntax.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c737b259bdbafc66dd6bf6dbdf56414a7658cb2a8f0b479637eda81be8fdf/DataColumnCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d1d7280b53be4f32b5e9b2587f54915348ec89107b99282d2748ac94b8c1/HttpClient.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3c187e0b88b1a56f2518fb9f4b5ee5ed6e9116d93a507969a932c16801033/TaskAwaitAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db398197bcf0ab46a130924adda9d23eb9504867e1a1a0869eaf405db5c647/SqlMapper.Async.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Roaming/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Cli/Commands/DbCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -139,7 +110,9 @@
     <setting file="file://$PROJECT_DIR$/LogixDb.Data/Transformers/TagTransformer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/AssetInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogixDb.Service/Common/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbFunctionTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbPerformanceTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/SqlDbSchemaTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/bin/Debug/net10.0/Resources/operands.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Sqlite.Tests/SqliteEnvironment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../test/LogixDb.Data.Tests/FakeSourceTests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -157,61 +130,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000298023224" />
-      <entry key="MS500" value="1.0312561339878612" />
-      <entry key="S2" value="1.5426578872156116" />
-      <entry key="S5" value="2.685530835900498" />
-      <entry key="S10" value="3.9084252093160425" />
-      <entry key="S30" value="6.718875344759408" />
-      <entry key="S60" value="9.20687913043701" />
-      <entry key="M2" value="11.459120732832137" />
-      <entry key="M5" value="13.382828444719674" />
-      <entry key="M10" value="14.153071916646542" />
-      <entry key="M15" value="14.42645515343373" />
-      <entry key="M30" value="14.708658343138" />
-      <entry key="H1" value="14.853204516815213" />
-      <entry key="H2" value="15.089299204623057" />
-      <entry key="H4" value="29.747367206485197" />
-      <entry key="D1" value="3102.154675897558" />
-      <entry key="W1" value="26205.672638550357" />
+      <entry key="MS100" value="1.0064748209212313" />
+      <entry key="MS500" value="2.961644760431863" />
+      <entry key="S2" value="10.711690278785674" />
+      <entry key="S5" value="15.38208130367605" />
+      <entry key="S10" value="17.521637028724303" />
+      <entry key="S30" value="19.480894146943264" />
+      <entry key="S60" value="21.744553705772915" />
+      <entry key="M2" value="28.15905895043847" />
+      <entry key="M5" value="60.809252985848005" />
+      <entry key="M10" value="221.7297027233008" />
+      <entry key="M15" value="414.8648268944197" />
+      <entry key="M30" value="827.6373865775819" />
+      <entry key="H1" value="1190.1834660982918" />
+      <entry key="H2" value="1432.6385925359652" />
+      <entry key="H4" value="1585.8400468306995" />
+      <entry key="D1" value="4719.778584868233" />
+      <entry key="W1" value="27831.040022186335" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.7845840978967725" />
-      <entry key="MS500" value="0.9544908970969461" />
-      <entry key="S2" value="1.195416994951808" />
-      <entry key="S5" value="1.5301018352946125" />
-      <entry key="S10" value="1.770948817940587" />
-      <entry key="S30" value="2.2506812837678107" />
-      <entry key="S60" value="2.540999139323526" />
-      <entry key="M2" value="2.743651785972659" />
-      <entry key="M5" value="2.890094077026483" />
-      <entry key="M10" value="2.9437329796777885" />
-      <entry key="M15" value="2.9621898814157612" />
-      <entry key="M30" value="2.98094382815855" />
-      <entry key="H1" value="2.9904347486079637" />
-      <entry key="H2" value="2.9983606935691762" />
-      <entry key="H4" value="3.2168795329905895" />
-      <entry key="D1" value="40.75181360446549" />
-      <entry key="W1" value="1084.066014644623" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="5.454556218963301E-230" />
+      <entry key="S5" value="1.971077810680756E-92" />
+      <entry key="S10" value="1.4039507867795134E-46" />
+      <entry key="S30" value="5.200683680698386E-16" />
+      <entry key="S60" value="2.3373286799725984E-8" />
+      <entry key="M2" value="1.7578431574696092E-4" />
+      <entry key="M5" value="0.05279506597531586" />
+      <entry key="M10" value="0.5011434337297851" />
+      <entry key="M15" value="1.1542713703676217" />
+      <entry key="M30" value="2.7826357451572696" />
+      <entry key="H1" value="4.391366346273457" />
+      <entry key="H2" value="5.540049448558024" />
+      <entry key="H4" value="6.415869522250002" />
+      <entry key="D1" value="43.77916001235887" />
+      <entry key="W1" value="1084.5891897615077" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7890094329728031" />
-      <entry key="MS500" value="1.3149689138024938" />
-      <entry key="S2" value="2.4042190326649013" />
-      <entry key="S5" value="3.9852615777427314" />
-      <entry key="S10" value="5.5110868696007795" />
-      <entry key="S30" value="8.854993372142912" />
-      <entry key="S60" value="11.662485010560443" />
-      <entry key="M2" value="14.147600918425999" />
-      <entry key="M5" value="16.246673455959538" />
-      <entry key="M10" value="17.082852804125512" />
-      <entry key="M15" value="17.37914861089608" />
-      <entry key="M30" value="17.684753507391115" />
-      <entry key="H1" value="17.84118925352361" />
-      <entry key="H2" value="18.086426808674023" />
-      <entry key="H4" value="32.96357362409626" />
-      <entry key="D1" value="3142.9052842381248" />
-      <entry key="W1" value="27289.735299211443" />
+      <entry key="MS100" value="0.9127765246966346" />
+      <entry key="MS500" value="2.864717816821781" />
+      <entry key="S2" value="10.627891593207861" />
+      <entry key="S5" value="15.335613762514429" />
+      <entry key="S10" value="17.488926746029602" />
+      <entry key="S30" value="19.435767653508726" />
+      <entry key="S60" value="21.70379250522154" />
+      <entry key="M2" value="28.130883948096677" />
+      <entry key="M5" value="60.846383888936295" />
+      <entry key="M10" value="222.21752599976045" />
+      <entry key="M15" value="416.0061309021177" />
+      <entry key="M30" value="830.4091365735769" />
+      <entry key="H1" value="1194.5674058780814" />
+      <entry key="H2" value="1438.1742509041771" />
+      <entry key="H4" value="1592.253474311871" />
+      <entry key="D1" value="4763.556237865516" />
+      <entry key="W1" value="28915.625821265152" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -872,8 +845,6 @@
   <component name="VcsManagerConfiguration">
     <confirmRemoveEmptyChangelist value="2" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor: rename `PutImport` to `PostImport` across tests and update method calls to improve consistency and clarity in import handling logic." />
-    <MESSAGE value="Refactor test cleanup: ensure temporary directories are always created and properly deleted in `WriteAsync_TestL5XFileOnDisc`." />
     <MESSAGE value="Refactor `TagTransformer`: improve validation for `ProduceInfo` elements to skip entries with missing attributes and prevent parsing errors." />
     <MESSAGE value="Rename SQL migration functions to align with consistent `get_*` naming convention and update related test cases and references accordingly. Increment CLI and service versions to `0.15.1`." />
     <MESSAGE value="Refactor validation procedure: improve handling for missing validation records, standardize comments, and enhance failure message generation." />
@@ -897,7 +868,9 @@
     <MESSAGE value="Add SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
     <MESSAGE value="Add tests for SQL migration procedures: `hash`, `generate_approval`, `get_override_variable`, and update `execute_validation`." />
     <MESSAGE value="Bump CLI and Service versions to `0.16.3`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and Service versions to `0.16.3`." />
+    <MESSAGE value="Add SQL migration procedure `inspect_result` to validate and process JSON-based result details." />
+    <MESSAGE value="Bump CLI and Service versions to `0.16.4`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump CLI and Service versions to `0.16.4`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -928,40 +901,14 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/QA/QaMigrationTests.cs</url>
-          <line>11</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\Migrations\QA\QaMigrationTests.cs" containingFunctionPresentation="Method 'MigrateUp_To202606120900_CreatesQaSchemaAndTypes'">
-            <startOffsets>
-              <option value="366" />
-            </startOffsets>
-            <endOffsets>
-              <option value="406" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../test/LogixDb.Data.SqlServer.Tests/Migrations/M20260308Tests.cs</url>
-          <line>36</line>
-          <properties documentPath="C:\Users\tnunn\Projects\LogixDb\test\LogixDb.Data.SqlServer.Tests\Migrations\M20260308Tests.cs" containingFunctionPresentation="Method 'MigrateUp_ToM202603082130_SeedsExpectedOperands'">
-            <startOffsets>
-              <option value="1537" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1581" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/LogixDb.Data.SqlServer/SqlServerMigrator.cs</url>
           <line>32</line>
           <properties documentPath="C:\Users\tnunn\Projects\LogixDb\src\LogixDb.Data.SqlServer\SqlServerMigrator.cs" containingFunctionPresentation="Method 'Migrate'">
             <startOffsets>
-              <option value="1198" />
+              <option value="1245" />
             </startOffsets>
             <endOffsets>
-              <option value="1237" />
+              <option value="1284" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="22" />

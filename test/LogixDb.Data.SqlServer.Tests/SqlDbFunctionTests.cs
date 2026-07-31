@@ -1,39 +1,20 @@
 using Dapper;
 
-namespace LogixDb.Data.SqlServer.Tests.Migrations;
+namespace LogixDb.Data.SqlServer.Tests;
 
 [TestFixture]
-public class M20260709Tests : SqlServerTestFixture
+public class SqlDbFunctionTests : SqlServerTestFixture
 {
-    [Test]
-    public async Task MigrateUp_M20260709_CreatesFunctions()
-    {
-        await AssertFunctionExists("logix", "tag_path");
-        await AssertFunctionExists("logix", "is_atomic");
-        await AssertFunctionExists("logix", "default_value");
-    }
-
-    [Test]
-    public async Task MigrateUp_M20260709_CreatesProcedures()
-    {
-        await AssertProcedureExists("qa", "execute_validation");
-        await AssertProcedureExists("qa", "run_validations");
-        await AssertProcedureExists("qa", "create_suite");
-        await AssertProcedureExists("qa", "duplicate_suite");
-    }
-
-    [Test]
-    public async Task CreateSuite_WithValidName_CreatesProcedure()
+    [TestCase("Tag", "Tag")]
+    [TestCase("Tag.Member", "Tag")]
+    [TestCase("Tag[0]", "Tag")]
+    [TestCase("Tag.Member[0]", "Tag")]
+    [TestCase("Tag[0].Member", "Tag")]
+    public async Task TagBaseFunction_PostMigration_ShouldReturnExpectedBase(string tagName, string expected)
     {
         await using var connection = await Provider.OpenConnection();
-        var suiteName = "Test_Suite_" + Guid.NewGuid().ToString("N");
-
-        await connection.ExecuteAsync("EXEC [qa].[create_suite] @suiteName", new { suiteName });
-
-        await AssertProcedureExists("suite", suiteName);
-
-        // Cleanup
-        await connection.ExecuteAsync($"DROP PROCEDURE [suite].[{suiteName}]");
+        var result = await connection.ExecuteScalarAsync<string>("SELECT logix.tag_base(@tagName)", new { tagName });
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [TestCase("Tag", "")]
@@ -41,7 +22,7 @@ public class M20260709Tests : SqlServerTestFixture
     [TestCase("Tag[0]", "[0]")]
     [TestCase("Tag.Member[0]", "Member[0]")]
     [TestCase("Tag[0].Member", "[0].Member")]
-    public async Task TagPath_WithInput_ReturnsExpectedPath(string tagName, string expected)
+    public async Task TagPathFunction_PostMigration_ShouldReturnExpectedPath(string tagName, string expected)
     {
         await using var connection = await Provider.OpenConnection();
         var result = await connection.ExecuteScalarAsync<string>("SELECT logix.tag_path(@tagName)", new { tagName });
@@ -67,12 +48,13 @@ public class M20260709Tests : SqlServerTestFixture
     [TestCase("STRING", false)]
     [TestCase("MY_STRUCT", false)]
     [TestCase("MyCustomType", false)]
-    public async Task IsAtomic_WithInput_ReturnsExpected(string dataType, bool expected)
+    public async Task IsAtomicFunction_PostMigration_ShouldReturnExpectedValue(string dataType, bool expected)
     {
         await using var connection = await Provider.OpenConnection();
         var result = await connection.ExecuteScalarAsync<bool>("SELECT logix.is_atomic(@dataType)", new { dataType });
         Assert.That(result, Is.EqualTo(expected));
     }
+
 
     [TestCase("BOOL", "0")]
     [TestCase("SINT", "0")]
@@ -91,11 +73,24 @@ public class M20260709Tests : SqlServerTestFixture
     [TestCase("REAL", "0.0")]
     [TestCase("LREAL", "0.0")]
     [TestCase("STRING", null)]
-    public async Task DefaultValue_WithInput_ReturnsExpectedValue(string dataType, string? expected)
+    public async Task DefaultValueFunction_PostMigration_ShouldReturnExpectedValue(string dataType, string? expected)
     {
         await using var connection = await Provider.OpenConnection();
         var result =
             await connection.ExecuteScalarAsync<string>("SELECT logix.default_value(@dataType)", new { dataType });
         Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public async Task Hash_WithInput_ReturnsExpectedHash()
+    {
+        const string input = "test data";
+        await using var connection = await Provider.OpenConnection();
+
+        var result = await connection.ExecuteScalarAsync<string>("SELECT qa.hash(@input)", new { input });
+
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Has.Length.EqualTo(64));
+        Assert.That(result, Is.EqualTo("1F4A14C8F69FFA84088C6FF83F68E09271D2A63C92ECD0DC0781E84E7BA4DCD7"));
     }
 }
